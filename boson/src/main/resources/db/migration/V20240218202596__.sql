@@ -1,0 +1,2 @@
+ALTER TABLE home_news
+    ADD expiration TIMESTAMP WITHOUT TIME ZONE;

@@ -1,0 +1,12 @@
+.container {
+  height: 100%;
+}
+
+.stickyAddComment {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--bosler-border-color-default);
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+}

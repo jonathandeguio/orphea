@@ -1,0 +1,198 @@
+import { ConnectBuildAPI, existsDatasetLink } from "Apps/Connect/Connect.api";
+import { Popover } from "antd";
+import { BuildIcon, StopIcon } from "assets/icons/boslerActionIcons";
+import axios from "axios";
+import { updateBottomBarItemState } from "common/components/BoslerLayout/bottomBarSlice";
+import BoslerButton, {
+  TBoslerButtonIntent,
+} from "components/BoslerComponents/ButtonComponent/BoslerButton";
+import { abortBuildAPI, fetchBuildLogsAPI } from "components/Builds/Builds.api";
+import { DATASET } from "components/Builds/Builds.constants";
+import { TPlatformPage } from "global";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { RootState, ThunkAppDispatch } from "redux/types/store";
+import {
+  getLanguageLabel,
+  openNotification,
+  runPeriodically,
+} from "utils/utilities";
+import { getDatasetMapping } from "../../../redux/actions/datasetActions";
+
+interface IProps {
+  datasetId: string | null;
+  branch: string | null;
+  currentTransactionId: string | null;
+  linkId?: string;
+  page?: TPlatformPage;
+  disabled?: boolean;
+}
+
+const BuildBtn = ({
+  datasetId,
+  branch,
+  currentTransactionId,
+  linkId,
+  page = "BUILD",
+  disabled = false,
+}: IProps) => {
+  const user = useSelector((state: RootState) => state.userDetails.user);
+  const dispatch = useDispatch<ThunkAppDispatch>();
+  const [buildActive, setBuildActive] = useState<boolean>(false);
+  const [buildId, setBuildId] = useState<string>();
+  const [connectLink, setConnectLink] = useState<any>();
+  const [intent, setIntent] = useState<TBoslerButtonIntent>("action");
+
+  const onBuild = async () => {
+    if (linkId || (connectLink && connectLink.status)) {
+      ConnectBuildAPI(linkId ? linkId : connectLink.link.id).then(
+        ({ data }) => {
+          if (page == "LINK" || page == "SOURCE") {
+            dispatch(
+              updateBottomBarItemState({
+                id: "datasetBuildLogPanel",
+                openPane: true,
+                props: {
+                  id: data.id,
+                  page: "LINK",
+                  showHeader: false,
+                  showEmpty: false,
+                },
+              })
+            );
+          }
+          setBuildId(data.id);
+          setBuildActive(true);
+        }
+      );
+    } else {
+      await axios
+        .post(`/build/build/${DATASET}`, {
+          datasetId: datasetId,
+          branch: branch,
+          transactionId: currentTransactionId,
+          buildType: "DEFAULT",
+        })
+        .then(({ data }) => {
+          setBuildId(data.id);
+          setBuildActive(true);
+        });
+    }
+  };
+
+  const onAbort = (buildId: string) => {
+    abortBuildAPI({
+      buildId: buildId,
+      datasetId: datasetId,
+      branch: branch,
+    })
+      .then(() => {
+        if (page == "LINK" || page == "SOURCE") {
+          dispatch(
+            updateBottomBarItemState({
+              id: "datasetBuildLogPanel",
+              props: {
+                loading: false,
+                data: null,
+              },
+            })
+          );
+        }
+      })
+      .catch((err) => {
+        if (typeof err === "string") {
+          openNotification(err, " ", "error");
+        } else if (err instanceof Error) {
+          openNotification(err.message, " ", "error");
+        }
+      })
+      .finally(() => {
+        setBuildActive(false);
+        setBuildId(undefined);
+      });
+  };
+
+  const getTitle = () => {
+    if (buildId && buildActive) {
+      return (
+        <>
+          <BoslerButton
+            intent="dangerous"
+            onClick={() => onAbort(buildId)}
+            icon={<StopIcon />}
+            fill
+          >
+            {getLanguageLabel("abort")}
+          </BoslerButton>
+          <Link to={`/portal/builds/${buildId}`}>View Build Details</Link>
+        </>
+      );
+    } else {
+      return "Build dataset from here";
+    }
+  };
+
+  const getConnectBuildInfo = () => {
+    if (datasetId && branch) {
+      existsDatasetLink(datasetId, branch).then(({ data }) => {
+        setConnectLink(data);
+      });
+    }
+  };
+
+  const handleBuildLog = (buildId: string) => {
+    fetchBuildLogsAPI(buildId).then(({ data: updatedBuildLog }) => {
+      if (updatedBuildLog.status == "ACTIVE") {
+        // TODO : Uncomment after, log comming for specific dataset & branch
+        setBuildActive(true);
+        setBuildId(updatedBuildLog.id);
+      } else {
+        setBuildActive(false);
+        setBuildId(undefined);
+        if (updatedBuildLog.status == "SUCCESS") {
+          dispatch(getDatasetMapping(datasetId as string, branch as string));
+          setIntent("success");
+        } else if (updatedBuildLog.status == "FAILED") {
+          setIntent("dangerous");
+        } else if (updatedBuildLog.status == "ABORTED") {
+          setIntent("action");
+        }
+      }
+    });
+  };
+
+  useEffect(() => {
+    let stopPeriodicFunction: (() => void) | undefined;
+
+    if (buildId) {
+      stopPeriodicFunction = runPeriodically(() => handleBuildLog(buildId));
+    }
+
+    return () => {
+      if (stopPeriodicFunction) {
+        stopPeriodicFunction();
+      }
+    };
+  }, [buildId]);
+
+  useEffect(() => {
+    getConnectBuildInfo();
+  }, []);
+
+  return (
+    <Popover title={getTitle()} placement="bottom">
+      <BoslerButton
+        onClick={() => onBuild()}
+        intent={intent}
+        loading={buildActive}
+        icon={<BuildIcon />}
+        disabled={disabled}
+      >
+        {getLanguageLabel("build")}
+      </BoslerButton>
+    </Popover>
+  );
+};
+
+export default BuildBtn;

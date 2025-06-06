@@ -1,0 +1,24 @@
+.sourceTree_colsWrapper {
+  padding: 5px;
+  height: 100%;
+}
+
+.sourceTree_cols {
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  height: 100%;
+  gap: 5px;
+}
+
+.sourceTree_colOutside {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.sourceTree_colInside {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}

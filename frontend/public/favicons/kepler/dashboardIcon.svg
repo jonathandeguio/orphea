@@ -1,0 +1,12 @@
+<svg color="#717a94" data-icon="monitor" fill="#717a94" height="300" viewBox="0 0 16 16" width="300" xmlns="http://www.w3.org/2000/svg">
+  <desc>
+    dynamic
+  </desc>
+  <g stroke-width="1">
+    <g transform="">
+      <path d="M3 14H13V15H3V14Z" fill="currentColor"/>
+      <path d="M7 11H9V14H7V11Z" fill="currentColor"/>
+      <path clip-rule="evenodd" d="M15 2H1V10H15V2ZM1 1C0.447715 1 0 1.44772 0 2V10C0 10.5523 0.447715 11 1 11H15C15.5523 11 16 10.5523 16 10V2C16 1.44772 15.5523 1 15 1H1Z" fill="currentColor" fill-rule="evenodd"/>
+    </g>
+  </g>
+</svg>

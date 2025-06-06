@@ -1,0 +1,7 @@
+tzdata
+curl
+vim
+git
+nodejs
+python3.10
+python3-pip

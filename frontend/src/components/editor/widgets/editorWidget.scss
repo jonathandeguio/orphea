@@ -1,0 +1,142 @@
+.file_selector {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    width: clamp(300px, 25vw, 800px);
+    height: clamp(300px, 25vh, 800px);
+    background-color: var(--background-color);
+    border-radius: 4px;
+    margin-top: 5px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2), 0px 0px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  &__list {
+    &__container {
+      overflow: auto;
+      height: 100%;
+      padding: 0.5rem 0;
+      margin-top: 0.2rem;
+      display: flex;
+      flex-direction: column;
+    }
+    &--item {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      padding: 0.2rem 0.6rem;
+      background-color: var(--background-color);
+
+      &:hover {
+        background-color: var(--bosler-hover-color);
+      }
+    }
+    &--focused {
+      background-color: var(--bosler-hover-color);
+    }
+  }
+
+  &__action--item {
+    border-radius: 0;
+    color: var(--color);
+    background-color: var(--background-color);
+  }
+
+  &__action_suggestor {
+    margin: 0.2rem 0.5rem;
+  }
+}
+
+.runButtonWidget {
+  cursor: pointer;
+  margin-left: 0.5rem;
+}
+
+.uuid_overlay {
+  background-color: var(--bosler-bkg-color-default);
+  font-family: "IBM Plex Mono", "Courier New", Courier, monospace,
+    "Droid Sans Mono", "monospace", monospace;
+  font-weight: 400;
+  display: flex;
+  overflow: hidden;
+
+  &__name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  &__edit {
+    margin-left: auto;
+  }
+  &--active {
+    text-decoration: underline;
+    cursor: pointer;
+
+    &:hover {
+      color: #006dd9;
+    }
+  }
+}
+
+.uuid_popover {
+  &__header {
+    display: flex;
+    flex-direction: row;
+    margin: 0 0 0.5rem 0;
+    cursor: pointer;
+
+    div {
+      text-decoration: underline;
+    }
+    &:hover {
+      color: #006dd9;
+    }
+  }
+
+  &__details {
+    display: flex;
+    flex-direction: row;
+
+    cursor: pointer;
+    gap: 1rem;
+    margin-top: 0.5rem;
+  }
+
+  &__container {
+    border-radius: 0;
+    .ant-popover-inner {
+      background-color: var(--bosler-bkg-color-default) !important;
+      color: var(--bosler-font-color-default) !important;
+    }
+    .ant-popover-arrow {
+      &::before {
+        background: var(--bosler-bkg-color-default) !important;
+      }
+    }
+  }
+  background-color: var(--bosler-bkg-color-default) !important;
+  color: var(--bosler-font-color-default) !important;
+}
+
+.editor-pannel {
+  @media (max-width: 768px) {
+    padding-right: 30px;
+  }
+}
+.tutorial-card-container {
+  @media (max-width: 768px) {
+    max-width: 100% !important;
+  }
+}
+.tutorial-cards-container {
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+  }
+}
+.demo-code {
+  @media (max-width: 768px) {
+    word-wrap: break-word;
+  }
+}

@@ -1,0 +1,274 @@
+.boslertable-wrapper {
+  overflow: auto;
+  border: 1px solid var(--bosler-border-color-muted);
+  position: relative;
+  display: flex;
+}
+
+.boslertable-container {
+  overflow: auto;
+  border: 1px solid var(--bosler-border-color-muted);
+  width: 100%;
+}
+
+.boslertable {
+  // font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen-Sans,
+  //   Ubuntu, Cantarell, Helvetica Neue, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.2858142857;
+  text-transform: none;
+  display: block;
+  white-space: nowrap;
+  position: absolute;
+
+  &-header {
+    font-weight: 400;
+    color: var(--color);
+    background: var(--background-color);
+    // display: flex;
+    border-bottom: 1px solid var(--bosler-border-color-default);
+    z-index: 1;
+
+    &-row {
+      // display: flex;
+      // border-bottom: 1px solid var(--bosler-table-top-border);
+
+      &-blankth {
+        width: 30px;
+        flex: 0 0 auto;
+        box-shadow: 0 1px 0 rgb(17 20 24 / 15%), 1px 0 0 rgb(17 20 24 / 15%);
+        border-right: 1px solid var(--bosler-border-color-default);
+      }
+
+      &-th {
+        // border-bottom: 1px solid var(--bosler-table-top-border);
+        border-right: 1px solid var(--bosler-border-color-default);
+
+        &-container {
+          line-height: 24px;
+          transition: color 0.3s;
+          display: flex;
+          font-size: 16px;
+          text-align: left;
+          padding: 0 10px;
+          height: 100%;
+          justify-content: center;
+          box-shadow: 0 1px 0 rgb(17 20 24 / 15%),
+            inset -1px 0 0 rgb(17 20 24 / 15%);
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+
+          &-text {
+            &-large {
+              // overflow: hidden;
+              // text-overflow: ellipsis;
+              // color: #1c2127;
+              color: var(--bosler-font-color-muted);
+            }
+
+            &-small {
+              font-size: 14px;
+              // overflow: hidden;
+              // text-overflow: ellipsis;
+              font-family: "Poppins", system-ui, -apple-system,
+                BlinkMacSystemFont, sans-serif;
+              // font-family: monospace;
+              font-weight: 400;
+              // color : #1c2127;
+              color: var(--color);
+            }
+          }
+
+          &-btns {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+
+            .popover {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+
+              //background-color: black;
+              &-menu {
+              }
+            }
+
+            .holder-icon {
+              cursor: grab;
+
+              &:focus {
+                cursor: grabbing;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &-body {
+    line-height: 20px;
+    font-size: 12px;
+
+    &-tr {
+      &-blanktd {
+        font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont,
+          sans-serif;
+        display: flex;
+        justify-content: center;
+        color: var(--color);
+        width: 30px;
+        text-align: right;
+        padding: 0 5px;
+        box-shadow: inset 0 -1px 0 rgb(17 20 24 / 15%),
+          1px 0 0 rgb(17 20 24 / 15%);
+        // Remove this line to understand box-shadow bug, feels like z-index issue
+        border-right: 1px solid var(--bosler-border-color-default);
+        // border-bottom: 1px solid var(--bosler-border-color-default);
+      }
+
+      &-td {
+        //background: #fff;
+        cursor: cell;
+        padding: 0 10px;
+        text-align: left;
+        // border: 1px solid var(--bosler-border-color-default);
+        box-shadow: inset 0 -1px 0 rgb(17 20 24 / 15%),
+          inset -1px 0 0 rgb(17 20 24 / 15%);
+        background-color: var(--background-color);
+        color: var(--color);
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+}
+
+.boslertable-topbar {
+  // margin: 0 20px;
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+  align-items: center;
+
+  // border-bottom: none;
+  padding-left: 10px;
+  padding-right: 10px;
+
+  width: 100%;
+  height: 37px;
+  border-top: 1px solid var(--bosler-border-color-default);
+
+  &-left {
+    // gap: 0.5rem;
+    display: flex;
+    align-items: center;
+  }
+
+  &-right {
+    display: flex;
+    align-items: center;
+
+    &-cols {
+      cursor: pointer;
+    }
+
+    &-search {
+      color: var(--bosler-table-body-text-color);
+    }
+  }
+}
+
+.resizer {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 5px;
+  // background: #2d72d2;
+  cursor: col-resize;
+  user-select: none;
+  touch-action: none;
+  cursor: ew-resize;
+}
+
+.resizer.isResizing {
+  background: #2d72d2;
+  opacity: 1;
+}
+
+@media (hover: hover) {
+  .resizer {
+    opacity: 0;
+  }
+
+  *:hover > .resizer {
+    opacity: 1;
+    background: #2d72d2;
+  }
+
+  *:hover > .popover {
+    opacity: 1;
+  }
+
+  *:hover > .holder-icon {
+    opacity: 1;
+  }
+}
+
+.rowC {
+  display: flex;
+  flex-direction: row;
+}
+
+.selected {
+  // background-color: rgb(196, 196, 196);
+  background: var(--bosler-table-selected);
+}
+
+.disable-text-selection {
+  -moz-user-select: none;
+  /* firefox */
+  -webkit-user-select: none;
+  /* Safari */
+  -ms-user-select: none;
+  /* IE*/
+  user-select: none;
+  /* Standard syntax */
+}
+
+.input-header {
+  background-color: var(--bosler-table-searchbar-color);
+  color: var(--bosler-table-body-text-color);
+}
+
+.boslertable-container {
+  tbody {
+    // height: calc(((100vh - 3rem) - 40px) - 26px - 80px);
+    // table-layout: fixed;
+    // display: block;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+}
+
+@keyframes shimmer {
+  100% {
+    -webkit-mask-position: left;
+  }
+}
+
+.boslerTableShimmer {
+  color: grey;
+  display: inline-block;
+  mask: linear-gradient(-60deg, #000 30%, #0005, #000 70%) right/300% 100%;
+  -webkit-mask: linear-gradient(-60deg, #000 30%, #0005, #000 70%) right/300%
+    100%;
+  // background-repeat: no-repeat;
+  animation: shimmer 2s infinite;
+  width: 100%;
+}

@@ -1,0 +1,932 @@
+import {
+  Checkbox,
+  Col,
+  ModalProps,
+  Row,
+  Select,
+  Switch,
+  Typography,
+} from "antd";
+
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { LinkIcon } from "../../../assets/icons/boslerActionIcons";
+import { GitNewBranchIcon } from "../../../assets/icons/boslerExternalIcons";
+import { FolderIcon } from "../../../assets/icons/boslerFileIcons";
+import { KeyIcon } from "../../../assets/icons/boslerInterfaceIcons";
+import {
+  LibraryIcon,
+  LightBulbIcon,
+} from "../../../assets/icons/boslerMiscellaneousIcons";
+import {
+  SingleChevronRightIcon,
+  TickIcon,
+} from "../../../assets/icons/boslerNavigationIcon";
+import { TableIcon } from "../../../assets/icons/boslerTableIcons";
+import { createLink, listLinks } from "../../../redux/actions/linkActions";
+
+import BoslerButton from "components/BoslerComponents/ButtonComponent/BoslerButton";
+import BoslerInput from "components/BoslerComponents/InputComponent/BoslerInput";
+import BoslerModal from "components/CommonUI/BoslerModalContainer";
+import {
+  deleteSchedulesByResourceIdAPI,
+  getSchedulesAPI,
+  putScheduleAPI,
+} from "components/bottomBar/Schedules/api";
+import CronJobInput from "components/common/CronJob";
+import {
+  decodeFromBase64,
+  encodeToBase64,
+  getLanguageLabel,
+  isDefined,
+  notEmpty,
+  openNotification,
+} from "utils/utilities";
+import { ThunkAppDispatch } from "../../../redux/types/store";
+import {
+  ConnectBuildAPI,
+  getSourceDetailsAPI,
+  handleConnectUpdateAPI,
+  isDatasetFreeToLinkAPI,
+} from "../Connect.api";
+
+import {
+  ResourceSubTypeEnum,
+  ResourceTypeEnum,
+} from "Apps/explorer/explorer.utils";
+import {
+  JobStatusEnum,
+  ScheduleTriggerType,
+} from "components/bottomBar/Schedules/SchedulesModal.constants";
+import { TScheduleJobInfo } from "components/bottomBar/Schedules/SchedulesModal.types";
+import { WriteModeEnum } from "global.d";
+import { useOnlyOnce } from "hooks/useEffectOnlyOnce";
+import {
+  useFileExplorerService,
+  useResourceHook,
+} from "hooks/useFileExplorerService";
+import { openFileExplorerModal } from "../../../redux/ModalSlice";
+import { ISourceConfig } from "../Sources/Source";
+import { initialLinkDetails } from "./Link.constants";
+import { ILink } from "./Link.types";
+import { default as LinkSourceFolder } from "./LinkSourceFolder";
+import LinkSourceJdbc from "./LinkSourceJdbc";
+import LinkSourceSelectionBtn from "./LinkSourceSelectionBtn";
+import LinkSourceSharepoint from "./LinkSourceSharepoint";
+
+const { Text } = Typography;
+
+interface IProps extends ModalProps {
+  isVisible: boolean;
+  setIsVisible: any;
+  updateDetails?: any;
+  defaultParent?: any;
+  defaultSource?: string;
+  defaultQuery?: string;
+  defaultFileId?: string;
+  defaultFileType?: ResourceSubTypeEnum;
+  defaultLinkName?: string;
+}
+
+const LinkModal = ({
+  isVisible,
+  setIsVisible,
+  updateDetails,
+  defaultParent,
+  defaultSource,
+  defaultQuery,
+  defaultFileId,
+  defaultFileType,
+  defaultLinkName = "New Link",
+  ...ModalProps
+}: IProps) => {
+  const dispatch = useDispatch<ThunkAppDispatch>();
+
+  const { user } = useSelector((state) => (state as $TSFixMe).userDetails);
+
+  const [newLinkDetails, setNewLinkDetails] = useState({
+    ...initialLinkDetails,
+    name: defaultLinkName,
+    fileId: defaultFileId,
+    fileType: defaultFileType,
+  });
+
+  const { getFileIndex, fetchResource } = useFileExplorerService();
+
+  const [selectedDataset, setSelectedDataset] = useState(null);
+  const [sourceType, setSourceType] = useState("");
+  const [code, setCode] = useState<string>();
+  const [selectedParent, setSelectedParent] = useState<string | null>(null);
+  const [selectedSource, setSelectedSource] = useState<ISourceConfig>();
+  const [parentPath, setParentPath] = useState<any[]>([]);
+
+  const addDataset = ({ id, path, name }: any) => {
+    isDatasetFreeToLinkAPI(id).then(({ data }) => {
+      if (data) {
+        setNewLinkDetails({ ...newLinkDetails, datasetId: id });
+        setSelectedDataset(name);
+      } else openNotification("Dataset Already Connected", "", "error");
+    });
+  };
+
+  const addSourceDetails = ({ id, path, name, subType }: any) => {
+    setNewLinkDetails({
+      ...newLinkDetails,
+      sourceId: id,
+    });
+    getSourceDetailsAPI(id).then(({ data }) => {
+      const targetSource = data;
+      setCode(undefined);
+      setSelectedSource(targetSource);
+      setSourceType(targetSource.type);
+    });
+  };
+  const addParentFolder = ({ id, path, name }: any) => {
+    setNewLinkDetails({ ...newLinkDetails, parent: id });
+    setSelectedParent(name);
+    setParentPath(path);
+  };
+
+  const build = (id: $TSFixMe) => {
+    ConnectBuildAPI(id)
+      .then(({ data }) =>
+        openNotification(
+          "Build Started",
+          <a href={`/portal/builds/${data.id}`}>Click to view logs</a>,
+          "success"
+        )
+      )
+      .catch((error) =>
+        openNotification(
+          "Build Failed",
+          <a href={`/portal/builds`}>Click to view logs</a>,
+          "warning"
+        )
+      );
+  };
+
+  const setCronExpression = (exp: $TSFixMe) => {
+    setNewLinkDetails({ ...newLinkDetails, cronExpression: exp });
+  };
+
+  const resetState = () => {
+    setIsVisible(false);
+    setSelectedParent(null);
+    setSelectedDataset(null);
+    setNewLinkDetails({ ...initialLinkDetails });
+  };
+
+  const handleOk = async () => {
+    console.log("DATA IS : ", newLinkDetails);
+    if (sourceType === "FOLDER" && !newLinkDetails.subFolder) {
+      openNotification(
+        "Details Incomplete",
+        "Sub Folder is not defined.",
+        "warning"
+      );
+      return;
+    } else if (
+      sourceType === "SHAREPOINT" &&
+      !newLinkDetails.fileId &&
+      !(
+        newLinkDetails.fileType == ResourceSubTypeEnum.CSV ||
+        (newLinkDetails.fileType == ResourceSubTypeEnum.XLS &&
+          newLinkDetails.sheetName)
+      )
+    ) {
+      openNotification(
+        "Details Incomplete",
+        "FileId or sheetName is not defined.",
+        "warning"
+      );
+      return;
+    } else if (sourceType === "jdbc" && !isDefined(code)) {
+      openNotification(
+        "Details Incomplete",
+        "There has to be a simple SQL query",
+        "warning"
+      );
+      return;
+    }
+    if (
+      !(newLinkDetails.name && newLinkDetails.sourceId && newLinkDetails.parent)
+    ) {
+      openNotification(
+        "Details incomplete",
+        "Please enter the complete details " + newLinkDetails.sourceId,
+        "warning"
+      );
+      return;
+    }
+    if (!newLinkDetails.dataLiveLoad) {
+      // if (!(newLinkDetails.datasetId && newLinkDetails.branch)) {
+      //   openNotification(
+      //     "Details incomplete",
+      //     "Dataset and branch needs to be selected for Store.",
+      //     "warning"
+      //   );
+      //   return;
+      // }
+
+      if (
+        newLinkDetails.trigger === ScheduleTriggerType.CRON &&
+        !newLinkDetails.trigger
+      ) {
+        openNotification(
+          "Details incomplete",
+          "Please schedule details.",
+          "warning"
+        );
+        return;
+      }
+    }
+
+    await dispatch(
+      createLink({
+        ...newLinkDetails,
+        script: encodeToBase64(code ?? ""),
+      })
+    ).then((data: ILink) => {
+      fetchResource(data.id);
+      if (newLinkDetails.trigger == ScheduleTriggerType.CRON) {
+        const schedulePayload: TScheduleJobInfo = {
+          resourceId: data.id,
+          resourceType: ResourceTypeEnum.CONNECT,
+          branch: "master",
+          jobStatus: JobStatusEnum.RUNNING,
+          jobClass: "connect",
+          triggerType: ScheduleTriggerType.CRON,
+          triggers: [
+            {
+              triggerValue: newLinkDetails.cronExpression,
+            },
+          ],
+        };
+
+        putScheduleAPI(schedulePayload).then(() => {
+          if (newLinkDetails.build) {
+            build(data.id);
+          }
+
+          dispatch(listLinks());
+          resetState();
+        });
+      } else {
+        if (newLinkDetails.build) {
+          build(data.id);
+        }
+
+        dispatch(listLinks());
+        resetState();
+      }
+    });
+  };
+
+  const handleUpdate = async () => {
+    if (sourceType === "FOLDER" && !newLinkDetails.subFolder) {
+      openNotification(
+        "Details Incomplete",
+        "Sub Folder is not defined.",
+        "warning"
+      );
+      return;
+    } else if (
+      sourceType === "SHAREPOINT" &&
+      !newLinkDetails.fileId &&
+      !(
+        newLinkDetails.fileType == ResourceSubTypeEnum.CSV ||
+        (newLinkDetails.fileType == ResourceSubTypeEnum.XLS &&
+          newLinkDetails.sheetName)
+      )
+    ) {
+      openNotification(
+        "Details Incomplete",
+        "FileId or sheetName is not defined.",
+        "warning"
+      );
+      return;
+    } else if (sourceType === "jdbc" && !isDefined(code)) {
+      openNotification(
+        "Details Incomplete",
+        "There has to be a simple SQL query",
+        "warning"
+      );
+      return;
+    }
+    if (
+      !(newLinkDetails.name && newLinkDetails.sourceId && newLinkDetails.parent)
+    ) {
+      openNotification(
+        "Details incomplete",
+        "Please enter the complete details.",
+        "warning"
+      );
+      return;
+    }
+
+    if (!newLinkDetails.dataLiveLoad) {
+      if (!(newLinkDetails.datasetId && newLinkDetails.branch)) {
+        openNotification(
+          "Details incomplete",
+          "Dataset and branch needs to be selected for Store.",
+          "warning"
+        );
+        return;
+      }
+
+      if (
+        newLinkDetails.trigger === ScheduleTriggerType.CRON &&
+        !newLinkDetails.trigger
+      ) {
+        openNotification(
+          "Details incomplete",
+          "Please schedule details.",
+          "warning"
+        );
+        return;
+      }
+    }
+
+    const body = {
+      ...newLinkDetails,
+      // Not handling request saving from modal, when sent as null, they are not saved
+      requests: null,
+      id: updateDetails.linkDetails.id,
+      script: encodeToBase64(code ?? ""),
+    };
+    handleConnectUpdateAPI("link", JSON.stringify(body)).then(
+      async ({ data }) => {
+        if (
+          isDefined(data) &&
+          isDefined(data.status) &&
+          data.status === "FAILED"
+        ) {
+          openNotification("Error", data.message, "error");
+          return;
+        }
+
+        if (newLinkDetails.trigger == ScheduleTriggerType.CRON) {
+          const result = await getSchedulesAPI(
+            updateDetails.linkDetails.id,
+            "master",
+            ResourceTypeEnum.CONNECT
+          );
+          let currentSchedule = null;
+          if (result.length != 0) {
+            currentSchedule = result[0];
+          }
+
+          const schedulePayload: TScheduleJobInfo = {
+            resourceId: updateDetails.linkDetails.id,
+            resourceType: ResourceTypeEnum.CONNECT,
+            branch: "master",
+            jobStatus: JobStatusEnum.RUNNING,
+            jobClass: "connect",
+            triggerType: ScheduleTriggerType.CRON,
+            triggers: [
+              {
+                triggerValue: newLinkDetails.cronExpression,
+              },
+            ],
+          };
+
+          if (currentSchedule) {
+            schedulePayload.jobId = currentSchedule.jobId;
+          }
+
+          putScheduleAPI(schedulePayload);
+        } else {
+          deleteSchedulesByResourceIdAPI(updateDetails.linkDetails.id);
+        }
+
+        if (newLinkDetails.build) {
+          build(updateDetails.linkDetails.id);
+        }
+
+        dispatch(listLinks());
+        updateDetails.updateLink();
+        resetState();
+      }
+    );
+  };
+
+  useResourceHook(defaultParent, {
+    resolveCallback: (data: { name: React.SetStateAction<string | null> }) => {
+      setSelectedParent(data.name);
+      setNewLinkDetails({ ...newLinkDetails, parent: defaultParent });
+    },
+  });
+
+  useOnlyOnce(
+    () => {
+      if (notEmpty(defaultSource)) {
+        getSourceDetailsAPI(defaultSource).then(({ data }) => {
+          const _source = data;
+
+          setSelectedSource(_source);
+          setSourceType(_source.type);
+          setNewLinkDetails({ ...newLinkDetails, sourceId: defaultSource });
+
+          if (!defaultParent && selectedParent == undefined && _source.parent) {
+            getFileIndex(_source.parent).then((data) => {
+              setSelectedParent(data.name);
+              setNewLinkDetails({
+                ...newLinkDetails,
+                sourceId: defaultSource,
+                parent: _source.parent,
+              });
+            });
+          }
+        });
+      }
+    },
+    () => notEmpty(defaultSource)
+  );
+
+  useEffect(() => {
+    if (updateDetails) {
+      console.log("IN UPDATE DETAILS : ", updateDetails);
+      setSelectedSource(updateDetails.source);
+      setNewLinkDetails({ ...updateDetails.linkDetails });
+      if (
+        updateDetails.source.type == "jdbc" &&
+        isDefined(updateDetails.linkDetails.script)
+      )
+        setCode(decodeFromBase64(updateDetails.linkDetails.script));
+      if (updateDetails.parent) setSelectedParent(updateDetails.parent.name);
+      if (updateDetails.dataset) setSelectedDataset(updateDetails.dataset.name);
+      if (updateDetails.source) setSourceType(updateDetails.source.type);
+    }
+  }, []);
+
+  console.log("LINK DETAILS : ", newLinkDetails);
+
+  return (
+    <>
+      <BoslerModal
+        destroyOnClose
+        headingIcon={<LinkIcon />}
+        heading={getLanguageLabel("dataLink")}
+        // Add subheading {LINK_MESSAGE}
+        extraActionHeading={
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: "5px",
+            }}
+          >
+            {!newLinkDetails.dataLiveLoad && (
+              <>
+                {getLanguageLabel("buildNow")}
+                <Switch
+                  size="small"
+                  defaultChecked={newLinkDetails.build}
+                  // defaultChecked={true}
+                  onChange={(val: boolean) => {
+                    setNewLinkDetails({ ...newLinkDetails, build: val });
+                  }}
+                />
+              </>
+            )}
+          </div>
+        }
+        footerExtraText={getLanguageLabel("connectAdminOnlyMessage")}
+        footerButtonArea={
+          <BoslerButton
+            intent="primary"
+            onClick={updateDetails ? handleUpdate : handleOk}
+            icon={<TickIcon />}
+            textTransform="none"
+          >
+            {updateDetails
+              ? getLanguageLabel("update")
+              : getLanguageLabel("create")}
+          </BoslerButton>
+        }
+        information={
+          <div style={{ width: "300px" }}>
+            <div style={{ padding: "20px" }}>
+              <div className="text-and-icon-align">
+                <LightBulbIcon />
+                <Text strong>{getLanguageLabel("datasetLinks")}</Text>
+              </div>
+              <div style={{ paddingTop: "10px", paddingLeft: "20px" }}>
+                {getLanguageLabel("linkInfo")}
+              </div>
+            </div>
+            <div style={{ padding: "20px" }}>
+              <div className="text-and-icon-align">
+                <LibraryIcon />
+                <Text strong>{getLanguageLabel("learn")}</Text>
+              </div>
+              <div style={{ paddingTop: "10px", paddingLeft: "20px" }}>
+                <Link to="/learn/">DataConnection Guidelines</Link>
+                <br />
+                <Link to="/learn/">Best Practices</Link>
+                <br />
+                <Link to="/learn/">Data Transfer Security</Link>
+                <br />
+                <Link to="/learn/">Governance Policy and Guidelines</Link>
+              </div>
+            </div>
+            <div style={{ padding: "20px" }}>
+              <div className="text-and-icon-align">
+                <KeyIcon />
+                <Text strong>{getLanguageLabel("access")}</Text>
+              </div>
+              <div style={{ paddingTop: "10px", paddingLeft: "20px" }}>
+                {getLanguageLabel("dataIngestionRestriction")}
+              </div>
+            </div>
+          </div>
+        }
+        open={isVisible}
+        onOk={handleOk}
+        width={900}
+        onCancel={() => setIsVisible(false)}
+      >
+        <Text type="secondary" strong>
+          {getLanguageLabel("general").toUpperCase()}
+        </Text>
+        <Row
+          justify={"space-between"}
+          align="middle"
+          style={{ marginTop: "5px" }}
+          gutter={[16, 16]}
+        >
+          <Col span={8}>
+            <Text>{getLanguageLabel("name")}</Text>
+          </Col>
+          <Col span={16}>
+            <BoslerInput
+              variant="borderless"
+              autofocus
+              onChange={(e) =>
+                setNewLinkDetails({
+                  ...newLinkDetails,
+                  name: e.target.value,
+                })
+              }
+              value={newLinkDetails.name}
+              required
+            />
+          </Col>
+        </Row>
+
+        <Row
+          justify={"space-between"}
+          align="top"
+          style={{ marginTop: "10px" }}
+          gutter={[16, 16]}
+        >
+          <Col span={8}>
+            <Text>{getLanguageLabel("description")}</Text>
+          </Col>
+          <Col span={16}>
+            <BoslerInput
+              onChange={(e) =>
+                setNewLinkDetails({
+                  ...newLinkDetails,
+                  description: e.target.value,
+                })
+              }
+              value={newLinkDetails.description}
+              required
+            />
+          </Col>
+        </Row>
+        <Row
+          justify={"space-between"}
+          align="top"
+          gutter={[16, 16]}
+          style={{
+            marginTop: "5px",
+          }}
+        >
+          <Col span={8}>{getLanguageLabel("parentFolder")}</Col>
+          <Col span={16}>
+            <BoslerButton
+              icon={<FolderIcon />}
+              onClick={() => {
+                dispatch(
+                  openFileExplorerModal({
+                    type: ["FOLDER"],
+                    action: (data) => {
+                      addParentFolder(data);
+                    },
+                    activeId: defaultParent,
+                  })
+                );
+              }}
+              intent={selectedParent ? "success" : "warning"}
+            >
+              {selectedParent
+                ? selectedParent
+                : getLanguageLabel("parentFolder")}
+            </BoslerButton>
+
+            {notEmpty(parentPath) ? (
+              <Text
+                type="secondary"
+                style={{
+                  marginTop: "5px",
+                  fontSize: "0.7rem",
+                }}
+              >
+                <div
+                  style={{
+                    flexDirection: "row",
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  <div
+                    style={{
+                      fontWeight: 700,
+                      marginRight: "1rem",
+                      fontSize: "0.7rem",
+                    }}
+                  >
+                    {getLanguageLabel("selected")}:
+                  </div>
+                  {parentPath?.map((p, idx) => (
+                    <div style={{ display: "flex", fontSize: "0.7rem" }}>
+                      <>{p.name}</>
+                      {idx + 1 != parentPath.length && (
+                        <SingleChevronRightIcon />
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </Text>
+            ) : (
+              <Text
+                type="secondary"
+                style={{
+                  marginTop: "5px",
+                  fontSize: "0.7rem",
+                }}
+              >
+                {getLanguageLabel("folderPlacement")}
+              </Text>
+            )}
+          </Col>
+        </Row>
+        <br />
+
+        <Row
+          style={{
+            marginTop: "5px",
+          }}
+          gutter={[16, 16]}
+        >
+          <Col span={8}>
+            <Text type="secondary" strong>
+              {"Data Loading".toUpperCase()}
+            </Text>
+          </Col>
+          <Col span={16}>
+            <Switch
+              size="small"
+              defaultChecked={newLinkDetails.dataLiveLoad}
+              onChange={(val: boolean) =>
+                setNewLinkDetails({
+                  ...newLinkDetails,
+                  dataLiveLoad: val,
+                  datasetId: "",
+                  build: false,
+                })
+              }
+              checkedChildren={"LINK"}
+              unCheckedChildren={"STORE"}
+            />{" "}
+            <Text type="secondary" style={{ fontSize: "0.8rem" }}>
+              {newLinkDetails.dataLiveLoad
+                ? getLanguageLabel("directDataAccess")
+                : getLanguageLabel("storeData")}
+            </Text>
+          </Col>
+        </Row>
+        {!newLinkDetails.dataLiveLoad && selectedDataset && (
+          <Row
+            gutter={[16, 16]}
+            style={{
+              marginTop: "1rem",
+            }}
+          >
+            <Col span={8}>
+              <Text>
+                {getLanguageLabel("dataset")} & {getLanguageLabel("branch")}
+              </Text>
+            </Col>
+            <Col span={16}>
+              <Row gutter={[16, 16]}>
+                <Col span={16}>
+                  <BoslerButton
+                    fill
+                    intent={selectedDataset ? "success" : "warning"}
+                    icon={<TableIcon />}
+                    onClick={() => {
+                      dispatch(
+                        openFileExplorerModal({
+                          type: ["DATASET"],
+                          action: (data) => {
+                            addDataset(data);
+                          },
+                          activeId: defaultParent,
+                        })
+                      );
+                    }}
+                  >
+                    {selectedDataset
+                      ? selectedDataset
+                      : getLanguageLabel("dataset")}
+                  </BoslerButton>
+                </Col>
+                <Col span={8}>
+                  <div className="text-and-icon-center">
+                    <BoslerInput
+                      // prefix={}
+                      value={newLinkDetails.branch}
+                      onChange={(e) =>
+                        setNewLinkDetails({
+                          ...newLinkDetails,
+                          branch: e.target.value,
+                        })
+                      }
+                      required
+                      readOnly
+                      suffix={<GitNewBranchIcon />}
+                    />
+                  </div>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+        )}
+
+        <br />
+
+        <LinkSourceSelectionBtn
+          selectedSource={selectedSource}
+          defaultParent={defaultParent}
+          addSourceDetails={addSourceDetails}
+        />
+        {sourceType == "FOLDER" && (
+          <LinkSourceFolder
+            setNewLinkDetails={setNewLinkDetails}
+            newLinkDetails={newLinkDetails}
+          />
+        )}
+        {sourceType == "SHAREPOINT" && (
+          <LinkSourceSharepoint
+            setNewLinkDetails={setNewLinkDetails}
+            newLinkDetails={newLinkDetails}
+          />
+        )}
+        {sourceType == "jdbc" && selectedSource && selectedSource.id && (
+          <LinkSourceJdbc
+            sourceId={selectedSource.id}
+            user={user}
+            code={code}
+            setCode={setCode}
+            defaultQuery={defaultQuery}
+          />
+        )}
+        <br />
+
+        {!newLinkDetails.dataLiveLoad && (
+          <>
+            <Text type="secondary" strong>
+              {getLanguageLabel("additional").toUpperCase()} (
+              {getLanguageLabel("optional").toUpperCase()})
+            </Text>
+
+            {sourceType == "FOLDER" && (
+              <>
+                <Row
+                  gutter={[16, 16]}
+                  style={{
+                    marginTop: "5px",
+                  }}
+                >
+                  <Col span={8}>
+                    <Text>{getLanguageLabel("delete")}</Text>
+                  </Col>
+                  <Col span={16}>
+                    <Checkbox
+                      onChange={(e) =>
+                        setNewLinkDetails({
+                          ...newLinkDetails,
+                          deleteFilesAfterUpload:
+                            newLinkDetails.deleteFilesAfterUpload,
+                        })
+                      }
+                      defaultChecked={newLinkDetails.deleteFilesAfterUpload}
+                    />
+                    &nbsp;&nbsp;
+                    <Text
+                      style={{
+                        marginTop: "0px",
+                        fontSize: "0.7rem",
+                      }}
+                    >
+                      {getLanguageLabel("deleteFilesAfterUpload")}
+                    </Text>
+                  </Col>
+                </Row>
+              </>
+            )}
+
+            <Row
+              gutter={[16, 16]}
+              style={{
+                marginTop: "5px",
+              }}
+            >
+              <Col span={8}>
+                <Text>{getLanguageLabel("saveMode")}</Text>
+              </Col>
+              <Col span={16}>
+                <Select
+                  id="writeMode"
+                  value={newLinkDetails.writeMode}
+                  onChange={(e) => {
+                    setNewLinkDetails({
+                      ...newLinkDetails,
+                      writeMode: e,
+                    });
+                  }}
+                  style={{ width: "100%" }}
+                >
+                  <Select.Option value={WriteModeEnum.SNAPSHOT}>
+                    {getLanguageLabel("snapshot")}
+                  </Select.Option>
+                  <Select.Option value={WriteModeEnum.APPEND}>
+                    {getLanguageLabel("append")}
+                  </Select.Option>
+                </Select>
+              </Col>
+            </Row>
+
+            <Row
+              gutter={[16, 16]}
+              style={{
+                marginTop: "5px",
+              }}
+            >
+              <Col span={8}>
+                <Text>{getLanguageLabel("trigger")}</Text>
+              </Col>
+              <Col span={16}>
+                <Select
+                  id="trigger"
+                  value={newLinkDetails.trigger}
+                  onChange={(e) =>
+                    setNewLinkDetails({
+                      ...newLinkDetails,
+                      trigger: e,
+                    })
+                  }
+                  style={{ width: "100%" }}
+                >
+                  <Select.Option value={ScheduleTriggerType.NONE}>
+                    {getLanguageLabel("none")}
+                  </Select.Option>
+                  <Select.Option value={ScheduleTriggerType.CRON}>
+                    {getLanguageLabel("schedules")}
+                  </Select.Option>
+                </Select>
+              </Col>
+            </Row>
+
+            {newLinkDetails.trigger === ScheduleTriggerType.CRON && (
+              <Row
+                gutter={[16, 16]}
+                style={{
+                  marginTop: "5px",
+                }}
+              >
+                <Col span={8}>
+                  <Text>Cron</Text>
+                </Col>
+                <Col span={16}>
+                  <CronJobInput
+                    cronExpression={newLinkDetails.cronExpression}
+                    setCronExpression={setCronExpression}
+                  />
+                </Col>
+              </Row>
+            )}
+            <br />
+          </>
+        )}
+      </BoslerModal>
+    </>
+  );
+};
+
+export default LinkModal;

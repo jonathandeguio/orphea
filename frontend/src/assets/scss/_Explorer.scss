@@ -1,0 +1,27 @@
+._allFolders {
+  display: flex;
+  flex-flow: row wrap;
+  align-content: flex-start;
+  width: 100%;
+  height: 400px;
+}
+
+._folder {
+  display: flex;
+  flex-flow: column wrap;
+  margin: 5%;
+  align-items: center;
+  padding-top: 10px;
+}
+
+._folderName {
+  user-select: none;
+}
+
+._selected {
+  background-color: #c0eafd;
+}
+._selectButton {
+  position: absolute;
+  right: 3%;
+}

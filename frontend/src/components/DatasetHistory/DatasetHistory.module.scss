@@ -1,0 +1,151 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  // width: 30vw;
+  height: 100%;
+  // height: 400px;
+}
+.panel {
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: column;
+  min-height: 0px;
+}
+
+.switch {
+  // margin: 0px 10px 10px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  min-height: 0px;
+  overflow: auto;
+}
+.edits {
+  display: flex;
+  flex-direction: column;
+  -webkit-box-pack: start;
+  justify-content: flex-start;
+  width: auto;
+  height: 100%;
+  padding: 15px 12px 10px;
+  overflow: auto;
+}
+
+// Edit Row
+.icon {
+  display: flex;
+  flex: 0 0 auto;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  color: rgb(113, 122, 148);
+}
+.editRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.editRowContainer {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  margin-bottom: 5px;
+  padding: 8px 5px;
+}
+
+.editRowHead {
+  // display: flex;
+  // flex-direction: row;
+  width: 100%;
+
+  // background: var(--bosler-bkg-color-muted);
+  border-radius: 2px;
+  padding: 5px;
+  padding-right: 10px;
+  // box-shadow: rgba(11, 14, 22, 0.02) 0px 0px 0px 1px,
+  //   rgba(11, 14, 22, 0.04) 0px 4px 8px, rgba(11, 14, 22, 0.04) 0px 18px 46px 6px;
+}
+
+.editRowHeading {
+  padding: 1px 0px;
+  font-size: 12px;
+  line-height: 18px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.editRowName {
+  font-weight: 500;
+  margin-right: 4px;
+  color: var(--bosler-font-color-default);
+}
+.editRowChanges {
+  margin-right: 6px;
+  color: var(--bosler-font-color-default);
+}
+.editRowChangesTransaction {
+  text-transform: uppercase;
+  font-size: 14px;
+  margin: 5px;
+  word-break: break-all;
+}
+.editRowTime {
+  color: var(--bosler-font-color-muted);
+}
+
+.editRowContent {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding-left: 15px;
+  margin: 2px 0px 2px 25px;
+  &:before {
+    position: absolute;
+    top: 6px;
+    bottom: 2px;
+    left: 0px;
+    display: block;
+    width: 1px;
+    background-color: rgb(236, 237, 242);
+    content: "";
+  }
+}
+.editRowBucket {
+}
+
+// header
+.headerAction {
+  display: flex;
+  align-items: center;
+}
+
+// calendar
+.calendarWrapper {
+  width: 100%;
+  width: fit-content;
+  // border: 1px solid var(--bosler-border-color-default);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  height: 320px;
+}
+.calendar {
+  width: 300px;
+}
+.rightPanel {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+.rightPanelHeader {
+  border-bottom: 1px solid var(--bosler-border-color-default);
+}
+.rightPanelContent {
+  overflow: auto;
+}

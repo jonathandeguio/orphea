@@ -1,0 +1,2 @@
+DELETE
+FROM kitab_transactions;

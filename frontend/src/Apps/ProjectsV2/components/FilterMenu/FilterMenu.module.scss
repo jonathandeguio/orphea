@@ -1,0 +1,42 @@
+.filterHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border: 1px solid var(--bosler-border-color-default);
+  border-radius: 5px 5px 0 0;
+  border-bottom: none;
+}
+
+.divider {
+  height: 41.99px;
+  color: var(--bosler-border-color-default) !important;
+}
+
+.rightEndFilters {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.dropdownButton {
+  cursor: pointer;
+}
+.sortByDropdown {
+  width: 130px;
+}
+
+.accessDropdown {
+  width: 185px;
+}
+
+.menuItem {
+  margin: -2px 0;
+}
+
+.search {
+  flex: 1;
+  border: 0 !important;
+  width: 100%;
+}

@@ -1,0 +1,74 @@
+.Button--primary {
+  background-color: #1f6feb;
+  color: #ffffff;
+  border-color: #1f6feb;
+  border-radius: 3;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  gap: 4px;
+  height: 32px;
+  min-width: max-content;
+  padding: 0 12px;
+  position: relative;
+  text-align: center;
+  box-shadow: "rgba(25, 27, 52, 0.15) 0px 0px 0px 1px inset, rgba(1, 1, 27, 0.02) 0px 2px 4px 0px, rgba(11, 14, 22, 0.02) 0px 1px 2px 0px";
+
+  &:hover {
+    background-color: #388bfd;
+    border-color: rgba(240, 246, 252, 0.1);
+    color: #ffffff;
+    // none
+  }
+}
+
+.Button--danger {
+  background-color: var(--bosler-intent-danger);
+  color: #ffffff;
+  border-color: var(--bosler-intent-danger);
+  border-radius: 3;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  gap: 4px;
+  height: 32px;
+  min-width: max-content;
+  padding: 0 12px;
+  position: relative;
+  text-align: center;
+  box-shadow: "rgba(25, 27, 52, 0.15) 0px 0px 0px 1px inset, rgba(1, 1, 27, 0.02) 0px 2px 4px 0px, rgba(11, 14, 22, 0.02) 0px 1px 2px 0px";
+
+  &:hover {
+    background-color: var(--bosler-intent-danger);
+    border-color: var(--bosler-intent-danger);
+    color: #ffffff;
+  }
+}
+
+.overlay-container {
+  z-index: 0;
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.shimmer {
+  display: inline-block;
+  mask: linear-gradient(-60deg, #000 40%, #0005, #000 70%) right/300% 100%;
+  -webkit-mask: linear-gradient(-60deg, #000 40%, #0005, #000 70%) right/300%
+    100%;
+  background-repeat: no-repeat;
+  animation: shimmer 2.5s infinite;
+
+  &:first-child {
+    opacity: 0.75;
+  }
+}
+
+@keyframes shimmer {
+  100% {
+    -webkit-mask-position: left;
+  }
+}

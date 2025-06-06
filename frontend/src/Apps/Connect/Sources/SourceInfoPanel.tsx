@@ -1,0 +1,296 @@
+import { useNavigateHelper } from "Apps/explorer/explorer.hooks";
+import { Col, Input, Row, Tooltip, Typography } from "antd";
+import { EditIcon } from "assets/icons/boslerEditorIcons";
+import { FolderIcon } from "assets/icons/boslerFileIcons";
+import { HelpIcon } from "assets/icons/boslerMiscellaneousIcons";
+import { Buffer } from "buffer";
+import { BoslerCollapse } from "components/BoslerComponents/BoslerCollapse/BoslerCollapse";
+import BoslerButton from "components/BoslerComponents/ButtonComponent/BoslerButton";
+import React, { useState } from "react";
+import { getLanguageLabel, getSourceIcon } from "utils/utilities";
+import RestAPISourcePage from "./RestAPIConnector/RestAPISourcePage";
+import { ISourceConfig } from "./Source";
+import SourceModal from "./SourceModal.view";
+import { TestConnectionButton } from "./TestConnection.view";
+
+const { Text } = Typography;
+
+interface IProps {
+  source: ISourceConfig;
+  getSource: () => void;
+}
+
+const SourceInfoPanel = ({ source, getSource }: IProps) => {
+  const navigator = useNavigateHelper();
+  const [isUpdateSourceModalOpen, setIsUpdateSourceModalOpen] = useState(false);
+  return (
+    <div className="--flex-col-center">
+      <div
+        className="--p20"
+        style={{
+          flex: 1,
+          height: "100%",
+
+          width: "100%",
+        }}
+      >
+        <div className="connect-container-left" style={{ padding: "35px" }}>
+          <Row justify={"space-between"} align="middle">
+            <Col>
+              <Text type="secondary" strong>
+                {getLanguageLabel("general")}
+              </Text>
+            </Col>
+            <Col>
+              <BoslerButton
+                icon={<EditIcon />}
+                intent="primary"
+                onClick={() => setIsUpdateSourceModalOpen(true)}
+              >
+                {getLanguageLabel("edit")}
+              </BoslerButton>
+            </Col>
+          </Row>
+
+          <Row
+            justify={"space-between"}
+            align="middle"
+            style={{ marginTop: "10px" }}
+            gutter={[16, 16]}
+          >
+            <Col span={8}>
+              <Text>{getLanguageLabel("name")}</Text>
+            </Col>
+            <Col span={16}>
+              <Text>{(source as any).name}</Text>
+            </Col>
+          </Row>
+
+          {source.description && (
+            <>
+              <Row
+                justify={"space-between"}
+                align="top"
+                style={{ marginTop: "10px" }}
+                gutter={[16, 16]}
+              >
+                <Col span={8}>
+                  <Text>{getLanguageLabel("description")}</Text>
+                </Col>
+                <Col span={16}>
+                  <Text>{(source as any).description}</Text>
+                </Col>
+              </Row>
+            </>
+          )}
+
+          <Row
+            justify={"space-between"}
+            align="top"
+            style={{ marginTop: "10px" }}
+            gutter={[16, 16]}
+          >
+            <Col span={8}>
+              <Text>{getLanguageLabel("parentFolder")}</Text>
+            </Col>
+            <Col span={16}>
+              <BoslerButton
+                intent="none"
+                onClick={() => navigator(source.parent)}
+                icon={<FolderIcon />}
+                minimal
+              >
+                {source.parent}
+              </BoslerButton>
+            </Col>
+          </Row>
+
+          {source.type === "FOLDER" && (
+            <>
+              <br />
+              <Text type="secondary" strong>
+                {getLanguageLabel("folder")}
+              </Text>
+              <Row
+                justify={"space-between"}
+                align="top"
+                style={{ marginTop: "10px" }}
+                gutter={[16, 16]}
+              >
+                <Col span={8}>
+                  <Text>{getLanguageLabel("path")}</Text>
+                </Col>
+                <Col span={16}>
+                  <Text>{(source as $TSFixMe)["path"]}</Text>
+                </Col>
+              </Row>
+              <Row
+                justify={"space-between"}
+                align="top"
+                style={{ marginTop: "10px" }}
+                gutter={[16, 16]}
+              >
+                <Col span={8}>
+                  <Text>{getLanguageLabel("timeout")}</Text>
+                </Col>
+                <Col span={16}>
+                  <Text>{(source as $TSFixMe)["timeout"]}</Text>
+                </Col>
+              </Row>
+            </>
+          )}
+
+          {source.type === "jdbc" && (
+            <>
+              <Row
+                justify={"space-between"}
+                align="middle"
+                style={{ marginTop: "10px" }}
+                gutter={[16, 16]}
+              >
+                <Col span={8}>
+                  <Text>{getLanguageLabel("type")}</Text>
+                </Col>
+                <Col span={16}>
+                  <Text>
+                    {source &&
+                      getSourceIcon(
+                        (source as any)["type"],
+                        (source as any)["dbmsType"]
+                      )}
+
+                    {(source as any)["type"] == "FOLDER" && "FOLDER"}
+                    {(source as any)["type"] == "jdbc" &&
+                      (source as any)["dbmsType"]}
+                  </Text>
+                </Col>
+              </Row>
+              <Row
+                justify={"space-between"}
+                align="top"
+                style={{ marginTop: "10px" }}
+                gutter={[16, 16]}
+              >
+                <Col span={8}>
+                  <Text>{getLanguageLabel("connection")}</Text>
+                </Col>
+                <Col span={16}>
+                  <Tooltip title={getLanguageLabel("sourceConnections")}>
+                    <div className="text-and-icon-center">
+                      {(source as $TSFixMe).directLoad
+                        ? getLanguageLabel("direct")
+                        : getLanguageLabel("agent")}
+                      <HelpIcon />
+                    </div>
+                  </Tooltip>
+                </Col>
+              </Row>
+              <Row
+                justify={"space-between"}
+                align="top"
+                style={{ marginTop: "10px" }}
+                gutter={[16, 16]}
+              >
+                <Col span={8}>
+                  <Text>
+                    {getLanguageLabel("server")} & {getLanguageLabel("port")}
+                  </Text>
+                </Col>
+
+                <Col span={16}>
+                  <Text>
+                    {(source as $TSFixMe)["server"]} &nbsp; & &nbsp;
+                    {(source as $TSFixMe)["port"]}
+                  </Text>
+                </Col>
+              </Row>
+              <Row
+                justify={"space-between"}
+                align="top"
+                style={{ marginTop: "10px" }}
+                gutter={[16, 16]}
+              >
+                <Col span={8}>
+                  <Text>{getLanguageLabel("database")}</Text>
+                </Col>
+                <Col span={16}>
+                  <Text>{(source as $TSFixMe)["database"]}</Text>
+                </Col>
+              </Row>
+              <BoslerCollapse
+                key="additionSettings"
+                collapsible={"HEADER"}
+                header={
+                  <div className="query_item__heading">
+                    {getLanguageLabel("authentication")}
+                  </div>
+                }
+              >
+                <>
+                  {/* <Text type="secondary" strong>
+              {getLanguageLabel("authentication").toUpperCase()}
+            </Text> */}
+
+                  <Row
+                    justify={"space-between"}
+                    align="top"
+                    style={{ marginTop: "10px" }}
+                    gutter={[16, 16]}
+                  >
+                    <Col span={8}>
+                      <Text>{getLanguageLabel("userName")}</Text>
+                    </Col>
+                    <Col span={16}>
+                      <Text>{(source as $TSFixMe)["username"]}</Text>
+                    </Col>
+                  </Row>
+                  <Row
+                    justify={"space-between"}
+                    align="top"
+                    style={{ marginTop: "10px" }}
+                    gutter={[16, 16]}
+                  >
+                    <Col span={8}>
+                      <Text>{getLanguageLabel("password")}</Text>
+                    </Col>
+                    <Col span={16}>
+                      <Input.Password
+                        readOnly
+                        // onChange={(e) => {
+                        //   setSource({
+                        //     ...source,
+                        //     password: e.target.value,
+                        //   });
+                        // }}
+                        value={Buffer.from(
+                          (source as $TSFixMe)["password"].toString(),
+                          "base64"
+                        ).toString("ascii")}
+                      />
+                    </Col>
+                  </Row>
+                  {(source as $TSFixMe).directLoad && (
+                    <TestConnectionButton source={source} />
+                  )}
+                </>
+              </BoslerCollapse>
+            </>
+          )}
+
+          {source.type === "rest" && <RestAPISourcePage source={source} />}
+        </div>
+      </div>
+      {isUpdateSourceModalOpen && (
+        <SourceModal
+          isVisible={isUpdateSourceModalOpen}
+          setIsVisible={setIsUpdateSourceModalOpen}
+          defaultParent={source.parent}
+          defaultSourceDetails={source}
+          updateSource={getSource}
+        />
+      )}
+    </div>
+  );
+};
+
+export default SourceInfoPanel;

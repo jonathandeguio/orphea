@@ -1,0 +1,13 @@
+.notifications-container {
+}
+
+.notification-row {
+  padding: 1rem;
+
+  display: block;
+  margin: 0.2rem 0;
+  cursor: pointer;
+  &:hover {
+    background-color: var(--bosler-hover-color);
+  }
+}

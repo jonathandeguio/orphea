@@ -1,0 +1,8 @@
+<svg stroke="currentColor" fill="#1f6feb" fill-opacity="0.0" stroke-width="1" version="1.1" height="28" viewBox="0 0 16 16" width="28" xmlns="http://www.w3.org/2000/svg">
+	<desc>dynamic</desc>
+	<g stroke-width="1">
+		<g transform="">
+			<path clip-rule="evenodd" d="M3 3h10v10H3V3ZM2 3a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3Zm5.161 7.954 4.154-4.848-.76-.65-3.45 4.028-1.687-1.687-.707.707 2.45 2.45Z" fill="currentColor" fill-rule="evenodd"></path>
+		</g>
+	</g>
+</svg>

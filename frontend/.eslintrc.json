@@ -1,0 +1,86 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "jest": true
+  },
+  "extends": [
+    // "eslint:recommended",
+    // "plugin:react/recommended",
+    // "plugin:@typescript-eslint/recommended",
+    //"plugin:sonarjs/recommended",
+    // "plugin:prettier/recommended"
+  ],
+  "overrides": [],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "PROJECT": ["./tsconfig.json"]
+  },
+  "plugins": [
+    // "react",
+    // "react-hooks",
+    // "@typescript-eslint",
+    //"sonarjs",
+    // "prettier",
+    // "unused-imports"
+  ],
+  "rules": {
+    "no-restricted-imports": [
+      "error",
+      {
+        "paths": ["@primer/octicons-react"],
+        "patterns": ["@primer/octicons-react/*"]
+      }
+    ]
+    // "react/react-in-jsx-scope": ["off"],
+    // "react/jsx-uses-react": ["off"],
+    // "react/jsx-props-no-spreading": ["warn"],
+    // "react/no-unescaped-entities": ["warn"],
+    // "react/no-array-index-key": "warn",
+    // "@typescript-eslint/no-explicit-any": "warn",
+    // "@typescript-eslint/no-unused-vars": "warn",
+    // "@typescript-eslint/no-empty-function": "off",
+    // to enforce using type for object type definitions, can be type or interface
+    // "@typescript-eslint/consistent-type-definitions": ["off", "type"],
+    // "@typescript-eslint/no-use-before-define": ["warn"],
+    //"jsx-quotes": [2, "prefer-single"],
+    //"unused-imports/no-unused-imports": "warn",
+    // "import/prefer-default-export": "off",
+    // "no-use-before-define": "warn",
+    // "prettier/prettier": ["warn"],
+    // "camelcase": "warn",
+    // "spaced-comment": "warn",
+    // "no-alert": "warn",
+    // "no-console": "warn",
+    // "no-debugger": "warn",
+    // "no-duplicate-imports": "warn",
+    // "no-magic-numbers": ["warn", { "ignore": [-1, 0, 1, 2, 100] }],
+    // "no-mixed-operators": ["warn"],
+    // "newline-before-return": true,
+    // "no-duplicate-variable": [true, "check-parameters"],
+    // "no-unused-vars": "off",
+    // "unused-imports/no-unused-imports": "warn",
+    // "unused-imports/no-unused-vars": [
+    //   "warn",
+    //   {
+    //     "vars": "all",
+    //     "varsIgnorePattern": "^_",
+    //     "args": "after-used",
+    //     "argsIgnorePattern": "^_"
+    //   }
+    // ]
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+    "import/resolver": {
+      "typescript": {}
+    }
+  }
+}

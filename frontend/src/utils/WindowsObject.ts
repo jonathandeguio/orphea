@@ -1,0 +1,95 @@
+export const registerOneTimeWindowsFunctions = () => {
+  /**
+   * Purpose : To temporary make the button successful
+   * Related Component : Bosler Button
+   */
+  (window as any).makeButtonTemporarySuccess = (
+    id: string,
+    timeout: number = 10000
+  ) => {
+    const button = document.getElementById(id);
+    if (button) {
+      // For color
+      button.classList.add("boslerButton-tempsuccess");
+      // For Tick Icon
+      const tickIcon = document.createElement("span");
+      tickIcon.className = "bosler-icons";
+      tickIcon.innerHTML = `
+        <svg
+          color="white"
+          data-icon="tick"
+          fill="white"
+          height="16"
+          viewBox="0 0 16 16"
+          width="16"
+        >
+          <desc>dynamic</desc>
+          <g stroke-width="1">
+            <g transform="">
+              <path
+                clip-rule="evenodd"
+                d="m14.715 3.536-8.558 9.989-4.846-4.847.707-.707L6.1 12.054l7.856-9.168.76.65Z"
+                fill="currentColor"
+                fill-rule="evenodd"
+              ></path>
+            </g>
+          </g>
+        </svg>`;
+      button.appendChild(tickIcon);
+
+      setTimeout(() => {
+        button.classList.remove("boslerButton-tempsuccess");
+        if (tickIcon.parentNode === button) {
+          button.removeChild(tickIcon);
+        }
+      }, timeout);
+    }
+  };
+
+  /**
+   * Purpose : To temporary make the button failure
+   * Related Component : Bosler Button
+   */
+  (window as any).makeButtonTemporaryFailure = (
+    id: string,
+    timeout: number = 10000
+  ) => {
+    const button = document.getElementById(id);
+    if (button) {
+      // For color
+      button.classList.add("boslerButton-tempfailure");
+      // For Cross Icon
+      const crossIcon = document.createElement("span");
+      crossIcon.className = "bosler-icons";
+      crossIcon.innerHTML = `
+      <svg
+        color="white
+        data-icon="cross-small"
+        fill="white"
+        height="16"
+        viewBox="0 0 16 16"
+        width="16"
+      >
+        <desc>dynamic</desc>
+        <g stroke-width="1">
+          <g transform="">
+            <path
+              clip-rule="evenodd"
+              d="m7.293 8.5-4.01-4.01.707-.708L8 7.792l4.01-4.01.707.708-4.01 4.01 4.01 4.01-.707.707L8 9.207l-4.01 4.01-.708-.707 4.01-4.01Z"
+              fill="currentColor"
+              fill-rule="evenodd"
+            ></path>
+          </g>
+        </g>
+      </svg>`;
+      button.appendChild(crossIcon);
+
+      setTimeout(() => {
+        button.classList.remove("boslerButton-tempfailure");
+        if (crossIcon.parentNode === button) {
+          button.removeChild(crossIcon);
+        }
+      }, timeout);
+    }
+  };
+};

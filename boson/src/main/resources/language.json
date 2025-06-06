@@ -1,0 +1,154 @@
+{
+  "data": {
+    "en": "Data",
+    "fr": "Données",
+    "de": "Daten",
+    "es": "Datos",
+    "hi": "डेटा",
+    "nl": "Gegevens"
+  },
+  "documentation": {
+    "en": "Documentation",
+    "fr": "Documentation",
+    "de": "Dokumentation",
+    "es": "Documentación",
+    "hi": "प्रलेखन",
+    "nl": "Documentatie"
+  },
+  "sources": {
+    "en": "Data Sources",
+    "fr": "Data Sources",
+    "de": "Data Quellen",
+    "es": "Fuentes",
+    "hi": "स्रोत",
+    "nl": "Bronnen"
+  },
+  "agents": {
+    "en": "Agents",
+    "fr": "Agents",
+    "de": "Agenten",
+    "es": "Agentes",
+    "hi": "एजेंट्स",
+    "nl": "Agenten"
+  },
+  "links": {
+    "en": "Data Links",
+    "fr": "Data Liens",
+    "de": "Data Links",
+    "es": "Data Enlaces",
+    "hi": "Data लिंक्स",
+    "nl": "Data Links"
+  },
+  "logic": {
+    "en": "Transform",
+    "fr": "Transform",
+    "de": "Logik",
+    "es": "Lógica",
+    "hi": "तर्क",
+    "nl": "Logica"
+  },
+  "view": {
+    "en": "Visualisation",
+    "fr": "Viz",
+    "de": "Ansicht",
+    "es": "Ver",
+    "hi": "दृश्य",
+    "nl": "Weergave"
+  },
+  "charts": {
+    "en": "Charts",
+    "fr": "Graphiques",
+    "de": "Diagramme",
+    "es": "Gráficos",
+    "hi": "चार्ट",
+    "nl": "Grafieken"
+  },
+  "dashboards": {
+    "en": "Dashboards",
+    "fr": "Tableaux de bord",
+    "de": "Dashboards",
+    "es": "Paneles de control",
+    "hi": "डैशबोर्ड",
+    "nl": "Dashboards"
+  },
+  "mentionedNotification": {
+    "en": "You have been mentioned",
+    "fr": "Vous avez été mentionné",
+    "de": "Sie wurden erwähnt",
+    "es": "Has sido mencionado",
+    "hi": "आपका उल्लेख किया गया है",
+    "nl": "Je bent genoemd"
+  },
+  "mentionedInMessage": {
+    "en": "You have been mentioned in the following message:",
+    "fr": "Vous avez été mentionné dans le message suivant :",
+    "de": "Sie wurden in der folgenden Nachricht erwähnt:",
+    "es": "Has sido mencionado en el siguiente mensaje:",
+    "hi": "आपका उल्लेख निम्नलिखित संदेश में किया गया है:",
+    "nl": "Je bent genoemd in het volgende bericht:"
+  },
+  "count": {
+    "en": "count",
+    "fr": "nombre",
+    "de": "zählen",
+    "es": "contar",
+    "hi": "गणना",
+    "nl": "tellen"
+  },
+  "countDistinct": {
+    "en": "Distinct",
+    "fr": "Nombre(éléments distincts)",
+    "de": "ZÄHLEN UNTERSCHIEDLICHE",
+    "es": "DISTINTO",
+    "hi": "विशिष्ट",
+    "nl": "Aantal Verschillend"
+  },
+  "first": {
+    "en": "first",
+    "fr": "premier",
+    "de": "erste",
+    "es": "primero",
+    "hi": "पहला",
+    "nl": "eerste"
+  },
+  "sum": {
+    "en": "sum",
+    "fr": "somme",
+    "de": "summe",
+    "es": "suma",
+    "hi": "योग",
+    "nl": "som"
+  },
+  "avg": {
+    "en": "avg",
+    "fr": "moyenne",
+    "de": "durchschnitt",
+    "es": "promedio",
+    "hi": "औसत",
+    "nl": "gemiddelde"
+  },
+  "max": {
+    "en": "max",
+    "fr": "max",
+    "de": "max",
+    "es": "máx",
+    "hi": "अधिकतम",
+    "nl": "max"
+  },
+  "min": {
+    "en": "min",
+    "fr": "min",
+    "de": "min",
+    "es": "mín",
+    "hi": "न्यूनतम",
+    "nl": "min"
+  },
+  "variance": {
+    "en": "variance",
+    "fr": "variance",
+    "de": "varianz",
+    "es": "varianza",
+    "hi": "विचलन",
+    "nl": "variantie"
+  }
+}

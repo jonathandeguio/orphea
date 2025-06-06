@@ -1,0 +1,1 @@
+UPDATE kepler_chart_series SET group_by = null;

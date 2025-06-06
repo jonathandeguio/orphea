@@ -1,0 +1,395 @@
+.grabbable {
+  cursor: move; /* fallback if grab cursor is unsupported */
+  cursor: grab;
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
+}
+
+/* (Optional) Apply a "closed-hand" cursor during drag operation. */
+.grabbable:active {
+  cursor: grabbing;
+  cursor: -moz-grabbing;
+  cursor: -webkit-grabbing;
+}
+
+.draggable {
+  cursor: move; /* fallback: no `url()` support or images disabled */
+  cursor: -webkit-grab; /* Chrome 1-21, Safari 4+ */
+  cursor: -moz-grab; /* Firefox 1.5-26 */
+  cursor: grab; /* W3C standards syntax, should come least */
+}
+
+.draggable:active {
+  cursor: -webkit-grabbing;
+  cursor: -moz-grabbing;
+  cursor: grabbing;
+}
+
+.--text-overflow {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.--text-overflow-noflex {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ellipsisText {
+  display: inline-block;
+  max-width: 100%; /* Allows it to take up the full width of the parent */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: top;
+
+  /* Tooltip */
+  &:hover {
+    position: relative;
+
+    &::after {
+      content: attr(title); /* Use the title attribute for the tooltip text */
+      position: absolute;
+      left: 0;
+      top: 100%;
+      white-space: nowrap;
+      background-color: #333;
+      color: #fff;
+      padding: 5px;
+      border-radius: 3px;
+      // box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+      z-index: 1;
+    }
+  }
+}
+
+.BoslerHeader1 {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  padding: 10px 0px;
+  color: var(--bosler-font-color-muted);
+  font-weight: 500;
+  font-size: 12px;
+  text-transform: uppercase;
+  font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont,
+    sans-serif;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.BoslerSubHeader1 {
+  color: var(--bosler-font-color-muted);
+  font-size: 12px;
+  text-transform: capitalize;
+}
+.BoslerNormalHeader {
+  color: var(--color);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.BoslerSpan {
+  color: var(--bosler-font-color-muted);
+  font-size: 14px;
+}
+.boslerFormLabel {
+  color: var(--color);
+  font-size: 14px;
+  font-weight: 400;
+  text-transform: capitalize;
+}
+
+.BoslerBtnHeading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--bosler-font-color-muted);
+  min-height: 24px;
+  padding: 4px 8px;
+  font-size: 12px;
+  text-transform: capitalize;
+  width: fit-content;
+  line-height: 1.15;
+  cursor: pointer;
+  transition: background-color 0.15s cubic-bezier(0.25, 0.1, 0.25, 1) 0s;
+  border-radius: 2px;
+
+  &:hover {
+    background-color: rgba(207, 211, 222, 0.15);
+  }
+}
+
+.selectedHeading {
+  background: var(--bosler-hover-color);
+  border-radius: 5px;
+}
+
+.selectedHeading2 {
+  box-shadow: #191b3426 0px 0px 0px 1px inset,
+    rgba(1, 1, 27, 0.02) 0px 2px 4px 0px, rgba(11, 14, 22, 0.02) 0px 1px 2px 0px;
+  color: var(--SWITCH_SELECTED_FONT);
+  background-color: var(--SWITCH_SELECTED_BKG);
+  box-shadow: none;
+  transition: background-color 0.15s cubic-bezier(0.25, 0.1, 0.25, 1) 0s;
+  padding: 2px;
+  box-shadow: var(--bosler-border-color-default) 0px 0px 0px 1px inset;
+  width: fit-content;
+}
+
+// Flex
+.--flex-col-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+.--flex-col-start {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+.--flex-row-center {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.--flex-row-space-between {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  // height: 100%;
+  // width: 100%;
+}
+.--flex-row-start {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+.--flex-row-end {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+.--flex-align-center {
+  display: flex;
+  align-items: center;
+}
+.--flex-space-between {
+  display: flex;
+  justify-content: space-between;
+}
+.--flex-gap2 {
+  gap: 2px;
+}
+.--flex-gap5 {
+  gap: 5px;
+}
+.--flex-gap10 {
+  gap: 10px;
+}
+.--flex-gap20 {
+  gap: 20px;
+}
+
+.--width100 {
+  width: 100%;
+}
+
+.--height100{
+  height: 100%;
+}
+// Margin blocks
+.--m5 {
+  margin: 5px;
+}
+.--m10 {
+  margin: 10px;
+}
+.--m15 {
+  margin: 15px;
+}
+.--m20 {
+  margin: 20px;
+}
+
+.--mt5 {
+  margin-top: 5px;
+}
+.--mb5 {
+  margin-bottom: 5px;
+}
+.--mt10 {
+  margin-top: 10px;
+}
+.--mb10 {
+  margin-bottom: 10px;
+}
+.--mt15 {
+  margin-top: 15px;
+}
+.--mb15 {
+  margin-bottom: 15px;
+}
+.--mt20 {
+  margin-top: 20px;
+}
+.--mb20 {
+  margin-bottom: 20px;
+}
+
+.--ml5 {
+  margin-left: 5px;
+}
+.--mr5 {
+  margin-right: 5px;
+}
+.--ml10 {
+  margin-left: 10px;
+}
+.--mr10 {
+  margin-right: 10px;
+}
+.--ml15 {
+  margin-left: 15px;
+}
+.--mr15 {
+  margin-right: 15px;
+}
+.--ml20 {
+  margin-left: 20px;
+}
+.--ml30 {
+  margin-left: 30px;
+}
+.--mr20 {
+  margin-right: 20px;
+}
+.--mr30 {
+  margin-right: 30px;
+}
+
+// padding blocks
+.--p5 {
+  padding: 5px;
+}
+.--p10 {
+  padding: 10px;
+}
+.--p15 {
+  padding: 15px;
+}
+.--p20 {
+  padding: 20px;
+}
+
+.--pt5 {
+  padding-top: 5px;
+}
+.--pb5 {
+  padding-bottom: 5px;
+}
+.--pl5 {
+  padding-left: 5px;
+}
+.--pr5 {
+  padding-right: 5px;
+}
+.--pt10 {
+  padding-top: 10px;
+}
+.--pb10 {
+  padding-bottom: 10px;
+}
+.--pl10 {
+  padding-left: 10px;
+}
+.--pr0 {
+  padding-right: 10px;
+}
+.--pt15 {
+  padding-top: 15px;
+}
+.--pb15 {
+  padding-bottom: 15px;
+}
+.--pr15 {
+  padding-right: 15px;
+}
+.--pl15 {
+  padding-left: 15px;
+}
+.--pt20 {
+  padding-top: 20px;
+}
+.--pb20 {
+  padding-bottom: 20px;
+}
+.--pl20 {
+  padding-left: 20px;
+}
+.--pr20 {
+  padding-right: 20px;
+}
+
+.noScroll {
+  overflow: hidden;
+}
+.--hide-on-smalll-screen {
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+
+.content-editable {
+  font-size: 16px;
+  outline: none;
+}
+
+.overlay-highlight {
+  background-color: yellow;
+  color: black;
+  padding: 2px;
+  border-radius: 3px;
+}
+
+.--flex-center {
+  justify-content: center;
+}
+
+.--flex-space-between {
+  justify-content: space-between;
+}
+
+.--flex-start {
+  justify-content: flex-start;
+}
+
+.--flex-end{
+  justify-content: flex-end;
+}
+
+.--flex-row{
+  display: flex;
+  flex-direction: row;
+}

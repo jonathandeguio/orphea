@@ -1,0 +1,116 @@
+plugins {
+    id 'org.springframework.boot' version '2.7.2'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
+    id 'java'
+    id 'java-library'
+}
+
+group = 'io.bosler'
+version = '0.0.1-SNAPSHOT'
+
+configurations {
+    all {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        url 'https://repo.spring.io/milestone'
+    }
+    maven {
+        url "https://repo.spring.io/release"
+    }
+    maven {
+        url "https://repo.eclipse.org/content/groups/releases/"
+    }
+    maven {
+        url 'https://repo.gradle.org/gradle/libs-releases'
+    }
+}
+
+bootJar {
+    mainClass = 'io.bosler.Boson'
+}
+
+dependencies {
+    implementation 'com.google.zxing:core:3.4.1'
+    implementation 'com.google.zxing:javase:3.4.1'
+    implementation 'com.warrenstrange:googleauth:1.2.0'
+    implementation 'org.apache.commons:commons-lang3'
+    implementation group: 'com.crealytics', name: 'spark-excel_2.13', version: '3.5.1_0.20.4'
+    implementation 'org.codehaus.janino:janino:3.1.7'
+    implementation "org.apache.hadoop:hadoop-aws:3.3.2"
+
+    // Logging - using only Log4j2 for logging
+
+    // Additional dependencies
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'org.apache.tika:tika-parser-text-module:2.8.0'
+    implementation 'com.cronutils:cron-utils:9.2.0'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'com.sun.mail:javax.mail:1.6.2'
+    implementation 'javax.mail:javax.mail-api:1.6.2'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.7.2'
+    implementation 'org.springframework.boot:spring-boot-starter-security:2.7.2'
+    implementation 'org.springframework.boot:spring-boot-starter-web:2.7.2'
+    implementation 'org.springframework.boot:spring-boot-starter-quartz:2.7.2'
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools:2.7.2'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.7.2'
+    testImplementation 'org.springframework.security:spring-security-test:5.7.2'
+    implementation 'com.auth0:java-jwt:4.0.0'
+    implementation 'com.googlecode.json-simple:json-simple:1.1.1'
+    implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.11.5'
+    implementation group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.11.5'
+    implementation group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.11.5'
+    implementation 'org.springdoc:springdoc-openapi-ui:1.6.15'
+    implementation 'io.swagger:swagger-annotations:1.6.8'
+
+    // JDBC drivers
+    implementation 'org.postgresql:postgresql:42.5.4'
+    implementation 'org.mariadb.jdbc:mariadb-java-client:3.4.0'
+    implementation 'com.microsoft.sqlserver:mssql-jdbc:12.2.0.jre11'
+    implementation 'mysql:mysql-connector-java:8.0.33'
+    implementation 'com.oracle.database.jdbc:ojdbc8:21.9.0.0'
+    implementation 'net.snowflake:snowflake-jdbc:3.18.0'
+    implementation 'org.apache.spark:spark-core_2.13:3.4.3'
+    implementation 'org.apache.spark:spark-sql_2.13:3.4.3'
+    implementation 'org.apache.spark:spark-kubernetes_2.13:3.4.3'
+    implementation 'org.apache.poi:poi:5.2.3'
+    implementation 'org.apache.poi:poi-ooxml:5.2.3'
+    implementation 'com.opencsv:opencsv:5.7.1'
+    implementation 'io.kubernetes:client-java:18.0.0'
+    implementation 'io.kubernetes:client-java-extended:18.0.0'
+    implementation 'org.codehaus.janino:commons-compiler:3.1.12'
+    implementation 'org.eclipse.jgit:org.eclipse.jgit:5.13.0.202109080827-r'
+    implementation 'commons-io:commons-io:2.9.0'
+    implementation 'org.springframework.security:spring-security-oauth2-client:5.7.2'
+    implementation 'org.springframework.security:spring-security-oauth2-jose:5.7.3'
+    implementation 'org.springframework.boot:spring-boot-starter-validation:2.7.2'
+    implementation 'io.minio:minio:8.2.1'
+    implementation group: 'com.google.cloud.bigdataoss', name: 'gcs-connector', version: 'hadoop3-2.2.7'
+    implementation group: 'com.google.cloud', name: 'libraries-bom', version: '26.0.0', ext: 'pom'
+    implementation group: 'com.google.cloud', name: 'google-cloud-storage', version: '2.16.0'
+    implementation 'org.springframework.boot:spring-boot-starter-websocket:2.7.2'
+    implementation 'org.apache.commons:commons-compress:1.21'
+    implementation 'org.gradle:gradle-tooling-api:7.3-20210825160000+0000'
+    implementation group: 'com.vladmihalcea', name: 'hibernate-types-52', version: '2.19.2'
+    implementation 'org.springframework:spring-mock:2.0.8'
+    implementation 'redis.clients:jedis:4.3.2'
+    implementation 'org.tukaani:xz:1.9'
+    implementation 'org.flywaydb:flyway-core:8.4.2'
+    implementation 'org.modelmapper:modelmapper:2.1.1'
+    implementation 'net.snowflake:snowflake-jdbc:3.19.0'
+    implementation 'net.snowflake:spark-snowflake_2.13:3.0.0'
+    implementation 'com.microsoft.azure:msal4j:1.17.2'
+    implementation 'org.webjars:sockjs-client:1.5.1'
+    runtimeOnly group: 'com.nimbusds', name: 'oauth2-oidc-sdk', version: '11.19.1'
+    implementation group: 'org.springframework.security', name: 'spring-security-saml2-service-provider', version: '5.7.0'
+}
+
+
+apply plugin: 'org.springframework.boot'

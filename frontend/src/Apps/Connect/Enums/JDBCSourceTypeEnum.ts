@@ -1,0 +1,10 @@
+export const enum JDBCSourceTypeEnum {
+  NONE = "NONE",
+  JDBC = "JDBC",
+  POSTGRES = "POSTGRES",
+  MYSQL = "MYSQL",
+  ORACLE21 = "ORACLE21",
+  MSSQLSERVER = "MSSQLSERVER",
+  MARIADB = "MARIADB",
+  SNOWFLAKE = "SNOWFLAKE",
+}

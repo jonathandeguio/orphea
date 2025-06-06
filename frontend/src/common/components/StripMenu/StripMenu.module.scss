@@ -1,0 +1,44 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.container {
+  background-color: var(--bosler-bkg-color-default);
+  margin: 0px auto;
+  overflow: hidden;
+  -moz-box-align: center;
+  align-items: center;
+  border-radius: 3px;
+  display: flex;
+  width: fit-content;
+  gap: 28px;
+  padding: 10px 20px;
+  box-shadow: rgba(218, 221, 230, 0.6) 0px 0px 0px 1px,
+    rgba(218, 221, 230, 0.15) 0px 4px 10px 0px,
+    rgba(218, 221, 230, 0.25) 0px 8px 20px 0px;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  padding: 5px;
+  cursor: grab;
+  &:hover {
+    transition: color 0.15s cubic-bezier(0.25, 0.1, 0.25, 1),
+      background-color 0.15s cubic-bezier(0.25, 0.1, 0.25, 1),
+      box-shadow 0.15s cubic-bezier(0.25, 0.1, 0.25, 1);
+    background-color: var(--bosler-bkg-color-muted);
+  }
+}
+
+.itemIcon {
+}
+
+.itemText {
+  font-size: 12px;
+}

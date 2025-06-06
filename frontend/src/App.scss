@@ -1,0 +1,378 @@
+@import "~react-js-cron/dist/styles.css";
+@import "~react-grid-layout/css/styles.css";
+@import "~react-resizable/css/styles.css";
+// variables and mixins
+
+@import "./assets/scss/colors";
+@import "./assets/scss/misc";
+
+@import "./assets/scss/components";
+@import "./assets/scss/Login";
+@import "./assets/scss/Manage";
+@import "./assets/scss/Repo";
+@import "./assets/scss/Dataset";
+@import "./assets/scss/Home";
+@import "./assets/scss/Header";
+@import "./assets/scss/Sidebar";
+@import "./assets/scss/Styles";
+@import "./assets/scss/Footer";
+@import "./assets/scss/helpers";
+@import "./assets/scss/PipelineCustomNode";
+@import "./assets/scss/Kepler";
+@import "./components/BlobViewer/blob";
+@import "./assets/scss/Pipeline";
+@import "./assets/scss/Notfound";
+@import "./assets/scss/editor";
+@import "./assets/scss/History";
+@import "./assets/scss/Settings";
+@import "./assets/scss/Explorer";
+@import "./Apps/Connect/Connect.module.scss";
+@import "./assets/scss/notebook";
+@import "./assets/scss/forbidden";
+@import "./assets/scss/Typography";
+@import "./assets/scss/vscode-icons";
+@import "./assets/scss/Particle";
+@import "./assets/scss/AntOverride";
+
+// light
+$color: rgb(1, 1, 27);
+$background-color: #ffffff;
+$bosler-font-color-default: #01011b;
+$bosler-font-color-light-black: #000000a6;
+$bosler-font-color-muted: #717a94;
+$bosler-bkg-color-default: #ffffff;
+$bosler-bkg-color-muted: #f8fafb;
+$bosler-border-color-default: #dadde6;
+$bosler-border-color-muted: #ecedf2;
+$bosler-hover-color: rgba(207, 211, 222, 0.322);
+$bosler-intent-danger: #c84654;
+$top-bar-border: rgb(218, 221, 230);
+$bosler-table-selected: rgb(14, 101, 235, 0.1);
+$bosler-font-color-git-blame: #aeb0b8;
+$background-explorer: #f3f2f4;
+$dropdown-box-shadow:rgba(0, 0, 0, 0.15);
+
+// Dark
+$color-dark: rgb(228, 230, 236);
+$background-color-dark: $bosler-900;
+$bosler-font-color-default-dark: #e4e6ec;
+$bosler-font-color-light-black-dark: #e4e6ec;
+$bosler-font-color-muted-dark: #9ca3b4;
+$bosler-bkg-color-default-dark: #1e1e28;
+$bosler-bkg-color-muted-dark: $bosler-900; // previous #17171f
+$bosler-border-color-default-dark: #333345;
+$bosler-border-color-muted-dark: #2d2d3c;
+$bosler-hover-color-dark: rgba(63, 66, 87, 0.35);
+$bosler-intent-danger-dark: #ed6f73;
+$top-bar-border-dark: #424242;
+$bosler-table-selected-dark: rgb(14, 101, 235, 0.3);
+$bosler-font-color-git-blame-dark: #282837;
+$background-explorer-dark: #161619;
+
+// Button specific css
+$INTENT_COLOR: rgba(0, 0, 0, 0.04);
+$INTENT_COLOR_FONT: #717a94;
+$INTENT_COLOR_BORDER: #d9d9d9;
+
+$PRIMARY_COLOR: #24527a;
+$PRIMARY_COLOR_BORDER: #24527a;
+$PRIMARY_COLOR_FONT: white;
+
+$ACTION_COLOR: #1f6feb;
+$ACTION_COLOR_BORDER: #007acc;
+$ACTION_COLOR_FONT: white;
+
+$SUCCESS_COLOR: rgb(41, 160, 124);
+$SUCCESS_COLOR_BORDER: green;
+$SUCCESS_COLOR_FONT: white;
+
+$DANGEROUS_COLOR: var(--bosler-intent-danger);
+$DANGEROUS_COLOR_BORDER: red;
+$DANGEROUS_COLOR_FONT: white;
+
+$WARNING_COLOR: #fbb261;
+$WARNING_COLOR_BORDER: orange;
+$WARNING_COLOR_FONT: #717a94;
+
+// Input specific css
+$INPUT_BOX_SHADOW_LIGHT: rgba(25, 27, 52, 0.2) 0px 0px 0px 1px inset,
+  rgba(25, 27, 52, 0.12) 0px 1px 3px inset,
+  rgba(54, 92, 163, 0) 0px 0px 0px 3px inset;
+
+$INPUT_BOX_SHADOW_DARK: rgba(207, 211, 222, 0.2) 0px 0px 0px 1px inset,
+  rgba(207, 211, 222, 0.12) 0px 1px 3px inset,
+  rgba(89, 135, 224, 0) 0px 0px 0px 3px inset;
+$INPUT_FOCUS_BOX_SHADOW: rgba(11, 14, 22, 0) 0px 0px 0px 0px,
+  rgba(11, 14, 22, 0) 0px 0px 0px 0px, #365ca3 0px 0px 0px 1px inset,
+  rgba(54, 92, 163, 0.1) 0px 0px 0px 3px inset;
+$INPUT_BACKGROUND_LIGHT: rgb(255, 255, 255);
+$INPUT_BACKGROUND_DARK: #17171f;
+
+// switch vars
+$SWITCH_SELECTED_FONT_LIGHT: #254685;
+$SWITCH_SELECTED_FONT_DARK: #84a6e8;
+
+$SWITCH_SELECTED_BKG_LIGHT: rgba(72, 113, 194, 0.15);
+$SWITCH_SELECTED_BKG_DARK: rgba(89, 135, 224, 0.15);
+
+// Different Viewports Breakpoints.
+$VIEWPORT_BREAKPOINT_MOBILE: 480px;
+$VIEWPORT_BREAKPOINT_TABLET: 768px;
+$VIEWPORT_BREAKPOINT_DESKTOP: 1024px;
+
+//ANT_LAYOUT_COLOR
+
+$ANT_LAYOUT_COLOR_LIGHT: rgba(0, 0, 0, 0.5);
+$ANT_LAYOUT_COLOR_DARK: rgba(255, 255, 255, 0.5);
+:root {
+  --color: #{$color};
+  --icon-color-selected: #9ca3b4;
+  --icon-color-deafult: #d3d7e2;
+  --background-color: #{$background-color};
+  --bosler-font-color-default: #{$bosler-font-color-default};
+  --bosler-font-color-muted: #{$bosler-font-color-muted};
+  --bosler-font-color-light-black: #{$bosler-font-color-light-black};
+  --bosler-bkg-color-default: #{$bosler-bkg-color-default};
+  --bosler-bkg-color-muted: #{$bosler-bkg-color-muted};
+  --bosler-border-color-default: #{$bosler-border-color-default};
+  --bosler-border-color-muted: #{$bosler-border-color-muted};
+  --bosler-hover-color: #{$bosler-hover-color};
+  --bosler-intent-danger: #{$bosler-intent-danger};
+  --top-bar-border: #{$top-bar-border};
+  --bosler-table-selected: #{$bosler-table-selected};
+  --bosler-font-color-git-blame: #{$bosler-font-color-git-blame};
+  --background-explorer: #{$background-explorer};
+  --dropdown-box-shadow: #{$dropdown-box-shadow};
+  --VIEWPORT_BREAKPOINT_TABLET: #{$VIEWPORT_BREAKPOINT_TABLET};
+  // Button CSS Vars
+  --INTENT_COLOR: #{$INTENT_COLOR};
+  --INTENT_COLOR_FONT: #{$INTENT_COLOR_FONT};
+  --INTENT_COLOR_BORDER: #{$INTENT_COLOR_BORDER};
+
+  --PRIMARY_COLOR: #{$PRIMARY_COLOR};
+  --PRIMARY_COLOR_BORDER: #{$PRIMARY_COLOR_BORDER};
+  --PRIMARY_COLOR_FONT: #{$PRIMARY_COLOR_FONT};
+
+  --ACTION_COLOR: #{$ACTION_COLOR};
+  --ACTION_COLOR_BORDER: #{$ACTION_COLOR_BORDER};
+  --ACTION_COLOR_FONT: #{$ACTION_COLOR_FONT};
+
+  --SUCCESS_COLOR: #{$SUCCESS_COLOR};
+  --SUCCESS_COLOR_BORDER: #{$SUCCESS_COLOR_BORDER};
+  --SUCCESS_COLOR_FONT: #{$SUCCESS_COLOR_FONT};
+
+  --DANGEROUS_COLOR: #{$DANGEROUS_COLOR};
+  --DANGEROUS_COLOR_BORDER: #{$DANGEROUS_COLOR_BORDER};
+  --DANGEROUS_COLOR_FONT: #{$DANGEROUS_COLOR_FONT};
+
+  --WARNING_COLOR: #{$WARNING_COLOR};
+  --WARNING_COLOR_BORDER: #{$WARNING_COLOR_BORDER};
+  --WARNING_COLOR_FONT: #{$WARNING_COLOR_FONT};
+
+  // Input CSS Vars
+  --INPUT_BOX_SHADOW: #{$INPUT_BOX_SHADOW_LIGHT};
+
+  --INPUT_FOCUS_BOX_SHADOW: #{$INPUT_FOCUS_BOX_SHADOW};
+  --INPUT_BACKGROUND: #{$INPUT_BACKGROUND_LIGHT};
+
+  // Switch vars
+  --SWITCH_SELECTED_FONT: #{$SWITCH_SELECTED_FONT_LIGHT};
+  --SWITCH_SELECTED_BKG: #{$SWITCH_SELECTED_BKG_LIGHT};
+
+  //ANT-LAYOUT-COLOR
+  --ANT_LAYOUT_COLOR: #{$ANT_LAYOUT_COLOR_LIGHT};
+}
+
+.dark {
+  --color: #{$color-dark};
+  --background-color: #{$background-color-dark};
+  --bosler-font-color-default: #{$bosler-font-color-default-dark};
+  --bosler-font-color-muted: #{$bosler-font-color-muted-dark};
+  --bosler-font-color-light-black: #{$bosler-font-color-light-black-dark};
+  --bosler-bkg-color-default: #{$bosler-bkg-color-default-dark};
+  --bosler-bkg-color-muted: #{$bosler-bkg-color-muted-dark};
+  --bosler-border-color-default: #{$bosler-border-color-default-dark};
+  --bosler-border-color-muted: #{$bosler-border-color-muted-dark};
+  --bosler-hover-color: #{$bosler-hover-color-dark};
+  --bosler-intent-danger: #{$bosler-intent-danger-dark};
+  --top-bar-border: #{$top-bar-border-dark};
+  --bosler-table-selected: #{$bosler-table-selected-dark};
+  --bosler-font-color-git-blame-dark: #{$bosler-font-color-git-blame-dark};
+  --background-explorer: #{$background-explorer-dark};
+
+  // Input CSS Vars
+  --INPUT_BOX_SHADOW: #{$INPUT_BOX_SHADOW_DARK};
+  --INPUT_FOCUS_BOX_SHADOW: #{$INPUT_FOCUS_BOX_SHADOW};
+  --INPUT_BACKGROUND: #{$INPUT_BACKGROUND_DARK};
+  // Switch vars
+  --SWITCH_SELECTED_FONT: #{$SWITCH_SELECTED_FONT_DARK};
+  --SWITCH_SELECTED_BKG: #{$SWITCH_SELECTED_BKG_DARK};
+
+  //ANT-LAYOUT-COLOR
+  --ANT_LAYOUT_COLOR: #{$ANT_LAYOUT_COLOR_DARK};
+}
+
+@keyframes spin {
+  from {
+    transform: scale(1) rotate(0deg);
+  }
+
+  to {
+    transform: scale(1) rotate(360deg);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    transform: translateY(-25%);
+  }
+
+  50% {
+    transform: translateY(4%);
+  }
+
+  65% {
+    transform: translateY(-2%);
+  }
+
+  80% {
+    transform: translateY(2%);
+  }
+
+  95% {
+    transform: translateY(-1%);
+  }
+
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+$xs: 0.75rem; /* 12px */
+$sm: 0.875rem; /* 14px */
+$base: 1rem; /* 16px */
+$lg: 1.125rem; /* 18px */
+$xl: 1.25rem; /* 20px */
+
+.text-xs {
+  font-size: 0.75rem; /* 12px */
+  line-height: 1rem; /* 16px */
+}
+.text-sm {
+  font-size: 0.875rem; /* 14px */
+  line-height: 1.25rem; /* 20px */
+}
+.text-base {
+  font-size: 1rem; /* 16px */
+  line-height: 1.5rem; /* 24px */
+}
+.text-lg {
+  font-size: 1.125rem; /* 18px */
+  line-height: 1.75rem; /* 28px */
+}
+.text-xl {
+  font-size: 1.25rem; /* 20px */
+  line-height: 1.75rem; /* 28px */
+}
+.text-2xl {
+  font-size: 1.5rem; /* 24px */
+  line-height: 2rem; /* 32px */
+}
+.text-3xl {
+  font-size: 1.875rem; /* 30px */
+  line-height: 2.25rem; /* 36px */
+}
+.text-4xl {
+  font-size: 2.25rem; /* 36px */
+  line-height: 2.5rem; /* 40px */
+}
+.text-5xl {
+  font-size: 3rem; /* 48px */
+  line-height: 1;
+}
+.text-6xl {
+  font-size: 3.75rem; /* 60px */
+  line-height: 1;
+}
+.text-7xl {
+  font-size: 4.5rem; /* 72px */
+  line-height: 1;
+}
+.text-8xl {
+  font-size: 6rem; /* 96px */
+  line-height: 1;
+}
+.text-9xl {
+  font-size: 8rem; /* 128px */
+  line-height: 1;
+}
+
+.flex {
+  display: flex;
+}
+
+.project-dropdown {
+  width: 15% !important;
+  height: 40%;
+  ul {
+    height: 100%;
+    overflow-y: auto;
+  }
+  li {
+    span {
+      overflow: hidden !important;
+      div {
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+      }
+    }
+  }
+
+  &__button {
+    gap: 0.3rem;
+    display: flex;
+    &-text {
+      font-weight: 900;
+      max-width: 150px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+}
+
+.cut-through {
+  position: relative;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.cut-through::before {
+  content: "";
+  position: absolute;
+  top: 50%; /* Adjust this value to change the angle of the line */
+  left: 0;
+  width: 100%;
+  height: 2px; /* Adjust the height of the line */
+  background-color: var(
+    --bosler-intent-danger
+  ); /* Change the color of the line */
+  transform: translateY(-50%) rotate(-0deg); /* Adjust rotation angle */
+}
+
+.ant-layout-content {
+  color: var(--ANT_LAYOUT_COLOR) !important;
+}
+
+.passwordUsernameDiv {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.7s;
+
+  &--display {
+    height: 110px;
+
+    transition: height 0.7s;
+  }
+}

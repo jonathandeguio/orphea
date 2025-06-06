@@ -1,0 +1,103 @@
+.wrapper {
+  min-height: 0;
+  box-sizing: border-box;
+  padding: 6px;
+  border-right: 1px solid var(--bosler-border-color-default);
+  box-shadow: rgb(236, 237, 242) 1px 0px 0px 0px;
+  // background-color: #0d1117;
+  background-color: #112a40;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* This centers items horizontally in a column layout */
+  justify-content: space-between; /* This is for vertical spacing in your column */
+  height: 100%;
+  width: 46px;
+  box-sizing: border-box;
+  /* background-color: rgba(125, 188, 255, 0.6); Uncomment if background color is needed */
+  /* overflow: auto; Uncomment if overflow handling is needed */
+}
+
+.logo {
+  //   border-bottom: 1px solid var(--bosler-bkg-color-muted);
+  display: flex;
+  -moz-box-align: center;
+  align-items: center;
+  -moz-box-pack: center;
+  justify-content: center;
+  margin-bottom: -5px;
+  font-size: 8px;
+  font-weight: "100";
+  margin-top: "-10px";
+  color: "var(--bosler-font-color-default)";
+  text-decoration: none;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.top {
+  display: flex;
+  flex-direction: column;
+}
+
+.bottom {
+}
+
+.element__selected {
+  margin-top: 5px;
+  padding: 5px 0;
+  // background-color: var(--bosler-border-color-muted);
+  background-color: #2d2d3c;
+  &:hover {
+    background-color: rgba(71, 57, 130, 0.07);
+  }
+  border-left: 4px solid #333345;
+}
+
+.element {
+  margin-top: 5px;
+  padding: 5px 0;
+  &:hover {
+    background-color: rgba(71, 57, 130, 0.07);
+  }
+}
+
+.element__disabled {
+  pointer-events: none;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.element__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 2px;
+}
+
+.element__icon_selected {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  color: #e4e6ec !important;
+  margin-bottom: 2px;
+  margin-left: -2px;
+}
+
+.element__text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%; /* Ensure the flex container has height */
+  text-align: center; /* In case the flex properties don't apply to inline elements */
+  cursor: pointer;
+  color: #e4e6ec;
+  font-size: 0.6rem;
+  font-weight: 500;
+}

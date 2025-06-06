@@ -1,0 +1,85 @@
+.footer {
+  padding-left: 0.5rem;
+  background-color: #1890ff;
+  font-size: 0.8rem;
+  color: white;
+  display: flex;
+  justify-content: flex-start;
+  z-index: 3;
+  height: 1.2rem;
+  &-left {
+    display: flex;
+    justify-content: space-evenly;
+    width: 30%;
+    &-item {
+      justify-self: flex-start;
+    }
+  }
+  &-right {
+    &-item {
+      &-icon {
+        color: #faad14;
+      }
+    }
+  }
+}
+
+// below is for context-menu
+.popup {
+  // animation-name: fadeIn;/
+  // animation-duration: 0.4s;
+  background-clip: padding-box;
+  background-color: var(--background-color);
+  border-radius: 4px;
+  box-shadow: 0 0 0 1px rgba(64, 87, 109, 0.07),
+    0 2px 12px rgba(53, 71, 90, 0.2);
+  left: 0px;
+  list-style-type: none;
+  margin: 0;
+  outline: none;
+  padding: 8px 0;
+  position: absolute;
+  text-align: left;
+  top: 0px;
+  overflow: hidden;
+  min-width: 12vw;
+  max-height: calc(100vh - 16px);
+  overflow-y: auto;
+  -webkit-box-shadow: 0 0 0 1px rgba(64, 87, 109, 0.07),
+    0 2px 12px rgba(53, 71, 90, 0.2);
+  // transform: translate3d(1017px, 533px, 0px);
+  position: absolute;
+  will-change: transform;
+}
+
+.popup {
+  li {
+    clear: both;
+    color: var(--bosler-font-color-default);
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 22px;
+    margin: 0;
+    padding: 5px 12px;
+    transition: all 0.3s;
+    white-space: nowrap;
+    -webkit-transition: all 0.3s;
+  }
+
+  .enabled-context-menu-item {
+    cursor: pointer;
+  }
+
+  .disabled-context-menu-item {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+.popup li:hover {
+  background-color: var(--bosler-border-color-default);
+}
+
+.popup li > i {
+  margin-right: 8px;
+}

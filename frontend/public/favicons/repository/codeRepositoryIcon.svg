@@ -1,0 +1,10 @@
+<svg color="#717a94" data-icon="code-cell-icon" fill="#717a94" height="300" viewBox="0 0 16 16" width="300" xmlns="http://www.w3.org/2000/svg">
+  <desc>
+    dynamic
+  </desc>
+  <g stroke-width="1">
+    <g transform="">
+      <path clip-rule="evenodd" d="M6.302 15.147 8.712.688l.986.165-2.41 14.459-.986-.165ZM5.092 4.385 1.478 8l3.614 3.615-.707.707L.063 8l4.322-4.322.707.707Zm6.523-.707L15.937 8l-4.322 4.322-.707-.707L14.522 8l-3.614-3.615.707-.707Z" fill="currentColor" fill-rule="evenodd"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,63 @@
+/*
+    DARK THEME
+*/
+
+.jp-MarkdownOutput.jp-RenderedHTMLCommon {
+  color: var(--notebook-text-color);
+}
+
+div.lm-Widget.jp-Notebook.jp-mod-scrollPastEnd.jp-mod-showHiddenCellsButton.jp-NotebookPanel-notebook.jp-mod-commandMode {
+  background-color: var(--notebook-background-color);
+}
+
+div.lm-Widget.jp-Notebook.jp-mod-scrollPastEnd.jp-mod-showHiddenCellsButton.jp-NotebookPanel-notebook.jp-mod-editMode {
+  background-color: var(--notebook-background-color);
+}
+
+.jp-OutputArea-output {
+  pre {
+    color: var(--notebook-text-color);
+  }
+}
+
+.ͼw {
+  color: var(--notebook-text-color);
+}
+
+.ͼ1 .cm-content[contenteditable="true"] {
+  color: var(--notebook-text-color);
+  background-color: var(--notebook-cell);
+}
+
+div.lm-Widget.jp-Spinner {
+  background-color: var(--notebook-background-color);
+  color: var(--notebook-background-color);
+}
+
+.notebook-container {
+  background-color: var(--notebook-container-color);
+  height: 100vh;
+}
+
+.dla-Jupyter-Notebook {
+  &-Header {
+    background-color: var(--notebook-header-color) !important;
+    border-bottom: 0.1rem solid var(--notebook-header-border) !important;
+  }
+}
+
+.MuiButtonBase-root.MuiIconButton-root.MuiIconButton-colorPrimary.MuiIconButton-sizeSmall.css-2rshpx-MuiButtonBase-root-MuiIconButton-root {
+  color: var(--notebook-header-btns) !important;
+}
+
+.MuiButtonBase-root.MuiIconButton-root.MuiIconButton-colorSecondary.MuiIconButton-sizeSmall.css-1hxb263-MuiButtonBase-root-MuiIconButton-root {
+  color: var(--notebook-header-btns) !important;
+}
+
+.MuiButtonBase-root.MuiToggleButton-root.Mui-selected.MuiToggleButton-sizeSmall.MuiToggleButton-standard.MuiToggleButtonGroup-grouped.MuiToggleButtonGroup-groupedHorizontal.css-1x4vipr-MuiButtonBase-root-MuiToggleButton-root {
+  color: var(--notebook-header-btns);
+}
+
+.MuiButtonBase-root.MuiToggleButton-root.MuiToggleButton-sizeSmall.MuiToggleButton-standard.MuiToggleButtonGroup-grouped.MuiToggleButtonGroup-groupedHorizontal.css-1x4vipr-MuiButtonBase-root-MuiToggleButton-root {
+  color: var(--notebook-header-btns);
+}

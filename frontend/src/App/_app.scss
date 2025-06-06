@@ -1,0 +1,28 @@
+@keyframes bang {
+  from {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+.confetti {
+  width: -240px;
+  margin: -150px auto 0;
+  text-align: center;
+  padding: 10px 0;
+  cursor: pointer;
+  position: fixed;
+  span {
+    // color: #333;
+    font-size: 0.9em;
+  }
+  i {
+    position: absolute;
+    display: block;
+    left: 50%;
+    top: 40;
+    width: 9px;
+    height: 24px;
+    background: red;
+    opacity: 0;
+  }
+}

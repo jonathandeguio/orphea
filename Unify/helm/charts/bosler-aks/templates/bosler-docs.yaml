@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    name: bosler-docs
+  name: bosler-docs
+  namespace: {{ .Values.namespace }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: bosler-docs
+  template:
+    metadata:
+      labels:
+        name: bosler-docs
+    spec:
+      containers:
+        - image: "{{ include "bosler-aks.repo_path" . }}bosler-docs:{{ .Values.versions.boslerDocs }}"
+          imagePullPolicy: "{{ .Values.imagePullPolicy }}"
+          name: bosler-docs
+          ports:
+            - containerPort: 80
+      restartPolicy: Always
+      imagePullSecrets:
+        - name: regcred
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    name: bosler-docs
+  name: bosler-docs
+  namespace: {{ .Values.namespace }}
+  annotations:
+    beta.cloud.google.com/backend-config: '{"default": "bosler-backend-config"}'
+spec:
+  type: NodePort
+  ports:
+    - name: bosler-docs
+      port: 80
+      targetPort: 80
+  selector:
+    name: bosler-docs
+status:
+  loadBalancer: {}

@@ -1,0 +1,57 @@
+// ------
+// Below is very important for repo monaco tree
+.workspaceContainer {
+  // background: #1d1d1d;
+  width: 100%;
+  height: 100%;
+
+  &::after,
+  &::before {
+    box-sizing: content-box !important;
+  }
+}
+
+.monaco-tree {
+  .monaco-icon-label::before {
+    box-sizing: content-box;
+  }
+}
+
+.monaco-tree-row {
+  font-size: 15.4px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  // line-height: 24px;
+}
+
+.fill {
+  width: 100%;
+  height: 100%;
+}
+
+// ------
+
+.repo-detail {
+  display: flex;
+
+  .repo-tree {
+    flex: 0.3;
+  }
+
+  .repo-code {
+    flex: 0.7;
+    padding-left: 3vw;
+    margin-left: 3vw;
+    background: white;
+
+    .repo-code-inner {
+      background: var(--background-color);
+      height: 90%;
+      width: 95%;
+    }
+  }
+}
+
+.monaco-tree-rows {
+  color: var(--color);
+}

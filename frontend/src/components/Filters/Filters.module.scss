@@ -1,0 +1,163 @@
+.container {
+  width: 100%;
+  padding: 2px 3px;
+  //   background-color: var(--bosler-bkg-color-muted);
+  background-color: var(--background-color);
+  border: 1px solid var(--bosler-border-color-default);
+  color: var(--bosler-font-color-muted);
+  display: flex;
+  align-items: center;
+  .heading {
+    width: fit-content;
+    padding: 0 5px;
+    text-transform: capitalize;
+    margin-right: 10px;
+    border-radius: 2px;
+    cursor: pointer;
+    &:hover {
+      color: #254685;
+      background-color: #4871c226;
+    }
+  }
+
+  .body {
+    flex: 1;
+    padding-left: 10px;
+    border-left: 1px solid var(--bosler-border-color-default);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 5px;
+  }
+}
+
+.reset {
+  margin-right: 10px;
+  padding: 0 5px;
+  border-radius: 2px;
+  cursor: pointer;
+  &:hover {
+    color: var(--bosler-intent-danger);
+    background-color: rgb(218, 90, 100, 0.25);
+  }
+}
+
+.tag {
+  background-color: var(--bosler-bkg-color-muted);
+  background-color: #b1b6c426;
+  color: var(--color);
+  display: inline-block;
+  line-height: 14px;
+  padding: 4px;
+  cursor: pointer;
+}
+
+.dangerTag {
+  background-color: rgb(218, 90, 100, 0.25);
+  color: var(--bosler-intent-danger);
+  display: inline-block;
+  line-height: 14px;
+  padding: 4px;
+  cursor: pointer;
+}
+
+.labelText {
+  max-width: 350px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 12px;
+}
+
+.popover {
+  background-color: var(--background-color);
+  padding: 5px;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  min-width: 300px;
+  max-width: fit-content;
+}
+
+.conditionWrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+}
+.groupIndicator {
+  position: relative;
+  align-self: stretch;
+  width: 10px;
+  margin-right: 5px;
+  border-right: 1px solid rgb(218, 221, 230);
+  .horizontalIndicator {
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    height: 15px;
+    border-bottom: 1px solid rgb(218, 221, 230);
+  }
+}
+.conditionInputs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.conditionInput {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+.formItem {
+  margin: 0 !important;
+}
+
+// Filters Confirmation Popup
+.popupContainer {
+  position: absolute;
+  left: 50%;
+  top: 20%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  display: flex;
+  padding: 4px 4px 4px 6px;
+  transition: opacity 0.15s cubic-bezier(0.25, 0.1, 0.25, 1) 0s, top;
+  background-color: var(--background-color);
+  opacity: 8;
+  border-radius: 2px;
+  border: 0.7px solid var(--bosler-border-color-default);
+  box-shadow: 0 0 0 1px rgba(64, 87, 109, 0.07),
+    0 2px 12px rgba(53, 71, 90, 0.2);
+  width: fit-content;
+  flex-direction: column;
+  align-items: center;
+}
+
+.popupWrapper {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  -webkit-box-align: center;
+}
+
+.popupText {
+  margin-right: 8px;
+  text-transform: capitalize;
+}
+
+.popupFilters {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-top: 10px;
+  gap: 5px;
+}
+
+.popupFiltersRow {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}

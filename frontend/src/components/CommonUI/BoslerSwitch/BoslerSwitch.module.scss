@@ -1,0 +1,71 @@
+.wrapper {
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: column;
+  min-height: 0px;
+  height: 100%;
+  width: 100%;
+  transition: all 1s linear;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  -webkit-box-pack: start;
+  justify-content: flex-start;
+  width: auto;
+  height: 100%;
+  // padding: 15px 10px 10px;
+  overflow: auto;
+}
+
+.div {
+  height: 100%;
+}
+
+.container {
+  display: flex;
+  flex: 0 0 auto;
+  -webkit-box-align: center;
+  align-items: center;
+  box-shadow: var(--bosler-border-color-default) 0px 0px 0px 1px inset;
+  border-radius: 2px;
+  margin: 15px;
+}
+.common {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  min-width: 12px;
+
+  width: 100%;
+
+  padding: 4px 8px;
+  min-height: 24px;
+  font-size: 12px;
+  line-height: 1.15;
+  cursor: pointer;
+
+  text-transform: capitalize;
+}
+.notselected {
+  color: var(--bosler-font-color-muted);
+  background-color: transparent;
+  box-shadow: none;
+  background: none;
+}
+
+.selected {
+  box-shadow: #191b3426 0px 0px 0px 1px inset,
+    rgba(1, 1, 27, 0.02) 0px 2px 4px 0px, rgba(11, 14, 22, 0.02) 0px 1px 2px 0px;
+  color: var(--SWITCH_SELECTED_FONT);
+  background-color: var(--SWITCH_SELECTED_BKG);
+  box-shadow: none;
+  transition: background-color 0.15s cubic-bezier(0.25, 0.1, 0.25, 1) 0s;
+}
+
+.disabled {
+  background: lightgray;
+  color: gray;
+}

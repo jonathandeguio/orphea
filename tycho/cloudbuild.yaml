@@ -1,0 +1,53 @@
+options:
+  logging: CLOUD_LOGGING_ONLY
+steps:
+  # Step 1
+  - name: "gcr.io/cloud-builders/docker"
+    entrypoint: "bash"
+    args:
+      [
+        "-c",
+        "docker pull europe-west1-docker.pkg.dev/$PROJECT_ID/bosler-cr/tycho:latest || exit 0",
+      ]
+  # Step 2
+  - name: gcr.io/cloud-builders/docker
+    args:
+      [
+        "build",
+        "-t",
+        "europe-west1-docker.pkg.dev/$PROJECT_ID/bosler-cr/tycho:latest",
+        ".",
+      ]
+
+    # below step is for waiting until image gets loaded to repo
+    # - name: "ubuntu"
+    #   args: ["sleep", "120"]
+    # # Step 4
+    # - name: "gcr.io/cloud-builders/kubectl"
+    #   args: ["scale", "deploy", "tycho", "--replicas=0", "--namespace", "bosler"]
+    #    args: [
+    #        'set',
+    #        'image',
+    #        'deployment',
+    #        'tycho',
+    #        'tycho=europe-west6-docker.pkg.dev/bosler-211/bosler-cr/tycho:latest',
+    #        '--namespace',
+    #        'bosler'
+    #    ]
+    env:
+      - "CLOUDSDK_COMPUTE_ZONE=europe-west6-a"
+      - "CLOUDSDK_CONTAINER_CLUSTER=bosler-dev-1"
+
+
+  # below step is for waiting until image gets loaded to repo
+  # - name: "ubuntu"
+  #   args: ["sleep", "120"]
+
+  # - name: "gcr.io/cloud-builders/kubectl"
+  #   args: ["scale", "deploy", "tycho", "--replicas=1", "--namespace", "bosler"]
+  #   env:
+  #     - "CLOUDSDK_COMPUTE_ZONE=europe-west6-a"
+  #     - "CLOUDSDK_CONTAINER_CLUSTER=bosler-dev-1"
+  # Push the image to Google Container Registry with the latest tag
+images: ["europe-west1-docker.pkg.dev/$PROJECT_ID/bosler-cr/tycho:latest"]
+timeout: 9600s

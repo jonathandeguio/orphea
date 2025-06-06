@@ -1,0 +1,85 @@
+.header {
+  align-items: center;
+
+  nav {
+    padding: 3vh;
+    align-items: center;
+    display: flex;
+
+    ul {
+      text-align: center !important;
+      width: 100vw;
+
+      li {
+        position: relative;
+        display: inline-block;
+        // margin-top: 1.5vh;
+
+        a {
+          color: $theme-color;
+          height: 14px;
+          padding: 15px;
+          font-weight: $default-font-weight;
+
+          &:hover {
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 26px;
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+}
+
+.head {
+  // position: fixed;
+  top: 0;
+  z-index: 10;
+  padding: 0 1rem;
+  width: calc(100% + 2rem);
+  color: var(--background-color-text);
+  // border: 0px solid #dcdee2;
+  background-color: var(--background-color);
+  height: 3rem;
+  line-height: 3rem;
+  // margin-bottom: 2vh;
+  // background-color: $component;
+  // box-shadow: 0 1px 4px 0 rgba(33, 33, 33, 0.2);
+
+  &-icon {
+    position: relative;
+    top: 5px;
+    text-align: center;
+  }
+  &-route {
+    display: inline;
+    letter-spacing: 0.3px;
+    font-weight: 800;
+    // font-size: medium;
+  }
+  display: flex;
+  justify-content: space-between;
+
+  // &-icons {
+  //   display: flex;
+  //   justify-content: space-evenly;
+  // }
+  // .fontSetter {
+  //   padding-right: 5.5rem;
+  // }
+  &-spacer {
+    height: 3rem;
+    width: 100%;
+  }
+}
+
+.boslerHeaderMenu {
+  background: var(--bosler-font-color);
+  min-width: 60vw;
+  border: none;
+}
+.boslerHeaderMenuItem {
+  font-size: 0.7rem;
+  font-weight: 400;
+}

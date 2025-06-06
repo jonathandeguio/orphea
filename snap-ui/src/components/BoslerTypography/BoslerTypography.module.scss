@@ -1,0 +1,39 @@
+.bth1 {
+}
+.bth2 {
+  margin: 0px;
+  color: rgb(1, 1, 27);
+  font-weight: 500;
+  font-size: 24px;
+  letter-spacing: -0.025em;
+  line-height: 31px;
+}
+.bth3 {
+}
+.bth4 {
+}
+.bthinternal {
+  display: flex;
+  gap: 5px;
+  -webkit-box-align: center;
+  align-items: center;
+  padding: 14px 0px 4px 15px;
+
+  margin: 0px;
+  color: rgb(113, 122, 148);
+  font-weight: 600;
+  font-size: 10px;
+  line-height: 13px;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+.bttext {
+  color: rgb(113, 122, 148);
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.bttitle {
+  display: flex;
+  font-weight: 500;
+}

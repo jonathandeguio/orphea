@@ -1,0 +1,156 @@
+// ------------Imports------------------
+
+// @import url("https://fonts.googleapis.com/css2?family=Michroma&family=Montserrat:wght@800&display=swap");
+
+// ------------Animation------------------
+@import "_MediaQueries";
+
+@keyframes rotate-center {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotate-center1 {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+// ------------SCSS------------------
+
+.login-containerNew {
+  height: 100%;
+  align-items: center;
+  justify-content: space-evenly;
+  object-fit: cover;
+  // background-color: var(--background-color);
+  display: flex;
+  flex-direction: column;
+}
+.login-container {
+  align-items: center;
+  justify-content: space-evenly;
+  height: 100vh;
+  width: 100vw;
+  object-fit: cover;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  // background-color: var(--bosler-bkg-color-muted);
+  // background: url("../images/lines.png"); //var(--background-color);
+  // position: fixed;
+  display: flex;
+  flex-direction: column;
+
+  @include mobileSM {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  @include mobileML {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .login-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &-outer {
+      transform-origin: center;
+      animation: rotate-center 70s linear infinite both;
+
+      &-inner {
+        transform-origin: center;
+        animation: rotate-center1 40s linear infinite both;
+      }
+    }
+
+    &-bosler {
+      margin-top: 10vh;
+      font-size: 3.5rem;
+      color: #5dacbd;
+      text-align: center;
+      letter-spacing: 0.5rem;
+
+      @include mobileSM {
+        margin-top: 0vh;
+        margin-bottom: 5vh;
+      }
+
+      @include mobileML {
+        margin-top: 0vh;
+        margin-bottom: 5vh;
+      }
+    }
+
+    @include mobileSM {
+      align-items: center;
+      justify-content: center;
+      display: flex;
+      flex-direction: column;
+      padding-top: 20px;
+    }
+
+    @include TabletT {
+      align-items: center;
+      justify-content: center;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
+.form-containerNew {
+  border-radius: 2px;
+  box-shadow: rgba(11, 14, 22, 0.1) 0px 0px 0px 1px,
+    rgba(11, 14, 22, 0.2) 0px 4px 8px, rgba(11, 14, 22, 0.2) 0px 18px 46px 6px;
+  transition: transform 0.15s cubic-bezier(0.25, 0.1, 0.25, 1) 0s;
+}
+
+.login-container-logo {
+  background: none !important;
+  height: calc(100% - 3rem) !important;
+  width: auto !important;
+  flex-direction: column !important;
+  align-items: center;
+}
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-10px);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(10px);
+  }
+}
+
+.error {
+  animation: shake 0.2s ease-in-out 0s 2;
+  color: var(--bosler-intent-danger);
+  border: 2px solid var(--bosler-intent-danger);
+  border-radius: 5px;
+}

@@ -1,0 +1,60 @@
+.notfound {
+  .page_404 {
+    padding: 8rem 0;
+    background: $bosler-500;
+    color: $bosler-100;
+    height: 100vh;
+  }
+
+  .page_404 img {
+    width: 100%;
+  }
+
+  .four_zero_four_bg h1 {
+    font-size: 80px;
+    text-align: center;
+  }
+
+  .four_zero_four_bg h3 {
+    font-size: 80px;
+  }
+
+  .link_404 {
+    color: #fff !important;
+    padding: 10px 20px;
+    background: $bosler-900;
+    margin: 20px 0;
+    display: inline-block;
+  }
+  .contant_box_404 {
+    margin-top: -50px;
+    text-align: center;
+  }
+}
+
+h2,
+.h2 {
+  font-size: 36px;
+  font-weight: 700;
+  color: $bosler-100;
+}
+
+.relogin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .re-loading {
+    color: #5dacbd !important;
+    display: inline-block;
+    margin: -7% 0 0 0;
+  }
+  .re-button {
+    color: #fff !important;
+    padding: 10px 20px;
+    background: #5086b6;
+    margin: 20px 0;
+    display: inline-block;
+    margin: -7% 0 0 0;
+  }
+}

@@ -1,0 +1,219 @@
+.BoslerHeader1 {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  padding: 10px 0px;
+  color: var(--bosler-font-color-muted);
+  font-weight: 500;
+  font-size: 12px;
+  text-transform: uppercase;
+  font-family: "IBM Plex Sans", system-ui, -apple-system, BlinkMacSystemFont,
+    sans-serif;
+}
+
+.icons {
+  display: flex;
+}
+
+.MfaConfigurationContainer {
+  padding: 10px 0px 20px 0px;
+  align-items: center;
+  -webkit-box-align: center;
+  color: var(--bosler-font-color-muted);
+  font-weight: 500;
+  font-size: 12px;
+  font-family: "IBM Plex Sans", system-ui, -apple-system, BlinkMacSystemFont,
+    sans-serif;
+}
+
+.BoslerSubHeader1 {
+  color: var(--bosler-font-color-muted);
+  font-size: 12px;
+}
+.BoslerNormalHeader {
+  color: var(--color);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.BoslerSpan {
+  color: var(--bosler-font-color-muted);
+  font-size: 14px;
+}
+.boslerFormLabel {
+  color: var(--color);
+  font-size: 14px;
+  font-weight: 400;
+  text-transform: capitalize;
+}
+
+.BoslerBtnHeading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--bosler-font-color-muted);
+  min-height: 24px;
+  padding: 4px 8px;
+  font-size: 12px;
+  text-transform: capitalize;
+  width: fit-content;
+  line-height: 1.15;
+  cursor: pointer;
+  transition: background-color 0.15s cubic-bezier(0.25, 0.1, 0.25, 1) 0s;
+  border-radius: 2px;
+
+  &:hover {
+    background-color: rgba(207, 211, 222, 0.15);
+  }
+}
+
+.selectedHeading {
+  background: var(--bosler-hover-color);
+  border-radius: 5px;
+}
+
+// Flex
+.--flex-col-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+.--flex-row-center {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.--flex-row-space-between {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+.--flex-row-start {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+.--flex-gap2 {
+  gap: 2px;
+}
+.--flex-gap5 {
+  gap: 5px;
+}
+.--flex-gap10 {
+  gap: 10px;
+}
+
+// Margin blocks
+.--m5 {
+  margin: 5px;
+}
+.--m10 {
+  margin: 10px;
+}
+.--m15 {
+  margin: 15px;
+}
+.--m20 {
+  margin: 20px;
+}
+
+.--mt5 {
+  margin-top: 5px;
+}
+.--mb5 {
+  margin-bottom: 5px;
+}
+.--mt10 {
+  margin-top: 10px;
+}
+.--mb10 {
+  margin-bottom: 10px;
+}
+.--mt15 {
+  margin-top: 15px;
+}
+.--mb15 {
+  margin-bottom: 15px;
+}
+.--mt20 {
+  margin-top: 20px;
+}
+.--mb20 {
+  margin-bottom: 20px;
+}
+
+// padding blocks
+.--p5 {
+  padding: 5px;
+}
+.--p10 {
+  padding: 10px;
+}
+.--p15 {
+  padding: 15px;
+}
+.--p20 {
+  padding: 20px;
+}
+
+.--pt5 {
+  padding-top: 5px;
+}
+.--pb5 {
+  padding-bottom: 5px;
+}
+.--pl5 {
+  padding-left: 5px;
+}
+.--pr5 {
+  padding-right: 5px;
+}
+.--pt10 {
+  padding-top: 10px;
+}
+.--pb10 {
+  padding-bottom: 10px;
+}
+.--pl10 {
+  padding-left: 10px;
+}
+.--pr0 {
+  padding-right: 10px;
+}
+.--pt15 {
+  padding-top: 15px;
+}
+.--pb15 {
+  padding-bottom: 15px;
+}
+.--pr15 {
+  padding-right: 15px;
+}
+.--pl15 {
+  padding-left: 15px;
+}
+.--pt20 {
+  padding-top: 20px;
+}
+.--pb20 {
+  padding-bottom: 20px;
+}
+.--pl20 {
+  padding-left: 20px;
+}
+.--pr20 {
+  padding-right: 20px;
+}

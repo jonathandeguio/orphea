@@ -1,0 +1,8 @@
+.centered-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 30vh; /* This assumes you want to fill the entire viewport height */
+  flex-direction: column; /* Stack items vertically */
+}

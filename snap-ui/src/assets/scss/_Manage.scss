@@ -1,0 +1,53 @@
+.manage-home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  align-content: center;
+  height: 100%;
+
+  .manage-home-image {
+    display: flex;
+    flex: 0.17 1;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: flex-start;
+
+    &-inside {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-content: center;
+      align-items: center;
+    }
+
+    img {
+      max-height: 10vh;
+      width: auto;
+      margin-bottom: 5vh;
+    }
+  }
+
+  .manage-home-icon {
+    width: 95%;
+  }
+
+  .manage-home-cards {
+    display: flex;
+    flex-direction: column;
+    flex: 0.8;
+  }
+}
+
+.card {
+  background: var(--background-color);
+  color: var(--color);
+  border-radius: 3px;
+  padding: 1px;
+}
+
+.ant-card .ant-card-body {
+  padding: 12px;
+  border-radius: 0 0 8px 8px;
+}

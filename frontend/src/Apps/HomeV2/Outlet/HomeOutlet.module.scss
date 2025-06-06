@@ -1,0 +1,15 @@
+.portalHomePage {
+  &-layout {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    height: 100%;
+
+    &-sidebar {
+      height: 100%;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}

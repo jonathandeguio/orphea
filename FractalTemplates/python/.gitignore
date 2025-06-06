@@ -1,0 +1,7 @@
+*.DS_store*
+database.db
+database.sqlite
+api_database.sqlite
+__pycache__
+Pipfile.lock
+../.idea

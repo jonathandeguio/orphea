@@ -1,0 +1,23 @@
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--bosler-font-color-muted);
+  min-height: 24px;
+  padding: 4px 8px;
+  font-size: 14px;
+  text-transform: capitalize;
+  width: fit-content;
+  line-height: 1.15;
+  cursor: pointer;
+  transition: background-color 0.15s cubic-bezier(0.25, 0.1, 0.25, 1) 0s;
+  border-radius: 2px;
+
+  &:hover {
+    background-color: rgba(207, 211, 222, 0.15);
+  }
+}
+
+.text {
+  color: var(--PRIMARY_COLOR);
+}

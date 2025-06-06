@@ -1,0 +1,7 @@
+export const SET_INVALID_TOKEN = "INVALID_TOKEN";
+export const SET_VALID_TOKEN = "VALID_TOKEN";
+export const REFRESH_TOKEN_STATUS = "REFRESH_TOKEN_STATUS";
+
+export const PROD_REQUEST = "PROD_REQUEST";
+export const PROD_SUCCESS = "PROD_SUCCESS";
+export const PROD_FAIL = "PROD_FAIL";

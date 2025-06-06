@@ -1,0 +1,36 @@
+/* * {
+  margin: 0;
+  padding: 0;
+} */
+
+/* bezier is using below */
+
+body {
+  color: var(--bosler-font-color-muted) !important;
+  font-family: "IBM Plex Sans", system-ui, -apple-system, BlinkMacSystemFont,
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-smooth: always;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  min-height: 100%;
+  -webkit-text-size-adjust: 100%;
+  height: 100%;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  overflow: hidden;
+  margin: 0;
+}
+
+html a,
+body a {
+  color: rgb(37, 70, 133);
+}
+a:hover {
+  color: rgb(37, 70, 133);
+  cursor: pointer;
+  text-decoration: underline;
+}

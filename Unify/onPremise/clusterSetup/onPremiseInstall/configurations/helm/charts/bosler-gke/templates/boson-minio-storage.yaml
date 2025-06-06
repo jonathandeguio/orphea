@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    name: minio
+  name: minio
+  namespace: "{{ .Values.namespace }}"
+spec:
+  replicas: 0
+  selector:
+    matchLabels:
+      name: minio
+  template:
+    metadata:
+      labels:
+        name: minio
+    spec:
+      containers:
+        - args:
+            - server
+            - /storage
+          image: minio/minio:latest
+          imagePullPolicy: "{{ .Values.imagePullPolicy }}"
+          name: minio
+          ports:
+            - containerPort: 9000
+              hostPort: 9000
+          resources: {}
+          env:
+            - name: MINIO_ROOT_USER
+              valueFrom:
+                secretKeyRef:
+                  name: bosler-secret
+                  key: minio-username
+            - name: MINIO_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: bosler-secret
+                  key: minio-password
+          volumeMounts:
+            # - mountPath: "{{ .Values.backend.boslerMountPath }}"
+            #   name: bosler-nfs-volume
+            - mountPath: "{{ .Values.backend.boslerMountPath }}"
+              name: bosler-local-fs
+          workingDir: "{{ .Values.backend.boslerMountPath }}"
+      imagePullSecrets:
+        - name: regcred
+      restartPolicy: Always
+      volumes:
+        # - name: bosler-nfs-volume
+        #   persistentVolumeClaim:
+        #     claimName: bosler-pvc
+        - name: bosler-local-fs
+          hostPath:
+            path: "{{ .Values.backend.boslerMountPath }}"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    name: minio
+  name: minio
+  namespace: "{{ .Values.namespace }}"
+spec:
+  type: NodePort
+  ports:
+    - name: minio
+      port: 9000
+      targetPort: 9000
+  selector:
+    name: minio
+status:
+  loadBalancer: {}

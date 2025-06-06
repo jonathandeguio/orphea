@@ -1,0 +1,48 @@
+.resizablePane-collapser {
+  width: 2px;
+  z-index: 10;
+  background-color: var(--bosler-border-color-muted);
+  position: relative;
+  &:hover,
+  &:focus {
+    background-color: var(--ACTION_COLOR_BORDER);
+    transition: background-color 0.25s ease-out;
+    z-index: 20;
+    box-shadow: rgba(37, 70, 133, 0.06) 0px 0px 0px 5px,
+      rgba(37, 70, 133, 0.04) 0px 1px 3px,
+      rgba(37, 70, 133, 0.03) 0px 2px 3px 0px;
+    transition: box-shadow 0.25s cubic-bezier(0.25, 0.1, 0.25, 1) 0s,
+      background-color 0.25s cubic-bezier(0.25, 0.1, 0.25, 1) 0s;
+  }
+  &-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    position: absolute;
+    bottom: 0%;
+    top: 0%;
+    left: 0%;
+    z-index: 1;
+    width: 10px;
+
+    &-button {
+      border-left: 1px solid var(--bosler-border-color-default);
+      border-bottom: 1px solid var(--bosler-border-color-muted);
+      padding: 7px 4px;
+      background: var(--background-color);
+      border-top: 1px solid var(--bosler-border-color-default);
+      border-right: 1px solid var(--bosler-border-color-default);
+      border-top-right-radius: 2px;
+      cursor: pointer;
+      position: absolute;
+      left: 0;
+    }
+  }
+}
+
+.resizablePane-collapser-vertical {
+  height: 2px;
+  width: auto;
+  background-color: var(--bosler-border-color-default);
+}

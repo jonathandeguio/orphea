@@ -1,0 +1,20 @@
+.branchInfo-table {
+  cursor: pointer;
+  max-height: 200px;
+  overflow: auto;
+  overflow-x: hidden;
+  &-item {
+    display: flex;
+    gap: 1rem;
+    &:hover {
+      background-color: #f9f9f9;
+    }
+  }
+  &-itemSelected {
+    display: flex;
+    gap: 1rem;
+    &:hover {
+      background-color: #f9f9f9;
+    }
+  }
+}

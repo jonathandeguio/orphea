@@ -1,0 +1,265 @@
+/**
+* ANT SWITCH OVERRIDE
+*/
+
+// To make switch hanle square
+.ant-switch-handle::before {
+  border-radius: 2px !important;
+}
+// To make button square
+.ant-switch {
+  border-radius: 2px !important;
+}
+
+/****************************/
+
+/**
+* ANT TAB on Dataset Page
+*/
+
+// To remove margin bottom from tabs nav list
+.antOverride-datasetPage-dataset {
+  .ant-tabs-nav {
+    margin-bottom: 0;
+  }
+}
+
+/**
+* ANT FORM REQUIRED LABEL
+  i.e * mark on left of label
+  Using this we hide the * mark
+*/
+
+.ant-form-item-required::before {
+  display: none !important;
+}
+
+/**
+* ANT SELECT INPUT OVERRIDEN CSS
+*/
+
+.ant-select-selector {
+  appearance: none !important;
+  border: none !important;
+  border-radius: 2px !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  // min-height: 32px !important;
+  // line-height: 32px !important;
+  outline: none !important;
+  padding: 0 10px !important;
+  transition: box-shadow 0.15s cubic-bezier(0.25, 0.1, 0.25, 1) !important;
+  vertical-align: middle !important;
+  color: var(--color) !important;
+  background-color: var(--INPUT_BACKGROUND) !important;
+  border-radius: 2px !important;
+  box-shadow: var(--INPUT_BOX_SHADOW) !important;
+  transition: box-shadow 0.15s cubic-bezier(0.25, 0.1, 0.25, 1) 0s !important;
+  appearance: none !important;
+
+  &:focus {
+    box-shadow: var(--INPUT_FOCUS_BOX_SHADOW) !important;
+  }
+}
+
+.ant-select-selector:focus,
+.ant-select-selector:focus-within {
+  box-shadow: var(--INPUT_FOCUS_BOX_SHADOW) !important;
+}
+.ant-select-selection-placeholder {
+  display: flex;
+  align-items: center;
+}
+.ant-select-selection-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+/**
+* ANT TEXT AREA INPUT OVERRIDEN CSS
+*/
+
+textarea {
+  appearance: none !important;
+  border: none !important;
+  border-radius: 2px !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  // height: 30px !important;
+  line-height: 30px !important;
+  outline: none !important;
+  padding: 0 10px !important;
+  transition: box-shadow 0.15s cubic-bezier(0.25, 0.1, 0.25, 1) !important;
+  vertical-align: middle !important;
+  color: var(--color) !important;
+  background-color: var(--INPUT_BACKGROUND) !important;
+  border-radius: 2px !important;
+  box-shadow: var(--INPUT_BOX_SHADOW) !important;
+  transition: box-shadow 0.15s cubic-bezier(0.25, 0.1, 0.25, 1) 0s !important;
+  appearance: none !important;
+
+  &:focus {
+    box-shadow: var(--INPUT_FOCUS_BOX_SHADOW) !important;
+  }
+}
+
+/**
+* ANT PASSWORD INPUT OVERRIDEN CSS
+*/
+
+.ant-input-password {
+  appearance: none !important;
+  border: none !important;
+  border-radius: 2px !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  height: 30px !important;
+  line-height: 30px !important;
+  outline: none !important;
+  padding: 0 10px !important;
+  transition: box-shadow 0.15s cubic-bezier(0.25, 0.1, 0.25, 1) !important;
+  vertical-align: middle !important;
+  color: var(--color) !important;
+  background: var(--INPUT_BACKGROUND) !important;
+  border-radius: 2px !important;
+  box-shadow: var(--INPUT_BOX_SHADOW) !important;
+  transition: box-shadow 0.15s cubic-bezier(0.25, 0.1, 0.25, 1) 0s !important;
+  appearance: none !important;
+
+  &:focus {
+    box-shadow: var(--INPUT_FOCUS_BOX_SHADOW) !important;
+  }
+}
+.ant-input-password > input.ant-input {
+  background: transparent;
+}
+
+.ant-input-password:focus-within {
+  box-shadow: var(--INPUT_FOCUS_BOX_SHADOW) !important;
+}
+
+/**
+* ANT INPUT OVERRIDEN CSS
+*/
+
+.ant-input-affix-wrapper {
+  appearance: none !important;
+  border: none !important;
+  border-radius: 2px !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  height: 30px !important;
+  line-height: 30px !important;
+  outline: none !important;
+  padding: 0 10px !important;
+  transition: box-shadow 0.15s cubic-bezier(0.25, 0.1, 0.25, 1) !important;
+  vertical-align: middle !important;
+  color: var(--color) !important;
+  background: var(--INPUT_BACKGROUND) !important;
+  border-radius: 2px !important;
+  box-shadow: var(--INPUT_BOX_SHADOW) !important;
+  transition: box-shadow 0.15s cubic-bezier(0.25, 0.1, 0.25, 1) 0s !important;
+  appearance: none !important;
+
+  &:focus {
+    box-shadow: var(--INPUT_FOCUS_BOX_SHADOW) !important;
+  }
+}
+.ant-input-affix-wrapper > input.ant-input {
+  background: transparent;
+}
+
+.ant-input-affix-wrapper:focus-within {
+  box-shadow: var(--INPUT_FOCUS_BOX_SHADOW) !important;
+}
+
+.ant-notification-notice {
+  background-color: var(--bosler-bkg-color-default) !important;
+  .ant-notification-notice-message,
+  .ant-notification-notice-description,
+  .ant-notification-notice-close {
+    color: var(--color) !important;
+  }
+}
+
+/**
+* ANT TABS FLEX OVERRIDE FOR KEPLER PAGE
+*/
+
+// Kepler Page, Tabs left space for accumulating space for filters
+.kepler-container-plane-right {
+  .ant-tabs-extra-content {
+    flex: 1 !important;
+  }
+  .ant-tabs-nav-wrap {
+    flex: none !important;
+  }
+}
+
+.mantine-Menu-dropdown {
+  width: min-content !important;
+}
+
+.mantine-UnstyledButton-root {
+  display: flex !important;
+  height: 100%;
+}
+
+/**
+* ANT MODAL OVERRIDES FOR ALL THE MODALS
+*/
+
+.bosler-modal {
+  .ant-modal-content {
+    padding: 0 !important;
+  }
+}
+
+// ANT TABS HEIGHT ISSUE
+.ant-tabs,
+.ant-tabs-tabpane {
+  height: 100%;
+}
+
+.ant-tabs-content-holder {
+  display: flex;
+}
+
+/**
+* ANTD CALENDAR 
+*/
+
+.ant-popover-inner {
+  border: 1px solid var(--bosler-border-color-default);
+}
+
+.ant-picker-calendar {
+  .ant-picker-cell-disabled::before {
+    background: none;
+  }
+}
+
+.ant-picker-calendar {
+  .ant-picker-cell-disabled {
+    .ant-picker-cell-inner {
+      background: none !important;
+      color: var(--bosler-font-color-muted) !important;
+    }
+  }
+}
+
+.ant-picker-calendar {
+  .ant-picker-cell {
+    .ant-picker-cell-inner {
+      background: var(--ACTION_COLOR);
+      color: white;
+    }
+  }
+}
+
+.ant-table {
+  border: 1px solid var(--bosler-border-color-muted);
+  @media (max-width: 1900px) {
+    border: none;
+  }
+}

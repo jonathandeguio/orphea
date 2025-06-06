@@ -1,0 +1,32 @@
+$lock-color: #58677a;
+
+.lock {
+  position: relative;
+  border-radius: 5px;
+  width: 55px;
+  height: 45px;
+  background-color: $lock-color;
+}
+
+.lock::before {
+  content: "";
+  position: absolute;
+  border-left: 5px solid $lock-color;
+  width: 25px;
+  left: calc(50% - 12.5px);
+  top: -30px;
+  border: 5px solid $lock-color;
+  border-bottom-color: transparent;
+  border-radius: 15px 15px 0 0;
+  height: 35px;
+}
+.lock::after {
+  content: "";
+  border-left: 5px solid $lock-color;
+  height: 20px;
+  width: 15px;
+  left: calc(50% - 12.5px);
+  position: relative;
+  top: -10px;
+  border-right: 5px solid transparent;
+}

@@ -1,0 +1,278 @@
+// ------------------------- TREE NODE ----------------------------------
+.tree_node {
+  width: 100%;
+  padding: 2px 5px;
+  display: flex;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--bosler-hover-color);
+
+    .tree_node__context_menu {
+      display: flex;
+    }
+  }
+
+  &:focus {
+    opacity: 0;
+  }
+
+  &__chevron {
+    display: flex;
+    transform: rotate(0deg);
+
+    transition: transform 0.2s linear;
+
+    &--open {
+      transform: rotate(90deg);
+    }
+  }
+
+  &__icon {
+    display: flex;
+  }
+  &__icon {
+    display: flex;
+    transform: rotate(0deg);
+
+    transition: transform 0.2s linear;
+
+    &--open {
+      transform: rotate(90deg);
+    }
+  }
+
+  &__text {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    white-space: nowrap;
+    width: 78%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin-left: 3px;
+  }
+  &__sub_text {
+    display: flex;
+  }
+  &__context_menu {
+    display: none;
+  }
+
+  &__children {
+    margin-left: 26px;
+    overflow: hidden;
+
+    &_container {
+      position: relative;
+      display: grid;
+      grid-template-rows: 1fr;
+      transition: grid-template-rows 0.2s ease-out;
+
+      position: relative;
+
+      &:before {
+        position: absolute;
+        top: 0px;
+        bottom: 0px;
+        left: -9px;
+        display: flex;
+        width: 1px;
+        background-color: var(--bosler-border-color-default);
+        content: "";
+      }
+    }
+
+    &_container--hidden {
+      grid-template-rows: 0fr;
+    }
+  }
+
+  &--active {
+    background-color: var(--bosler-hover-color);
+    color: var(--bosler-font-color-default);
+    .tree_node__context_menu {
+      display: flex;
+    }
+  }
+
+  &--is-over {
+    background-color: var(--bosler-hover-color);
+  }
+}
+.file_chevron {
+  margin-left: 26px;
+}
+// ----------------------------------------------------------------------
+
+.context-menu {
+  position: absolute;
+  background-color: red;
+}
+
+// ----------------------------------------------------------------------
+.explorer-sidebar {
+  flex-direction: column;
+  display: flex;
+  height: 100%;
+}
+
+.explorer-sidebar-header {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+  flex: 0 0 auto;
+  // padding: 0.2rem 1.7rem;
+  // border-bottom: 1px solid var(--bosler-border-color-default);
+  height: 50px;
+  &__text {
+    font-weight: 900;
+  }
+
+  &__button {
+    position: relative;
+  }
+}
+
+.explorer-header {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+  flex: 0 0 auto;
+  padding: 0.2rem 1.7rem;
+  // border-bottom: 1px solid var(--bosler-border-color-default);
+  height: 50px;
+  &__text {
+    font-weight: 900;
+  }
+
+  &__button {
+    position: relative;
+  }
+}
+
+.explorer-listpopover {
+  z-index: 9999;
+  position: absolute;
+  right: 0;
+  background-color: var(--background-color);
+  box-shadow: 0 0 0 1px rgba(64, 87, 109, 0.07),
+    0 2px 12px rgba(53, 71, 90, 0.2);
+  -webkit-box-shadow: 0 0 0 1px rgba(64, 87, 109, 0.07),
+    0 2px 12px rgba(53, 71, 90, 0.2);
+  padding: 0.5rem 0.5rem 0.5rem 0;
+  min-width: 150px;
+  cursor: pointer;
+  border-radius: 3px;
+
+  &__item {
+    display: flex;
+    padding: 0.1rem 0.5rem;
+
+    &:hover {
+      background-color: var(--bosler-hover-color);
+    }
+  }
+}
+
+.panel-controller {
+  display: flex;
+  padding: 0.15rem 0.3rem;
+  gap: 0.5rem;
+  box-shadow: 0px 2px 2px 0px var(--bosler-border-color-default);
+  border-top: 1px solid var(--bosler-border-color-default);
+  // background-color: var(--bosler-hover-color);
+
+  &__icon {
+    display: flex;
+  }
+  &__body {
+    text-transform: capitalize;
+    font-weight: 700;
+  }
+}
+
+.navigation-group {
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  &__body {
+    padding-top: 0.2rem;
+  }
+}
+
+.navigation-item {
+  display: flex;
+  padding: 5px 1rem;
+  gap: 0.5rem;
+  cursor: pointer;
+
+  &--active {
+    background-color: var(--bosler-hover-color);
+    color: var(--bosler-font-color-default);
+  }
+
+  &:hover {
+    background-color: var(--bosler-hover-color);
+  }
+
+  &__icon {
+    display: flex;
+  }
+
+  &__text {
+    // color: var(--bosler-font-color-default);
+  }
+}
+
+// GIT STATUS
+.git-clean {
+  color: #8bbf8b; /* Green */
+}
+
+.git-removed {
+  color: #e06c75; /* Red */
+  text-decoration: line-through;
+}
+
+.git-modified {
+  color: #e5c07b; /* Yellow */
+}
+
+.git-uncommitted {
+  color: #61afef; /* Blue */
+}
+
+.git-added {
+  color: #98c379; /* Light Green */
+  // font-weight: bold;
+}
+
+.git-changed {
+  color: #d19a66; /* Orange */
+}
+
+.git-conflicting {
+  color: #c678dd; /* Purple */
+  // font-weight: bold;
+}
+
+.git-ignored {
+  color: #7f848e; /* Gray */
+  font-style: italic;
+}
+
+.git-missing {
+  color: #e06c75; /* Red */
+  text-decoration: underline;
+}
+
+.git-untracked {
+  color: #61afef; /* Blue */
+}
+
+.git-untracked-folder {
+  color: #61afef; /* Blue */
+  font-style: italic;
+}

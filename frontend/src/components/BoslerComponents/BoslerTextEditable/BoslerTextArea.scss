@@ -1,0 +1,45 @@
+.bosler-text-area {
+  font-family: Consolas, Monaco, Lucida Console, Liberation Mono,
+    DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
+  font-weight: 400;
+  min-height: 100px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  cursor: text;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+
+  &.placeholder {
+    color: #888;
+  }
+
+  &:focus {
+    border-color: #0077cc;
+  }
+}
+
+.overlayLabel {
+  border-radius: 3px;
+  position: relative;
+  padding: 2px 3px;
+
+  &::after {
+    content: attr(title);
+    position: absolute;
+    border-radius: 3px;
+    left: 0px;
+    top: 2px;
+    font-weight: 400;
+    text-align: center;
+    opacity: 1 !important;
+
+    background-color: var(--bosler-border-color-default);
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Sits on top of the content */
+    pointer-events: none;
+    // top: 0;
+  }
+}

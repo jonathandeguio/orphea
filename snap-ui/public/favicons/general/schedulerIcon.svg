@@ -1,0 +1,11 @@
+<svg color="#7f879f" data-icon="scheduled-runs" fill="#7f879f" height="300" viewBox="0 0 16 16" width="300" xmlns="http://www.w3.org/2000/svg">
+  <desc>
+    dynamic
+  </desc>
+  <g stroke-width="1">
+    <g transform="">
+      <path clip-rule="evenodd" d="M10 1H5V0H4v1H2a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h7v-1H2V6h11v1.318L14 8V2a1 1 0 0 0-1-1h-2V0h-1v1ZM4 3.5V2H2v3h11V2h-2v1.5h-1V2H5v1.5H4Z" fill="currentColor" fill-rule="evenodd"/>
+      <path clip-rule="evenodd" d="M15.655 11.344A.8.8 0 0 1 16 12a.8.8 0 0 1-.345.656l-4.5 3.2a.697.697 0 0 1-.405.144c-.412 0-.75-.36-.75-.8V8.8c0-.44.338-.8.75-.8.158 0 .293.064.405.144l4.5 3.2Zm-.593.656-4.205 2.99V9.01L15.062 12Z" fill="currentColor" fill-rule="evenodd"/>
+    </g>
+  </g>
+</svg>

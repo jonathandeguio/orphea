@@ -1,0 +1,119 @@
+spring:
+  application:
+    name: "snap"
+  main:
+    allow-circular-references: true # This needs removing it is a temporary fix
+  banner:
+    location: classpath:/banner/bosler.txt
+  datasource:
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    url: jdbc:postgresql://${DB_HOST}:${DB_PORT}/snap
+    hikari:
+      maximum-pool-size: 50
+  jpa:
+    generateDDL: false
+    showSql: false
+    main:
+      allowBeanDefinitionOverriding: true
+  flyway:
+    enabled: true
+    validateOnMigrate: true
+    baselineOnMigrate: true
+    locations: classpath:db/migration/
+
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            client-id: 8878f8de11f2acd585bc
+            client-secret: b2039ce9358e319ac2c4ddf1f703b61a1e8acfd1
+            redirectUri: ${BASE_URL}/api/oauth2/callback/{registrationId}
+            scope:
+              - email
+              - profile
+          google:
+            client-id: 677716313541-sp7pnv293eige85rd2d5821jfc1n13te.apps.googleusercontent.com
+            client-secret: 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
+            redirectUri: ${BASE_URL}/api/oauth2/callback/{registrationId}
+            scope:
+              - email
+              - profile
+  mail:
+    host: not-used-only-here-so-java-mailer-does-not-give-error
+
+
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 2KB
+      max-file-size: 50GB
+      max-request-size: 51GB
+  sql:
+    init:
+      mode:
+      platform: postgres
+
+info:
+  app:
+    name: "boson"
+    version: "0"
+    java:
+      source: "@java.version@"
+      target: "@java.version@"
+    single:
+      archetype:
+        version: "@archetype.version@"
+
+server:
+  port: 8080
+  max-http-header-size: 32000
+  tomcat:
+    max-swallow-size: 20GB
+#    accesslog:
+#      enabled: true
+#      directory: "/bosler/snap/logs/accessLogs"
+#      prefix: "${spring.application.name}"
+#      pattern: '%{dd/MMM/yyyy}t %{begin:HH:mm:ss.SSS}t %{end:HH:mm:ss.SSS}t %{RequestId}i %r %s %h %b %T %{Referer}i "%{User-agent}i"'
+#    basedir: ${log.path:./}
+
+
+app:
+  auth:
+    tokenSecret: ${TOKEN_SECRET}
+    tokenExpirationMsec: ${TOKEN_EXPIRATION}
+  cors:
+    allowedOrigins: ${ALLOWED_ORIGINS}
+  oauth2:
+    authorizedRedirectUris:
+      - http://localhost:3000/oauth2/redirect
+
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: INFO
+      springframework:
+        security: INFO
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    operationsSorter: alpha
+    tagsSorter: alpha
+    supportedSubmitMethods: [ "get", "put", "post", "delete", "options", "head", "patch", "trace" ]
+    doc-expansion: none
+    persistAuthorization: true
+    tryItOutEnabled: true
+    syntaxHighlight:
+      theme: arta
+
+goHarbor:
+  auth:
+    username: ${GO_HARBOR_USERNAME}
+    password: ${GO_HARBOR_PASSWORD}
+  url: ${GO_HARBOR_URL}
+  project: ${GO_HARBOR_PROJECT}

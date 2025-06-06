@@ -1,0 +1,100 @@
+plugins {
+	id 'java'
+	id 'java-library'
+	id 'org.springframework.boot' version '2.7.2'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+}
+
+group = 'io.bosler.snap'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '15'
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'com.google.zxing:core:3.4.1'
+	implementation 'com.google.zxing:javase:3.4.1'
+	implementation 'com.warrenstrange:googleauth:1.2.0'
+	implementation 'org.apache.commons:commons-lang3'
+
+	implementation 'com.opencsv:opencsv:5.5.2'
+	implementation 'org.tukaani:xz:1.9'
+	implementation 'org.eclipse.jgit:org.eclipse.jgit:5.13.0.202109080827-r'
+	implementation 'com.github.docker-java:docker-java:3.2.10'
+	implementation 'org.flywaydb:flyway-core:8.4.2'
+	implementation 'org.json:json:20210307'
+	implementation 'org.springframework.boot:spring-boot-starter-quartz:2.7.2'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.7.2'
+	implementation 'org.springframework.boot:spring-boot-starter-web:2.7.2'
+	compileOnly 'org.projectlombok:lombok:1.18.24'
+	annotationProcessor 'org.projectlombok:lombok:1.18.24'
+	implementation 'org.postgresql:postgresql:42.5.4'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test:2.7.2'
+	testImplementation 'org.springframework.security:spring-security-test:5.7.2'
+	implementation 'org.springframework.boot:spring-boot-starter-websocket:2.7.2'
+	implementation 'io.swagger:swagger-annotations:1.6.8'
+	implementation 'org.springdoc:springdoc-openapi-ui:1.6.15'
+	implementation 'org.modelmapper:modelmapper:2.1.1'
+	implementation 'org.springframework.boot:spring-boot-starter-security:2.7.2'
+	implementation group: 'com.vladmihalcea', name: 'hibernate-types-52', version: '2.19.2'
+	implementation 'org.springframework.security:spring-security-oauth2-client:5.7.2'
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-validation
+	implementation 'org.springframework.boot:spring-boot-starter-validation:2.7.2'
+
+//	developmentOnly 'org.springframework.boot:spring-boot-devtools:2.7.2'
+//	implementation 'com.auth0:java-jwt:4.0.0'
+	implementation 'com.auth0:java-jwt:4.0.0'
+	implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.11.5'
+	implementation group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.11.5'
+	implementation group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.11.5'
+//	implementation 'commons-io:commons-io:2.9.0' // can't upgrade this
+	implementation 'org.springframework.security:spring-security-oauth2-jose:5.7.3'
+	implementation 'com.sun.mail:javax.mail:1.6.2'
+	implementation 'javax.mail:javax.mail-api:1.6.2'
+//	implementation 'org.springframework.boot:spring-boot-starter-validation:2.7.2'
+//	implementation 'org.apache.commons:commons-compress:1.21'
+//	implementation 'org.gradle:gradle-tooling-api:7.3-20210825160000+0000'
+//	testImplementation 'org.springframework:spring-test:6.0.6'
+	implementation 'org.apache.tika:tika-parser-text-module:2.8.0'
+	// https://mvnrepository.com/artifact/org.apache.spark/spark-core
+	implementation 'org.apache.spark:spark-core_2.13:3.4.0'
+
+	// https://mvnrepository.com/artifact/org.apache.spark/spark-sql
+	implementation 'org.apache.spark:spark-sql_2.13:3.4.0'
+
+	// https://mvnrepository.com/artifact/org.apache.spark/spark-kubernetes
+	implementation 'org.apache.spark:spark-kubernetes_2.13:3.4.0'
+
+	// https://mvnrepository.com/artifact/org.apache.poi/poi
+	implementation 'org.apache.poi:poi:5.2.3'
+
+	// https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml
+	implementation 'org.apache.poi:poi-ooxml:5.2.3'
+	// https://mvnrepository.com/artifact/org.apache.commons/commons-compress
+	implementation 'org.apache.commons:commons-compress:1.21'
+	implementation 'org.checkerframework:checker-qual:3.8.0'
+
+	// https://mvnrepository.com/artifact/com.github.docker-java/docker-java
+	implementation 'com.github.docker-java:docker-java:3.2.5'
+
+	// https://mvnrepository.com/artifact/com.github.docker-java/docker-java-transport-httpclient5
+	implementation 'com.github.docker-java:docker-java-transport-httpclient5:3.2.5'
+
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}

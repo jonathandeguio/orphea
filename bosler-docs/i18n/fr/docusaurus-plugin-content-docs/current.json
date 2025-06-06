@@ -1,0 +1,10 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.tutorials.doc.Overview": {
+    "message": "Aperçu",
+    "description": "The label for the doc item Overview in sidebar tutorials, linking to the doc tutorials/overview"
+  }
+}

@@ -1,0 +1,10 @@
+<svg color="#717a94" data-icon="map" fill="#717a94" height="300" viewBox="0 0 16 16" width="300" xmlns="http://www.w3.org/2000/svg">
+  <desc>
+    dynamic
+  </desc>
+  <g stroke-width="1">
+    <g transform="">
+      <path clip-rule="evenodd" d="M5.885 1.066a.498.498 0 0 0-.521.015l-4.13 2.596A.5.5 0 0 0 1 4.1v10.4a.5.5 0 0 0 .766.423l3.887-2.443 4.462 2.454a.498.498 0 0 0 .521-.015l4.13-2.596A.5.5 0 0 0 15 11.9V1.5a.5.5 0 0 0-.766-.423L10.347 3.52 5.885 1.066Zm-.749 1.339v9.219L2 13.595V4.376l3.136-1.971Zm1 9.2v-9.26l3.728 2.05v9.26l-3.728-2.05Zm4.728 1.99L14 11.624v-9.22l-3.136 1.972v9.22Z" fill="currentColor" fill-rule="evenodd"/>
+    </g>
+  </g>
+</svg>

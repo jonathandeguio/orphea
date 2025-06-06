@@ -1,0 +1,16 @@
+.filterMenu {
+  overflow-y: scroll;
+}
+
+.header {
+  padding-left: 5px;
+  border-bottom: 1px solid var(--bosler-border-color-default);
+  width: 100%;
+}
+
+.avatar {
+  height: 22px;
+  width: 22px;
+  border: 1px solid #ccc;
+  margin-right: 5px;
+}

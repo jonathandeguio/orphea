@@ -1,0 +1,26 @@
+.footer{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 10px 10px 20px 20px;
+}
+.modal{
+    position: fixed; 
+    top: 42%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-height: 80vh;
+}
+.pre{
+    font-size: 0.7rem;
+    max-height: 80vh; // Constrains the height of the pre element
+    overflow-y: auto; // Enables vertical scrolling within the pre element
+    white-space: pre-wrap; // Ensures text wrapping within the pre element
+    word-wrap: break-word;
+}
+.build_title{
+    margin: 0px;
+}
+.title_cursor{
+    cursor: pointer;
+}

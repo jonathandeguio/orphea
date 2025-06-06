@@ -1,0 +1,170 @@
+import { Alert, Radio } from "antd";
+import BoslerInput from "components/BoslerComponents/InputComponent/BoslerInput";
+
+import { CrossIcon } from "assets/icons/boslerActionIcons";
+import { CalendarIcon, ScheduledRunIcon } from "assets/icons/boslerInterfaceIcons";
+import { DATASET } from "components/Builds/Builds.constants";
+import BoslerModal from "components/CommonUI/BoslerModalContainer";
+import React, { useEffect, useState } from "react";
+import { isEmpty } from "utils/utilities";
+import BoslerButton from "../../BoslerComponents/ButtonComponent/BoslerButton";
+import BoslerLoader from "../../boslerLoader";
+import CronJobInput from "../../common/CronJob";
+import ScheduleSource from "./Components/ScheduleSource";
+import ShowScheduleInfo from "./Components/SchedulesInfo";
+import {
+  BY_SOURCE,
+  BY_TIME,
+  CLOSE_TEXT,
+  DEFAULT_BRANCH,
+  DEFAULT_CRON,
+  DEFAULT_RADIO,
+  DEFAULT_RETRY_COUNT,
+  FAILURE_RETRIVES,
+  SCHEDULED_DATASET_MESSAGE,
+  SCHEDULE_TEXT,
+  TITLE_TEXT,
+  UPDATE_SCHEDULE_TEXT,
+} from "./SchedulesModal.constants";
+import {
+  getDatasetName,
+  getSchedules,
+  handleCancel,
+  onSchedule,
+} from "./SchedulesModal.service";
+import { TScheduleJobInfo } from "./SchedulesModal.types";
+
+const ScheduleModal = ({
+  id,
+  branch,
+  view,
+}: {
+  id: string;
+  branch: string;
+  view: any;
+}) => {
+  if (branch == null) {
+    branch = DEFAULT_BRANCH;
+  }
+  const [visible, setVisible] = useState(view);
+  const [datasetName, setDatasetName] = useState("");
+  const [cronExpression, setCronExpression] = useState(DEFAULT_CRON);
+  const [schedule, setSchedule] = useState<TScheduleJobInfo>();
+  const [retry, setretry] = useState(DEFAULT_RETRY_COUNT);
+  const [radio, setRadio] = useState(DEFAULT_RADIO);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [triggers, setTriggers] = useState<any>([]);
+
+  useEffect(() => {
+    getSchedules(
+      id,
+      branch,
+      DATASET,
+      setSchedule,
+      setIsLoading,
+      setCronExpression,
+      setRadio,
+      setTriggers
+    );
+    getDatasetName(id, setDatasetName);
+  }, [id]);
+
+  useEffect(() => {}, [schedule]);
+  return (
+    <BoslerModal
+      headingIcon={<ScheduledRunIcon />}
+      heading={TITLE_TEXT}
+      open={visible}
+      onCancel={() => handleCancel(setVisible)}
+      footerButtonArea={
+        <>
+          <BoslerButton
+            icon={<CrossIcon />}
+            intent="none"
+            onClick={() => handleCancel(setVisible)}
+            key="back"
+          >
+            {CLOSE_TEXT}
+          </BoslerButton>
+          <BoslerButton
+            icon={<CalendarIcon />}
+            intent="action"
+            disabled={
+              (schedule && !isEmpty(schedule.jobId)) ||
+              (radio == 2 && triggers.length == 0)
+            }
+            onClick={() =>
+              onSchedule(
+                schedule,
+                radio,
+                id,
+                branch,
+                retry,
+                cronExpression,
+                triggers,
+                setIsLoading,
+                setSchedule
+              )
+            }
+          >
+            {schedule?.jobId ? UPDATE_SCHEDULE_TEXT : SCHEDULE_TEXT}
+          </BoslerButton>
+        </>
+      }
+    >
+      {isLoading ? (
+        <BoslerLoader size={"small"} />
+      ) : (
+        <>
+          <Alert
+            message={SCHEDULED_DATASET_MESSAGE + datasetName}
+            type="info"
+            showIcon
+            className="pipeline-menu-schedule-node"
+          />
+          <ShowScheduleInfo schedule={schedule} setSchedule={setSchedule} />
+          {!schedule && (
+            <>
+              <Radio.Group
+                name="radiogroup"
+                defaultValue={radio}
+                value={radio}
+                className="pipeline-menu-schedule-radio"
+              >
+                <Radio value={1} onClick={() => setRadio(1)}>
+                  {BY_TIME}
+                </Radio>
+                {/* if any source exist then only display this */}
+                <Radio value={2} onClick={() => setRadio(2)}>
+                  {BY_SOURCE}
+                </Radio>
+              </Radio.Group>
+              {radio === 2 ? (
+                <ScheduleSource triggers={triggers} setTriggers={setTriggers} />
+              ) : (
+                <CronJobInput
+                  cronExpression={cronExpression}
+                  setCronExpression={setCronExpression}
+                  showGeneralCronExplanations
+                />
+              )}
+              <>
+                {FAILURE_RETRIVES}
+                <BoslerInput
+                  placeholder={retry.toString()}
+                  onChange={(e) => setretry(+e.target.value)}
+                  style={{
+                    marginBottom: "1vh",
+                    maxWidth: "fit-content",
+                  }}
+                />
+              </>
+            </>
+          )}
+        </>
+      )}
+    </BoslerModal>
+  );
+};
+
+export default ScheduleModal;

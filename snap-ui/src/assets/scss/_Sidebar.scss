@@ -1,0 +1,98 @@
+.sidebar {
+  position: fixed;
+  height: 100vh;
+  left: 0;
+  width: 5px;
+  background: $theme-color;
+  border-right: 5.5px solid $theme-color;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  svg {
+    height: 30px;
+    // margin: 1vh 0;
+    cursor: pointer;
+  }
+
+  .sidebar-options {
+    margin-top: 5vh;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+
+    span {
+      margin: 1vh 0;
+    }
+  }
+
+  .sidebar-options-bottom {
+    bottom: 0;
+    margin-top: 6vh;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+
+    span {
+      margin: 1vh 0;
+    }
+  }
+}
+
+.ant-layout .ant-layout-sider {
+  color: var(--color);
+  position: relative;
+  // background: $theme-color;
+  transition: all 0.2s;
+  align-items: center;
+  justify-content: center;
+  // box-shadow: 0 11px 110px rgba(238, 13, 13, 0.664);
+  box-shadow: 0 2px 4px 4px rgba(33, 33, 33, 0.2);
+  background: var(--background-color);
+
+  .logo {
+    align-self: center !important;
+    margin: 0vh 2.3vw;
+  }
+
+  .ant-menu {
+    height: 0px;
+  }
+}
+
+.settings-sider {
+  color: #5c7080;
+  position: relative;
+  transition: all 0.2s;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px 4px rgba(33, 33, 33, 0.2);
+  background: linear-gradient(0.25turn, #163149, 50%, #3a6387);
+
+  .logo {
+    align-self: center !important;
+    margin: 2vh 2.3vw;
+  }
+
+  .ant-menu {
+    background: #ffffff;
+    height: 0px;
+  }
+}
+
+.setting-popover {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 4px 0px;
+
+  div {
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    &:hover {
+      background-color: #d1d9e0;
+    }
+  }
+}

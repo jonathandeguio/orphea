@@ -1,0 +1,65 @@
+/* --- Generic styles --- */
+
+// .flex-container {
+//   flex-direction: column;
+//   display: flex;
+// }
+
+// .flex-container-column {
+//   flex-direction: column;
+// }
+
+// .flex-container-row {
+//   flex-direction: row;
+// }
+
+// .fill-space {
+//   flex-grow: 1;
+// }
+
+// .icon {
+//   width: 100%;
+//   height: 100%;
+//   background-size: contain;
+//   background-position: center;
+//   background-repeat: no-repeat;
+// }
+
+// /* --- Shape for the nodes --- */
+
+// .dataset-node {
+//   width: 100%;
+//   height: 100%;
+//   border-radius: "6px";
+//   // overflow: hidden;
+//   // box-sizing: border-box;
+//   display: flex;
+// }
+
+// /* --- Other styles for node content --- */
+
+// .dataset-node .name {
+//   padding: 5%;
+//   font-size: 1.8rem;
+//   font-weight: normal;
+//   text-align: center;
+//   background: "red";
+// }
+
+// .dataset-node .icon-bar {
+//   width: 20%;
+//   margin-right: 5%;
+// }
+
+// .dataset-node .icon-bar > .icon {
+//   width: 80%;
+//   height: 30%;
+// }
+
+// /* you need to toggle `node.renderLabel` to see this class in action */
+// .dataset-node-label {
+//   fill: rgb(131, 120, 120);
+//   text-shadow: rgb(255, 255, 255) 0px -2px 0px, rgb(255, 255, 255) 0px 2px 0px,
+//     rgb(255, 255, 255) 2px 0px 0px, rgb(255, 255, 255) -2px 0px 0px;
+//   transform: rotate(-25deg) translateX(40px) translateY(15px);
+// }

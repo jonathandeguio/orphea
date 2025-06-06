@@ -1,0 +1,656 @@
+import { getLanguageLabel } from "utils/utilities";
+export const chartConfig: { [key: string]: any } = {
+  eChartTypes: [
+    "pieChart",
+    "bigNumber",
+    "wordCloudChart",
+    "horizontalBarChart",
+    "VerticalAxisChart",
+    "radarChart",
+    "sunBurstChart",
+    "gaugeChart",
+    "treeMapChart",
+    "waterFallChart",
+  ],
+  pieChart: {
+    chartType: "pieChart",
+    series: [],
+    groupBy: true,
+    dimensions: [],
+    meta: {
+      threshold: "STATIC",
+      isSingleDirection: true,
+      isSingleSeries: true,
+      isAxisChart: false,
+      showData: true,
+      hasTheme: true,
+      horizontal: false,
+      xAxisHeading: "",
+      seriesHeading: "yAxis",
+      dimensionHeading: "",
+      addButton: "Series",
+      tooltip: true,
+      legend: true,
+      hasTitle: true,
+    },
+    customization: {
+      series: false,
+      header: "pieChart",
+    },
+  },
+  wordCloudChart: {
+    chartType: "wordCloudChart",
+    series: [],
+    dimensions: [],
+    groupBy: true,
+    meta: {
+      threshold: "STATIC",
+      isSingleDirection: true,
+      isSingleSeries: true,
+      isAxisChart: false,
+      showData: true,
+      hasTheme: true,
+      horizontal: false,
+      xAxisHeading: "",
+      seriesHeading: "yAxis",
+      dimensionHeading: "",
+      addButton: "Series",
+      tooltip: true,
+      legend: false,
+      hasTitle: true,
+    },
+    customization: {
+      series: false,
+      header: "pieChart",
+    },
+  },
+  bigNumber: {
+    chartType: "bigNumber",
+    series: [],
+    meta: {
+      threshold: "STATIC",
+      isSingleDirection: true,
+      isSingleSeries: true,
+      isAxisChart: false,
+      showData: false,
+      hasTheme: false,
+      horizontal: false,
+      xAxisHeading: "",
+      seriesHeading: "metric",
+      dimensionHeading: "",
+      addButton: "Series",
+      tooltip: false,
+      legend: false,
+      hasTitle: false,
+    },
+    customization: {
+      series: false,
+      header: "bigNumber",
+    },
+  },
+  VerticalAxisChart: {
+    chartType: "VerticalAxisChart",
+    xaxis: undefined,
+    xaxisSort: undefined,
+    xAxisTimeGrain: undefined,
+    series: [],
+    dimensions: [],
+    groupBy: true,
+    meta: {
+      threshold: "LABELED",
+      isSingleDirection: false,
+      isSingleSeries: false,
+      isAxisChart: true,
+      showData: true,
+      hasTheme: true,
+      horizontal: false,
+      xAxisHeading: "xAxis",
+      seriesHeading: "yAxis",
+      dimensionHeading: "",
+      addButton: "Series",
+      tooltip: true,
+      legend: true,
+      hasTitle: true,
+    },
+
+    customization: {
+      series: true,
+      header: null,
+    },
+  },
+  waterFallChart: {
+    chartType: "waterFallChart",
+    xaxis: undefined,
+    xaxisSort: undefined,
+    xAxisTimeGrain: undefined,
+    series: [],
+    groupBy: true,
+    meta: {
+      threshold: "LABELED",
+      isSingleDirection: false,
+      isSingleSeries: false,
+      isAxisChart: true,
+      showData: true,
+      hasTheme: true,
+      horizontal: false,
+      xAxisHeading: "xAxis",
+      seriesHeading: "yAxis",
+      dimensionHeading: "",
+      addButton: "Series",
+      tooltip: true,
+      legend: true,
+      hasTitle: true,
+    },
+
+    customization: {
+      series: true,
+      header: null,
+    },
+  },
+  table: {
+    chartType: "table",
+    series: [],
+    meta: {
+      threshold: "DISABLED",
+      isSingleDirection: true,
+      isSingleSeries: false,
+      isAxisChart: false,
+      showData: false,
+      hasTheme: false,
+      horizontal: false,
+      xAxisHeading: "",
+      seriesHeading: "columns",
+      dimensionHeading: "",
+      addButton: "column",
+      tooltip: false,
+      legend: false,
+      hasTitle: true,
+    },
+
+    customization: {
+      series: false,
+      header: null,
+    },
+  },
+  mapChart: {
+    chartType: "mapChart",
+    mapZoom: undefined,
+    mapCenter: undefined,
+    longitude: undefined,
+    latitude: undefined,
+    filter: undefined,
+    mapSeries: undefined,
+    meta: {
+      threshold: "DISABLED",
+      isSingleDirection: true,
+      isSingleSeries: false,
+      isAxisChart: false,
+      showData: true,
+      hasTheme: true,
+      horizontal: false,
+      xAxisHeading: "",
+      seriesHeading: "yAxis",
+      dimensionHeading: "",
+      addButton: "Series",
+      tooltip: false,
+      legend: false,
+      hasTitle: true,
+    },
+
+    customization: {
+      series: false,
+      header: null,
+    },
+  },
+  horizontalBarChart: {
+    chartType: "horizontalBarChart",
+    xaxis: undefined,
+    xaxisSort: undefined,
+    xAxisTimeGrain: undefined,
+    series: [],
+    groupBy: true,
+    meta: {
+      threshold: "LABELED",
+      isSingleDirection: true,
+      isSingleSeries: false,
+      isAxisChart: true,
+      showData: true,
+      hasTheme: true,
+      horizontal: false,
+      xAxisHeading: "yAxis",
+      seriesHeading: "xAxis",
+      dimensionHeading: "",
+      addButton: "Series",
+      tooltip: true,
+      legend: true,
+      hasTitle: true,
+    },
+
+    customization: {
+      series: true,
+      header: null,
+    },
+  },
+  sunBurstChart: {
+    chartType: "sunBurstChart",
+    series: [],
+
+    dimensions: [],
+    meta: {
+      threshold: "DISABLED",
+      isSingleDirection: true,
+      isAxisChart: false,
+      isSingleSeries: true,
+      showData: true,
+      hasTheme: true,
+      horizontal: false,
+      xAxisHeading: "",
+      seriesHeading: "yAxis",
+      dimensionHeading: "",
+      addButton: "Series",
+      tooltip: true,
+      legend: false,
+      hasTitle: true,
+    },
+
+    customization: {
+      series: false,
+      header: "sunBurstChart",
+    },
+  },
+  treeMapChart: {
+    chartType: "treeMapChart",
+    series: [],
+
+    dimensions: [],
+    meta: {
+      threshold: "STATIC",
+      isSingleDirection: true,
+      isAxisChart: false,
+      isSingleSeries: true,
+      showData: true,
+      hasTheme: true,
+      horizontal: false,
+      xAxisHeading: "",
+      seriesHeading: "yAxis",
+      dimensionHeading: "",
+      addButton: "Series",
+      tooltip: true,
+      legend: true,
+      hasTitle: true,
+    },
+
+    customization: {
+      series: false,
+      header: "treeMapChart",
+    },
+  },
+  radarChart: {
+    chartType: "radarChart",
+    series: [],
+
+    dimensions: [],
+    meta: {
+      threshold: "DISABLED",
+      isSingleDirection: true,
+      isAxisChart: false,
+      showData: true,
+      hasTheme: true,
+      horizontal: false,
+      xAxisHeading: "",
+      seriesHeading: "yAxis",
+      dimensionHeading: "",
+      addButton: "Series",
+      tooltip: true,
+      legend: true,
+      hasTitle: true,
+    },
+
+    customization: {
+      series: true,
+      header: null,
+    },
+  },
+  gaugeChart: {
+    chartType: "gaugeChart",
+    series: [],
+    dimensions: [],
+    meta: {
+      threshold: "STATIC",
+      isSingleDirection: true,
+      isAxisChart: false,
+      isSingleSeries: true,
+      showData: true,
+      hasTheme: true,
+      horizontal: false,
+      xAxisHeading: "",
+      seriesHeading: "yAxis",
+      dimensionHeading: "",
+      addButton: "Series",
+      tooltip: false,
+      legend: false,
+      hasTitle: true,
+    },
+
+    customization: {
+      series: false,
+      header: "gaugeChart",
+    },
+  },
+  parameterChart: {
+    chartType: "parameterChart",
+    parameters: [],
+    meta: {
+      threshold: "DISABLED",
+      isSingleDirection: false,
+      isAxisChart: false,
+      isSingleSeries: false,
+      showData: false,
+      hasTheme: false,
+      horizontal: false,
+      xAxisHeading: "",
+      seriesHeading: "yAxis",
+      dimensionHeading: "",
+      addButton: "Series",
+      tooltip: false,
+      legend: false,
+      hasTitle: true,
+    },
+
+    customization: {
+      series: false,
+      header: "gaugeChart",
+    },
+  },
+};
+
+export const KeplerConfig = {
+  numericDataTypes: [
+    // Integer types
+    "TINYINT",
+    "SMALLINT",
+    "MEDIUMINT",
+    "INT",
+    "INTEGER",
+    "BIGINT",
+    "SMALLMONEY",
+    "MONEY",
+    "SERIAL",
+    "BIGSERIAL",
+    "INT2",        // PostgreSQL 2-byte integer
+    "INT4",        // PostgreSQL 4-byte integer
+    "INT8",        // PostgreSQL 8-byte integer
+    "UNSIGNED TINYINT",
+    "UNSIGNED SMALLINT",
+    "UNSIGNED MEDIUMINT",
+    "UNSIGNED INT",
+    "UNSIGNED BIGINT",
+    
+    // Floating-point types
+    "REAL",
+    "FLOAT",
+    "FLOAT4",       // PostgreSQL 4-byte floating point
+    "FLOAT8",       // PostgreSQL 8-byte floating point
+    "DOUBLE",
+    "DOUBLE PRECISION",
+    "BINARY_FLOAT", // Oracle specific
+    "BINARY_DOUBLE",// Oracle specific
+
+    // Fixed-point and decimal types
+    "DECIMAL",
+    "NUMERIC",
+    "NUMBER",       // Oracle specific
+    "DEC",          // Alias for DECIMAL in some databases
+
+    // Specialized numeric types
+    "LONG",         // Common in programming languages, but not SQL
+    "SHORT",        // Common in programming languages, but not SQL
+    "BIGINT UNSIGNED",
+    "MEDIUMINT UNSIGNED"
+  ],
+
+  categoricalDataTypes: ["string", "boolean"],
+  timeColumnDataTypes: ["timestamp", "date"],
+  nonStringDatatypes: ["integer", "double", "timestamp", "date"],
+  chartLabelMaxLength: 50,
+  bigNumberSuffixPrefixLength: 10,
+  colorPickerPreset: [
+    "#00000000",
+    "#000000",
+    "#1C1C1C",
+    "#383838",
+    "#707070",
+    "#8C8C8C",
+    "#A8A8A8",
+    "#C4C4C4",
+    "#E0E0E0",
+    "#FFFFFF",
+    "#F5222D",
+    "#FA8C16",
+    "#FADB14",
+    "#8BBB11",
+    "#52C41A",
+    "#13A8A8",
+    "#1677FF",
+    "#2F54EB",
+    "#722ED1",
+    "#EB2F96",
+    "#FF6347",
+    "#FFA500",
+    "#FFD700",
+    "#ADFF2F",
+    "#7FFF00",
+    "#40E0D0",
+    "#4682B4",
+    "#6A5ACD",
+    "#FF00FF",
+    "#FF1493",
+    "#B22222",
+    "#FF4500",
+    "#FFD700",
+    "#9ACD32",
+    "#00FF7F",
+    "#00CED1",
+    "#1E90FF",
+    "#7B68EE",
+    "#DA70D6",
+    "#C71585",
+    "#CD5C5C",
+    "#FF6347",
+    "#FFA500",
+    "#FFFF00",
+    "#7CFC00",
+    "#00FA9A",
+    "#00BFFF",
+    "#8A2BE2",
+    "#FF69B4",
+    "#DB7093",
+  ],
+  chartThemeOptions: [
+    {
+      label: getLanguageLabel("customize"),
+      value: "custom",
+    },
+    {
+      label: `Vibrant`,
+      value: "theme1",
+    },
+
+    {
+      label: `River Nights`,
+      value: "theme3",
+    },
+    {
+      label: `Retro Metro`,
+      value: "theme4",
+    },
+    {
+      label: `Dutch Field`,
+      value: "theme5",
+    },
+    {
+      label: `Sun Shine`,
+      value: "theme2",
+    },
+    {
+      label: `Spring Pastels`,
+      value: "theme6",
+    },
+    {
+      label: `Pastel Dream`,
+      value: "theme7",
+    },
+    {
+      label: `Vibrant Blues`,
+      value: "theme8",
+    },
+    {
+      label: `Sunset Shades`,
+      value: "theme9",
+    },
+    {
+      label: `Tropical Paradise`,
+      value: "theme10",
+    },
+    {
+      label: `Earthy Tones`,
+      value: "theme11",
+    },
+    {
+      label: `Muted Neutrals`,
+      value: "theme12",
+    },
+    {
+      label: `Fruity Delight`,
+      value: "theme13",
+    },
+    {
+      label: `Bold and Bright`,
+      value: "theme14",
+    },
+    {
+      label: `Cool Blues`,
+      value: "theme15",
+    },
+    {
+      label: `Superset Colors`,
+      value: "theme16",
+    },
+    {
+      label: `Airbnb Colors`,
+      value: "theme17",
+    },
+    {
+      label: `Preset Colors`,
+      value: "theme18",
+    },
+    {
+      label: `D3 Category 10`,
+      value: "theme19",
+    },
+    {
+      label: `D3 Category 20`,
+      value: "theme20",
+    },
+    {
+      label: `D3 Category 20b`,
+      value: "theme21",
+    },
+    {
+      label: `D3 Category 20c`,
+      value: "theme22",
+    },
+    {
+      label: `Lyft Colors`,
+      value: "theme23",
+    },
+    {
+      label: `EChart V4`,
+      value: "theme24",
+    },
+    {
+      label: `EChart V5`,
+      value: "theme25",
+    },
+    {
+      label: `Google 10c`,
+      value: "theme26",
+    },
+    {
+      label: `Google 20c`,
+      value: "theme27",
+    },
+    {
+      label: `Grafana`,
+      value: "theme28",
+    },
+  ],
+  pieLabelOptions: [
+    {
+      label: getLanguageLabel("label"),
+      value: "label",
+    },
+    {
+      label: getLanguageLabel("value"),
+      value: "value",
+    },
+    {
+      label: getLanguageLabel("percentage"),
+      value: "percentage",
+    },
+  ],
+  labelPositionOptions: [
+    {
+      label: getLanguageLabel("top"),
+      value: "top",
+    },
+    {
+      label: getLanguageLabel("left"),
+      value: "left",
+    },
+    {
+      label: getLanguageLabel("right"),
+      value: "right",
+    },
+    {
+      label: getLanguageLabel("bottom"),
+      value: "bottom",
+    },
+    {
+      label: getLanguageLabel("inside"),
+      value: "inside",
+    },
+    {
+      label: getLanguageLabel("insideLeft"),
+      value: "insideLeft",
+    },
+    {
+      label: getLanguageLabel("insideRight"),
+      value: "insideRight",
+    },
+    {
+      label: getLanguageLabel("insideTop"),
+      value: "insideTop",
+    },
+    {
+      label: getLanguageLabel("insideBottom"),
+      value: "insideBottom",
+    },
+    {
+      label: getLanguageLabel("insideTopLeft"),
+      value: "insideTopLeft",
+    },
+    {
+      label: getLanguageLabel("insideBottomLeft"),
+      value: "insideBottomLeft",
+    },
+    {
+      label: getLanguageLabel("insideTopRight"),
+      value: "insideTopRight",
+    },
+    {
+      label: getLanguageLabel("insideBottomRight"),
+      value: "insideBottomRight",
+    },
+  ],
+};

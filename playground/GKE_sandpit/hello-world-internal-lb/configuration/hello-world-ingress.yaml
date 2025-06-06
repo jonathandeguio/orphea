@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: hello-world-ingress
+  annotations:
+    ingress.gcp.kubernetes.io/pre-shared-cert: "bosler-preshared-cert"
+    kubernetes.io/ingress.regional-static-ip-name: "hello-world-ingress"
+    kubernetes.io/ingress.class: "gce-internal"
+    kubernetes.io/ingress.allow-http: "false"
+spec:
+  rules:
+  - host: hello-world.bosler.io
+  - http: 
+      paths:
+      - path: /*
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: hello-world-service-1
+            port:
+              number: 60000
+      - path: /v2
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: hello-world-service-2
+            port:
+              number: 80

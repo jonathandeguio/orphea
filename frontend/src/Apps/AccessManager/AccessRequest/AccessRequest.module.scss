@@ -1,0 +1,46 @@
+.container {
+  padding: 10px;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  min-height: 0;
+  flex: 1;
+}
+
+.contentBody {
+  height: 100%;
+  min-height: 0;
+  flex: 1;
+  border-top: 1px solid var(--bosler-border-color-muted);
+}
+
+.contentBodySection {
+  height: 100%;
+}
+
+.title {
+  font-size: 20px;
+}
+
+.description {
+  font-size: 12px;
+}
+
+.creation {
+  text-decoration: underline dotted;
+  cursor: pointer;
+}

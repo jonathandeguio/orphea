@@ -1,0 +1,67 @@
+.connector_top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  span {
+    padding: 5px;
+  }
+}
+
+.connector_top_authtype {
+  background-color: skyblue;
+}
+
+.method {
+  background-color: #d5d9de;
+}
+
+// Source page, domain list
+.domain_list {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  flex-direction: column;
+}
+
+.domain_item {
+  display: flex;
+  border: 1px solid var(--bosler-border-color-default);
+  padding: 5px;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+
+.chip {
+  color: var(--icon-color-deafult);
+  background: var(--bosler-hover-color);
+  text-transform: uppercase;
+  padding: 5px;
+}
+
+.response_panel {
+  background-color: var(--bosler-bkg-color-muted);
+  color: var(--bosler-font-color-light-black);
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.response_panel span {
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-break: break-all;
+  max-height: 500px;
+  overflow: auto;
+}
+
+.api_test_container {
+  width: 100%;
+  // border: 1px solid var(--bosler-border-color-default);
+  margin-right: 20px;
+  padding: 3px;
+}
+
+.api_title {
+  max-width:fit-content;
+}

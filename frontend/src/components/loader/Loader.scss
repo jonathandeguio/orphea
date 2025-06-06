@@ -1,0 +1,16 @@
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background: white;
+  transition: opacity 0.3s linear;
+  flex-grow: 1;
+  flex-direction: column;
+
+  // svg {
+  //   width: 100px;
+  //   height: 100px;
+  // }
+}

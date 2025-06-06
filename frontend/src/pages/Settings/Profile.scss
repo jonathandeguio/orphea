@@ -1,0 +1,28 @@
+.settings-centre-block-child {
+  display: flex;
+  flex-direction: row;
+  gap: 10%;
+  @media (max-width: 768px) {
+    flex-direction: column-reverse;
+  }
+  @media (max-width: 1024px) {
+    flex-direction: column-reverse;
+  }
+}
+.profile-page-avatar {
+  @media (max-width: 1024px) {
+    width: 100px !important;
+    height: 100px !important;
+  }
+}
+.ant-col-4 {
+  @media (max-width: 768px) {
+    max-width: fit-content;
+  }
+}
+.settings-centre-block-grandchild {
+  width: 600px;
+  @media (max-width: var(--VIEWPORT_BREAKPOINT_TABLET)) {
+    display: flex !important;
+  }
+}

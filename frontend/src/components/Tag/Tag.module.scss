@@ -1,0 +1,12 @@
+.boslertag {
+  cursor: pointer;
+  max-width: 100%;
+  transition: background-color 0.3s ease 0s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background-color: var(--bosler-bkg-color-muted);
+  border-color: var(--bosler-border-color-default);
+  color: var(--bosler-font-color-muted);
+  border-radius: 3px;
+}

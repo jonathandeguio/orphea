@@ -1,0 +1,14 @@
+<svg color="#717a94" data-icon="grouped-column" fill="#717a94" height="300" viewBox="0 0 16 16" width="300" xmlns="http://www.w3.org/2000/svg">
+  <desc>
+    dynamic
+  </desc>
+  <g stroke-width="1">
+    <g transform="">
+      <path d="M5 1H7V13H5V1Z" fill="currentColor"/>
+      <path d="M2 7H4V13H2V7Z" fill="currentColor"/>
+      <path d="M1 14H15V15H1V14Z" fill="currentColor"/>
+      <path d="M11 9H9V13H11V9Z" fill="currentColor"/>
+      <path d="M14 4H12V13H14V4Z" fill="currentColor"/>
+    </g>
+  </g>
+</svg>

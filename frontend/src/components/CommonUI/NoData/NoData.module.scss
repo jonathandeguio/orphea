@@ -1,0 +1,33 @@
+.wrapper {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background: transparent;
+  padding: 0 40px;
+  // position: fixed;
+  top: 0;
+  left: 0;
+  transition: opacity 0.3s linear;
+}
+
+.heading {
+  margin-top: 10px;
+  color: var(--color);
+  // fontWeight: "bold";
+  font-size: 16px;
+}
+
+.subHeading {
+  margin-top: 5px;
+  color: var(--bosler-font-color-muted);
+  font-size: 12px;
+  text-align: center;
+}
+
+.actionArea {
+  margin-top: 30px;
+}

@@ -1,0 +1,1 @@
+ALTER TABLE kepler_chart_config_series DROP CONSTRAINT UK_r12ca4xxgcl0t6l1ogfskq9ss;

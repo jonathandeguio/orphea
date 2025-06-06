@@ -1,0 +1,15 @@
+.cancelButton{
+  background-color: transparent;
+  color: inherit;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #c80000;
+    color: black;
+  }
+}
+
+.commitedId{
+  color:inherit;
+  text-decoration: none;
+}

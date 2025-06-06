@@ -1,0 +1,165 @@
+spring:
+  application:
+    name: "boson"
+  config:
+    import: ${SAML2_SSO_CONFIG}
+
+  main:
+    allow-circular-references: true # This needs removing it is a temporary fix
+    allow-bean-definition-overriding: true
+
+  sleuth:
+    sampler:
+      percentage: 0.05
+
+  zipkin:
+    sender:
+      type: web
+
+  profiles:
+    active: IT
+
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration
+
+  jackson:
+    serialization:
+      write-dates-as-timestamps: true
+
+  banner:
+    location: classpath:/banner/bosler.txt
+
+  datasource:
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    url: jdbc:postgresql://${DB_HOST}:${DB_PORT}/boson
+    hikari:
+      maximum-pool-size: 30
+      minimum-idle: 5
+      idle-timeout: 30000
+      max-lifetime: 1800000
+      connection-timeout: 30000
+
+  jpa:
+    generate-ddl: false
+
+  flyway:
+    enabled: true
+    validate-on-migrate: true
+    baselineOnMigrate: true
+    out-of-order: true
+    location: classpath:db/migration
+
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            client-id: 3abb0171750efb190893
+            client-secret: 6bf37822a8b404bce995804d536fd19ead2fe1b6
+            redirectUri: ${BASE_URL}/api/oauth2/callback/{registrationId}
+            scope:
+              - email
+              - profile
+          google:
+            client-id: 677716313541-sp7pnv293eige85rd2d5821jfc1n13te.apps.googleusercontent.com
+            client-secret: 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
+            redirectUri: ${BASE_URL}/api/oauth2/callback/{registrationId}
+            scope:
+              - email
+              - profile
+
+  mail:
+    host: not-used-only-here-so-java-mailer-does-not-give-error
+
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 2KB
+      max-file-size: 50000MB
+      max-request-size: 51555MB
+
+  quartz:
+    properties:
+      org:
+        quartz:
+          jobStore:
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.PostgreSQLDelegate
+
+  sql:
+    init:
+      mode:
+      platform: postgres
+
+info:
+  app:
+    name: "boson"
+    version: "0"
+    java:
+      source: "@java.version@"
+      target: "@java.version@"
+    single:
+      archetype:
+        version: "@archetype.version@"
+
+management:
+  endpoint:
+    health:
+      show-details: never
+
+  endpoints:
+    web:
+      base-path: /endpoints
+      exposure:
+        include: info,health,metrics
+
+  metrics:
+    web:
+      server:
+        auto-time-requests: false
+
+logging:
+  config: classpath:log4j2.xml
+  level:
+    org:
+      hibernate:
+        SQL: INFO
+      springframework:
+        security: INFO
+
+server:
+  port: 8080
+  max-http-header-size: 32000
+  tomcat:
+    accesslog:
+      enabled: true
+      directory: "${BOSLER_MOUNT_PATH}/logs/boson/accessLogs"
+      prefix: "${spring.application.name}"
+      pattern: '%{dd/MMM/yyyy}t %{begin:HH:mm:ss.SSS}t %{end:HH:mm:ss.SSS}t %{RequestId}i %r %s %h %b %T %{Referer}i "%{User-agent}i" %{Username}i'
+    basedir: ${log.path:./}
+
+app:
+  auth:
+    tokenSecret: ${TOKEN_SECRET}
+    tokenExpirationMsec: ${TOKEN_EXPIRATION}
+    refreshTokenExpirationMsec: 604800000
+    refreshTokenSecret: "04ca023b39512e46d0c2cf4b48d5aac61d34302994c87boslerAccessd4eff225dcf3b0a218739f3897051a057f9b846a69ea2927a587044164b7bae5e1306219d50b588cb1"
+  cors:
+    allowedOrigins: ${ALLOWED_ORIGINS}
+  oauth2:
+    authorizedRedirectUris:
+      - http://localhost:3000/oauth2/redirect
+      - "${BASE_URL}/oauth2/redirect"
+
+springdoc:
+  api-docs:
+    enabled: ${SWAGGER_UI}
+  swagger-ui:
+    operationsSorter: alpha
+    tagsSorter: alpha
+    supportedSubmitMethods: [ "get", "put", "post", "delete", "options", "head", "patch", "trace" ]
+    doc-expansion: none
+    persistAuthorization: true
+    tryItOutEnabled: true
+    syntaxHighlight:
+      theme: arta

@@ -1,0 +1,19 @@
+.overrideAntFormItem {
+  .ant-form-item {
+    margin-bottom: 0;
+  }
+}
+
+.prefrence-layout-container {
+  @media (max-width: 768px) {
+    flex: 1 !important;
+    box-sizing: content-box !important;
+  }
+}
+
+.themeBody {
+  border: 1px solid var(--bosler-border-color-default);
+  border-radius: 3px;
+  padding: 6px;
+  margin-top: 1rem;
+}

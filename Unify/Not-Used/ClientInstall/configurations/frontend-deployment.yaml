@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    name: frontend
+  name: frontend
+  namespace: bosler
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: frontend
+  template:
+    metadata:
+      labels:
+        name: frontend
+    spec:
+      containers:
+        - image: europe-west1-docker.pkg.dev/bosler-bnp/bosler-cr/frontend:latest
+          imagePullPolicy: IfNotPresent
+          name: frontend
+          ports:
+            - containerPort: 80
+          env:
+            - name: REACT_APP_BASE_URL
+              value: https://bnp.bosler.io
+            - name: REACT_APP_BASE_URL_API
+              value: https://bnp.bosler.io/api
+            - name: REACT_APP_PARLER_URL
+              value: ws://parler:8999/
+      restartPolicy: Always
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    name: frontend
+  name: frontend
+  namespace: bosler
+  annotations:
+    beta.cloud.google.com/backend-config: '{"default": "bosler-backend-config"}'
+spec:
+  type: NodePort
+  ports:
+    - name: frontend
+      port: 80
+      targetPort: 80
+  selector:
+    name: frontend
+status:
+  loadBalancer: {}

@@ -1,0 +1,170 @@
+.portalHomePage {
+  &-layout {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    height: 100%;
+    gap: 2rem;
+    padding: 1rem 4vw;
+    overflow: auto;
+
+    &-sidebar {
+      height: 100%;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+
+      &-classicgroup {
+        &-item {
+          width: 100%;
+          margin-right: 0px;
+          padding: 4px 8px;
+          color: var(--bosler-font-color-muted);
+          line-height: 20px;
+          transition: background-color 0.15s cubic-bezier(0.25, 0.1, 0.25, 1) 0s,
+            color 0.15s cubic-bezier(0.25, 0.1, 0.25, 1) 0s;
+          &:hover {
+            color: rgb(1, 1, 27);
+            background-color: rgba(207, 211, 222, 0.15) !important;
+          }
+          &-selected {
+            line-height: 20px;
+            padding: 4px 8px;
+            color: var(--color);
+            background-color: rgba(89, 135, 224, 0.12);
+          }
+        }
+      }
+
+      &-taggroup {
+        &-head {
+          margin: 0px;
+          color: rgb(113, 122, 148);
+          font-weight: 600;
+          font-size: 10px;
+          line-height: 13px;
+          letter-spacing: 0.3px;
+
+          margin-bottom: 1rem;
+
+          display: flex;
+          justify-content: space-between;
+
+          &-text {
+            text-transform: uppercase;
+          }
+          &-edit {
+            &:hover {
+              text-decoration: underline;
+              cursor: pointer;
+            }
+          }
+        }
+        &-item {
+          &-textPublic {
+            position: relative;
+            flex: 0 1 auto;
+            min-width: 0px;
+            max-width: 110px;
+            padding: 0px 6px 0px 11px;
+            overflow: hidden;
+            // color: rgb(1, 1, 27);
+            color: grey;
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 18px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            border-radius: 1px;
+            border: 1px solid rgba(128, 128, 128, 0.238);
+
+            &:before {
+              position: absolute;
+              top: 0px;
+              bottom: 0px;
+              left: 0px;
+              display: block;
+              width: 6px;
+              content: "";
+              background-color: rgba(0, 179, 164, 0.12);
+              border: 1px solid rgba(0, 179, 164, 0.75);
+            }
+          }
+          &-textPrivate {
+            position: relative;
+            flex: 0 1 auto;
+            min-width: 0px;
+            max-width: 110px;
+            padding: 0px 6px 0px 11px;
+            overflow: hidden;
+            // color: rgb(1, 1, 27);
+            color: grey;
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 18px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            border-radius: 1px;
+            border: 1px solid rgba(128, 128, 128, 0.238);
+
+            &:before {
+              position: absolute;
+              top: 0px;
+              bottom: 0px;
+              left: 0px;
+              display: block;
+              width: 6px;
+              content: "";
+              background-color: #ff8c00;
+              border: 1px solid #feba4f;
+            }
+          }
+          &-textClassified {
+            position: relative;
+            flex: 0 1 auto;
+            min-width: 0px;
+            max-width: 110px;
+            padding: 0px 6px 0px 11px;
+            overflow: hidden;
+            // color: rgb(1, 1, 27);
+            color: grey;
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 18px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            border-radius: 1px;
+            border: 1px solid rgba(128, 128, 128, 0.238);
+
+            &:before {
+              position: absolute;
+              top: 0px;
+              bottom: 0px;
+              left: 0px;
+              display: block;
+              width: 6px;
+              content: "";
+              background-color: #ff0000;
+              border: 1px solid #9b0000;
+            }
+          }
+        }
+      }
+    }
+    &-outlet {
+      height: 100%;
+      flex: 6;
+      // padding: 1rem;
+      // overflow: scroll;
+    }
+    &-information {
+      height: 100%;
+      flex: 1;
+    }
+  }
+}
+.home-mfa-model {
+  .selected-card {
+    box-shadow: none !important;
+  }
+}

@@ -1,0 +1,46 @@
+.wrapper {
+  display: flex;
+  gap: 15px;
+  padding: 6px 5px 5px 8px;
+}
+.icon {
+  border-right: 1px solid var(--bosler-border-color-default);
+  padding: 10px;
+  align-self: center;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  width: 100%;
+  gap: 5px;
+}
+
+.heading {
+  display: ruby;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--bosler-font-color-default);
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.actionComponent {
+  display: flex;
+}
+
+.headerTop {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  height: 20px;
+}
+
+.description {
+  color: var(--bosler-font-color-muted);
+  font-size: 8px;
+  line-height: 16px;
+}

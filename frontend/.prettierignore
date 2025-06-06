@@ -1,0 +1,11 @@
+package-lock.json
+yarn.lock
+gen
+build
+node_modules
+coverage-report
+config
+scripts
+.vscode
+*.font.js
+*.config.js

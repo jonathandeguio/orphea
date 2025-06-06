@@ -1,0 +1,9 @@
+<svg
+  className="login-icon-outer"
+  width="300" height="300" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path
+    className="login-icon-outer-inner"
+    d="M25.0962 77.8867L150 5.7735L274.904 77.8867V222.113L150 294.226L25.0962 222.113L25.0962 77.8867Z" stroke="#5DACBD" stroke-width="10" />
+  
+  
+</svg>

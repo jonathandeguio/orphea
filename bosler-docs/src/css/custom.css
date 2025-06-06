@@ -1,0 +1,290 @@
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+/* You can override the default Infima variables here. */
+
+:root {
+  --ifm-color-primary: #24527a;
+  --ifm-color-primary-dark: #204a6e;
+  --ifm-color-primary-darker: #1f4668;
+  --ifm-color-primary-darkest: #193955;
+  --ifm-color-primary-light: #285a86;
+  --ifm-color-primary-lighter: #295e8c;
+  --ifm-color-primary-lightest: #2f6b9f;
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  font-weight: 300;
+}
+
+/* For readability concerns, you should choose a lighter palette in dark mode. */
+[data-theme="dark"] {
+  --ifm-color-primary: #3a6387;
+  --ifm-color-primary-dark: #34597a;
+  --ifm-color-primary-darker: #315473;
+  --ifm-color-primary-darkest: #29455f;
+  --ifm-color-primary-light: #406d95;
+  --ifm-color-primary-lighter: #43729b;
+  --ifm-color-primary-lightest: #4b81b0;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  font-weight: 300;
+}
+
+.card_V87C .logo_PYU6 {
+  height: 40px;
+  width: 40px;
+}
+.card_V87C .name_Sq6i {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+  margin-top: 10px;
+  text-align: center;
+}
+.button_eIg_ .inner_ME4P,
+.button_eIg_ .inner_ME4P .children_Wma4,
+.button_eIg_ .inner_ME4P .icon_aszn,
+.card_V87C,
+.card_V87C .logo_PYU6 {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+.card_V87C {
+  background: #fff;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.03), 0 8px 16px 0 rgba(0, 0, 0, 0.05),
+    0 1px 4px 0 rgba(0, 0, 0, 0.1);
+  color: #01011b;
+  flex: 1 1 auto;
+  flex-direction: column;
+  height: 100%;
+  padding: 20px 10px;
+  transition: box-shadow 0.25s;
+}
+
+.card--full-height,
+.card_V87C .logo_PYU6 > svg,
+.navbar__logo img,
+body,
+html {
+  height: 100%;
+}
+
+.cardWrapper_VhVf {
+  flex: 0 1 25%;
+  padding: 7px;
+  width: 25%;
+}
+
+.cards_D9xh {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -7px;
+}
+
+.theme-admonition.alert--info,
+.theme-admonition.alert--secondary,
+.theme-admonition.alert--success {
+  background: rgba(89, 135, 224, 0.08);
+  border: 1px solid rgba(89, 135, 224, 0.5);
+  color: #3a6387;
+}
+
+.theme-admonition.alert--warning {
+  background: rgba(241, 149, 86, 0.08);
+  border: 1px solid rgba(241, 149, 86, 0.5);
+  color: #ba4d10;
+}
+
+.pagination-nav__link {
+  border-color: #e4e6ec;
+  border-radius: 0;
+}
+.date_Pfif,
+.date_ctCl,
+.tocTitle_CvHN,
+.tocTitle_nJuS {
+  color: var(--hex-color-dark-gray);
+  font-family: IBM Plex Mono;
+  text-transform: uppercase;
+}
+.main-wrapper .table-of-contents,
+.main-wrapper .table-of-contents li > ul {
+  padding: 15px 0 0;
+}
+.table-of-contents__left-border {
+  border-left: 1px solid var(--ifm-toc-border-color);
+}
+.main-wrapper .table-of-contents,
+.main-wrapper .table-of-contents li > ul {
+  padding: 15px 0 0;
+}
+.tableOfContents_RdZo,
+.tableOfContents_qXKA {
+  box-shadow: inset 1px 0 0 0 var(--hex-color-border);
+  max-height: calc(100vh - var(--ifm-navbar-height) - 2rem);
+  overflow-y: auto;
+  position: sticky;
+  top: calc(var(--ifm-navbar-height) + 40px);
+}
+.main-wrapper .table-of-contents li {
+  font-size: 14px;
+  line-height: 18px;
+  margin: 0 0 10px;
+}
+
+.main-wrapper .table-of-contents li .table-of-contents__link--active,
+.menu__link--active,
+.menu__link--active:hover {
+  color: var(--ifm-menu-color-active);
+}
+
+.main-wrapper .table-of-contents li a {
+  color: #717a94;
+  display: block;
+  padding-left: 20px;
+  position: relative;
+}
+
+.table-of-contents__link--active,
+.table-of-contents__link--active code,
+.table-of-contents__link:hover,
+.table-of-contents__link:hover code {
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+}
+.main-wrapper .table-of-contents li .table-of-contents__link--active:before {
+  display: block;
+}
+.main-wrapper .table-of-contents li a:before {
+  background: #473982;
+  bottom: 0;
+  content: "";
+  display: none;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 1px;
+  z-index: 2;
+}
+
+.tableOfContents_RdZo,
+.tableOfContents_qXKA {
+  box-shadow: inset 1px 0 0 0 var(--hex-color-border);
+  max-height: calc(100vh - var(--ifm-navbar-height) - 2rem);
+  overflow-y: auto;
+  position: sticky;
+  top: calc(var(--ifm-navbar-height) + 40px);
+}
+
+/* Sidebar */
+.main-wrapper aside nav.menu > ul > li {
+  color: #3a6387;
+  /* font-family: Space Mono; */
+  font-weight: 800;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.main-wrapper aside nav.menu > ul > li > .menu__link {
+  font-weight: 300;
+  font-size: 16px;
+  text-transform: none;
+}
+
+.main-wrapper aside nav.menu > ul > li > .menu__link--sublist {
+  font-weight: 300;
+  font-size: 16px;
+  text-transform: none;
+}
+
+.main-wrapper aside nav.menu {
+  margin: 0;
+  padding: 30px 20px;
+}
+
+/* Tutorials */
+.button_eIg_ .inner_ME4P .text_bdbI,
+.cards_JZJG,
+.docsWrapper_hBAB,
+.footer--dark .footer__col .footer__items {
+  display: flex;
+}
+
+.cards_JZJG > div,
+.cards_W2b6 > div,
+.homeTout_tLWZ .cards_LJfJ > div {
+  margin-right: 20px;
+}
+
+.card_Lle5 {
+  background: var(--ifm-color-emphasis-0);
+  border: none !important;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.03), 0 8px 16px 0 rgba(0, 0, 0, 0.05),
+    0 1px 4px 0 rgba(0, 0, 0, 0.1);
+  color: initial !important;
+  cursor: pointer;
+  display: flex;
+  flex: 1 1 0;
+  min-height: 250px;
+  text-decoration: none !important;
+  transition: box-shadow 0.25s;
+}
+
+.card_Lle5 > .inside_R5xY {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+  position: relative;
+  z-index: 1;
+}
+
+.card_Lle5 > .inside_R5xY .icon_OV9g {
+  height: 24px;
+  margin-bottom: 15px;
+  width: 24px;
+}
+.card_Lle5:hover {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.04), 0 12px 20px 0 rgba(0, 0, 0, 0.09),
+    0 2px 8px 0 rgba(0, 0, 0, 0.12);
+}
+
+.card_Lle5 > .inside_R5xY .text_FuMo {
+  color: #717a94;
+  line-height: 24px;
+  margin-bottom: auto;
+  padding-bottom: 20px;
+}
+
+.card_Lle5 > .inside_R5xY .miscInfo_fV6e,
+.card_Lle5 > .inside_R5xY .tagBox_E5NU,
+.card__footer {
+  margin-top: auto;
+}
+
+.timeIndicator_dHnG {
+  align-items: center;
+  color: #717a94;
+  display: flex;
+}
+
+subheader {
+  /* border-bottom: 1px solid #e4e6ec; */
+  color: #717a94;
+  font-size: 18px;
+  margin-bottom: var(--ifm-leading);
+}
+
+.video__wrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* Video aspect ratio: 100 / (16 / 9) */
+}
+
+.video__player {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
