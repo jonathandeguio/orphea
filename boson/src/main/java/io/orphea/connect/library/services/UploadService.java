@@ -110,6 +110,7 @@ public class UploadService {
                 return resourceModel;
             }
         } catch (Exception e) {
+            log.error("Upload build failed - full stack trace:", e);
             buildLogService.createBuildLogEntryWithDebug("Build failed", e.getMessage(), BuildStage.FINISHED, FunnelStatus.FAILED, buildId, null);
             return null;
         }

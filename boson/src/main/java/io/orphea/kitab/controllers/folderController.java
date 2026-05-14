@@ -271,7 +271,9 @@ public class folderController {
         CsvPreprocessingDTO csvPreprocessing = csvPreprocessingDTO != null && !csvPreprocessingDTO.isEmpty() ? objectMapper.readValue(
                 csvPreprocessingDTO, CsvPreprocessingDTO.class) : null;
 
-        List<String> sheetNames = List.of(sheetName.split(","));
+        List<String> sheetNames = (sheetName != null && !sheetName.isEmpty())
+                ? List.of(sheetName.split(","))
+                : List.of("");
         ResourceModel resourceModel = uploadService.uploadFileWrapper(parentId, file, fileName, description, sheetNames, csvPreprocessing, user.getId());
         return ResponseEntity.ok().body(resourceModel);
     }
