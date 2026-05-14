@@ -43,5 +43,5 @@ null
 /sso
 logs/
 **.log
-dataset
+/dataset
 logs/boson/application/boson.log
