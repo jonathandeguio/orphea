@@ -3,13 +3,13 @@ import React from "react";
 
 import { Form } from "antd";
 
-import BoslerLoader from "components/boslerLoader";
+import OrpheaLoader from "components/orpheaLoader";
 import { useDispatch, useSelector } from "react-redux";
 import { isDefined } from "utils/utilities";
 import { updatePlatformConfig } from "redux/actions/platformSettingsActions";
 import { ThunkAppDispatch } from "redux/types/store";
-import BoslerInput from "components/InputComponent/BoslerInput";
-import BoslerButton from "components/ButtonComponent/BoslerButton";
+import OrpheaInput from "components/InputComponent/OrpheaInput";
+import OrpheaButton from "components/ButtonComponent/OrpheaButton";
 
 const { Title, Text } = Typography;
 
@@ -83,7 +83,7 @@ const ArtifactorySettings = () => {
                   <Col span={8}>
                     <Text type="secondary">Python Artifactory URL</Text>
                     <Form.Item name="artifactoryUrl">
-                      <BoslerInput />
+                      <OrpheaInput />
                     </Form.Item>
                   </Col>
                 </Row>
@@ -91,7 +91,7 @@ const ArtifactorySettings = () => {
                 <Row justify="space-between">
                   <Col span={16}>
                     <div
-                      className="BoslerSubHeader1 text-and-icon-center"
+                      className="OrpheaSubHeader1 text-and-icon-center"
                       style={{ marginRight: "0.5rem" }}
                     >
                       Only platform administrators can view or edit this
@@ -100,9 +100,9 @@ const ArtifactorySettings = () => {
                   </Col>
                   <Col span={8}>
                     <Form.Item style={{ marginBottom: 0, marginLeft: "auto" }}>
-                      <BoslerButton htmlType="submit" intent="primary">
+                      <OrpheaButton htmlType="submit" intent="primary">
                         Update Configuration
-                      </BoslerButton>
+                      </OrpheaButton>
                     </Form.Item>
                   </Col>
                 </Row>
@@ -110,7 +110,7 @@ const ArtifactorySettings = () => {
             )}
           </Form>
         ) : (
-          <BoslerLoader />
+          <OrpheaLoader />
         )}
       </p>
     </div>

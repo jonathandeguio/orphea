@@ -25,18 +25,3 @@ export const updateSmtpConfig = async (payload: any) => {
 export const decryptLicenseKeyAPI = (licenseKey: string) => {
   return axios.post(`/platform/decryptLicenseKey`, licenseKey);
 };
-
-export const getDatamartConfig = async () => {
-  try {
-    const { data } = await axios.get(`/platform/getDataMartConfig`);
-
-    return data;
-  } catch (error) {
-    openNotification("Config not fetched.", " ", "error");
-    return [];
-  }
-};
-
-export const updateDataMartConfig = (payload: any) => {
-  return axios.post(`/platform/updateDataMartConfig`, payload);
-};

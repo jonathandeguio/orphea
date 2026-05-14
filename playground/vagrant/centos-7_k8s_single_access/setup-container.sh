@@ -1,4 +1,4 @@
-#!/bin/bash
+!/bin/bash
 # script that runs 
 # https://kubernetes.io/docs/setup/production-environment/container-runtime
 

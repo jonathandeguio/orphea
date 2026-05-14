@@ -77,7 +77,6 @@ interface btnProps {
   id?: string;
   textTransform?: TBoslerButtonTextTransform;
   autoFocus?: boolean;
-  autoTriggerOnTimeout?: number;
 }
 type buttonTypes =
   | "link"
@@ -119,9 +118,7 @@ const CustomButton = ({
   id,
   textTransform = "capitalize",
   autoFocus = false,
-  autoTriggerOnTimeout,
 }: btnProps) => {
-  const [timer, setTimer] = useState<number>(autoTriggerOnTimeout ?? 0);
   const getType = () => {
     if (outlined) {
       return "default";
@@ -207,22 +204,6 @@ const CustomButton = ({
     }
   };
 
-  useEffect(() => {
-    let timeOut: any = null;
-    if (autoTriggerOnTimeout) {
-      timeOut = setTimeout(() => {
-        onClick?.();
-      }, autoTriggerOnTimeout * 1000);
-
-      setInterval(() => {
-        setTimer((timer) => Math.max(timer - 1, 0));
-      }, 1000);
-    }
-    return () => {
-      if (timeOut) clearTimeout(timeOut);
-    };
-  }, [autoTriggerOnTimeout]);
-
   let padding = "0 10px";
   if (menuItems) {
     padding = "0 0 0 10px";
@@ -264,14 +245,10 @@ const CustomButton = ({
         onClick={onClick}
         disabled={disabled}
         icon={
-          autoTriggerOnTimeout ? (
-            <>{timer}</>
-          ) : (
-            icon &&
-            React.cloneElement(icon, {
-              color: iconColor ? iconColor : getColor(),
-            })
-          )
+          icon &&
+          React.cloneElement(icon, {
+            color: iconColor ? iconColor : getColor(),
+          })
         }
         onMouseEnter={parentOnMouseEnter ? parentOnMouseEnter : onMouseEnter}
         onMouseLeave={parentOnMouseLeave ? parentOnMouseLeave : onMouseLeave}
@@ -356,7 +333,6 @@ const BoslerButton: React.FC<btnProps> = ({
   id,
   textTransform = "capitalize",
   autoFocus = false,
-  autoTriggerOnTimeout,
 }: btnProps) => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
@@ -451,7 +427,6 @@ const BoslerButton: React.FC<btnProps> = ({
         id,
         textTransform,
         autoFocus,
-        autoTriggerOnTimeout,
       }}
     />
   );

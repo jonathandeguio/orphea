@@ -17,7 +17,7 @@ import {
   removeFromFavouritesApi,
 } from "Apps/explorer/explorer.api";
 import { useNavigateHelper } from "Apps/explorer/explorer.hooks";
-import { NavigatorLink, getNodeIcon } from "Apps/explorer/explorer.utils";
+import { getNodeIcon } from "Apps/explorer/explorer.utils";
 import { StarIcon } from "assets/icons/boslerMiscellaneousIcons";
 import { BoslerInfiniteScroll } from "components/BoslerInfiniteScroll/BoslerInfiniteScroll.view";
 import BoslerLoader from "components/boslerLoader";
@@ -127,7 +127,12 @@ const UpdatedByYou = () => {
                     )}
                     title={
                       <Row align={"middle"}>
-                        <NavigatorLink to={item.id}>{item?.name}</NavigatorLink>
+                        <Col
+                          onClick={() => navigate(item.id)}
+                          style={{ cursor: "pointer" }}
+                        >
+                          {item?.name}
+                        </Col>
                         <Col
                           onClick={() => {
                             if (isFav.get(item.id)) {

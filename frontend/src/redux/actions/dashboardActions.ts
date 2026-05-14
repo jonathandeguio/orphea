@@ -1,4 +1,4 @@
-import { ITabConfig } from "Apps/Kepler/dashboard/Dashboard.types";
+import { ITabConfig } from "Apps/Kepler/dashboard/Dashboard";
 import {
   DASHBOARD_APPLIED_FILTER_FAIL,
   DASHBOARD_APPLIED_FILTER_REQUEST,

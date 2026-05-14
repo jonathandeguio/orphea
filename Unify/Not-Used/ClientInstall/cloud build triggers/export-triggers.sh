@@ -1,4 +1,4 @@
-#!/bin/bash
+!/bin/bash
 # List triggers:  gcloud beta builds triggers list
 
 for i in $(gcloud beta builds triggers list | awk '/^name:/ {print $2}') ; do

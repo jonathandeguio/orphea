@@ -33,7 +33,6 @@ import {
   initialLoad,
   keplerCleanup,
   setColumns,
-  updateChart,
 } from "../../../redux/actions/keplerActions";
 import {
   resourceModeUpdate,
@@ -51,8 +50,6 @@ import { isAutoSaveTime } from "../dashboard/Dashboard.utils";
 import EmbeddedChart from "./EmbeddedChart";
 import { compareSchema, fetchSchema } from "./charts.api";
 import "./charts.scss";
-import { GitNewBranchIcon } from "assets/icons/boslerExternalIcons";
-import BranchInfo from "components/branchInfo";
 
 const ChartsWrapper = () => {
   // HANDLE CHART IN VIEW ONLY MODE
@@ -95,7 +92,7 @@ const ChartsWrapper = () => {
   const { config, loading } = useSelector(
     (state: RootState) => state.platformConfig as any
   );
-  const { isChartSaved, query, chart, queryError } = useSelector(
+  const { isChartSaved, query, chart } = useSelector(
     (state: RootState) => state.kepler
   );
   const user = useSelector((state: RootState) => state.userDetails.user);
@@ -156,7 +153,7 @@ const ChartsWrapper = () => {
 
     setIsLoading(false);
   }, [datasetMapping, chartState]);
-  console.log("DATASET DETAILS : ", chartState);
+  console.log("DATASET DETAILS : ", datasetDetails);
   // BOTTOM BAR
   useEffect(() => {
     dispatch(
@@ -169,40 +166,8 @@ const ChartsWrapper = () => {
             ?.currentTransaction
         ),
         rightItems: (() => {
-          if (
-            isDefined(datasetDetails && isDefined(chart?.chartConfig?.branch))
-          ) {
+          if (isDefined(datasetDetails)) {
             return [
-              {
-                id: "datasetBranchButton",
-                icon: <GitNewBranchIcon />,
-                label: (
-                  <BranchInfo
-                    datasetId={id}
-                    currentBranch={chart?.chartConfig?.branch}
-                    onClick={(newBranch: string) => {
-                      dispatch(
-                        updateChart({
-                          chart: {
-                            ...chart,
-                            branch: newBranch,
-                            chartConfig: {
-                              ...chart.chartConfig,
-                              branch: newBranch,
-                            },
-                          },
-                          isChartSaved: false,
-                        })
-                      );
-                    }}
-                  >
-                    {chart?.chartConfig?.branch}
-                  </BranchInfo>
-                ),
-                type: "BUTTON",
-                body: React.Fragment,
-                props: {},
-              },
               {
                 id: "chartDatasetChangePanel",
                 icon: getNodeIcon(
@@ -236,31 +201,18 @@ const ChartsWrapper = () => {
                               "Changing Dataset",
                               "success"
                             );
-                            dispatch(
-                              updateChart({
-                                chart: {
-                                  ...chart,
-                                  datasetId: selectedDataset.id,
-                                  chartConfig: {
-                                    ...chart.chartConfig,
-                                    datasetId: selectedDataset.id,
-                                  },
-                                },
-                                isChartSaved: false,
-                              })
-                            );
-                            // putChart({
-                            //   chart: {
-                            //     ...chart,
-                            //     datasetId: selectedDataset.id,
-                            //   },
-                            //   newQuery: undefined,
-                            //   newCustomize: undefined,
-                            //   currentTransaction:
-                            //     datasetMapping.datasetMapping
-                            //       ?.currentTransaction,
-                            //   dispatch,
-                            // });
+                            putChart({
+                              chart: {
+                                ...chart,
+                                datasetId: selectedDataset.id,
+                              },
+                              newQuery: undefined,
+                              newCustomize: undefined,
+                              currentTransaction:
+                                datasetMapping.datasetMapping
+                                  ?.currentTransaction,
+                              dispatch,
+                            });
                           } else {
                             openNotification(
                               "Schema not same",
@@ -362,8 +314,7 @@ const ChartsWrapper = () => {
     if (
       isDefined(query) &&
       isDefined(chart) &&
-      isDefined(currentTransactionId) &&
-      queryError?.status === "FINISHED"
+      isDefined(currentTransactionId)
     ) {
       fetchChartData(
         undefined,
@@ -374,7 +325,7 @@ const ChartsWrapper = () => {
         currentTransactionId
       );
     }
-  }, [abortController, query, dispatch, datasetMapping, queryError]);
+  }, [abortController, query, dispatch, datasetMapping]);
 
   if (IS_EMBEDDED) {
     return <EmbeddedChart chartId={id} />;
@@ -410,6 +361,7 @@ const ChartsWrapper = () => {
               direction={"horizontal"}
               // style={{ flexDirection: "row-reverse" }}
             >
+              
               <Panel order={1} defaultSize={75}>
                 {/* <div className="kepler-split-right"> */}
                 <ChartComponentContainer />

@@ -1,9 +1,6 @@
 import { useContextMenuState } from "common/components/ContextMenu";
 import { fetchBlobFileAPI } from "components/BlobViewer/BlobViewer.api";
-import {
-  CollapserHandler,
-  ResponsivePanel,
-} from "components/BoslerComponents/ResizablePane/ResizablePaneUtil";
+import { CollapserHandler } from "components/BoslerComponents/ResizablePane/ResizablePaneUtil";
 import BoslerLoader from "components/boslerLoader";
 import { useFileExplorerService } from "hooks/useFileExplorerService";
 import React, { useEffect, useRef, useState } from "react";
@@ -41,6 +38,7 @@ const FileExplorer = () => {
     (state) => (state as any).platformConfig
   );
 
+  const { id } = useParams();
   const [treeData, setTreeData] = useState<any>(null);
   const [children, setChildren] = useState<any[] | null>(null);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -58,7 +56,6 @@ const FileExplorer = () => {
   } = useFileExplorerService();
 
   const [queryParams, _] = useSearchParams();
-  const { id } = useParams();
   const { id: projectId } = useParams();
   const activeId = queryParams.get("activeId");
 
@@ -168,7 +165,6 @@ const FileExplorer = () => {
   // WHEN YOU CHANGE THE REDUX YOU NEED TO UPDATE THE LINK
   useEffect(() => {
     if (notEmpty(activeId)) {
-      setChildren(null);
       if (specialIds.includes(activeId)) {
         const children = getSpecialChildren(activeId);
         if (Array.isArray(children)) {
@@ -203,8 +199,6 @@ const FileExplorer = () => {
   // TODO: CHECK IF I AM CAUSING ANY ISSUE
   useEffect(() => {
     if (isDefined(id)) {
-      setTreeData(undefined);
-      setChildren(null);
       getFileIndex(id).then((data) => {
         setTreeData({ ...data });
 
@@ -278,26 +272,29 @@ const FileExplorer = () => {
   if (isEmpty(projectId)) {
     return <BoslerLoader />;
   }
+
   return (
     <>
-    <div style={{background: "var(--background-explorer)", height: "100%"}}>
       <PanelGroup direction={"horizontal"}>
-        <ResponsivePanel
-          defaultSize={18}
-          primaryPanelRef={navPane}
-          style={{ overflowY: "auto" }}
+        <Panel
+          id={"NAV_PANE"}
+          collapsible={true}
+          defaultSize={20}
+          ref={navPane}
         >
           <FileExplorerSidebar
             hidden={hidden}
             treeData={treeData}
             onContextMenu={contextMenuHandler}
           />
-        </ResponsivePanel>
-        <PanelResizeHandle className="resizablePane-collapser" style={{ "--bosler-border-color-muted": "transparent" } as React.CSSProperties}>
+        </Panel>
+
+        <PanelResizeHandle className="resizablePane-collapser">
           <CollapserHandler primaryPanelRef={navPane} />
         </PanelResizeHandle>
+
         <Panel
-          style={{ display: "flex", flexDirection: "column", minWidth: "50px" }}
+          style={{ display: "flex", flexDirection: "column" }}
           id={"DATA_PANE"}
           ref={dataPane}
         >
@@ -320,7 +317,6 @@ const FileExplorer = () => {
         selected={selected}
         setSelected={setSelected}
       />
-      </div>
     </>
   );
 };

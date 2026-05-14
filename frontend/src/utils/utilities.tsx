@@ -9,7 +9,6 @@ import store from "../redux/store";
 import TimeAgo from "javascript-time-ago";
 
 import { Client } from "@stomp/stompjs";
-import { JDBCSourceTypeEnum } from "Apps/Connect/Enums/JDBCSourceTypeEnum";
 import { KEPLER_USE_CASES } from "Apps/Kepler/chart/charts.utils";
 import {
   ResourceSubTypeEnum,
@@ -56,8 +55,6 @@ import {
   OracleIcon,
   PostgresIcon,
   PySparkIcon,
-  SharePointIcon,
-  SnowflakeIcon,
   SparkSQLIcon,
 } from "../assets/icons/boslerExternalIcons";
 import { DocsIcon, FolderIcon } from "../assets/icons/boslerFileIcons";
@@ -817,13 +814,6 @@ async function getIconUrlPath(ID: string) {
             link: `/portal/connect/agent/${ID}`,
             path: path,
           };
-        case ResourceTypeEnum.WEBHOOK:
-          return {
-            name: name,
-            icon: <APIIcon size={22} />,
-            link: `/portal/connect/webhook/${ID}`,
-            path: path,
-          };
 
         case ResourceTypeEnum.LINK:
           const linkType = data?.subType;
@@ -1194,15 +1184,13 @@ const getURL = (record: any) => {
 
 const getSourceIcon = (type: string, subType: string) => {
   if (type == "jdbc") {
-    if (subType == JDBCSourceTypeEnum.POSTGRES) return <PostgresIcon />;
-    else if (subType == JDBCSourceTypeEnum.MYSQL) return <MySQLIcon />;
-    else if (subType == JDBCSourceTypeEnum.ORACLE21) return <OracleIcon />;
-    else if (subType == JDBCSourceTypeEnum.MARIADB) return <MariaDBIcon />;
-    else if (subType == JDBCSourceTypeEnum.SNOWFLAKE) return <SnowflakeIcon />;
+    if (subType == "postgres") return <PostgresIcon />;
+    else if (subType == "mysql") return <MySQLIcon />;
+    else if (subType == "oracle") return <OracleIcon />;
+    else if (subType == "mariadb") return <MariaDBIcon />;
     else return <DatabaseIcon />;
   } else if (type == "FOLDER") return <DataFrameIcon />;
   else if (type == "rest") return <APIIcon />;
-  else if (type == "SHAREPOINT") return <SharePointIcon />;
 };
 
 /**
@@ -1253,8 +1241,6 @@ const blobFileType = (fileName: string, checkType: ResourceSubTypeEnum) => {
     return csvExtensions.includes(fileExtension);
   } else if (checkType == ResourceSubTypeEnum.PARQUET) {
     return parquetExtensions.includes(fileExtension);
-  } else if (checkType == ResourceSubTypeEnum.JSON) {
-    return true;
   } else {
     return false;
   }
@@ -1284,9 +1270,9 @@ const getSocketClient = () => {
   return new Client({
     webSocketFactory: () => new SockJS(WSUrl),
     // brokerURL: WSUrl,
-    reconnectDelay: 10000,
-    heartbeatIncoming: 10000,
-    heartbeatOutgoing: 10000,
+    reconnectDelay: 5000,
+    heartbeatIncoming: 4000,
+    heartbeatOutgoing: 4000,
     // debug: (text) =>
   });
 };
@@ -1486,57 +1472,8 @@ export const convertStringToLowerCase = (str: string | undefined | null) => {
   return "";
 };
 
-export const generateRandomString = (length: number) => {
-  let result = "";
-  const characters =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  const charactersLength = characters.length;
-  let counter = 0;
-  while (counter < length) {
-    result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    counter += 1;
-  }
-  return result;
-};
-
-export const appendUniqueKey = (str: string | undefined) => {
-  const now = new Date();
-  const formattedDate = `${String(now.getDate()).padStart(2, "0")}-${String(
-    now.getMonth() + 1
-  ).padStart(2, "0")}-${now.getFullYear()} ${String(now.getHours()).padStart(
-    2,
-    "0"
-  )}:${String(now.getMinutes()).padStart(2, "0")}:${String(
-    now.getSeconds()
-  ).padStart(2, "0")}`;
-
-  // Random String to avoid creation of the same folder at the same time
-  return str + " - " + formattedDate + " - " + generateRandomString(3);
-};
-
-export const runPeriodically = (
-  callback: (...args: any[]) => void,
-  interval = 2500,
-  retries = Infinity,
-  stopCondition: () => boolean = () => false
-) => {
-  let attempt = 0;
-  const intervalId = setInterval(() => {
-    // Always runs atleast ones
-    if (attempt != 0 && (stopCondition() || attempt >= retries)) {
-      clearInterval(intervalId);
-      return;
-    }
-
-    attempt += 1;
-    callback();
-  }, interval);
-
-  // Return a function to stop the interval when needed
-  return () => clearInterval(intervalId);
-};
-
 export {
+  isPromise,
   ObjectKeys,
   TimeCounter,
   blobFileType,
@@ -1577,7 +1514,6 @@ export {
   isInt,
   isIpPlatform,
   isLicenseKeyUsedValid,
-  isPromise,
   isUseCaseBasedOptionActivate,
   makeDebounceFunction,
   notEmpty,
@@ -1586,34 +1522,4 @@ export {
   text_truncate,
   timeConverter,
   userOSkey,
-};
-
-export const getApplicationLink = (id: string) => {
-  const linkMap: { [key: string]: string } = {
-    home: `/portal/home`,
-    projects: `/portal/projects`,
-    applications: `/portal/applications`,
-    builds: `/portal/builds`,
-    recentlyViewed: `/portal/recentlyViewed`,
-    favourites: `/portal/favourites`,
-    updatedByYou: `/portal/updatedByYou`,
-    createdByYou: `/portal/createdByYou`,
-    schedules: `/portal/schedules`,
-    connect: `/portal/connect`,
-    agent: `/portal/connect/agent`,
-    source: `/portal/connect/source`,
-    link: `/portal/connect/link`,
-    settings: `/portal/settings/profile`,
-    profile: `/portal/settings/profile`,
-    preferences: `/portal/settings/preferences`,
-    notifications: `/portal/settings/notifications`,
-    tokens: `/portal/settings/tokens`,
-    users: `/portal/settings/users`,
-    groups: `/portal/settings/groups`,
-    loginActivity: `/portal/settings/loginActivity`,
-    changePassword: `/portal/settings/changePassword`,
-    sso: `/portal/settings/sso`,
-    tags: `/portal/settings/tags`,
-  };
-  return linkMap[id] ?? "";
 };

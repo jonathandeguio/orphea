@@ -2,7 +2,7 @@
 # kind: PersistentVolume
 # metadata:
 #   name: boson-pv
-#   namespace: bosler
+#   namespace: orphea
 #   labels:
 #     type: local
 # spec:
@@ -12,14 +12,14 @@
 #   accessModes:
 #     - ReadWriteOnce
 #   hostPath:
-#     path: "/tmp" # this is for bosler storage which should ideally be in S3
+#     path: "/tmp" # this is for orphea storage which should ideally be in S3
 
 # ---
 # apiVersion: v1
 # kind: PersistentVolumeClaim
 # metadata:
 #   name: julia-pvc
-#   namespace: bosler
+#   namespace: orphea
 #   labels:
 #     type: local
 # spec:
@@ -38,7 +38,7 @@ metadata:
   labels:
     name: julia
   name: julia
-  namespace: bosler
+  namespace: orphea
 spec:
   replicas: 1
   selector:
@@ -55,7 +55,7 @@ spec:
             - -jar
             - -Dspring.profiles.active=kubernetes
             - /app/julia-0.0.1-SNAPSHOT.jar
-          image: europe-west1-docker.pkg.dev/bosler-334213/bosler-cr/julia
+          image: europe-west1-docker.pkg.dev/orphea-334213/orphea-cr/julia
           imagePullPolicy: Always
           name: julia
           ports:
@@ -69,14 +69,14 @@ spec:
             - name: JULIA_PORT
               value: "58542"
             - name: JULIA_BASE_PATH
-              value: "/root/bosler/git/remote"
+              value: "/root/orphea/git/remote"
             - name: JWT_SECRET
               valueFrom:
                 secretKeyRef:
-                  name: bosler-secret
+                  name: orphea-secret
                   key: token-secret
           volumeMounts:
-            - mountPath: /root/bosler
+            - mountPath: /root/orphea
               name: boson-app-pv
           workingDir: /app
       imagePullSecrets:
@@ -94,7 +94,7 @@ metadata:
   labels:
     name: julia
   name: julia
-  namespace: bosler
+  namespace: orphea
 spec:
   type: NodePort
   ports:

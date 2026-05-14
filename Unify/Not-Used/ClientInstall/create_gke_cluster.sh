@@ -4,7 +4,7 @@
 # https://cloud.google.com/kubernetes-engine/docs/quickstart
 #
 # Pre-Reqs:
-# - An account in the appropriate Directory (Google Workspace in Bosler's case).
+# - An account in the appropriate Directory (Google Workspace in Orphea's case).
 # - Google Cloud SDK must be installed on local machine or run within the 
 #   Google Cloud Shell.  Visit https://cloud.google.com/sdk/docs/install
 # - The Kubernetes Kubectl command-line tool needs to be installed on the 
@@ -24,14 +24,14 @@ if [[ "$VARIN" != [Yy] ]] ; then
     print \n exiting... ; return 1
 fi
 
-PROJECT_ID=bosler-bnp
+PROJECT_ID=orphea-bnp
 COMPUTE_REGION=europe-west1
 COMPUTE_ZONE=europe-west1-b
-CLUSTER_NAME=bosler
+CLUSTER_NAME=orphea
 MACHINE_TYPE=e2-highmem-2
-LOCALREPO=bosler-cr
-CERT_FILE_PATH="/Users/jamesmorrish/OneDrive/Jim Documents/Bosler/SECRETS/Bosler.io-ssl-cert/_.bosler.io.crt"
-KEY_FILE_PATH="/Users/jamesmorrish/OneDrive/Jim Documents/Bosler/SECRETS/Bosler.io-ssl-cert/myserver.key"
+LOCALREPO=orphea-cr
+CERT_FILE_PATH="/Users/jamesmorrish/OneDrive/Jim Documents/Orphea/SECRETS/Orphea.io-ssl-cert/_.orphea.io.crt"
+KEY_FILE_PATH="/Users/jamesmorrish/OneDrive/Jim Documents/Orphea/SECRETS/Orphea.io-ssl-cert/myserver.key"
 
 # enable apis
 gcloud services enable container.googleapis.com \
@@ -62,7 +62,7 @@ gcloud compute addresses create $CLUSTER_NAME --global
 #gcloud compute addresses create ${CLUSTER_NAME}-history --global
 
 # Create global pre-shared SSL certificate
-CERTIFICATE_NAME="bosler-preshared-cert"
+CERTIFICATE_NAME="orphea-preshared-cert"
 gcloud compute ssl-certificates create $CERTIFICATE_NAME \
     --certificate $CERT_FILE_PATH \
     --private-key $KEY_FILE_PATH 
@@ -115,11 +115,11 @@ base64 /tmp/key-file.json > /tmp/key-file.json.base64
 # https://cloud.google.com/build/docs/automating-builds/create-manage-triggers
 # https://cloud.google.com/sdk/gcloud/reference/beta/builds/triggers/create/github
 
-gcloud iam service-accounts create boslerbuilds \
-    --description="Bosler Cloud Build SA" \
-    --display-name="Bosler Cloud Build SA"
+gcloud iam service-accounts create orpheabuilds \
+    --description="Orphea Cloud Build SA" \
+    --display-name="Orphea Cloud Build SA"
 gcloud projects add-iam-policy-binding $PROJECT_ID \
-    --member="serviceAccount:boslerbuilds@${PROJECT_ID}.iam.gserviceaccount.com" \
+    --member="serviceAccount:orpheabuilds@${PROJECT_ID}.iam.gserviceaccount.com" \
     --role="roles/cloudbuild.serviceAgent"
 
 ## configure auth
@@ -134,8 +134,8 @@ echo "https://console.cloud.google.com/cloud-build/triggers/connect?authuser=4&p
 
 for i in funnel parler spark-history-server ; do
     gcloud beta builds triggers create github --name="${i}" \
-        --service-account="projects/${PROJECT_ID}/serviceAccounts/boslerbuilds@${PROJECT_ID}.iam.gserviceaccount.com" \
-        --repo-owner="Bosler-io" \
+        --service-account="projects/${PROJECT_ID}/serviceAccounts/orpheabuilds@${PROJECT_ID}.iam.gserviceaccount.com" \
+        --repo-owner="Orphea-io" \
         --repo-name="${i}" \
         --branch-pattern="^main$" \
         --build-config="cloudbuild.yaml"
@@ -143,8 +143,8 @@ done
 
 # Just boson!
 gcloud beta builds triggers create github --name="boson" \
-    --service-account="projects/${PROJECT_ID}/serviceAccounts/boslerbuilds@${PROJECT_ID}.iam.gserviceaccount.com" \
-    --repo-owner="Bosler-io" \
+    --service-account="projects/${PROJECT_ID}/serviceAccounts/orpheabuilds@${PROJECT_ID}.iam.gserviceaccount.com" \
+    --repo-owner="Orphea-io" \
     --repo-name="boson" \
     --branch-pattern="^master$" \
     --build-config="cloudbuild.yaml"

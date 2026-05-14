@@ -3,6 +3,7 @@ import { ConnectBuildAPI } from "Apps/Connect/Connect.api";
 import LinkModal from "Apps/Connect/Links/LinkModal.view";
 import SourceModal from "Apps/Connect/Sources/SourceModal.view";
 import { KEPLER_USE_CASES } from "Apps/Kepler/chart/charts.utils";
+import CreateNewDashboardModal from "Apps/Kepler/utils/CreateNewDashboardModal";
 import { Col, Form, Row } from "antd";
 import {
   AddIcon,
@@ -19,9 +20,8 @@ import {
   EditIcon,
   PasteIcon,
 } from "assets/icons/boslerEditorIcons";
-import { FolderIcon, FolderMoveIcon } from "assets/icons/boslerFileIcons";
+import { FolderIcon } from "assets/icons/boslerFileIcons";
 import {
-  AppIcon,
   ChangeLogIcon,
   KeyIcon,
   UploadIcon,
@@ -31,7 +31,7 @@ import {
   MonitorIcon,
   TrashIcon,
 } from "assets/icons/boslerMiscellaneousIcons";
-import { PopOutIcon } from "assets/icons/boslerNavigationIcon";
+import { ArrowRightIcon, PopOutIcon } from "assets/icons/boslerNavigationIcon";
 import { SortAscIcon, SortDescIcon } from "assets/icons/boslerSortIcons";
 import { TableIcon } from "assets/icons/boslerTableIcons";
 import { ContextMenu, MenuItem } from "common/components/ContextMenu";
@@ -41,8 +41,9 @@ import BoslerInput from "components/BoslerComponents/InputComponent/BoslerInput"
 import BuildDetailsTable from "components/Builds/BuildDetailsTable.view";
 import BoslerModal from "components/CommonUI/BoslerModalContainer";
 import CreateNewChartModal from "components/Modals/CreateNewChartModal";
+import CreateNewDatasetModal from "components/Modals/CreateNewDatasetModal";
+import CreateNewFolderModal from "components/Modals/CreateNewFolderModal";
 import CreateNewRepositoryModal from "components/Modals/CreateNewRepositoryModal";
-import CreateNewWebhookModal from "components/Modals/CreateNewWebhookModal";
 import UploadNewFileModal from "components/Modals/UploadNewFileModal";
 import { FRACTAL_USE_CASES } from "components/editor/editor.constants";
 import { useFileExplorerService } from "hooks/useFileExplorerService";
@@ -65,7 +66,6 @@ import {
 } from "../../redux/fileExplorerSlice";
 import { updateNameAndDesc, updateParent } from "../../redux/fileIndexSlice";
 import { RootState } from "../../redux/types/store";
-import { useCreateResourceHandler } from "./Hooks/useResourceCreateHandler/useResourceCreateHandler";
 import { getBuildSpecAPI, moveResource, putResource } from "./explorer.api";
 import { useNavigateHelper, usePath } from "./explorer.hooks";
 
@@ -138,8 +138,7 @@ export const TreeNodeContextMenu: React.FC<TreeNodeContextMenuProps> = ({
   );
 
   const { info } = useSelector((state) => (state as any).license);
-  const { createNewFolder, createNewDataset, createNewDashboard } =
-    useCreateResourceHandler();
+
   const dispatch = useDispatch();
   const navigator = useNavigateHelper();
   const [form] = Form.useForm();
@@ -178,7 +177,6 @@ export const TreeNodeContextMenu: React.FC<TreeNodeContextMenuProps> = ({
         );
       });
   };
-
   const deleteHandler = (id: string) => {
     addToRecycleBin(id);
   };
@@ -297,16 +295,6 @@ export const TreeNodeContextMenu: React.FC<TreeNodeContextMenuProps> = ({
           type: "PRIMARY",
         },
         {
-          label: (
-            <span style={{ color: 'var(--bosler-font-color-muted)', fontStyle: 'italic' }}>
-              {getLanguageLabel("connect")}
-            </span>
-          ),
-          onClick: () => {},
-          type: "PRIMARY",
-          icon: <></>,
-        },
-        {
           label: getLanguageLabel("dataLinks"),
           icon: <LinkIcon />,
           onClick: () => {
@@ -331,14 +319,6 @@ export const TreeNodeContextMenu: React.FC<TreeNodeContextMenuProps> = ({
           },
           type: "PRIMARY",
         },
-        // {
-        //   label: "webhook",
-        //   icon: <APIIcon />,
-        //   onClick: () => {
-        //     setValue("webhook");
-        //   },
-        //   type: "PRIMARY",
-        // },
       ];
     }
     return [];
@@ -346,7 +326,6 @@ export const TreeNodeContextMenu: React.FC<TreeNodeContextMenuProps> = ({
 
   // MAIN MENU
   const contextMenuItems: MenuItem[] = [
-    
     {
       icon: <FolderIcon />,
       label: getLanguageLabel("open"),
@@ -394,23 +373,11 @@ export const TreeNodeContextMenu: React.FC<TreeNodeContextMenuProps> = ({
         : "PRIMARY",
       submenu: [
         {
-          label: (
-            <span style={{ color: 'var(--bosler-font-color-muted)', fontStyle: 'italic' }}>
-              {getLanguageLabel("resource")}
-            </span>
-          ),
-          onClick: () => {},
-          type: "PRIMARY",
-          icon: <></>,
-        },
-        {
           label: getLanguageLabel("folder"),
           icon: <FolderIcon />,
           type: "PRIMARY",
           onClick: () => {
-            createNewFolder({
-              parentId: contextMenuId,
-            });
+            setValue("folder");
           },
         },
         {
@@ -422,39 +389,18 @@ export const TreeNodeContextMenu: React.FC<TreeNodeContextMenuProps> = ({
           },
         },
         {
-          label: getLanguageLabel("dataset"),
-          icon: <TableIcon />,
-          type: "PRIMARY",
-          onClick: () => createNewDataset({ parentId: contextMenuId }),
-        },
-        {
           label: "DIVIDER",
           onClick: () => {},
           type: "PRIMARY",
           icon: <></>,
         },
         {
-          label: (
-            <span style={{ color: 'var(--bosler-font-color-muted)', fontStyle: 'italic' }}>
-              Transform
-            </span>
-          ),
-          onClick: () => {},
+          label: getLanguageLabel("dataset"),
+          icon: <TableIcon />,
           type: "PRIMARY",
-          icon: <></>,
-        },
-        {
-          label: <span style={{ color: 'var(--bosler-font-color-muted)'}}>No Code</span>,
-          icon: <AppIcon color={"#dddddd"}/>,
-          onClick: () => {},
-          type: isUseCaseBasedOptionActivate(
-            "FRACTAL",
-            info.displayBlockedFeatures,
-            info.product
-          )
-            ? "PRIMARY"
-            : "HIDDEN",
-          extra: FRACTAL_USE_CASES.includes(info.product) ? <></> : <KeyIcon />,
+          onClick: () => {
+            setValue("dataset");
+          },
         },
         {
           label: getLanguageLabel("repository"),
@@ -471,22 +417,7 @@ export const TreeNodeContextMenu: React.FC<TreeNodeContextMenuProps> = ({
             : "HIDDEN",
           extra: FRACTAL_USE_CASES.includes(info.product) ? <></> : <KeyIcon />,
         },
-        {
-          label: "DIVIDER",
-          onClick: () => {},
-          type: "PRIMARY",
-          icon: <></>,
-        },
-        {
-          label: (
-            <span style={{ color: 'var(--bosler-font-color-muted)', fontStyle: 'italic' }}>
-              {getLanguageLabel("visualization")}
-            </span>
-          ),
-          onClick: () => {},
-          type: "PRIMARY",
-          icon: <></>,
-        },
+
         {
           label: getLanguageLabel("chart"),
           icon: <GroupedColumnIcon />,
@@ -506,7 +437,7 @@ export const TreeNodeContextMenu: React.FC<TreeNodeContextMenuProps> = ({
           label: getLanguageLabel("dashboard"),
           icon: <MonitorIcon />,
           onClick: () => {
-            if (contextMenuId) createNewDashboard({ parentId: contextMenuId });
+            setValue("dashboard");
           },
           type: isUseCaseBasedOptionActivate(
             "KEPLER",
@@ -761,7 +692,7 @@ export const TreeNodeContextMenu: React.FC<TreeNodeContextMenuProps> = ({
       type: multiSelect ? "HIDDEN" : "PRIMARY",
     },
     {
-      icon: <FolderMoveIcon />,
+      icon: <ArrowRightIcon />,
       label: getLanguageLabel("move"),
       onClick: () => {
         if (notEmpty(id) && resource?.type !== "PROJECT") {
@@ -934,38 +865,42 @@ export const TreeNodeContextMenu: React.FC<TreeNodeContextMenuProps> = ({
         <ContextMenu items={contextMenuItems} {...store} />
       </div>
       <BoslerModal destroyOnClose onCancel={cancelHandler} {...modalProps} />
-      {value == "chart" && (
-        <CreateNewChartModal
-          defaultParent={contextMenuId}
-          isVisible={value == "chart"}
-          setIsVisible={setValue}
-          branch={"master"}
-        />
-      )}
-      {value == "webhook" && (
-        <CreateNewWebhookModal
-          defaultParent={contextMenuId}
-          isVisible={value == "webhook"}
-          setIsVisible={setValue}
-        />
-      )}
-      {value == "datasetChart" && (
-        <CreateNewChartModal
-          isVisible={value == "datasetChart"}
-          setIsVisible={setValue}
-          branch={"master"}
-          id={contextMenuId}
-        />
-      )}
-
-      {value == "repository" && (
-        <CreateNewRepositoryModal
-          destroyOnClose
-          id={contextMenuId}
-          isVisible={value == "repository"}
-          setIsVisible={setValue}
-        />
-      )}
+      <CreateNewChartModal
+        defaultParent={contextMenuId}
+        isVisible={value == "chart"}
+        setIsVisible={setValue}
+        branch={"master"}
+      />
+      <CreateNewChartModal
+        isVisible={value == "datasetChart"}
+        setIsVisible={setValue}
+        branch={"master"}
+        id={contextMenuId}
+      />
+      <CreateNewDashboardModal
+        id={contextMenuId}
+        createDashboardModal={value == "dashboard"}
+        setCreateDashboardModal={setValue}
+        redirect={true}
+      />
+      <CreateNewFolderModal
+        destroyOnClose
+        id={contextMenuId}
+        isVisible={value == "folder"}
+        setIsVisible={setValue}
+      />
+      <CreateNewRepositoryModal
+        destroyOnClose
+        id={contextMenuId}
+        isVisible={value == "repository"}
+        setIsVisible={setValue}
+      />
+      <CreateNewDatasetModal
+        destroyOnClose
+        id={contextMenuId}
+        isVisible={value == "dataset"}
+        setIsVisible={setValue}
+      />
 
       {value == "file" && (
         <UploadNewFileModal
@@ -976,59 +911,50 @@ export const TreeNodeContextMenu: React.FC<TreeNodeContextMenuProps> = ({
         />
       )}
 
-      {value == "link" && (
-        <LinkModal
-          destroyOnClose
-          defaultParent={contextMenuId}
-          isVisible={value == "link"}
-          setIsVisible={setValue}
+      <LinkModal
+        destroyOnClose
+        defaultParent={contextMenuId}
+        isVisible={value == "link"}
+        setIsVisible={setValue}
+      />
+      <AgentModal
+        destroyOnClose
+        defaultParent={contextMenuId}
+        isVisible={value == "agent"}
+        setIsVisible={setValue}
+      />
+      <SourceModal
+        destroyOnClose
+        defaultParent={contextMenuId}
+        isVisible={value == "source"}
+        setIsVisible={setValue}
+      />
+      <BoslerModal
+        open={buildLogVisible}
+        headingIcon={<BuildIcon />}
+        heading={
+          <Row justify={"space-between"} align="middle">
+            <Col>{getLanguageLabel("buildLog")}</Col>
+          </Row>
+        }
+        extraActionHeading={
+          <BoslerButton
+            icon={<CrossIcon />}
+            icononly
+            trimicononlypadding
+            minimal
+            onClick={() => setBuildLogVisible(false)}
+          ></BoslerButton>
+        }
+        width={"80%"}
+        onCancel={() => setBuildLogVisible(false)}
+      >
+        <BuildDetailsTable
+          id={buildId as any}
+          showHeader={false}
+          page="DATASET"
         />
-      )}
-      {value == "agent" && (
-        <AgentModal
-          destroyOnClose
-          defaultParent={contextMenuId}
-          isVisible={value == "agent"}
-          setIsVisible={setValue}
-        />
-      )}
-
-      {value == "source" && (
-        <SourceModal
-          destroyOnClose
-          defaultParent={contextMenuId}
-          isVisible={value == "source"}
-          setIsVisible={setValue}
-        />
-      )}
-      {buildLogVisible && (
-        <BoslerModal
-          open={buildLogVisible}
-          headingIcon={<BuildIcon />}
-          heading={
-            <Row justify={"space-between"} align="middle">
-              <Col>{getLanguageLabel("buildLog")}</Col>
-            </Row>
-          }
-          extraActionHeading={
-            <BoslerButton
-              icon={<CrossIcon />}
-              icononly
-              trimicononlypadding
-              minimal
-              onClick={() => setBuildLogVisible(false)}
-            ></BoslerButton>
-          }
-          width={"80%"}
-          onCancel={() => setBuildLogVisible(false)}
-        >
-          <BuildDetailsTable
-            id={buildId as any}
-            showHeader={false}
-            page="DATASET"
-          />
-        </BoslerModal>
-      )}
+      </BoslerModal>
     </>
   );
 };

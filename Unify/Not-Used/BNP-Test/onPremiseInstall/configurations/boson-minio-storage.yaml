@@ -2,7 +2,7 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: minio-pv
-  namespace: bosler
+  namespace: orphea
   labels:
     type: local
 spec:
@@ -12,14 +12,14 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/bosler" # this is for bosler storage which should ideally be in S3
+    path: "/orphea" # this is for orphea storage which should ideally be in S3
 
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: minio-pvc
-  namespace: bosler
+  namespace: orphea
   labels:
     type: local
 spec:
@@ -38,7 +38,7 @@ metadata:
   labels:
     name: minio
   name: minio
-  namespace: bosler
+  namespace: orphea
 spec:
   replicas: 1
   selector:
@@ -64,12 +64,12 @@ spec:
             - name: MINIO_ROOT_USER
               valueFrom:
                 secretKeyRef:
-                  name: bosler-secret
+                  name: orphea-secret
                   key: minio-username
             - name: MINIO_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: bosler-secret
+                  name: orphea-secret
                   key: minio-password
           volumeMounts:
             - mountPath: /storage
@@ -88,7 +88,7 @@ metadata:
   labels:
     name: minio
   name: minio
-  namespace: bosler
+  namespace: orphea
 spec:
   type: ClusterIP
   ports:

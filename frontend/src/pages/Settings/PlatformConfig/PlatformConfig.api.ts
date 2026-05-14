@@ -33,19 +33,14 @@ export const getUploadLogsAPI = (): Promise<AxiosResponse<any, any>> => {
 };
 
 /**
- * download CSV,PARQUET dataset files
+ * download csv file
  * @param id datasetId
  * @param branch branch
- * @param transactionId transactionId
- * @param format dataFormat
  */
-export const downloadDatasetAPI = (
+export const downloadCSVAPI = (
   id: string,
   branch: string,
-  transactionId: string,
-  format: string
+  transactionId: string
 ): Promise<AxiosResponse<any, any>> => {
-  return axios.get(
-    `/dataset/download/${id}/${branch}/${transactionId}/${format}`
-  );
+  return axios.get(`/dataset/download/${id}/${branch}/${transactionId}`);
 };

@@ -1,4 +1,4 @@
-#!/usr/bin/env /bin/bash
+!/usr/bin/env /bin/bash
 
 # this script creates and downloads new creds for the compute engine default service account.
 # alternatively you can export the creds in JSON format from IAM in the GCP console.

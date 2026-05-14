@@ -2,17 +2,17 @@ import { Col, Divider, Dropdown, Row, Table, Typography } from "antd";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { AddIcon, MoreMenuIcon } from "assets/icons/boslerActionIcons";
-import { EditIcon } from "assets/icons/boslerEditorIcons";
-import { TrashIcon } from "assets/icons/boslerMiscellaneousIcons";
-import { TickIcon } from "assets/icons/boslerNavigationIcon";
+import { AddIcon, MoreMenuIcon } from "assets/icons/orpheaActionIcons";
+import { EditIcon } from "assets/icons/orpheaEditorIcons";
+import { TrashIcon } from "assets/icons/orpheaMiscellaneousIcons";
+import { TickIcon } from "assets/icons/orpheaNavigationIcon";
 
-import { AddUserIcon } from "assets/icons/boslerInterfaceIcons";
+import { AddUserIcon } from "assets/icons/orpheaInterfaceIcons";
 import { getLanguageLabel, openNotification } from "utils/utilities";
 import { fetchAllSSODetailsAPI } from "./apis";
-import BoslerInput from "components/InputComponent/BoslerInput";
-import BoslerModal from "components/BoslerModalContainer/BoslerModal";
-import BoslerButton from "components/ButtonComponent/BoslerButton";
+import OrpheaInput from "components/InputComponent/OrpheaInput";
+import OrpheaModal from "components/OrpheaModalContainer/OrpheaModal";
+import OrpheaButton from "components/ButtonComponent/OrpheaButton";
 const { Text, Title } = Typography;
 
 const SSO = () => {
@@ -159,7 +159,7 @@ const SSO = () => {
                               className="text-and-icon-center"
                             >
                               <TrashIcon
-                                color={"var(--bosler-intent-danger)"}
+                                color={"var(--orphea-intent-danger)"}
                               />
                               {getLanguageLabel("delete")}
                             </div>
@@ -198,26 +198,26 @@ const SSO = () => {
   return (
     <>
       {/* create sso provider */}
-      <BoslerModal
+      <OrpheaModal
         headingIcon={<AddUserIcon />}
         heading={getLanguageLabel("addNewSSODetails")}
         open={createView}
         onCancel={handleCreateCancel}
         onOk={handleCreateOk}
         footerButtonArea={
-          <BoslerButton
+          <OrpheaButton
             icon={<TickIcon />}
             intent="action"
             key="submit"
             onClick={handleCreateOk}
           >
             {getLanguageLabel("create")}
-          </BoslerButton>
+          </OrpheaButton>
         }
       >
-        <div className="BoslerHeader1">{getLanguageLabel("name")}</div>
+        <div className="OrpheaHeader1">{getLanguageLabel("name")}</div>
 
-        <BoslerInput
+        <OrpheaInput
           onChange={(e) =>
             setNewSSODetails({
               ...newSSODetails,
@@ -228,8 +228,8 @@ const SSO = () => {
           name="Uname"
           required
         />
-        <div className="BoslerHeader1">{getLanguageLabel("description")}</div>
-        <BoslerInput
+        <div className="OrpheaHeader1">{getLanguageLabel("description")}</div>
+        <OrpheaInput
           onChange={(e) =>
             setNewSSODetails({
               ...newSSODetails,
@@ -240,8 +240,8 @@ const SSO = () => {
           name="description"
           required
         />
-        <div className="BoslerHeader1">{getLanguageLabel("providerName")}</div>
-        <BoslerInput
+        <div className="OrpheaHeader1">{getLanguageLabel("providerName")}</div>
+        <OrpheaInput
           onChange={(e) =>
             setNewSSODetails({
               ...newSSODetails,
@@ -252,8 +252,8 @@ const SSO = () => {
           name="providerName"
           required
         />
-        <div className="BoslerHeader1">{getLanguageLabel("clientId")}</div>
-        <BoslerInput
+        <div className="OrpheaHeader1">{getLanguageLabel("clientId")}</div>
+        <OrpheaInput
           onChange={(e) =>
             setNewSSODetails({
               ...newSSODetails,
@@ -264,8 +264,8 @@ const SSO = () => {
           name="clientId"
           required
         />
-        <div className="BoslerHeader1">{getLanguageLabel("clientSecret")}</div>
-        <BoslerInput
+        <div className="OrpheaHeader1">{getLanguageLabel("clientSecret")}</div>
+        <OrpheaInput
           onChange={(e) =>
             setNewSSODetails({
               ...newSSODetails,
@@ -276,11 +276,11 @@ const SSO = () => {
           name="clientSecret"
           required
         />
-      </BoslerModal>
+      </OrpheaModal>
 
       {/* are you sure you want to delete modal */}
 
-      <BoslerModal
+      <OrpheaModal
         headingIcon={<TrashIcon color="var(--DANGEROUS_COLOR)" />}
         heading={getLanguageLabel("areYouSureYouWantToDeleteThis?")}
         open={deleteModal}
@@ -294,20 +294,20 @@ const SSO = () => {
           // >
           //   <CrossIcon /> {getLanguageLabel("cancel")}
           // </Button>,
-          <BoslerButton
+          <OrpheaButton
             key="submit"
             onClick={() => handleDelete(deleteSSO.id)}
             intent="dangerous"
             icon={<TrashIcon />}
           >
             {getLanguageLabel("delete")}
-          </BoslerButton>
+          </OrpheaButton>
         }
       >
         {deleteSSO.name} SSO{" "}
-      </BoslerModal>
+      </OrpheaModal>
 
-      <BoslerModal
+      <OrpheaModal
         headingIcon={<EditIcon />}
         heading={`${getLanguageLabel("edit")} SSO`}
         open={editModal}
@@ -317,17 +317,17 @@ const SSO = () => {
           // <Button className="interactive" key="back" onClick={handleEditCancel}>
           //   <CrossIcon /> {getLanguageLabel("cancel")}
           // </Button>,
-          <BoslerButton
+          <OrpheaButton
             icon={<TickIcon />}
             onClick={() => handleEdit(editSSO.id)}
           >
             {getLanguageLabel("edit")}
-          </BoslerButton>
+          </OrpheaButton>
         }
       >
-        <div className="BoslerHeader1">{getLanguageLabel("name")}</div>
+        <div className="OrpheaHeader1">{getLanguageLabel("name")}</div>
 
-        <BoslerInput
+        <OrpheaInput
           onChange={(e) =>
             setEditSSO({
               ...editSSO,
@@ -338,8 +338,8 @@ const SSO = () => {
           name="Uname"
           required
         />
-        <div className="BoslerHeader1">{getLanguageLabel("description")}</div>
-        <BoslerInput
+        <div className="OrpheaHeader1">{getLanguageLabel("description")}</div>
+        <OrpheaInput
           onChange={(e) =>
             setEditSSO({
               ...editSSO,
@@ -350,8 +350,8 @@ const SSO = () => {
           name="description"
           required
         />
-        <div className="BoslerHeader1">{getLanguageLabel("providerName")}</div>
-        <BoslerInput
+        <div className="OrpheaHeader1">{getLanguageLabel("providerName")}</div>
+        <OrpheaInput
           onChange={(e) =>
             setEditSSO({
               ...editSSO,
@@ -362,8 +362,8 @@ const SSO = () => {
           name="providerName"
           required
         />
-        <div className="BoslerHeader1">{getLanguageLabel("clientId")}</div>
-        <BoslerInput
+        <div className="OrpheaHeader1">{getLanguageLabel("clientId")}</div>
+        <OrpheaInput
           onChange={(e) =>
             setEditSSO({
               ...editSSO,
@@ -374,8 +374,8 @@ const SSO = () => {
           name="clientId"
           required
         />
-        <div className="BoslerHeader1">{getLanguageLabel("clientSecret")}</div>
-        <BoslerInput
+        <div className="OrpheaHeader1">{getLanguageLabel("clientSecret")}</div>
+        <OrpheaInput
           onChange={(e) =>
             setEditSSO({
               ...editSSO,
@@ -386,7 +386,7 @@ const SSO = () => {
           name="clientSecret"
           required
         />
-      </BoslerModal>
+      </OrpheaModal>
 
       <div className="settings-center-block">
         <p>
@@ -399,14 +399,14 @@ const SSO = () => {
             </Col>
             <Col>
               {platformAdmin ? (
-                <BoslerButton
+                <OrpheaButton
                   icon={<AddIcon />}
                   intent="action"
                   onClick={() => setCreateView(true)}
                 >
                   {" "}
                   {getLanguageLabel("addSSOProvider")}{" "}
-                </BoslerButton>
+                </OrpheaButton>
               ) : (
                 ""
               )}

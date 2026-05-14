@@ -1,12 +1,12 @@
 import { Col, Divider, Popconfirm, Row, Typography } from "antd";
-import { SaveIcon } from "assets/icons/boslerActionIcons";
+import { SaveIcon } from "assets/icons/orpheaActionIcons";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getLanguageLabel } from "utils/utilities";
 import { updatePlatformConfig } from "redux/actions/platformSettingsActions";
 import { ThunkAppDispatch } from "redux/types/store";
-import BoslerInput from "components/InputComponent/BoslerInput";
-import BoslerButton from "components/ButtonComponent/BoslerButton";
+import OrpheaInput from "components/InputComponent/OrpheaInput";
+import OrpheaButton from "components/ButtonComponent/OrpheaButton";
 
 const { Text, Title } = Typography;
 export const HistorySettings = () => {
@@ -41,7 +41,7 @@ export const HistorySettings = () => {
               <Text type="secondary">{getLanguageLabel("transactions")}</Text>
             </Col>
             <Col>
-              <BoslerInput
+              <OrpheaInput
                 value={transactions}
                 onChange={(e) => setTransactions(e.target.value)}
               />
@@ -65,13 +65,13 @@ export const HistorySettings = () => {
                 okText="Yes"
                 cancelText="No"
               >
-                <BoslerButton
+                <OrpheaButton
                   icon={<SaveIcon />}
                   intent="primary"
                   textTransform="none"
                 >
                   {getLanguageLabel("update")}{" "}
-                </BoslerButton>
+                </OrpheaButton>
               </Popconfirm>
             </Col>
           </Row>

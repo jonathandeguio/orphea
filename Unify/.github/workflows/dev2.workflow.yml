@@ -3,7 +3,7 @@ name: Whitelist Workflow - Dev2
 on:
   push:
     paths:
-    - 'whitelist.bosler-dev2.txt'
+    - 'whitelist.orphea-dev2.txt'
 
 jobs:
   setup-and-deploy:
@@ -23,8 +23,8 @@ jobs:
 
     - name: Deploy
       run: |-
-        WHITELIST=$(paste -s -d, whitelist.bosler-dev2.txt)
-        SECPOLICY="bosler-dev2"
+        WHITELIST=$(paste -s -d, whitelist.orphea-dev2.txt)
+        SECPOLICY="orphea-dev2"
         gcloud compute security-policies rules update 1000 \
           --security-policy "${SECPOLICY}" \
           --description "allow traffic from whitelist.txt" \

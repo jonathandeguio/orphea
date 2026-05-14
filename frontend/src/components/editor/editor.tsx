@@ -2,7 +2,6 @@ import {
   Col,
   Divider,
   Form,
-  InputNumber,
   message,
   Popover,
   Row,
@@ -54,10 +53,7 @@ import {
 } from "../../assets/icons/boslerMiscellaneousIcons";
 import { TickSmallIcon } from "../../assets/icons/boslerNavigationIcon";
 import BoslerButton from "../BoslerComponents/ButtonComponent/BoslerButton";
-import {
-  CollapserHandler,
-  ResponsivePanel,
-} from "../BoslerComponents/ResizablePane/ResizablePaneUtil";
+import { CollapserHandler } from "../BoslerComponents/ResizablePane/ResizablePaneUtil";
 
 import { DragEndEvent } from "@dnd-kit/core";
 import { arrayMove } from "@dnd-kit/sortable";
@@ -383,36 +379,34 @@ const CodeEditor = () => {
           lastCommitID,
           encodeToBase64(editorPanes[activeId].content),
           rowLimit
-        )
-          .then(({ data }) => {
-            setPreviewActive(true);
-            setPreviewID(data.id);
-            dispatch(
-              updateBottomBarItemState({
-                id: "previewPanelEditor",
-                openPane: true,
-                props: {
-                  id: data.id,
-                  page: "REPOSITORY",
-                  showHeader: false,
-                  showEmpty: false,
-                  buildType: "PREVIEW",
-                },
-              })
-            );
-          })
-          .catch(() => {
+        ).then(({ data }) => {
+          setPreviewActive(true);
+          setPreviewID(data.id);
+          dispatch(
+            updateBottomBarItemState({
+              id: "previewPanelEditor",
+              openPane: true,
+              props: {
+                id: data.id,
+                page: "REPOSITORY",
+                showHeader: false,
+                showEmpty: false,
+                buildType: "PREVIEW",
+              },
+            })
+          ).catch(() => {
             setPreviewActive(false);
             setPreviewID(undefined);
             getDefaultFavicon();
           });
+        });
       }
     },
-    [activeId, editorPanes, dispatch]
+    [activeId, editorPanes]
   );
 
   const trackBranch = async () => {
-    if (isPageVisible && !detachedHead) {
+    if (isPageVisible) {
       try {
         const { data } = await axios.get(
           `/fractal/${id}/${activeBranch}/trackingStatus`
@@ -458,8 +452,7 @@ const CodeEditor = () => {
 
         const localBranch = data.branches;
         const gitActiveBranch = data.activeBranch;
-        if (!detachedHead && gitActiveBranch != activeBranch) {
-          console.log("CHANGING TO ACTIVE BRANHC");
+        if (gitActiveBranch != activeBranch) {
           navigator(id, { branch: gitActiveBranch });
         }
         refreshTree(id, gitActiveBranch);
@@ -707,7 +700,7 @@ const CodeEditor = () => {
 
   useEffect(() => {
     fetchBranches();
-    // trackBranch();
+    trackBranch();
 
     const syncService = setInterval(() => trackBranch(), 10000);
 
@@ -821,7 +814,7 @@ const CodeEditor = () => {
         previewBuild={previewBuild}
         doesScriptHasDecorator={doesScriptHasDecorator}
       />
-      <div className="editorContainer">
+      <div className="editorContainer pullButton">
         {!isEmpty(trackingStatus.gitStatus.conflicting) ? (
           <div
             className="mergingFailedBar"
@@ -877,12 +870,10 @@ const CodeEditor = () => {
 
           <div className="editor">
             {/* /Editor */}
-            <PanelGroup className="editor-pannel" direction={"horizontal"}>
+            <PanelGroup direction={"horizontal"}>
               {/* Editor Sidepanel */}
-              <ResponsivePanel
-                defaultSize={20}
-                primaryPanelRef={primaryPanelRef}
-              >
+
+              <Panel collapsible={true} defaultSize={20} ref={primaryPanelRef}>
                 <div className="sidepanel">
                   <div className="selectContainer">
                     <BranchesButton
@@ -916,12 +907,13 @@ const CodeEditor = () => {
                     refreshTree={refreshTree}
                   />
                 </div>
-              </ResponsivePanel>
+              </Panel>
               <PanelResizeHandle className="resizablePane-collapser">
                 <CollapserHandler primaryPanelRef={primaryPanelRef} />
               </PanelResizeHandle>
               {/* Real Editor */}
-              <Panel style={{ overflowY: "scroll" }}>
+
+              <Panel>
                 {isEmpty(editorPanes) && (
                   // Homepage if no file is open
                   <EditorHome />
@@ -1054,30 +1046,30 @@ const CodeEditor = () => {
                           ></BoslerButton>
                           <Divider type="vertical" />
                           <Tooltip title={getLanguageLabel("changeFont")}>
-                            <InputNumber
-                              size="small"
-                              min={7}
-                              max={70}
-                              style={{
-                                borderRadius: "4px",
-                                height: "30px",
-                                width: "50px",
-                              }}
-                              value={fontSize}
-                              onChange={(e) => {
-                                if (isDefined(e)) {
-                                  setFontSize(() => {
-                                    updateUserDataAPI({
-                                      ...user,
-                                      fontSize: e,
-                                    }).then(({ data }) => {
-                                      dispatch(updateUserDetails(data));
-                                    });
-                                    return e;
+                            {/* <InputNumber
+                            size="small"
+                            min={7}
+                            max={70}
+                            style={{
+                              borderRadius: "4px",
+                              height: "30px",
+                              width: "50px",
+                            }}
+                            value={fontSize}
+                            onChange={(e) => {
+                              if (isDefined(e)) {
+                                setFontSize(() => {
+                                  updateUserDataAPI({
+                                    ...user,
+                                    fontSize: e,
+                                  }).then(({ data }) => {
+                                    dispatch(updateUserDetails(data));
                                   });
-                                }
-                              }}
-                            />
+                                  return e;
+                                });
+                              }
+                            }}
+                          /> */}
                           </Tooltip>
                         </div>
                       ) : (

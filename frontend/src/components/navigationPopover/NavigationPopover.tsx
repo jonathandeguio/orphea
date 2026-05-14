@@ -1,20 +1,16 @@
 import { putChart } from "Apps/Kepler/chart/charts.utils";
 import BoslerModal from "components/CommonUI/BoslerModalContainer";
 import BoslerLoader from "components/boslerLoader";
-import { useFileExplorerService } from "hooks/useFileExplorerService";
 import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router";
 import { unstable_useBlocker as useBlocker } from "react-router-dom";
 import { RootState } from "redux/types/store";
 import { getLanguageLabel } from "utils/utilities";
-import {
-  CrossIcon,
-  SaveIcon,
-  WarningIcon,
-} from "../../assets/icons/boslerActionIcons";
+import { SaveIcon, WarningIcon } from "../../assets/icons/boslerActionIcons";
 import { TrashIcon } from "../../assets/icons/boslerMiscellaneousIcons";
 import BoslerButton from "../BoslerComponents/ButtonComponent/BoslerButton";
+import { useFileExplorerService } from "hooks/useFileExplorerService";
 
 export function AlertDialog({ isBlocking, isSaving, onSave }: any) {
   function useCallbackPrompt(when: any) {
@@ -83,15 +79,6 @@ export function AlertDialog({ isBlocking, isSaving, onSave }: any) {
       open={showPrompt as any}
       onCancel={cancelNavigation as any}
       okType="danger"
-      extraActionHeading={
-        <BoslerButton
-          icon={<CrossIcon />}
-          onClick={cancelNavigation}
-          minimal
-          icononly
-          trimicononlypadding
-        ></BoslerButton>
-      }
       footerButtonArea={
         <>
           <BoslerButton

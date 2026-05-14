@@ -5,7 +5,6 @@ import { EyeOpenIcon } from "assets/icons/boslerInterfaceIcons";
 import BoslerButton from "components/BoslerComponents/ButtonComponent/BoslerButton";
 import { useAutoSaveReady } from "components/VersionHistory/hooks/setAutoSaveReady";
 import BoslerLoader from "components/boslerLoader";
-import NavigationBlocker from "components/navigationPopover/NavigationBlocker";
 import React, { useEffect } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 import { useDispatch, useSelector } from "react-redux";
@@ -196,14 +195,9 @@ const DashboardHeaderActionBtn = ({ id }: TProps) => {
     <>
       {resourcePermission.mode == EDIT_MODE ? (
         <>
-          <NavigationBlocker
-            isBlocking={isDashboardChanged}
-            onSave={() => dispatch(triggerSaveDashboard())}
-            ignoreLastSegmentChange
-          />
           <BoslerButton
             icon={<SaveIcon />}
-            intent={isDashboardChanged ? "action" : "none"}
+            intent="action"
             textTransform="capitalize"
             onClick={() => {
               dispatch(triggerSaveDashboard());
@@ -211,11 +205,11 @@ const DashboardHeaderActionBtn = ({ id }: TProps) => {
             id={TAB_SAVE_BTN_ID}
             disabled={!isDashboardChanged}
           >
-            {getLanguageLabel("save")}
+            {getLanguageLabel("save")}&nbsp; {getLanguageLabel("dashboard")}
           </BoslerButton>
           <BoslerButton
             icon={<EditIcon />}
-            intent={isDashboardChanged ? "dangerous" : "primary"}
+            intent={isDashboardChanged ? "dangerous" : "action"}
             textTransform="capitalize"
             menuItems={itemsAccessMode}
             onClick={() => {

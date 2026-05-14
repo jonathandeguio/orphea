@@ -9,7 +9,7 @@ import { ConfigProvider, theme } from "antd";
 import { HotkeysProvider } from "react-hotkeys-hook";
 import { useSelector } from "react-redux";
 import { isCurrentConfigThemeDark, setTheme } from "utils/utilities";
-import BoslerLoader from "components/boslerLoader";
+import OrpheaLoader from "components/orpheaLoader";
 import { useThemeDetector } from "hooks/useThemeDetector";
 import { useRouter } from "routes/Routes";
 
@@ -43,7 +43,7 @@ function App() {
         },
       }}
     >
-      <React.Suspense fallback={<BoslerLoader type="fallback" />}>
+      <React.Suspense fallback={<OrpheaLoader type="fallback" />}>
         <HotkeysProvider>
           <RouterProvider router={router} />
         </HotkeysProvider>

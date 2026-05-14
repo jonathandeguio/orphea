@@ -17,6 +17,7 @@ import {
 } from "../../../../redux/actions/dashboardActions";
 import { EDIT_MODE } from "../../../../redux/constants/resourcePermissionConstants";
 import { RootState, ThunkAppDispatch } from "../../../../redux/types/store";
+import { ITabConfig } from "../Dashboard";
 import {
   addTabToDashboardAPI,
   getDashboardTabsAPI,
@@ -24,7 +25,6 @@ import {
   moveTabAPI,
   removeTabFromDashboardAPI,
 } from "../Dashboard.api";
-import { ITabConfig } from "../Dashboard.types";
 import DashboardGridDataFetcher from "../DashboardGridDataFetcher";
 import DashboardTabName from "./DashboardTabName";
 import {
@@ -164,10 +164,6 @@ const DashboardTabs = ({ gridRef }: { gridRef: any }) => {
     });
   };
 
-  const confirmRemove = (targetKey: TargetKey) => {
-    remove(targetKey);
-  };
-
   const onEdit = (
     targetKey: React.MouseEvent | React.KeyboardEvent | string,
     action: "add" | "remove"
@@ -175,20 +171,7 @@ const DashboardTabs = ({ gridRef }: { gridRef: any }) => {
     if (action === "add") {
       add();
     } else {
-      // remove(targetKey);
-      if (editable) {
-        return (
-          <Popconfirm
-            title={DELETE_TAB_HEADING}
-            onConfirm={() => confirmRemove(targetKey)}
-            onCancel={cancelTabDeletion}
-            okText={YES_TEXT}
-            cancelText={NO_TEXT}
-          >
-            <span />
-          </Popconfirm>
-        );
-      }
+      remove(targetKey);
     }
   };
 
@@ -273,29 +256,21 @@ const DashboardTabs = ({ gridRef }: { gridRef: any }) => {
     } else {
       tab.label = tab.name;
     }
-  });
 
-  const tabsWithConfirm = tabsItems.map((item: any) => ({
-    ...item,
-    label: (
-      <div style={{ display: "flex", alignItems: "center" }}>
-        <span>{item.label}</span>
-        {item.closable !== false && (
-          <Popconfirm
-            title={DELETE_TAB_HEADING}
-            onConfirm={() => confirmRemove(item.key)}
-            onCancel={cancelTabDeletion}
-            okText={YES_TEXT}
-            cancelText={NO_TEXT}
-          >
-            <span>
-              <CrossIcon />
-            </span>
-          </Popconfirm>
-        )}
-      </div>
-    ),
-  }));
+    if (editable) {
+      tab.closeIcon = (
+        <Popconfirm
+          title={DELETE_TAB_HEADING}
+          onConfirm={confirmTabDeletion}
+          onCancel={cancelTabDeletion}
+          okText={YES_TEXT}
+          cancelText={NO_TEXT}
+        >
+          <CrossIcon />
+        </Popconfirm>
+      );
+    }
+  });
 
   return (
     <DraggableTabs
@@ -304,7 +279,7 @@ const DashboardTabs = ({ gridRef }: { gridRef: any }) => {
       onChange={onTabChange}
       activeKey={activeKey}
       onEdit={onEdit}
-      items={tabsWithConfirm}
+      items={tabsItems}
       tabBarStyle={{
         marginBottom: 0,
       }}

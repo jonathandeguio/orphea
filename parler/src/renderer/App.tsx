@@ -64,7 +64,7 @@ const Hello = () => {
     MonacoServices.install(monaco as typeof monaco_core);
 
     // hardcoded socket URL
-    const url = 'ws://localhost/bosler/monacoServer';
+    const url = 'ws://localhost/orphea/monacoServer';
     const webSocket = new WebSocket(url);
 
     // listen when the web socket is opened

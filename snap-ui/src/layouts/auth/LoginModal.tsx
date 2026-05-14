@@ -1,12 +1,12 @@
 import { Form, Input, Typography } from "antd";
-import { LockIcon } from "assets/icons/boslerActionIcons";
-import { BoslerIcon } from "assets/icons/boslerMiscellaneousIcons";
-import { ArrowRightIcon } from "assets/icons/boslerNavigationIcon";
+import { LockIcon } from "assets/icons/orpheaActionIcons";
+import { OrpheaIcon } from "assets/icons/orpheaMiscellaneousIcons";
+import { ArrowRightIcon } from "assets/icons/orpheaNavigationIcon";
 
 import MfaVerification from "apps/settings/mfaEnabled";
-import BoslerModalContainer from "components/BoslerModalContainer/BoslerModalContainer";
-import BoslerButton from "components/ButtonComponent/BoslerButton";
-import BoslerInput from "components/InputComponent/BoslerInput";
+import OrpheaModalContainer from "components/OrpheaModalContainer/OrpheaModalContainer";
+import OrpheaButton from "components/ButtonComponent/OrpheaButton";
+import OrpheaInput from "components/InputComponent/OrpheaInput";
 import React, { useRef, useState } from "react";
 import { getLanguageLabel } from "utils/utilities";
 import { GITHUB_AUTH_URL, GOOGLE_AUTH_URL } from "./constants";
@@ -27,18 +27,18 @@ const LoginModal = ({
 
   return (
     <div style={{ minWidth: "31rem" }} className="form-containerNew">
-      <BoslerModalContainer
-        heading={<BoslerIcon size={32} />}
+      <OrpheaModalContainer
+        heading={<OrpheaIcon size={32} />}
         footerExtraText={getLanguageLabel("loginAgreement")}
         footerButtonArea={
           <Form.Item style={{ margin: 0 }}>
-            <BoslerButton
+            <OrpheaButton
               intent="success"
               icon={<ArrowRightIcon />}
               htmlType="submit"
             >
               {getLanguageLabel("login")}
-            </BoslerButton>
+            </OrpheaButton>
           </Form.Item>
         }
         information={
@@ -54,14 +54,14 @@ const LoginModal = ({
               textAlign: "left",
             }}
           >
-            <div className="BoslerHeader1" style={{ marginBottom: "10px" }}>
+            <div className="OrpheaHeader1" style={{ marginBottom: "10px" }}>
               Single-Sign-On
             </div>
 
             {/* <Link to={GITHUB_AUTH_URL} style={{ width: "100%" }}>
-              <BoslerButton icon={<CodeCellIcon />} fill outlined>
+              <OrpheaButton icon={<CodeCellIcon />} fill outlined>
                 Github
-              </BoslerButton>
+              </OrpheaButton>
             </Link> */}
             <div className="icons">
               <a
@@ -91,24 +91,24 @@ const LoginModal = ({
             </div>
 
             {/* <Link to={GOOGLE_AUTH_URL} style={{ width: "100%" }}>
-              <BoslerButton icon={<EmailIcon />} fill outlined>
+              <OrpheaButton icon={<EmailIcon />} fill outlined>
                 Google
-              </BoslerButton>
+              </OrpheaButton>
             </Link> */}
-            <BoslerButton icon={<LockIcon />} fill outlined disabled>
+            <OrpheaButton icon={<LockIcon />} fill outlined disabled>
               Keycloak
-            </BoslerButton>
+            </OrpheaButton>
           </div>
         }
         outerBorder={false}
       >
         <>
-          <div className="BoslerHeader1" style={{ marginBottom: "10px" }}>
+          <div className="OrpheaHeader1" style={{ marginBottom: "10px" }}>
             {getLanguageLabel("login")}
           </div>
           <Form.Item
             name="email"
-            // label={<div className="boslerFormLabel">{getLanguageLabel("userName")}</div>}
+            // label={<div className="orpheaFormLabel">{getLanguageLabel("userName")}</div>}
             colon={false}
             required
             rules={[
@@ -118,11 +118,11 @@ const LoginModal = ({
               },
             ]}
           >
-            <BoslerInput autofocus placeholder={getLanguageLabel("userName")} />
+            <OrpheaInput autofocus placeholder={getLanguageLabel("userName")} />
           </Form.Item>
           <Form.Item
             name="password"
-            // label={<div className="boslerFormLabel">{getLanguageLabel("password")}</div>}
+            // label={<div className="orpheaFormLabel">{getLanguageLabel("password")}</div>}
             colon={false}
             required
             rules={[
@@ -150,7 +150,7 @@ const LoginModal = ({
         //   </div>
         // </Form.Item> */}
         </>
-      </BoslerModalContainer>
+      </OrpheaModalContainer>
     </div>
   );
 };

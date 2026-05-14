@@ -18,9 +18,8 @@ import { BigNumberIcon } from "assets/icons/boslerDataIcons";
 import { HelpIcon } from "assets/icons/boslerMiscellaneousIcons";
 import { TableCellIcon } from "assets/icons/boslerTableIcons";
 import { BoslerCollapse } from "components/BoslerComponents/BoslerCollapse/BoslerCollapse";
-import React, { useMemo } from "react";
+import React from "react";
 import { getLanguageLabel } from "utils/utilities";
-import { getChartIcon } from "../charts.utils";
 
 interface IGridCustomizer {
   query: any;
@@ -28,10 +27,79 @@ interface IGridCustomizer {
 }
 
 export const GridCustomizer: React.FC<IGridCustomizer> = ({ query, type }) => {
-  const chartIcon = useMemo(
-    () => getChartIcon(query.chartType, query?.series?.[0]?.seriesType),
-    [query]
-  );
+  const size = 28;
+  let chartIcon = <HelpIcon size={22} color={"#FFA500"} />;
+
+  switch (query.chartType) {
+    // Charts
+    case "pieChart":
+      chartIcon = <PieChartIcon size={size} />;
+      break;
+    case "bigNumber":
+      chartIcon = <BigNumberIcon size={size} />;
+      break;
+    case "mapChart":
+      chartIcon = <MapIcon size={size} />;
+      break;
+    case "gaugeChart":
+      chartIcon = <GaugeIcon size={size} />;
+      break;
+    case "radarChart":
+      chartIcon = <RadarIcon size={size} />;
+      break;
+    case "sunBurstChart":
+      chartIcon = <SunburstIcon size={size} />;
+      break;
+    case "table":
+      chartIcon = <TableCellIcon size={size} />;
+      break;
+    case "lineChart":
+      chartIcon = <LineChartIcon size={size} />;
+      break;
+    case "barChart":
+      chartIcon = <GroupedColumnIcon size={size} />;
+      break;
+    case "lineAreaChart":
+      chartIcon = <SmallAreaChartIcon size={size} />;
+      break;
+    case "treeMapChart":
+      chartIcon = <TreeMapIcon size={size} />;
+      break;
+    case "wordCloudChart":
+      chartIcon = <WordCloudIcon size={size} />;
+      break;
+    case "waterFallChart":
+      chartIcon = <WaterFallIcon size={size} />;
+      break;
+    case "scatterChart":
+      chartIcon = <ScatterIcon size={size} />;
+      break;
+    case "VerticalAxisChart":
+      switch (query?.series?.[0].seriesType) {
+        case "lineChart":
+          chartIcon = <LineChartIcon size={size} />;
+          break;
+        case "barChart":
+          chartIcon = <GroupedColumnIcon size={size} />;
+          break;
+        case "lineAreaChart":
+          chartIcon = <SmallAreaChartIcon size={size} />;
+          break;
+        case "scatterChart":
+          chartIcon = <ScatterIcon size={size} />;
+          break;
+        default:
+          chartIcon = <GroupedColumnIcon size={size} color={"#FFA500"} />;
+          break;
+      }
+      break;
+    case "horizontalBarChart":
+      chartIcon = <StackedGroupedBarIcon size={size} />;
+      break;
+    default:
+      chartIcon = <GroupedColumnIcon size={size} color={"#FFA500"} />;
+      break;
+  }
 
   return (
     <BoslerCollapse

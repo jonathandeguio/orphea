@@ -1,11 +1,4 @@
-import {
-  Dropdown,
-  MenuProps,
-  Popover,
-  TableProps,
-  Tooltip,
-  Typography,
-} from "antd";
+import { Dropdown, MenuProps, Popover, TableProps, Tooltip } from "antd";
 import {
   BuildIcon,
   MoreMenuIcon,
@@ -15,8 +8,8 @@ import {
 } from "assets/icons/boslerActionIcons";
 import { SparkSQLIcon } from "assets/icons/boslerExternalIcons";
 import { TickIcon } from "assets/icons/boslerNavigationIcon";
-import classNames from "classnames";
 import UserInfo from "common/components/UserInfo";
+import BoslerLoader from "components/boslerLoader";
 import React from "react";
 import { Link } from "react-router-dom";
 import {
@@ -28,9 +21,6 @@ import {
 } from "utils/utilities";
 import { ABORTED, ACTIVE, CONNECT, SUCCESS } from "../Builds.constants";
 import { TBuildLog, TBuildStatus } from "../Builds.types";
-import styles from "./Builds.module.scss";
-import BuildTableBuilder from "./HistoryTable/BuildHistoryTableBuilder";
-const { Text } = Typography;
 
 const moreDetailsItems = (
   row: TBuildLog,
@@ -92,16 +82,7 @@ export const getBuildTableColumns = (
 ) => {
   return [
     {
-      title: (
-        <Text
-          type="secondary"
-          strong
-          className={classNames(styles.tableHeaderItem)}
-        >
-          {" "}
-          {getLanguageLabel("status").toUpperCase()}{" "}
-        </Text>
-      ),
+      title: getLanguageLabel("status").toUpperCase(),
       dataIndex: "status",
       // width: 80,
       align: "center",
@@ -140,16 +121,7 @@ export const getBuildTableColumns = (
       },
     },
     {
-      title: (
-        <Text
-          type="secondary"
-          strong
-          className={classNames(styles.tableHeaderItem)}
-        >
-          {" "}
-          {getLanguageLabel("build").toUpperCase()}{" "}
-        </Text>
-      ),
+      title: getLanguageLabel("build").toUpperCase(),
       dataIndex: "id",
       width: 120,
       align: "center",
@@ -168,41 +140,58 @@ export const getBuildTableColumns = (
       ),
     },
     {
-      title: (
-        <Text
-          type="secondary"
-          strong
-          className={classNames(styles.tableHeaderItem)}
-        >
-          {" "}
-          {getLanguageLabel("builder").toUpperCase()}{" "}
-        </Text>
-      ),
+      title: getLanguageLabel("builder").toUpperCase(),
       dataIndex: "builder",
       width: 180,
       align: "center",
       onCell: undefined,
       render: (text: string, row: TBuildLog) => {
-        return (
-          <BuildTableBuilder
-            text={text}
-            row={row}
-            resourceDetailsMap={resourceDetailsMap}
-          />
+        if (!text) {
+          return <div>{getLanguageLabel("noStatus")}</div>;
+        }
+        return resourceDetailsMap ? (
+          resourceDetailsMap.get(text) ? (
+            <Popover
+              title={
+                row.trigger == CONNECT
+                  ? getLanguageLabel("LinkName")
+                  : getLanguageLabel("openCodeRepository")
+              }
+              content={<div>{(resourceDetailsMap.get(text) as any).name}</div>}
+            >
+              <a
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  navigate(
+                    row.trigger == CONNECT
+                      ? `/portal/connect/link/${text}`
+                      : `/portal/kitab/repository/${text}/${row.branch}/?f=${row.scriptPath}`
+                  );
+                }}
+              >
+                <div
+                  className="pop-over-item"
+                  style={{
+                    display: "inline",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                  }}
+                >
+                  {(resourceDetailsMap.get(text) as any).name}
+                </div>
+              </a>
+            </Popover>
+          ) : (
+            <div>{getLanguageLabel("notAvailable")}</div>
+          )
+        ) : (
+          <BoslerLoader size="small" />
         );
       },
     },
     {
-      title: (
-        <Text
-          type="secondary"
-          strong
-          className={classNames(styles.tableHeaderItem)}
-        >
-          {" "}
-          {getLanguageLabel("branch").toUpperCase()}{" "}
-        </Text>
-      ),
+      title: getLanguageLabel("branch").toUpperCase(),
       dataIndex: "branch",
       width: 140,
       align: "center",
@@ -211,34 +200,18 @@ export const getBuildTableColumns = (
         return <>{text}</>;
       },
     },
+
     {
-      title: (
-        <Text
-          type="secondary"
-          strong
-          className={classNames(styles.tableHeaderItem)}
-        >
-          {" "}
-          {getLanguageLabel("triggerType").toUpperCase()}{" "}
-        </Text>
-      ),
-      sorter: (a: $TSFixMe, b: $TSFixMe) => a.trigger.localeCompare(b.trigger),
+      title: `${getLanguageLabel("trigger").toUpperCase()} ${getLanguageLabel(
+        "type"
+      ).toUpperCase()}`,
       dataIndex: "trigger",
       // width: 80,
       onCell: undefined,
       align: "center",
     },
     {
-      title: (
-        <Text
-          type="secondary"
-          strong
-          className={classNames(styles.tableHeaderItem)}
-        >
-          {" "}
-          {getLanguageLabel("startedBy").toUpperCase()}{" "}
-        </Text>
-      ),
+      title: getLanguageLabel("startedBy").toUpperCase(),
       dataIndex: "startedBy",
       width: 200,
       align: "center",
@@ -248,16 +221,7 @@ export const getBuildTableColumns = (
       },
     },
     {
-      title: (
-        <Text
-          type="secondary"
-          strong
-          className={classNames(styles.tableHeaderItem)}
-        >
-          {" "}
-          {getLanguageLabel("startedAt").toUpperCase()}{" "}
-        </Text>
-      ),
+      title: getLanguageLabel("startedAt").toUpperCase(),
       dataIndex: "startedAt",
       // width: 80,
       align: "center",
@@ -267,16 +231,7 @@ export const getBuildTableColumns = (
       ),
     },
     {
-      title: (
-        <Text
-          type="secondary"
-          strong
-          className={classNames(styles.tableHeaderItem)}
-        >
-          {" "}
-          {getLanguageLabel("duration").toUpperCase()}{" "}
-        </Text>
-      ),
+      title: getLanguageLabel("duration").toUpperCase(),
       dataIndex: "duration",
       // width: 80,
       align: "center",

@@ -1,4 +1,4 @@
-#!/bin/bash
+!/bin/bash
 
 # Check if the user provided a new hostname as an argument
 if [ -z "$1" ]; then

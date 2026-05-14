@@ -114,7 +114,7 @@
 //   }
 // }
 
-.bosler-icons {
+.orphea-icons {
   font-family: "Icon" !important;
   font-weight: normal;
   font-style: normal;
@@ -235,7 +235,7 @@
   height: 25px;
   border-radius: 100%;
   border: none;
-  background-color: var(--bosler-border-color-default);
+  background-color: var(--orphea-border-color-default);
   flex: 0 0 auto;
   vertical-align: text-bottom;
 }
@@ -248,21 +248,21 @@
   min-width: 25px;
   height: 25px;
   border-radius: 100%;
-  border: 0.4px solid var(--bosler-border-color-default);
+  border: 0.4px solid var(--orphea-border-color-default);
   flex: 0 0 auto;
   vertical-align: text-bottom;
 }
 
 .build-log-table {
-  border: 0px solid var(--bosler-border-color-default);
+  border: 0px solid var(--orphea-border-color-default);
   border-collapse: collapse;
   padding: 20px;
 }
 
 .error {
   animation: shake 0.2s ease-in-out 0s 2;
-  color: var(--bosler-intent-danger);
-  border: 2px solid var(--bosler-intent-danger);
+  color: var(--orphea-intent-danger);
+  border: 2px solid var(--orphea-intent-danger);
   border-radius: 5px;
 }
 
@@ -270,7 +270,7 @@
   cursor: pointer;
 
   &:hover {
-    background-color: var(--bosler-hover-color);
+    background-color: var(--orphea-hover-color);
   }
 }
 
@@ -284,15 +284,15 @@
 
 .excel-style-table {
   .ant-table-thead > tr > th {
-    background-color: var(--bosler-bkg-color-muted);
-    border: 0.3px solid var(--bosler-border-color-muted);
+    background-color: var(--orphea-bkg-color-muted);
+    border: 0.3px solid var(--orphea-border-color-muted);
     font-weight: bold;
-    color: var(--bosler-font-color-muted);
+    color: var(--orphea-font-color-muted);
     font-size: 0.7rem;
   }
 
   .ant-table-tbody > tr > td {
-    border: 0.3px solid var(--bosler-border-color-muted);
+    border: 0.3px solid var(--orphea-border-color-muted);
     font-size: 0.7rem;
     font-family: "IBM Plex Sans", system-ui, -apple-system, BlinkMacSystemFont,
       sans-serif;
@@ -302,7 +302,7 @@
   }
 
   .ant-table-tbody > tr:hover > td {
-    background-color: var(--bosler-bkg-color-muted);
+    background-color: var(--orphea-bkg-color-muted);
     cursor: pointer;
   }
 }
@@ -321,7 +321,7 @@
   font-family: "IBM Plex Sans", system-ui, -apple-system, BlinkMacSystemFont,
     sans-serif;
   font-weight: 400;
-  color: var(--bosler-font-color-muted);
+  color: var(--orphea-font-color-muted);
   font-size: 0.7rem;
 }
 
@@ -329,14 +329,14 @@
   font-family: "IBM Plex Sans", system-ui, -apple-system, BlinkMacSystemFont,
     sans-serif;
   font-weight: 600;
-  color: var(--bosler-font-color-muted);
+  color: var(--orphea-font-color-muted);
   font-size: 0.7rem;
-  background-color: var(--bosler-bkg-color-muted);
-  border: 0px solid var(--bosler-border-color-muted);
+  background-color: var(--orphea-bkg-color-muted);
+  border: 0px solid var(--orphea-border-color-muted);
 }
 
 .ant-pagination-item:hover a {
-  color: var(--bosler-font-color-default);
+  color: var(--orphea-font-color-default);
 }
 
 .ant-pagination-prev,
@@ -346,27 +346,27 @@
 
 .ant-pagination-prev a,
 .ant-pagination-next a {
-  color: var(--bosler-hover-color);
+  color: var(--orphea-hover-color);
 }
 
 .ant-pagination-prev:hover a,
 .ant-pagination-next:hover a {
   color: #fff;
-  background-color: var(--bosler-hover-color);
-  border-color: var(--bosler-hover-color);
+  background-color: var(--orphea-hover-color);
+  border-color: var(--orphea-hover-color);
 }
 
 .ant-pagination-jump-prev,
 .ant-pagination-jump-next {
   border-radius: 4px;
-  color: var(--bosler-hover-color);
+  color: var(--orphea-hover-color);
 }
 
 .ant-pagination-jump-prev:hover,
 .ant-pagination-jump-next:hover {
   color: #fff;
-  background-color: var(--bosler-hover-color);
-  border-color: var(--bosler-hover-color);
+  background-color: var(--orphea-hover-color);
+  border-color: var(--orphea-hover-color);
 }
 
 .spinner {

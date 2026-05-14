@@ -1,16 +1,9 @@
-import { JDBCSourceTypeEnum } from "Apps/Connect/Enums/JDBCSourceTypeEnum";
 import { Avatar, Col, Flex, Radio, Row, Select, Space } from "antd";
 import { RadioChangeEvent } from "antd/lib";
-import { LinkIcon, SyncIcon } from "assets/icons/boslerActionIcons";
-import { SQLIcon } from "assets/icons/boslerDataIcons";
+import { LinkIcon } from "assets/icons/boslerActionIcons";
 import {
-  JupyterIcon,
-  MariaDBIcon,
-  MySQLIcon,
-  OracleIcon,
   PostgresIcon,
   PythonIcon,
-  SnowflakeIcon,
   SparkSQLIcon,
 } from "assets/icons/boslerExternalIcons";
 import { UploadIcon } from "assets/icons/boslerInterfaceIcons";
@@ -26,7 +19,6 @@ import {
   COLUMNSTATS,
   CONNECT,
   DATASET,
-  NOTEBOOK,
   PYTHON,
   SQL,
   SYNCHRO,
@@ -84,10 +76,6 @@ export const BuildsFilters = ({ filters, setFilters }: IProps) => {
               <PythonIcon />
               {getLanguageLabel("python")}
             </Option>
-            <Option value={NOTEBOOK}>
-              <JupyterIcon />
-              {"Jupyter Notebook"}
-            </Option>
             <Option value={SQL}>
               <div className="text-and-icon-center">
                 <SparkSQLIcon /> {SQL}
@@ -110,66 +98,17 @@ export const BuildsFilters = ({ filters, setFilters }: IProps) => {
             </Option>
             <Option value={COLUMNSTATS}>
               <div className="text-and-icon-center">
-                <FilterIcon /> {getLanguageLabel("columnStats")}
+                <FilterIcon /> Column Stats
               </div>
             </Option>
             <Option value={SYNCHRO}>
               <div className="text-and-icon-center">
-                <SyncIcon /> {getLanguageLabel("sync")}
+                <PostgresIcon /> Postgres Sync
               </div>
             </Option>
           </Select>
         </Col>
       </Row>
-      {(filters.trigger.includes(SYNCHRO) ||
-        filters.trigger.includes(CONNECT)) && (
-        <Row gutter={[8, 8]}>
-          <Col span={24}>Source Type</Col>
-          <Col span={24}>
-            <Select
-              mode="multiple"
-              placeholder={`Choose your source type to filter`}
-              value={filters.sourceType}
-              style={{ width: "100%" }}
-              onChange={(values) => {
-                onChange("sourceType", values);
-              }}
-            >
-              <Option value={JDBCSourceTypeEnum.POSTGRES}>
-                <div className="text-and-icon-center">
-                  <PostgresIcon />
-                  {"Postgres"}
-                </div>
-              </Option>
-              <Option value={JDBCSourceTypeEnum.MYSQL}>
-                <div className="text-and-icon-center">
-                  <MySQLIcon /> {"My SQL"}
-                </div>
-              </Option>
-              <Option value={JDBCSourceTypeEnum.SNOWFLAKE}>
-                <div className="text-and-icon-center">
-                  <SnowflakeIcon /> {"Snowflake"}
-                </div>
-              </Option>
-              <Option value={JDBCSourceTypeEnum.MSSQLSERVER}>
-                <div className="text-and-icon-center">
-                  <SQLIcon /> {"Micosoft SQL Server"}
-                </div>
-              </Option>
-              <Option value={JDBCSourceTypeEnum.MARIADB}>
-                <div className="text-and-icon-center">
-                  <MariaDBIcon /> {"Maria DB"}
-                </div>
-              </Option>
-              <Option value={JDBCSourceTypeEnum.ORACLE21}>
-                <div className="text-and-icon-center">
-                  <OracleIcon /> {"Oracle"}
-                </div>
-              </Option>
-            </Select>
-          </Col>
-        </Row>
-      )}
 
       <Row gutter={[8, 8]}>
         <Col span={24}>{getLanguageLabel("startedAt")}</Col>

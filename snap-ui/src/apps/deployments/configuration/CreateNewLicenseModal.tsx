@@ -1,20 +1,20 @@
 import { Col, Divider, Form, Row, Select, Switch, Typography } from "antd";
-import { KeyIcon } from "assets/icons/boslerInterfaceIcons";
+import { KeyIcon } from "assets/icons/orpheaInterfaceIcons";
 import {
   LibraryIcon,
   LightBulbIcon,
-} from "assets/icons/boslerMiscellaneousIcons";
+} from "assets/icons/orpheaMiscellaneousIcons";
 import axios from "axios";
-import BoslerDatePicker from "components/BoslerDatePicker";
+import OrpheaDatePicker from "components/OrpheaDatePicker";
 import { ErrorResponse } from "global";
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { getLanguageLabel, isDefined, openNotification } from "utils/utilities";
-import { TickIcon } from "assets/icons/boslerNavigationIcon";
-import BoslerModal from "components/BoslerModalContainer";
-import BoslerButton from "components/ButtonComponent/BoslerButton";
-import BoslerInput from "components/InputComponent/BoslerInput";
+import { TickIcon } from "assets/icons/orpheaNavigationIcon";
+import OrpheaModal from "components/OrpheaModalContainer";
+import OrpheaButton from "components/ButtonComponent/OrpheaButton";
+import OrpheaInput from "components/InputComponent/OrpheaInput";
 import { getAllConfigurationDetails } from "redux/actions/ConfigurationActions";
 import { ThunkAppDispatch } from "redux/types/store";
 
@@ -128,7 +128,7 @@ const CreateNewLicenseModal = ({
   return (
     <>
       <Form>
-        <BoslerModal
+        <OrpheaModal
           headingIcon={<KeyIcon />}
           heading={getLanguageLabel("productLicensing")}
           open={isOpen}
@@ -136,14 +136,14 @@ const CreateNewLicenseModal = ({
           width={800}
           footerButtonArea={
             <>
-              <BoslerButton
+              <OrpheaButton
                 icon={<TickIcon />}
                 intent="action"
                 key="submit"
                 onClick={handleOk}
               >
                 Create
-              </BoslerButton>
+              </OrpheaButton>
             </>
           }
           information={
@@ -160,8 +160,8 @@ const CreateNewLicenseModal = ({
                     fontSize: "0.7rem",
                   }}
                 >
-                  License creation in Bosler is an exclusive feature reserved
-                  for Bosler Team users. When creating a license, you have the
+                  License creation in Orphea is an exclusive feature reserved
+                  for Orphea Team users. When creating a license, you have the
                   option to choose from three distinct product types: data
                   platform, data hub, and data platform. Additionally, you can
                   tailor your license by selecting one of four size options:
@@ -192,17 +192,17 @@ const CreateNewLicenseModal = ({
                   <Text strong>{getLanguageLabel("access")}</Text>
                 </div>
                 <div style={{ paddingTop: "10px", paddingLeft: "20px" }}>
-                  License creation is only available for Bosler Team
+                  License creation is only available for Orphea Team
                 </div>
               </div>
             </div>
           }
-          footerExtraText="License creation is only available for Bosler Team"
+          footerExtraText="License creation is only available for Orphea Team"
         >
           <Item name={"client"}>
             <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
               <label style={{ width:'25%' }}>Client:</label>
-              <BoslerInput
+              <OrpheaInput
                 placeholder="Enter premise name"
                 autofocus
                 onChange={(e: any) =>
@@ -257,7 +257,7 @@ const CreateNewLicenseModal = ({
           <Item name="expiresOn" required>
             <div style={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
               <label style={{ width:'34%' }}>Expires On:</label>
-              <BoslerDatePicker
+              <OrpheaDatePicker
                 onChange={(date: any) => {
                   const timestamp = date ? date.valueOf() : null;
                   setNewLicenseDetails({
@@ -284,7 +284,7 @@ const CreateNewLicenseModal = ({
                   <Select.Option value="https">https</Select.Option>
                 </Select>
 
-                <BoslerInput
+                <OrpheaInput
                   placeholder="Enter your server FQDN"
                   onChange={handleFqdnChange}
                   value={newLicenseDetails.baseUrl.split("://")[1] || ""}
@@ -298,7 +298,7 @@ const CreateNewLicenseModal = ({
           <Item name={"maximumUsers"}>
           <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
               <label style={{ width:'25%' }}>Users:</label>
-              <BoslerInput
+              <OrpheaInput
                 defaultValue={100000}
                 placeholder="Enter Count of max Users"
                 autoFocus
@@ -318,7 +318,7 @@ const CreateNewLicenseModal = ({
           <Item name={"maximumBuildsPerDay"}>
             <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
               <label style={{ width:'25%' }}>Builds per day:</label>
-              <BoslerInput
+              <OrpheaInput
                 defaultValue={100000}
                 placeholder="Enter Count of max builds per day"
                 autofocus
@@ -338,7 +338,7 @@ const CreateNewLicenseModal = ({
           <Item name={"maximumDatasets"}>
             <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
               <label style={{ width:'25%' }}>Datasets:</label>
-              <BoslerInput
+              <OrpheaInput
                 defaultValue={100000}
                 placeholder="Enter Count of max datasets"
                 autofocus
@@ -358,7 +358,7 @@ const CreateNewLicenseModal = ({
           <Item name={"maximumRepositories"}>
             <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
               <label style={{ width:'25%' }}>Repositories:</label>
-              <BoslerInput
+              <OrpheaInput
                 defaultValue={100000}
                 placeholder="Enter Count of max Repositories"
                 autofocus
@@ -378,7 +378,7 @@ const CreateNewLicenseModal = ({
           <Item name={"maximumCharts"}>
             <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
               <label style={{ width:'25%' }}>Charts:</label>
-              <BoslerInput
+              <OrpheaInput
                 defaultValue={100000}
                 placeholder="Enter Count of max Charts"
                 autofocus
@@ -398,7 +398,7 @@ const CreateNewLicenseModal = ({
           <Item name={"maximumDashboards"}>
             <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
               <label style={{ width:'25%' }}>Dashboards:</label>
-              <BoslerInput
+              <OrpheaInput
                 defaultValue={100000}
                 placeholder="Enter Count of max Dashboards"
                 autofocus
@@ -414,7 +414,7 @@ const CreateNewLicenseModal = ({
               />
             </div>
           </Item>
-        </BoslerModal>
+        </OrpheaModal>
       </Form>
     </>
 );

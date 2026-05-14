@@ -8,7 +8,6 @@ import { BoslerCollapse } from "components/BoslerComponents/BoslerCollapse/Bosle
 import BoslerButton from "components/BoslerComponents/ButtonComponent/BoslerButton";
 import React, { useState } from "react";
 import { getLanguageLabel, getSourceIcon } from "utils/utilities";
-import RestAPISourcePage from "./RestAPIConnector/RestAPISourcePage";
 import { ISourceConfig } from "./Source";
 import SourceModal from "./SourceModal.view";
 import { TestConnectionButton } from "./TestConnection.view";
@@ -66,7 +65,7 @@ const SourceInfoPanel = ({ source, getSource }: IProps) => {
             </Col>
           </Row>
 
-          {source.description && (
+          {(source as any).description && (
             <>
               <Row
                 justify={"space-between"}
@@ -100,12 +99,12 @@ const SourceInfoPanel = ({ source, getSource }: IProps) => {
                 icon={<FolderIcon />}
                 minimal
               >
-                {source.parent}
+                {parent.name}
               </BoslerButton>
             </Col>
           </Row>
 
-          {source.type === "FOLDER" && (
+          {(source as $TSFixMe)?.type === "FOLDER" && (
             <>
               <br />
               <Text type="secondary" strong>
@@ -140,7 +139,7 @@ const SourceInfoPanel = ({ source, getSource }: IProps) => {
             </>
           )}
 
-          {source.type === "jdbc" && (
+          {(source as $TSFixMe)?.type === "jdbc" && (
             <>
               <Row
                 justify={"space-between"}
@@ -277,18 +276,70 @@ const SourceInfoPanel = ({ source, getSource }: IProps) => {
             </>
           )}
 
-          {source.type === "rest" && <RestAPISourcePage source={source} />}
+          {(source as $TSFixMe)?.type === "rest" && (
+            <>
+              <br />
+              <Text type="secondary" strong>
+                {"API"}
+              </Text>
+
+              <Row
+                justify={"space-between"}
+                align="top"
+                style={{ marginTop: "10px" }}
+                gutter={[16, 16]}
+              >
+                <Col span={8}>
+                  <Text>{getLanguageLabel("token")}</Text>
+                </Col>
+                <Col span={16}>
+                  <Text>{(source as $TSFixMe)["token"]}</Text>
+                </Col>
+              </Row>
+
+              <Row
+                justify={"space-between"}
+                align="top"
+                style={{ marginTop: "10px" }}
+                gutter={[16, 16]}
+              >
+                <Col span={8}>
+                  <Text>
+                    {"API"} {"URL"}
+                  </Text>
+                </Col>
+                <Col span={16}>
+                  <Text>{(source as $TSFixMe)["url"]}</Text>
+                </Col>
+              </Row>
+
+              <Row
+                justify={"space-between"}
+                align="top"
+                style={{ marginTop: "10px" }}
+                gutter={[16, 16]}
+              >
+                <Col span={8}>
+                  <Text>{getLanguageLabel("method")}</Text>
+                </Col>
+                <Col span={16}>
+                  <Text>{(source as $TSFixMe)["method"]}</Text>
+                </Col>
+              </Row>
+            </>
+          )}
         </div>
       </div>
-      {isUpdateSourceModalOpen && (
-        <SourceModal
-          isVisible={isUpdateSourceModalOpen}
-          setIsVisible={setIsUpdateSourceModalOpen}
-          defaultParent={source.parent}
-          defaultSourceDetails={source}
-          updateSource={getSource}
-        />
-      )}
+      <SourceModal
+        isVisible={isUpdateSourceModalOpen}
+        setIsVisible={setIsUpdateSourceModalOpen}
+        defaultParent={source.id}
+        updateDetails={{
+          sourceDetails: source,
+          parent: parent,
+          updateSource: getSource,
+        }}
+      />
     </div>
   );
 };

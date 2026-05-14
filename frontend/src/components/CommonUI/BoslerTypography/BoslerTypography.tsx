@@ -1,8 +1,8 @@
-import { CopyIcon } from "assets/icons/boslerEditorIcons";
-import classnames from "classnames";
 import React, { useEffect, useRef, useState } from "react";
-import { getLanguageLabel, isDefined } from "utils/utilities";
 import styles from "./BoslerTypography.module.scss";
+import classnames from "classnames";
+import { getLanguageLabel, isDefined } from "utils/utilities";
+import { CopyIcon } from "assets/icons/boslerEditorIcons";
 
 interface TProps {
   size?: number; // Specify in px
@@ -18,7 +18,7 @@ interface TypographyProps {
   casing?: "capitalize" | "uppercase" | "lowercase";
   highlight?: boolean;
   color?: string;
-  children: string | any;
+  children: string;
   tooltip?: boolean;
 }
 

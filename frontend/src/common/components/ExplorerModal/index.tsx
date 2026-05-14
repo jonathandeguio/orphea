@@ -3,7 +3,7 @@ import { ProjectDropdownButton } from "Apps/explorer/ProjectDropdownButton";
 import { usePath } from "Apps/explorer/explorer.hooks";
 import { treeNodeComparator } from "Apps/explorer/explorer.utils";
 import { FolderDetailPanel } from "Apps/explorer/folderDetailPanel";
-import { RemoveIcon } from "assets/icons/boslerActionIcons";
+import { RefreshIcon, RemoveIcon } from "assets/icons/boslerActionIcons";
 import {
   SingleChevronRightIcon,
   TickIcon,
@@ -156,13 +156,6 @@ export const ExplorerModal: React.FC = () => {
           e.stopPropagation();
           dispatch(closeFileExplorerModal());
         }}
-        styles={{
-          mask: {
-            backgroundColor: "rgba(248, 250, 251, 0.7)",
-            // zIndex: 1300,
-          },
-          // wrapper: { zIndex: 1300 },
-        }}
         okButtonProps={{ icon: <TickSmallIcon /> }}
         cancelButtonProps={{ icon: <RemoveIcon /> }}
         footerButtonArea={
@@ -246,8 +239,6 @@ export const ExplorerModal: React.FC = () => {
                   disable={!isEmpty(projectSwitchAllowed)}
                   defaultProject={activeProject}
                   onSelect={(id) => {
-                    setChildren([]);
-                    setTreeData(null);
                     dispatch(
                       updateFileExplorerModalState({
                         activeId: id,

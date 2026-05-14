@@ -42,10 +42,8 @@ import {
   ScheduleTriggerType,
 } from "components/bottomBar/Schedules/SchedulesModal.constants";
 import { TScheduleJobInfo } from "components/bottomBar/Schedules/SchedulesModal.types";
-import NavigationBlocker from "components/navigationPopover/NavigationBlocker";
 import { useHotkeys } from "react-hotkeys-hook";
 import { handleConnectUpdateAPI } from "../Connect.api";
-import { convertWebhookRequestsFieldsToString } from "../Webhook/Webhook.utils";
 import ConnectPreviewBtn from "./ConnectPreviewBtn";
 import LinkModal from "./LinkModal.view";
 const LinkHeader = ({
@@ -57,7 +55,6 @@ const LinkHeader = ({
   updateLink,
   noChanges,
   setNoChanges,
-  form,
 }: any) => {
   const dispatch = useDispatch<ThunkAppDispatch>();
   const navigate = useNavigate();
@@ -125,13 +122,6 @@ const LinkHeader = ({
       script = encodeToBase64(querySource.code);
     }
 
-    const orderedRequests = form
-      ?.getFieldValue("requests")
-      ?.map((request: any, index: any) => ({
-        ...request,
-        requestOrder: index,
-      }));
-
     let body = {
       id: linkDetails.id,
       name: linkDetails.name,
@@ -142,12 +132,9 @@ const LinkHeader = ({
       dataLiveLoad: linkDetails.dataLiveLoad,
       sourceId: linkDetails.sourceId,
       parent: linkDetails.parent,
-      writeMode: linkDetails.writeMode,
+      saveMode: linkDetails.saveMode,
       trigger: linkDetails.trigger,
       cronExpression: linkDetails.cronExpression,
-      requests: convertWebhookRequestsFieldsToString(orderedRequests),
-      responseParam: form.getFieldValue("responseParam"),
-      csvPreprocessing: form.getFieldValue("csvPreprocessing"),
     };
 
     handleConnectUpdateAPI("link", JSON.stringify(body)).then(({ data }) => {
@@ -233,11 +220,7 @@ const LinkHeader = ({
 
         <Comments id={linkDetails.id} />
         <Avatars link={`/topic/${linkDetails.id}`} />
-        <ConnectPreviewBtn
-          linkId={linkDetails.id}
-          linkDetails={linkDetails}
-          form={form}
-        />
+        <ConnectPreviewBtn linkId={linkDetails.id} />
         {!linkDetails.dataLiveLoad && (
           <BuildBtn
             datasetId={null}
@@ -248,40 +231,34 @@ const LinkHeader = ({
             disabled={!noChanges}
           />
         )}
-        {(source.type == "jdbc" || source.type == "rest") && (
-          <>
-            <NavigationBlocker
-              cancelButtonText={getLanguageLabel("discard")}
-              isBlocking={!noChanges}
-              onSave={() => dispatch(handleUpdate)}
-              ignoreLastSegmentChange
-            />
-            <Popover
-              title={
-                !noChanges && (
-                  <>
-                    {getLanguageLabel("unSaved")}
-                    <span className="key-binding text-and-icon-center">
-                      {userOSkey} S
-                    </span>
-                  </>
-                )
-              }
-              content={
-                !noChanges && (
-                  <>
-                    <div
-                      style={{
-                        maxWidth: "200px",
-                        wordWrap: "break-word",
-                      }}
-                    >
-                      {getLanguageLabel("unsavedMsg")}
-                    </div>
-                  </>
-                )
-              }
-            >
+        {source.type == "jdbc" && (
+          <Popover
+            title={
+              !noChanges && (
+                <>
+                  {getLanguageLabel("unSaved")}
+                  <span className="key-binding text-and-icon-center">
+                    {userOSkey} S
+                  </span>
+                </>
+              )
+            }
+            content={
+              !noChanges && (
+                <>
+                  <div
+                    style={{
+                      maxWidth: "200px",
+                      wordWrap: "break-word",
+                    }}
+                  >
+                    {getLanguageLabel("unsavedMsg")}
+                  </div>
+                </>
+              )
+            }
+          >
+            <>
               <BoslerButton
                 icon={<SaveIcon />}
                 onClick={handleUpdate}
@@ -291,8 +268,8 @@ const LinkHeader = ({
               >
                 {getLanguageLabel("save")}
               </BoslerButton>
-            </Popover>
-          </>
+            </>
+          </Popover>
         )}
         <Dropdown
           menu={{

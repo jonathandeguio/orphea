@@ -2,7 +2,7 @@ import "Apps/Kepler/dashboard/DashboardSubscribeMenu/DashboardSubscribeMenu.scss
 import axios, { AxiosResponse } from "axios";
 import BoslerModalContainer from "components/CommonUI/BoslerModalContainer/BoslerModalContainer";
 import React, { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ParticleApp } from "utils/ParticleApp";
 import { getLanguageLabel, isIpPlatform } from "utils/utilities";
 import "../../../Apps/Kepler/dashboard/DashboardSubscribeMenu/DashboardSubscribeMenu.scss";
@@ -29,7 +29,6 @@ export const ErrorComponent = ({
   errorCode,
   errorMsg,
 }: ErrorComponentProps) => {
-  const navigate = useNavigate();
   useEffect(() => {
     logError({
       name: errorHeading,
@@ -84,22 +83,15 @@ export const ErrorComponent = ({
               heading={errorHeading}
               footerExtraText={getLanguageLabel("homePageMsg")}
               footerButtonArea={
-                <BoslerButton
-                  intent="action"
-                  icon={<ArrowRightIcon />}
-                  htmlType="submit"
-                  autoTriggerOnTimeout={3}
-                  onClick={() => {
-                    if (
-                      !(location.hostname === "localhost") &&
-                      !(location.hostname === "127.0.0.1")
-                    ) {
-                      navigate("/portal/home");
-                    }
-                  }}
-                >
-                  {getLanguageLabel("homePage")}
-                </BoslerButton>
+                <Link to="/portal/home">
+                  <BoslerButton
+                    intent="action"
+                    icon={<ArrowRightIcon />}
+                    htmlType="submit"
+                  >
+                    {getLanguageLabel("homePage")}
+                  </BoslerButton>
+                </Link>
               }
               outerBorder={false}
               information={

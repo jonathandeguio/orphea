@@ -10,7 +10,7 @@ import {
   Typography
 } from "antd";
 import axios from "axios";
-import BoslerLoader from "components/boslerLoader";
+import OrpheaLoader from "components/orpheaLoader";
 import UserPopOver from "components/UserPopover/userpopover";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -134,7 +134,7 @@ export const UploadSettings = () => {
   return (
     <div className="settings-center-block">
       {loading ? (
-        <BoslerLoader />
+        <OrpheaLoader />
       ) : (
         <>
           <Row>

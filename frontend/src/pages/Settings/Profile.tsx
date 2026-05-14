@@ -1,15 +1,15 @@
 import {
   Avatar,
-  Card,
   Col,
   Collapse,
   Divider,
+  Form,
+  Input,
   message,
   Popover,
   Radio,
   Row,
   Select,
-  Switch,
   Table,
   Tabs,
   Typography,
@@ -19,7 +19,7 @@ import axios from "axios";
 const { Option } = Select;
 
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 // import { setTheme } from "../../App";
 import React from "react";
@@ -30,17 +30,15 @@ import {
   openNotification,
   setTheme,
 } from "utils/utilities";
-import { RootState, ThunkAppDispatch } from "../../redux/types/store";
+import { ThunkAppDispatch } from "../../redux/types/store";
 
 import type { RcFile } from "antd/es/upload/interface";
 import BoslerInput from "components/BoslerComponents/InputComponent/BoslerInput";
 
 import { TickIcon } from "assets/icons/boslerNavigationIcon";
 import { updateUserDataAPI } from "components/CommandPalette/CommandPalette.api";
-import BoslerModal from "components/CommonUI/BoslerModalContainer";
-import { BoslerTypography } from "components/CommonUI/BoslerTypography";
-import { useNavigate, useParams } from "react-router";
-import { SaveIcon } from "../../assets/icons/boslerActionIcons";
+import { useNavigate } from "react-router";
+import { LockIcon, SaveIcon } from "../../assets/icons/boslerActionIcons";
 import { EditIcon } from "../../assets/icons/boslerEditorIcons";
 import {
   GroupsIcon,
@@ -51,10 +49,6 @@ import BoslerButton from "../../components/BoslerComponents/ButtonComponent/Bosl
 import BoslerLoader from "../../components/boslerLoader";
 import { updateLanguage } from "../../redux/actions/languageActions";
 import { updateUserDetails } from "../../redux/actions/userActions";
-import MfaConfiguration, {
-  openNotificationWithIcon,
-} from "./components/MfaConfiguration";
-import { useUserProjectsController } from "./modules/UserProjects/utils/useUserProjectsController";
 import "./Profile.scss";
 const layout = {
   labelCol: {
@@ -82,19 +76,52 @@ const { Panel } = Collapse;
 /* eslint-enable no-template-curly-in-string */
 
 const Profile = ({ user, self, showPreferences, loginHistory }: $TSFixMe) => {
-  const [loadingMfa, setLoadingMfa] = useState<boolean>(false);
   const [newUserData, setNewUserData] = useState({ ...user });
   const dispatch = useDispatch<ThunkAppDispatch>();
   const navigate = useNavigate();
-  const [isOnRecoveryCode, setIsOnRecoveryCode] = useState<boolean>(false);
-  const { user: loggedinUser } = useSelector(
-    (state) => (state as any).userDetails
-  );
+
   const [uploadLoading, setUploadLoading] = useState(false);
 
   const [updated, setUpdated] = useState<boolean>();
 
   const [open, setOpen] = useState(false);
+
+  // ── Reset password (admin only) ───────────────────────────────────────────
+  const [pwForm] = Form.useForm();
+  const [pwLoading, setPwLoading] = useState(false);
+  const [pwChanged, setPwChanged] = useState(false);
+
+  const handleResetPassword = async () => {
+    try {
+      const values = await pwForm.validateFields();
+      if (values.newPassword !== values.confirmPassword) {
+        openNotification("Erreur", "Les mots de passe ne correspondent pas", "error");
+        return;
+      }
+      setPwLoading(true);
+      await axios.post(
+        "/passport/users/changePassword",
+        JSON.stringify({
+          currentPassword: values.adminPassword,
+          userId: user.id,
+          password: values.newPassword,
+        }),
+        { headers: { "Content-Type": "application/json" } }
+      );
+      pwForm.resetFields();
+      setPwChanged(true);
+      setTimeout(() => setPwChanged(false), 2000);
+      openNotification("Succès", "Mot de passe modifié", "success");
+    } catch (err: any) {
+      openNotification(
+        "Erreur",
+        err?.response?.data ?? "Échec de la modification",
+        "error"
+      );
+    } finally {
+      setPwLoading(false);
+    }
+  };
 
   const hide = () => {
     setOpen(false);
@@ -106,26 +133,12 @@ const Profile = ({ user, self, showPreferences, loginHistory }: $TSFixMe) => {
 
   const [last10Login, setLast10Login] = useState();
   const [userGroups, setUserGroups] = useState();
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const {
-    projectsWithUserRole,
-    isCurrentUserAdmin,
-    loading,
-    isListEmpty: isProjectsListEmpty,
-    userProjectColumns,
-  } = useUserProjectsController({
-    userId: user.id,
-  });
 
-  const [CancelModalOpen, setCancelModalOpen] = useState<boolean>(false);
-  const { user: platformAdmin } = useSelector(
-    (state: RootState) => (state as any).platformAdmin
-  );
   useEffect(() => {
     getLoginActivity();
     getUserGroups();
   }, []);
-  const { config } = useSelector((state) => (state as any).platformConfig);
+
   const getLoginActivity = async () => {
     try {
       const data = axios
@@ -221,49 +234,6 @@ const Profile = ({ user, self, showPreferences, loginHistory }: $TSFixMe) => {
     reader.addEventListener("load", () => callback(reader.result as string));
     reader.readAsDataURL(img);
   };
-  const handleMfaToggel = async () => {
-    if (config.mfaEnforced === false || config.mfaEnforced === null) {
-      if (loggedinUser.isMfaEnabled) {
-        setCancelModalOpen(true);
-      } else {
-        setIsOpen(true);
-      }
-    } else if (platformAdmin) {
-      if (loggedinUser.isMfaEnabled) {
-        setCancelModalOpen(true);
-      } else {
-        setIsOpen(true);
-      }
-    } else {
-      openNotificationWithIcon(
-        "error",
-        getLanguageLabel("MFADisableError"),
-        getLanguageLabel("MFADisableErrorMessage") + " ."
-      );
-    }
-  };
-  const handleResetMfa = () => {
-    setLoadingMfa(true);
-    setIsOpen(false);
-    // Disable MFA
-    axios
-      .post(`/passport/mfa/disable/${user.username}`)
-      .then(() => {
-        dispatch(updateUserDetails({ ...user, isMfaEnabled: false }));
-      })
-      .catch((err) => {
-        openNotificationWithIcon(
-          "error",
-          "MFA Disable Error",
-          "Failed to disable MFA. Please try again."
-        );
-        dispatch(updateUserDetails({ ...user, isMfaEnabled: true }));
-      })
-      .finally(() => {
-        setLoadingMfa(false);
-        setCancelModalOpen(false);
-      });
-  };
 
   const beforeUpload = (file: RcFile) => {
     const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
@@ -306,7 +276,7 @@ const Profile = ({ user, self, showPreferences, loginHistory }: $TSFixMe) => {
       ),
     });
   }
-  const urlParams = useParams();
+
   if (loginHistory && last10Login && (last10Login as any)?.length > 0) {
     tabItems.push({
       key: "loginHistory",
@@ -316,25 +286,6 @@ const Profile = ({ user, self, showPreferences, loginHistory }: $TSFixMe) => {
       ),
     });
   }
-
-  if ((!isProjectsListEmpty || isCurrentUserAdmin) && !loading)
-    tabItems.push({
-      key: "projects",
-      label: getLanguageLabel("projects"),
-      children: isCurrentUserAdmin ? (
-        <Card>
-          <Title level={3}>
-            {getLanguageLabel("adminUserMyProjectsMessage")}
-          </Title>
-        </Card>
-      ) : (
-        <Table
-          dataSource={projectsWithUserRole}
-          columns={userProjectColumns}
-          pagination={false}
-        />
-      ),
-    });
 
   return !user ? (
     <BoslerLoader />
@@ -421,79 +372,7 @@ const Profile = ({ user, self, showPreferences, loginHistory }: $TSFixMe) => {
                 }
                 value={newUserData.location}
               />
-              <div>
-                {config.mfaEnabled &&
-                (loggedinUser.id === urlParams.id || !urlParams.id) ? (
-                  <Row style={{ padding: "10px 0" }} gutter={16} align="middle">
-                    <Col span={12}>
-                      <Text type="secondary">
-                        {getLanguageLabel("multiFactorAuthentication")} (MFA)
-                      </Text>
-                    </Col>
-                    <Col>
-                      <Switch
-                        loading={loadingMfa}
-                        checked={user.isMfaEnabled}
-                        onChange={handleMfaToggel} // Trigger MFA toggle and QR code generation
-                        size={"small"}
-                      />
-                    </Col>
-                  </Row>
-                ) : (
-                  ""
-                )}
-                <BoslerModal
-                  heading={getLanguageLabel("disableMfa")}
-                  closable={true}
-                  open={CancelModalOpen}
-                  onCancel={() => setCancelModalOpen(false)}
-                  footer={
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "end",
-                        gap: "20px",
-                        padding: "10px",
-                      }}
-                    >
-                      <BoslerButton
-                        onClick={() => setCancelModalOpen(!CancelModalOpen)}
-                      >
-                        {getLanguageLabel("cancel")}
-                      </BoslerButton>
-                      <BoslerButton onClick={handleResetMfa} intent="dangerous">
-                        {getLanguageLabel("yes")}
-                      </BoslerButton>
-                    </div>
-                  }
-                >
-                  <BoslerTypography>
-                    {getLanguageLabel("disableMfaMessage")}
-                  </BoslerTypography>
-                </BoslerModal>
-                <BoslerModal
-                  closable={true}
-                  width={"600px"}
-                  heading={getLanguageLabel("setUpMFA")}
-                  open={isOpen}
-                  onCancel={() => {
-                    if (isOnRecoveryCode) {
-                      dispatch(
-                        updateUserDetails({
-                          ...loggedinUser,
-                          isMfaEnabled: true,
-                        })
-                      );
-                    }
-                    setIsOpen(false);
-                  }}
-                >
-                  <MfaConfiguration
-                    setIsOnRecoveryCode={setIsOnRecoveryCode}
-                    setIsOpen={setIsOpen}
-                  />
-                </BoslerModal>
-              </div>
+
               <BoslerButton
                 id="profileSave"
                 icon={updated ? <TickIcon /> : <SaveIcon />}
@@ -608,17 +487,53 @@ const Profile = ({ user, self, showPreferences, loginHistory }: $TSFixMe) => {
               )}
 
               <br />
+
+              {/* ── Reset password (admin, autre utilisateur) ─────────────── */}
+              {!self && (
+                <>
+                  <Divider orientation="left">
+                    {getLanguageLabel("changePassword")}
+                  </Divider>
+                  <Form form={pwForm} layout="vertical">
+                    <Form.Item
+                      name="adminPassword"
+                      label="Votre mot de passe actuel"
+                      rules={[{ required: true, message: "Requis" }]}
+                    >
+                      <Input.Password placeholder="Votre mot de passe" />
+                    </Form.Item>
+                    <Form.Item
+                      name="newPassword"
+                      label={`Nouveau mot de passe pour ${user.name ?? user.username}`}
+                      rules={[{ required: true, min: 4, message: "4 caractères minimum" }]}
+                    >
+                      <Input.Password placeholder="Nouveau mot de passe" />
+                    </Form.Item>
+                    <Form.Item
+                      name="confirmPassword"
+                      label="Confirmer le nouveau mot de passe"
+                      rules={[{ required: true, message: "Requis" }]}
+                    >
+                      <Input.Password placeholder="Confirmer" />
+                    </Form.Item>
+                    <BoslerButton
+                      icon={pwChanged ? <TickIcon /> : <LockIcon />}
+                      intent={pwChanged ? "success" : "action"}
+                      loading={pwLoading}
+                      onClick={handleResetPassword}
+                    >
+                      {getLanguageLabel("changePassword")}
+                    </BoslerButton>
+                  </Form>
+                </>
+              )}
             </form>
           </div>
         </Col>
         <Col>
           <div>
             <div style={{ position: "relative" }}>
-              <Avatar
-                className="profile-page-avatar"
-                src={user.profileImage}
-                size={200}
-              >
+              <Avatar src={user.profileImage} size={200}>
                 {user.name ? user.name.charAt(0).toUpperCase() : "B"}
               </Avatar>
 

@@ -1,10 +1,6 @@
 import { KeplerFilter } from "Apps/Kepler/kepler";
 import { Checkbox } from "antd";
-import {
-  CrossIcon,
-  ExcludeIcon,
-  IncludeIcon,
-} from "assets/icons/boslerActionIcons";
+import { CrossIcon, ExcludeIcon, IncludeIcon } from "assets/icons/boslerActionIcons";
 import BoslerButton from "components/BoslerComponents/ButtonComponent/BoslerButton";
 import { useOutsideClickHandler } from "hooks/useOutsideClickHandler";
 import React, { useRef, useState } from "react";
@@ -31,11 +27,7 @@ export type TFilterAddOperator =
   | "lessThanEqual"
   | "greaterThanEqual"
   | "like"
-  | "notLike"
-  | "in"
-  | "notIn"
-  | "contains"
-  | "doesNotContains";
+  | "in";
 
 const FilterConfirmationPopup = ({ setPopupResult, filters }: Props) => {
   const [_filters, setFilters] = useState<any[]>(filters);
@@ -76,6 +68,7 @@ const FilterConfirmationPopup = ({ setPopupResult, filters }: Props) => {
         </BoslerButton>
         <BoslerButton
           icon={<CrossIcon size={25} />}
+          
           icononly
           minimal
           trimicononlypadding

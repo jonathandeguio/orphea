@@ -1,7 +1,7 @@
 import React from "react";
 
 /** @jsxImportSource @emotion/react */
-import { Badge, List, Popover, Tabs, Tooltip } from "antd";
+import { Badge, List, Tabs, Tooltip } from "antd";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -18,15 +18,12 @@ import {
 
 import BoslerModal from "components/CommonUI/BoslerModalContainer";
 
-import { abortBuildAPI } from "components/Builds/Builds.api";
+import { abortBuildAPI, fetchBuildLogsAPI } from "components/Builds/Builds.api";
+import { ACTIVE } from "components/Builds/Builds.constants";
 import CustomBreadCrumb from "components/Nav/Manage/breadCrumb";
+import { getDefaultFavicon } from "components/boslerLoader/FavIconLoader";
 import { useFaviconLoader } from "components/boslerLoader/useFavIconLoader";
-import {
-  AddIcon,
-  MoreMenuIcon,
-  MoreMenuVerticalIcon,
-  SettingsIcon,
-} from "../../assets/icons/boslerActionIcons";
+import { AddIcon, SettingsIcon } from "../../assets/icons/boslerActionIcons";
 import { EditIcon } from "../../assets/icons/boslerEditorIcons";
 import { GitNewBranchIcon } from "../../assets/icons/boslerExternalIcons";
 import { TrashIcon } from "../../assets/icons/boslerMiscellaneousIcons";
@@ -51,9 +48,7 @@ import PreviewBtn from "./components/PreviewBtn";
 import PreviewSpecs from "./components/PreviewSpecs";
 import PushBtn from "./components/PushBtn";
 import { checkout, getFileContentAPI, gitBlameApi } from "./editor.api";
-import { BoslerInfoPopover } from "components/CommonUI/BoslerInfoPopover/BoslerInfoPopover.view";
-import { ResourceTypeEnum } from "Apps/explorer/explorer.utils";
-import "./editor.scss";
+
 const { TabPane } = Tabs;
 
 type dashboardElement = {
@@ -150,6 +145,32 @@ function RepoHeader({
       const { data: gitlog } = await axios.get(`/fractal/${id}/${branch}/logs`);
 
       setGitLog(gitlog);
+    } catch (error) {}
+  };
+
+  const buildStatus = async () => {
+    try {
+      if (buildActive) {
+        fetchBuildLogsAPI(buildID).then(({ data }) => {
+          if (data.status !== ACTIVE) {
+            setBuildActive(false);
+            getDefaultFavicon();
+          }
+        });
+      }
+    } catch (error) {}
+  };
+
+  const previewStatus = async () => {
+    try {
+      if (previewActive) {
+        fetchBuildLogsAPI(previewID).then(({ data }) => {
+          if (data.status !== ACTIVE) {
+            setPreviewActive(false);
+            getDefaultFavicon();
+          }
+        });
+      }
     } catch (error) {}
   };
 
@@ -301,6 +322,28 @@ function RepoHeader({
   }, []);
 
   useEffect(() => {
+    if (buildID) {
+      buildStatus();
+      const checkBuild = setInterval(() => buildStatus(), 1500);
+
+      if (!buildActive) clearInterval(checkBuild);
+
+      return () => clearInterval(checkBuild);
+    }
+  }, [buildActive, buildID]);
+
+  useEffect(() => {
+    if (previewID) {
+      previewStatus();
+      const checkpreview = setInterval(() => previewStatus(), 1500);
+
+      if (!previewActive) clearInterval(checkpreview);
+
+      return () => clearInterval(checkpreview);
+    }
+  }, [previewActive, previewID]);
+
+  useEffect(() => {
     // window.addEventListener("beforeunload", function (e) {
     //  var confirmationMessage =
     //    "It looks like you have been editing something. " +
@@ -363,6 +406,7 @@ function RepoHeader({
       }
     }
   }, [id]);
+
   useEffect(() => {
     getRepository();
   }, []);
@@ -495,71 +539,14 @@ function RepoHeader({
           </TabPane>
         </Tabs>
       </BoslerModal>
-
       <div
         className="kepler-container-header"
         onMouseEnter={() => setShowPanel(true)}
         onMouseLeave={() => setShowPanel(false)}
       >
         <CustomBreadCrumb />
-        <Popover
-          className="mobile-screen-header"
-          trigger={"click"}
-          content={
-            <div
-              style={{ display: "flex", flexDirection: "column" }}
-              className="kepler-container-header-btns"
-            >
-              <BoslerInfoPopover
-                id={repoId!}
-                type={ResourceTypeEnum.REPOSITORY}
-              />
-              <Comments id={repoId} />
-              <Avatars link={`/topic/${repoId}`} />
-              <PreviewBtn
-                repoId={id}
-                activeId={activeId}
-                editorPanes={editorPanes}
-                previewBuild={previewBuild}
-                previewActive={previewActive}
-                previewID={previewID}
-                abortPreview={abortPreview}
-                doesScriptHasDecorator={doesScriptHasDecorator}
-                trackingStatus={trackingStatus}
-                setPreviewActive={setPreviewActive}
-                setPreviewID={setPreviewID}
-              />
-              <BuildBtn
-                trackingStatus={trackingStatus}
-                build={build}
-                buildActive={buildActive}
-                buildID={buildID}
-                abortBuild={abortBuild}
-                doesScriptHasDecorator={doesScriptHasDecorator}
-                setBuildActive={setBuildActive}
-                setBuildID={setBuildID}
-              />
-              <CommitBtn
-                trackingStatus={trackingStatus}
-                saveCommit={saveCommit}
-              />
-              <PushBtn trackingStatus={trackingStatus} pushCode={pushCode} />
-              <Tooltip placement="top" title={getLanguageLabel("settings")}>
-                <BoslerButton
-                  icon={<SettingsIcon />}
-                  icononly={true}
-                  onClick={() => setSettingsModal(true)}
-                />
-              </Tooltip>
-            </div>
-          }
-        >
-          <span>
-            <MoreMenuVerticalIcon />
-          </span>
-        </Popover>
-        <div className="kepler-container-header-btns desktop-screen-header">
-          <BoslerInfoPopover id={repoId!} type={ResourceTypeEnum.REPOSITORY} />
+        <div className="kepler-container-header-btns">
+          
           <Comments id={repoId} />
           <Avatars link={`/topic/${repoId}`} />
           <PreviewBtn
@@ -568,9 +555,7 @@ function RepoHeader({
             editorPanes={editorPanes}
             previewBuild={previewBuild}
             previewActive={previewActive}
-            setPreviewActive={setPreviewActive}
             previewID={previewID}
-            setPreviewID={setPreviewID}
             abortPreview={abortPreview}
             doesScriptHasDecorator={doesScriptHasDecorator}
             trackingStatus={trackingStatus}
@@ -579,9 +564,7 @@ function RepoHeader({
             trackingStatus={trackingStatus}
             build={build}
             buildActive={buildActive}
-            setBuildActive={setBuildActive}
             buildID={buildID}
-            setBuildID={setBuildID}
             abortBuild={abortBuild}
             doesScriptHasDecorator={doesScriptHasDecorator}
           />
@@ -596,7 +579,6 @@ function RepoHeader({
           </Tooltip>
         </div>
       </div>
-
       <BoslerModal
         onCancel={() =>
           setModalProps({

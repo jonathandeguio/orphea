@@ -239,7 +239,6 @@ const getVerticalAxisChartsConfig = ({
     color: getColorTheme(chartCustomization.colorTheme, chartCustomization)
       .color,
     xAxis: {
-      splitNumber: true,
       type: "category",
       data: chartData.data.xAxisData,
       axisLabel: {
@@ -281,7 +280,6 @@ const getVerticalAxisChartsConfig = ({
     },
     yAxis: [
       {
-        // splitNumber: true,
         type: "value",
         name: isEmpty(chartCustomization.yaxisLeft)
           ? yAxisLabelLeft.join(", ")
@@ -321,7 +319,6 @@ const getVerticalAxisChartsConfig = ({
         },
       },
       {
-        // splitNumber: true,
         type: "value",
         name: isEmpty(chartCustomization.yaxisRight)
           ? yAxisLabelRight.join(", ")
@@ -356,13 +353,7 @@ const getVerticalAxisChartsConfig = ({
         },
       },
     ],
-    series: data.map((serie) => ({
-      ...serie,
-      silent: !editMode,
-      lineStyle: {
-        width: 1,
-      },
-    })),
+    series: data.map((serie) => ({ ...serie, silent: !editMode })),
     barCategoryGap: "3%",
   };
 

@@ -110,37 +110,7 @@
   }
 }
 
-.date-time-filter-popover {
-  padding: 20px;
-}
 .chart_search_input {
   width: 100%;
   padding: 8px;
-  display: flex;
-  flex: 1;
-}
-
-.filter-container {
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid var(--bosler-border-color-muted);
-}
-.chart-card {
-  padding: 10px;
-  margin: 5px 10px;
-  display: flex;
-  align-items: center;
-  border: 1px solid var(--bosler-border-color-muted);
-  border-radius: 5px;
-  background-color: var(--bosler-hover-color);
-  cursor: drag;
-
-  &:hover {
-    box-shadow: var(--INPUT_BOX_SHADOW);
-  }
-}
-
-.chart-card-content {
-  display: flex;
-  flex-direction: column;
 }

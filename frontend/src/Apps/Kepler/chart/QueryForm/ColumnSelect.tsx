@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 import { RootState } from "redux/types/store";
 import { isDefined } from "utils/utilities";
 import { IconForColumnType } from "../charts.utils";
-import { BoslerTypography } from "components/CommonUI/BoslerTypography";
 interface Props {
   name: any;
   rules?: any;
@@ -45,7 +44,7 @@ export const ColumnSelectLabel = ({
           width: "100%",
         }}
       >
-        <BoslerTypography>{name}</BoslerTypography>
+        <span style={{ fontSize: "small" }}>{name}</span>
         <span style={{ display: "flex", marginLeft: "auto" }}>
           <div className="text-and-icon-center">
             <div className="data-type-label">{type}</div>
@@ -116,7 +115,7 @@ const ColumnSelect: React.FC<Props> = (props) => {
       style={{ width: "100%", minWidth: "0", ...props.customStyle }}
     >
       <Select
-        popupMatchSelectWidth={true}
+        popupMatchSelectWidth={false}
         placeholder={`Choose a column`}
         className=""
         showSearch

@@ -29,32 +29,19 @@ export const getColumnTypeIcon = (type: string): React.ReactNode => {
   const numberTypes = [
     "int",
     "integer",
-    "double",
     "smallint",
     "bigint",
     "tinyint",
     "mediumint",
     "serial",
-    "bigserial",
-    "number",
-    "int4",
-    "int8",
-    "ByteType",
-    "ShortType",
-    "IntegerType",
-    "LongType",
-    "unsigned int",
-    "unsigned bigint",
-    "unsigned smallint",
-    "unsigned tinyint",
-    "unsigned mediumint",
     "float",
+    "real",
+    "double",
+    "double precision",
+    "numeric",
+    "decimal",
+    "number",
     "long",
-    "short",
-    "byte",
-    "int2",
-    "int4",
-    "int8",
   ];
 
   let icon = <></>;
@@ -303,26 +290,4 @@ export const displayFormattedCell = (
     }
   } else if (type == "boolean") return String(value);
   return value;
-};
-
-export const handlePreprocessData = (data: {
-  hits?: any;
-  rows: any[] | undefined;
-  cols: any[] | undefined;
-}) => {
-  if (!data) {
-    return { rows: [], cols: [], hits: undefined };
-  }
-  let new_rows: any[] = [];
-  data?.rows?.map((row: any) => {
-    const transformedRow = { ...row };
-    data?.cols?.map((column: any) => {
-      if (column.type == "struct" || column.type == "array") {
-        transformedRow[column.id] = JSON.stringify(row[column.id]);
-      }
-    });
-    new_rows.push(transformedRow);
-  });
-
-  return { ...data, rows: new_rows, cols: data.cols ? data.cols : [] };
 };

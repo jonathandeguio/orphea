@@ -2,7 +2,7 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: boson-db-pv
-  namespace: bosler
+  namespace: orphea
   labels:
     type: local
 spec:
@@ -12,14 +12,14 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/tmp" # this is for bosler storage which should ideally be in S3
+    path: "/tmp" # this is for orphea storage which should ideally be in S3
 
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: boson-db-pvc
-  namespace: bosler
+  namespace: orphea
   labels:
     type: local
 spec:
@@ -38,7 +38,7 @@ metadata:
   labels:
     name: database
   name: boson-db
-  namespace: bosler
+  namespace: orphea
 spec:
   progressDeadlineSeconds: 2147483647
   replicas: 0
@@ -57,12 +57,12 @@ spec:
             - name: POSTGRES_USER
               valueFrom:
                 secretKeyRef:
-                  name: bosler-secret
+                  name: orphea-secret
                   key: boson-db-username
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: bosler-secret
+                  name: orphea-secret
                   key: boson-db-password
           volumeMounts:
             - mountPath: /var/lib/postgresql/data
@@ -87,7 +87,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: boson-db
-  namespace: bosler
+  namespace: orphea
   labels:
     service: boson-db
 spec:

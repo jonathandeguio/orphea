@@ -110,7 +110,7 @@
 //--------D3-JS----------
 .link {
   stroke: var(--bosler-border-color-default);
-  stroke-width: 2.3px;
+  strokewidth: 2.3px;
   z-index: 9;
 }
 
@@ -119,7 +119,7 @@
   //   box-shadow: 0 2px 4px 0 rgba(33, 33, 33, 0.2);
   // fill: #ccc;
   // stroke: #000;
-  stroke-width: 1.5px;
+  strokewidth: 1.5px;
   z-index: 10;
   //    width: fit-content;
   //    height: fit-content;
@@ -129,7 +129,7 @@
   // fill: #e7f3ff;
   z-index: 10;
   // stroke : #5a317f;
-  stroke-width: 2;
+  strokewidth: 2;
 }
 
 div.tooltip {
@@ -289,12 +289,6 @@ div.tooltip {
     align-items: center;
     font-weight: bold;
     cursor: pointer;
-
-    &-buttons {
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-    }
   }
 }
 
@@ -324,22 +318,22 @@ div.tooltip {
 
 .bezier-link {
   // stroke: var(--pipeline-stroke);
-  stroke-width: 2.3px;
+  strokewidth: 2.3px;
   z-index: 9;
 }
 
 .bezier-node {
   cursor: move;
-  stroke-width: 2px;
+  strokewidth: 2px;
 }
 
 .bezier-node.bezier-fixed {
-  stroke-width: 2px;
+  strokewidth: 2px;
 }
 
 .bezier-node-chart {
   cursor: move;
-  stroke-width: 15px;
+  strokewidth: 15px;
 }
 
 .arrow_outer_left {
@@ -359,7 +353,7 @@ div.tooltip {
 
 .bezier-grabbed {
   // stroke: rgb(106, 123, 219);
-  stroke-width: 4.5px;
+  strokewidth: 4.5px;
 }
 
 div.family_info {
@@ -394,12 +388,12 @@ div.family_info {
 @keyframes transcolor {
   from {
     background-color: #535455;
-    stroke-width: 2px;
+    strokewidth: 2px;
   }
 
   to {
     background-color: #bf2c23;
-    stroke-width: 4px;
+    strokewidth: 4px;
   }
 }
 

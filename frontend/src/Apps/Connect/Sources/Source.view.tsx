@@ -13,10 +13,7 @@ import { RootState, ThunkAppDispatch } from "../../../redux/types/store";
 
 import BoslerLoader from "components/boslerLoader";
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
-import {
-  CollapserHandler,
-  ResponsivePanel,
-} from "../../../components/BoslerComponents/ResizablePane/ResizablePaneUtil";
+import { CollapserHandler } from "../../../components/BoslerComponents/ResizablePane/ResizablePaneUtil";
 import {
   getConnectElementAPI,
   getParentAPI,
@@ -32,12 +29,11 @@ import {
 } from "common/components/BoslerLayout/bottomBarSlice";
 import BoslerSwitch from "components/CommonUI/BoslerSwitch/BoslerSwitch";
 import useEffectOnlyOnDependencyUpdate from "hooks/useEffectOnlyOnDependencyUpdate";
-import DbmsSourceTree from "./DbmsSourceTree";
-import { SharepointSourceTree } from "./SharepointSourceTree";
 import { initialSourceDetails } from "./Source.constants";
 import { getSourceBottombarItems } from "./Source.utils";
 import SourceHeader from "./SourceHeader.view";
 import SourceInfoPanel from "./SourceInfoPanel";
+import SourceTree from "./SourceTree";
 
 type TBoslerSwitch = "dataBrowser" | "info";
 
@@ -77,7 +73,7 @@ const SourceDetails = () => {
 
     if (isDefined(source.id)) {
       const body = {
-        query: { query: encodeToBase64(code) },
+        query: encodeToBase64(code),
       };
       previewSourceAPI(source.id, body).then(({ data }: any) => {
         dispatch(
@@ -128,43 +124,33 @@ const SourceDetails = () => {
           updateSource={getSource}
         />
         <PanelGroup direction={"horizontal"}>
-          <ResponsivePanel defaultSize={25} primaryPanelRef={primaryPanelRef}>
-            {source.type == "rest" ? (
-              <SourceInfoPanel source={source} getSource={getSource} />
-            ) : (
-              <BoslerSwitch
-                items={[
-                  {
-                    label: getLanguageLabel("dataBrowser"),
-                    value: "dataBrowser",
-                    children:
-                      source &&
-                      (source.type === "SHAREPOINT" ? (
-                        <SharepointSourceTree source={source} />
-                      ) : (
-                        <DbmsSourceTree sourceId={source.id} page={"SOURCE"} />
-                      )),
-                  },
-                  {
-                    label: getLanguageLabel("info"),
-                    value: "info",
-                    children: (
-                      <SourceInfoPanel source={source} getSource={getSource} />
-                    ),
-                  },
-                ]}
-                value={selectedDataSourceSwitch}
-                onChange={(newSwitch: TBoslerSwitch) => {
-                  setSelectedDataSourceSwitch(newSwitch);
-                }}
-              />
-            )}
-          </ResponsivePanel>
+          <Panel collapsible={true} defaultSize={25} ref={primaryPanelRef}>
+            <BoslerSwitch
+              items={[
+                {
+                  label: getLanguageLabel("dataBrowser"),
+                  value: "dataBrowser",
+                  children: source && <SourceTree sourceId={source.id} />,
+                },
+                {
+                  label: getLanguageLabel("info"),
+                  value: "info",
+                  children: (
+                    <SourceInfoPanel source={source} getSource={getSource} />
+                  ),
+                },
+              ]}
+              value={selectedDataSourceSwitch}
+              onChange={(newSwitch: TBoslerSwitch) => {
+                setSelectedDataSourceSwitch(newSwitch);
+              }}
+            />
+          </Panel>
           <PanelResizeHandle className="resizablePane-collapser">
             <CollapserHandler primaryPanelRef={primaryPanelRef} />
           </PanelResizeHandle>
           <Panel>
-            <div style={{ height: "100%" }} className="--p20">
+            <div style={{ padding: "20px" }}>
               <LinkTable2 tableList={sourceLinks} loading={loading} />
             </div>
           </Panel>

@@ -5,7 +5,7 @@
   become_method: sudo
   become_user: root
   vars:
-    ansible_become_pass: "bosler2024"
+    ansible_become_pass: "orphea2024"
   tasks:
     - name: Ensure apt-transport-https, ca-certificates, curl, wget, vim are installed
       apt:
@@ -109,7 +109,7 @@
   become_method: sudo
   become_user: root
   vars:
-    ansible_become_pass: "bosler2024"
+    ansible_become_pass: "orphea2024"
   tasks:
     - name: Initialize Kubernetes master node
       command: kubeadm init --pod-network-cidr=10.244.0.0/16
@@ -137,13 +137,13 @@
   become_method: sudo
   become_user: root
   vars:
-    ansible_become_pass: "bosler2024"
+    ansible_become_pass: "orphea2024"
   tasks:
     - name: Wait for the master to provide the join command
       pause:
         prompt: "Ensure that the master node has provided the 'kubeadm join' command. Press ENTER to continue..."
 
     - name: Join worker node to the cluster
-      shell: "kubeadm join {{ hostvars['bosler-master1'].master_init_output.stdout_lines | select('search', 'kubeadm join') | list | first }}"
+      shell: "kubeadm join {{ hostvars['orphea-master1'].master_init_output.stdout_lines | select('search', 'kubeadm join') | list | first }}"
       args:
         warn: false

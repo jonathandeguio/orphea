@@ -1,12 +1,12 @@
-import { API_BASE_URL, BOSLER_TOKEN } from '../constants';
+import { API_BASE_URL, ORPHEA_TOKEN } from '../constants';
 
 const request = (options) => {
     const headers = new Headers({
         'Content-Type': 'application/json',
     })
     
-    if(localStorage.getItem(BOSLER_TOKEN)) {
-        headers.append('Authorization', 'Bearer ' + localStorage.getItem(BOSLER_TOKEN))
+    if(localStorage.getItem(ORPHEA_TOKEN)) {
+        headers.append('Authorization', 'Bearer ' + localStorage.getItem(ORPHEA_TOKEN))
     }
 
     const defaults = {headers: headers};
@@ -24,7 +24,7 @@ const request = (options) => {
 };
 
 export function getCurrentUser() {
-    if(!localStorage.getItem(BOSLER_TOKEN)) {
+    if(!localStorage.getItem(ORPHEA_TOKEN)) {
         return Promise.reject("No access token set.");
     }
 

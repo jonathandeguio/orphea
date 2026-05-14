@@ -26,4 +26,6 @@ yarn.lock
 package-lock.json
 .eslintrc
 .idea
+*:Zone.Identifier
+**/*Zone.Identifier
 /.vscode

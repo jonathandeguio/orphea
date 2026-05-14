@@ -1,0 +1,50 @@
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background: var(--orphea-font-color-default);
+  transition: opacity 0.3s linear;
+  flex-grow: 1;
+  flex-direction: column;
+
+  &-outer {
+    transform-origin: center;
+    animation: rotate-center 2s linear infinite both;
+
+    &-inner {
+      transform-origin: center;
+      animation: rotate-center1 1s linear infinite both;
+    }
+  }
+}
+
+.fallbackWrapper {
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--background-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  flex-direction: column;
+}
+
+.atomloader {
+  border: 7px dotted var(--orphea-border-color-default);
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  animation: rotation 3s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

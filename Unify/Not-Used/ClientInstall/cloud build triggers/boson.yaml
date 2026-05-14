@@ -2,9 +2,9 @@ autodetect: true
 createTime: '2021-12-13T09:24:07.105552195Z'
 github:
   name: boson
-  owner: Bosler-io
+  owner: Orphea-io
   push:
     branch: ^master$
 id: 1feaabce-d080-4c58-9d4b-6505c1c7d628
 name: boson
-serviceAccount: projects/bosler-211/serviceAccounts/boslerbuilds@bosler-211.iam.gserviceaccount.com
+serviceAccount: projects/orphea-211/serviceAccounts/orpheabuilds@orphea-211.iam.gserviceaccount.com

@@ -1,3 +1,8 @@
+import React, { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { tableData } from "../../../redux/actions/datasetActions";
+import { RootState, ThunkAppDispatch } from "../../../redux/types/store";
+
 import {
   ColumnFiltersState,
   ColumnOrderState,
@@ -23,15 +28,9 @@ import {
   Tag,
   Typography,
 } from "antd";
-import React, { useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { tableData } from "../../../redux/actions/datasetActions";
-import { RootState, ThunkAppDispatch } from "../../../redux/types/store";
-import { DATASET_DOWNLOADS_FORMATS } from "./BoslerTable.types";
 import "./index.scss";
 
 import { rankItem } from "@tanstack/match-sorter-utils";
-import styles from "./BoslerDownloadButton.module.scss";
 
 import {
   copyToClipboard,
@@ -43,7 +42,7 @@ import {
 
 import { CrossIcon, DuplicateIcon } from "assets/icons/boslerActionIcons";
 import { DownloadIcon, UploadIcon } from "assets/icons/boslerInterfaceIcons";
-import { FilterLinesIcon, TableIcon } from "assets/icons/boslerTableIcons";
+import { FilterLinesIcon } from "assets/icons/boslerTableIcons";
 
 import { HelpIcon } from "assets/icons/boslerMiscellaneousIcons";
 import { TickIcon } from "assets/icons/boslerNavigationIcon";
@@ -59,7 +58,7 @@ import Filters from "components/Filters";
 import { TFilterAddOperator } from "components/Filters/FilterConfirmationPopup";
 import DatasetUploadModal from "components/Modals/DatasetUploadModal";
 import useEffectOnlyOnDependencyUpdate from "hooks/useEffectOnlyOnDependencyUpdate";
-import { downloadDataset } from "pages/Settings/PlatformConfig/PlatformConfig.utils";
+import { downloadCSV } from "pages/Settings/PlatformConfig/PlatformConfig.utils";
 import { useHotkeys } from "react-hotkeys-hook";
 import { autoFormatter } from "utils/AutoFormatter";
 import { NULL_UUID } from "utils/Common.constants";
@@ -73,7 +72,6 @@ import {
   getCellIdsInsideGrid,
   getColumnOrderWithPinning,
   getSelectedCells,
-  handlePreprocessData,
   isSameColumn,
   isSingleCell,
 } from "./BoslerTable.utils";
@@ -105,15 +103,10 @@ function BoslerTable({
 
   const { user } = useSelector((state: RootState) => state.userDetails);
 
-  const {
-    data: reduxData,
-    loading: loadingTable,
-    error,
-  } = useSelector((state) => (state as $TSFixMe).datasetTable);
-
-  const [data, setData] = useState(
-    handlePreprocessData(offlineData ? offlineData : reduxData)
+  const { data: reduxData, loading: loadingTable } = useSelector(
+    (state) => (state as $TSFixMe).datasetTable
   );
+  const [data, setData] = useState(offlineData ? offlineData : reduxData);
 
   const { config } = useSelector((state) => (state as $TSFixMe).platformConfig);
 
@@ -193,6 +186,8 @@ function BoslerTable({
     // debugHeaders: true,
     // debugColumns: true,
   });
+
+  const dataLen = data ? data.rows.length : 0;
 
   const [reupload, setReupload] = useState(false);
 
@@ -342,7 +337,7 @@ function BoslerTable({
 
   useEffect(() => {
     if (isDefined(reduxData)) {
-      setData(handlePreprocessData(reduxData));
+      setData(reduxData);
     }
   }, [reduxData]);
 
@@ -441,19 +436,17 @@ function BoslerTable({
 
   useEffect(() => {
     if (offlineData && offlineData.rows && offlineData.cols)
-      setData(handlePreprocessData(offlineData));
+      console.log("HREE IS THE PORB");
+    setData(offlineData);
   }, [offlineData]);
 
-  console.log("ERROR : ", error);
+  console.log("FIL COL : ", filteredColumns);
 
-  const handleDownload = (format: string) => {
-    downloadDataset(id, branch, transactionId, format);
-  };
   return (
     <>
       <div
         className="p-2 block max-w-full overflow-x-scroll overflow-y-hidden disable-text-selection"
-        style={{ height: "100%", width: "100%" }}
+        style={{ height: "100%" }}
       >
         {!isTableFromBottomBar && (
           <div className="boslertable-topbar">
@@ -493,33 +486,6 @@ function BoslerTable({
                                   {autoFormatter(config?.sizeLimit, "bytes")}
                                 </strong>
                                 .
-                                <Divider />
-                                <div className={styles.download_buttons}>
-                                  <BoslerButton
-                                    intent="none"
-                                    onClick={() =>
-                                      handleDownload(
-                                        DATASET_DOWNLOADS_FORMATS.CSV
-                                      )
-                                    }
-                                    minimal
-                                    icon={<TableIcon />}
-                                  >
-                                    CSV
-                                  </BoslerButton>
-                                  <BoslerButton
-                                    intent="action"
-                                    onClick={() =>
-                                      handleDownload(
-                                        DATASET_DOWNLOADS_FORMATS.PARQUET
-                                      )
-                                    }
-                                    minimal
-                                    icon={<TableIcon />}
-                                  >
-                                    Parquet
-                                  </BoslerButton>
-                                </div>
                               </>
                             ) : (
                               <>Contact Platform admin to enable downloads.</>
@@ -532,14 +498,19 @@ function BoslerTable({
                         <BoslerButton
                           icon={<DownloadIcon />}
                           intent="none"
+                          // outlined={true}
                           minimal={true}
                           trimicononlypadding={true}
                           icononly={true}
                           size="small"
                           loading={downloadingData.status}
                           disabled={!config || !config.download}
+                          onClick={() => {
+                            downloadCSV(id, branch, transactionId);
+                          }}
                         >
-                          {getLanguageLabel("download")}
+                          {" "}
+                          {getLanguageLabel("download")}{" "}
                         </BoslerButton>
                       </span>
                     </Popover>
@@ -628,7 +599,7 @@ function BoslerTable({
                       <>
                         {getLanguageLabel("showing")} &nbsp;&nbsp;&nbsp;&nbsp;
                         <Tag color="green">
-                          {data && data.hits ? (
+                          {data ? (
                             <>
                               {data.hits > 500 ? "500" : data.hits} /{" "}
                               {data.hits}
@@ -653,10 +624,10 @@ function BoslerTable({
                     }
                     placement="bottom"
                   >
-                    {data && data?.hits ? (
+                    {data ? (
                       <Tag color="green">
                         <div className="--flex-row-center">
-                          {autoFormatter(data?.hits)} {getLanguageLabel("rows")}{" "}
+                          {autoFormatter(data.hits)} {getLanguageLabel("rows")}{" "}
                           <Divider type="vertical" />
                           <DatasetStats
                             id={id}
@@ -705,13 +676,13 @@ function BoslerTable({
               />
             )}
             <div className={"boslertable-container"}>
-              {noDataAvailable || error ? (
+              {noDataAvailable ? (
                 <Row
                   style={{ height: "100%" }}
                   justify={"center"}
                   align="middle"
                 >
-                  <Title> {error || getLanguageLabel("noDataFound")}</Title>
+                  <Title> {getLanguageLabel("noDataFound")}</Title>
                 </Row>
               ) : (
                 <table

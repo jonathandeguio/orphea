@@ -3,12 +3,7 @@ import { ArrowRightIcon } from "assets/icons/boslerNavigationIcon";
 import BoslerButton from "components/BoslerComponents/ButtonComponent/BoslerButton";
 import { BoslerTypography } from "components/CommonUI/BoslerTypography";
 import React, { useEffect, useState } from "react";
-import {
-  checkFolderPathAPI,
-  testDBConnectionAPI,
-  testSharepointConnectionAPI,
-} from "../Connect.api";
-import { SourceTypeEnum } from "../Enums/SourceTypeEnum";
+import { checkFolderPathAPI, testDBConnectionAPI } from "../Connect.api";
 import { ISourceConfig } from "./Source";
 import { isSourceConfigValid } from "./Source.utils";
 
@@ -34,16 +29,12 @@ export const TestConnectionButton: React.FC<TestConnectionButtonProps> = ({
   const [isDisabled, setIsDisabled] = useState<boolean>(true);
 
   const handleTestConnection = () => {
-    if (source.type === SourceTypeEnum.JDBC) {
+    if (source.type === "jdbc") {
       testDBConnectionAPI(JSON.stringify(source)).then(({ data }) => {
         setTestConnection(data);
       });
-    } else if (source.type === SourceTypeEnum.FOLDER) {
+    } else if (source.type === "FOLDER") {
       checkFolderPathAPI(JSON.stringify(source)).then(({ data }) => {
-        setTestConnection(data);
-      });
-    } else if (source.type === SourceTypeEnum.SHAREPOINT) {
-      testSharepointConnectionAPI(source).then(({ data }) => {
         setTestConnection(data);
       });
     }
@@ -56,10 +47,6 @@ export const TestConnectionButton: React.FC<TestConnectionButtonProps> = ({
       setIsDisabled(true);
     }
   }, [source]);
-
-  if (source.type == "rest") {
-    return <></>;
-  }
 
   return (
     <div className="--mt20">

@@ -17,7 +17,7 @@ spring:
 #  main:
 #    allow-circular-references: true # This needs removing it is a temporary fix
   banner:
-    location: classpath:/banner/bosler.txt
+    location: classpath:/banner/orphea.txt
   datasource:
     initialization-mode: always
     username: ${DB_USERNAME}
@@ -138,7 +138,7 @@ application:
       - ${BASE_URL}/oauth2/redirect
       -
 #file:
-#  upload-dir=/User/rakeshmalik/bosler/uploads
+#  upload-dir=/User/rakeshmalik/orphea/uploads
 
 logging:
   level:

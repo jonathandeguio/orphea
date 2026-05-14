@@ -118,12 +118,11 @@ const LoginError = () => {
           <BoslerButton
             key="submit"
             onClick={() => {
-              navigate("/Auth/login");
-              // window.open(
-              //   BASE_URL + "/auth/login?relogin=true",
-              //   "mypopup",
-              //   "directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=700,height=550"
-              // );
+              window.open(
+                BASE_URL + "/auth/login?relogin=true",
+                "mypopup",
+                "directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=700,height=550"
+              );
               return false;
             }}
             icon={<ArrowRightIcon />}

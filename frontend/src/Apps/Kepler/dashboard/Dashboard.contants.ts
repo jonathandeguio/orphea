@@ -2,11 +2,11 @@ import { getLanguageLabel } from "utils/utilities";
 
 export const CHART_HEIGHT = 8;
 export const CHART_MIN_HEIGHT = 2;
-export const CHART_MAX_HEIGHT = 30 * 10 * 2;
+export const CHART_MAX_HEIGHT = 30 * 10;
 
 export const CHART_WIDTH = 4;
 export const CHART_MIN_WIDTH = 1;
-export const CHART_MAX_WIDTH = 16 * 2;
+export const CHART_MAX_WIDTH = 16;
 
 export const HEADER_HEIGHT = 6;
 export const HEADER_MIN_HEIGHT = 4;
@@ -18,19 +18,19 @@ export const HEADER_MAX_WIDTH = 46;
 
 export const TEXT_HEIGHT = 8;
 export const TEXT_MIN_HEIGHT = 4;
-export const TEXT_MAX_HEIGHT = 30 * 10 * 2;
+export const TEXT_MAX_HEIGHT = 30 * 10;
 
 export const TEXT_WIDTH = 4;
 export const TEXT_MIN_WIDTH = 1;
-export const TEXT_MAX_WIDTH = 16 * 2;
+export const TEXT_MAX_WIDTH = 16;
 
 export const EDITOR_HEIGHT = 8;
 export const EDITOR_MIN_HEIGHT = 1;
-export const EDITOR_MAX_HEIGHT = 30 * 10 * 2;
+export const EDITOR_MAX_HEIGHT = 30 * 10;
 
 export const EDITOR_WIDTH = 4;
 export const EDITOR_MIN_WIDTH = 1;
-export const EDITOR_MAX_WIDTH = 16 * 2;
+export const EDITOR_MAX_WIDTH = 16;
 
 export const DIVIDER_HEIGHT = 0.25;
 export const DIVIDER_MIN_HEIGHT = 0.25;
@@ -38,15 +38,15 @@ export const DIVIDER_MAX_HEIGHT = 2;
 
 export const DIVIDER_WIDTH = 4;
 export const DIVIDER_MIN_WIDTH = 2;
-export const DIVIDER_MAX_WIDTH = 30 * 10 * 2;
+export const DIVIDER_MAX_WIDTH = 30 * 10;
 
 export const FILE_HEIGHT = 6;
 export const FILE_MIN_HEIGHT = 2;
-export const FILE_MAX_HEIGHT = 30 * 10 * 2;
+export const FILE_MAX_HEIGHT = 30 * 10;
 
 export const FILE_WIDTH = 4;
 export const FILE_MIN_WIDTH = 1;
-export const FILE_MAX_WIDTH = 16 * 2;
+export const FILE_MAX_WIDTH = 16;
 
 export const MARKDOWN_HEIGHT = 16;
 export const MARKDOWN_MIN_HEIGHT = 8;
@@ -72,10 +72,7 @@ export const GRID_CONFIG = {
   className: "layout",
   rowHeight: 30,
   breakpoints: { lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 },
-  // Non responsiveness
-  cols: { lg: 16, md: 16, sm: 16, xs: 16, xxs: 16 },
-  // Responsiveness
-  // cols: { lg: 16, md: 12, sm: 10, xs: 6, xxs: 4 },
+  cols: { lg: 16, md: 12, sm: 10, xs: 6, xxs: 4 },
   isBounded: false,
   /*
   If you are applying compactType, then comment out verticalCompact : false

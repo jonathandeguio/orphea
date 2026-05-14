@@ -12,4 +12,4 @@ gcloud compute health-checks update http $callisto_hc \
     --request-path="/api/jupyter/api"
 
 ## Install Spark and Spark_history
-./bosler_spark_env.sh create
+./orphea_spark_env.sh create

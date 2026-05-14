@@ -3,7 +3,7 @@
 # Variables (modify these as needed)
 NFS_SERVER="100.101.1.250"
 NFS_SHARE="/JST000AK18_1"
-MOUNT_POINT="/bosler"
+MOUNT_POINT="/orphea"
 IP_ADDRESS="100.101.1.8/24"
 NETPLAN_FILE="/etc/netplan/99-netcfg-vmware.yaml"  # Path to the Netplan config file
 FSTAB_ENTRY="$NFS_SERVER:$NFS_SHARE $MOUNT_POINT nfs rw,tcp,rsize=32768,wsize=32768,hard,intr,_netdev 0 0"

@@ -1,5 +1,4 @@
 import axios, { AxiosResponse } from "axios";
-import { IPreviewDatasetBySQL } from "./bottomBar/DatasetSql/DatasetSql.types";
 
 /**
  * get Dataset Details
@@ -54,24 +53,6 @@ export const getDatasetMappingTransactionsAPI = (
       `/dataset/datasetMapping/transactions/${datasetId}/${branch}`
     );
   }
-};
-
-/**
- * get Dataset preview by sql
- */
-export const previewDatasetBySqlAPI = (
-  payload: IPreviewDatasetBySQL
-): Promise<AxiosResponse<any, any>> => {
-  return axios.post(`/dataset/previewDatasetBySql`, payload);
-};
-
-/**
- * get Dataset preview history
- */
-export const previewDatasetHistoryAPI = (
-  datasetId: string
-): Promise<AxiosResponse<any, any>> => {
-  return axios.get(`/dataset/previewQueriesHistory/${datasetId}`);
 };
 
 /**

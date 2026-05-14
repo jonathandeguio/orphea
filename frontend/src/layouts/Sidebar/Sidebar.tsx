@@ -2,22 +2,21 @@ import { NotificationBell } from "Apps/Notifications/NotificationBell.view";
 import { Divider } from "antd";
 import {
   BuildIcon,
-  HistoryIcon,
-  RefreshIcon,
+  HistoryIcon
 } from "assets/icons/boslerActionIcons";
 import { BooleanIcon } from "assets/icons/boslerDataIcons";
 import { FolderIcon } from "assets/icons/boslerFileIcons";
 import {
+  AppIcon,
   HomeIcon,
-  ScheduledRunIcon,
-  UserIcon,
+  ScheduledRunIcon
 } from "assets/icons/boslerInterfaceIcons";
-import { StarIcon } from "assets/icons/boslerMiscellaneousIcons";
+import { LibraryIcon, StarIcon } from "assets/icons/boslerMiscellaneousIcons";
 import { getIsConnectAdmin } from "common/common.api";
 import BoslerCommandPalette from "components/CommandPalette/CommandPalette.view";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { getLanguageLabel, isLicenseKeyUsedValid } from "utils/utilities";
 import { setIsConnectAdmin } from "../../redux/actions/userActions";
 import { RootState } from "../../redux/types/store";
@@ -26,9 +25,10 @@ import SBElementAvatar from "./SBElementAvatar";
 import SBElementLogo from "./SBElementLogo";
 import SBElementSearch from "./SBElementSearch";
 import styles from "./Sidebar.module.scss";
-import { LayoutViewEnum } from "./Sidebar.utils";
+import { LayoutViewEnum, preventFilterLossOnReNavigate } from "./Sidebar.utils";
 
 const Sidebar = () => {
+  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const { info } = useSelector((state) => (state as any).license);
   const [sidebarAttributes, setSidebarAttributes] = useState({
@@ -91,8 +91,8 @@ const Sidebar = () => {
               <HomeIcon
                 color={
                   selectedSideBarTab == "home"
-                    ? "var(--icon-color-selected)"
-                    : "white"
+                    ? "var(--PRIMARY_ICON)"
+                    : "var(--icon-color-deafult)"
                 }
                 size={sidebarAttributes.iconSize}
               />
@@ -101,9 +101,9 @@ const Sidebar = () => {
             text="home"
             showText={sidebarAttributes.showText}
             onClick={() => {
+              navigate("/");
               setSelectedSideBarTab("home");
             }}
-            navigateLink="/"
             selected={selectedSideBarTab == "home"}
           />
 
@@ -117,8 +117,8 @@ const Sidebar = () => {
               <FolderIcon
                 color={
                   selectedSideBarTab == "projects"
-                    ? "var(--icon-color-selected)"
-                    : "white"
+                    ? "var(--PRIMARY_ICON)"
+                    : "var(--icon-color-deafult)"
                 }
                 size={sidebarAttributes.iconSize}
               />
@@ -127,9 +127,16 @@ const Sidebar = () => {
             text="projects"
             showText={sidebarAttributes.showText}
             onClick={() => {
+              if (
+                preventFilterLossOnReNavigate(
+                  location.pathname,
+                  "/portal/projects"
+                )
+              )
+                return;
+              navigate("/portal/projects");
               setSelectedSideBarTab("projects");
             }}
-            navigateLink="/portal/projects"
             selected={selectedSideBarTab == "projects"}
           />
 
@@ -138,8 +145,8 @@ const Sidebar = () => {
               <BuildIcon
                 color={
                   selectedSideBarTab == "builds"
-                    ? "var(--icon-color-selected)"
-                    : "white"
+                    ? "var(--PRIMARY_ICON)"
+                    : "var(--icon-color-deafult)"
                 }
                 size={sidebarAttributes.iconSize}
               />
@@ -148,9 +155,16 @@ const Sidebar = () => {
             text="builds"
             showText={sidebarAttributes.showText}
             onClick={() => {
+              if (
+                preventFilterLossOnReNavigate(
+                  location.pathname,
+                  "/portal/builds"
+                )
+              )
+                return;
+              navigate("/portal/builds");
               setSelectedSideBarTab("builds");
             }}
-            navigateLink="/portal/builds"
             selected={selectedSideBarTab == "builds"}
           />
 
@@ -159,8 +173,8 @@ const Sidebar = () => {
               <ScheduledRunIcon
                 color={
                   selectedSideBarTab == "schedules"
-                    ? "var(--icon-color-selected)"
-                    : "white"
+                    ? "var(--PRIMARY_ICON)"
+                    : "var(--icon-color-deafult)"
                 }
                 size={sidebarAttributes.iconSize}
               />
@@ -169,9 +183,16 @@ const Sidebar = () => {
             text="schedules"
             showText={sidebarAttributes.showText}
             onClick={() => {
+              if (
+                preventFilterLossOnReNavigate(
+                  location.pathname,
+                  "/portal/schedules"
+                )
+              )
+                return;
+              navigate("/portal/schedules");
               setSelectedSideBarTab("schedules");
             }}
-            navigateLink="/portal/schedules"
             selected={selectedSideBarTab == "schedules"}
           />
 
@@ -194,9 +215,9 @@ const Sidebar = () => {
             text="favs"
             showText={sidebarAttributes.showText}
             onClick={() => {
+              navigate("/portal/favourites");
               setSelectedSideBarTab("favourites");
             }}
-            navigateLink="/portal/favourites"
             selected={selectedSideBarTab == "favourites"}
           />
 
@@ -205,8 +226,8 @@ const Sidebar = () => {
               <HistoryIcon
                 color={
                   selectedSideBarTab == "recentlyViewed"
-                    ? "var(--icon-color-selected)"
-                    : "white"
+                    ? "var(--PRIMARY_ICON)"
+                    : "var(--icon-color-deafult)"
                 }
                 size={sidebarAttributes.iconSize}
               />
@@ -215,19 +236,19 @@ const Sidebar = () => {
             text="recentlyViewed"
             showText={sidebarAttributes.showText}
             onClick={() => {
+              navigate("/portal/recentlyViewed");
               setSelectedSideBarTab("recentlyViewed");
             }}
-            navigateLink="/portal/recentlyViewed"
             selected={selectedSideBarTab == "recentlyViewed"}
           />
 
-          <SBElement
+          {/* <SBElement
             icon={
               <UserIcon
                 color={
                   selectedSideBarTab == "createdByYou"
-                    ? "var(--icon-color-selected)"
-                    : "white"
+                    ? "var(--PRIMARY_ICON)"
+                    : "var(--icon-color-deafult)"
                 }
                 size={sidebarAttributes.iconSize}
               />
@@ -236,19 +257,19 @@ const Sidebar = () => {
             text="createdByYou"
             showText={sidebarAttributes.showText}
             onClick={() => {
+              navigate("/portal/createdByYou");
               setSelectedSideBarTab("createdByYou");
             }}
-            navigateLink="/portal/createdByYou"
             selected={selectedSideBarTab == "createdByYou"}
-          />
+          /> */}
 
-          <SBElement
+          {/* <SBElement
             icon={
               <RefreshIcon
                 color={
                   selectedSideBarTab == "updatedByYou"
-                    ? "var(--icon-color-selected)"
-                    : "white"
+                    ? "var(--PRIMARY_ICON)"
+                    : "var(--icon-color-deafult)"
                 }
                 size={sidebarAttributes.iconSize}
               />
@@ -257,11 +278,11 @@ const Sidebar = () => {
             text="updatedByYou"
             showText={sidebarAttributes.showText}
             onClick={() => {
+              navigate("/portal/updatedByYou");
               setSelectedSideBarTab("updatedByYou");
             }}
-            navigateLink="/portal/updatedByYou"
             selected={selectedSideBarTab == "updatedByYou"}
-          />
+          /> */}
 
           <Divider
             style={{
@@ -274,47 +295,79 @@ const Sidebar = () => {
             showText={sidebarAttributes.showText}
           />
 
-          
           <SBElement
             icon={
               <BooleanIcon
                 color={
                   selectedSideBarTab == "accessManager"
-                    ? "var(--icon-color-selected)"
-                    : "white"
+                    ? "var(--ACTION_COLOR)"
+                    : "var(--ACTION_COLOR)"
                 }
-                size={sidebarAttributes.iconSize + 2}
+                size={sidebarAttributes.iconSize + 6}
               />
             }
             tooltip={getLanguageLabel("accessManager")}
             text={"accessManager"}
             showText={sidebarAttributes.showText}
             onClick={() => {
+              if (
+                preventFilterLossOnReNavigate(
+                  location.pathname,
+                  "/portal/accessManager"
+                )
+              )
+                return;
+              navigate("/portal/accessManager");
               setSelectedSideBarTab("accessManager");
             }}
-            navigateLink="/portal/access_manager"
             selected={selectedSideBarTab == "accessManager"}
           />
-          {/* <SBElement
+          <SBElement
             icon={
-              <LightBulbIcon
-                color={
-                  selectedSideBarTab == "learn"
-                    ? "var(--icon-color-selected)"
-                    : "white"
-                }
-                size={sidebarAttributes.iconSize + 2}
+              <LibraryIcon
+                size={sidebarAttributes.iconSize + 6}
               />
             }
-            tooltip={getLanguageLabel("learn")}
-            text={"learn"}
+            disabled
+            tooltip={getLanguageLabel("dataCatalog")}
+            text={"dataCatalog"}
             showText={sidebarAttributes.showText}
             onClick={() => {
-              setSelectedSideBarTab("learn");
+              if (
+                preventFilterLossOnReNavigate(
+                  location.pathname,
+                  "/portal/dataCatalog"
+                )
+              )
+                return;
+              navigate("/portal/dataCatalog");
+              setSelectedSideBarTab("dataCatalog");
             }}
-            navigateLink="/portal/learn"
-            selected={selectedSideBarTab == "learn"}
-          /> */}
+            selected={selectedSideBarTab == "dataCatalog"}
+          />
+          <SBElement
+            icon={
+              <AppIcon 
+                size={sidebarAttributes.iconSize + 6}
+              />
+            }
+            tooltip={getLanguageLabel("webApp")}
+            text={"webApp"}
+            showText={sidebarAttributes.showText}
+            onClick={() => {
+              if (
+                preventFilterLossOnReNavigate(
+                  location.pathname,
+                  "/portal/webApp"
+                )
+              )
+                return;
+              navigate("/portal/webApp");
+              setSelectedSideBarTab("webApp");
+            }}
+            disabled
+            selected={selectedSideBarTab == "webApp"}
+          />
         </div>
 
         <div className={styles.bottom}>

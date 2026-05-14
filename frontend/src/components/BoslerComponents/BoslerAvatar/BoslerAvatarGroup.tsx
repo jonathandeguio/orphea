@@ -1,8 +1,8 @@
 import { Avatar } from "antd";
-import { GroupProps } from "antd/es/avatar";
 import React from "react";
-import { isDefined } from "utils/utilities";
 import BoslerAvatar from "./BoslerAvatar";
+import { isDefined } from "utils/utilities";
+import { GroupProps } from "antd/es/avatar";
 import { DEFAULT_MAX_GROUP_PROP } from "./BoslerAvatar.constants";
 
 interface IProps extends GroupProps {
@@ -15,7 +15,7 @@ const BoslerAvatarGroup = ({
   ...restProp
 }: IProps) => {
   return (
-    <Avatar.Group max={max} {...restProp} size={"small"}>
+    <Avatar.Group max={max} {...restProp}>
       {isDefined(userIds) &&
         userIds?.map((userId: string) => <BoslerAvatar userId={userId} />)}
     </Avatar.Group>

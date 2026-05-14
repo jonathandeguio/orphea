@@ -37,7 +37,7 @@ const ProjectPageItem = ({
       <Col flex="auto" span={10}>
         <List.Item.Meta
           className={styles.listItemMeta}
-          avatar={<ProjectIcon size={22} />}
+          avatar={<ProjectIcon size={27} />}
           title={project.name}
           description={project.description}
           style={{

@@ -1,7 +1,7 @@
 import { Col, Divider, Row, Skeleton, Typography, Upload } from "antd";
-import { WarningIcon } from "assets/icons/boslerActionIcons";
-import { DownloadIcon, UploadIcon } from "assets/icons/boslerInterfaceIcons";
-import { TickIcon } from "assets/icons/boslerNavigationIcon";
+import { WarningIcon } from "assets/icons/orpheaActionIcons";
+import { DownloadIcon, UploadIcon } from "assets/icons/orpheaInterfaceIcons";
+import { TickIcon } from "assets/icons/orpheaNavigationIcon";
 
 import React, { useState } from "react";
 import {
@@ -13,7 +13,7 @@ import {
 import { BulkResult } from "./bulkCreationResult";
 import { bulkUserCreationAPI } from "./BulkUserCreation.api";
 import { downloadSampleUserFile } from "./BulkUserCreation.utils";
-import BoslerButton from "components/ButtonComponent/BoslerButton";
+import OrpheaButton from "components/ButtonComponent/OrpheaButton";
 const { Text, Title } = Typography;
 
 export const BulkUserCreationSettings = () => {
@@ -55,13 +55,13 @@ export const BulkUserCreationSettings = () => {
               showUploadList={false}
               customRequest={({ file }) => uploadCsvFile(file)}
             >
-              <BoslerButton
+              <OrpheaButton
                 intent="action"
                 icon={<UploadIcon />}
                 loading={loading}
               >
                 Upload File
-              </BoslerButton>
+              </OrpheaButton>
             </Upload>
             <br />
 
@@ -94,7 +94,7 @@ export const BulkUserCreationSettings = () => {
                       gutter={[16, 16]}
                       style={{
                         padding: "5px",
-                        background: "var(--bosler-bkg-color-muted)",
+                        background: "var(--orphea-bkg-color-muted)",
                         borderRadius: "2px",
                         boxShadow:
                           "rgba(11, 14, 22, 0.02) 0px 0px 0px 1px, rgba(11, 14, 22, 0.04) 0px 4px 8px, rgba(11, 14, 22, 0.04) 0px 18px 46px 6px",
@@ -163,7 +163,7 @@ export const BulkUserCreationSettings = () => {
             <Row justify="space-between">
               <Col
                 style={{
-                  border: "1px solid var(--bosler-border-color-muted)",
+                  border: "1px solid var(--orphea-border-color-muted)",
                   padding: "1rem",
                 }}
               >
@@ -175,13 +175,13 @@ export const BulkUserCreationSettings = () => {
                   </Col>
                   <Col>
                     <Text type="secondary">
-                      <BoslerButton
+                      <OrpheaButton
                         onClick={downloadSampleUserFile}
                         intent="primary"
                         icon={<DownloadIcon />}
                       >
                         Sample CSV File
-                      </BoslerButton>
+                      </OrpheaButton>
                     </Text>
                   </Col>
                 </Row>

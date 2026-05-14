@@ -30,7 +30,7 @@ import {
 
 import { Resource } from "Apps/explorer/explorer";
 import { useNavigateHelper } from "Apps/explorer/explorer.hooks";
-import { NavigatorLink, getNodeIcon } from "Apps/explorer/explorer.utils";
+import { getNodeIcon } from "Apps/explorer/explorer.utils";
 import UserInfo from "common/components/UserInfo";
 import "./UserActivity.scss";
 
@@ -114,7 +114,12 @@ const Favs = () => {
                 title={
                   <>
                     <Row align={"middle"}>
-                      <NavigatorLink to={item.id}>{item?.name}</NavigatorLink>
+                      <Col
+                        onClick={() => navigate(item.id)}
+                        style={{ cursor: "pointer" }}
+                      >
+                        {item?.name}
+                      </Col>
                       <Col
                         onClick={() => {
                           removeFromFavouritesApi(item.id).then(() =>

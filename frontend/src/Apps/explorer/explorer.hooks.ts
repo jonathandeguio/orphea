@@ -1,4 +1,7 @@
-import { useResourceHook } from "hooks/useFileExplorerService";
+import {
+  useFileExplorerService,
+  useResourceHook,
+} from "hooks/useFileExplorerService";
 import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router";
@@ -82,7 +85,6 @@ export const useNavigateHelper = () => {
           case "repository":
             url = `/portal/kitab/repository/${file.id}/{branch}`;
             break;
-          case "webhook":
           case "agent":
           case "source":
           case "link":

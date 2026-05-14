@@ -5,8 +5,6 @@ import {
 } from "Apps/Kepler/chart/charts.utils";
 import store from "../../redux/store";
 import { RootState, ThunkAppDispatch } from "../../redux/types/store";
-import { QueryError } from "Apps/Kepler/kepler";
-import { defaultCustomize } from "Apps/Kepler/utils/DefaultValues";
 
 export const initialLoad =
   (payload: any, transactionId: string) =>
@@ -33,8 +31,7 @@ export const changeVersion =
     const state = store.getState();
     fetchChart(state.kepler.chart.id, payload.versionId).then((data) => {
       payload.query = data.chartConfig;
-      payload.customize = { ...defaultCustomize, ...data.chartCustomize };
-
+      payload.customize = data.chartCustomize;
       // fetchChartData(
       //   false,
       //   state.kepler.chart.id,
@@ -56,20 +53,6 @@ export const updateQuery =
     dispatch({
       type: "UPDATE_QUERY",
       payload: payload,
-    });
-  };
-
-export const initChartSave =
-  () => async (dispatch: ThunkAppDispatch, getState: RootState) => {
-    dispatch({
-      type: "START_CHART_SAVE",
-    });
-  };
-
-export const finishChartSave =
-  () => async (dispatch: ThunkAppDispatch, getState: RootState) => {
-    dispatch({
-      type: "FINISH_CHART_SAVE",
     });
   };
 
@@ -101,13 +84,6 @@ export const updateCustomize = (payload: any) => {
 export const silentUpdateQuery = (payload: any) => {
   return {
     type: "SILENT_UPDATE_QUERY",
-    payload: payload,
-  };
-};
-
-export const updateQueryError = (payload: QueryError) => {
-  return {
-    type: "UPDATE_QUERY_ERROR",
     payload: payload,
   };
 };

@@ -6,7 +6,7 @@ import { getDefaultAccessManagerFilters } from "../AccessManager.utils";
 import { IResourceFilters } from "Apps/ProjectsV2/interfaces/Project";
 import { getDefaultProjectFilters } from "Apps/ProjectsV2/utils/Projects.utils";
 
-export type IFilters = IAccessManagerFilters | IResourceFilters;
+type IFilters = IAccessManagerFilters | IResourceFilters;
 
 export const FILTER_TYPES = {
   ACCESS_MANAGER: "ACCESS_MANAGER",

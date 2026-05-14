@@ -82,7 +82,6 @@ const MATCHERS = [
 ];
 
 const LexicalEditor = ({ defaultData, handleChange, editable }: TProps) => {
-  let data = defaultData;
   const [floatingAnchorElem, setFloatingAnchorElem] =
     useState<HTMLDivElement | null>(null);
 
@@ -92,16 +91,10 @@ const LexicalEditor = ({ defaultData, handleChange, editable }: TProps) => {
     }
   };
 
-  try {
-    JSON.parse(data);
-  } catch {
-    data = undefined;
-  }
-
   return (
     <LexicalComposer
       initialConfig={
-        { ...editorConfig, editorState: data, editable: editable } as any
+        { ...editorConfig, editorState: defaultData, editable: editable } as any
       }
     >
       <RichTextPlugin

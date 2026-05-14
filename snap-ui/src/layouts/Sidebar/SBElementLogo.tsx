@@ -1,5 +1,5 @@
-import { BoslerIcon } from "assets/icons/boslerMiscellaneousIcons";
-import BoslerLoader from "components/boslerLoader";
+import { OrpheaIcon } from "assets/icons/orpheaMiscellaneousIcons";
+import OrpheaLoader from "components/orpheaLoader";
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -28,7 +28,7 @@ const SDElementLogo = ({
   return (
     <Link to="/" style={{ textDecoration: "none" }}>
       {loading ? (
-        <BoslerLoader />
+        <OrpheaLoader />
       ) : isDefined(config) && isDefined(config.logo) ? (
         <img
           style={{
@@ -40,10 +40,10 @@ const SDElementLogo = ({
         />
       ) : (
         <>
-          <BoslerIcon size={iconSize && iconSize > 18 ? 36 : 30} />
+          <OrpheaIcon size={iconSize && iconSize > 18 ? 36 : 30} />
           <br />
           {showText ? (
-            <span className="logo">BOSLER</span>
+            <span className="logo">ORPHEA</span>
           ) : (
             <span
               className="logo"
@@ -52,13 +52,13 @@ const SDElementLogo = ({
                 fontWeight: "bold",
                 lineHeight: "16px",
                 color: "var(--PRIMARY_COLOR)",
-                // background: "var(--bosler-border-color-muted)",
-                // border: 0.1px solid var(--bosler-border-color-default);
+                // background: "var(--orphea-border-color-muted)",
+                // border: 0.1px solid var(--orphea-border-color-default);
                 // border-left: none;
                 // border-right: none;
               }}
             >
-              BOSLER
+              ORPHEA
             </span>
           )}
         </>

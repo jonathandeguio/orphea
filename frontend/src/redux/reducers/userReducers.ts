@@ -9,9 +9,6 @@ import {
   IS_GROUP_ADMIN_FAIL,
   IS_GROUP_ADMIN_REQUEST,
   IS_GROUP_ADMIN_SUCCESS,
-  IS_LOGEDIN_WITH_CREDENTIALS,
-  IS_LOGEDIN_WITH_OTP,
-  IS_LOGEDIN_WITH_RECOVERYCODE,
   IS_PLATFORM_ADMIN_FAIL,
   IS_PLATFORM_ADMIN_REQUEST,
   IS_PLATFORM_ADMIN_SUCCESS,
@@ -56,21 +53,6 @@ export const userLoginReducer = (
     case USER_LOGOUT:
       return { loading: false, userInfo: undefined, error: undefined };
 
-    default:
-      return state;
-  }
-};
-export const userLoginConfig = (
-  state = { loginMethod: "" },
-  action: $TSFixMe
-) => {
-  switch (action.type) {
-    case IS_LOGEDIN_WITH_CREDENTIALS:
-      return { loginMethod: "Credentials" };
-    case IS_LOGEDIN_WITH_OTP:
-      return { loginMethod: "OTP" };
-    case IS_LOGEDIN_WITH_RECOVERYCODE:
-      return { loginMethod: "Recovery code" };
     default:
       return state;
   }

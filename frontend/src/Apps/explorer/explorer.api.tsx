@@ -1,6 +1,5 @@
 import axios, { AxiosResponse } from "axios";
 import { isDefined } from "utils/utilities";
-import { ResourceType } from "./explorer.utils";
 
 /**
  * projectStructure
@@ -161,53 +160,4 @@ export const permanentDelete = (
   id: string
 ): Promise<AxiosResponse<any, any>> => {
   return axios.delete(`/kitab/explorer/permanentDelete/${id}`);
-};
-
-/**
- * Creates a new folder in backend
- */
-export const createFolderApi = (folder: {
-  name: string;
-  description?: string;
-  parent: string;
-  type: ResourceType;
-}) => {
-  return axios.post(`/kitab/explorer/folder`, JSON.stringify(folder));
-};
-
-/**
- * Creates a new Dataset in backend
- */
-export const createDatasetApi = (dataset: {
-  name: string;
-  description?: string;
-  parent: string;
-  type: ResourceType;
-}) => {
-  return axios.post(`/kitab/dataset/create`, JSON.stringify(dataset));
-};
-
-/**
- * Creates a new Dashboard in backend
- */
-export const createDashboardApi = (dashboard: {
-  name: string;
-  description?: string;
-  parent: string;
-}) => {
-  return axios.post(`/kepler/dashboards/new`, JSON.stringify(dashboard));
-};
-
-/**
- * Creates a new Chart in backend
- */
-export const createChartApi = (chart: {
-  name: string;
-  description?: string;
-  parent: string;
-  datasetId: string;
-  branch: string;
-  chartConfig: any; // Need to update with suitable model or move it to backend
-}) => {
-  return axios.post(`/kepler/charts/new`, JSON.stringify(chart));
 };

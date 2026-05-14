@@ -14,15 +14,16 @@ import styles from "./CommentContent.module.scss";
 const { TabPane } = Tabs;
 interface IProps {
   id: string;
-  classes?: any;
   height?: string;
+  width?: string;
   allOpenComments: Comment[];
   allResolvedComments: Comment[];
   userMap: any;
 }
 export const CommentsContent = ({
   id,
-  classes,
+  height = "100%",
+  width = "100%",
   allOpenComments,
   allResolvedComments,
   userMap,
@@ -47,7 +48,15 @@ export const CommentsContent = ({
   if (!isDefined(allusers)) return <BoslerLoader />;
   return (
     <>
-      <div className={classes?.root} ref={ref}>
+      <div
+        className="--p10"
+        style={{
+          width: width,
+          height: `calc(${height} - 35px)`,
+          overflowY: "auto",
+        }}
+        ref={ref}
+      >
         <div className={styles.container}>
           {allResolvedComments.length > 0 ? (
             <Tabs
@@ -85,17 +94,19 @@ export const CommentsContent = ({
               </TabPane>
             </Tabs>
           ) : (
-            <OpenComments
-              id={id}
-              allOpenComments={allOpenComments}
-              userMap={userMap}
-              setIsCommentingOn={setIsCommentingOn}
-              isReplyOnFor={isReplyOnFor}
-              setIsReplyOnFor={setIsReplyOnFor}
-              isEditingOnFor={isEditingOnFor}
-              setIsEditingOnFor={setIsEditingOnFor}
-              parentNode={ref}
-            />
+            <div>
+              <OpenComments
+                id={id}
+                allOpenComments={allOpenComments}
+                userMap={userMap}
+                setIsCommentingOn={setIsCommentingOn}
+                isReplyOnFor={isReplyOnFor}
+                setIsReplyOnFor={setIsReplyOnFor}
+                isEditingOnFor={isEditingOnFor}
+                setIsEditingOnFor={setIsEditingOnFor}
+                parentNode={ref}
+              />
+            </div>
           )}
         </div>
       </div>

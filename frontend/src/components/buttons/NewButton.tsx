@@ -18,16 +18,9 @@ import AgentModal from "Apps/Connect/Agents/AgentModal.view";
 import LinkModal from "Apps/Connect/Links/LinkModal.view";
 import SourceModal from "Apps/Connect/Sources/SourceModal.view";
 import { KEPLER_USE_CASES } from "Apps/Kepler/chart/charts.utils";
-import { useCreateResourceHandler } from "Apps/explorer/Hooks/useResourceCreateHandler/useResourceCreateHandler";
 import { ResourceType, ResourceTypeEnum } from "Apps/explorer/explorer.utils";
 import { CodeCellIcon } from "assets/icons/boslerEditorIcons";
-import {
-  AppIcon,
-  KeyIcon,
-  UploadIcon
-} from "assets/icons/boslerInterfaceIcons";
-import CreateNewFolderModal from "components/Modals/CreateNewFolderModal";
-import CreateNewWebhookModal from "components/Modals/CreateNewWebhookModal";
+import { KeyIcon, UploadIcon } from "assets/icons/boslerInterfaceIcons";
 import { FRACTAL_USE_CASES } from "components/editor/editor.constants";
 import { useHotkeys } from "react-hotkeys-hook";
 import { useSelector } from "react-redux";
@@ -37,6 +30,7 @@ import {
 } from "../../assets/icons/boslerDataIcons";
 import BoslerButton from "../BoslerComponents/ButtonComponent/BoslerButton";
 import CreateNewDatasetModal from "../Modals/CreateNewDatasetModal";
+import CreateNewFolderModal from "../Modals/CreateNewFolderModal";
 import CreateNewRepositoryModal from "../Modals/CreateNewRepositoryModal";
 import UploadNewFileModal from "../Modals/UploadNewFileModal";
 
@@ -59,26 +53,7 @@ const NewButton: React.FC<Props> = ({ parent, type }) => {
 
   const { info } = useSelector((state) => (state as any).license);
 
-  const { createNewFolder, createNewDataset, createNewDashboard } =
-    useCreateResourceHandler();
-
   const items: MenuProps["items"] = [
-    {
-      key: "divider-with-label",
-      label: (
-        <div
-          style={{
-            color: "var(--bosler-font-color-muted)",
-            fontStyle: "italic",
-            fontWeight: "200",
-            fontSize: "10",
-          }}
-        >
-          {getLanguageLabel("resource")}
-        </div>
-      ),
-      disabled: true,
-    },
     {
       key: ResourceTypeEnum.FOLDER,
       label: (
@@ -86,7 +61,8 @@ const NewButton: React.FC<Props> = ({ parent, type }) => {
       ),
       icon: <FolderIcon size={22} />,
       onClick: () => {
-        if (parent) createNewFolder({ parentId: parent });
+        setValue("FOLDER");
+        setView(true);
       },
       disabled: false,
     },
@@ -106,7 +82,11 @@ const NewButton: React.FC<Props> = ({ parent, type }) => {
         ? !type.map((t) => t?.toUpperCase()).includes(ResourceTypeEnum.FILE)
         : false,
     },
-
+    {
+      key: "divider",
+      label: <Divider style={{ margin: "1px" }}></Divider>,
+      disabled: true,
+    },
     {
       key: ResourceTypeEnum.DATASET,
       label: (
@@ -116,51 +96,12 @@ const NewButton: React.FC<Props> = ({ parent, type }) => {
       ),
       icon: <TableIcon size={22} />,
       onClick: () => {
-        if (parent) createNewDataset({ parentId: parent });
+        setValue("DATASET");
+        setView(true);
       },
       disabled: isDefined(type)
         ? !type.map((t) => t?.toUpperCase()).includes(ResourceTypeEnum.DATASET)
         : false,
-    },
-    {
-      key: "divider",
-      label: <Divider style={{ margin: "1px" }}></Divider>,
-      disabled: true,
-    },
-    {
-      key: "divider-with-label",
-      label: (
-        <div
-          style={{
-            color: "var(--bosler-font-color-muted)",
-            fontStyle: "italic",
-            fontWeight: "200",
-            fontSize: "10",
-          }}
-        >
-          Transform
-        </div>
-      ),
-      disabled: true,
-    },
-    {
-      key: ResourceTypeEnum.NOCODE,
-      label: (
-        <div style={{ marginLeft: "1.5rem" }} className="text-and-icon-center">
-          No Code
-          {!FRACTAL_USE_CASES.includes(info.product) && <KeyIcon />}
-        </div>
-      ),
-      icon: <AppIcon size={18} color={"#dddddd"}/>,
-      onClick: () => {
-        setValue("repository");
-        setView(true);
-      },
-      disabled: isDefined(type)
-        ? !type
-            .map((t) => t?.toUpperCase())
-            .includes(ResourceTypeEnum.REPOSITORY)
-        : true,
     },
     {
       key: ResourceTypeEnum.REPOSITORY,
@@ -180,27 +121,6 @@ const NewButton: React.FC<Props> = ({ parent, type }) => {
             .map((t) => t?.toUpperCase())
             .includes(ResourceTypeEnum.REPOSITORY)
         : false,
-    },
-    {
-      key: "divider",
-      label: <Divider style={{ margin: "1px" }}></Divider>,
-      disabled: true,
-    },
-    {
-      key: "divider-with-label",
-      label: (
-        <div
-          style={{
-            color: "var(--bosler-font-color-muted)",
-            fontStyle: "italic",
-            fontWeight: "200",
-            fontSize: "10",
-          }}
-        >
-          {getLanguageLabel("visualization")}
-        </div>
-      ),
-      disabled: true,
     },
     {
       key: ResourceTypeEnum.CHART,
@@ -229,7 +149,8 @@ const NewButton: React.FC<Props> = ({ parent, type }) => {
       ),
       icon: <MonitorIcon size={22} />,
       onClick: () => {
-        if (parent) createNewDashboard({ parentId: parent });
+        setValue("dashboard");
+        setView(true);
       },
       disabled: isDefined(type)
         ? !type
@@ -263,22 +184,6 @@ const NewButton: React.FC<Props> = ({ parent, type }) => {
         <Divider style={{ margin: "1px" }}>
           {/* {getLanguageLabel("connect")} */}
         </Divider>
-      ),
-      disabled: true,
-    },
-    {
-      key: "divider-with-label",
-      label: (
-        <div
-          style={{
-            color: "var(--bosler-font-color-muted)",
-            fontStyle: "italic",
-            fontWeight: "200",
-            fontSize: "10",
-          }}
-        >
-          {getLanguageLabel("connect")}
-        </div>
       ),
       disabled: true,
     },
@@ -329,18 +234,6 @@ const NewButton: React.FC<Props> = ({ parent, type }) => {
         ? !type.map((t) => t?.toUpperCase()).includes(ResourceTypeEnum.AGENT)
         : false,
     },
-    // {
-    //   key: "10",
-    //   label: <div style={{ marginLeft: "1.5rem" }}>{"Webhook"}</div>,
-    //   icon: <APIIcon size={22} />,
-    //   onClick: () => {
-    //     setValue("webhook");
-    //     setView(true);
-    //   },
-    //   disabled: isDefined(type)
-    //     ? !type.map((t) => t?.toUpperCase()).includes(ResourceTypeEnum.WEBHOOK)
-    //     : false,
-    // },
   ];
 
   useHotkeys("1", (event: any) => {
@@ -416,13 +309,6 @@ const NewButton: React.FC<Props> = ({ parent, type }) => {
             isVisible={view}
             setIsVisible={setView}
             branch={"master"}
-          />
-        )}
-        {value == "webhook" && view && id != undefined && (
-          <CreateNewWebhookModal
-            defaultParent={id}
-            isVisible={view}
-            setIsVisible={setView}
           />
         )}
         {value == "dashboard" && view && id != undefined && (

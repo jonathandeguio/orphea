@@ -1,11 +1,11 @@
 ---
-- name: Install Helm, Containerd, Postgres, Redis on bosler-db
+- name: Install Helm, Containerd, Postgres, Redis on orphea-db
   hosts: db
   become: yes
   become_method: sudo
   become_user: root
   vars:
-    ansible_become_pass: "bosler2024"
+    ansible_become_pass: "orphea2024"
   tasks:
     # - name: Echo the current username
     #   command: whoami
@@ -17,21 +17,21 @@
 
     - name: Copy postgres script
       copy:
-        src: /home/dexter/Work/bosler/unify/ansible/scripts/postgres.sh
+        src: /home/dexter/Work/orphea/unify/ansible/scripts/postgres.sh
         dest: /tmp/postgres.sh
         mode: "0755"
         force: yes
 
     - name: Copy redis script
       copy:
-        src: /home/dexter/Work/bosler/unify/ansible/scripts/redis.sh
+        src: /home/dexter/Work/orphea/unify/ansible/scripts/redis.sh
         dest: /tmp/redis.sh
         mode: "0755"
         force: yes
 
     - name: Copy helm script
       copy:
-        src: /home/dexter/Work/bosler/unify/ansible/scripts/helm.sh
+        src: /home/dexter/Work/orphea/unify/ansible/scripts/helm.sh
         dest: /tmp/helm.sh
         mode: "0755"
         force: yes

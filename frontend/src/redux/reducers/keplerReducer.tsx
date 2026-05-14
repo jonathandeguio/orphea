@@ -1,27 +1,29 @@
-import { getColorScheme } from "Apps/Kepler/chart/chartOptionsFactory";
 import { chartConfig } from "Apps/Kepler/chart/charts.config";
 import {
   getAggregateOptionsValuesList,
   syncCustomizeSeries,
 } from "Apps/Kepler/chart/charts.utils";
+import { getColorScheme } from "Apps/Kepler/chart/chartOptionsFactory";
 
 import { KeplerStore } from "Apps/Kepler/kepler";
 import {
   defaultCustomize,
   defaultSeries,
 } from "Apps/Kepler/utils/DefaultValues";
-import { generateUUID, isEmpty } from "utils/utilities";
+import { stat } from "fs";
+import {
+  ObjectKeys,
+  generateUUID,
+  getColorTheme,
+  isDefined,
+  isEmpty,
+} from "utils/utilities";
 
 const initialState: KeplerStore = {
   isChartSaved: true,
   dataForm: null,
   customizeForm: null,
   query: undefined,
-  queryError: {
-    status: "PENDING",
-    error: null,
-  },
-  chartStatus: "LOADING",
   chart: null,
   data: null,
   columns: [],
@@ -30,19 +32,6 @@ const initialState: KeplerStore = {
 const uuid = require("uuid");
 export const keplerReducer = (state = initialState, action: any) => {
   switch (action.type) {
-    case "START_CHART_SAVE": {
-      return {
-        ...state,
-        chartStatus: "LOADING",
-      };
-    }
-    case "FINISH_CHART_SAVE": {
-      return {
-        ...state,
-        chartStatus: "LOADED",
-      };
-    }
-
     case "CLEANUP": {
       let updatedState = {
         isChartSaved: true,
@@ -53,7 +42,6 @@ export const keplerReducer = (state = initialState, action: any) => {
         data: null,
         columns: [],
         customize: null,
-        chartStatus: "LOADING",
       };
       return updatedState;
     }
@@ -70,7 +58,6 @@ export const keplerReducer = (state = initialState, action: any) => {
           error: false,
           chartData: action.payload.data,
         },
-        chartStatus: "LOADED",
         isChartSaved: true,
       };
 
@@ -143,29 +130,16 @@ export const keplerReducer = (state = initialState, action: any) => {
 
       return updatedState;
     }
-    case "UPDATE_QUERY_ERROR": {
-      let updatedState = {
-        ...state,
-        queryError: {
-          status: action.payload.status,
-          error: action.payload.error,
-        },
-      };
-      return updatedState;
-    }
     case "SILENT_UPDATE_QUERY": {
       return {
         ...state,
-        chartStatus: "LOADED",
         isChartSaved: action?.payload?.chartUUID ? true : false,
       };
     }
     case "UPDATE_CHART": {
       return {
         ...state,
-        chart: { ...state.chart, ...action.payload.chart },
-        chartStatus: "LOADED",
-        isChartSaved: action.payload.isChartSaved,
+        chart: { ...state.chart, ...action.payload },
       };
     }
     case "FETCH_DATA_REQUEST": {
@@ -235,6 +209,9 @@ const updateSeriesIndex = (series: any, chartType: string) =>
   series.map((s: any) => ({
     ...s,
     seriesIndex: "left",
+    groupBy: ["sunBurstChart", "radarChart"].includes(chartType)
+      ? []
+      : s.groupBy,
   }));
 
 const ensureSingleSeries = (series: any) => [series[0]];
@@ -258,6 +235,7 @@ const validateAggregateFunctions = (
       aggregate: aggregateOptions.includes(s.aggregate)
         ? s.aggregate
         : aggregateOptions[0],
+      groupBy: chartType === "gaugeChart" ? [] : s.groupBy,
     };
   });
 
@@ -306,20 +284,8 @@ const onUpdateQuery = (state: any, updatedState: any) => {
     );
   }
 
-  if (
-    !querySkeleton.hasOwnProperty("xaxis") &&
-    updatedState.query.sortingMethod === "xaxis"
-  ) {
-    updatedState.query.sortingMethod = "custom";
-    updatedState.dataForm.setFieldValue("sortingMethod", "custom");
-  }
-
   updatedState.dataForm.setFieldValue("xaxis", updatedState.query.xaxis);
   updatedState.dataForm.setFieldValue("series", updatedState.query.series);
-
-  updatedState = {
-    ...updatedState,
-  };
 
   return updatedState;
 };

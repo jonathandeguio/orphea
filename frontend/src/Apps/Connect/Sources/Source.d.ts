@@ -1,16 +1,6 @@
-import { SourceAuthTypeEnum } from "../Enums/JDBCSourceAuthTypeEnum";
-import { IRestDomain } from "./RestAPIConnector/RestAPIConnector.types";
+import { SourceAuthTypeEnum } from "../Enums/SourceAuthTypeEnum";
 
-export interface IRestAPIConnector {
-  domains?: IRestDomain[];
-}
-export interface ISharepointConnector {
-  url: string;
-  clientId?: string;
-  clientSecret?: string;
-  tenantId?: string;
-}
-export interface ISourceConfig extends IRestAPIConnector, ISharepointConnector {
+export interface ISourceConfig {
   agentId: any[];
   id: string;
   name: string;
@@ -31,10 +21,9 @@ export interface ISourceConfig extends IRestAPIConnector, ISharepointConnector {
   username: string;
   password: string;
   token: string;
+  url: string;
   method: string;
   dbmsType: string;
   directLoad: boolean;
   build: boolean;
-
-  sourceConfig: string;
 }

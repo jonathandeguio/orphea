@@ -1,0 +1,48 @@
+# =============================================================================
+# Orphea Snap — Service systemd (CentOS / RHEL)
+#
+# Prérequis : orphea-platform.service doit être démarré en premier.
+#
+# Installation :
+#   sudo cp orphea-snap-centos.service /etc/systemd/system/orphea-snap.service
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable orphea-snap
+#   sudo systemctl start orphea-snap
+#
+# Vérification :
+#   sudo systemctl status orphea-snap
+#   sudo journalctl -u orphea-snap -f
+# =============================================================================
+[Unit]
+Description=Orphea Snap Artifact Service (CentOS/RHEL)
+Documentation=https://orphea.io/docs
+Requires=docker.service orphea-platform.service
+After=docker.service orphea-platform.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+User=orphea
+Group=orphea
+
+WorkingDirectory=/opt/orphea/repo/scripts
+
+EnvironmentFile=/opt/orphea/repo/scripts/.env.orphea
+
+# Démarrage avec SELinux preflight + vérification FUSE
+ExecStartPre=/bin/bash -c "modprobe fuse 2>/dev/null || true"
+ExecStartPre=/bin/bash -c "test -c /dev/fuse || (echo 'ERROR: /dev/fuse manquant' && exit 1)"
+ExecStart=/bin/bash /opt/orphea/repo/scripts/03-start-centos.sh --stack snap
+
+ExecStop=/usr/bin/docker compose \
+  -f /opt/orphea/repo/scripts/docker-compose.snap.yml \
+  --env-file /opt/orphea/repo/scripts/.env.orphea \
+  down
+
+TimeoutStartSec=180
+TimeoutStopSec=60
+Restart=on-failure
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target

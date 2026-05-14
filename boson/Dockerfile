@@ -65,19 +65,16 @@ RUN echo "spark.jars /opt/spark/jars/aws-java-sdk-bundle.jar,/opt/spark/jars/had
 
 USER root
 
-# Cleanup
-RUN  apt-get clean && \
-    rm -rf /var/lib/ap
-
 # COPY dependency files
 RUN mkdir dependencies
 COPY dependencies/packages.txt dependencies/
 COPY funnel/dependencies/requirements.txt dependencies/
 
 RUN \
+    apt-get -qq update && \
     apt-get -qq upgrade -y && \
-    apt-get -qq update -y && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -qq -y $(cat dependencies/packages.txt) && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -qq -y $(tr -d '\r' < dependencies/packages.txt) && \
+    apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 RUN pip install -q --upgrade pip && \
@@ -101,4 +98,4 @@ COPY /FractalTemplates/ /app/FractalTemplates/
 RUN cp /app/*.jar $SPARK_HOME/jars/
 
 ENTRYPOINT ["/usr/bin/shyneEntrypoint.sh"]
-USER ${spark_uid}
+USER root

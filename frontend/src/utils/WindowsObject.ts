@@ -24,13 +24,13 @@ export const registerOneTimeWindowsFunctions = () => {
           width="16"
         >
           <desc>dynamic</desc>
-          <g stroke-width="1">
+          <g strokeWidth="1">
             <g transform="">
               <path
-                clip-rule="evenodd"
+                clipRule="evenodd"
                 d="m14.715 3.536-8.558 9.989-4.846-4.847.707-.707L6.1 12.054l7.856-9.168.76.65Z"
                 fill="currentColor"
-                fill-rule="evenodd"
+                fillRule="evenodd"
               ></path>
             </g>
           </g>
@@ -71,13 +71,13 @@ export const registerOneTimeWindowsFunctions = () => {
         width="16"
       >
         <desc>dynamic</desc>
-        <g stroke-width="1">
+        <g strokeWidth="1">
           <g transform="">
             <path
-              clip-rule="evenodd"
+              clipRule="evenodd"
               d="m7.293 8.5-4.01-4.01.707-.708L8 7.792l4.01-4.01.707.708-4.01 4.01 4.01 4.01-.707.707L8 9.207l-4.01 4.01-.708-.707 4.01-4.01Z"
               fill="currentColor"
-              fill-rule="evenodd"
+              fillRule="evenodd"
             ></path>
           </g>
         </g>

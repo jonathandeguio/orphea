@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # Variables
-USERNAME="bosler"
-PASSWORD="bosler2024"
+USERNAME="orphea"
+PASSWORD="orphea2024"
 SUDOERS_FILE="/etc/sudoers.d/$USERNAME"
 
-# Check if user 'bosler' exists, if not create the user
+# Check if user 'orphea' exists, if not create the user
 if id "$USERNAME" &>/dev/null; then
     echo "User '$USERNAME' already exists."
 else

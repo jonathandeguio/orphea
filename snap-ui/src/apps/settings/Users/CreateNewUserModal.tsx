@@ -8,16 +8,16 @@ import { getLanguageLabel, isDefined, openNotification } from "utils/utilities";
 import {
   AddUserIcon,
   UploadIcon,
-} from "assets/icons/boslerInterfaceIcons";
-import { TickIcon } from "assets/icons/boslerNavigationIcon";
+} from "assets/icons/orpheaInterfaceIcons";
+import { TickIcon } from "assets/icons/orpheaNavigationIcon";
 import { getAllUserDetails } from "redux/actions/userActions";
 import { ThunkAppDispatch } from "redux/types/store";
 
 
 import { ErrorResponse } from "global";
-import BoslerModal from "components/BoslerModalContainer";
-import BoslerButton from "components/ButtonComponent/BoslerButton";
-import BoslerInput from "components/InputComponent/BoslerInput";
+import OrpheaModal from "components/OrpheaModalContainer";
+import OrpheaButton from "components/ButtonComponent/OrpheaButton";
+import OrpheaInput from "components/InputComponent/OrpheaInput";
 
 const { Text } = Typography;
 const { Option } = Select;
@@ -125,21 +125,21 @@ const CreateNewUserModal = ({ isOpen, setIsOpen }: Props) => {
 
   return (
     <>
-      <BoslerModal
+      <OrpheaModal
         headingIcon={<AddUserIcon />}
         heading={getLanguageLabel("addNewUserDetails")}
         open={isOpen}
         onCancel={() => setIsOpen(false)}
         onOk={handleOk}
         footerButtonArea={
-          <BoslerButton
+          <OrpheaButton
             icon={<TickIcon />}
             intent="action"
             key="submit"
             onClick={handleOk}
           >
             {getLanguageLabel("create")}
-          </BoslerButton>
+          </OrpheaButton>
         }
         width={600}
       >
@@ -149,8 +149,8 @@ const CreateNewUserModal = ({ isOpen, setIsOpen }: Props) => {
             overflow: "scoll",
           }}
         >
-          <div className="BoslerHeader1">{getLanguageLabel("userName")}</div>
-          <BoslerInput
+          <div className="OrpheaHeader1">{getLanguageLabel("userName")}</div>
+          <OrpheaInput
             autofocus
             onChange={(e) =>
               setNewUserDetails({
@@ -163,7 +163,7 @@ const CreateNewUserModal = ({ isOpen, setIsOpen }: Props) => {
             name="username"
             required
           />
-          <div className="BoslerHeader1">{getLanguageLabel("password")}</div>
+          <div className="OrpheaHeader1">{getLanguageLabel("password")}</div>
           <Input.Password
             onChange={(e) =>
               setNewUserDetails({
@@ -175,8 +175,8 @@ const CreateNewUserModal = ({ isOpen, setIsOpen }: Props) => {
             name="password"
             required
           />
-          <div className="BoslerHeader1">{getLanguageLabel("givenName")}</div>
-          <BoslerInput
+          <div className="OrpheaHeader1">{getLanguageLabel("givenName")}</div>
+          <OrpheaInput
             onChange={(e) =>
               setNewUserDetails({
                 ...newUserDetails,
@@ -187,8 +187,8 @@ const CreateNewUserModal = ({ isOpen, setIsOpen }: Props) => {
             name="fname"
             required
           />
-          <div className="BoslerHeader1">{getLanguageLabel("familyName")}</div>
-          <BoslerInput
+          <div className="OrpheaHeader1">{getLanguageLabel("familyName")}</div>
+          <OrpheaInput
             onChange={(e) =>
               setNewUserDetails({
                 ...newUserDetails,
@@ -199,8 +199,8 @@ const CreateNewUserModal = ({ isOpen, setIsOpen }: Props) => {
             name="lname"
             required
           />
-          {/* <div className="BoslerHeader1">{getLanguageLabel("name")}</div>
-          <BoslerInput
+          {/* <div className="OrpheaHeader1">{getLanguageLabel("name")}</div>
+          <OrpheaInput
             bordered
             onChange={(e) =>
               setNewUserDetails({
@@ -212,8 +212,8 @@ const CreateNewUserModal = ({ isOpen, setIsOpen }: Props) => {
             name="Uname"
             required
           /> */}
-          <div className="BoslerHeader1">{getLanguageLabel("location")}</div>
-          <BoslerInput
+          <div className="OrpheaHeader1">{getLanguageLabel("location")}</div>
+          <OrpheaInput
             onChange={(e) =>
               setNewUserDetails({
                 ...newUserDetails,
@@ -224,8 +224,8 @@ const CreateNewUserModal = ({ isOpen, setIsOpen }: Props) => {
             name="loc"
             required
           />
-          <div className="BoslerHeader1">{getLanguageLabel("email")}</div>
-          <BoslerInput
+          <div className="OrpheaHeader1">{getLanguageLabel("email")}</div>
+          <OrpheaInput
             onChange={(e) =>
               setNewUserDetails({
                 ...newUserDetails,
@@ -237,7 +237,7 @@ const CreateNewUserModal = ({ isOpen, setIsOpen }: Props) => {
             required
           />
 
-          <div className="BoslerHeader1">
+          <div className="OrpheaHeader1">
             {getLanguageLabel("languagePreference")}
           </div>
 
@@ -285,7 +285,7 @@ const CreateNewUserModal = ({ isOpen, setIsOpen }: Props) => {
           </Select>
 
           <div>
-            <div className="BoslerHeader1">
+            <div className="OrpheaHeader1">
               {getLanguageLabel("themePreference")}
             </div>
             <Radio.Group
@@ -313,13 +313,13 @@ const CreateNewUserModal = ({ isOpen, setIsOpen }: Props) => {
 
           <br />
           <Upload {...props}>
-            <BoslerButton icon={<UploadIcon />}>
+            <OrpheaButton icon={<UploadIcon />}>
               {getLanguageLabel("uploadProfilePicture")}
-            </BoslerButton>
+            </OrpheaButton>
           </Upload>
           {isUploaded && <TickIcon color="green" />}
         </div>
-      </BoslerModal>
+      </OrpheaModal>
     </>
   );
 };

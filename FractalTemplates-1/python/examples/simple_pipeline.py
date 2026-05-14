@@ -1,11 +1,11 @@
-from bosler import funnel
+from orphea import funnel
 
 
 
 """
 
 
-https://www.bosler.io
+https://www.orphea.io
 """
 
 # Transformation 1

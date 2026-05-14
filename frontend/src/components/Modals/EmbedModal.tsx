@@ -149,262 +149,258 @@ const EmbedModal = ({ openEmbedModal, setOpenEmbedModal }: TProps) => {
   };
 
   return (
-    <>
-      {openEmbedModal && (
-        <Form
-          form={form}
-          onFinish={() => {
-            form.setFieldValue(
-              "encodedFilters",
-              encodeToBase64(form.getFieldValue("filters"))
-            );
-          }}
-        >
-          <BoslerModal
-            open={openEmbedModal}
-            onCancel={() => {
-              setOpenEmbedModal(false);
-              form.resetFields();
-            }}
-            headingIcon={<LinkIcon />}
-            heading={getLanguageLabel("embedResourceExternal")}
-            width={"70vw"}
-            information={
-              <div>
-                <div style={{ padding: "20px" }}>
-                  <div className="text-and-icon-align">
-                    <LightBulbIcon />
-                    <Text strong>{getLanguageLabel("filterUsage")}</Text>
-                  </div>
-                  <div style={{ paddingTop: "5px", paddingLeft: "20px" }}>
-                    {getLanguageLabel("filterUsageExplanation")}
-                    <br />
+    <Form
+      form={form}
+      onFinish={() => {
+        form.setFieldValue(
+          "encodedFilters",
+          encodeToBase64(form.getFieldValue("filters"))
+        );
+      }}
+    >
+      <BoslerModal
+        open={openEmbedModal}
+        onCancel={() => {
+          setOpenEmbedModal(false);
+          form.resetFields();
+        }}
+        headingIcon={<LinkIcon />}
+        heading={getLanguageLabel("embedResourceExternal")}
+        width={"70vw"}
+        information={
+          <div>
+            <div style={{ padding: "20px" }}>
+              <div className="text-and-icon-align">
+                <LightBulbIcon />
+                <Text strong>{getLanguageLabel("filterUsage")}</Text>
+              </div>
+              <div style={{ paddingTop: "5px", paddingLeft: "20px" }}>
+                {getLanguageLabel("filterUsageExplanation")}
+                <br />
+                <BoslerCollapse
+                  key={`embed_url`}
+                  collapsible="HEADER"
+                  header={getLanguageLabel("url")}
+                >
+                  <>
+                    URL to use : {PUBLIC_URL}
+                    /portal/kepler/CHART/ac276595-a61d-4290-ab7f-7558f4692a52?embedded=true&filter=W3siZmllbGQiOnsibmFtZSI6Ik9SREVSX0lURU1fSUQiLCJ0eXBlIjoic3RyaW5nIiwidmFsdWUiOiJPUkRFUl9JVEVNX0lEIiwiZGF0YXNldElkIjoiMTI0OGYyZjAtYzliYS00YzIzLWIzODctYTExMzFjMzFkM2E1In0sImNvbmRpdGlvbkNhc2UiOlt7ImtleSI6ImNvbmRpdGlvbl8xNzA4MjgxMTQzNzc5Iiwib3BlcmF0b3IiOiJlcXVhbCIsInZhbHVlIjoiODcyIn1dLCJrZXkiOiJmaWx0ZXJfMTcwODI4MTE0Mzc3OSIsImxvZ2ljYWxPcGVyYXRvciI6IkFORCJ9XQ==
+                  </>
+                </BoslerCollapse>
+                <BoslerCollapse
+                  key={`example_filter`}
+                  collapsible="HEADER"
+                  header={getLanguageLabel("example")}
+                >
+                  <>
                     <BoslerCollapse
-                      key={`embed_url`}
+                      key={`example_filter1`}
                       collapsible="HEADER"
-                      header={getLanguageLabel("url")}
+                      header={getLanguageLabel("filter") + " 1"}
                     >
                       <>
-                        URL to use : {PUBLIC_URL}
-                        /portal/kepler/CHART/ac276595-a61d-4290-ab7f-7558f4692a52?embedded=true&filter=W3siZmllbGQiOnsibmFtZSI6Ik9SREVSX0lURU1fSUQiLCJ0eXBlIjoic3RyaW5nIiwidmFsdWUiOiJPUkRFUl9JVEVNX0lEIiwiZGF0YXNldElkIjoiMTI0OGYyZjAtYzliYS00YzIzLWIzODctYTExMzFjMzFkM2E1In0sImNvbmRpdGlvbkNhc2UiOlt7ImtleSI6ImNvbmRpdGlvbl8xNzA4MjgxMTQzNzc5Iiwib3BlcmF0b3IiOiJlcXVhbCIsInZhbHVlIjoiODcyIn1dLCJrZXkiOiJmaWx0ZXJfMTcwODI4MTE0Mzc3OSIsImxvZ2ljYWxPcGVyYXRvciI6IkFORCJ9XQ==
+                        <pre style={{ fontSize: "0.5rem" }}>
+                          {JSON.stringify(exampleFilter1, null, 2)}
+                        </pre>
                       </>
                     </BoslerCollapse>
-                    <BoslerCollapse
-                      key={`example_filter`}
-                      collapsible="HEADER"
-                      header={getLanguageLabel("example")}
-                    >
-                      <>
-                        <BoslerCollapse
-                          key={`example_filter1`}
-                          collapsible="HEADER"
-                          header={getLanguageLabel("filter") + " 1"}
-                        >
-                          <>
-                            <pre style={{ fontSize: "0.5rem" }}>
-                              {JSON.stringify(exampleFilter1, null, 2)}
-                            </pre>
-                          </>
-                        </BoslerCollapse>
 
-                        <BoslerCollapse
-                          key={`example_filter2`}
-                          collapsible="HEADER"
-                          header={getLanguageLabel("filter") + " 2"}
-                        >
-                          <>
-                            <pre style={{ fontSize: "0.5rem" }}>
-                              {JSON.stringify(exampleFilter2, null, 2)}
-                            </pre>
-                          </>
-                        </BoslerCollapse>
+                    <BoslerCollapse
+                      key={`example_filter2`}
+                      collapsible="HEADER"
+                      header={getLanguageLabel("filter") + " 2"}
+                    >
+                      <>
+                        <pre style={{ fontSize: "0.5rem" }}>
+                          {JSON.stringify(exampleFilter2, null, 2)}
+                        </pre>
                       </>
                     </BoslerCollapse>
-                  </div>
-                </div>
-                <div style={{ padding: "20px" }}>
-                  <div className="text-and-icon-align">
-                    <LibraryIcon />
-                    <Text strong>{getLanguageLabel("learn")}</Text>
-                  </div>
-                  <div style={{ paddingTop: "10px", paddingLeft: "20px" }}>
-                    <Link to="/learn/">DataConnection Guidelines</Link>
-                    <br />
-                    <Link to="/learn/">Best Practices</Link>
-                    <br />
-                    <Link to="/learn/">Data Transfer Security</Link>
-                    <br />
-                    <Link to="/learn/">Governance Policy and Guidelines</Link>
-                  </div>
-                </div>
-              </div>
-            }
-          >
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                gap: "20px",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <div
-                style={{
-                  flex: 1,
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  flexDirection: "column",
-                  background: "var(--background-color)",
-                  padding: "20px",
-                  border: "1px solid var(--bosler-border-color-default)",
-                  height: "200px",
-                  width: "250px",
-                  gap: "10px",
-                }}
-              >
-                <div className="BoslerHeader1">
-                  {getLanguageLabel("embeddedLink")}
-                </div>
-                <div
-                  style={{
-                    marginBottom: "10px",
-                  }}
-                >
-                  {getLanguageLabel("pasteLinkIntoSupportingApplication")}
-                </div>
-                <BoslerButton
-                  icon={<LinkIcon />}
-                  onClick={() => handleCopy(true, false)}
-                  intent="primary"
-                  menuItems={copyMenuItems(true)}
-                >
-                  {getLanguageLabel("copyLink")}
-                </BoslerButton>
-              </div>
-              <div
-                style={{
-                  flex: 1,
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  background: "var(--background-color)",
-                  padding: "20px",
-                  border: "1px solid var(--bosler-border-color-default)",
-                  height: "200px",
-                  width: "250px",
-                  gap: "10px",
-                }}
-              >
-                <div className="BoslerHeader1">
-                  {getLanguageLabel("embeddedCode")}
-                </div>
-                <div
-                  style={{
-                    marginBottom: "10px",
-                  }}
-                >
-                  {getLanguageLabel("pasteHTMLIframeIntoWebpage")}
-                </div>
-                <BoslerButton
-                  icon={<CodeCellIcon />}
-                  onClick={() => handleCopy(false, false)}
-                  intent="primary"
-                  menuItems={copyMenuItems(false)}
-                >
-                  Copy Code
-                </BoslerButton>
+                  </>
+                </BoslerCollapse>
               </div>
             </div>
-            <BoslerCollapse
-              key={`enconde`}
-              collapsible="HEADER"
-              header="Encode / Decode Filters"
+            <div style={{ padding: "20px" }}>
+              <div className="text-and-icon-align">
+                <LibraryIcon />
+                <Text strong>{getLanguageLabel("learn")}</Text>
+              </div>
+              <div style={{ paddingTop: "10px", paddingLeft: "20px" }}>
+                <Link to="/learn/">DataConnection Guidelines</Link>
+                <br />
+                <Link to="/learn/">Best Practices</Link>
+                <br />
+                <Link to="/learn/">Data Transfer Security</Link>
+                <br />
+                <Link to="/learn/">Governance Policy and Guidelines</Link>
+              </div>
+            </div>
+          </div>
+        }
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            gap: "20px",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <div
+            style={{
+              flex: 1,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              flexDirection: "column",
+              background: "var(--background-color)",
+              padding: "20px",
+              border: "1px solid var(--bosler-border-color-default)",
+              height: "200px",
+              width: "250px",
+              gap: "10px",
+            }}
+          >
+            <div className="BoslerHeader1">
+              {getLanguageLabel("embeddedLink")}
+            </div>
+            <div
+              style={{
+                marginBottom: "10px",
+              }}
             >
-              <>
-                <Row
-                  justify={"space-between"}
-                  style={{ marginTop: "10px" }}
-                  align={"middle"}
-                  gutter={[16, 16]}
-                >
-                  <Col>
-                    <Form.Item name="filters">
-                      <TextArea
-                        rows={10}
-                        style={{ minWidth: "250px" }}
-                        placeholder="Filters Here... (to encode or decode)"
-                      />
-                    </Form.Item>
-                  </Col>
+              {getLanguageLabel("pasteLinkIntoSupportingApplication")}
+            </div>
+            <BoslerButton
+              icon={<LinkIcon />}
+              onClick={() => handleCopy(true, false)}
+              intent="primary"
+              menuItems={copyMenuItems(true)}
+            >
+              {getLanguageLabel("copyLink")}
+            </BoslerButton>
+          </div>
+          <div
+            style={{
+              flex: 1,
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              background: "var(--background-color)",
+              padding: "20px",
+              border: "1px solid var(--bosler-border-color-default)",
+              height: "200px",
+              width: "250px",
+              gap: "10px",
+            }}
+          >
+            <div className="BoslerHeader1">
+              {getLanguageLabel("embeddedCode")}
+            </div>
+            <div
+              style={{
+                marginBottom: "10px",
+              }}
+            >
+              {getLanguageLabel("pasteHTMLIframeIntoWebpage")}
+            </div>
+            <BoslerButton
+              icon={<CodeCellIcon />}
+              onClick={() => handleCopy(false, false)}
+              intent="primary"
+              menuItems={copyMenuItems(false)}
+            >
+              Copy Code
+            </BoslerButton>
+          </div>
+        </div>
+        <BoslerCollapse
+          key={`enconde`}
+          collapsible="HEADER"
+          header="Encode / Decode Filters"
+        >
+          <>
+            <Row
+              justify={"space-between"}
+              style={{ marginTop: "10px" }}
+              align={"middle"}
+              gutter={[16, 16]}
+            >
+              <Col>
+                <Form.Item name="filters">
+                  <TextArea
+                    rows={10}
+                    style={{ minWidth: "250px" }}
+                    placeholder="Filters Here... (to encode or decode)"
+                  />
+                </Form.Item>
+              </Col>
 
-                  <Col>
-                    {" "}
-                    <Form.Item>
-                      <BoslerButton
-                        intent="primary"
-                        icon={<KeyIcon />}
-                        onClick={() => {
-                          form.setFieldValue(
-                            "encodedFilters",
-                            encodeToBase64(form.getFieldValue("filters"))
-                          );
-                        }}
-                        htmlType="submit"
-                        actionIcon={<ArrowRightIcon />}
-                      >
-                        Encode
-                      </BoslerButton>
-                    </Form.Item>
-                    <Form.Item>
-                      <BoslerButton
-                        intent="primary"
-                        icon={<KeyIcon />}
-                        onClick={() => {
-                          form.setFieldValue(
-                            "encodedFilters",
-                            decodeFromBase64(form.getFieldValue("filters"))
-                          );
-                        }}
-                        htmlType="submit"
-                        actionIcon={<ArrowRightIcon />}
-                      >
-                        Decode
-                      </BoslerButton>
-                    </Form.Item>
-                  </Col>
-                  <Col>
-                    <Form.Item name="encodedFilters">
-                      <TextArea
-                        placeholder={getLanguageLabel("result")}
-                        readOnly
-                        rows={10}
-                        style={{ minWidth: "250px" }}
-                      />
-                    </Form.Item>
-                  </Col>
-                </Row>
-
-                <Row justify={"center"}>
+              <Col>
+                {" "}
+                <Form.Item>
                   <BoslerButton
-                    icon={<CopyIcon />}
-                    intent="action"
-                    onClick={() =>
-                      copyToClipboard(form.getFieldValue("encodedFilters"))
-                    }
-                    disabled={form.getFieldValue("encodedFilters") == ""}
+                    intent="primary"
+                    icon={<KeyIcon />}
+                    onClick={() => {
+                      form.setFieldValue(
+                        "encodedFilters",
+                        encodeToBase64(form.getFieldValue("filters"))
+                      );
+                    }}
+                    htmlType="submit"
+                    actionIcon={<ArrowRightIcon />}
                   >
-                    {getLanguageLabel("copy")} Encoded String
+                    Encode
                   </BoslerButton>
-                </Row>
-              </>
-            </BoslerCollapse>
-          </BoslerModal>
-        </Form>
-      )}
-    </>
+                </Form.Item>
+                <Form.Item>
+                  <BoslerButton
+                    intent="primary"
+                    icon={<KeyIcon />}
+                    onClick={() => {
+                      form.setFieldValue(
+                        "encodedFilters",
+                        decodeFromBase64(form.getFieldValue("filters"))
+                      );
+                    }}
+                    htmlType="submit"
+                    actionIcon={<ArrowRightIcon />}
+                  >
+                    Decode
+                  </BoslerButton>
+                </Form.Item>
+              </Col>
+              <Col>
+                <Form.Item name="encodedFilters">
+                  <TextArea
+                    placeholder={getLanguageLabel("result")}
+                    readOnly
+                    rows={10}
+                    style={{ minWidth: "250px" }}
+                  />
+                </Form.Item>
+              </Col>
+            </Row>
+
+            <Row justify={"center"}>
+              <BoslerButton
+                icon={<CopyIcon />}
+                intent="action"
+                onClick={() =>
+                  copyToClipboard(form.getFieldValue("encodedFilters"))
+                }
+                disabled={form.getFieldValue("encodedFilters") == ""}
+              >
+                {getLanguageLabel("copy")} Encoded String
+              </BoslerButton>
+            </Row>
+          </>
+        </BoslerCollapse>
+      </BoslerModal>
+    </Form>
   );
 };
 

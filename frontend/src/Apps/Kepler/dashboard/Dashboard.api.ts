@@ -1,8 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import { isDefined } from "utils/utilities";
 import { LATEST_VERSION } from "../../../redux/constants/versionConstants";
-import { ITabConfig } from "./Dashboard.types";
-import { ISuggestedChartsFilters } from "./DashboardAddChartMenu/DashboardAddChartMenuChartsTab.types";
+import { ITabConfig } from "./Dashboard";
 
 // Dashboard Header APIs
 export const renameDashboardAPI = (
@@ -125,11 +124,11 @@ export const createTabElementAPI = async (payload: any) => {
   return data;
 };
 
-export const getTabElementsAPI = (
-  dashboardId: string,
-  tabId: string
-): Promise<AxiosResponse<any, any>> => {
-  return axios.get(`/kepler/tabElements/getElements/${dashboardId}/${tabId}`);
+export const getTabElementsAPI = async (dashboardId: string, tabId: string) => {
+  const { data } = await axios.get(
+    `/kepler/tabElements/getElements/${dashboardId}/${tabId}`
+  );
+  return data;
 };
 
 // Chart Element
@@ -178,18 +177,4 @@ export const moveTabAPI = (
   newPosition: number
 ): Promise<AxiosResponse<any, any>> => {
   return axios.put(`/kepler/tabs/move/${tabId}/${newPosition}`);
-};
-
-export const getSuggestedChartsAPI = (
-  dashboardId: string,
-  body: ISuggestedChartsFilters,
-  page: number,
-  pageSize: number,
-  sortby: string,
-  sortOrder: string
-): Promise<AxiosResponse<any, any>> => {
-  return axios.post(
-    `/kepler/dashboards/getSuggestedCharts/${dashboardId}?page=${page}&elementPerPage=${pageSize}&direction=${sortOrder}&key=${sortby}`,
-    body
-  );
 };

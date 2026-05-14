@@ -13,11 +13,10 @@ import { getLanguageLabel, getUserLanguage, isDefined } from "utils/utilities";
 import { addFiltersFromDataset } from "../../../../redux/actions/filtersAction";
 import store from "../../../../redux/store";
 import ChartComponent from "../../chart/ChartComponent/ParentChartComponent";
+import { ITabConfig } from "../Dashboard";
 import { getChartDataAPI } from "../Dashboard.api";
-import { ITabConfig } from "../Dashboard.types";
 import ChartElementHeader from "./ChartElementHeader";
 import styles from "./DashboardElements.module.scss";
-import { BoslerShimmer } from "components/BoslerShimmer";
 
 interface Props {
   chartId: any;
@@ -193,16 +192,15 @@ export const ChartElement: React.FC<Props> = (props) => {
     getChartData();
   }, [reloadDashboardElement]);
 
-  if (!chartData) {
-    return <BoslerLoader />;
+  if (!chartData || chartDataLoading) {
+    return <BoslerLoader content={getLanguageLabel("loading...")} />;
   }
-
   if (chartData === "ERROR" || isDefined(chartData?.error)) {
     throw "ERROR in chart";
   }
 
-  const renderChartContent = () => (
-    <>
+  return (
+    <div id="chartelement" className={styles.chart_element}>
       {showConfirmationPopup.state && (
         <FilterConfirmationPopup
           setPopupResult={setPopupResult}
@@ -241,28 +239,19 @@ export const ChartElement: React.FC<Props> = (props) => {
           customization={chartData.chartState.chartCustomize}
           editMode={!props.editable}
           onClickChart={(filters: any) => {
-            if (!filters || filters.length === 0) return;
-            if (filters.some((f: any) => f.parameterFilter)) {
-              setPopupResult({ value: "keep", filters });
+            if (!filters || filters.length == 0) {
+              return;
+            }
+            if (filters.filter((f: any) => f.parameterFilter).length > 0) {
+              setPopupResult({ value: "keep", filters: filters });
             } else {
-              setShowConfirmationPopup({ state: true, filters });
+              setShowConfirmationPopup({ state: true, filters: filters });
             }
           }}
           tooltipInfo={props.tooltipInfo}
           setTooltip={props.setTooltipInfo}
         />
       </div>
-    </>
-  );
-  return (
-    <div id="chartelement" className={styles.chart_element}>
-      {chartDataLoading ? (
-        <BoslerShimmer loading={chartDataLoading}>
-          {renderChartContent()}
-        </BoslerShimmer>
-      ) : (
-        renderChartContent()
-      )}
     </div>
   );
 };

@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import MainLayout from "../layout";
 import Loading from "errors/Loading";
-import { BOSLER_TOKEN } from "./constants";
+import { ORPHEA_TOKEN } from "./constants";
 
 const PrivateOutlet = () => {
   const navigate = useNavigate();
@@ -14,8 +14,8 @@ const PrivateOutlet = () => {
 
   useEffect(() => {
     if (
-      localStorage.getItem(BOSLER_TOKEN) !== undefined &&
-      localStorage.getItem(BOSLER_TOKEN) !== null
+      localStorage.getItem(ORPHEA_TOKEN) !== undefined &&
+      localStorage.getItem(ORPHEA_TOKEN) !== null
     ) {
       if (!isTokenValid && !tokenStatusLoading) {
         navigate("/auth/relogin");

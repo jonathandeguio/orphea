@@ -1,0 +1,30 @@
+[Unit]
+Description=Orphea Platform (Docker Compose)
+Documentation=https://github.com/orphea
+After=network-online.target docker.service
+Wants=network-online.target
+Requires=docker.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+User=orion
+Group=orion
+WorkingDirectory=/opt/orphea/scripts
+
+# Démarrage : lance la stack core (boson + frontend + postgres + redis)
+ExecStart=/bin/bash /opt/orphea/scripts/03-start.sh core
+
+# Arrêt propre
+ExecStop=/bin/bash /opt/orphea/scripts/04-stop.sh core
+
+# Si le démarrage échoue, ne pas boucler indéfiniment
+Restart=no
+
+# Logs disponibles via : journalctl -u orphea
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=orphea
+
+[Install]
+WantedBy=multi-user.target

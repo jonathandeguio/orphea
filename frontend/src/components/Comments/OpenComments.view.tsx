@@ -37,9 +37,7 @@ import { User } from "global";
 import React from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "redux/types/store";
-import Comment from "./modules/Comment/Comment";
-import { classNames } from "utils/styles";
-import styles from "./Comments.module.scss";
+import { ShowMessageFormatter } from "./ShowMessageFormatter";
 
 const { Title, Text } = Typography;
 
@@ -91,7 +89,6 @@ const OpenComments = ({
             <div
               onMouseEnter={() => setShowOptionsFor(comment.id)}
               onMouseLeave={() => setShowOptionsFor("")}
-              className={classNames("--pl10", "--pt10", "--pb10", "--pr5")}
             >
               <Row justify="space-between">
                 <Col span={20}>
@@ -149,7 +146,7 @@ const OpenComments = ({
                 </Col>
                 <Col span={4}>
                   {showOptionsFor == comment.id && (
-                    <Row justify={"end"}>
+                    <Row>
                       <Col
                         onClick={() =>
                           openAndResolveCommentAPI(comment.id, {
@@ -237,9 +234,8 @@ const OpenComments = ({
                   )}
                 </Col>
               </Row>
-
-              {isEditingOnFor == comment.id ? (
-                <Row style={{ marginTop: "0.2rem" }} justify="start">
+              <Row style={{ marginTop: "0.2rem" }} justify="start">
+                {isEditingOnFor == comment.id ? (
                   <Form
                     form={EditCommentForm}
                     onFinish={(values: any) => {
@@ -313,10 +309,10 @@ const OpenComments = ({
                       </BoslerButton>
                     </Row>
                   </Form>
-                </Row>
-              ) : (
-                <Comment message={comment.message} />
-              )}
+                ) : (
+                  <ShowMessageFormatter message={comment.message} />
+                )}
+              </Row>
 
               {comment.replies.length > 0 && (
                 <div
@@ -389,80 +385,78 @@ const OpenComments = ({
                             )}
                           </Col>
                           {showOptionsFor == comment.id && (
-                            <Row justify={"end"}>
-                              <Col>
-                                <Dropdown
-                                  menu={{
-                                    items: [
-                                      {
-                                        label: (
-                                          <>
-                                            <div
-                                              onClick={(e: any) => {
-                                                // e.preventDefault();
-                                                e.stopPropagation();
-                                                setIsCommentingOn(false);
-                                                setIsReplyOnFor("");
-                                                setIsEditingOnFor(reply.id);
-                                              }}
-                                              className="text-and-icon-center"
-                                              style={{ width: "100%" }}
-                                            >
-                                              <EditIcon />
-                                              {getLanguageLabel("edit")}
-                                            </div>
-                                          </>
-                                        ),
-                                        disabled:
-                                          user.id != comment.createdBy &&
-                                          !platformAdmin,
-                                        key: 0,
-                                      },
-                                      {
-                                        label: (
-                                          <>
-                                            <div
-                                              onClick={(e: any) => {
-                                                // e.preventDefault();
-                                                e.stopPropagation();
-                                                deleteCommentAPI(reply.id);
-                                              }}
-                                              className="text-and-icon-center"
-                                              style={{
-                                                color:
-                                                  "var(--bosler-intent-danger)",
-                                              }}
-                                            >
-                                              <TrashIcon
-                                                color={
-                                                  "var(--bosler-intent-danger)"
-                                                }
-                                              />
-                                              {getLanguageLabel("delete")}
-                                            </div>
-                                          </>
-                                        ),
-                                        disabled:
-                                          user.id != comment.createdBy &&
-                                          !platformAdmin,
-                                        key: 1,
-                                      },
-                                    ],
-                                  }}
-                                  trigger={["hover"]}
-                                  getPopupContainer={(
-                                    triggerNode: HTMLElement
-                                  ) => triggerNode.parentNode as HTMLElement}
+                            <Col>
+                              <Dropdown
+                                menu={{
+                                  items: [
+                                    {
+                                      label: (
+                                        <>
+                                          <div
+                                            onClick={(e: any) => {
+                                              // e.preventDefault();
+                                              e.stopPropagation();
+                                              setIsCommentingOn(false);
+                                              setIsReplyOnFor("");
+                                              setIsEditingOnFor(reply.id);
+                                            }}
+                                            className="text-and-icon-center"
+                                            style={{ width: "100%" }}
+                                          >
+                                            <EditIcon />
+                                            {getLanguageLabel("edit")}
+                                          </div>
+                                        </>
+                                      ),
+                                      disabled:
+                                        user.id != comment.createdBy &&
+                                        !platformAdmin,
+                                      key: 0,
+                                    },
+                                    {
+                                      label: (
+                                        <>
+                                          <div
+                                            onClick={(e: any) => {
+                                              // e.preventDefault();
+                                              e.stopPropagation();
+                                              deleteCommentAPI(reply.id);
+                                            }}
+                                            className="text-and-icon-center"
+                                            style={{
+                                              color:
+                                                "var(--bosler-intent-danger)",
+                                            }}
+                                          >
+                                            <TrashIcon
+                                              color={
+                                                "var(--bosler-intent-danger)"
+                                              }
+                                            />
+                                            {getLanguageLabel("delete")}
+                                          </div>
+                                        </>
+                                      ),
+                                      disabled:
+                                        user.id != comment.createdBy &&
+                                        !platformAdmin,
+                                      key: 1,
+                                    },
+                                  ],
+                                }}
+                                trigger={["hover"]}
+                                getPopupContainer={(triggerNode: HTMLElement) =>
+                                  triggerNode.parentNode as HTMLElement
+                                }
+                              >
+                                <div
+                                  onClick={(e) => e.preventDefault()}
+                                  style={{ cursor: "pointer" }}
                                 >
-                                  <div
-                                    onClick={(e) => e.preventDefault()}
-                                    style={{ cursor: "pointer" }}
-                                  >
-                                    <MoreMenuIcon />
-                                  </div>
-                                </Dropdown>
-                              </Col>
-                            </Row>
+                                  <MoreMenuIcon />
+                                </div>
+                              </Dropdown>
+                            </Col>
                           )}
                         </Row>
                         <Row style={{ marginTop: "0.2rem" }}>
@@ -559,7 +553,7 @@ const OpenComments = ({
                               </Row>
                             </Form>
                           ) : (
-                            <Comment message={reply.message} />
+                            <ShowMessageFormatter message={reply.message} />
                           )}
                         </Row>
                       </div>
@@ -663,13 +657,11 @@ const OpenComments = ({
           );
         })
       ) : (
-        <div className={styles.noData}>
-          <NoData
-            icon={<CommentState />}
-            heading={getLanguageLabel("noCommentsYet")}
-            subHeading={getLanguageLabel("clickToAddcomment")}
-          />
-        </div>
+        <NoData
+          icon={<CommentState />}
+          heading={getLanguageLabel("noCommentsYet")}
+          subHeading={getLanguageLabel("clickToAddcomment")}
+        />
       )}
     </>
   );

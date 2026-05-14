@@ -4,7 +4,7 @@
 # https://cloud.google.com/kubernetes-engine/docs/quickstart
 #
 # Pre-Reqs:
-# - An account in the appropriate Directory (Google Workspace in Bosler's case).
+# - An account in the appropriate Directory (Google Workspace in Orphea's case).
 # - Google Cloud SDK must be installed on local machine or run within the 
 #   Google Cloud Shell.  Visit https://cloud.google.com/sdk/docs/install
 # - The Kubernetes Kubectl command-line tool needs to be installed on the 
@@ -24,7 +24,7 @@ if [[ "$VARIN" != [Yy] ]] ; then
     print \n exiting... ; return 1
 fi
 
-#PROJECT_ID=bosler-test
+#PROJECT_ID=orphea-test
 #COMPUTE_REGION=europe-west2
 #COMPUTE_ZONE=europe-west2-a
 PROJECT_ID=project2-foo

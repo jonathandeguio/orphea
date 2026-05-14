@@ -1,5 +1,5 @@
 {
-  "name": "@bosler-io/component-library",
+  "name": "@orphea-io/component-library",
   "version": "0.1.0",
   "private": true,
   "main": "build/cjs/index.js",

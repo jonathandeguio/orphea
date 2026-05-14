@@ -1,5 +1,3 @@
-import { getLanguageLabel } from "utils/utilities";
-
 export const specialIds = [
   "CREATED_BY_YOU",
   "UPDATED_BY_YOU",
@@ -20,12 +18,4 @@ export const gitStatusClasses: { [key: string]: string } = {
   missing: "git-missing",
   untracked: "git-untracked",
   untrackedFolders: "git-untracked-folder",
-};
-
-export const DEFAULT_RESOURCE_NAMES = {
-  FOLDER: getLanguageLabel("folder"),
-  DATASET: getLanguageLabel("dataset"),
-  REPOSITORY: getLanguageLabel("repository"),
-  DASHBOARD: getLanguageLabel("dashboard"),
-  CHART: getLanguageLabel("chart"),
 };

@@ -184,6 +184,10 @@ export const ProjectDropdownButton: React.FC<ProjectDropdownButtonProps> = ({
           overlayClassName="project-dropdown"
           placement="bottomLeft"
           menu={{ items }}
+          overlayStyle={{
+            height: "40%",
+            overflowY: "auto",
+          }}
         >
           <BoslerButton minimal>
             <div

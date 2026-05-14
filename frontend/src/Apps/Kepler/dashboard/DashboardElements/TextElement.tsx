@@ -76,7 +76,7 @@ const TextElement = (props: Props) => {
           }}
           onClick={(e) => {
             e.stopPropagation();
-            props.removeElement(props.element.id);
+            props.removeElement(props.dashboardId, props.element.id);
           }}
         >
           <TrashIcon />

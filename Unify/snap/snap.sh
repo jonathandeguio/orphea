@@ -45,7 +45,7 @@ pull_images() {
   # Clone or pull snap-ui repository
   cd repos
   if [ ! -d snap-ui ]; then
-    git clone git@github.com:Bosler-io/snap-ui.git >/dev/null
+    git clone git@github.com:Orphea-io/snap-ui.git >/dev/null
   else
     cd snap-ui
     git pull >/dev/null
@@ -54,7 +54,7 @@ pull_images() {
 
   # Clone or pull snap repository
   if [ ! -d snap ]; then
-    git clone git@github.com:Bosler-io/snap.git >/dev/null
+    git clone git@github.com:Orphea-io/snap.git >/dev/null
   else
     cd snap
     git pull >/dev/null

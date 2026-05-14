@@ -1,25 +1,16 @@
-import BoslerInput from "components/BoslerComponents/InputComponent/BoslerInput";
-import { BoslerTypography } from "components/CommonUI/BoslerTypography";
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "redux/types/store";
-import { isDefined } from "utils/utilities";
-import { updateCustomize } from "../../../../../redux/actions/keplerActions";
-import { getRelativeFontSize } from "../../chartOptionsFactory";
 import { Legend } from "./HorizontalLegend";
 import { ColorBlock } from "./SubComponents";
+import { getRelativeFontSize } from "../../chartOptionsFactory";
+import { BoslerTypography } from "components/CommonUI/BoslerTypography";
 
 export const VerticalLegend: React.FC<Legend> = ({
   data,
   onClickLegend,
   align,
   customLabel,
-  editMode,
   dimensions,
 }) => {
-  const dispatch = useDispatch();
-  const customize = useSelector((state: RootState) => state.kepler.customize);
-
   return (
     <div
       style={{
@@ -40,6 +31,7 @@ export const VerticalLegend: React.FC<Legend> = ({
                   <div className="groupBy">{series.groupBy.join(", ")}</div>
                 )}
               </div>
+              <div style={{ height: "2.2rem" }}>{""}</div>
             </>
           )}
 
@@ -59,34 +51,9 @@ export const VerticalLegend: React.FC<Legend> = ({
                 className="legendItem"
               >
                 <ColorBlock color={item.color} />{" "}
-                {editMode ? (
-                  <BoslerInput
-                    editText
-                    defaultValue={
-                      customize?.customLabel?.[item.name] ?? item.name
-                    }
-                    debounceInterval={1000}
-                    onChange={(e) => {
-                      if (
-                        isDefined(e.target.value) &&
-                        e.target.value.length > 0
-                      ) {
-                        dispatch(
-                          updateCustomize({
-                            customLabel: {
-                              ...customize.customLabel,
-                              [item.name]: e.target.value,
-                            },
-                          })
-                        );
-                      }
-                    }}
-                  />
-                ) : (
-                  <BoslerTypography>
-                    {customLabel?.[item.name] ?? item.name}
-                  </BoslerTypography>
-                )}
+                <BoslerTypography>
+                  {customLabel?.[item.name] ?? item.name}
+                </BoslerTypography>
               </div>
             ))}
           </div>

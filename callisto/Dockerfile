@@ -94,7 +94,7 @@ RUN chmod 644 $SPARK_HOME/jars/hadoop-aws-$SPARK_VERSION.jar \
 
 
 WORKDIR /opt/
-RUN git clone https://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@github.com/Bosler-io/boson
+RUN git clone https://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@github.com/Orphea-io/boson
 
 RUN pip install /opt/boson/funnel/
 

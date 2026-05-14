@@ -7,11 +7,11 @@ import {
   Switch,
   Typography,
 } from "antd";
-import { CopyIcon } from "assets/icons/boslerEditorIcons";
-import { ArrowRightIcon } from "assets/icons/boslerNavigationIcon";
+import { CopyIcon } from "assets/icons/orpheaEditorIcons";
+import { ArrowRightIcon } from "assets/icons/orpheaNavigationIcon";
 import axios from "axios";
-import BoslerButton from "components/ButtonComponent/BoslerButton";
-import BoslerInput from "components/InputComponent/BoslerInput";
+import OrpheaButton from "components/ButtonComponent/OrpheaButton";
+import OrpheaInput from "components/InputComponent/OrpheaInput";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setLoginMethod, updateUserDetails } from "redux/actions/userActions";
@@ -187,7 +187,7 @@ const MfaConfiguration: React.FC<{
               </Row>
               <Row gutter={16} align="middle">
                 <Col span={16}>
-                  <BoslerInput
+                  <OrpheaInput
                     placeholder={getLanguageLabel("enterVerificationCode")}
                     value={otpCode}
                     onKeyDown={handleKeyPress}
@@ -196,14 +196,14 @@ const MfaConfiguration: React.FC<{
                   />
                 </Col>
                 <Col>
-                  <BoslerButton
+                  <OrpheaButton
                     intent={isOTPVerificationError ? "dangerous" : "primary"}
                     onClick={handleOtpSubmit}
                     icon={<ArrowRightIcon />}
                     size={"small"}
                   >
                     {getLanguageLabel("verify")}
-                  </BoslerButton>
+                  </OrpheaButton>
                 </Col>
               </Row>
               {isOTPVerificationError &&
@@ -235,13 +235,13 @@ const MfaConfiguration: React.FC<{
             </Row>
             <Row gutter={16} align="middle" style={{ marginTop: 20 }}>
               <Col>
-                <BoslerButton
+                <OrpheaButton
                   intent="primary"
                   onClick={handleCopyToClipboard}
                   icon={<CopyIcon />}
                 >
                   {getLanguageLabel("copy")}
-                </BoslerButton>
+                </OrpheaButton>
               </Col>
             </Row>
           </Card>

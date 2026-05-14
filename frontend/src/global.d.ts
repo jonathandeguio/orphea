@@ -30,29 +30,3 @@ export type TPlatformPage =
   | "BUILD"
   | "SOURCE"
   | "REPOSITORY";
-
-export interface IResource {
-  id: string;
-  project: string;
-  parent: string;
-  size: number;
-  name: string;
-  description: string;
-  type: string;
-  subType: string;
-  status: string;
-  createdBy: string;
-  createdAt: number;
-  updatedBy: string;
-  updatedAt: number;
-  favourite: false;
-  children: IResource[];
-  metaData: any;
-}
-
-export enum WriteModeEnum {
-  SNAPSHOT = "SNAPSHOT",
-  APPEND = "APPEND"  
-}
-
-export type TWriteMode = keyof typeof WriteModeEnum;

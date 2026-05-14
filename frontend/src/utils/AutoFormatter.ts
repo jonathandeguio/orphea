@@ -58,9 +58,6 @@ export const autoFormatter = (
   unit: Unit = "number",
   precision: number = 2
 ): string => {
-  if (!value) {
-    return "NaN";
-  }
   switch (unit) {
     case "number":
       return formatNumber(value, precision);

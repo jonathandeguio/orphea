@@ -13,7 +13,7 @@ server:
   port: 58080
 spring:
   banner:
-    location: classpath:/banner/bosler.txt
+    location: classpath:/banner/orphea.txt
   datasource:
     driver-class-name: org.h2.Driver
     url: jdbc:h2:mem:localhost;DB_CLOSE_ON_EXIT=FALSE
@@ -29,7 +29,7 @@ spring:
 
 
 file:
-  upload-dir=/Users/rakeshmalik/bosler/uploads
+  upload-dir=/Users/rakeshmalik/orphea/uploads
 
 logging:
   level:

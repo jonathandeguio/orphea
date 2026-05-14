@@ -49,8 +49,6 @@ $bosler-intent-danger: #c84654;
 $top-bar-border: rgb(218, 221, 230);
 $bosler-table-selected: rgb(14, 101, 235, 0.1);
 $bosler-font-color-git-blame: #aeb0b8;
-$background-explorer: #f3f2f4;
-$dropdown-box-shadow:rgba(0, 0, 0, 0.15);
 
 // Dark
 $color-dark: rgb(228, 230, 236);
@@ -67,7 +65,6 @@ $bosler-intent-danger-dark: #ed6f73;
 $top-bar-border-dark: #424242;
 $bosler-table-selected-dark: rgb(14, 101, 235, 0.3);
 $bosler-font-color-git-blame-dark: #282837;
-$background-explorer-dark: #161619;
 
 // Button specific css
 $INTENT_COLOR: rgba(0, 0, 0, 0.04);
@@ -124,10 +121,10 @@ $VIEWPORT_BREAKPOINT_DESKTOP: 1024px;
 
 $ANT_LAYOUT_COLOR_LIGHT: rgba(0, 0, 0, 0.5);
 $ANT_LAYOUT_COLOR_DARK: rgba(255, 255, 255, 0.5);
+$mobile_size:768px;
 :root {
   --color: #{$color};
-  --icon-color-selected: #9ca3b4;
-  --icon-color-deafult: #d3d7e2;
+  --icon-color-deafult: #717a94;
   --background-color: #{$background-color};
   --bosler-font-color-default: #{$bosler-font-color-default};
   --bosler-font-color-muted: #{$bosler-font-color-muted};
@@ -141,9 +138,7 @@ $ANT_LAYOUT_COLOR_DARK: rgba(255, 255, 255, 0.5);
   --top-bar-border: #{$top-bar-border};
   --bosler-table-selected: #{$bosler-table-selected};
   --bosler-font-color-git-blame: #{$bosler-font-color-git-blame};
-  --background-explorer: #{$background-explorer};
-  --dropdown-box-shadow: #{$dropdown-box-shadow};
-  --VIEWPORT_BREAKPOINT_TABLET: #{$VIEWPORT_BREAKPOINT_TABLET};
+  --mobile-width:#($mobile_size);
   // Button CSS Vars
   --INTENT_COLOR: #{$INTENT_COLOR};
   --INTENT_COLOR_FONT: #{$INTENT_COLOR_FONT};
@@ -198,7 +193,6 @@ $ANT_LAYOUT_COLOR_DARK: rgba(255, 255, 255, 0.5);
   --top-bar-border: #{$top-bar-border-dark};
   --bosler-table-selected: #{$bosler-table-selected-dark};
   --bosler-font-color-git-blame-dark: #{$bosler-font-color-git-blame-dark};
-  --background-explorer: #{$background-explorer-dark};
 
   // Input CSS Vars
   --INPUT_BOX_SHADOW: #{$INPUT_BOX_SHADOW_DARK};
@@ -210,6 +204,7 @@ $ANT_LAYOUT_COLOR_DARK: rgba(255, 255, 255, 0.5);
 
   //ANT-LAYOUT-COLOR
   --ANT_LAYOUT_COLOR: #{$ANT_LAYOUT_COLOR_DARK};
+  
 }
 
 @keyframes spin {
@@ -313,11 +308,6 @@ $xl: 1.25rem; /* 20px */
 
 .project-dropdown {
   width: 15% !important;
-  height: 40%;
-  ul {
-    height: 100%;
-    overflow-y: auto;
-  }
   li {
     span {
       overflow: hidden !important;
@@ -363,16 +353,4 @@ $xl: 1.25rem; /* 20px */
 
 .ant-layout-content {
   color: var(--ANT_LAYOUT_COLOR) !important;
-}
-
-.passwordUsernameDiv {
-  height: 0;
-  overflow: hidden;
-  transition: height 0.7s;
-
-  &--display {
-    height: 110px;
-
-    transition: height 0.7s;
-  }
 }

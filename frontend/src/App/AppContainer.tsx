@@ -4,6 +4,7 @@ import { BoslerIcon } from "assets/icons/boslerMiscellaneousIcons";
 import { ping } from "common/common.api";
 import { ExplorerModal } from "common/components/ExplorerModal";
 import BoslerButton from "components/BoslerComponents/ButtonComponent/BoslerButton";
+import ErrorBoundary from "ErrorBoundary/GeneralErrorBoundary";
 import React, { useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -117,8 +118,8 @@ function AppContainer() {
           }
 
           if (vrs.frontend != "" && data.versions.frontend != vrs.frontend) {
-            // countDownNotification();
-            hardRefresh();
+          // countDownNotification();
+          hardRefresh();
           }
 
           if (data.versions.frontend != vrs.frontend) setVrs(data.versions);
@@ -134,14 +135,13 @@ function AppContainer() {
         }
       })
       .catch((error) => {
-        if (error.response && error.response.status === 401) {
-          if (tokenStatusLoading || isTokenValid) {
-            console.log("PING Error", "SET TOKEN INVALID");
-            dispatch(setTokenInvalid());
-          }
-        } else if ((error as $TSFixMe).code === "ERR_NETWORK") {
+        if ((error as $TSFixMe).code === "ERR_NETWORK") {
           if (networkError === false) {
             setNetworkError(true);
+          }
+        } else if (error.response?.data?.error === "Unauthorized") {
+          if (tokenStatusLoading || isTokenValid) {
+            dispatch(setTokenInvalid());
           }
         }
       });
@@ -251,10 +251,10 @@ function AppContainer() {
   }, [isTokenValid, networkError, tokenStatusLoading, vrs, info]);
 
   return (
-    <>
+    <ErrorBoundary>
       <Outlet />
       <ExplorerModal />
-    </>
+    </ErrorBoundary>
   );
 }
 

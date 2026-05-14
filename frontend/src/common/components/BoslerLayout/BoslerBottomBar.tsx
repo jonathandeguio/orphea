@@ -33,9 +33,7 @@ export const BoslerBottomBarHeaderItem = ({
   primaryPanelRef,
 }: IBoslerBottomBarItem & { primaryPanelRef: React.MutableRefObject<any> }) => {
   const dispatch = useDispatch();
-  const { activeItem } = useSelector((state: RootState) => ({
-    activeItem: state.bottomBar.activeItem,
-  }));
+  const { activeItem } = useSelector((state: RootState) => state.bottomBar);
 
   return (
     <BoslerButton
@@ -63,8 +61,9 @@ export const BoslerBottomBarHeaderItem = ({
 };
 
 export const BoslerBottomBarItem = (item: IBoslerBottomBarItemBody) => {
-  const [tabContext, setTabContext] = useState<TabState | undefined>(undefined);
   const dispatch = useDispatch();
+
+  const [tabContext, setTabContext] = useState<TabState | undefined>();
 
   useEffect(() => {
     if (isDefined(tabContext)) {
@@ -74,28 +73,11 @@ export const BoslerBottomBarItem = (item: IBoslerBottomBarItemBody) => {
     }
   }, [tabContext]);
 
-  const onMount = useCallback((state: any) => {
-    console.log("MOUNTED", state);
-    setTabContext(state);
-  }, []);
-
-  const items = useMemo(
-    () => [
-      {
-        paneKey: `${item.id}-defaultPane`,
-        icon: item.icon,
-        children: <item.body {...item.props} />,
-        closable: false,
-        label: item.label,
-      },
-      ...(item.tabs ?? []),
-    ],
-    [item]
-  );
-
   return (
     <Tabs
-      onMount={onMount}
+      onMount={(state) => {
+        setTabContext(state);
+      }}
       headerBarExtraContent={
         <div style={{ display: "flex" }}>
           <Tooltip
@@ -128,14 +110,22 @@ export const BoslerBottomBarItem = (item: IBoslerBottomBarItemBody) => {
               intent="dangerous"
               icon={<CrossIcon size={20} />}
               onClick={() => {
-                dispatch(closeBottomBarItem());
                 item.primaryPanelRef?.current?.collapse();
               }}
             />
           </Tooltip>
         </div>
       }
-      items={items}
+      items={[
+        {
+          paneKey: `${item.id}-defaultPane`,
+          icon: item.icon,
+          children: <item.body {...item.props} />,
+          closable: false,
+          label: item.label,
+        },
+        ...(item.tabs ?? []),
+      ]}
     />
   );
 };
@@ -143,13 +133,9 @@ export const BoslerBottomBarItem = (item: IBoslerBottomBarItemBody) => {
 export const BoslerBottomBar = ({ children, destroyOnClose = true }: any) => {
   const [paneSize, setPaneSize] = useState(0);
   const { leftItems, rightItems, activeItem, bottomBarItems } = useSelector(
-    (state: RootState) => ({
-      leftItems: state.bottomBar.leftItems,
-      rightItems: state.bottomBar.rightItems,
-      activeItem: state.bottomBar.activeItem,
-      bottomBarItems: state.bottomBar.bottomBarItems,
-    })
+    (state: RootState) => state.bottomBar
   );
+  const dispatch = useDispatch();
 
   const primaryPanelRef = useRef<any>(null);
 
@@ -164,6 +150,12 @@ export const BoslerBottomBar = ({ children, destroyOnClose = true }: any) => {
       primaryPanelRef?.current?.resize(100);
     }
   }, [primaryPanelRef, paneSize]);
+
+  useEffect(() => {
+    if (paneSize === 0) {
+      dispatch(closeBottomBarItem());
+    }
+  }, [paneSize]);
 
   const openedOnce = useMemo(() => new Set(), []);
 
@@ -180,43 +172,39 @@ export const BoslerBottomBar = ({ children, destroyOnClose = true }: any) => {
           <Panel style={{ height: "calc(100% - 44px)" }} collapsible={true}>
             {children}
           </Panel>
-          {activeItem && (
-            <>
-              <PanelResizeHandle className="resizablePane-collapser resizablePane-collapser-vertical resizablePane-collapser-vertical-bottombar"></PanelResizeHandle>
-              <Panel
-                onResize={(size: number) => {
-                  setPaneSize(size);
-                }}
-                ref={primaryPanelRef}
-                collapsible={true}
-                defaultSize={40}
-                // defaultSize={activeItem ? 40 : 0}
-              >
-                {[...leftItems, ...(rightItems ?? [])]
-                  .filter((item) => item.type === "TAB")
-                  .filter((item) =>
-                    destroyOnClose
-                      ? openedOnce.has(item.id) || activeItem === item.id
-                      : true
-                  )
-                  .map((item) => (
-                    <div
-                      className={`bottomPane ${
-                        activeItem === item.id ? "bottomPane--active" : ""
-                      } `}
-                    >
-                      <BoslerBottomBarItem
-                        key={`${item.id}-bottom-bar-item`}
-                        paneSize={paneSize}
-                        primaryPanelRef={primaryPanelRef}
-                        collapseToggle={collapseToggle}
-                        {...bottomBarItems[item.id]}
-                      />
-                    </div>
-                  ))}
-              </Panel>
-            </>
-          )}
+          <PanelResizeHandle className="resizablePane-collapser resizablePane-collapser-vertical resizablePane-collapser-vertical-bottombar"></PanelResizeHandle>
+          <Panel
+            onResize={(size: number) => {
+              setPaneSize(size);
+            }}
+            ref={primaryPanelRef}
+            collapsible={true}
+            defaultSize={40}
+            // defaultSize={activeItem ? 40 : 0}
+          >
+            {[...leftItems, ...(rightItems ?? [])]
+              .filter((item) => item.type === "TAB")
+              .filter((item) =>
+                destroyOnClose
+                  ? openedOnce.has(item.id) || activeItem === item.id
+                  : true
+              )
+              .map((item) => (
+                <div
+                  className={`bottomPane ${
+                    activeItem === item.id ? "bottomPane--active" : ""
+                  } `}
+                >
+                  <BoslerBottomBarItem
+                    key={`${item.id}-bottom-bar-item`}
+                    paneSize={paneSize}
+                    primaryPanelRef={primaryPanelRef}
+                    collapseToggle={collapseToggle}
+                    {...bottomBarItems[item.id]}
+                  />
+                </div>
+              ))}
+          </Panel>
         </PanelGroup>
       </div>
       <div className="bottombar">

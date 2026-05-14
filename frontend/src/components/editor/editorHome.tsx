@@ -24,10 +24,9 @@ const EditorHome = () => {
           {getLanguageLabel("youCanCodeDataPipelinesHereForYourProject")}
         </Text>
         <Divider />
-        <Row className="tutorial-cards-container" gutter={[16, 16]}>
-          <Col className="tutorial-card-container" span={12}>
+        <Row gutter={[16, 16]}>
+          <Col span={12}>
             <Card
-              className="tutorial-card"
               style={{
                 pointerEvents: "auto",
                 background: "var(--background-color)",
@@ -52,7 +51,7 @@ const EditorHome = () => {
                   </Text>
                   <br />
                   <br />
-                  <code className="demo-code">
+                  <code>
                     @funnel(target=target_dataset, source1=source_dataset1)
                     <br />
                     def user_transform_function(source1):
@@ -77,9 +76,8 @@ const EditorHome = () => {
               />
             </Card>
           </Col>
-          <Col className="tutorial-card-container" span={12}>
+          <Col span={12}>
             <Card
-              className="tutorial-card"
               style={{
                 pointerEvents: "auto",
                 background: "var(--background-color)",
@@ -98,7 +96,7 @@ const EditorHome = () => {
                   </Title>
                   <Divider />
                   <Text type="secondary">
-                    Bosler platform uses Spark for the transmation pipelines,
+                    Orphea platform uses Spark for the transmation pipelines,
                     you can use Spark SQL dialect for creating SQL transform
                   </Text>
                   {/* <br /><br /> */}
@@ -151,7 +149,7 @@ const EditorHome = () => {
               bordered={false}
             >
               <Text type="secondary">
-                Bosler platform uses Spark for the transmation pipelines, you can use Spark SQL format for creating SQL transform
+                Orphea platform uses Spark for the transmation pipelines, you can use Spark SQL format for creating SQL transform
               </Text>
               <br /><br />
               Please refer to documentation for more details.

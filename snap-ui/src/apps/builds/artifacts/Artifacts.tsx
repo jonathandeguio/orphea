@@ -23,27 +23,27 @@ import {
   StopIcon,
   SyncIcon,
   WarningIcon,
-} from "assets/icons/boslerActionIcons";
+} from "assets/icons/orpheaActionIcons";
 
 import { ThunkAppDispatch } from "redux/types/store";
 
-import { ComponentIcon } from "assets/icons/boslerInterfaceIcons";
-import { TrashIcon } from "assets/icons/boslerMiscellaneousIcons";
-import { ArrowLeftIcon, TickIcon } from "assets/icons/boslerNavigationIcon";
-import { getDefaultFavicon } from "components/boslerLoader/FavIconLoader";
-import BoslerModal from "components/BoslerModalContainer";
-import BoslerButton from "components/ButtonComponent/BoslerButton";
+import { ComponentIcon } from "assets/icons/orpheaInterfaceIcons";
+import { TrashIcon } from "assets/icons/orpheaMiscellaneousIcons";
+import { ArrowLeftIcon, TickIcon } from "assets/icons/orpheaNavigationIcon";
+import { getDefaultFavicon } from "components/orpheaLoader/FavIconLoader";
+import OrpheaModal from "components/OrpheaModalContainer";
+import OrpheaButton from "components/ButtonComponent/OrpheaButton";
 import NoData from "components/NoData";
 import { useNavigate, useParams } from "react-router";
 import {
   getAllArtifactsDetails as getAllArtifactsByTriggerId,
   getAllArtifactsDetails,
 } from "redux/actions/ArtifactActions";
-import BoslerLoader from "components/boslerLoader";
-import BoslerInput from "components/InputComponent/BoslerInput";
+import OrpheaLoader from "components/orpheaLoader";
+import OrpheaInput from "components/InputComponent/OrpheaInput";
 import { artifactLog, deleteArtifact, runTrigger } from "../apis";
 import "../BuildsStyle.scss";
-import { CopyIcon } from "assets/icons/boslerEditorIcons";
+import { CopyIcon } from "assets/icons/orpheaEditorIcons";
 
 const { Title, Text } = Typography;
 
@@ -244,7 +244,7 @@ const Artifacts = () => {
       dataIndex: "tag",
       sorter: (a: any, b: any) => a.tag.localeCompare(b.tag),
       render: (text: number) => (
-        <div className="BoslerSpan">{text ? text : "None"}</div>
+        <div className="OrpheaSpan">{text ? text : "None"}</div>
       ),
     },
     {
@@ -255,7 +255,7 @@ const Artifacts = () => {
         if (text) {
           const shortText = `${text.slice(0, 14)}...`; // Shortened ID with "..."
           return (
-            <BoslerInput
+            <OrpheaInput
               value={shortText}
               readOnly
               suffix={
@@ -266,7 +266,7 @@ const Artifacts = () => {
                   <div
                     onClick={() =>
                       copyToClipboard(
-                        `/bosler/snap/artifactory/artifacts/${text}`
+                        `/orphea/snap/artifactory/artifacts/${text}`
                       )
                     }
                   >
@@ -286,14 +286,14 @@ const Artifacts = () => {
       dataIndex: "commitId",
       render: (latestCommitId: string, record: any) => {
         if (!latestCommitId) {
-          return <div className="BoslerSpan">None</div>;
+          return <div className="OrpheaSpan">None</div>;
         }
 
         const shortCommitId = latestCommitId.slice(0, 7);
 
         return (
           <a
-            href={`https://github.com/Bosler-io/${triggerName}/commit/${latestCommitId}`} //////////////////////////////////////
+            href={`https://github.com/Orphea-io/${triggerName}/commit/${latestCommitId}`} //////////////////////////////////////
             target="_blank"
             rel="noopener noreferrer"
             className={"commitedId"}
@@ -307,7 +307,7 @@ const Artifacts = () => {
       title: getLanguageLabel("startedAt").toUpperCase(),
       dataIndex: "startedAt",
       render: (text: number) => (
-        <div className="BoslerSpan">{timeConverter(text)}</div>
+        <div className="OrpheaSpan">{timeConverter(text)}</div>
       ),
     },
     {
@@ -315,9 +315,9 @@ const Artifacts = () => {
       dataIndex: "finishedAt",
       render: (text: number, row: any) => {
         if (!row.finishedAt) {
-          return <div className="BoslerSpan">None</div>;
+          return <div className="OrpheaSpan">None</div>;
         }
-        return <div className="BoslerSpan">{timeConverter(text)}</div>;
+        return <div className="OrpheaSpan">{timeConverter(text)}</div>;
       },
     },
     {
@@ -329,7 +329,7 @@ const Artifacts = () => {
           return formatDuration(currentTime - row.startedAt);
         }
         return (
-          <div className="BoslerSpan">
+          <div className="OrpheaSpan">
             {formatDuration(row.finishedAt - row.startedAt)}
           </div>
         );
@@ -339,13 +339,13 @@ const Artifacts = () => {
       title: getLanguageLabel("detailedLogs").toUpperCase(),
       dataIndex: "id",
       render: (id: string) => (
-        <BoslerButton
+        <OrpheaButton
           onClick={() => openLog(id)}
           icon={<ComponentIcon />}
           minimal
         >
           {getLanguageLabel("detailedLogs")}
-        </BoslerButton>
+        </OrpheaButton>
       ),
     },
     {
@@ -354,7 +354,7 @@ const Artifacts = () => {
       render: (text: any, record: any) => {
         return (
           <>
-            <BoslerButton
+            <OrpheaButton
               onClick={() => {
                 setDeleteArtifactDetails({ ...record });
                 setDeleteArtifactModal(true);
@@ -416,28 +416,28 @@ const Artifacts = () => {
     });
   }
 
-  if (loading) return <BoslerLoader />;
+  if (loading) return <OrpheaLoader />;
 
   return (
     <>
-      <BoslerModal
+      <OrpheaModal
         headingIcon={<TrashIcon color="var(--DANGEROUS_COLOR)" />}
         heading={getLanguageLabel("areYouSureYouWantToDeleteThis?")}
         open={deleteArtifactModal}
         onCancel={handleDeleteCancel}
         onOk={() => deleteArtifactHandler()}
         footerButtonArea={
-          <BoslerButton
+          <OrpheaButton
             icon={<TrashIcon />}
             onClick={() => deleteArtifactHandler()}
             intent="dangerous"
           >
             {getLanguageLabel("delete")}
-          </BoslerButton>
+          </OrpheaButton>
         }
       >
         {deleteArtifactDetails.id}
-      </BoslerModal>
+      </OrpheaModal>
 
       <div className="settings-center-block">
         <Title className={styles.build_title} level={3}>
@@ -466,7 +466,7 @@ const Artifacts = () => {
                 placement="top"
                 title={"Run a new build on this trigger."}
               >
-                <BoslerButton
+                <OrpheaButton
                   icon={<BuildIcon />}
                   intent="action"
                   onClick={() => {
@@ -474,16 +474,16 @@ const Artifacts = () => {
                   }}
                 >
                   Build
-                </BoslerButton>
+                </OrpheaButton>
               </Tooltip>
-              <BoslerModal
+              <OrpheaModal
                 headingIcon={<BuildIcon />}
                 heading={"Are you sure you want to build : " + triggerName}
                 open={isModalVisible}
                 onCancel={handleCancel}
                 onOk={() => handleOk()}
                 footerButtonArea={[
-                  <BoslerButton
+                  <OrpheaButton
                     key="build" // Add key to avoid warnings
                     icon={<BuildIcon />}
                     disabled={isBuildButtonDisabled}
@@ -491,8 +491,8 @@ const Artifacts = () => {
                     intent="action"
                   >
                     {getLanguageLabel("build")}
-                  </BoslerButton>,
-                  <BoslerButton
+                  </OrpheaButton>,
+                  <OrpheaButton
                     key="cancel" // Add key to avoid warnings
                     icon={<CrossIcon />}
                     onClick={handleCancel}
@@ -508,22 +508,22 @@ const Artifacts = () => {
                     onMouseLeave={() => setIsCancelHovered(false)}
                   >
                     {getLanguageLabel("cancel")}
-                  </BoslerButton>,
+                  </OrpheaButton>,
                 ]}
               >
-                <BoslerInput
+                <OrpheaInput
                   placeholder="Enter artifact name"
                   value={artifactName}
                   onChange={handleArtifactNameChange}
                 />
-              </BoslerModal>
+              </OrpheaModal>
             </Col>
           </Row>
 
           <Divider />
         </p>
 
-        <BoslerInput
+        <OrpheaInput
           placeholder={getLanguageLabel("search")}
           allowClear
           onChange={(e: any) => {
@@ -542,7 +542,7 @@ const Artifacts = () => {
           pagination={false}
         />
       </div>
-      <BoslerModal
+      <OrpheaModal
         className={styles.modal}
         destroyOnClose
         headingIcon={<ComponentIcon />}
@@ -552,14 +552,14 @@ const Artifacts = () => {
         onCancel={() => setIsLogModalOpen(false)}
         footer={
           <div className={styles.footer}>
-            <BoslerButton
+            <OrpheaButton
               onClick={() => setIsLogModalOpen(false)}
               size="large"
               outlined
               style={{ margin: "0 20px" }}
             >
               Close
-            </BoslerButton>
+            </OrpheaButton>
           </div>
         }
       >
@@ -568,7 +568,7 @@ const Artifacts = () => {
         ) : (
           <NoData heading={"No logs found"} />
         )}
-      </BoslerModal>
+      </OrpheaModal>
     </>
   );
 };

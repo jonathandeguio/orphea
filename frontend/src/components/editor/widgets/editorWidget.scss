@@ -118,25 +118,3 @@
   background-color: var(--bosler-bkg-color-default) !important;
   color: var(--bosler-font-color-default) !important;
 }
-
-.editor-pannel {
-  @media (max-width: 768px) {
-    padding-right: 30px;
-  }
-}
-.tutorial-card-container {
-  @media (max-width: 768px) {
-    max-width: 100% !important;
-  }
-}
-.tutorial-cards-container {
-  @media (max-width: 768px) {
-    display: flex;
-    flex-direction: column;
-  }
-}
-.demo-code {
-  @media (max-width: 768px) {
-    word-wrap: break-word;
-  }
-}

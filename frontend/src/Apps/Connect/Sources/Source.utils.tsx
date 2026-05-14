@@ -2,60 +2,40 @@ import { ComponentIcon } from "assets/icons/boslerInterfaceIcons";
 import { IBoslerBottomBarItem } from "common/components/BoslerLayout/type";
 import BuildDetailsTable from "components/Builds/BuildDetailsTable.view";
 import React from "react";
-import { getLanguageLabel, isEmpty } from "utils/utilities";
+import { getLanguageLabel } from "utils/utilities";
 import PreviewLink from "../Links/bottomBar/PreviewLink";
 
 import { AutoModeIcon } from "assets/icons/boslerActionIcons";
 import { isDefined } from "utils/utilities";
-import { SourceAuthTypeEnum } from "../Enums/JDBCSourceAuthTypeEnum";
+import { SourceAuthTypeEnum } from "../Enums/SourceAuthTypeEnum";
 import { ISourceConfig } from "./Source";
 
 export const isSourceConfigValid = (source: ISourceConfig) => {
   if (source.type == "jdbc") {
     if (source.authType == SourceAuthTypeEnum.KEYPAIR) {
       return (
-        isDefined(source.name) &&
-        isDefined(source.parent) &&
-        isDefined(source.warehouse) &&
-        isDefined(source.username) &&
-        isDefined(source.privateKey) &&
-        isDefined(source.server) &&
-        isDefined(source.port) &&
-        isDefined(source.database)
+        source.name &&
+        source.parent &&
+        source.warehouse &&
+        source.username &&
+        source.privateKey &&
+        source.server &&
+        source.port &&
+        source.database
       );
     } else {
       return (
-        isDefined(source.name) &&
-        isDefined(source.parent) &&
-        isDefined(source.username) &&
-        isDefined(source.password) &&
-        isDefined(source.server) &&
-        isDefined(source.port) &&
-        isDefined(source.database)
+        source.name &&
+        source.parent &&
+        source.username &&
+        source.password &&
+        source.server &&
+        source.port &&
+        source.database
       );
     }
-  } else if (source.type == "rest") {
-    return (
-      isDefined(source.name) &&
-      !isEmpty(source.name) &&
-      isDefined(source.parent) &&
-      !isEmpty(source.parent) &&
-      isDefined(source.domains) &&
-      !isEmpty(source.domains)
-    );
   } else if (source.type === "FOLDER") {
     return isDefined(source.path);
-  } else if (source.type === "SHAREPOINT") {
-    return (
-      isDefined(source.url) &&
-      source.url != "" &&
-      isDefined(source.tenantId) &&
-      source.tenantId != "" &&
-      isDefined(source.clientId) &&
-      source.clientId != "" &&
-      isDefined(source.clientSecret) &&
-      source.clientSecret != ""
-    );
   }
 };
 

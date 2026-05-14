@@ -1,4 +1,4 @@
-BUNDLE_DIR=/bosler/bundle
+BUNDLE_DIR=/orphea/bundle
 
 OFFLINE_INSTALL="false"
 

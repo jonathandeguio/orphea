@@ -12,7 +12,7 @@ import {
   getDeploymentDetailsByIdAPI,
   updateTargetState,
 } from "../apis";
-import BoslerButton from "components/ButtonComponent/BoslerButton";
+import OrpheaButton from "components/ButtonComponent/OrpheaButton";
 import {
   Checkbox,
   Col,
@@ -27,13 +27,13 @@ import {
   AppIcon,
   ComponentIcon,
   UploadIcon,
-} from "assets/icons/boslerInterfaceIcons";
-import { PulseIcon } from "assets/icons/boslerMiscellaneousIcons";
+} from "assets/icons/orpheaInterfaceIcons";
+import { PulseIcon } from "assets/icons/orpheaMiscellaneousIcons";
 import { useNavigate } from "react-router";
-import BoslerInput from "components/InputComponent/BoslerInput";
-import { CopyIcon } from "assets/icons/boslerEditorIcons";
-import { AddIcon } from "assets/icons/boslerActionIcons";
-import { TickIcon } from "assets/icons/boslerNavigationIcon";
+import OrpheaInput from "components/InputComponent/OrpheaInput";
+import { CopyIcon } from "assets/icons/orpheaEditorIcons";
+import { AddIcon } from "assets/icons/orpheaActionIcons";
+import { TickIcon } from "assets/icons/orpheaNavigationIcon";
 
 const { Title, Text } = Typography;
 
@@ -48,7 +48,7 @@ const stateIcon = (text: any) => {
     case "ACTIVE":
       return (
         <Tooltip title={text}>
-          <PulseIcon color={"var(--bosler-intent-danger)"} />{" "}
+          <PulseIcon color={"var(--orphea-intent-danger)"} />{" "}
         </Tooltip>
       );
     case "TARGET":
@@ -104,7 +104,7 @@ export const shouldHighlightTargetRow = (
     record.julia !== activeRecord.julia ||
     record.callisto !== activeRecord.callisto ||
     record.capture !== activeRecord.capture ||
-    record.boslerDocs !== activeRecord.boslerDocs ||
+    record.orpheaDocs !== activeRecord.orpheaDocs ||
     record.sparkHistoryServer !== activeRecord.sparkHistoryServer
   );
 };
@@ -118,7 +118,7 @@ export const transformData = (data: any) => {
     "julia",
     "callisto",
     "capture",
-    "boslerDocs",
+    "orpheaDocs",
     "sparkHistoryServer",
   ];
 
@@ -203,7 +203,7 @@ export const mergedData = async (data: any, deploymentDetails: any) => {
     "julia",
     "callisto",
     "capture",
-    "boslerDocs",
+    "orpheaDocs",
     "sparkHistoryServer",
   ];
 
@@ -255,14 +255,14 @@ export const getConfigurationColumns = (
       title: "State",
       dataIndex: "state",
       render: (text: string) => (
-        <div className="BoslerSpan">{stateIcon(text)}</div>
+        <div className="OrpheaSpan">{stateIcon(text)}</div>
       ),
     },
     {
       title: "Global Version",
       dataIndex: "globalVersion",
       render: (text: string) => (
-        <div className="BoslerSpan">{text ? text : getLanguageLabel("none")}</div>
+        <div className="OrpheaSpan">{text ? text : getLanguageLabel("none")}</div>
       ),
     },
     {
@@ -270,65 +270,65 @@ export const getConfigurationColumns = (
       dataIndex: "deployedAt",
       render: (text: number, row: any) => {
         if (!row.deployedAt) {
-          return <div className="BoslerSpan">None</div>;
+          return <div className="OrpheaSpan">None</div>;
         }
-        return <div className="BoslerSpan">{timeConverter(text)}</div>;
+        return <div className="OrpheaSpan">{timeConverter(text)}</div>;
       },
     },
     {
       title: "Frontend",
       dataIndex: "frontend",
       render: (text: string) => (
-        <div className="BoslerSpan">{text ? text : getLanguageLabel("none")}</div>
+        <div className="OrpheaSpan">{text ? text : getLanguageLabel("none")}</div>
       ),
     },
     {
       title: "Boson",
       dataIndex: "boson",
       render: (text: string) => (
-        <div className="BoslerSpan">{text ? text : getLanguageLabel("none")}</div>
+        <div className="OrpheaSpan">{text ? text : getLanguageLabel("none")}</div>
       ),
     },
     {
       title: "Parler",
       dataIndex: "parler",
       render: (text: string) => (
-        <div className="BoslerSpan">{text ? text : getLanguageLabel("none")}</div>
+        <div className="OrpheaSpan">{text ? text : getLanguageLabel("none")}</div>
       ),
     },
     {
       title: "Julia",
       dataIndex: "julia",
       render: (text: string) => (
-        <div className="BoslerSpan">{text ? text : getLanguageLabel("none")}</div>
+        <div className="OrpheaSpan">{text ? text : getLanguageLabel("none")}</div>
       ),
     },
     {
       title: "Callisto",
       dataIndex: "callisto",
       render: (text: string) => (
-        <div className="BoslerSpan">{text ? text : getLanguageLabel("none")}</div>
+        <div className="OrpheaSpan">{text ? text : getLanguageLabel("none")}</div>
       ),
     },
     {
       title: "Capture",
       dataIndex: "capture",
       render: (text: string) => (
-        <div className="BoslerSpan">{text ? text : getLanguageLabel("none")}</div>
+        <div className="OrpheaSpan">{text ? text : getLanguageLabel("none")}</div>
       ),
     },
     {
-      title: "BoslerDocs",
-      dataIndex: "boslerDocs",
+      title: "OrpheaDocs",
+      dataIndex: "orpheaDocs",
       render: (text: string) => (
-        <div className="BoslerSpan">{text ? text : getLanguageLabel("none")}</div>
+        <div className="OrpheaSpan">{text ? text : getLanguageLabel("none")}</div>
       ),
     },
     {
       title: "SparkHistoryServer",
       dataIndex: "sparkHistoryServer",
       render: (text: string) => (
-        <div className="BoslerSpan">{text ? text : getLanguageLabel("none")}</div>
+        <div className="OrpheaSpan">{text ? text : getLanguageLabel("none")}</div>
       ),
     },
     {
@@ -337,12 +337,12 @@ export const getConfigurationColumns = (
       render: (text: any, record: any) => {
         if (record.state === "ARCHIVED") {
           return (
-            <BoslerButton
+            <OrpheaButton
               intent="action"
               onClick={() => handleRevertModal(record)}
             >
               Revert
-            </BoslerButton>
+            </OrpheaButton>
           );
         }
         return null;
@@ -358,28 +358,28 @@ export const getLicenseColumns = () => {
       title: "State",
       dataIndex: "state",
       render: (text: string) => (
-        <div className="BoslerSpan">{stateIcon(text)}</div>
+        <div className="OrpheaSpan">{stateIcon(text)}</div>
       ),
     },
     {
       title: "Client",
       dataIndex: "client",
       render: (text: string) => (
-        <div className="BoslerSpan">{text ? text : getLanguageLabel("none")}</div>
+        <div className="OrpheaSpan">{text ? text : getLanguageLabel("none")}</div>
       ),
     },
     {
       title: "Product",
       dataIndex: "product",
       render: (text: string) => (
-        <div className="BoslerSpan">{text ? text : getLanguageLabel("none")}</div>
+        <div className="OrpheaSpan">{text ? text : getLanguageLabel("none")}</div>
       ),
     },
     {
       title: "Base URL",
       dataIndex: "baseUrl",
       render: (text: string) => (
-        <div className="BoslerSpan">{text ? text : getLanguageLabel("none")}</div>
+        <div className="OrpheaSpan">{text ? text : getLanguageLabel("none")}</div>
       ),
     },
     {
@@ -439,7 +439,7 @@ export const getLicenseColumns = () => {
       title: getLanguageLabel("expiringOn"),
       dataIndex: "expiresOn",
       render: (text: string) => (
-        <div className="BoslerSpan">
+        <div className="OrpheaSpan">
           {text ? (
             <Tooltip title={timeConverter(Number(text))}>
               <div
@@ -462,7 +462,7 @@ export const getLicenseColumns = () => {
       title: getLanguageLabel("licenseKey"),
       dataIndex: "licenseKey",
       render: (text: string) => (
-        <BoslerInput
+        <OrpheaInput
           value={text ? text : getLanguageLabel("none")}
           readOnly
           suffix={
@@ -501,7 +501,7 @@ export const getColumnsActiveTarget = ({
       title: (
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div>
-            <PulseIcon color={"var(--bosler-intent-danger)"} /> {getLanguageLabel("active")} <br />
+            <PulseIcon color={"var(--orphea-intent-danger)"} /> {getLanguageLabel("active")} <br />
             <Text style={{ fontSize: "0.8rem" }} type="secondary">
               {getLanguageLabel("thisIsTheCurrentlyActiveVersion")}
             </Text>
@@ -586,7 +586,7 @@ export const getColumnsActiveTarget = ({
           >
             {hasMismatch ? (
               <Tooltip title={getLanguageLabel("clickToUpdateToLatest")}>
-                <BoslerButton
+                <OrpheaButton
                   icon={<UploadIcon />}
                   intent="action"
                   onClick={() => setIsCreateConfigurationTargetModalOpen(true)}
@@ -594,18 +594,18 @@ export const getColumnsActiveTarget = ({
                   outlined
                 >
                   {text ? text : getLanguageLabel("none")}
-                </BoslerButton>
+                </OrpheaButton>
               </Tooltip>
             ) : (
               <Tooltip title={"Already on the latest."}>
-                <BoslerButton
+                <OrpheaButton
                   icon={<TickIcon />}
                   intent={getLanguageLabel("none")}
                   minimal
                   outlined
                 >
                   {text ? text : getLanguageLabel("none")}
-                </BoslerButton>
+                </OrpheaButton>
               </Tooltip>
             )}
           </div>
@@ -643,13 +643,13 @@ export const getTabItems = ({
             </Col>
             <Col>
               <Tooltip placement="top" title={getLanguageLabel("updateTargetState")}>
-                <BoslerButton
+                <OrpheaButton
                   icon={<AddIcon />}
                   intent="action"
                   onClick={() => setIsCreateConfigurationTargetModalOpen(true)}
                 >
                   {getLanguageLabel("updateTargetState")}
-                </BoslerButton>
+                </OrpheaButton>
               </Tooltip>
             </Col>
           </Row>
@@ -689,17 +689,17 @@ export const getTabItems = ({
               <Title level={3}>
                 {getLanguageLabel("license")} ({deploymentDetails?.licenseModel.length})
               </Title>
-              <Text type="secondary">{getLanguageLabel("hereAreBoslerClientsLicenses")}</Text>
+              <Text type="secondary">{getLanguageLabel("hereAreOrpheaClientsLicenses")}</Text>
             </Col>
             <Col>
               <Tooltip placement="top" title={"Create New License"}>
-                <BoslerButton
+                <OrpheaButton
                   icon={<AddIcon />}
                   intent="action"
                   onClick={() => setIsCreateNewLicenseModalOpen(true)}
                 >
                   {getLanguageLabel("newLicense")}
-                </BoslerButton>
+                </OrpheaButton>
               </Tooltip>
             </Col>
           </Row>
@@ -734,7 +734,7 @@ export const handleRevert = async ({
       julia: record.julia,
       callisto: record.callisto,
       capture: record.capture,
-      boslerDocs: record.boslerDocs,
+      orpheaDocs: record.orpheaDocs,
       sparkHistoryServer: record.sparkHistoryServer,
       branch: deploymentDetails.branch,
     };

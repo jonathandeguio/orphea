@@ -33,35 +33,35 @@ cd repos
 frontend() 
 {
   if [ ! -d frontend ]; then
-  git clone git@github.com:Bosler-io/frontend.git  > /dev/null
+  git clone git@github.com:Orphea-io/frontend.git  > /dev/null
   else
   cd frontend
   git pull  > /dev/null
   # git checkout e9fdca97236703f0250f103b9c5e59f266771a96
   cd ..
   fi
-  docker build frontend --tag ${COMPUTE_REGION}-docker.pkg.dev/${PROJECT_ID}/bosler-cr/frontend
+  docker build frontend --tag ${COMPUTE_REGION}-docker.pkg.dev/${PROJECT_ID}/orphea-cr/frontend
 
   # restart deployment to pick new image
-  kubectl -n bosler scale deploy frontend --replicas=0
-  kubectl -n bosler scale deploy frontend --replicas=1
+  kubectl -n orphea scale deploy frontend --replicas=0
+  kubectl -n orphea scale deploy frontend --replicas=1
 }
 
 
 parler() 
 {
   if [ ! -d parler ]; then
-  git clone git@github.com:Bosler-io/parler.git  > /dev/null
+  git clone git@github.com:Orphea-io/parler.git  > /dev/null
   else
   cd parler
   git pull  > /dev/null
   cd ..
   fi
-  docker build parler --tag ${COMPUTE_REGION}-docker.pkg.dev/${PROJECT_ID}/bosler-cr/parler
+  docker build parler --tag ${COMPUTE_REGION}-docker.pkg.dev/${PROJECT_ID}/orphea-cr/parler
 
   # restart deployment to pick new image
-  kubectl -n bosler scale deploy parler --replicas=0
-  kubectl -n bosler scale deploy parler --replicas=1
+  kubectl -n orphea scale deploy parler --replicas=0
+  kubectl -n orphea scale deploy parler --replicas=1
 }
 
 
@@ -69,7 +69,7 @@ boson()
 {
   
   if [ ! -d boson ]; then
-    git clone git@github.com:Bosler-io/boson.git  > /dev/null
+    git clone git@github.com:Orphea-io/boson.git  > /dev/null
   else
     cd boson
     git pull  > /dev/null
@@ -77,11 +77,11 @@ boson()
     cd ..
   fi
 
-  docker build boson --tag ${COMPUTE_REGION}-docker.pkg.dev/${PROJECT_ID}/bosler-cr/boson
+  docker build boson --tag ${COMPUTE_REGION}-docker.pkg.dev/${PROJECT_ID}/orphea-cr/boson
 
   # restart deployment to pick new image
-  kubectl -n bosler scale deploy boson --replicas=0
-  kubectl -n bosler scale deploy boson --replicas=1
+  kubectl -n orphea scale deploy boson --replicas=0
+  kubectl -n orphea scale deploy boson --replicas=1
 
 }
 
@@ -90,7 +90,7 @@ funnel()
 {
   
   if [ ! -d funnel ]; then
-    git clone git@github.com:Bosler-io/funnel.git  > /dev/null
+    git clone git@github.com:Orphea-io/funnel.git  > /dev/null
   else
     cd funnel
     git pull  > /dev/null
@@ -98,7 +98,7 @@ funnel()
     cd ..
   fi
 
-  docker build funnel --tag ${COMPUTE_REGION}-docker.pkg.dev/${PROJECT_ID}/bosler-cr/funnel
+  docker build funnel --tag ${COMPUTE_REGION}-docker.pkg.dev/${PROJECT_ID}/orphea-cr/funnel
 
 }
 
@@ -106,7 +106,7 @@ callisto()
 {
   
   if [ ! -d callisto ]; then
-    git clone git@github.com:Bosler-io/callisto.git  > /dev/null
+    git clone git@github.com:Orphea-io/callisto.git  > /dev/null
   else
     cd callisto
     git pull  > /dev/null
@@ -114,25 +114,25 @@ callisto()
     cd ..
   fi
 
-  docker build callisto --tag ${COMPUTE_REGION}-docker.pkg.dev/${PROJECT_ID}/bosler-cr/callisto
+  docker build callisto --tag ${COMPUTE_REGION}-docker.pkg.dev/${PROJECT_ID}/orphea-cr/callisto
 
   # restart deployment to pick new image
-  kubectl -n bosler scale deploy callisto --replicas=0
-  kubectl -n bosler scale deploy callisto --replicas=1
+  kubectl -n orphea scale deploy callisto --replicas=0
+  kubectl -n orphea scale deploy callisto --replicas=1
 
 }
 
 
 all()
 {
-  #ACTIVE_REPOS="funnel parler spark-history-server boson callisto frontend julia bosler-docs shyne"
+  #ACTIVE_REPOS="funnel parler spark-history-server boson callisto frontend julia orphea-docs shyne"
   ACTIVE_REPOS="frontend"
 
   for image in $(echo $ACTIVE_REPOS); do
      echo "`date` : Building $image"
 
      if [ ! -d $image ]; then
-       git clone git@github.com:Bosler-io/$image  > /dev/null
+       git clone git@github.com:Orphea-io/$image  > /dev/null
      else 
        cd $image 
        git pull  > /dev/null
@@ -140,11 +140,11 @@ all()
        cd ..
      fi
   
-     docker build $image --tag ${COMPUTE_REGION}-docker.pkg.dev/${PROJECT_ID}/bosler-cr/$image
+     docker build $image --tag ${COMPUTE_REGION}-docker.pkg.dev/${PROJECT_ID}/orphea-cr/$image
   
      # restart deployment to pick new image
-     kubectl -n bosler scale deploy callisto --replicas=0 > /dev/null
-     kubectl -n bosler scale deploy callisto --replicas=1 > /dev/null
+     kubectl -n orphea scale deploy callisto --replicas=0 > /dev/null
+     kubectl -n orphea scale deploy callisto --replicas=1 > /dev/null
      echo "`date` : Built $image"
   done
 }

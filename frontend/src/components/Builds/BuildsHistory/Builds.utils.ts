@@ -15,7 +15,6 @@ export const getDefaultBuildFilters = (currentUserId: string) => {
     searchText: undefined,
     status: [],
     trigger: [],
-    sourceType: [],
     rangeFrom: getYesterdayDate(),
     rangeTo: undefined,
     finishRangeFrom: undefined,

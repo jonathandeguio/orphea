@@ -4,7 +4,7 @@
 # https://cloud.google.com/kubernetes-engine/docs/quickstart
 #
 # Pre-Reqs:
-# - An account in the appropriate Directory (Google Workspace in Bosler's case).
+# - An account in the appropriate Directory (Google Workspace in Orphea's case).
 # - Google Cloud SDK must be installed on local machine or run within the 
 #   Google Cloud Shell.  Visit https://cloud.google.com/sdk/docs/install
 # - The Kubernetes Kubectl command-line tool needs to be installed on the 
@@ -55,7 +55,7 @@ gcloud compute addresses create $CLUSTER_NAME --global
 #gcloud compute addresses create ${CLUSTER_NAME}-history --global
 
 # Create global pre-shared SSL certificate
-CERTIFICATE_NAME="bosler-preshared-cert"
+CERTIFICATE_NAME="orphea-preshared-cert"
 gcloud compute ssl-certificates create $CERTIFICATE_NAME \
     --certificate $CERT_FILE_PATH \
     --private-key $KEY_FILE_PATH 
@@ -112,17 +112,17 @@ gcloud projects add-iam-policy-binding $PROJECT_ID \
 # https://cloud.google.com/build/docs/automating-builds/create-manage-triggers
 # https://cloud.google.com/sdk/gcloud/reference/beta/builds/triggers/create/github
 
-gcloud iam service-accounts create boslerbuilds \
-    --description="Bosler Cloud Build SA" \
-    --display-name="Bosler Cloud Build SA"
-gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:boslerbuilds@${PROJECT_ID}.iam.gserviceaccount.com" --role="roles/cloudbuild.serviceAgent"
-gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:boslerbuilds@${PROJECT_ID}.iam.gserviceaccount.com" --role="roles/logging.logWriter"
-gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:boslerbuilds@${PROJECT_ID}.iam.gserviceaccount.com" --role="roles/artifactregistry.writer"
+gcloud iam service-accounts create orpheabuilds \
+    --description="Orphea Cloud Build SA" \
+    --display-name="Orphea Cloud Build SA"
+gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:orpheabuilds@${PROJECT_ID}.iam.gserviceaccount.com" --role="roles/cloudbuild.serviceAgent"
+gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:orpheabuilds@${PROJECT_ID}.iam.gserviceaccount.com" --role="roles/logging.logWriter"
+gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:orpheabuilds@${PROJECT_ID}.iam.gserviceaccount.com" --role="roles/artifactregistry.writer"
 
 # cloud storage
 gcloud iam service-accounts create google-storage-sa \
-    --description="Bosler Cloud Storage SA" \
-    --display-name="Bosler Cloud Storage SA"
+    --description="Orphea Cloud Storage SA" \
+    --display-name="Orphea Cloud Storage SA"
 
 gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:google-storage-sa@${PROJECT_ID}.iam.gserviceaccount.com" --role="roles/storage.objectCreator"
 gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:google-storage-sa@${PROJECT_ID}.iam.gserviceaccount.com" --role="roles/storage.objectViewer"
@@ -151,8 +151,8 @@ echo "https://console.cloud.google.com/cloud-build/triggers/connect?authuser=4&p
 for i in $(echo $ACTIVE_REPOS); do
     echo "Creating trigger for $i"
     gcloud beta builds triggers create github --name="${i}" \
-        --service-account="projects/${PROJECT_ID}/serviceAccounts/boslerbuilds@${PROJECT_ID}.iam.gserviceaccount.com" \
-        --repo-owner="Bosler-io" \
+        --service-account="projects/${PROJECT_ID}/serviceAccounts/orpheabuilds@${PROJECT_ID}.iam.gserviceaccount.com" \
+        --repo-owner="Orphea-io" \
         --repo-name="${i}" \
         --branch-pattern="^main$" \
         --build-config="cloudbuild.yaml"
@@ -165,7 +165,7 @@ gcloud alpha storage buckets create gs://$BUCKET_NAME --project=$PROJECT_ID
 # the below is just to create the folders
 gsutil cp README.md gs://$BUCKET_NAME/spark-streaming/checkpoint/
 # permissions
-cat iam-policies/google-storage-bucket-policy.json|sed -e "s/septbos22/$PROJECT_ID/g"|sed -e "s/bosler-334213/$PROJECT_ID/g" > google-storage-bucket-policy.tmp.json
+cat iam-policies/google-storage-bucket-policy.json|sed -e "s/septbos22/$PROJECT_ID/g"|sed -e "s/orphea-334213/$PROJECT_ID/g" > google-storage-bucket-policy.tmp.json
 gsutil iam set google-storage-bucket-policy.tmp.json gs://$BUCKET_NAME
 rm google-storage-bucket-policy.tmp.json
 
@@ -173,11 +173,11 @@ rm google-storage-bucket-policy.tmp.json
 echo ""
 echo ""
 echo ""
-echo "Run : helm install bosler bosler-gke -f $HELM_CHART/$HELM_VALUES"
+echo "Run : helm install orphea orphea-gke -f $HELM_CHART/$HELM_VALUES"
 
 echo "Then run : ./post-helm.sh"
 
-# helm install bosler bosler-gke -f $HELM_CHART/$HELM_VALUES
+# helm install orphea orphea-gke -f $HELM_CHART/$HELM_VALUES
 
 # sleep 300
 

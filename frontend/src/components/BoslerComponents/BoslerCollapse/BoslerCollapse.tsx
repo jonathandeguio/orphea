@@ -1,10 +1,14 @@
-import { SingleChevronRightIcon } from "assets/icons/boslerNavigationIcon";
+import {
+  SingleChevronDownIcon,
+  SingleChevronRightIcon,
+} from "assets/icons/boslerNavigationIcon";
 import React, { useEffect, useMemo, useState } from "react";
 import "./BoslerCollapse.scss";
+import { isDefined } from "utils/utilities";
 
 interface ICollapse {
   collapsible: "HEADER" | "ICON" | "DISABLED";
-  key?: string;
+  key: string;
   header: JSX.Element | string;
   children: JSX.Element;
   defaultCollpased?: boolean;

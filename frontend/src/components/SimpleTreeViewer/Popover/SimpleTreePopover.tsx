@@ -10,25 +10,16 @@ export const getPopoverTitle = (node: Resource) => {
 
 export const getPopoverContent = (
   originId: string | undefined,
-  node: Resource,
-  popoverCache: any,
-  setPopoverCache: any
+  node: Resource
 ) => {
   const { id } = useParams();
+  useEffect(() => {}, [id]);
 
   if (!id) {
     return <></>;
   }
 
   if (node.subType == ResourceSubTypeEnum.TABLE_CHART && originId) {
-    return (
-      <TreePopoverTable
-        popoverCache={popoverCache}
-        setPopoverCache={setPopoverCache}
-        sourceId={originId}
-        tableNode={node}
-      />
-    );
+    return <TreePopoverTable sourceId={originId} tableNode={node} />;
   }
-  return <></>;
 };

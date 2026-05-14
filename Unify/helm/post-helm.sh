@@ -7,8 +7,8 @@ fi
 
 source $1
 
-kubectl -n bosler exec -it $(kubectl -n bosler get pods | awk '{print $1}' | grep boson-db) -- /bin/bash -c "su - postgres -c \"psql -c 'CREATE DATABASE kepler;'\""
-kubectl -n bosler exec -it $(kubectl -n bosler get pods | awk '{print $1}' | grep boson-db) -- /bin/bash -c "su - postgres -c \"psql -c 'CREATE DATABASE boson;'\""
+kubectl -n orphea exec -it $(kubectl -n orphea get pods | awk '{print $1}' | grep boson-db) -- /bin/bash -c "su - postgres -c \"psql -c 'CREATE DATABASE kepler;'\""
+kubectl -n orphea exec -it $(kubectl -n orphea get pods | awk '{print $1}' | grep boson-db) -- /bin/bash -c "su - postgres -c \"psql -c 'CREATE DATABASE boson;'\""
 
 # This is to modify HC to check /api/jupyter/api , other GCP healthchecks fails
 callisto_hc=$(gcloud compute health-checks list --global | grep callisto | awk '{print $1}')
@@ -19,4 +19,4 @@ gcloud compute health-checks update http $callisto_hc \
   --request-path="/api/jupyter/api"
 
 ## Install Spark and Spark_history
-./bosler_spark_env.sh create
+./orphea_spark_env.sh create

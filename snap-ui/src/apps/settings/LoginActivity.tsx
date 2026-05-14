@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import React from "react";
 import { getLanguageLabel, openNotification } from "utils/utilities";
 
-import BoslerLoader from "components/boslerLoader";
+import OrpheaLoader from "components/orpheaLoader";
 
 const { Title, Text } = Typography;
 
@@ -59,7 +59,7 @@ const LoginActivity = () => {
     },
   ];
   return !user ? (
-    <BoslerLoader />
+    <OrpheaLoader />
   ) : (
     <div className="settings-center-block">
       <p>

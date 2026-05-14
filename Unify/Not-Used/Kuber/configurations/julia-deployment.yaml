@@ -2,7 +2,7 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: julia-pv
-  namespace: bosler
+  namespace: orphea
 spec:
   storageClassName: "standard"
   capacity:
@@ -13,14 +13,14 @@ spec:
     namespace: default
     name: julia-pvc
   gcePersistentDisk:
-    pdName: bosler-disk
+    pdName: orphea-disk
     fsType: ext4
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: julia-pvc
-  namespace: bosler
+  namespace: orphea
 spec:
   storageClassName: "standard"
   accessModes:
@@ -36,7 +36,7 @@ metadata:
   labels:
     name: julia
   name: julia
-  namespace: bosler
+  namespace: orphea
 spec:
   replicas: 1
   selector:
@@ -53,7 +53,7 @@ spec:
             - -jar
             - -Dspring.profiles.active=kubernetes
             - /app/julia-0.0.1-SNAPSHOT-all.jar
-          image: rmalik/bosler:julia
+          image: rmalik/orphea:julia
           imagePullPolicy: Always
           name: julia
           ports:
@@ -65,9 +65,9 @@ spec:
             - name: JULIA_PORT
               value: "58542"
             - name: JULIA_BASE_PATH
-              value: "/root/bosler"
+              value: "/root/orphea"
           volumeMounts:
-            - mountPath: /root/bosler
+            - mountPath: /root/orphea
               name: julia-pv
           workingDir: /app
       imagePullSecrets:
@@ -85,7 +85,7 @@ metadata:
   labels:
     name: julia
   name: julia
-  namespace: bosler
+  namespace: orphea
 spec:
   ports:
     - name: julia

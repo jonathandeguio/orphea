@@ -1,0 +1,74 @@
+@import "App";
+.inputComponent {
+  appearance: none !important ;
+
+  border: none !important;
+  border-radius: 2px !important;
+  font-size: 14px;
+  font-weight: 400;
+  height: 30px;
+  line-height: 30px;
+  outline: none !important;
+  padding: 0 10px !important;
+  transition: box-shadow 0.15s cubic-bezier(0.25, 0.1, 0.25, 1) !important;
+  vertical-align: middle !important;
+  color: var(--color) !important;
+
+  background-color: var(--INPUT_BACKGROUND) !important;
+
+  border-radius: 2px !important;
+
+  box-shadow: var(--INPUT_BOX_SHADOW) !important;
+
+  transition: box-shadow 0.15s cubic-bezier(0.25, 0.1, 0.25, 1) 0s !important;
+  appearance: none !important;
+  // @media (max-width: 500px) {
+  //   width: 60vw;
+  // }
+
+  &:focus {
+    box-shadow: var(--INPUT_FOCUS_BOX_SHADOW) !important;
+  }
+}
+
+.inputPasswordComponent {
+  appearance: none !important ;
+
+  border: none !important;
+  border-radius: 2px !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  height: 30px !important;
+  line-height: 30px !important;
+  outline: none !important;
+  padding: 0 10px !important;
+  transition: box-shadow 0.15s cubic-bezier(0.25, 0.1, 0.25, 1) !important;
+  vertical-align: middle !important;
+  color: var(--color) !important;
+
+  background-color: var(--INPUT_BACKGROUND) !important;
+
+  border-radius: 2px !important;
+
+  box-shadow: var(--INPUT_BOX_SHADOW) !important;
+
+  transition: box-shadow 0.15s cubic-bezier(0.25, 0.1, 0.25, 1) 0s !important;
+  appearance: none !important;
+  padding: none !important;
+  &:focus {
+    box-shadow: var(--INPUT_FOCUS_BOX_SHADOW) !important;
+  }
+}
+
+.edit_text {
+  border-radius: 0;
+  background-color: transparent !important;
+  box-shadow: none !important;
+
+  * {
+    border: none !important;
+  }
+  &:hover {
+    background-color: $orphea-hover-color !important;
+  }
+}

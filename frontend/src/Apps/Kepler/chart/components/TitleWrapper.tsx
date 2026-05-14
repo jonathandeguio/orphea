@@ -222,7 +222,6 @@ export const TitleWrapper: React.FC<ITitle> = ({
       </div>
       <div
         style={{
-          marginTop: "10px",
           display: "flex",
           flexDirection: "column",
           flex: "1 1 0px",

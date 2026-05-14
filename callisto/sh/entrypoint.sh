@@ -12,7 +12,7 @@ CMD="jupyter lab --allow-root --ip=0.0.0.0 --no-browser --notebook-dir=$NOTEBOOK
 
 if [[ -v FRACTAL_TEMPLATES_TOKEN ]]; then
 	cd /opt/ || exit
-	git clone https://"${FRACTAL_TEMPLATES_TOKEN}"@github.com/Bosler-io/boson >>/dev/null
+	git clone https://"${FRACTAL_TEMPLATES_TOKEN}"@github.com/Orphea-io/boson >>/dev/null
 	cd /opt/boson/funnel/ || exit
 	git pull >>/dev/null
 	pip3 install -q /opt/boson/funnel/
@@ -29,8 +29,8 @@ if [[ -v NOTEBOOK_TOKEN ]]; then
   CMD="$CMD --NotebookApp.token='${NOTEBOOK_TOKEN}' --NotebookApp.password=''"
 fi
 
-if [[ -v BOSLER_USERID ]]; then
-  CMD="$CMD --NotebookApp.base_url='/api/jupyter/${BOSLER_USERID}' --NotebookApp.default_url='/api/jupyter/${BOSLER_USERID}'/disable"
+if [[ -v ORPHEA_USERID ]]; then
+  CMD="$CMD --NotebookApp.base_url='/api/jupyter/${ORPHEA_USERID}' --NotebookApp.default_url='/api/jupyter/${ORPHEA_USERID}'/disable"
 else
   CMD="$CMD --NotebookApp.base_url='/api/jupyter' --NotebookApp.default_url='/api/jupyter/disable"
 fi
@@ -83,7 +83,7 @@ fi
 #echo "Installed Juypter extensions"
 #jupyter labextension list
 
-# Bosler Specific
+# Orphea Specific
 if [[ -v BACKING_FS ]]; then
   if [ "${BACKING_FS}" == "gs" ]; then
     echo "${GOOGLE_CLOUD_CREDENTIALS}" >>/root/google_creds.json
@@ -92,14 +92,14 @@ fi
 
 # stop jupyter before token expires
 curl -s -X 'POST' \
-      "$BOSLER_API/api/fractal/stopJupyter" \
+      "$ORPHEA_API/api/fractal/stopJupyter" \
       -H 'accept: */*' \
       -H "Authorization: Bearer $NOTEBOOK_TOKEN" \
       -H 'Content-Type: application/json' \
       -d '{ "buildStatus":"success" }'
 
 curl -X "GET" \
-  "{$BOSLER_API}/api/fractal/stopJupyter" \
+  "{$ORPHEA_API}/api/fractal/stopJupyter" \
   -H "accept: */*" \
   -H "Authorization: Bearer ${NOTEBOOK_TOKEN}"
 

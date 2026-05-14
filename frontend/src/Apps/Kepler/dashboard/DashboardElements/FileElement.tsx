@@ -47,10 +47,10 @@ const FileElement = (props: Props) => {
               }}
               onClick={(e) => {
                 e.stopPropagation();
-                props.removeElement(props.element.id);
+                props.removeElement(props.dashboardId, props.element.id);
               }}
             >
-              <TrashIcon color="var(--bosler-intent-danger)" />
+              <TrashIcon color="var(--bosler-intent-danger)"/>
             </div>
           </>
         )}

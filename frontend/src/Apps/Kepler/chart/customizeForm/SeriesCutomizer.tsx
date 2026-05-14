@@ -32,7 +32,7 @@ export const SeriesCutomizer: React.FC<ISeriesCustomizer> = ({ chartType }) => {
           {fields?.map((field: any, index: number) => {
             const seriesCustomize = seriesCustomizeValue[index];
 
-            if (seriesCustomize && seriesCustomize?.seriesType) {
+            if (seriesCustomize && seriesCustomize.seriesType) {
               return (
                 <BoslerCollapse
                   collapsible="HEADER"
@@ -55,7 +55,7 @@ export const SeriesCutomizer: React.FC<ISeriesCustomizer> = ({ chartType }) => {
                     <>
                       {/* LINE CHART OPTIONS */}
                       {chartType === "VerticalAxisChart" &&
-                        seriesCustomize?.seriesType === "lineChart" && (
+                        seriesCustomize.seriesType === "lineChart" && (
                           <Form.Item
                             name={[field.name, "lineChartStyle"]}
                             label={getLanguageLabel("lineChartStyle")}
@@ -89,7 +89,7 @@ export const SeriesCutomizer: React.FC<ISeriesCustomizer> = ({ chartType }) => {
                         )}
                       {/* BAR CHART OPTIONS */}
                       {((chartType === "VerticalAxisChart" &&
-                        seriesCustomize?.seriesType === "barChart") ||
+                        seriesCustomize.seriesType === "barChart") ||
                         chartType === "horizontalBarChart") && (
                         <>
                           <Form.Item
@@ -103,7 +103,7 @@ export const SeriesCutomizer: React.FC<ISeriesCustomizer> = ({ chartType }) => {
                       )}
                       {/* Scatter CHART OPTIONS */}
                       {chartType === "VerticalAxisChart" &&
-                        seriesCustomize?.seriesType === "scatterChart" && (
+                        seriesCustomize.seriesType === "scatterChart" && (
                           <>
                             <Form.Item
                               name={[field.name, "symbolSize"]}

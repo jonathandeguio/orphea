@@ -3,6 +3,14 @@ import React from "react";
 import BuildDetailsTable from "./BuildDetailsTable.view";
 
 const BuildLog = ({ id, visible, page }: $TSFixMe) => {
+  // const { loading: loadingBuildSpec, data: dataBuildSpec } = useSelector(
+  //   (state) => (state as any).datasetBuildSpec
+  // );
+  //
+  // if (!dataBuildSpec) {
+  //   return <BoslerLoader />;
+  // }
+
   return (
     <>
       {visible && (

@@ -218,12 +218,12 @@ PROXY_FIX_CONFIG = {"x_for": 1, "x_proto": 1, "x_host": 1, "x_port": 1, "x_prefi
 APP_NAME = "Superset"
 
 # Specify the App icon
-APP_ICON = "/static/assets/images/bosler-logo.svg"
+APP_ICON = "/static/assets/images/orphea-logo.svg"
 APP_ICON_WIDTH = 50
 
 # Specify where clicking the logo would take the user
 # e.g. setting it to '/' would take the user to '/superset/welcome/'
-LOGO_TARGET_PATH = 'https://dev.bosler.io/'
+LOGO_TARGET_PATH = 'https://dev.orphea.io/'
 
 # Specify tooltip that should appear when hovering over the App Icon/Logo
 LOGO_TOOLTIP = ""

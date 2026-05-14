@@ -2,7 +2,7 @@ import { Col, Menu, Popover, Radio, Row, Typography } from "antd";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
-import { DocumentationIcon } from "assets/icons/boslerFileIcons";
+import { DocumentationIcon } from "assets/icons/orpheaFileIcons";
 
 import {
   getLanguageLabel,
@@ -15,7 +15,7 @@ import {
   HelpIcon,
   PulseIcon,
   StarIcon,
-} from "assets/icons/boslerMiscellaneousIcons";
+} from "assets/icons/orpheaMiscellaneousIcons";
 import { updateUserDetails } from "redux/actions/userActions";
 
 import ReactCountryFlag from "react-country-flag";
@@ -35,7 +35,7 @@ import {
   SearchIcon,
   SelectNodeIcon,
   SparklesIcon,
-} from "assets/icons/boslerActionIcons";
+} from "assets/icons/orpheaActionIcons";
 import {
   AppIcon,
   ApplicationIcon,
@@ -44,11 +44,11 @@ import {
   KeyCommandIcon,
   KeyIcon,
   ScheduledRunIcon,
-} from "assets/icons/boslerInterfaceIcons";
+} from "assets/icons/orpheaInterfaceIcons";
 import { updateUserDataAPI } from "./CommandPalette.api";
 import { CLOSE_COMMAND_PALETTE_HOT_KEYS } from "./CommandPalette.constants";
-import BoslerModal from "../BoslerModalContainer/BoslerModal";
-import BoslerInput from "../InputComponent/BoslerInput";
+import OrpheaModal from "../OrpheaModalContainer/OrpheaModal";
+import OrpheaInput from "../InputComponent/OrpheaInput";
 
 const { Text, Title } = Typography;
 const { ItemGroup, Item } = Menu;
@@ -64,7 +64,7 @@ interface TProps {
   ref?: any;
 }
 
-const BoslerCommandPalette = ({
+const OrpheaCommandPalette = ({
   iconSize,
   showText,
   selected,
@@ -108,14 +108,14 @@ const BoslerCommandPalette = ({
 
   return (
     <>
-      <BoslerModal
+      <OrpheaModal
         headingIcon={<SelectNodeIcon />}
         heading={getLanguageLabel("shortcuts")}
         width={650}
         open={isCmdModalOpen}
         onCancel={() => setIsCmdModalOpen(false)}
         extraActionHeading={
-          <BoslerInput
+          <OrpheaInput
             placeholder={getLanguageLabel("search")}
             suffix={<SearchIcon />}
             autofocus
@@ -454,7 +454,7 @@ const BoslerCommandPalette = ({
             </Row>
           </Item>
         </Menu>
-      </BoslerModal>
+      </OrpheaModal>
       <SBElement
         icon={<SelectNodeIcon color={"#9ca3b4"} size={iconSize} />}
         tooltip={
@@ -474,4 +474,4 @@ const BoslerCommandPalette = ({
   );
 };
 
-export default BoslerCommandPalette;
+export default OrpheaCommandPalette;

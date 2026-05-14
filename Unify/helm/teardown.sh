@@ -2,10 +2,10 @@
 
 source env-${PROJECT_ID}.sh
 
-kubectl delete all --all -n bosler
+kubectl delete all --all -n orphea
 kubectl delete all --all -n default
 
-kubectl -n bosler delete pvc $(kubectl -n bosler get pvc | grep -v NAME | awk '{print $1}')
+kubectl -n orphea delete pvc $(kubectl -n orphea get pvc | grep -v NAME | awk '{print $1}')
 
 kubectl delete pv $(kubectl get pv | grep -v NAME | awk '{print $1}')
 

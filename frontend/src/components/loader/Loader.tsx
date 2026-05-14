@@ -26,7 +26,7 @@ const Loader: FC<TLoaderProps> = (props: TLoaderProps) => {
           r="4.719"
           fill="none"
           stroke="#1d3f72"
-          stroke-width="0.9"
+          strokeWidth="0.9"
         >
           <animate
             attributeName="r"
@@ -55,7 +55,7 @@ const Loader: FC<TLoaderProps> = (props: TLoaderProps) => {
           r="27.591"
           fill="none"
           stroke="#5699d2"
-          stroke-width="0.7"
+          strokeWidth="0.7"
         >
           <animate
             attributeName="r"

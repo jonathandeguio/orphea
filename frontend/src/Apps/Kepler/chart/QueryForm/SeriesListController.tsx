@@ -83,6 +83,7 @@ const SeriesListController: React.FC<ISeriesListController> = (props) => {
             <SeriesItemController
               chartType={props.chartType}
               fieldName={field.name}
+              groupBy={querySkeleton.groupBy}
             />
           </BoslerCollapse>
         ),
@@ -123,6 +124,7 @@ const SeriesListController: React.FC<ISeriesListController> = (props) => {
         {querySkeleton.meta.isSingleSeries ? (
           props.fields.map((field: any, index: number) => (
             <SeriesItemController
+              groupBy={querySkeleton.groupBy}
               chartType={props.chartType}
               fieldName={field.name}
             />

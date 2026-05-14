@@ -46,77 +46,77 @@ const SMTPSettings = () => {
 
             <Divider />
 
-            <Row className="settings-mailer-row" justify="space-between">
+            <Row justify="space-between">
               <Col span={16}>
                 <Text>Host</Text>
               </Col>
-              <Col className="settings-mailer-col" span={8}>
+              <Col span={8}>
                 <Text type="secondary">SMTP host name like smtp.gmail.com</Text>
                 <Form.Item name="host">
-                  <BoslerInput className="settings-mailer-input" />
+                  <BoslerInput />
                 </Form.Item>
               </Col>
             </Row>
 
-            <Row className="settings-mailer-row" justify="space-between">
+            <Row justify="space-between">
               <Col span={16}>
                 <Text>Port</Text>
               </Col>
-              <Col className="settings-mailer-col" span={8}>
+              <Col span={8}>
                 <Text type="secondary">Port for the SMTP host like 587</Text>
                 <Form.Item name="port">
-                  <BoslerInput className="settings-mailer-input" />
+                  <BoslerInput />
                 </Form.Item>
               </Col>
             </Row>
 
-            <Row className="settings-mailer-row" justify="space-between">
+            <Row justify="space-between">
               <Col span={16}>
                 <Text>Authentication</Text>
               </Col>
-              <Col className="settings-mailer-col" span={8}>
+              <Col span={8}>
                 <Form.Item name="auth">
-                  <BoslerInput className="settings-mailer-input" />
+                  <BoslerInput />
                 </Form.Item>
               </Col>
             </Row>
 
-            <Row className="settings-mailer-row" justify="space-between">
+            <Row justify="space-between">
               <Col span={16}>
                 <Text>Transport TLS</Text>
               </Col>
-              <Col className="settings-mailer-col" span={8}>
+              <Col span={8}>
                 <Form.Item name="ttls">
-                  <BoslerInput className="settings-mailer-input" />
+                  <BoslerInput />
                 </Form.Item>
               </Col>
             </Row>
 
-            <Row className="settings-mailer-row" justify="space-between">
+            <Row justify="space-between">
               <Col span={16}>
                 <Text>Email</Text>
               </Col>
-              <Col className="settings-mailer-col" span={8}>
+              <Col span={8}>
                 <Text type="secondary">Email for the mailer</Text>
                 <Form.Item name="smtpEmail">
-                  <BoslerInput className="settings-mailer-input" />
+                  <BoslerInput />
                 </Form.Item>
               </Col>
             </Row>
 
-            <Row className="settings-mailer-row" justify="space-between">
+            <Row justify="space-between">
               <Col span={16}>
                 <Text>Password</Text>
               </Col>
-              <Col className="settings-mailer-col" span={8}>
+              <Col span={8}>
                 <Text type="secondary">Password for Mailer</Text>
                 <Form.Item name="smtpPassword">
-                  <Input.Password className="settings-mailer-input" />
+                  <Input.Password />
                 </Form.Item>
               </Col>
             </Row>
 
-            <Row className="settings-mailer-row" justify="space-between">
+            <Row justify="space-between">
               <Col span={16}>
                 <div
                   className="BoslerSubHeader1 text-and-icon-center"

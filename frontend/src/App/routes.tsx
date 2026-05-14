@@ -44,11 +44,7 @@ import { SparkSettings } from "pages/Settings/PlatformConfig/Spark/SparkSettings
 import { ThemeSettings } from "pages/Settings/PlatformConfig/ThemeSettings.view";
 import { TimezoneSettings } from "pages/Settings/PlatformConfig/TimezoneSettings.view";
 import { UploadSettings } from "pages/Settings/PlatformConfig/UploadSettings.view";
-import {
-  getLanguageLabel,
-  isLicenseKeyUsedValid,
-  isReactAppDevelopment,
-} from "utils/utilities";
+import { isLicenseKeyUsedValid, isReactAppDevelopment } from "utils/utilities";
 import ScheduleDetails from "../components/bottomBar/Schedules/Components/ScheduleDetails.view";
 import Schedules from "../components/bottomBar/Schedules/Components/Schedules";
 import BuildDetails from "../components/Builds/BuildDetails.view";
@@ -64,7 +60,7 @@ import DeveloperSettings from "../pages/Settings/PlatformConfig/DeveloperSetting
 import Preferences from "../pages/Settings/Preferences";
 import ProfileMe from "../pages/Settings/ProfileMe";
 import SSO from "../pages/Settings/SSO";
-import Tags from "../pages/Settings/tags/CreateTags";
+import Tags from "../pages/Settings/Tags";
 import Tokens from "../pages/Settings/Tokens";
 import Users from "../pages/Settings/Users";
 
@@ -94,20 +90,9 @@ import DatasetDetail from "../Apps/Dataset/DatasetDetail";
 
 import { AccessManager } from "Apps/AccessManager";
 import { AccessRequest } from "Apps/AccessManager/AccessRequest";
-import APIConnectorDomainAuth from "Apps/APIConnector/APIConnectorDomainAuth";
-import Webhook from "Apps/Connect/Webhook/Webhook";
 import { ChartsWrapper as Charts, Dashboard } from "Apps/Kepler/";
 import Projects from "Apps/ProjectsV2";
-import { PlatformOutlet } from "Authentication/PlatformOutlet";
-import Learn from "components/Learn/learn";
-import SSOCallback from "pages/Auth/SSOCallback";
-import ErrorComponent from "pages/Errors/ErrorComponent/ErrorComponent";
-import MfaReset from "pages/Settings/MfaReset";
-import { MfaSetting } from "pages/Settings/MfaSettings";
-import UserProjects from "pages/Settings/modules/UserProjects/UserProjects";
-import { DataMartSettings } from "pages/Settings/PlatformConfig/DataMart/DataMartSettings";
 import UserGroups from "pages/Settings/UserGroups";
-// import SSOCallback from "pages/Auth/SSOCallback";
 
 const useRouter = () => {
   const { info, loading: licenseLoading } = useSelector(
@@ -117,18 +102,7 @@ const useRouter = () => {
   return createBrowserRouter(
     createRoutesFromElements(
       <>
-        <Route
-          errorElement={
-            <ErrorComponent
-              lineStroke="orange"
-              errorCode="410"
-              errorHeading={getLanguageLabel("error")}
-              errorMsg={getLanguageLabel("errorPageMsg")}
-            />
-          }
-          path="/"
-          element={<AppContainer />}
-        >
+        <Route path="/" element={<AppContainer />}>
           <Route path="/" element={<PrivateOutlet />}>
             {licenseLoading || isLicenseKeyUsedValid(info) ? (
               <>
@@ -153,10 +127,9 @@ const useRouter = () => {
                   <Route path="/portal/schedules" element={<Schedules />} />
                   <Route path="/portal/builds" element={<Builds />} />
                   <Route
-                    path="/portal/access_manager"
+                    path="/portal/accessManager"
                     element={<AccessManager />}
                   />
-                  <Route path="/portal/learn" element={<Learn />} />
 
                   <Route path="/portal/connect" element={<Connect />}>
                     <Route index element={<ConnectHome />} />
@@ -188,7 +161,7 @@ const useRouter = () => {
 
                   <Route path="/portal/builds/:id" element={<BuildDetails />} />
                   <Route
-                    path="/portal/access_manager/:id"
+                    path="/portal/accessManager/:id"
                     element={<AccessRequest />}
                   />
                   <Route
@@ -234,14 +207,6 @@ const useRouter = () => {
                     path="/portal/connect/link/:id"
                     element={<LinkDetails />}
                   />
-                  <Route
-                    path="/portal/connect/webhook/:id"
-                    element={<Webhook />}
-                  />
-                  <Route
-                    path="/testAuth"
-                    element={<APIConnectorDomainAuth />}
-                  />
 
                   <Route
                     path="/portal/settings/user/:id"
@@ -266,15 +231,12 @@ const useRouter = () => {
                     <Route path="tags" element={<Tags />} />
                     <Route path="loginActivity" element={<LoginActivity />} />
                     <Route path="userGroups" element={<UserGroups />} />
-                    <Route path="userProjects" element={<UserProjects />} />
                     <Route path="changePassword" element={<ChangePassword />} />
-                    <Route path="mfaReset" element={<MfaReset />} />
                     <Route path="sso" element={<SSO />} />
 
-                    <Route path="platform" element={<PlatformOutlet />}>
+                    <Route path="platform">
                       <Route path="home" element={<PlatformSettings />} />
                       <Route path="upload" element={<UploadSettings />} />
-                      <Route path="datamart" element={<DataMartSettings />} />
                       <Route path="download" element={<DownloadSettings />} />
                       <Route path="cache" element={<CacheSettings />} />
                       <Route path="history" element={<HistorySettings />} />
@@ -291,7 +253,7 @@ const useRouter = () => {
                       <Route path="backingFs" element={<BackingFsSettings />} />
                       <Route path="git" element={<GitSettings />} />
                       <Route path="spark" element={<SparkSettings />} />
-                      <Route path="mfa" element={<MfaSetting />} />
+
                       <Route
                         path="bulkUserCreation"
                         element={<BulkUserCreationSettings />}
@@ -314,7 +276,6 @@ const useRouter = () => {
             )}
           </Route>
           <Route path="/auth/login" element={<Login />} />
-          <Route path="/sso/callback" element={<SSOCallback />} />
           <Route path="/auth/relogin" element={<LoginError />} />
           <Route path="/auth/logout" element={<Logout />} />
           <Route path="/oauth2/redirect" element={<OAuth2RedirectHandler />} />

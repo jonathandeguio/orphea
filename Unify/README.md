@@ -1,6 +1,6 @@
 # :crystal_ball: Unify is a infrastructure as code project
 
-[![Whitelist Workflow - Dev2](https://github.com/Bosler-io/Unify/actions/workflows/dev2.workflow.yml/badge.svg)](https://github.com/Bosler-io/Unify/actions/workflows/dev2.workflow.yml)
+[![Whitelist Workflow - Dev2](https://github.com/Orphea-io/Unify/actions/workflows/dev2.workflow.yml/badge.svg)](https://github.com/Orphea-io/Unify/actions/workflows/dev2.workflow.yml)
 
 ## :gift: Pre-requisite
 
@@ -13,7 +13,7 @@ if you want to run kubernetes then minikube or full kubernetes
 Clone it first
 
 ```
-git clone git@github.com:Bosler-io/Unify.git
+git clone git@github.com:Orphea-io/Unify.git
 ```
 
 This repository contains a `docker-compose` orchestrated application with Java, React, Spark services running behind an nginx reverse proxy. There is also Kubernetes support under folder Kuber.

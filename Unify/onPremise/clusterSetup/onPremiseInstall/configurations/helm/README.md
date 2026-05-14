@@ -36,13 +36,13 @@ repos
 ## HELM install
 
 ```
-helm install bosler bosler-gke -f bosler-gke/testCluster.yaml
+helm install orphea orphea-gke -f orphea-gke/testCluster.yaml
 ```
 
 ## To Upgrade, if any changes to values etc
 
 ```
-helm upgrade bosler bosler-gke -f bosler-gke/testCluster.yaml
+helm upgrade orphea orphea-gke -f orphea-gke/testCluster.yaml
 ```
 
 ## run post helm scripts for spark and healthcheck etc
@@ -56,7 +56,7 @@ helm upgrade bosler bosler-gke -f bosler-gke/testCluster.yaml
 ```
 create postgres db in alloy db, it will give an IP. put this IP in values.yaml
 
-➜  helm git:(main) ✗ kubectl -n bosler exec -it `kubectl -n bosler get pods |awk '{print $1}'|grep boson-db` -- /bin/bash 
+➜  helm git:(main) ✗ kubectl -n orphea exec -it `kubectl -n orphea get pods |awk '{print $1}'|grep boson-db` -- /bin/bash 
 bash-5.1# 
 bash-5.1# 
 bash-5.1# 

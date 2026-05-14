@@ -9,24 +9,24 @@ import {
   PreferencesIcon,
   PublishIcon,
   SettingsIcon,
-} from "assets/icons/boslerActionIcons";
+} from "assets/icons/orpheaActionIcons";
 import {
   BooleanIcon,
   DataAgentsIcon,
   DatabaseIcon,
   ProjectIcon,
-} from "assets/icons/boslerDataIcons";
+} from "assets/icons/orpheaDataIcons";
 import {
   GroupsIcon,
   KeyIcon,
   ScheduledRunIcon,
   UserIcon,
-} from "assets/icons/boslerInterfaceIcons";
+} from "assets/icons/orpheaInterfaceIcons";
 import {
   PulseIcon,
   StarIcon,
   TagIcon,
-} from "assets/icons/boslerMiscellaneousIcons";
+} from "assets/icons/orpheaMiscellaneousIcons";
 import React from "react";
 
 const { Text } = Typography;

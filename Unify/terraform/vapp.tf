@@ -1,5 +1,5 @@
 # Get the vApp template ID
-resource "vcd_vapp" "bosler" {
+resource "vcd_vapp" "orphea" {
   name     = var.vapp_name
   power_on = true
 

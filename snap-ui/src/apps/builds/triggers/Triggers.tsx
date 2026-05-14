@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Col, Divider, Row, Typography, Tooltip } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import BoslerButton from "../../../components/ButtonComponent/BoslerButton";
-import BoslerModal from "../../../components/BoslerModalContainer";
+import OrpheaButton from "../../../components/ButtonComponent/OrpheaButton";
+import OrpheaModal from "../../../components/OrpheaModalContainer";
 import { getAllTriggerDetails } from "redux/actions/TriggerActions";
 import CreateNewTriggerModal from "./CreateNewTriggerModal";
-import BoslerLoader from "../../../components/boslerLoader";
+import OrpheaLoader from "../../../components/orpheaLoader";
 import TriggersTable from "./TriggersTable";
-import { AddIcon } from "../../../assets/icons/boslerActionIcons"; // Pour AddIcon
-import { TrashIcon } from "../../../assets/icons/boslerMiscellaneousIcons"; // Pour TrashIcon
+import { AddIcon } from "../../../assets/icons/orpheaActionIcons"; // Pour AddIcon
+import { TrashIcon } from "../../../assets/icons/orpheaMiscellaneousIcons"; // Pour TrashIcon
 import { getLanguageLabel, openNotification } from "utils/utilities";
 import { deleteTriggerAPI, runTrigger, userById } from "../apis";
 import Filters from "./Filters";
@@ -66,28 +66,28 @@ const Triggers = () => {
     setFilteredTriggers(filteredData);
   };
 
-  if (loading) return <BoslerLoader />;
+  if (loading) return <OrpheaLoader />;
 
   return (
     <>
-      <BoslerModal
+      <OrpheaModal
         headingIcon={<TrashIcon color="var(--DANGEROUS_COLOR)" />}
         heading={getLanguageLabel("areYouSureYouWantToDeleteThis?")}
         open={deleteModal}
         onCancel={handleDeleteCancel}
         onOk={() => deleteTriggerHandler()}
         footerButtonArea={
-          <BoslerButton
+          <OrpheaButton
             icon={<TrashIcon />}
             onClick={() => deleteTriggerHandler()}
             intent="dangerous"
           >
             {getLanguageLabel("delete")}
-          </BoslerButton>
+          </OrpheaButton>
         }
       >
         {deleteTriggerDetails.name}
-      </BoslerModal>
+      </OrpheaModal>
 
       <CreateNewTriggerModal
         isOpen={isCreateNewTriggerModalOpen}
@@ -102,13 +102,13 @@ const Triggers = () => {
                 Build Triggers ({allTriggers && allTriggers.length})
               </Title>
               <Text type="secondary">
-                Here are bosler build triggers to build images.
+                Here are orphea build triggers to build images.
               </Text>
               <Filters onFilterUpdate={handleFilterUpdate} />
             </Col>
             <Col>
               <Tooltip placement="top" title={"Create New Trigger"}>
-                <BoslerButton
+                <OrpheaButton
                   icon={<AddIcon />}
                   intent="action"
                   onClick={() => {
@@ -116,7 +116,7 @@ const Triggers = () => {
                   }}
                 >
                   New Trigger
-                </BoslerButton>
+                </OrpheaButton>
               </Tooltip>
             </Col>
           </Row>

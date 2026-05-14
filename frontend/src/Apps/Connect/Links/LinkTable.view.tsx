@@ -189,7 +189,7 @@ const LinkTable2 = ({ tableList, loading }: any) => {
                   page={"SOURCE"}
                 />
               ) : (
-                <></>
+                <>Can't build live link</>
               )}
             </Col>
             <Col>
@@ -343,12 +343,7 @@ const LinkTable2 = ({ tableList, loading }: any) => {
 
           <Table
             loading={loading || !fetchedDatasets}
-            style={{
-              width: "100%",
-              margin: "auto",
-              height: "100%",
-              overflow: "auto",
-            }}
+            style={{ width: "100%", margin: "auto" }}
             columns={columns}
             dataSource={FilteredData !== undefined ? FilteredData : tableList}
             pagination={false}

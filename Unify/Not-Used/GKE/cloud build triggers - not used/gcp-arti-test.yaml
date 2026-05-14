@@ -7,4 +7,4 @@ github:
     branch: ^master$
 id: eded319e-5f6f-483a-9391-0117516da95b
 name: gcp-arti-test
-serviceAccount: projects/bosler-foo/serviceAccounts/boslerbuilds@bosler-foo.iam.gserviceaccount.com
+serviceAccount: projects/orphea-foo/serviceAccounts/orpheabuilds@orphea-foo.iam.gserviceaccount.com

@@ -1,7 +1,19 @@
-import { Typography } from "antd";
-import BoslerInput from "components/BoslerComponents/InputComponent/BoslerInput";
-import DataMartTreeViewer from "pages/Settings/PlatformConfig/DataMart/DataMartTreeViewer";
-import React, { KeyboardEventHandler, useState } from "react";
+import { DragEndEvent } from "@dnd-kit/core";
+import { arrayMove } from "@dnd-kit/sortable";
+import BoslerTable from "Apps/Dataset/Table/BoslerTable";
+import { GRID_CONFIG } from "Apps/Kepler/dashboard/Dashboard.contants";
+import { Popover, Tooltip, Typography } from "antd";
+import { AddIcon } from "assets/icons/boslerActionIcons";
+import { CodeCellIcon } from "assets/icons/boslerEditorIcons";
+import { FolderIcon } from "assets/icons/boslerFileIcons";
+import SortableWithDrag from "common/components/SortableWithDrag";
+import StripMenu from "common/components/StripMenu";
+import BoslerButton from "components/BoslerComponents/ButtonComponent/BoslerButton";
+import BoslerModalContainer from "components/CommonUI/BoslerModalContainer/BoslerModalContainer";
+import { SimpleTreeViewer } from "components/SimpleTreeViewer";
+import BoslerLoader from "components/boslerLoader";
+import React, { useState } from "react";
+import LexicalEditor from "../../Apps/LexicalEditor/LexicalEditor";
 const { Responsive, WidthProvider } = require("react-grid-layout");
 
 // const { Responsive, WidthProvider } = require("c2-react-grid-layout");
@@ -1904,35 +1916,182 @@ const treeData = {
 };
 
 const TestingArea = () => {
-  const [readOnlyValue, setReadOnlyValue] = useState("xyzyzyzy");
-  const [userInput, setUserInput] = useState("");
+  const [items, setItems] = useState([
+    {
+      id: "1",
+      children: <div>A</div>,
+    },
+    {
+      id: "2",
+      children: <div>B</div>,
+    },
+    {
+      id: "3",
+      children: <div>C</div>,
+    },
+  ]);
+  const handleDragEnd = ({ active, over }: DragEndEvent) => {
+    if (active.id !== over?.id) {
+      setItems((prev: any[]) => {
+        const activeIndex = prev.findIndex((i) => i.id === active.id);
+        const overIndex = prev.findIndex((i) => i.id === over?.id);
 
-  const handleChange = (e: { target: { value: any } }) => {
-    // Extract the portion after the readOnlyValue to capture only user input
-    const newValue = e.target.value;
-    if (newValue.startsWith(readOnlyValue)) {
-      setUserInput(newValue.slice(readOnlyValue.length));
-    }
-  };
-
-  // Combine readOnlyValue with userInput to create final display value
-  const finalValue = readOnlyValue + userInput;
-
-  const handleKeyDown: KeyboardEventHandler<HTMLInputElement> = (event) => {
-    if (event.key === "Backspace" && userInput === "") {
-      setReadOnlyValue("");
+        return arrayMove(prev, activeIndex, overIndex);
+      });
     }
   };
 
   return (
     <>
-      <DataMartTreeViewer dataMartId={"9208ff88-8d38-4c38-8620-fcd5f421355c"} />
-      <BoslerInput
-        onKeyDown={handleKeyDown}
-        value={finalValue}
-        onChange={handleChange}
+      <Title>Testing Area</Title>
+      <Tooltip title={<>YEAHHH</>}>
+        {/* use somemeaning full id */}
+        <BoslerButton icon={<CodeCellIcon />} intent="warning" id="mybtn1">
+          Hello world
+        </BoslerButton>
+      </Tooltip>
+      <BoslerButton
+        icon={<CodeCellIcon />}
+        intent="primary"
+        onClick={() =>
+          (window as any).makeButtonTemporarySuccess("mybtn1", 3000)
+        }
+      >
+        Click here to test btn success
+      </BoslerButton>
+
+      <BoslerButton
+        icon={<CodeCellIcon />}
+        intent="primary"
+        onClick={() => (window as any).makeButtonTemporaryFailure("mybtn1")}
+      >
+        Click here to test btn failure
+      </BoslerButton>
+
+      <SimpleTreeViewer
+        defaultActiveId="6f691b6d-3c75-4685-9919-6b88b2c78609"
+        treeData={treeData}
+        dynamicFetching={false}
+        openOnSingleClick={true}
+        page={"LINK"}
       />
-      <span>UserValue: {finalValue}</span>
+      <StripMenu
+        items={[
+          {
+            key: "1",
+            icon: <CodeCellIcon size={28} />,
+            label: "First",
+            tooltip: "this is first item",
+            disabled: false,
+            children: [
+              {
+                key: "1",
+                icon: <CodeCellIcon />,
+                label: "First",
+                disabled: false,
+              },
+              {
+                key: "2",
+                icon: <CodeCellIcon />,
+                label: "Second",
+                disabled: false,
+              },
+            ],
+          },
+          {
+            key: "2",
+            icon: <CodeCellIcon size={28} />,
+            label: "Second",
+            disabled: false,
+          },
+          {
+            key: "3",
+            customType: "divider",
+          },
+          {
+            key: "4",
+            icon: <CodeCellIcon size={28} />,
+            label: "Third",
+            disabled: false,
+          },
+        ]}
+      />
+      <Title level={3}>Version History</Title>
+      {/* <VersionHistory  /> */}
+      <Tooltip title={"A BERYYYYYYYYYYYYYYYYYYYY PARENT"}>
+        <BoslerButton icon={<FolderIcon />}>With Icon</BoslerButton>
+      </Tooltip>
+      <Popover title={"A BERYYYYYYYYYYYYYYYYYYYY PARENT"}>
+        <BoslerButton icon={<FolderIcon />}>With Icon</BoslerButton>
+      </Popover>
+      <BoslerButton>Without Icon</BoslerButton>
+      <BoslerButton icon={<FolderIcon />}>With Icon</BoslerButton>
+      <Title level={3}>Bosler Model Container</Title>
+      <BoslerModalContainer
+        heading="Heading"
+        headingIcon={<AddIcon />}
+        extraActionHeading={
+          <BoslerButton intent="success">Run Now</BoslerButton>
+        }
+        information={<>Infor</>}
+        footerExtraText="footer text"
+        footerButtonArea={
+          <>
+            <BoslerButton> Submit</BoslerButton>
+          </>
+        }
+      >
+        This is the body
+      </BoslerModalContainer>
+      <BoslerTable
+        isTableFromBottomBar={true}
+        offlineData={{ rows: data.data, cols: new_columns }}
+      />
+      <div className="--mb20"></div>
+      <SortableWithDrag items={items} handleDragEnd={handleDragEnd} />
+      <div className="--mt20"></div>
+      <div
+        style={{
+          height: "50vh",
+          width: "50vw",
+          background: "blue",
+        }}
+      >
+        <ResponsiveGridLayout
+          {...GRID_CONFIG}
+          // layout={originalLayout}
+          isDraggable={false}
+          isResizable={false}
+          // onLayoutChange={onLayoutChange}
+          // onResizeStop={onResizeStop}
+          // isDroppable={editable ? true : false}
+          // onDrop={onDrop}
+          // onDragStart={handleDragStart}
+          // onDragStop={onDragStop}
+
+          draggableCancel=".cancelSelectorName"
+        >
+          <div key="a" data-grid={{ x: 0, y: 0, w: 10, h: 20, static: true }}>
+            <div
+              style={{
+                height: "20vh",
+                width: "40vw",
+                position: "relative",
+              }}
+            >
+              <LexicalEditor
+                defaultData={undefined}
+                handleChange={() => {}}
+                editable={true}
+              />
+            </div>
+          </div>
+        </ResponsiveGridLayout>
+      </div>
+      <BoslerLoader size="large" />
+      <BoslerLoader size="medium" />
+      <BoslerLoader size="small" />
+      <BoslerLoader size="tiny" />
     </>
   );
 };

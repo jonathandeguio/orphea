@@ -1,11 +1,11 @@
-# **Frontend for Bosler**
+# **Frontend for Orphea**
 
-## **This project is FrontEnd for Bosler.io**
+## **This project is FrontEnd for Orphea.io**
 
 ### **How to get started ?**
 
 1. Clone this repository on your local system <br>
-   `https://github.com/Bosler-io/frontend.git`
+   `https://github.com/Orphea-io/frontend.git`
 
 2. Then install Node Modules <br>
    `yarn install `

@@ -3,13 +3,13 @@ kind: Ingress
 metadata:
   name: hello-world-ingress
   annotations:
-    ingress.gcp.kubernetes.io/pre-shared-cert: "bosler-preshared-cert"
+    ingress.gcp.kubernetes.io/pre-shared-cert: "orphea-preshared-cert"
     kubernetes.io/ingress.regional-static-ip-name: "hello-world-ingress"
     kubernetes.io/ingress.class: "gce-internal"
     kubernetes.io/ingress.allow-http: "false"
 spec:
   rules:
-  - host: hello-world.bosler.io
+  - host: hello-world.orphea.io
   - http: 
       paths:
       - path: /*

@@ -138,10 +138,10 @@ class CustomIdentityProvider(IdentityProvider):
             return None
 
         # Fetch the platform URL from the environment variable
-        platform_url = os.getenv('BOSLER_API')
+        platform_url = os.getenv('ORPHEA_API')
 
         if not platform_url:
-            logger.error("BOSLER_API environment variable is not set")
+            logger.error("ORPHEA_API environment variable is not set")
             return None
 
         try:

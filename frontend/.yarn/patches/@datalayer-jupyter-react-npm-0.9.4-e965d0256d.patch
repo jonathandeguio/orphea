@@ -1,0 +1,46 @@
+diff --git a/lib/jupyter/JupyterConfig.js b/lib/jupyter/JupyterConfig.js
+index d442e51904b2834ee021663fc0c7fbbf239bdf94..cc44c5f1a423fe91efc4ca4594153eb24492463c 100644
+--- a/lib/jupyter/JupyterConfig.js
++++ b/lib/jupyter/JupyterConfig.js
+@@ -76,9 +76,13 @@ export function getDatalayerConfig(name) {
+  */
+ export const loadJupyterConfig = (props) => {
+     const { lite, jupyterServerHttpUrl, jupyterServerWsUrl, collaborative, terminals, jupyterToken, } = props;
++    console.log("DEFAULT :" );
++    console.log("JUPYTER URL : ", jupyterServerHttpUrl);
++    console.log("JUPYTER WSS : ", jupyterServerWsUrl);
+     // Load the config
+     getDatalayerConfig();
+     if (configLoaded) {
++        console.log("GOING IN 1")
+         setJupyterServerHttpUrl(jupyterServerHttpUrl ??
+             config.jupyterServerHttpUrl ??
+             location.protocol + '//' + location.host + '/api/jupyter');
+@@ -94,6 +98,7 @@ export const loadJupyterConfig = (props) => {
+         // No Datalayer Config.
+         const jupyterConfigData = document.getElementById('jupyter-config-data');
+         if (jupyterConfigData) {
++            console.log("GOING IN 2")
+             const jupyterConfig = JSON.parse(jupyterConfigData.textContent || '');
+             setJupyterServerHttpUrl(jupyterServerHttpUrl ??
+                 location.protocol + '//' + location.host + jupyterConfig.baseUrl);
+@@ -104,6 +109,7 @@ export const loadJupyterConfig = (props) => {
+             config.insideJupyterLab = jupyterConfig.appName === 'JupyterLab';
+         }
+         else {
++            console.log("GOING IN 3")
+             // No Datalayer and no JupyterLab Config.
+             setJupyterServerHttpUrl(jupyterServerHttpUrl ??
+                 location.protocol + '//' + location.host + '/api/jupyter');
+@@ -121,6 +127,11 @@ export const loadJupyterConfig = (props) => {
+             ? 'wss://' + location.host
+             : 'ws://' + location.host);
+     }
++    console.log("BEFORE CONFIG : ", config);
++    setJupyterServerHttpUrl(jupyterServerHttpUrl);
++    setJupyterServerWsUrl(jupyterServerWsUrl);
++    setJupyterToken(jupyterToken);
++    console.log("AFTER CONFIG : ", config);
+     PageConfig.setOption('baseUrl', getJupyterServerHttpUrl());
+     PageConfig.setOption('wsUrl', getJupyterServerWsUrl());
+     PageConfig.setOption('token', getJupyterToken());

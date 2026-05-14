@@ -3,15 +3,15 @@ import { useDispatch } from "react-redux";
 import axios from "axios";
 import { Switch } from "antd";
 import { getLanguageLabel, isDefined, openNotification } from "utils/utilities";
-import { TickIcon } from "assets/icons/boslerNavigationIcon";
+import { TickIcon } from "assets/icons/orpheaNavigationIcon";
 import { getAllDeploymentDetails } from "redux/actions/DeploymentActions";
 import { ThunkAppDispatch } from "redux/types/store";
-import { AddIcon } from "assets/icons/boslerActionIcons";
+import { AddIcon } from "assets/icons/orpheaActionIcons";
 import { ErrorResponse } from "global";
-import BoslerModal from "components/BoslerModalContainer";
-import BoslerButton from "components/ButtonComponent/BoslerButton";
-import BoslerInput from "components/InputComponent/BoslerInput";
-import BoslerTimePicker from "components/BoslerTimePicker";
+import OrpheaModal from "components/OrpheaModalContainer";
+import OrpheaButton from "components/ButtonComponent/OrpheaButton";
+import OrpheaInput from "components/InputComponent/OrpheaInput";
+import OrpheaTimePicker from "components/OrpheaTimePicker";
 
 interface Props {
   isOpen: boolean;
@@ -90,16 +90,16 @@ const CreateNewDeploymentModal = ({ isOpen, setIsOpen }: Props) => {
     }
   };
   return (
-    <BoslerModal
+    <OrpheaModal
       headingIcon={<AddIcon />}
       heading={"New Deployment"}
       open={isOpen}
       onCancel={() => setIsOpen(false)}
       onOk={handleOk}
       footerButtonArea={
-        <BoslerButton icon={<TickIcon />} intent="action" key="submit" onClick={handleOk}>
+        <OrpheaButton icon={<TickIcon />} intent="action" key="submit" onClick={handleOk}>
           {getLanguageLabel("create")}
-        </BoslerButton>
+        </OrpheaButton>
       }
       width={600}
     >
@@ -107,7 +107,7 @@ const CreateNewDeploymentModal = ({ isOpen, setIsOpen }: Props) => {
         <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
           <div style={{ display: "flex", alignItems: "center" }}>
             <div style={{ flex: "0 0 150px" }}>Name</div>
-            <BoslerInput
+            <OrpheaInput
               autoFocus
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 setNewDeploymentDetails((prevDetails) => ({
@@ -122,7 +122,7 @@ const CreateNewDeploymentModal = ({ isOpen, setIsOpen }: Props) => {
           </div>
           <div style={{ display: "flex", alignItems: "center" }}>
             <div style={{ flex: "0 0 150px" }}>Branch</div>
-            <BoslerInput
+            <OrpheaInput
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 setNewDeploymentDetails((prevDetails) => ({
                   ...prevDetails,
@@ -137,7 +137,7 @@ const CreateNewDeploymentModal = ({ isOpen, setIsOpen }: Props) => {
 
           <div style={{ display: "flex", alignItems: "center" }}>
             <div style={{ flex: "0 0 150px" }}>Location</div>
-            <BoslerInput
+            <OrpheaInput
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 setNewDeploymentDetails((prevDetails) => ({
                   ...prevDetails,
@@ -151,7 +151,7 @@ const CreateNewDeploymentModal = ({ isOpen, setIsOpen }: Props) => {
           </div>
           <div style={{ display: "flex", alignItems: "center" }}>
             <div style={{ flex: "0 0 150px" }}>Address</div>
-            <BoslerInput
+            <OrpheaInput
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 setNewDeploymentDetails((prevDetails) => ({
                   ...prevDetails,
@@ -165,7 +165,7 @@ const CreateNewDeploymentModal = ({ isOpen, setIsOpen }: Props) => {
           </div>
           <div style={{ display: "flex", alignItems: "center" }}>
             <div style={{ flex: "0 0 150px" }}>Contact Details</div>
-            <BoslerInput
+            <OrpheaInput
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 setNewDeploymentDetails((prevDetails) => ({
                   ...prevDetails,
@@ -179,7 +179,7 @@ const CreateNewDeploymentModal = ({ isOpen, setIsOpen }: Props) => {
           </div>
           <div style={{ display: "flex", alignItems: "center" }}>
             <div style={{ flex: "0 0 150px" }}>Email</div>
-            <BoslerInput
+            <OrpheaInput
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 setNewDeploymentDetails((prevDetails) => ({
                   ...prevDetails,
@@ -203,7 +203,7 @@ const CreateNewDeploymentModal = ({ isOpen, setIsOpen }: Props) => {
           <div style={{ display: "flex", alignItems: "center" }}>
 
   <div style={{ flex: "0 0 150px" }}>Start Time</div>
-  <BoslerTimePicker
+  <OrpheaTimePicker
     onChange={(value: number | undefined) => {
       setNewDeploymentDetails((prevDetails: any) => ({
         ...prevDetails,
@@ -215,7 +215,7 @@ const CreateNewDeploymentModal = ({ isOpen, setIsOpen }: Props) => {
 </div>
 <div style={{ display: "flex", alignItems: "center" }}>
   <div style={{ flex: "0 0 150px" }}>End Time</div>
-  <BoslerTimePicker
+  <OrpheaTimePicker
     onChange={(value: number | undefined) => {
       setNewDeploymentDetails((prevDetails: any) => ({
         ...prevDetails,
@@ -228,7 +228,7 @@ const CreateNewDeploymentModal = ({ isOpen, setIsOpen }: Props) => {
 
         </div>
       </div>
-    </BoslerModal>
+    </OrpheaModal>
   );
 };
 

@@ -1,9 +1,9 @@
-<svg
-  className="login-icon-outer"
-  width="300" height="300" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path
-    className="login-icon-outer-inner"
-    d="M25.0962 77.8867L150 5.7735L274.904 77.8867V222.113L150 294.226L25.0962 222.113L25.0962 77.8867Z" stroke="#5DACBD" stroke-width="10" />
-  
-  
+<svg width="300" height="300" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g1" x1="150" y1="0" x2="150" y2="300" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#80E027"/>
+      <stop offset="100%" stop-color="#1A7A1A"/>
+    </linearGradient>
+  </defs>
+  <path d="M25.0962 77.8867L150 5.7735L274.904 77.8867V222.113L150 294.226L25.0962 222.113L25.0962 77.8867Z" stroke="url(#g1)" stroke-width="12"/>
 </svg>

@@ -1,0 +1,56 @@
+# =============================================================================
+# Orphea Platform — Service systemd (CentOS / RHEL)
+#
+# Installation :
+#   sudo cp orphea-platform-centos.service /etc/systemd/system/orphea-platform.service
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable orphea-platform
+#   sudo systemctl start orphea-platform
+#
+# Vérification :
+#   sudo systemctl status orphea-platform
+#   sudo journalctl -u orphea-platform -f
+# =============================================================================
+[Unit]
+Description=Orphea Data Platform (Core Stack — CentOS/RHEL)
+Documentation=https://orphea.io/docs
+Requires=docker.service
+After=docker.service network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+User=orphea
+Group=orphea
+
+# Répertoire de travail sur CentOS (/opt/orphea/repo)
+WorkingDirectory=/opt/orphea/repo/scripts
+
+# Chargement des variables d'environnement
+EnvironmentFile=/opt/orphea/repo/scripts/.env.orphea
+
+# Démarrage avec SELinux preflight
+ExecStart=/bin/bash /opt/orphea/repo/scripts/03-start-centos.sh --stack core
+
+# Arrêt via docker compose down
+ExecStop=/usr/bin/docker compose \
+  -f /opt/orphea/repo/scripts/docker-compose.core.yml \
+  --env-file /opt/orphea/repo/scripts/.env.orphea \
+  down
+
+# Rechargement = restart des containers
+ExecReload=/usr/bin/docker compose \
+  -f /opt/orphea/repo/scripts/docker-compose.core.yml \
+  --env-file /opt/orphea/repo/scripts/.env.orphea \
+  restart
+
+TimeoutStartSec=300
+TimeoutStopSec=120
+Restart=on-failure
+RestartSec=30
+StartLimitIntervalSec=600
+StartLimitBurst=3
+
+[Install]
+WantedBy=multi-user.target

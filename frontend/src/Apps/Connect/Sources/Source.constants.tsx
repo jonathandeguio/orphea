@@ -1,23 +1,16 @@
-import {
-  AnalyticsIcon,
-  DatabaseIcon,
-  FacebookIcon,
-  GoogleIcon,
-  HubspotIcon,
-  InstagramIcon,
-} from "assets/icons/boslerDataIcons";
+import { AddIcon } from "assets/icons/boslerActionIcons";
+import { DatabaseIcon } from "assets/icons/boslerDataIcons";
 import {
   MariaDBIcon,
   MSSQLIcon,
   MySQLIcon,
   OracleIcon,
   PostgresIcon,
-  SharePointIcon,
 } from "assets/icons/boslerExternalIcons";
 import { APIIcon, UploadIcon } from "assets/icons/boslerInterfaceIcons";
 import React from "react";
-import { SourceAuthTypeEnum } from "../Enums/JDBCSourceAuthTypeEnum";
-import { JDBCSourceTypeEnum } from "../Enums/JDBCSourceTypeEnum";
+import { SourceAuthTypeEnum } from "../Enums/SourceAuthTypeEnum";
+import { SourceTypeEnum } from "../Enums/SourceTypeEnum";
 import { ISourceConfig } from "./Source";
 
 export const initialSourceDetails: ISourceConfig = {
@@ -38,7 +31,7 @@ export const initialSourceDetails: ISourceConfig = {
   token: "",
   url: "",
   method: "",
-  dbmsType: JDBCSourceTypeEnum.NONE,
+  dbmsType: "",
   authType: SourceAuthTypeEnum.DEFAULT,
   privateKey: "",
   privateKeyPassPhrase: "",
@@ -48,7 +41,6 @@ export const initialSourceDetails: ISourceConfig = {
 
   directLoad: true,
   build: true,
-  sourceConfig: "",
 };
 
 export const connectors = [
@@ -59,39 +51,11 @@ export const connectors = [
     subType: "File Upload",
     label: (
       <>
-        <div className="text-and-icon-center">
-          {/* <AddIcon /> */}
+        <br />
+        <div className="text-and-icon-align">
+          <AddIcon />
           <UploadIcon />
           File / Folder Upload
-        </div>
-      </>
-    ),
-  },
-  {
-    id: "sharepoint",
-    icon: <UploadIcon />,
-    type: "SHAREPOINT",
-    subType: "microsoftSharePoint",
-    label: (
-      <>
-        <div className="text-and-icon-center">
-          {/* <AddIcon /> */}
-          <SharePointIcon size={25} />
-          Microsoft Sharepoint
-        </div>
-      </>
-    ),
-  },
-  {
-    id: "REST API",
-    icon: <APIIcon />,
-    type: "rest",
-    subType: "REST API",
-    label: (
-      <>
-        <div className="text-and-icon-center">
-          {/* <AddIcon /> */}
-          <APIIcon /> REST API
         </div>
       </>
     ),
@@ -100,10 +64,10 @@ export const connectors = [
     id: "postgres",
     icon: <PostgresIcon />,
     type: "jdbc",
-    subType: JDBCSourceTypeEnum.POSTGRES,
+    subType: SourceTypeEnum.POSTGRES,
     label: (
       <>
-        {/* <AddIcon /> */}
+        <AddIcon />
 
         <svg
           width="160"
@@ -127,7 +91,7 @@ export const connectors = [
           <path
             d="M33.043 23.826c.14-.989.098-1.134.967-.974l.221.017c.668.026 1.542-.091 2.056-.294 1.105-.434 1.76-1.16.67-.97-2.486.435-2.657-.279-2.657-.279 2.625-3.3 3.723-7.492 2.776-8.518-2.588-2.797-7.055-1.474-7.134-1.44l-.024.005a10.384 10.384 0 00-1.659-.146c-1.125-.016-1.978.25-2.626.666 0 0-7.977-2.786-7.605 3.503.079 1.338 2.262 10.124 4.866 7.47.952-.97 1.872-1.79 1.872-1.79.48.268 1.029.387 1.577.34l.044-.032c-.014.121-.008.238.018.378-.67.635-.474.747-1.815.981-1.357.237-.56.66-.04.77.632.133 2.091.323 3.078-.847l-.04.133c.264.179.246 1.283.284 2.072.037.79.1 1.525.289 1.96.19.434.414 1.551 2.176 1.232 1.473-.268 2.6-.653 2.703-4.236"
             stroke="#231F20"
-            stroke-width="2"
+            strokeWidth="2"
           ></path>
           <path
             d="M36.957 21.605c-2.486.435-2.657-.279-2.657-.279 2.625-3.302 3.722-7.492 2.775-8.518-2.583-2.797-7.054-1.474-7.134-1.44l-.024.005a10.385 10.385 0 00-1.659-.146c-1.124-.016-1.978.25-2.625.666 0 0-7.978-2.786-7.606 3.503.079 1.338 2.262 10.125 4.866 7.47.952-.97 1.872-1.79 1.872-1.79.48.268 1.029.387 1.577.34l.044-.032c-.014.121-.007.238.018.378-.67.636-.474.747-1.814.981-1.357.237-.56.66-.04.77.632.133 2.091.323 3.078-.847l-.04.134c.263.178.448 1.16.418 2.052-.03.891-.052 1.501.155 1.98.208.477.414 1.55 2.177 1.231 1.474-.267 2.237-.96 2.343-2.118.075-.822.246-.7.257-1.436l.137-.348c.157-1.114.025-1.474.932-1.307l.221.017c.668.026 1.543-.091 2.056-.293 1.105-.435 1.76-1.16.67-.97l.003-.003z"
@@ -136,40 +100,40 @@ export const connectors = [
           <path
             d="M29.941 11.34c-.276.074 4.441-1.46 7.122 1.442.947 1.027-.15 5.217-2.776 8.519m-6.549.944c-.068 2.074.017 4.163.257 4.671s.752 1.495 2.516 1.175c1.473-.268 2.009-.786 2.241-1.93.167-.84.502-3.178.544-3.656l-5.558-.26zm-2.113-10.4s-7.988-2.765-7.612 3.527c.083 1.338 2.262 10.125 4.867 7.466.952-.97 1.812-1.731 1.812-1.731l.933-9.262z"
             stroke="#fff"
-            stroke-width=".5"
+            strokeWidth=".5"
             strokeLinecap="round"
             strokeLinejoin="round"
           ></path>
           <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M34.283 21.3s.167.713 2.657.279c1.09-.19.434.535-.671.97-.907.357-2.94.448-2.973-.045-.085-1.272 1.07-.885.986-1.204-.075-.287-.592-.568-.934-1.27-.298-.614-4.091-5.315 1.052-4.617.189-.033-1.342-4.147-6.156-4.214-4.815-.067-4.655 5.018-4.655 5.018"
             fill="#417BA2"
           ></path>
           <path
             d="M34.283 21.3s.167.713 2.657.279c1.09-.19.434.535-.671.97-.907.357-2.94.448-2.973-.045-.085-1.272 1.07-.885.986-1.204-.075-.287-.592-.568-.934-1.27-.298-.614-4.091-5.315 1.052-4.617.189-.033-1.342-4.147-6.156-4.214-4.815-.067-4.655 5.018-4.655 5.018"
             stroke="#fff"
-            stroke-width=".5"
+            strokeWidth=".5"
             strokeLinecap="round"
             strokeLinejoin="bevel"
           ></path>
           <path
-            clip-rule="evenodd"
+            clipRule="evenodd"
             d="M26.391 21.736c-.671.635-.473.746-1.815.98-1.357.238-.56.66-.04.77.632.134 2.092.323 3.078-.847.3-.357-.002-.926-.414-1.07-.2-.07-.466-.158-.81.166h.001z"
             stroke="#fff"
-            stroke-width=".5"
+            strokeWidth=".5"
             strokeLinejoin="round"
           ></path>
           <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M26.347 21.725c-.067-.374.145-.818.373-1.338.342-.78 1.131-1.561.5-4.037-.47-1.844-3.627-.383-3.628-.133-.002.25.142 1.268-.053 2.453-.256 1.546 1.16 2.854 2.79 2.72"
             fill="#417BA2"
           ></path>
           <path
             d="M26.347 21.725c-.067-.374.145-.818.373-1.338.342-.78 1.131-1.561.5-4.037-.47-1.844-3.627-.383-3.628-.133-.002.25.142 1.268-.053 2.453-.256 1.546 1.16 2.854 2.79 2.72"
             stroke="#fff"
-            stroke-width=".5"
+            strokeWidth=".5"
             strokeLinecap="round"
             strokeLinejoin="round"
           ></path>
@@ -177,18 +141,18 @@ export const connectors = [
             d="M25.596 16.179c-.014.085.185.313.444.343.26.031.48-.147.494-.232.015-.085-.184-.18-.443-.21-.26-.031-.48.014-.495.099z"
             fill="#fff"
             stroke="#fff"
-            stroke-width=".456"
+            strokeWidth=".456"
           ></path>
           <path
             d="M33.475 16.005c.015.085-.184.313-.443.344-.26.03-.48-.148-.495-.234-.014-.086.185-.18.444-.21.259-.031.48.014.494.099h0z"
             fill="#fff"
             stroke="#fff"
-            stroke-width=".228"
+            strokeWidth=".228"
           ></path>
           <path
             d="M34.401 15.414c.043.67-.17 1.126-.197 1.84-.04 1.037.583 2.223-.355 3.412"
             stroke="#fff"
-            stroke-width=".5"
+            strokeWidth=".5"
             strokeLinecap="round"
             strokeLinejoin="round"
           ></path>
@@ -200,10 +164,10 @@ export const connectors = [
     id: "MySQL",
     icon: <MySQLIcon />,
     type: "jdbc",
-    subType: JDBCSourceTypeEnum.MYSQL,
+    subType: SourceTypeEnum.MYSQL,
     label: (
       <>
-        {/* <AddIcon /> */}
+        <AddIcon />
 
         <svg
           viewBox="0 0 702 477"
@@ -236,10 +200,10 @@ export const connectors = [
     id: "MariaDB",
     icon: <MariaDBIcon />,
     type: "jdbc",
-    subType: JDBCSourceTypeEnum.MARIADB,
+    subType: SourceTypeEnum.MARIADB,
     label: (
       <>
-        {/* <AddIcon /> */}
+        <AddIcon />
 
         <svg
           width="160"
@@ -260,10 +224,10 @@ export const connectors = [
     id: "snowflake",
     icon: <DatabaseIcon />,
     type: "jdbc",
-    subType: JDBCSourceTypeEnum.SNOWFLAKE,
+    subType: SourceTypeEnum.SNOWFLAKE,
     label: (
       <>
-        {/* <AddIcon /> */}
+        <AddIcon />
 
         <svg
           width="160"
@@ -292,11 +256,12 @@ export const connectors = [
     id: "oracle",
     icon: <OracleIcon />,
     type: "jdbc",
-    subType: JDBCSourceTypeEnum.ORACLE21,
+    subType: SourceTypeEnum.ORACLE21,
     label: (
       <>
-        <div className="text-and-icon-center">
-          {/* <AddIcon /> */}
+        <br />
+        <div className="text-and-icon-align">
+          <AddIcon />
 
           <OracleIcon />
         </div>
@@ -307,11 +272,11 @@ export const connectors = [
     id: "mssql-server",
     icon: <MSSQLIcon />,
     type: "jdbc",
-    subType: JDBCSourceTypeEnum.MSSQLSERVER,
+    subType: SourceTypeEnum.MSSQLSERVER,
 
     label: (
       <>
-        {/* <AddIcon /> */}
+        <AddIcon />
 
         <svg
           width="160"
@@ -383,8 +348,9 @@ export const connectors = [
     disabled: true,
     label: (
       <>
-        <div className="text-and-icon-center">
-          {/* <AddIcon /> */}
+        <br />
+        <div className="text-and-icon-align">
+          <AddIcon />
           <DatabaseIcon /> IBM DB2
         </div>
       </>
@@ -398,9 +364,27 @@ export const connectors = [
     disabled: true,
     label: (
       <>
-        <div className="text-and-icon-center">
-          {/* <AddIcon /> */}
+        <br />
+        <div className="text-and-icon-align">
+          <AddIcon />
           <DatabaseIcon /> SAP
+        </div>
+      </>
+    ),
+  },
+
+  {
+    id: "REST API",
+    icon: <APIIcon />,
+    type: "rest",
+    subType: "REST API",
+    disabled: true,
+    label: (
+      <>
+        <br />
+        <div className="text-and-icon-align">
+          <AddIcon />
+          <APIIcon /> REST API
         </div>
       </>
     ),
@@ -413,7 +397,7 @@ export const connectors = [
     disabled: true,
     label: (
       <>
-        {/* <AddIcon /> */}
+        <AddIcon />
 
         <svg
           width="160"
@@ -464,7 +448,7 @@ export const connectors = [
     disabled: true,
     label: (
       <>
-        {/* <AddIcon /> */}
+        <AddIcon />
 
         <svg
           width="160"
@@ -502,66 +486,6 @@ export const connectors = [
             fill="#000"
           ></path>
         </svg>
-      </>
-    ),
-  },
-  {
-    id: "instagram",
-    icon: <InstagramIcon />,
-    type: "instagram",
-    subType: "instagram",
-    disabled: true,
-    label: (
-      <>
-        <div className="text-and-icon-center">
-          {/* <AddIcon /> */}
-          <InstagramIcon /> INSTAGRAM
-        </div>
-      </>
-    ),
-  },
-  {
-    id: "googleAnalytics",
-    icon: <AnalyticsIcon />,
-    type: "googleAnalytics",
-    subType: "googleAnalytics",
-    disabled: true,
-    label: (
-      <>
-        <div className="text-and-icon-center">
-          {/* <AddIcon /> */}
-          <AnalyticsIcon /> <GoogleIcon /> ANALYTICS
-        </div>
-      </>
-    ),
-  },
-  {
-    id: "facebook",
-    icon: <FacebookIcon/>,
-    type: "facebook",
-    subType: "facebook",
-    disabled: true,
-    label: (
-      <>
-        <div className="text-and-icon-center">
-          {/* <AddIcon /> */}
-          <FacebookIcon/>
-        </div>
-      </>
-    ),
-  },
-  {
-    id: "hubspot",
-    icon: <HubspotIcon/>,
-    type: "hubspot",
-    subType: "hubspot",
-    disabled: true,
-    label: (
-      <>
-        <div className="text-and-icon-center">
-          {/* <AddIcon /> */}
-          <HubspotIcon />
-        </div>
       </>
     ),
   },

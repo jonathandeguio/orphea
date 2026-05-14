@@ -1,4 +1,4 @@
-export interface TBoslerIconProps {
+export interface TOrpheaIconProps {
   size?: number | string;
   color?: string;
   stroke?: string;

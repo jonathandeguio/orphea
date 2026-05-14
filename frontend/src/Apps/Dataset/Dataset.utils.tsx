@@ -1,11 +1,9 @@
-import {
-  DatabaseViewIcon,
-  TreeIcon
-} from "assets/icons/boslerDataIcons";
+import { Tag } from "antd";
+import { DatabaseViewIcon, TreeIcon } from "assets/icons/boslerDataIcons";
 import { CodeCellIcon } from "assets/icons/boslerEditorIcons";
-import { SparkSQLIcon } from "assets/icons/boslerExternalIcons";
 import { DocsIcon } from "assets/icons/boslerFileIcons";
 import { CalendarIcon, ComponentIcon } from "assets/icons/boslerInterfaceIcons";
+import { PulseIcon } from "assets/icons/boslerMiscellaneousIcons";
 import { IBoslerBottomBarItem } from "common/components/BoslerLayout/type";
 import BuildDetailsTable from "components/Builds/BuildDetailsTable.view";
 import { TBuildTrigger } from "components/Builds/Builds.types";
@@ -13,7 +11,7 @@ import { ReadOnlyCodePanel } from "components/bottomBar/ReadOnlyCodePanel/ReadOn
 import DatasetSync from "components/bottomBar/sync/Sync.view";
 import React from "react";
 import { getLanguageLabel } from "utils/utilities";
-import DatasetSql from "./bottomBar/DatasetSql";
+import DataHealthMonitoring from "./DataHealth/DataHealthMonitoring";
 import { Files } from "./bottomBar/Files";
 import SchedulesDataset from "./bottomBar/SchedulesDataset";
 import Schema from "./bottomBar/Schema/Schema";
@@ -29,18 +27,6 @@ export const getDatasetBottombarItems = (
   return [
     ...(buildId
       ? [
-        {
-          id: "datasetSqlEditor",
-          icon: <SparkSQLIcon />,
-          label: getLanguageLabel("query"),
-          body: DatasetSql,
-          type: "TAB",
-          props: {
-            id,
-            branch,
-            transactionId,
-          },
-        },
           {
             id: "datasetBuildLogPanel",
             icon: <ComponentIcon />,
@@ -121,17 +107,17 @@ export const getDatasetBottombarItems = (
       type: "TAB",
       props: { id, branch },
     },
-    // {
-    //   id: "dataHealthPanel",
-    //   icon: <PulseIcon />,
-    //   label: (
-    //     <>
-    //       Data Health &nbsp;<Tag color="blue">Beta</Tag>
-    //     </>
-    //   ),
-    //   body: DataHealthMonitoring,
-    //   type: "TAB",
-    //   // props: { id, branch, isBuildDataset },
-    // },
+    {
+      id: "dataHealthPanel",
+      icon: <PulseIcon />,
+      label: (
+        <>
+          Data Health &nbsp;<Tag color="blue">Beta</Tag>
+        </>
+      ),
+      body: DataHealthMonitoring,
+      type: "TAB",
+      // props: { id, branch, isBuildDataset },
+    },
   ];
 };

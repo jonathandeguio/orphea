@@ -11,14 +11,18 @@ interface Props {
   editable: boolean;
   removeElement: any;
   tabId: string;
-  updateTabElement: (elementId: string, data: string) => void;
+  updateTabElement: (
+    elementId: string,
+    elementType: string,
+    data: string
+  ) => void;
 }
 
 const DividerElement = (props: Props) => {
   const [dividerColor, setDividerColor] = useState(props.element.data);
 
   const updateDividerColor = (color: string) => {
-    props.updateTabElement(props.element.id, color);
+    props.updateTabElement(props.element.id, props.element.type, color);
   };
 
   return (
@@ -45,7 +49,7 @@ const DividerElement = (props: Props) => {
             }}
             onClick={(e) => {
               e.stopPropagation();
-              props.removeElement(props.element.id);
+              props.removeElement(props.dashboardId, props.element.id);
             }}
           >
             <TrashIcon />

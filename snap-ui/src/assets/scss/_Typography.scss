@@ -1,9 +1,9 @@
-.BoslerHeader1 {
+.OrpheaHeader1 {
   display: flex;
   -webkit-box-align: center;
   align-items: center;
   padding: 10px 0px;
-  color: var(--bosler-font-color-muted);
+  color: var(--orphea-font-color-muted);
   font-weight: 500;
   font-size: 12px;
   text-transform: uppercase;
@@ -19,39 +19,39 @@
   padding: 10px 0px 20px 0px;
   align-items: center;
   -webkit-box-align: center;
-  color: var(--bosler-font-color-muted);
+  color: var(--orphea-font-color-muted);
   font-weight: 500;
   font-size: 12px;
   font-family: "IBM Plex Sans", system-ui, -apple-system, BlinkMacSystemFont,
     sans-serif;
 }
 
-.BoslerSubHeader1 {
-  color: var(--bosler-font-color-muted);
+.OrpheaSubHeader1 {
+  color: var(--orphea-font-color-muted);
   font-size: 12px;
 }
-.BoslerNormalHeader {
+.OrpheaNormalHeader {
   color: var(--color);
   font-size: 14px;
   font-weight: 500;
 }
 
-.BoslerSpan {
-  color: var(--bosler-font-color-muted);
+.OrpheaSpan {
+  color: var(--orphea-font-color-muted);
   font-size: 14px;
 }
-.boslerFormLabel {
+.orpheaFormLabel {
   color: var(--color);
   font-size: 14px;
   font-weight: 400;
   text-transform: capitalize;
 }
 
-.BoslerBtnHeading {
+.OrpheaBtnHeading {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: var(--bosler-font-color-muted);
+  color: var(--orphea-font-color-muted);
   min-height: 24px;
   padding: 4px 8px;
   font-size: 12px;
@@ -68,7 +68,7 @@
 }
 
 .selectedHeading {
-  background: var(--bosler-hover-color);
+  background: var(--orphea-hover-color);
   border-radius: 5px;
 }
 

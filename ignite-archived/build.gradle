@@ -6,7 +6,7 @@ plugins {
 	id 'java-library'
 }
 
-group = 'bosler.io'
+group = 'orphea.io'
 version = '0.0.2'
 sourceCompatibility = "11"
 

@@ -27,7 +27,7 @@ if [ -f "update_$TAG.tar.gz" ]; then
     rm "update_$TAG.tar.gz"
 fi
 
-cp env.sh update_bosler.sh bundle/$TAG
+cp env.sh update_orphea.sh bundle/$TAG
 
 tar cf "update_$TAG.tar" bundle
 gzip "update_$TAG.tar"
@@ -35,9 +35,9 @@ gzip "update_$TAG.tar"
 echo ""
 echo "**** : Update Bundle created successfully : ****"
 echo ""
-echo "Note : Copy to the installation server : (e.g. gcloud compute scp "update_bosler_$TAG.tar.gz" <server>:~/ ) "
+echo "Note : Copy to the installation server : (e.g. gcloud compute scp "update_orphea_$TAG.tar.gz" <server>:~/ ) "
 echo ""
 echo "Login to server"
 echo ""
-echo "Then Run : sudo tar -C /bosler -xf update_bosler_$TAG.tar.gz && sudo /bosler/bundle/$TAG/update_bosler.sh"
+echo "Then Run : sudo tar -C /orphea -xf update_orphea_$TAG.tar.gz && sudo /orphea/bundle/$TAG/update_orphea.sh"
 echo ""

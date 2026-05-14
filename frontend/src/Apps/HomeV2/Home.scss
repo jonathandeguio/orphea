@@ -1,61 +1,393 @@
-.home-head {
-  border: 1px solid var(--background-color);
-  background: linear-gradient(transparent 0%, var(--background-color) 100%);
+@import "/src/App.scss";
 
-  &-title {
-    position: relative;
-    padding: 12px;
+// ─── Pulse animation (pipelines running) ────────────────────────────────────
+@keyframes pulse {
+  0%,
+  100% { opacity: 1; }
+  50%  { opacity: 0.35; }
+}
+
+.pulse-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #1f6feb;
+  animation: pulse 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+// ─── Page wrapper ────────────────────────────────────────────────────────────
+.home-page {
+  min-height: 100%;
+  background: var(--background-color);
+  font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+// ─── Hero ────────────────────────────────────────────────────────────────────
+.home-hero {
+  background: var(--bosler-bkg-color-muted);
+  border-bottom: 1px solid var(--bosler-border-color-muted);
+  padding: 28px 32px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  &__date {
+    font-size: 12px;
+    font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 600;
+    color: var(--bosler-font-color-muted);
+    text-transform: capitalize;
+  }
+
+  &__greeting {
+    margin: 0 !important;
+    font-size: 24px !important;
+    font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif !important;
+    font-weight: 600 !important;
+    color: var(--bosler-font-color-default) !important;
+    line-height: 1.3 !important;
+  }
+
+  &__title {
+    margin: 0 !important;
+    font-size: 30px !important;
+    font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif !important;
+    font-weight: 600 !important;
+    color: var(--color) !important;
+    line-height: 1.3 !important;
+  }
+
+  &__subtitle {
+    font-size: 16px;
+    font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 400;
+    color: var(--bosler-font-color-muted);
+    margin-top: 2px;
+  }
+}
+
+// ─── Content wrapper ─────────────────────────────────────────────────────────
+.home-content {
+  padding: 24px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+
+  @media (max-width: $VIEWPORT_BREAKPOINT_TABLET) {
+    padding: 16px;
+  }
+}
+
+// ─── Section ─────────────────────────────────────────────────────────────────
+.home-section {
+  margin-bottom: 28px;
+
+  &__title {
+    font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif !important;
+    font-weight: 600 !important;
+    color: var(--bosler-font-color-muted) !important;
+    text-transform: uppercase;
+    font-size: 12px !important;
+    letter-spacing: 0.05em;
+    margin-bottom: 12px !important;
+    margin-top: 0 !important;
+  }
+}
+
+// ─── KPI Card ─────────────────────────────────────────────────────────────────
+.home-kpi-card {
+  border: 1px solid var(--bosler-border-color-default) !important;
+  border-radius: 5px !important;
+  background: var(--bosler-bkg-color-default) !important;
+  box-shadow: none !important;
+  height: 100%;
+
+  .ant-card-body {
+    padding: 18px 20px;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 6px;
+  }
+
+  &__label {
+    font-size: 14px;
+    font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 600;
+    color: var(--bosler-font-color-muted);
+  }
+
+  &__icon {
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+  }
+
+  &__delta {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 6px;
+  }
+
+  &__arrow {
+    font-size: 12px;
+    font-weight: 600;
+
+    &--up   { color: #29a07c; }
+    &--down { color: #c84654; }
+  }
+
+  &__delta-text {
+    font-size: 12px;
+    color: var(--bosler-font-color-muted);
+    font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  .ant-statistic-content-value {
+    font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 600;
+  }
+}
+
+// ─── Module Card ─────────────────────────────────────────────────────────────
+.home-module-card {
+  border: 1px solid var(--bosler-border-color-default) !important;
+  border-radius: 5px !important;
+  background: var(--bosler-bkg-color-default) !important;
+  box-shadow: none !important;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  height: 100%;
+
+  .ant-card-body {
+    padding: 18px 20px;
     display: flex;
     flex-direction: column;
-    min-height: 28vh;
-    justify-content: flex-end;
+    gap: 6px;
+  }
 
-    &-card {
-      border: 1px solid var(--background-color);
-      border-radius: 1px;
-      background: transparent;
+  &:hover {
+    background: var(--bosler-hover-color) !important;
+    border-color: #24527a !important;
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+
+    &:hover {
+      background: var(--bosler-bkg-color-default) !important;
+      border-color: var(--bosler-border-color-default) !important;
     }
+  }
 
-    &-particle {
-      position: absolute;
-      height: 100%;
-      width: 95%;
-      padding: 0 12px 12px 0;
+  &__icon {
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 4px;
+  }
+
+  &__name {
+    font-size: 16px;
+    font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 600;
+    color: var(--bosler-font-color-default);
+  }
+
+  &__desc {
+    font-size: 14px;
+    font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 400;
+    color: var(--bosler-font-color-muted);
+    flex: 1;
+    line-height: 1.4;
+  }
+
+  &__footer {
+    margin-top: 8px;
+  }
+
+  &__tag {
+    font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 12px;
+    border-radius: 2px;
+    font-weight: 600;
+  }
+}
+
+// ─── Panel Card (Activity + Pipelines) ───────────────────────────────────────
+.home-panel-card {
+  border: 1px solid var(--bosler-border-color-default) !important;
+  border-radius: 5px !important;
+  background: var(--bosler-bkg-color-default) !important;
+  box-shadow: none !important;
+  height: 100%;
+
+  .ant-card-head {
+    border-bottom: 1px solid var(--bosler-border-color-muted);
+    padding: 0 16px;
+    min-height: 44px;
+    background: var(--bosler-bkg-color-default);
+  }
+
+  .ant-card-head-title {
+    padding: 12px 0;
+  }
+
+  .ant-card-body {
+    padding: 12px 16px;
+  }
+
+  &__title {
+    font-size: 14px;
+    font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 600;
+    color: var(--bosler-font-color-default);
+  }
+
+  &__link {
+    font-size: 13px;
+    font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 400;
+    color: #1f6feb;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
     }
   }
 }
 
-.home-body {
+// ─── Activity List ────────────────────────────────────────────────────────────
+.home-activity-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   display: flex;
-  flex-wrap: wrap;
-  width: 100%;
+  flex-direction: column;
+  gap: 12px;
+}
 
-  &-recent,
-  &-fav,
-  &-new {
-    width: 100%; // Default for mobile devices
+.home-activity-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+
+  &__badge {
+    margin-top: 5px;
+    flex-shrink: 0;
   }
 
-  @media (min-width: 768px) {
-    &-recent,
-    &-fav {
-      width: 50%; // 50% width for tablet (two items per row)
-    }
-    &-new {
-      width: 100%; // Full width for the new item on tablet
-    }
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+    min-width: 0;
   }
 
-  @media (min-width: 1024px) {
-    &-recent,
-    &-fav,
-    &-new {
-      width: 33%; // 33% width for desktop (three items per row)
-    }
+  &__text {
+    font-size: 13px;
+    font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 500;
+    color: var(--bosler-font-color-default);
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__time {
+    font-size: 12px;
+    font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 400;
+    color: var(--bosler-font-color-muted);
+    display: block;
   }
 }
-.home-mfa-model {
-  .selected-card {
-    box-shadow: none !important;
+
+// ─── Pipeline List ────────────────────────────────────────────────────────────
+.home-pipeline-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.home-pipeline-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+
+  &__left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__name {
+    font-size: 13px;
+    font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 600;
+    color: var(--bosler-font-color-default);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+
+  &__tag {
+    font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 2px;
+    margin: 0;
+  }
+
+  &__time {
+    font-size: 12px;
+    font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 400;
+    color: var(--bosler-font-color-muted);
+    white-space: nowrap;
+  }
+}
+
+// ─── Responsive ──────────────────────────────────────────────────────────────
+@media (max-width: $VIEWPORT_BREAKPOINT_TABLET) {
+  .home-hero {
+    padding: 20px 16px 18px;
+  }
+
+  .home-hero__title {
+    font-size: 22px !important;
+  }
+}
+
+@media (max-width: $VIEWPORT_BREAKPOINT_MOBILE) {
+  .home-hero__title {
+    font-size: 18px !important;
+  }
+
+  .home-hero__subtitle {
+    font-size: 14px;
   }
 }

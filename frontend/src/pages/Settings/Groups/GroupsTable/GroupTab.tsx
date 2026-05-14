@@ -1,31 +1,20 @@
-import {
-  Avatar,
-  Col,
-  Divider,
-  Row,
-  Skeleton,
-  Table,
-  Tooltip,
-  Typography,
-} from "antd";
+import React, { useState } from "react";
+import { Divider, Table, Row, Col, Tooltip, Typography, Avatar } from "antd";
 import { AddIcon, SearchIcon } from "assets/icons/boslerActionIcons";
 import { GroupsIcon, KeyIcon } from "assets/icons/boslerInterfaceIcons";
 import { TrashIcon } from "assets/icons/boslerMiscellaneousIcons";
 import GlobalSearch from "helpers/GlobalSearch";
-import React, { useState } from "react";
 
-import { RequestAccessModal } from "Apps/AccessManager/RequestAccessModal";
-import classNames from "classnames";
-import BoslerButton from "components/BoslerComponents/ButtonComponent/BoslerButton";
-import BoslerInput from "components/BoslerComponents/InputComponent/BoslerInput";
-import { useToggleState } from "hooks/useToggleState";
 import { useNavigate } from "react-router-dom";
 import { getLanguageLabel } from "utils/utilities";
-import styles from "../../Users.module.scss";
-import { Group } from "../Group";
 import { GROUP_TYPE_NAME } from "../Groups.utils";
-import { CreateNewGroupModal } from "./CreateNewGroupModal";
+import BoslerButton from "components/BoslerComponents/ButtonComponent/BoslerButton";
+import BoslerInput from "components/BoslerComponents/InputComponent/BoslerInput";
 import { DeleteGroupModal } from "./DeleteGroupModal";
+import { CreateNewGroupModal } from "./CreateNewGroupModal";
+import { RequestAccessModal } from "Apps/AccessManager/RequestAccessModal";
+import { useToggleState } from "hooks/useToggleState";
+import { Group } from "../Group";
 
 interface IProps {
   groups: Group[];
@@ -59,16 +48,7 @@ export const GroupTab = ({
 
   const columns = [
     {
-      title: (
-        <Text
-          type="secondary"
-          strong
-          className={classNames(styles.tableHeaderItem)}
-        >
-          {" "}
-          {getLanguageLabel("groupName").toUpperCase()}{" "}
-        </Text>
-      ),
+      title: getLanguageLabel("groupName"),
       dataIndex: "name",
       sorter: (a: $TSFixMe, b: $TSFixMe) => a.name.localeCompare(b.name),
       width: "30%",
@@ -104,16 +84,7 @@ export const GroupTab = ({
       },
     },
     {
-      title: (
-        <Text
-          type="secondary"
-          strong
-          className={classNames(styles.tableHeaderItem)}
-        >
-          {" "}
-          {getLanguageLabel("description").toUpperCase()}{" "}
-        </Text>
-      ),
+      title: getLanguageLabel("description"),
       dataIndex: "description",
 
       render: (text: $TSFixMe, record: $TSFixMe) => (
@@ -132,7 +103,6 @@ export const GroupTab = ({
                 }}
                 style={{ color: "var(--bosler-intent-danger)" }}
                 icon={<TrashIcon color={"var(--bosler-intent-danger)"} />}
-                minimal
                 intent="dangerous"
               >
                 {getLanguageLabel("delete")}
@@ -201,23 +171,13 @@ export const GroupTab = ({
           }}
           suffix={<SearchIcon />}
         />
-        {loading ? (
-          <Skeleton
-            active
-            avatar
-            paragraph={{ rows: 20 }}
-            className={styles.listItem}
-          />
-        ) : (
-          <Table
-            columns={columns}
-            dataSource={filteredData || groups}
-            pagination={false}
-            scroll={{ x: true, y: "100%" }}
-            loading={loading}
-            size="middle"
-          />
-        )}
+        <Table
+          columns={columns}
+          dataSource={filteredData || groups}
+          pagination={false}
+          loading={loading}
+          className="interactive"
+        />
       </div>
 
       <CreateNewGroupModal

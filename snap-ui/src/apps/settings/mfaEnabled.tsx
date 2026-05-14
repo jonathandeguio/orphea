@@ -1,7 +1,7 @@
 import { Col, Form, notification, Row, Typography } from "antd";
 import axios from "axios";
-import BoslerInput from "components/InputComponent/BoslerInput";
-import { BOSLER_TOKEN } from "layouts/auth/constants";
+import OrpheaInput from "components/InputComponent/OrpheaInput";
+import { ORPHEA_TOKEN } from "layouts/auth/constants";
 import React, { forwardRef, useImperativeHandle, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
@@ -9,10 +9,10 @@ import { refreshTokenStatus } from "redux/actions/tokenActions";
 import { getLanguageLabel, isDefined } from "utils/utilities";
 import styles from "./mfa.module.scss";
 import { setLoginMethod } from "redux/actions/userActions";
-import BoslerModalContainer from "components/BoslerModalContainer/BoslerModalContainer";
-import { BoslerIcon } from "assets/icons/boslerMiscellaneousIcons";
-import BoslerButton from "components/ButtonComponent/BoslerButton";
-import { ArrowRightIcon } from "assets/icons/boslerNavigationIcon";
+import OrpheaModalContainer from "components/OrpheaModalContainer/OrpheaModalContainer";
+import { OrpheaIcon } from "assets/icons/orpheaMiscellaneousIcons";
+import OrpheaButton from "components/ButtonComponent/OrpheaButton";
+import { ArrowRightIcon } from "assets/icons/orpheaNavigationIcon";
 const { Text } = Typography;
 
 interface IMfaVerificationProps {
@@ -65,7 +65,7 @@ const MfaVerification: React.FC<IMfaVerificationProps> = ({
         );
         const data = await response.data;
         if (isDefined(data)) {
-          localStorage.setItem(BOSLER_TOKEN, data.authResponse.accessToken);
+          localStorage.setItem(ORPHEA_TOKEN, data.authResponse.accessToken);
           setIsOtpSubmitted(true);
           navigate("/portal/home");
           dispatch(refreshTokenStatus());
@@ -83,7 +83,7 @@ const MfaVerification: React.FC<IMfaVerificationProps> = ({
         );
         const data = await response.data;
         if (isDefined(data)) {
-          localStorage.setItem(BOSLER_TOKEN, data.accessToken);
+          localStorage.setItem(ORPHEA_TOKEN, data.accessToken);
           setIsOtpSubmitted(true);
           navigate("/portal/home");
           dispatch(refreshTokenStatus());
@@ -113,8 +113,8 @@ const MfaVerification: React.FC<IMfaVerificationProps> = ({
 
   return (
     <>
-      <BoslerModalContainer
-        heading={<BoslerIcon size={32} />}
+      <OrpheaModalContainer
+        heading={<OrpheaIcon size={32} />}
         footerExtraText={
           !showMFA ? (
             getLanguageLabel("loginAgreement")
@@ -143,14 +143,14 @@ const MfaVerification: React.FC<IMfaVerificationProps> = ({
         }
         footerButtonArea={
           <Form.Item style={{ margin: 0 }}>
-            <BoslerButton
+            <OrpheaButton
               onClick={() => handleOtpSubmit()}
               intent="success"
               icon={<ArrowRightIcon />}
               htmlType="submit"
             >
               {getLanguageLabel("verify")}
-            </BoslerButton>{" "}
+            </OrpheaButton>{" "}
           </Form.Item>
         }
       >
@@ -159,7 +159,7 @@ const MfaVerification: React.FC<IMfaVerificationProps> = ({
             <Row gutter={16} align="middle" className={styles.main}>
               <Col span={24} className={styles.input_col}>
                 {/* <Text strong>Enter Verification Code</Text> */}
-                <BoslerInput
+                <OrpheaInput
                   placeholder={"Enter Recovery Code"}
                   value={otpCode}
                   onChange={(e) => setOtpCode(e.target.value)}
@@ -175,7 +175,7 @@ const MfaVerification: React.FC<IMfaVerificationProps> = ({
             <Row gutter={16} align="middle" className={styles.main}>
               <Col span={24} className={styles.input_col}>
                 {/* <Text strong>Enter Verification Code</Text> */}
-                <BoslerInput
+                <OrpheaInput
                   placeholder={getLanguageLabel("enterVerificationCode")}
                   value={otpCode}
                   onChange={(e) => setOtpCode(e.target.value)}
@@ -187,7 +187,7 @@ const MfaVerification: React.FC<IMfaVerificationProps> = ({
             </Row>
           </div>
         )}
-      </BoslerModalContainer>
+      </OrpheaModalContainer>
     </>
   );
 };

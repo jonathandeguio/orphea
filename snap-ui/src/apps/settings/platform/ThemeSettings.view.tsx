@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { updatePlatformConfig } from "redux/actions/platformSettingsActions";
 import { ThunkAppDispatch } from "redux/types/store";
 import UploadLogoButton from "../UploadLogoButton.view";
-import BoslerInput from "components/InputComponent/BoslerInput";
+import OrpheaInput from "components/InputComponent/OrpheaInput";
 
 const { Text, Title } = Typography;
 const { Option } = Select;
@@ -37,7 +37,7 @@ export const ThemeSettings = () => {
             </Text>
           </Col>
           <Col>
-            <BoslerInput
+            <OrpheaInput
               value={config.platformName}
               debounceInterval={2000}
               onChange={(e) => {
@@ -57,7 +57,7 @@ export const ThemeSettings = () => {
             <Text>Custom logo</Text>
             <br />
             <Text type="secondary">
-              This logo will replace the Bosler logo at all the places.
+              This logo will replace the Orphea logo at all the places.
             </Text>
           </Col>
           <Col>
@@ -77,7 +77,7 @@ export const ThemeSettings = () => {
         <Row>
           <Col>
             <Text type="secondary">
-              Select the active theme palette used in Bosler charts in your
+              Select the active theme palette used in Orphea charts in your
               projects, or create your own.
             </Text>
           </Col>

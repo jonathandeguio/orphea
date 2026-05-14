@@ -4,7 +4,7 @@ metadata:
   labels:
     name: frontend
   name: frontend
-  namespace: bosler
+  namespace: orphea
 spec:
   replicas: 1
   selector:
@@ -16,7 +16,7 @@ spec:
         name: frontend
     spec:
       containers:
-        - image: europe-west1-docker.pkg.dev/octbos22/bosler-cr/frontend:latest
+        - image: europe-west1-docker.pkg.dev/octbos22/orphea-cr/frontend:latest
           imagePullPolicy: Always
           name: frontend
           ports:
@@ -32,9 +32,9 @@ metadata:
   labels:
     name: frontend
   name: frontend
-  namespace: bosler
+  namespace: orphea
   annotations:
-    beta.cloud.google.com/backend-config: '{"default": "bosler-backend-config"}'
+    beta.cloud.google.com/backend-config: '{"default": "orphea-backend-config"}'
 spec:
   type: NodePort
   ports:

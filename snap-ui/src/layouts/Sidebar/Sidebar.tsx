@@ -1,7 +1,7 @@
 import { Divider } from "antd";
 
-import { APIIcon, HomeIcon } from "assets/icons/boslerInterfaceIcons";
-import BoslerCommandPalette from "components/CommandPalette/CommandPalette.view";
+import { APIIcon, HomeIcon } from "assets/icons/orpheaInterfaceIcons";
+import OrpheaCommandPalette from "components/CommandPalette/CommandPalette.view";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate, useSearchParams } from "react-router-dom";
@@ -13,7 +13,7 @@ import SBElementLogo from "./SBElementLogo";
 import SBElementSearch from "./SBElementSearch";
 import styles from "./Sidebar.module.scss";
 import { LayoutViewEnum } from "./Sidebar.utils";
-import { SyncIcon } from "assets/icons/boslerActionIcons";
+import { SyncIcon } from "assets/icons/orpheaActionIcons";
 
 const Sidebar = () => {
   const navigate = useNavigate();
@@ -129,7 +129,7 @@ const Sidebar = () => {
               marginBottom: "10px",
             }}
           />
-          <BoslerCommandPalette
+          <OrpheaCommandPalette
             iconSize={sidebarAttributes.iconSize}
             showText={sidebarAttributes.showText}
           />

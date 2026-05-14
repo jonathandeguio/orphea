@@ -1,0 +1,51 @@
+# =============================================================================
+# Orphea Platform — Service systemd
+# Installation :
+#   sudo cp orphea-platform.service /etc/systemd/system/
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable orphea-platform
+#   sudo systemctl start orphea-platform
+# =============================================================================
+[Unit]
+Description=Orphea Data Platform (Core Stack)
+Documentation=https://orphea.io/docs
+Requires=docker.service
+After=docker.service network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+User=orphea
+Group=orphea
+
+WorkingDirectory=/home/orphea/Orphea_repo/scripts
+
+# Chargement des variables d'environnement
+EnvironmentFile=/home/orphea/Orphea_repo/scripts/.env.orphea
+
+# Démarrage
+ExecStart=/usr/bin/docker compose \
+  -f /home/orphea/Orphea_repo/scripts/docker-compose.core.yml \
+  --env-file /home/orphea/Orphea_repo/scripts/.env.orphea \
+  up -d --remove-orphans
+
+# Arrêt
+ExecStop=/usr/bin/docker compose \
+  -f /home/orphea/Orphea_repo/scripts/docker-compose.core.yml \
+  down
+
+# Rechargement (restart des containers)
+ExecReload=/usr/bin/docker compose \
+  -f /home/orphea/Orphea_repo/scripts/docker-compose.core.yml \
+  restart
+
+TimeoutStartSec=300
+TimeoutStopSec=120
+Restart=on-failure
+RestartSec=30
+StartLimitIntervalSec=600
+StartLimitBurst=3
+
+[Install]
+WantedBy=multi-user.target

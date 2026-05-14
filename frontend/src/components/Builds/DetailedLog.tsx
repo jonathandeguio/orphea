@@ -7,7 +7,10 @@ import {
 } from "assets/icons/boslerNavigationIcon";
 import BoslerButton from "components/BoslerComponents/ButtonComponent/BoslerButton";
 import NoData from "components/CommonUI/NoData";
+import BoslerLoader from "components/boslerLoader";
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "redux/types/store";
 import {
   capitalizeFirstLetter,
   copyToClipboard,
@@ -15,12 +18,14 @@ import {
   isDefined,
   isEmpty,
 } from "utils/utilities";
-import { FAILED } from "./Builds.constants";
+import { fetchDetailedLogs } from "./Builds.api";
+import { FAILED, SQL } from "./Builds.constants";
 import "./builds.scss";
 interface IProps {
+  id: string;
   buildType: string;
   buildStatus: string;
-  detailedLogs: string;
+  language: string | undefined;
 }
 
 function filterLogData(logData: string) {
@@ -54,8 +59,25 @@ function filterLogData(logData: string) {
   return filteredLines.join("\n");
 }
 
-const DetailedLog = ({ detailedLogs, buildType, buildStatus }: IProps) => {
+const DetailedLog = ({ id, buildType, buildStatus, language }: IProps) => {
+  const [detailedLogs, setDetailedLogs] = useState();
   const [filteredLogs, setFilteredLogs] = useState<string>();
+  const [detailedLogsLoading, setDetailedLogsLoading] = useState(true);
+  const { config } = useSelector((state: RootState) => state.sparkConfig);
+
+  console.log(config.sqlBuild, language);
+
+  const getDetailedLogs = (buildId: string) => {
+    setDetailedLogsLoading(true);
+    fetchDetailedLogs(buildId)
+      .then(({ data }) => {
+        setFilteredLogs(filterLogData(data));
+        setDetailedLogs(data);
+      })
+      .finally(() => {
+        setDetailedLogsLoading(false);
+      });
+  };
 
   const items: CollapseProps["items"] = [
     {
@@ -66,9 +88,21 @@ const DetailedLog = ({ detailedLogs, buildType, buildStatus }: IProps) => {
   ];
 
   useEffect(() => {
-    if (detailedLogs) setFilteredLogs(filterLogData(detailedLogs));
-  }, [detailedLogs]);
+    getDetailedLogs(id);
+  }, []);
 
+  if (detailedLogsLoading) {
+    return <BoslerLoader content={getLanguageLabel("loading...")} />;
+  }
+  if (config.sqlPreview == "local" && language && language == SQL) {
+    return (
+      <NoData
+        icon={<WarningState />}
+        heading={"No Logs for Local Sql Build"}
+        subHeading="Please shift to K8 from spark config"
+      />
+    );
+  }
   if (!isDefined(detailedLogs) || isEmpty(detailedLogs)) {
     return (
       <NoData

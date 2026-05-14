@@ -9,14 +9,7 @@ export interface TBuildLogMessage {
   debug: string;
 }
 
-export type TBuildTrigger =
-  | "CONNECT"
-  | "UPLOAD"
-  | "SQL"
-  | "PYTHON"
-  | "DATASET"
-  | "NOTEBOOK"
-  | "SYNCHRO";
+export type TBuildTrigger = "CONNECT" | "UPLOAD" | "SQL" | "PYTHON" | "DATASET";
 export type TBuildStatus = "SUCCESS" | "FAILED" | "ABORTED" | "ACTIVE";
 
 export interface TBuildLog {

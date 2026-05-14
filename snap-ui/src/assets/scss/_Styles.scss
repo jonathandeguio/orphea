@@ -18,7 +18,7 @@
 }
 
 .login-btn {
-  background: $bosler-600;
+  background: $orphea-600;
   color: #cad8e5;
   border: none;
   font-size: 1rem;
@@ -40,8 +40,8 @@
   &:hover,
   &:active,
   &:focus {
-    background: $bosler-500;
-    box-shadow: 0px 8px 16px 0px $bosler-400;
+    background: $orphea-500;
+    box-shadow: 0px 8px 16px 0px $orphea-400;
     color: white;
   }
 }
@@ -115,7 +115,7 @@
 ._1EEDX {
   width: fit-content !important;
   border: 0;
-  // background: $bosler-300;
+  // background: $orphea-300;
   // padding: 5px;
   // display: block;
   // margin: 3px 0 3px 0;
@@ -237,5 +237,5 @@ h5.ant-typography,
 h6.ant-typography,
 a.ant-typography,
 .ant-typography a {
-  color: var(--bosler-font-color-muted);
+  color: var(--orphea-font-color-muted);
 }

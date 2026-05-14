@@ -3,11 +3,7 @@ import React from "react";
 import { Form } from "antd";
 import { HierarchyController } from "./HierarchyController";
 
-function DimensionController(props: {
-  Heading?: string;
-  form: any;
-  header: any;
-}) {
+function DimensionController(props: { Heading?: string; form: any }) {
   return (
     <Form.List name="dimensions">
       {(fields, { add, remove, move }) => {
@@ -18,7 +14,6 @@ function DimensionController(props: {
 
               <div className="query_item__body">
                 <HierarchyController
-                  header={props.header}
                   form={props.form}
                   add={add}
                   fields={fields}

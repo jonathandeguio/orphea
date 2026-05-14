@@ -1,21 +1,21 @@
 import { Col, Divider, Row, Tooltip, Typography } from "antd";
 import React, { useState } from "react";
 
-import * as ActionIcons from "assets/icons/boslerActionIcons";
-import * as ChartIcons from "assets/icons/boslerChartIcons";
-import * as DataIcons from "assets/icons/boslerDataIcons";
-import * as EditorIcons from "assets/icons/boslerEditorIcons";
-import * as ExternalIcons from "assets/icons/boslerExternalIcons";
-import * as FileIcons from "assets/icons/boslerFileIcons";
-import * as InterfaceIcons from "assets/icons/boslerInterfaceIcons";
-import * as MiscellaneousIcons from "assets/icons/boslerMiscellaneousIcons";
-import * as NavigationIcons from "assets/icons/boslerNavigationIcon";
-import * as SortIcons from "assets/icons/boslerSortIcons";
-import * as TableIcons from "assets/icons/boslerTableIcons";
+import * as ActionIcons from "assets/icons/orpheaActionIcons";
+import * as ChartIcons from "assets/icons/orpheaChartIcons";
+import * as DataIcons from "assets/icons/orpheaDataIcons";
+import * as EditorIcons from "assets/icons/orpheaEditorIcons";
+import * as ExternalIcons from "assets/icons/orpheaExternalIcons";
+import * as FileIcons from "assets/icons/orpheaFileIcons";
+import * as InterfaceIcons from "assets/icons/orpheaInterfaceIcons";
+import * as MiscellaneousIcons from "assets/icons/orpheaMiscellaneousIcons";
+import * as NavigationIcons from "assets/icons/orpheaNavigationIcon";
+import * as SortIcons from "assets/icons/orpheaSortIcons";
+import * as TableIcons from "assets/icons/orpheaTableIcons";
 
 import { copyToClipboard, getLanguageLabel } from "utils/utilities";
-import { SearchIcon } from "assets/icons/boslerActionIcons";
-import BoslerInput from "components/InputComponent/BoslerInput";
+import { SearchIcon } from "assets/icons/orpheaActionIcons";
+import OrpheaInput from "components/InputComponent/OrpheaInput";
 
 const { Text } = Typography;
 
@@ -139,7 +139,7 @@ const IconList = () => {
         <br />
         <Row gutter={[10, 10]}>
           <Col span={24}>
-            <BoslerInput
+            <OrpheaInput
               placeholder="Search for icons..."
               onChange={(e) => {
                 setActionIconsSearchValue(e.target.value);

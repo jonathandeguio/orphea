@@ -1,7 +1,7 @@
-To create bosler bundle, run below
+To create orphea bundle, run below
 
 ```
-./build_bosler_offline.sh bundle
+./build_orphea_offline.sh bundle
 ```
 
 Copy the bundle to install PC or Server
@@ -9,7 +9,7 @@ Copy the bundle to install PC or Server
 Prepare :
 
 ```
-sudo mkdir /bosler && sudo tar -C /bosler -xf bosler_bundle.tar.gz && sudo /bosler/bundle/build_bosler_offline.sh prepare
+sudo mkdir /orphea && sudo tar -C /orphea -xf orphea_bundle.tar.gz && sudo /orphea/bundle/build_orphea_offline.sh prepare
 
 ```
 
@@ -19,10 +19,10 @@ After above command reboot
 reboot
 ```
 
-The below command is to install bosler
+The below command is to install orphea
 
 ```
-sudo /bosler/bundle/build_bosler_offline.sh install
+sudo /orphea/bundle/build_orphea_offline.sh install
 ```
 
 Additional info:

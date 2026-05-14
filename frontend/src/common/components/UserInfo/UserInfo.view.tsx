@@ -4,14 +4,13 @@ import React, { useEffect, useState } from "react";
 import { fetchUserDetailsAPI } from "./UserInfo.api";
 interface TProps {
   userId: string;
-  size?: string;
 }
 
 interface TUserData {
   name: string;
 }
 
-const UserInfo = ({ userId, size = "16px" }: TProps) => {
+const UserInfo = ({ userId }: TProps) => {
   const [userData, setUserData] = useState<TUserData>();
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
@@ -42,10 +41,7 @@ const UserInfo = ({ userId, size = "16px" }: TProps) => {
 
   return (
     <BoslerUserPopover record={userData}>
-      <div
-        className="pop-over-item"
-        style={{ display: "inline", fontSize: size }}
-      >
+      <div className="pop-over-item" style={{ display: "inline" }}>
         {userData.name}
       </div>
     </BoslerUserPopover>

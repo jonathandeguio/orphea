@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import { RouterProvider, useNavigate } from "react-router-dom";
+import { RouterProvider } from "react-router-dom";
 import "../App.scss";
-import { RootState, ThunkAppDispatch } from "../redux/types/store";
+import { RootState } from "../redux/types/store";
 
 import "@fontsource/ibm-plex-mono";
 import "@fontsource/ibm-plex-sans";
@@ -11,19 +11,17 @@ import { useThemeDetector } from "hooks/useThemeDetector";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { HotkeysProvider } from "react-hotkeys-hook";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { registerOneTimeWindowsFunctions } from "utils/WindowsObject";
 import { isCurrentConfigThemeDark, setTheme } from "utils/utilities";
 import BoslerLoader from "../components/boslerLoader";
 import { useRouter } from "./routes";
-import { addInterceptors } from "utils/axiosInterceptors";
 
 function App() {
   const isPreferedModeDark = useThemeDetector();
   const { user } = useSelector((state: RootState) => state.userDetails);
 
   const router = useRouter();
-  const dispatch = useDispatch<ThunkAppDispatch>();
 
   useEffect(() => {
     setTheme(user);

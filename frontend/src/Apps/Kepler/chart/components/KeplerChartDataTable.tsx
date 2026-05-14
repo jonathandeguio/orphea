@@ -28,7 +28,7 @@ const KeplerChartDataTable = ({
     setDataArr([]);
     setColumns([]);
 
-    if (isDefined(data?.payload?.request?.chartType)) {
+    if (isDefined(data?.payload)) {
       const chartData = data?.payload;
 
       const chartType = chartData.request.chartType;

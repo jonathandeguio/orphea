@@ -1,10 +1,12 @@
 import axios, { AxiosResponse } from "axios";
-import { TDatamartSync } from "./Sync.types";
+import { TCreateSync } from "./Sync.types";
 
 /**
  * create or update database sync
  */
-export const putSyncAPI = (payload: any): Promise<AxiosResponse<any, any>> => {
+export const putSyncAPI = (
+  payload: TCreateSync
+): Promise<AxiosResponse<any, any>> => {
   return axios.put(`/synchro/sync`, payload);
 };
 
@@ -36,27 +38,4 @@ export const performDatasetSyncAPI = (
   syncId: string
 ): Promise<AxiosResponse<any, any>> => {
   return axios.post(`/synchro/perform/${datasetId}/${syncId}`);
-};
-
-export const getUnInitializedDataMartsAPI = (
-  datasetId: string,
-  branch: string
-) => {
-  return axios.get(`/synchro/getUnInitializedDataMarts/${datasetId}/${branch}`);
-};
-
-export const getDatamartSyncAPI = (
-  datasetId: string
-): Promise<AxiosResponse<any, any>> => {
-  return axios.get(`/datamart/getDatamartConfig/${datasetId}`);
-};
-
-export const setDatamartSyncAPI = (
-  payload: TDatamartSync
-): Promise<AxiosResponse<any, any>> => {
-  return axios.post(`/datamart/setDatamartConfig`, payload);
-};
-
-export const getDataMartDetailAPI = (datamartId: string) => {
-  return axios.get(`/datamart/${datamartId}`);
 };

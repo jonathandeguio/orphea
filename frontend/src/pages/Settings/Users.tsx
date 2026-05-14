@@ -3,12 +3,14 @@ import {
   Col,
   Divider,
   Dropdown,
+  Form,
+  Input,
   Row,
-  Skeleton,
   Table,
   Tooltip,
   Typography,
 } from "antd";
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import BoslerUserPopover from "../../components/UserPopover/userpopover";
@@ -29,7 +31,6 @@ import { EditIcon } from "../../assets/icons/boslerEditorIcons";
 import { deleteUser } from "../../redux/actions/authActions";
 import { ThunkAppDispatch } from "../../redux/types/store";
 
-import classNames from "classnames";
 import BoslerButton from "components/BoslerComponents/ButtonComponent/BoslerButton";
 import BoslerInput from "components/BoslerComponents/InputComponent/BoslerInput";
 import BoslerModal from "components/CommonUI/BoslerModalContainer";
@@ -38,7 +39,7 @@ import {
   InfoIcon,
   TrashIcon,
 } from "../../assets/icons/boslerMiscellaneousIcons";
-import styles from "./Users.module.scss";
+import BoslerLoader from "../../components/boslerLoader";
 
 const { Title, Text } = Typography;
 
@@ -59,6 +60,34 @@ const Users = () => {
     id: "",
   });
 
+  // ── Create user modal ──────────────────────────────────────────────────────
+  const [createModal, setCreateModal] = useState(false);
+  const [createLoading, setCreateLoading] = useState(false);
+  const [createForm] = Form.useForm();
+
+  const handleCreateUser = async () => {
+    try {
+      const values = await createForm.validateFields();
+      setCreateLoading(true);
+      await axios.post("/passport/users/add", {
+        username: values.username,
+        email: values.email,
+        password: values.password,
+        givenName: values.givenName,
+        familyName: values.familyName,
+      });
+      openNotification("Utilisateur créé", values.username, "success");
+      setCreateModal(false);
+      createForm.resetFields();
+      dispatch(getAllUserDetails());
+    } catch (err: any) {
+      const msg = err?.response?.data?.message ?? "Erreur lors de la création";
+      openNotification("Erreur", msg, "error");
+    } finally {
+      setCreateLoading(false);
+    }
+  };
+
   // const [userAdmin, setUserAdmin]= useState();
   const navigate = useNavigate();
 
@@ -75,16 +104,7 @@ const Users = () => {
 
   const columns = [
     {
-      title: (
-        <Text
-          type="secondary"
-          strong
-          className={classNames(styles.tableHeaderItem)}
-        >
-          {" "}
-          {getLanguageLabel("userName").toUpperCase()}{" "}
-        </Text>
-      ),
+      title: getLanguageLabel("userName"),
       dataIndex: "username",
       // fixed:"left"as unknown as "left",
       sorter: (a: $TSFixMe, b: $TSFixMe) =>
@@ -127,46 +147,19 @@ const Users = () => {
       ),
     },
     {
-      title: (
-        <Text
-          type="secondary"
-          strong
-          className={classNames(styles.tableHeaderItem)}
-        >
-          {" "}
-          {getLanguageLabel("givenName").toUpperCase()}{" "}
-        </Text>
-      ),
+      title: getLanguageLabel("givenName"),
       dataIndex: "givenName",
       sorter: (a: $TSFixMe, b: $TSFixMe) =>
         a.givenName.localeCompare(b.givenName),
     },
     {
-      title: (
-        <Text
-          type="secondary"
-          strong
-          className={classNames(styles.tableHeaderItem)}
-        >
-          {" "}
-          {getLanguageLabel("familyName").toUpperCase()}{" "}
-        </Text>
-      ),
+      title: getLanguageLabel("familyName"),
       dataIndex: "familyName",
       sorter: (a: $TSFixMe, b: $TSFixMe) =>
         a.familyName.localeCompare(b.familyName),
     },
     {
-      title: (
-        <Text
-          type="secondary"
-          strong
-          className={classNames(styles.tableHeaderItem)}
-        >
-          {" "}
-          {getLanguageLabel("location").toUpperCase()}{" "}
-        </Text>
-      ),
+      title: getLanguageLabel("location"),
       dataIndex: "location",
       sorter: (a: $TSFixMe, b: $TSFixMe) => {
         let x = isDefined(a.location) ? a.location : "";
@@ -176,30 +169,12 @@ const Users = () => {
       },
     },
     {
-      title: (
-        <Text
-          type="secondary"
-          strong
-          className={classNames(styles.tableHeaderItem)}
-        >
-          {" "}
-          {getLanguageLabel("email").toUpperCase()}{" "}
-        </Text>
-      ),
+      title: getLanguageLabel("email"),
       dataIndex: "email",
       sorter: (a: $TSFixMe, b: $TSFixMe) => a.email.localeCompare(b.email),
     },
     {
-      title: (
-        <Text
-          type="secondary"
-          strong
-          className={classNames(styles.tableHeaderItem)}
-        >
-          {" "}
-          {getLanguageLabel("lastLogin").toUpperCase()}{" "}
-        </Text>
-      ),
+      title: getLanguageLabel("lastLogin"),
       dataIndex: "lastLoginAt",
       render: (text: $TSFixMe, record: $TSFixMe) => {
         return (
@@ -316,6 +291,7 @@ const Users = () => {
 
   return (
     <>
+      {/* ── Modal suppression ──────────────────────────────────────────────── */}
       <BoslerModal
         headingIcon={<TrashIcon color="var(--DANGEROUS_COLOR)" />}
         heading={getLanguageLabel("areYouSureYouWantToDeleteThis?")}
@@ -335,74 +311,65 @@ const Users = () => {
         {deleteUserDetails.name}
       </BoslerModal>
 
-      {/* -------- */}
+      {/* ── Modal création utilisateur ─────────────────────────────────────── */}
+      <BoslerModal
+        heading="Créer un utilisateur"
+        open={createModal}
+        onCancel={() => { setCreateModal(false); createForm.resetFields(); }}
+        onOk={handleCreateUser}
+        footerButtonArea={
+          <BoslerButton
+            onClick={handleCreateUser}
+            loading={createLoading}
+          >
+            Créer
+          </BoslerButton>
+        }
+      >
+        <Form form={createForm} layout="vertical" style={{ marginTop: 16 }}>
+          <Form.Item name="givenName" label="Prénom" rules={[{ required: true, message: "Requis" }]}>
+            <Input placeholder="Prénom" />
+          </Form.Item>
+          <Form.Item name="familyName" label="Nom" rules={[{ required: true, message: "Requis" }]}>
+            <Input placeholder="Nom" />
+          </Form.Item>
+          <Form.Item name="username" label="Nom d'utilisateur" rules={[{ required: true, message: "Requis" }]}>
+            <Input placeholder="ex: jean.dupont@exemple.fr" />
+          </Form.Item>
+          <Form.Item name="email" label="Email" rules={[{ required: true, type: "email", message: "Email invalide" }]}>
+            <Input placeholder="jean.dupont@exemple.fr" />
+          </Form.Item>
+          <Form.Item name="password" label="Mot de passe" rules={[{ required: true, min: 6, message: "6 caractères minimum" }]}>
+            <Input.Password placeholder="••••••••" />
+          </Form.Item>
+        </Form>
+      </BoslerModal>
 
+      {/* ── En-tête + bouton Créer ─────────────────────────────────────────── */}
+      {(platformAdmin || userAdmin) && (
+        <div style={{ display: "flex", justifyContent: "flex-end", padding: "8px 16px" }}>
+          <BoslerButton onClick={() => setCreateModal(true)}>
+            + Créer un utilisateur
+          </BoslerButton>
+        </div>
+      )}
+
+      {/* ── Table ─────────────────────────────────────────────────────────── */}
       {!allusers || allusers === "" ? (
-        <>
-          <div className="settings-center-block">
-            <Skeleton
-              active
-              avatar
-              paragraph={{ rows: 20 }}
-              className={styles.listItem}
-            />
-          </div>
-        </>
+        <div className="settings-center-block">
+          <BoslerLoader />
+        </div>
       ) : (
-        <>
-          <div className="settings-center-block">
-            <p>
-              {/* <UserIcon size={30} /> */}
-              <Row justify="space-between">
-                <Col>
-                  <Title level={3}>
-                    {getLanguageLabel("users")} ({allusers && allusers.length})
-                  </Title>
-                  <Text type="secondary">{getLanguageLabel("users")}</Text>
-                </Col>
-                <Col>
-                  {platformAdmin || userAdmin ? (
-                    <div className="text-and-icon-center">
-                      <Tooltip
-                        placement="top"
-                        title={getLanguageLabel("createANewUser")}
-                      >
-                        <UserButton
-                          title={getLanguageLabel("createANewUser")}
-                        />
-                      </Tooltip>
-                    </div>
-                  ) : (
-                    ""
-                  )}
-                </Col>
-              </Row>
-
-              <Divider />
-            </p>
-
-            <BoslerInput
-              // size="small"
-              placeholder={getLanguageLabel("searchUsersTable")}
-              allowClear
-              onChange={(e) => {
-                setFilteredData(
-                  GlobalSearch(e.target.value, allusers, columns)
-                );
-              }}
-              suffix={<SearchIcon />}
-            />
-            <Table
-              size="middle"
-              columns={columns}
-              dataSource={FilteredData !== undefined ? FilteredData : allusers}
-              onChange={onChange}
-              className="interactive"
-              pagination={false}
-              scroll={{ x: true, y: "100%" }}
-            />
-          </div>
-        </>
+        <div className="settings-center-block">
+          <Table
+            columns={columns}
+            dataSource={FilteredData !== undefined ? FilteredData : allusers}
+            onChange={onChange}
+            className="interactive"
+            pagination={false}
+            scroll={{ x: true, y: "100%" }}
+          />
+        </div>
       )}
     </>
   );

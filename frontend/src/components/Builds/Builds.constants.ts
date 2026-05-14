@@ -41,7 +41,6 @@ export enum BuildStageEnum {
 // Trigger Types
 export const CONNECT = "CONNECT";
 export const PYTHON = "PYTHON";
-export const NOTEBOOK = "NOTEBOOK";
 export const SQL = "SQL";
 export const DATASET = "DATASET";
 export const UPLOAD = "UPLOAD";

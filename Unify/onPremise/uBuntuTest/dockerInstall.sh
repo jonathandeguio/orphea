@@ -1,4 +1,4 @@
-# nstall using the apt repository
+ nstall using the apt repository
 # Set up the repository
 # Step 1 : Update the apt package index and install packages to allow apt to use a repository over HTTPS:
  apt-get -y update

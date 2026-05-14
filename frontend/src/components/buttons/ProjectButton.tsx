@@ -122,10 +122,10 @@ const ProjectButton = ({ children, successCallback = () => {} }: any) => {
               {getLanguageLabel("createANewProject")}
             </div>
           }
-          width={925}
+          width={800}
           footerExtraText={getLanguageLabel("createProjectPermissionMessage")}
           footerButtonArea={
-            <Form.Item style={{marginBottom: "0px"}}>
+            <Form.Item>
               <BoslerButton
                 intent="primary"
                 icon={<TickIcon />}

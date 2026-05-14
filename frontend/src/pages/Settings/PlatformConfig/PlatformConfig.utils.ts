@@ -1,6 +1,5 @@
-import {DATASET_DOWNLOADS_FORMATS, FILE_MIME_TYPES} from "../../../Apps/Dataset/Table/BoslerTable.types";
 import { openNotification } from "utils/utilities";
-import { downloadDatasetAPI } from "./PlatformConfig.api";
+import { downloadCSVAPI } from "./PlatformConfig.api";
 
 type TimeZone = {
   label: string;
@@ -47,38 +46,25 @@ export const timezones: TimeZone[] = [
   { label: "+14:00", value: "Pacific/Kiritimati" },
 ];
 
-const getDatasetFileMimeType = (format: string) => {
-  switch (format) {
-    case DATASET_DOWNLOADS_FORMATS.CSV:
-      return FILE_MIME_TYPES.CSV;
-
-    case DATASET_DOWNLOADS_FORMATS.PARQUET:
-      return FILE_MIME_TYPES.OCTET_STREAM;
-  }
-};
-
-export const downloadDataset = (
+export const downloadCSV = (
   id: string,
   branch: string,
-  transactionId: string,
-  format: string
+  transactionId: string
 ) => {
-  downloadDatasetAPI(id, branch, transactionId, format)
-    .then(({ data, headers }) => {
-      if (format) {
-        const blob = new Blob([data], { type: getDatasetFileMimeType(format) });
-        const url = URL.createObjectURL(blob);
+  downloadCSVAPI(id, branch, transactionId)
+    .then(({ data }) => {
+      const blob = new Blob([data], { type: "text/csv" });
+      const url = URL.createObjectURL(blob);
 
-        const link = document.createElement("a");
-        link.href = url;
-      link.download = `${headers["filename"]}`;
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `${id}.csv`;
 
       document.body.appendChild(link);
       link.click();
 
       URL.revokeObjectURL(url);
       document.body.removeChild(link);
-      }
     })
     .catch((error) => {
       openNotification(

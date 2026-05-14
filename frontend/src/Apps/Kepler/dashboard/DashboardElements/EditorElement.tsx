@@ -10,31 +10,32 @@ interface Props {
   editable: boolean;
   removeElement: any;
   tabId: string;
-  updateTabElement: (elementId: string, data: string) => void;
+  updateTabElement: (
+    elementId: string,
+    elementType: string,
+    data: string
+  ) => void;
 }
 
-const EditorElement = ({
-  dashboardId,
-  layout,
-  element,
-  editable,
-  removeElement,
-  tabId,
-  updateTabElement,
-}: Props) => {
-  const defaultData = element && element.data ? element.data : undefined;
+const EditorElement = (props: Props) => {
+  const defaultData =
+    props.element && props.element.data ? props.element.data : undefined;
 
   const handleChange = (editorState: any) => {
-    updateTabElement(element.id, JSON.stringify(editorState));
+    props.updateTabElement(
+      props.element.id,
+      props.element.type,
+      JSON.stringify(editorState)
+    );
   };
 
   return (
     <div
       className={
-        editable ? "editorElement editableElementBorder" : "editorElement"
+        props.editable ? "editorElement editableElementBorder" : "editorElement"
       }
       style={{
-        cursor: editable ? "move" : "pointer",
+        cursor: props.editable ? "move" : "pointer",
         color: "var(--PRIMARY_COLOR)",
       }}
     >
@@ -43,7 +44,7 @@ const EditorElement = ({
           height: "calc(100%)",
           width: "calc(100%)",
           // background: "var(--background-color)",
-          cursor: !editable ? "move" : "pointer",
+          cursor: !props.editable ? "move" : "pointer",
         }}
         onMouseDownCapture={(e) => {
           e.stopPropagation();
@@ -55,10 +56,10 @@ const EditorElement = ({
         <LexicalEditor
           defaultData={defaultData}
           handleChange={handleChange}
-          editable={editable}
+          editable={props.editable}
         />
       </div>
-      {editable && (
+      {props.editable && (
         <div
           className="editableElementBorder-delete"
           onMouseDown={(e) => {
@@ -66,7 +67,7 @@ const EditorElement = ({
           }}
           onClick={(e) => {
             e.stopPropagation();
-            removeElement(element.id);
+            props.removeElement(props.dashboardId, props.element.id);
           }}
         >
           <TrashIcon color="var(--bosler-intent-danger)" />

@@ -4,7 +4,7 @@ plugins {
     id 'java-library'
 }
 
-group 'io.bosler.Synchro'
+group 'io.orphea.Synchro'
 version '0.0.1-SNAPSHOT'
 sourceCompatibility = "11"
 
@@ -20,7 +20,7 @@ repositories {
 
 //jar {
 //    manifest {
-//        attributes "Main-Class": "io.bosler.Synchro"
+//        attributes "Main-Class": "io.orphea.Synchro"
 //    }
 //}
 

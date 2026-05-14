@@ -1,48 +1,43 @@
 import { Col, Divider, Row, Tabs, Tooltip, Typography } from "antd";
-import { SearchEmptyState } from "assets/Illustrations/EmptyState";
+import TabPane from "antd/es/tabs/TabPane";
 import { BuildIcon } from "assets/icons/boslerActionIcons";
 import { PopOutIcon } from "assets/icons/boslerNavigationIcon";
 import { TableIcon } from "assets/icons/boslerTableIcons";
-import axios from "axios";
 import BoslerButton from "components/BoslerComponents/ButtonComponent/BoslerButton";
 import { CollapserHandler } from "components/BoslerComponents/ResizablePane/ResizablePaneUtil";
+
+import React, { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
+import { Link, useNavigate } from "react-router-dom";
+// @ts-ignore
+import { AnyAction } from "../../redux";
+import { getBuildLog } from "../../redux/actions/datasetActions";
+
+import { SearchEmptyState } from "assets/Illustrations/EmptyState";
+import axios from "axios";
 import NoData from "components/CommonUI/NoData";
 import BoslerLoader from "components/boslerLoader";
 import { TPlatformPage } from "global";
-import { useFileExplorerService } from "hooks/useFileExplorerService";
-import React, { useEffect, useRef, useState } from "react";
-import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
-import { Link, useNavigate } from "react-router-dom";
+import { RootState } from "redux/types/store";
 import {
   getLanguageLabel,
+  getSocketClient,
   openNotification,
-  runPeriodically,
   timeConverter,
 } from "utils/utilities";
-import { usePath } from "../../Apps/explorer/explorer.hooks";
 import BuildDetailsSummary from "./BuildDetailsSummary";
 import BuildSparkTab from "./BuildSparkTab";
 import BuildSpecTab from "./BuildSpecTab";
 import BuildSteps from "./BuildSteps";
-import {
-  fetchBuildLogsAPI,
-  fetchBuildSpecificationsByBuildId,
-  fetchDetailedLogs,
-  getPreviewResultAPI,
-} from "./Builds.api";
-import { CONNECT, DATASET, FINISHED } from "./Builds.constants";
+import { fetchBuildSpecificationsByBuildId } from "./Builds.api";
+import { ABORTED, CONNECT, DATASET, FINISHED } from "./Builds.constants";
 import { TBuildLog, TBuildSpec } from "./Builds.types";
-import AbortBuildBtn from "./Components/AbortBuildBtn";
 import BuildTableDatasetWritingTransactionActive from "./Components/BuildTableDatasetWritingTransactionActive";
 import DetailedLog from "./DetailedLog";
 import PreviewResultDataset from "./PreviewResultDataset";
 
 const { Text } = Typography;
-const { TabPane } = Tabs;
-interface IDatasetDetails {
-  platformPath: string;
-  urlPath: string;
-}
 
 interface TProps {
   showHeader?: boolean;
@@ -59,9 +54,7 @@ const BuildDetailsTable = ({
   buildType = "DEFAULT",
   showEmpty = false,
 }: TProps) => {
-  const [buildId, setBuildId] = useState<string | undefined>();
-  const { getFileIndex } = useFileExplorerService();
-  const [getPath] = usePath();
+  const user = useSelector((state: RootState) => state.userDetails.user);
   const navigate = useNavigate();
   const primaryPanelRef = useRef<any>(null);
 
@@ -71,11 +64,11 @@ const BuildDetailsTable = ({
   const [buildSpec, setBuildSpec] = useState<TBuildSpec[] | undefined>(
     undefined
   );
-  const [detailedLogs, setDetailedLogs] = useState();
+  const dispatch = useDispatch();
   const [activeTab, setActiveTab] = useState("1");
-  const [datasetDetails, setDatasetDetails] = useState<
-    Map<string, IDatasetDetails>
-  >(new Map());
+  const [datasetDetails, setDatasetDetails] = useState<Map<string, string>>(
+    new Map()
+  );
   const [previewResultsTab, setPreviewResultsTab] = useState<
     {
       name: string;
@@ -95,45 +88,35 @@ const BuildDetailsTable = ({
           /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/
         );
         if (match) {
-          getFileIndex(match[0]).then((fileIndexdata) => {
-            setDatasetDetails((prevDatasetDetails) => {
-              let newDatasetDetails = prevDatasetDetails;
-              newDatasetDetails.set(match[0], {
-                urlPath:
-                  "/portal/kitab/dataset/" + match[0] + "/" + data.branch,
-                platformPath: [
-                  "/Projects",
-                  ...getPath(fileIndexdata).map((p) => p.name),
-                ].join("/"),
-              });
-              return newDatasetDetails;
-            });
+          setDatasetDetails((prevDatasetDetails) => {
+            let newDatasetDetails = prevDatasetDetails;
+
+            newDatasetDetails.set(
+              match[0],
+              "/portal/kitab/dataset/" + match[0] + "/" + data.branch
+            );
+            return newDatasetDetails;
           });
         }
       })
     ).then(() => setDatasetBuildLog(data));
   };
-  const buildStatus = (data: TBuildLog) => {
-    buildStatusHelper(data);
+  const buildStatus = (data?: undefined | TBuildLog) => {
+    if (data) {
+      buildStatusHelper(data);
+    } else {
+      dispatch(getBuildLog(id) as unknown as AnyAction).then((data: any) => {
+        if (data) {
+          buildStatusHelper(data);
+        }
+      });
+    }
   };
 
   const getBuildSpecificationsByBuildId = (log: any) => {
     fetchBuildSpecificationsByBuildId(log.id).then(({ data }) => {
       setBuildSpec(data);
     });
-  };
-
-  const getDetailedLogs = (buildId: string) => {
-    setDetailedLogs(undefined);
-    runPeriodically(
-      () =>
-        fetchDetailedLogs(buildId).then(({ data }) => {
-          setDetailedLogs(data);
-        }),
-      650,
-      3,
-      () => detailedLogs != undefined
-    );
   };
 
   const onBuild = async (buildId: string, buildType: "DEFAULT" | "PREVIEW") => {
@@ -162,14 +145,6 @@ const BuildDetailsTable = ({
     }
   };
 
-  const handlePreviewResult = (previewId: string) => {
-    getPreviewResultAPI(previewId).then(({ data }) => {
-      Object.entries(data).map(([name, data]: any) =>
-        createPreviewResultTab(name, data)
-      );
-    });
-  };
-
   const createPreviewResultTab = (tabName: string, data: any) => {
     setPreviewResultsTab((_preview) => {
       return [
@@ -182,50 +157,53 @@ const BuildDetailsTable = ({
     });
   };
 
-  const handleBuildLog = (buildId: string) => {
-    fetchBuildLogsAPI(buildId).then(({ data: updatedBuildLog }) => {
-      if (updatedBuildLog.status == "ACTIVE") {
-        // TODO : Uncomment after, log comming for specific dataset & branch
-        setBuildId(updatedBuildLog.id);
-      } else {
-        if (updatedBuildLog.status == "SUCCESS") {
-          // setActiveTab("3");
-          // createPreviewResultTab(tabName, JSON.parse(information));
-          handlePreviewResult(buildId);
-        }
-        setBuildId(undefined);
-      }
-      buildStatus(updatedBuildLog);
-    });
-  };
-
   useEffect(() => {
-    let stopPeriodicFunction: (() => void) | undefined;
+    const client = getSocketClient();
+    client.activate();
 
-    if (buildId) {
-      setDatasetBuildLog(undefined);
-      setActiveTab("1");
-      setPreviewResultsTab([]);
-      stopPeriodicFunction = runPeriodically(() => handleBuildLog(buildId));
-    }
+    client.onConnect = (frame) => {
+      client.subscribe(`/topic/build/${id}/${user.id}`, (mail) => {
+        const msg = JSON.parse(mail.body).message;
+        const information = JSON.parse(mail.body).information;
+        const tabName = JSON.parse(mail.body).tabName ? (
+          <div className="text-and-icon-center">
+            <TableIcon color={"#4C90F0"} /> {JSON.parse(mail.body).tabName}
+          </div>
+        ) : (
+          getLanguageLabel("result")
+        );
+        // if (msg === FAILED || msg === SUCCESS || msg === ABORTED)
+        if (msg === "logUpdated" || msg == ABORTED) {
+          console.log("USER IS : ", user.id);
+          if (information) {
+            buildStatus(JSON.parse(information));
+          } else {
+            buildStatus();
+          }
+        } else if (msg === "preview") {
+          if (buildType == "PREVIEW") {
+            setActiveTab("3");
+            createPreviewResultTab(tabName, JSON.parse(information));
+          }
+        }
+      });
+      buildStatus();
+    };
 
     return () => {
-      if (stopPeriodicFunction) {
-        stopPeriodicFunction();
-      }
+      setActiveTab("1");
+      setDatasetBuildLog(undefined);
+      client.deactivate();
     };
-  }, [buildId]);
+  }, [id]);
 
   useEffect(() => {
-    if (id) {
-      setBuildId(id);
-    }
+    setPreviewResultsTab([]);
   }, [id]);
 
   useEffect(() => {
     if (datasetBuildLog && datasetBuildLog.stage == FINISHED) {
       getBuildSpecificationsByBuildId(datasetBuildLog);
-      getDetailedLogs(datasetBuildLog.id);
     }
   }, [datasetBuildLog]);
 
@@ -238,6 +216,7 @@ const BuildDetailsTable = ({
     );
 
   if (!datasetBuildLog) return <BoslerLoader />;
+
   return (
     <div
       style={{
@@ -325,9 +304,6 @@ const BuildDetailsTable = ({
                       {getLanguageLabel("rebuild")}
                     </BoslerButton>
                   )}
-                  {datasetBuildLog.stage != FINISHED && (
-                    <AbortBuildBtn buildId={datasetBuildLog.id} />
-                  )}
                 </div>
               }
             >
@@ -403,13 +379,6 @@ const BuildDetailsTable = ({
                             index + match[0].length
                           );
                         }
-
-                        console.log(
-                          "MATCH is ",
-                          match,
-                          match0000,
-                          datasetDetails
-                        );
                         return (
                           <Row>
                             <Col
@@ -461,7 +430,6 @@ const BuildDetailsTable = ({
                                           datasetDetails &&
                                           datasetDetails.has(match[0])
                                             ? datasetDetails.get(match[0])
-                                                ?.urlPath
                                             : match[0]
                                         }
                                       >
@@ -479,7 +447,6 @@ const BuildDetailsTable = ({
                                             {datasetDetails &&
                                             datasetDetails.has(match[0])
                                               ? datasetDetails.get(match[0])
-                                                  ?.platformPath
                                               : match[0]}
                                           </div>
                                         </span>
@@ -529,7 +496,6 @@ const BuildDetailsTable = ({
                                       >
                                         {log.debug}
                                         <BuildTableDatasetWritingTransactionActive
-                                          buildId={datasetBuildLog.id}
                                           text={log.debug}
                                           datasetId={
                                             datasetBuildLog.checkpointDataset
@@ -584,19 +550,25 @@ const BuildDetailsTable = ({
                     })}
                   </TabPane>
                 )}
-              {datasetBuildLog.stage == FINISHED && detailedLogs && (
-                <TabPane
-                  tab={getLanguageLabel("detailedLogs").toUpperCase()}
-                  key="detailedLogs"
-                  destroyInactiveTabPane
-                >
-                  <DetailedLog
-                    detailedLogs={detailedLogs}
-                    buildType={buildType}
-                    buildStatus={datasetBuildLog.status}
-                  />
-                </TabPane>
-              )}
+              {datasetBuildLog.stage == FINISHED &&
+                datasetBuildLog.trigger != CONNECT && (
+                  <TabPane
+                    tab={getLanguageLabel("detailedLogs").toUpperCase()}
+                    key="detailedLogs"
+                    destroyInactiveTabPane
+                  >
+                    <DetailedLog
+                      id={id}
+                      buildType={buildType}
+                      buildStatus={datasetBuildLog.status}
+                      language={
+                        buildSpec && buildSpec[0].language
+                          ? buildSpec[0].language
+                          : datasetBuildLog.trigger
+                      }
+                    />
+                  </TabPane>
+                )}
               {datasetBuildLog.sparkApplicationId && (
                 <TabPane
                   tab={

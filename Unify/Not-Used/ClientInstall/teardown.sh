@@ -5,6 +5,6 @@
 #minikube delete
 #echo "N/A for this platform!"
 
-kubectl delete all --all -n bosler
+kubectl delete all --all -n orphea
 
 

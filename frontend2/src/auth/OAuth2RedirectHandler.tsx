@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import { BOSLER_TOKEN } from './constants';
+import { ORPHEA_TOKEN } from './constants';
 import { Navigate, useSearchParams } from 'react-router-dom';
 
 const OAuth2RedirectHandler = (props : any) => {
@@ -12,7 +12,7 @@ const OAuth2RedirectHandler = (props : any) => {
         
         
         if(token) {
-            localStorage.setItem(BOSLER_TOKEN, token);
+            localStorage.setItem(ORPHEA_TOKEN, token);
         }
     }, [token])
 

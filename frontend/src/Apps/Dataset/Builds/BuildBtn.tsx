@@ -6,8 +6,9 @@ import { updateBottomBarItemState } from "common/components/BoslerLayout/bottomB
 import BoslerButton, {
   TBoslerButtonIntent,
 } from "components/BoslerComponents/ButtonComponent/BoslerButton";
-import { abortBuildAPI, fetchBuildLogsAPI } from "components/Builds/Builds.api";
+import { abortBuildAPI } from "components/Builds/Builds.api";
 import { DATASET } from "components/Builds/Builds.constants";
+import { TBuildLog } from "components/Builds/Builds.types";
 import { TPlatformPage } from "global";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,8 +16,9 @@ import { Link } from "react-router-dom";
 import { RootState, ThunkAppDispatch } from "redux/types/store";
 import {
   getLanguageLabel,
+  getSocketClient,
+  isDefined,
   openNotification,
-  runPeriodically,
 } from "utils/utilities";
 import { getDatasetMapping } from "../../../redux/actions/datasetActions";
 
@@ -141,40 +143,45 @@ const BuildBtn = ({
     }
   };
 
-  const handleBuildLog = (buildId: string) => {
-    fetchBuildLogsAPI(buildId).then(({ data: updatedBuildLog }) => {
-      if (updatedBuildLog.status == "ACTIVE") {
-        // TODO : Uncomment after, log comming for specific dataset & branch
-        setBuildActive(true);
-        setBuildId(updatedBuildLog.id);
-      } else {
-        setBuildActive(false);
-        setBuildId(undefined);
-        if (updatedBuildLog.status == "SUCCESS") {
-          dispatch(getDatasetMapping(datasetId as string, branch as string));
-          setIntent("success");
-        } else if (updatedBuildLog.status == "FAILED") {
-          setIntent("dangerous");
-        } else if (updatedBuildLog.status == "ABORTED") {
-          setIntent("action");
-        }
-      }
-    });
-  };
-
   useEffect(() => {
-    let stopPeriodicFunction: (() => void) | undefined;
+    const client = getSocketClient();
 
-    if (buildId) {
-      stopPeriodicFunction = runPeriodically(() => handleBuildLog(buildId));
-    }
+    client.activate();
+    client.onConnect = (frame) => {
+      client.subscribe(`/topic/build/log/${user.id}`, function (mail) {
+        const msg = JSON.parse(mail.body).message;
+        if (msg == "newBuildLog") {
+          const updatedBuildLog: TBuildLog = JSON.parse(
+            JSON.parse(mail.body).information
+          );
+
+          if (isDefined(updatedBuildLog))
+            if (updatedBuildLog.status == "ACTIVE") {
+              // TODO : Uncomment after, log comming for specific dataset & branch
+              setBuildActive(true);
+              setBuildId(updatedBuildLog.id);
+            } else {
+              if (updatedBuildLog.status == "SUCCESS") {
+                dispatch(
+                  getDatasetMapping(datasetId as string, branch as string)
+                );
+                setIntent("success");
+              } else if (updatedBuildLog.status == "FAILED") {
+                setIntent("dangerous");
+              } else if (updatedBuildLog.status == "ABORTED") {
+                setIntent("action");
+              }
+              setBuildActive(false);
+              setBuildId(undefined);
+            }
+        }
+      });
+    };
 
     return () => {
-      if (stopPeriodicFunction) {
-        stopPeriodicFunction();
-      }
+      client.deactivate();
     };
-  }, [buildId]);
+  }, []);
 
   useEffect(() => {
     getConnectBuildInfo();

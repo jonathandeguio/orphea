@@ -40,10 +40,9 @@ import { updateUserDetails } from "../../../redux/actions/userActions";
 import { ThunkAppDispatch } from "../../../redux/types/store";
 import { Resource } from "../explorer";
 import { usePath } from "../explorer.hooks";
-import { ResourceTypeEnum, getNodeIcon } from "../explorer.utils";
+import { getNodeIcon } from "../explorer.utils";
 import "./sidePanel.scss";
 import { useUserHook } from "hooks/useUsers";
-import Tags from "Apps/Dataset/Tags/Tags.view";
 
 const { Text, Title } = Typography;
 
@@ -414,14 +413,6 @@ export const ExplorerSidePanel: React.FC<Props> = ({
                             </Text>
                           </Col>
                         </Row>
-                        {resource?.type ===  ResourceTypeEnum.DATASET&& (
-                          <div className="sidePanel-details-item">
-                              <Tags
-                                id={resource?.id as string}
-                                iconOnly={false}
-                              ></Tags>
-                          </div>
-                        )}
                       </div>
 
                       <Divider style={{ margin: "1rem 0" }} />

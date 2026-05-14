@@ -32,20 +32,20 @@ import { ThunkAppDispatch } from "redux/types/store";
 
 import type { RcFile } from "antd/es/upload/interface";
 
-import { TickIcon } from "assets/icons/boslerNavigationIcon";
+import { TickIcon } from "assets/icons/orpheaNavigationIcon";
 import { updateUserDataAPI } from "components/CommandPalette/CommandPalette.api";
-import { SaveIcon } from "assets/icons/boslerActionIcons";
-import { EditIcon } from "assets/icons/boslerEditorIcons";
-import { UploadIcon } from "assets/icons/boslerInterfaceIcons";
-import { TrashIcon } from "assets/icons/boslerMiscellaneousIcons";
-import BoslerLoader from "components/boslerLoader";
+import { SaveIcon } from "assets/icons/orpheaActionIcons";
+import { EditIcon } from "assets/icons/orpheaEditorIcons";
+import { UploadIcon } from "assets/icons/orpheaInterfaceIcons";
+import { TrashIcon } from "assets/icons/orpheaMiscellaneousIcons";
+import OrpheaLoader from "components/orpheaLoader";
 import { updateLanguage } from "redux/actions/languageActions";
 import { updateUserDetails } from "redux/actions/userActions";
-import BoslerInput from "components/InputComponent/BoslerInput";
-import BoslerButton from "components/ButtonComponent/BoslerButton";
+import OrpheaInput from "components/InputComponent/OrpheaInput";
+import OrpheaButton from "components/ButtonComponent/OrpheaButton";
 import MfaConfiguration, { openNotificationWithIcon } from "./mfaConfiguration";
 import { useParams } from "react-router";
-import BoslerModal from "components/BoslerModalContainer";
+import OrpheaModal from "components/OrpheaModalContainer";
 
 const layout = {
   labelCol: {
@@ -258,7 +258,7 @@ const Profile = ({ user, self, showPreferences, loginHistory }: $TSFixMe) => {
   };
 
   return !user ? (
-    <BoslerLoader />
+    <OrpheaLoader />
   ) : (
     <div className="settings-center-block">
       <Row gutter={[32, 24]}>
@@ -272,11 +272,11 @@ const Profile = ({ user, self, showPreferences, loginHistory }: $TSFixMe) => {
                 </Text>
                 <Divider />
               </p>
-              <div className="BoslerHeader1">
+              <div className="OrpheaHeader1">
                 {getLanguageLabel("givenName")}
               </div>
 
-              <BoslerInput
+              <OrpheaInput
                 placeholder={user.givenName}
                 // @ts-expect-error TS(2322): Type 'string[]' is not assignable to type 'string'... Remove this comment to see the full error message
                 name={["user", "fname"]}
@@ -288,11 +288,11 @@ const Profile = ({ user, self, showPreferences, loginHistory }: $TSFixMe) => {
                 }}
                 value={newUserData.givenName}
               />
-              <div className="BoslerHeader1">
+              <div className="OrpheaHeader1">
                 {getLanguageLabel("familyName")}
               </div>
 
-              <BoslerInput
+              <OrpheaInput
                 placeholder={user.familyName}
                 // @ts-expect-error TS(2322): Type 'string[]' is not assignable to type 'string'... Remove this comment to see the full error message
                 name={["user", "lname"]}
@@ -304,8 +304,8 @@ const Profile = ({ user, self, showPreferences, loginHistory }: $TSFixMe) => {
                 }
                 value={newUserData.familyName}
               />
-              <div className="BoslerHeader1">{getLanguageLabel("email")}</div>
-              <BoslerInput
+              <div className="OrpheaHeader1">{getLanguageLabel("email")}</div>
+              <OrpheaInput
                 placeholder={user.email}
                 // @ts-expect-error TS(2322): Type 'string[]' is not assignable to type 'string'... Remove this comment to see the full error message
                 name={["user", "email"]}
@@ -317,8 +317,8 @@ const Profile = ({ user, self, showPreferences, loginHistory }: $TSFixMe) => {
               />
 
               {/* 
-              <div className="BoslerHeader1">{getLanguageLabel("designation")}</div>
-                  <BoslerInput
+              <div className="OrpheaHeader1">{getLanguageLabel("designation")}</div>
+                  <OrpheaInput
                     // @ts-expect-error TS(2322): Type 'string[]' is not assignable to type 'string'... Remove this comment to see the full error message
                     name={["designation"]}
                     value={desig}
@@ -327,10 +327,10 @@ const Profile = ({ user, self, showPreferences, loginHistory }: $TSFixMe) => {
                   />
                  */}
 
-              <div className="BoslerHeader1">
+              <div className="OrpheaHeader1">
                 {getLanguageLabel("location")}
               </div>
-              <BoslerInput
+              <OrpheaInput
                 placeholder={user.location}
                 // @ts-expect-error TS(2322): Type 'string[]' is not assignable to type 'string'... Remove this comment to see the full error message
                 name={["location"]}
@@ -363,7 +363,7 @@ const Profile = ({ user, self, showPreferences, loginHistory }: $TSFixMe) => {
                 ) : (
                   ""
                 )}
-                <BoslerModal
+                <OrpheaModal
                   heading={getLanguageLabel("disableMfa")}
                   closable={true}
                   open={CancelModalOpen}
@@ -377,22 +377,22 @@ const Profile = ({ user, self, showPreferences, loginHistory }: $TSFixMe) => {
                         padding: "10px",
                       }}
                     >
-                      <BoslerButton
+                      <OrpheaButton
                         onClick={() => setCancelModalOpen(!CancelModalOpen)}
                       >
                         {getLanguageLabel("cancel")}
-                      </BoslerButton>
-                      <BoslerButton onClick={handleResetMfa} intent="dangerous">
+                      </OrpheaButton>
+                      <OrpheaButton onClick={handleResetMfa} intent="dangerous">
                         {getLanguageLabel("yes")}
-                      </BoslerButton>
+                      </OrpheaButton>
                     </div>
                   }
                 >
                   <Typography>
                     {getLanguageLabel("disableMfaMessage")}
                   </Typography>
-                </BoslerModal>
-                <BoslerModal
+                </OrpheaModal>
+                <OrpheaModal
                   closable={true}
                   width={"600px"}
                   heading={getLanguageLabel("setUpMFA")}
@@ -413,7 +413,7 @@ const Profile = ({ user, self, showPreferences, loginHistory }: $TSFixMe) => {
                     setIsOnRecoveryCode={setIsOnRecoveryCode}
                     setIsOpen={setIsOpen}
                   />
-                </BoslerModal>
+                </OrpheaModal>
               </div>
 
               {/* <Link to={`mfaConfiguration`}>
@@ -430,7 +430,7 @@ const Profile = ({ user, self, showPreferences, loginHistory }: $TSFixMe) => {
                   </div>
                 </Link> */}
 
-              <BoslerButton
+              <OrpheaButton
                 icon={updated ? <TickIcon /> : <SaveIcon />}
                 intent={updated ? "success" : "action"}
                 onClick={() => handleUpdate(newUserData)}
@@ -441,13 +441,13 @@ const Profile = ({ user, self, showPreferences, loginHistory }: $TSFixMe) => {
                 textTransform="none"
               >
                 {getLanguageLabel("update")}
-              </BoslerButton>
+              </OrpheaButton>
 
               {showPreferences ? (
                 <>
                   <Divider orientation="left">Preferences</Divider>
                   <div className="theme-pref">
-                    <div className="BoslerHeader1">
+                    <div className="OrpheaHeader1">
                       {getLanguageLabel("languagePreference")}
                     </div>
 
@@ -595,20 +595,20 @@ const Profile = ({ user, self, showPreferences, loginHistory }: $TSFixMe) => {
                           style={{ padding: "0.5rem" }}
                           className="text-and-icon-center"
                         >
-                          <TrashIcon color="var(--bosler-intent-danger)" />
+                          <TrashIcon color="var(--orphea-intent-danger)" />
                           Remove photo
                         </span>
                       </Row>
                     </>
                   }
                 >
-                  <BoslerButton
+                  <OrpheaButton
                     size="small"
                     icon={<EditIcon />}
                     intent="primary"
                   >
                     {getLanguageLabel("edit")}
-                  </BoslerButton>
+                  </OrpheaButton>
                 </Popover>
               </div>
               <Divider />

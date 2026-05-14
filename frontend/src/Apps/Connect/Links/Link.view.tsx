@@ -1,4 +1,4 @@
-import { Form, Tabs, Typography } from "antd";
+import { Tabs, Typography } from "antd";
 import TabPane from "antd/es/tabs/TabPane";
 import BoslerLoader from "components/boslerLoader";
 
@@ -29,16 +29,9 @@ import {
   updateBottomBarItemState,
 } from "common/components/BoslerLayout/bottomBarSlice";
 import BoslerSwitch from "components/CommonUI/BoslerSwitch/BoslerSwitch";
-import CsvPreprocessing from "components/CsvPreprocessing";
-import { ICsvPreprocessing } from "components/CsvPreprocessing/CsvPreprocessing.types";
 import { updateSourceQuery } from "../../../redux/actions/sourceActions";
-import DbmsSourceTree from "../Sources/DbmsSourceTree";
-import { SharepointSourceTree } from "../Sources/SharepointSourceTree";
 import { initialSourceDetails } from "../Sources/Source.constants";
-import { convertWebhookRequestsFieldsToJson } from "../Webhook/Webhook.utils";
-import WebhookAPIs from "../Webhook/WebhookAPIs";
-import WebhookExecution from "../Webhook/WebhookExecution";
-import WebhookOutputDataset from "../Webhook/WebhookOutputDataset";
+import SourceTree from "../Sources/SourceTree";
 import { ILink } from "./Link.types";
 import LinkEditor from "./LinkEditor";
 import LinkHeader from "./LinkHeader.view";
@@ -50,8 +43,6 @@ type TBoslerSwitch = "dataBrowser" | "info";
 
 const LinkDetails = () => {
   const primaryPanelRef = useRef<any>(null);
-  const secondaryPanelRef = useRef<any>(null);
-  const [form] = Form.useForm();
   const { id } = useParams();
 
   const dispatch = useDispatch<ThunkAppDispatch>();
@@ -67,15 +58,8 @@ const LinkDetails = () => {
     "dataBrowser" | "info"
   >("dataBrowser");
 
-  const [selectedDataOutputType, setSelectedDataOutputType] = useState<
-    "json" | "csv"
-  >("json");
-
   const getLink = () => {
     getConnectElementAPI(id as string, "link").then(({ data }) => {
-      if (data.type == "rest") {
-        data.requests = convertWebhookRequestsFieldsToJson(data?.requests);
-      }
       setLink(data);
       if (data.type.toUpperCase() === "JDBC") {
         dispatch(updateSourceQuery(id, decodeFromBase64(data.script)));
@@ -129,6 +113,13 @@ const LinkDetails = () => {
     getLink();
   }, [id]);
 
+  // useEffect(() => {
+  //   if (editorRef.current && isCmdOpen) {
+  //     (editorRef.current as any).focus();
+  //     (editorRef.current as any).trigger("", "editor.action.quickCommand", "");
+  //   }
+  // }, [isCmdOpen]);
+
   useEffect(() => {
     if (notEmpty(link.id)) {
       dispatch(
@@ -169,96 +160,36 @@ const LinkDetails = () => {
           handleBuild={build}
           noChanges={noChanges}
           setNoChanges={setNoChanges}
-          form={form}
         />
 
         <PanelGroup direction={"horizontal"}>
-          {source.type === "rest" ? (
-            <Panel
-              style={{ overflowY: "scroll" }}
-              collapsible={true}
-              defaultSize={10}
-              ref={primaryPanelRef}
-            >
-              <div>
-                <LinkInfoPanel
-                  dataset={dataset}
-                  source={source}
-                  getLink={getLink}
-                  link={link}
-                />
-                <BoslerSwitch
-                  items={[
-                    {
-                      label: "JSON",
-                      value: "json",
-                      children: (
-                        <WebhookOutputDataset
-                          form={form}
-                          setNoChanges={setNoChanges}
-                          link={link}
-                        />
-                      ),
-                    },
-                    {
-                      label: "CSV",
-                      value: "csv",
-                      children: (
-                        <CsvPreprocessing
-                          initialValues={link.csvPreprocessing}
-                          onValuesChange={(
-                            values: ICsvPreprocessing,
-                            allValues: ICsvPreprocessing
-                          ) => {
-                            setNoChanges(false);
-                            form.setFieldValue("csvPreprocessing", allValues);
-                          }}
-                        />
-                      ),
-                    },
-                  ]}
-                  value={selectedDataOutputType}
-                  onChange={(newSwitch: "json" | "csv") => {
-                    setSelectedDataOutputType(newSwitch);
-                  }}
-                />
-              </div>
-            </Panel>
-          ) : (
-            <Panel collapsible={true} defaultSize={25} ref={primaryPanelRef}>
-              <BoslerSwitch
-                items={[
-                  {
-                    label: getLanguageLabel("dataBrowser"),
-                    value: "dataBrowser",
-                    children:
-                      source &&
-                      (source.type === "SHAREPOINT" ? (
-                        <SharepointSourceTree source={source} />
-                      ) : (
-                        <DbmsSourceTree sourceId={source.id} page={"SOURCE"} />
-                      )),
-                  },
-                  {
-                    label: getLanguageLabel("info"),
-                    value: "info",
-                    children: (
-                      <LinkInfoPanel
-                        dataset={dataset}
-                        source={source}
-                        getLink={getLink}
-                        link={link}
-                      />
-                    ),
-                  },
-                ]}
-                value={selectedDataSourceSwitch}
-                onChange={(newSwitch: TBoslerSwitch) => {
-                  setSelectedDataSourceSwitch(newSwitch);
-                }}
-              />
-            </Panel>
-          )}
+          <Panel collapsible={true} defaultSize={30} ref={primaryPanelRef}>
+            <BoslerSwitch
+              items={[
+                {
+                  label: getLanguageLabel("dataBrowser"),
+                  value: "dataBrowser",
+                  children: source && <SourceTree sourceId={source.id} />,
+                },
+                {
+                  label: getLanguageLabel("info"),
+                  value: "info",
+                  children: (
+                    <LinkInfoPanel
+                      dataset={dataset}
+                      source={source}
+                      getLink={getLink}
+                      link={link}
+                    />
+                  ),
+                },
+              ]}
+              value={selectedDataSourceSwitch}
+              onChange={(newSwitch: TBoslerSwitch) => {
+                setSelectedDataSourceSwitch(newSwitch);
+              }}
+            />
+          </Panel>
           <PanelResizeHandle className="resizablePane-collapser">
             <CollapserHandler primaryPanelRef={primaryPanelRef} />
           </PanelResizeHandle>
@@ -285,27 +216,6 @@ const LinkDetails = () => {
                   </Tabs>
                 </>
               )}
-              {link.type.toUpperCase() === "SHAREPOINT" && (
-                <>
-                  <Tabs
-                    type="card"
-                    style={{
-                      whiteSpace: "pre-wrap",
-                    }}
-                    tabBarStyle={{
-                      padding: "0 0.5rem",
-                    }}
-                  >
-                    <TabPane
-                      tab={"FILE ID"}
-                      key="1"
-                      style={{ padding: "0.5rem" }}
-                    >
-                      <Text>{link.fileId}</Text>
-                    </TabPane>
-                  </Tabs>
-                </>
-              )}
               {link.type.toUpperCase() === "JDBC" && (
                 <LinkEditor
                   link={link}
@@ -314,31 +224,6 @@ const LinkDetails = () => {
                   noChanges={noChanges}
                   setNoChanges={setNoChanges}
                 />
-              )}
-              {link.type === "rest" && (
-                <PanelGroup direction={"horizontal"}>
-                  <Panel>
-                    <WebhookAPIs
-                      form={form}
-                      webhook={link}
-                      source={source}
-                      setNoChanges={setNoChanges}
-                    />
-                  </Panel>
-                  <PanelResizeHandle className="resizablePane-collapser">
-                    <CollapserHandler
-                      alignButton="left"
-                      primaryPanelRef={secondaryPanelRef}
-                    />
-                  </PanelResizeHandle>
-                  <Panel
-                    defaultSize={30}
-                    collapsible={true}
-                    ref={secondaryPanelRef}
-                  >
-                    <WebhookExecution webhookId={id as string} />
-                  </Panel>
-                </PanelGroup>
               )}
             </>
           </Panel>

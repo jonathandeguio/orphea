@@ -2,18 +2,18 @@ import axios from "axios";
 import React, { Dispatch, SetStateAction } from "react";
 import { useDispatch } from "react-redux";
 import { getLanguageLabel, isDefined, openNotification } from "utils/utilities";
-import { TickIcon } from "assets/icons/boslerNavigationIcon";
+import { TickIcon } from "assets/icons/orpheaNavigationIcon";
 import { getAllTriggerDetails } from "redux/actions/TriggerActions";
 import { ThunkAppDispatch } from "redux/types/store";
 
 import { Form, Select } from "antd";
-import { AddIcon } from "assets/icons/boslerActionIcons";
+import { AddIcon } from "assets/icons/orpheaActionIcons";
 import { ErrorResponse } from "global";
-import BoslerModal from "components/BoslerModalContainer";
-import BoslerButton from "components/ButtonComponent/BoslerButton";
-import BoslerInput from "components/InputComponent/BoslerInput";
+import OrpheaModal from "components/OrpheaModalContainer";
+import OrpheaButton from "components/ButtonComponent/OrpheaButton";
+import OrpheaInput from "components/InputComponent/OrpheaInput";
 import { createTriggerAPI } from "../apis";
-import { EditIcon } from "assets/icons/boslerEditorIcons";
+import { EditIcon } from "assets/icons/orpheaEditorIcons";
 
 interface Props {
   isOpen: boolean;
@@ -67,35 +67,35 @@ const EditTriggerModal = ({ isOpen, setIsOpen, selectedRecord }: Props) => {
           .finally(() => setIsOpen(false));
       }}
     >
-      <BoslerModal
+      <OrpheaModal
         headingIcon={<EditIcon />}
         heading={`Edit ${name} trigger`}
         open={isOpen}
         onCancel={() => setIsOpen(false)}
         footerButtonArea={
           <Item>
-            <BoslerButton
+            <OrpheaButton
               icon={<TickIcon />}
               intent="action"
               htmlType="submit"
               onClick={() => form.submit()}
             >
               {getLanguageLabel("edit")}
-            </BoslerButton>
+            </OrpheaButton>
           </Item>
         }
         width={600}
       >
         <Item label="Description" name="description">
-          <BoslerInput defaultValue={description} />
+          <OrpheaInput defaultValue={description} />
         </Item>
 
         <Item label="Docker File Name" name="configFileName">
-          <BoslerInput defaultValue={configFileName} />
+          <OrpheaInput defaultValue={configFileName} />
         </Item>
 
         <Item label="Registry" name="harborProjectName">
-          <BoslerInput defaultValue={harborProjectName} />
+          <OrpheaInput defaultValue={harborProjectName} />
         </Item>
 
         <Item label="Build Type" name="buildType">
@@ -114,16 +114,16 @@ const EditTriggerModal = ({ isOpen, setIsOpen, selectedRecord }: Props) => {
           />
         </Item>
 
-        <span className="BoslerHeader1">{getLanguageLabel("repository")}</span>
+        <span className="OrpheaHeader1">{getLanguageLabel("repository")}</span>
         <Item
           label="Branch"
           name="repositoryBranch"
 
           //   rules={[{ required: true }]}
         >
-          <BoslerInput defaultValue={branch} />
+          <OrpheaInput defaultValue={branch} />
         </Item>
-      </BoslerModal>
+      </OrpheaModal>
     </Form>
   );
 };

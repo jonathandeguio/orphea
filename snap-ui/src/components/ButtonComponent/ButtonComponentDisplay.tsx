@@ -1,9 +1,9 @@
 import { MenuProps, Segmented, Select, Switch, Typography } from "antd";
 import React, { useEffect, useState } from "react";
 import "../ButtonComponent/ButtonComponentDisplay.scss";
-import BoslerButton from "./BoslerButton";
-import { SearchIcon } from "assets/icons/boslerActionIcons";
-import { ArrowTopRightIcon } from "assets/icons/boslerNavigationIcon";
+import OrpheaButton from "./OrpheaButton";
+import { SearchIcon } from "assets/icons/orpheaActionIcons";
+import { ArrowTopRightIcon } from "assets/icons/orpheaNavigationIcon";
 
 const { Title, Text } = Typography;
 
@@ -45,7 +45,7 @@ const items: MenuProps["items"] = [
     ),
   },
 ];
-const BoslerComponentDisplay = () => {
+const OrpheaComponentDisplay = () => {
   const DEFAULT_STATE = {};
   const [btnProps, setBtnProps] = useState<any>(DEFAULT_STATE);
 
@@ -67,8 +67,8 @@ const BoslerComponentDisplay = () => {
 
   useEffect(() => {}, [btnProps]);
 
-  let buttonString = "<BoslerButton icon={<SearchIcon />} ";
-  let buttonStringWithActionIcon = `<BoslerButton icon={<SearchIcon />} actionIcon={<ArrowTopRightIcon />}
+  let buttonString = "<OrpheaButton icon={<SearchIcon />} ";
+  let buttonStringWithActionIcon = `<OrpheaButton icon={<SearchIcon />} actionIcon={<ArrowTopRightIcon />}
   onClick={(e: any) => {
     
   }}
@@ -77,7 +77,7 @@ const BoslerComponentDisplay = () => {
     
   }}`;
   let buttonStringWithMenuItems =
-    "<BoslerButton icon={<SearchIcon />} menuItems={items} ";
+    "<OrpheaButton icon={<SearchIcon />} menuItems={items} ";
 
   for (const prop in btnProps) {
     if (
@@ -97,18 +97,18 @@ const BoslerComponentDisplay = () => {
     }
   }
 
-  buttonString += "> Primary Button </BoslerButton>";
-  buttonStringWithActionIcon += "> Primary Button </BoslerButton>";
-  buttonStringWithMenuItems += "> Primary Button </BoslerButton>";
+  buttonString += "> Primary Button </OrpheaButton>";
+  buttonStringWithActionIcon += "> Primary Button </OrpheaButton>";
+  buttonStringWithMenuItems += "> Primary Button </OrpheaButton>";
 
   return (
-    <div className="boslerComponents-buttonDisplay">
-      <div className="boslerComponents-buttonDisplay-preview">
-        <div className="boslerComponents-buttonDisplay-preview-screen">
-          <BoslerButton icon={<SearchIcon />} {...btnProps}>
+    <div className="orpheaComponents-buttonDisplay">
+      <div className="orpheaComponents-buttonDisplay-preview">
+        <div className="orpheaComponents-buttonDisplay-preview-screen">
+          <OrpheaButton icon={<SearchIcon />} {...btnProps}>
             Primary
-          </BoslerButton>
-          <BoslerButton
+          </OrpheaButton>
+          <OrpheaButton
             icon={<SearchIcon />}
             {...btnProps}
             actionIcon={<ArrowTopRightIcon />}
@@ -118,16 +118,16 @@ const BoslerComponentDisplay = () => {
             }}
           >
             Primary Button
-          </BoslerButton>
+          </OrpheaButton>
 
-          <BoslerButton icon={<SearchIcon />} menuItems={items} {...btnProps}>
+          <OrpheaButton icon={<SearchIcon />} menuItems={items} {...btnProps}>
             Primary Button
-          </BoslerButton>
+          </OrpheaButton>
         </div>
         <Text
           code
           copyable
-          className="boslerComponents-buttonDisplay-preview-code"
+          className="orpheaComponents-buttonDisplay-preview-code"
         >
           {buttonString}
         </Text>
@@ -135,7 +135,7 @@ const BoslerComponentDisplay = () => {
         <Text
           code
           copyable
-          className="boslerComponents-buttonDisplay-preview-code"
+          className="orpheaComponents-buttonDisplay-preview-code"
         >
           {buttonStringWithActionIcon}
         </Text>
@@ -143,14 +143,14 @@ const BoslerComponentDisplay = () => {
         <Text
           code
           copyable
-          className="boslerComponents-buttonDisplay-preview-code"
+          className="orpheaComponents-buttonDisplay-preview-code"
         >
           {buttonStringWithMenuItems}
         </Text>
       </div>
-      <div className="boslerComponents-buttonDisplay-controller">
+      <div className="orpheaComponents-buttonDisplay-controller">
         <Title level={5}>Props</Title>
-        <div className="boslerComponents-buttonDisplay-controller-items">
+        <div className="orpheaComponents-buttonDisplay-controller-items">
           {/* <SwitchProp name="Active" /> */}
           <SwitchProp name="Disabled" />
           <SwitchProp name="Loading" />
@@ -163,7 +163,7 @@ const BoslerComponentDisplay = () => {
           <SwitchProp name="TrimIconOnlyPadding" />
         </div>
         <Title level={5}>Align Text</Title>
-        <div className="boslerComponents-buttonDisplay-controller-items">
+        <div className="orpheaComponents-buttonDisplay-controller-items">
           <Segmented
             options={["left", "center", "right"]}
             value={
@@ -177,7 +177,7 @@ const BoslerComponentDisplay = () => {
           />
         </div>
         <Title level={5}>Size</Title>
-        <div className="boslerComponents-buttonDisplay-controller-items">
+        <div className="orpheaComponents-buttonDisplay-controller-items">
           <Segmented
             options={["small", "middle", "large"]}
             value={
@@ -209,4 +209,4 @@ const BoslerComponentDisplay = () => {
   );
 };
 
-export default BoslerComponentDisplay;
+export default OrpheaComponentDisplay;

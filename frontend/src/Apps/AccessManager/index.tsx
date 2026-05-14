@@ -1,4 +1,4 @@
-import { CollapserHandler, ResponsivePanel } from "components/BoslerComponents/ResizablePane/ResizablePaneUtil";
+import { CollapserHandler } from "components/BoslerComponents/ResizablePane/ResizablePaneUtil";
 import { useTabMetaDataController } from "hooks/useTabIconController";
 import React, { useRef } from "react";
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
@@ -30,9 +30,10 @@ export const AccessManager = () => {
         }
       />
       <PanelGroup direction={"horizontal"}>
-        <ResponsivePanel
+        <Panel
+          collapsible={true}
           defaultSize={20}
-          primaryPanelRef={primaryPanelRef}
+          ref={primaryPanelRef}
           /**
            * Class styles not working
            */
@@ -46,7 +47,7 @@ export const AccessManager = () => {
               })
             }
           />
-        </ResponsivePanel>
+        </Panel>
         <PanelResizeHandle className="resizablePane-collapser">
           <CollapserHandler primaryPanelRef={primaryPanelRef} />
         </PanelResizeHandle>

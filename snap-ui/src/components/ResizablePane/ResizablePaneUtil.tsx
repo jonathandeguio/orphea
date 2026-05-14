@@ -1,6 +1,6 @@
 import React from "react";
 import "./ResizablePane.scss";
-import { DragHandleVerticalIcon } from "assets/icons/boslerActionIcons";
+import { DragHandleVerticalIcon } from "assets/icons/orpheaActionIcons";
 
 const CollapserHandler = ({ primaryPanelRef }: { primaryPanelRef: any }) => {
   const handleToggleCollapse = () => {

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Table, Tooltip, Typography } from "antd";
 import { Link } from "react-router-dom";
-import BoslerInput from "../../../components/InputComponent/BoslerInput";
-import BoslerButton from "../../../components/ButtonComponent/BoslerButton";
+import OrpheaInput from "../../../components/InputComponent/OrpheaInput";
+import OrpheaButton from "../../../components/ButtonComponent/OrpheaButton";
 import {
   BuildIcon,
   SyncIcon,
@@ -10,8 +10,8 @@ import {
   WarningIcon,
   SearchIcon,
   CrossIcon,
-} from "../../../assets/icons/boslerActionIcons";
-import { CopyIcon, EditIcon } from "../../../assets/icons/boslerEditorIcons";
+} from "../../../assets/icons/orpheaActionIcons";
+import { CopyIcon, EditIcon } from "../../../assets/icons/orpheaEditorIcons";
 import {
   copyToClipboard,
   getLanguageLabel,
@@ -20,13 +20,13 @@ import {
   openNotification,
   timeConverter,
 } from "utils/utilities";
-import { TickIcon } from "assets/icons/boslerNavigationIcon";
+import { TickIcon } from "assets/icons/orpheaNavigationIcon";
 import { useDispatch } from "react-redux";
 import { ThunkAppDispatch } from "../../../redux/types/store";
 import UserPopOver from "components/UserPopover/userpopover";
 import { getAllTriggerDetails } from "redux/actions/TriggerActions";
 import { runTrigger, userById } from "../apis";
-import BoslerModal from "../../../components/BoslerModalContainer";
+import OrpheaModal from "../../../components/OrpheaModalContainer";
 import { Form, Select } from "antd";
 import EditTriggerModal from "./EditTriggerModal";
 
@@ -67,7 +67,7 @@ const TriggersTable = ({ allTriggers }: { allTriggers: any }) => {
       dataIndex: "id",
       render: (text: any, record: any) => (
         <div style={{ display: "flex", gap: "8px" }}>
-          <BoslerButton
+          <OrpheaButton
             onClick={() => {
               showBuildModal(record);
             }}
@@ -78,8 +78,8 @@ const TriggersTable = ({ allTriggers }: { allTriggers: any }) => {
             loading={record.buildStatus === "ACTIVE"}
           >
             {getLanguageLabel("build")}
-          </BoslerButton>
-          <BoslerButton
+          </OrpheaButton>
+          <OrpheaButton
             onClick={() => {
               showEditModal(record);
             }}
@@ -90,7 +90,7 @@ const TriggersTable = ({ allTriggers }: { allTriggers: any }) => {
             loading={record.buildStatus === "ACTIVE"}
           >
             {getLanguageLabel("edit")}
-          </BoslerButton>
+          </OrpheaButton>
         </div>
       ),
     },
@@ -122,7 +122,7 @@ const TriggersTable = ({ allTriggers }: { allTriggers: any }) => {
       dataIndex: "commitId",
       render: (latestCommitId: string, record: any) => {
         if (!latestCommitId) {
-          return <div className="BoslerSpan">{getLanguageLabel("none")}</div>;
+          return <div className="OrpheaSpan">{getLanguageLabel("none")}</div>;
         }
 
         const cleanUrl = record.repoUrl.replace(/\.git$/, "");
@@ -143,7 +143,7 @@ const TriggersTable = ({ allTriggers }: { allTriggers: any }) => {
       title: getLanguageLabel("latestTag"),
       dataIndex: "latestTag",
       render: (text: number) => (
-        <div className="BoslerSpan">
+        <div className="OrpheaSpan">
           {text ? text : getLanguageLabel("none")}
         </div>
       ),
@@ -181,12 +181,12 @@ const TriggersTable = ({ allTriggers }: { allTriggers: any }) => {
     {
       title: getLanguageLabel("registry"),
       dataIndex: "harborProjectName",
-      render: (text: string) => <div className="BoslerSpan">{text}</div>,
+      render: (text: string) => <div className="OrpheaSpan">{text}</div>,
     },
     {
       title: getLanguageLabel("buildType"),
       dataIndex: "buildType",
-      render: (text: string) => <div className="BoslerSpan">{text}</div>,
+      render: (text: string) => <div className="OrpheaSpan">{text}</div>,
     },
 
     {
@@ -194,9 +194,9 @@ const TriggersTable = ({ allTriggers }: { allTriggers: any }) => {
       dataIndex: "buildAt",
       render: (text: number, row: any) => {
         if (!row.buildAt) {
-          return <div className="BoslerSpan">{getLanguageLabel("none")}</div>;
+          return <div className="OrpheaSpan">{getLanguageLabel("none")}</div>;
         }
-        return <div className="BoslerSpan">{timeConverter(text)}</div>;
+        return <div className="OrpheaSpan">{timeConverter(text)}</div>;
       },
     },
     {
@@ -317,7 +317,7 @@ const TriggersTable = ({ allTriggers }: { allTriggers: any }) => {
 
   return (
     <>
-      <BoslerInput
+      <OrpheaInput
         placeholder={getLanguageLabel("search")}
         allowClear
         onChange={(e: any) => {
@@ -333,14 +333,14 @@ const TriggersTable = ({ allTriggers }: { allTriggers: any }) => {
         />
       </div>
 
-      <BoslerModal
+      <OrpheaModal
         headingIcon={<BuildIcon />}
         heading={getLanguageLabel("confirmBuild") + selectedRecord.name}
         open={isBuildModalVisible}
         onCancel={handleBuildCancel}
         onOk={() => handleBuildOk(selectedRecord)}
         footerButtonArea={[
-          <BoslerButton
+          <OrpheaButton
             key="build"
             icon={<BuildIcon />}
             disabled={isBuildButtonDisabled}
@@ -348,23 +348,23 @@ const TriggersTable = ({ allTriggers }: { allTriggers: any }) => {
             intent="action"
           >
             {getLanguageLabel("build")}
-          </BoslerButton>,
-          <BoslerButton
+          </OrpheaButton>,
+          <OrpheaButton
             key="cancel"
             icon={<CrossIcon />}
             onClick={handleBuildCancel}
             intent="none"
           >
             {getLanguageLabel("cancel")}
-          </BoslerButton>,
+          </OrpheaButton>,
         ]}
       >
-        <BoslerInput
+        <OrpheaInput
           placeholder={getLanguageLabel("enterArtifactName")}
           value={artifactName}
           onChange={handleArtifactNameChange}
         />
-      </BoslerModal>
+      </OrpheaModal>
       <EditTriggerModal
         selectedRecord={selectedRecord}
         isOpen={isEditModalVisible}

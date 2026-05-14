@@ -6,21 +6,21 @@ steps:
   #    entrypoint: 'bash'
   #    args: [
   #        '-c',
-  #        'docker pull europe-west1-docker.pkg.dev/$PROJECT_ID/bosler-cr/boson:latest || exit 0'
+  #        'docker pull europe-west1-docker.pkg.dev/$PROJECT_ID/orphea-cr/boson:latest || exit 0'
   #    ]
   # Step 2
   - name: gcr.io/cloud-builders/docker
     args: [
         'build',
         '-t',
-        'europe-west1-docker.pkg.dev/$PROJECT_ID/bosler-cr/boson:$TAG_NAME',
+        'europe-west1-docker.pkg.dev/$PROJECT_ID/orphea-cr/boson:$TAG_NAME',
         '.'
     ]
 
   - name: gcr.io/cloud-builders/docker
     args: [
         'push',
-        'europe-west1-docker.pkg.dev/$PROJECT_ID/bosler-cr/boson:$TAG_NAME'
+        'europe-west1-docker.pkg.dev/$PROJECT_ID/orphea-cr/boson:$TAG_NAME'
     ]
     # Step 4
     #  - name: 'gcr.io/cloud-builders/kubectl'
@@ -29,15 +29,15 @@ steps:
     #        'image',
     #        'deployment',
     #        'boson',
-    #        'boson=europe-west1-docker.pkg.dev/$PROJECT_ID/bosler-cr/boson:latest',
+    #        'boson=europe-west1-docker.pkg.dev/$PROJECT_ID/orphea-cr/boson:latest',
     #        '--namespace',
-    #        'bosler'
+    #        'orphea'
     #    ]
     env:
       - 'CLOUDSDK_COMPUTE_ZONE=europe-west1-b'
-      - 'CLOUDSDK_CONTAINER_CLUSTER=bosler'
+      - 'CLOUDSDK_CONTAINER_CLUSTER=orphea'
 images: [
-    'europe-west1-docker.pkg.dev/$PROJECT_ID/bosler-cr/boson:$TAG_NAME'
+    'europe-west1-docker.pkg.dev/$PROJECT_ID/orphea-cr/boson:$TAG_NAME'
 ]
 timeout: 2400s
 

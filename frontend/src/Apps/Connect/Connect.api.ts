@@ -1,6 +1,5 @@
 import axios, { AxiosResponse } from "axios";
 import { getSQLFormatLink } from "utils/utilities";
-import { ISharepointConnector } from "./Sources/Source";
 
 /**
  * Regenerates the agent code
@@ -180,15 +179,4 @@ export const getSourceContentMetaData = (
 
 export const getTableColumnsAPI = (sourceId: string, tableName: string) => {
   return axios.get(`/connect/source/${sourceId}/${tableName}/columns`);
-};
-
-export const getSharepointFolderChilderAPI = (
-  sourceId: string,
-  folderId: string
-) => {
-  return axios.get(`/connect/source/${sourceId}/children/${folderId}`);
-};
-
-export const testSharepointConnectionAPI = (payload: ISharepointConnector) => {
-  return axios.post(`/connect/source/testSharepointConnection`, payload);
 };

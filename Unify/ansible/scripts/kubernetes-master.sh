@@ -1,4 +1,4 @@
-# Check if Kubernetes master node is initialized
+ Check if Kubernetes master node is initialized
 if [ ! -d /etc/kubernetes ]; then
     echo "Initializing Kubernetes master node..."
     kubeadm init --pod-network-cidr=10.244.0.0/16

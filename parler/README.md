@@ -1,4 +1,4 @@
-# This is for bosler language servers and code completion in editors
+# This is for orphea language servers and code completion in editors
 
 To test locally :
 

@@ -13,10 +13,10 @@ fi
 
 # login to docker registry
 # You hqve to login on gcloud
-PROJECT_ID=bosler-bnp
+PROJECT_ID=orphea-bnp
 COMPUTE_REGION=europe-west1
 COMPUTE_ZONE=europe-west1-b
-CLUSTER_NAME=bosler
+CLUSTER_NAME=orphea
 
 
 login()
@@ -39,37 +39,37 @@ cd repos
 frontend() 
 {
   if [ ! -d frontend ]; then
-  git clone git@github.com:Bosler-io/frontend.git  > /dev/null
+  git clone git@github.com:Orphea-io/frontend.git  > /dev/null
   else
   cd frontend
   git pull  > /dev/null
   # git checkout 19a0418cf524bc5a02fbe7b492549e403f9f5f1a
   cd ..
   fi
-  docker build frontend --tag ${COMPUTE_REGION}-docker.pkg.dev/${PROJECT_ID}/bosler-cr/frontend
-  docker push ${COMPUTE_REGION}-docker.pkg.dev/${PROJECT_ID}/bosler-cr/frontend
+  docker build frontend --tag ${COMPUTE_REGION}-docker.pkg.dev/${PROJECT_ID}/orphea-cr/frontend
+  docker push ${COMPUTE_REGION}-docker.pkg.dev/${PROJECT_ID}/orphea-cr/frontend
 
   # restart deployment to pick new image
-  kubectl -n bosler scale deploy frontend --replicas=0
-  kubectl -n bosler scale deploy frontend --replicas=1
+  kubectl -n orphea scale deploy frontend --replicas=0
+  kubectl -n orphea scale deploy frontend --replicas=1
 }
 
 
 parler() 
 {
   if [ ! -d parler ]; then
-  git clone git@github.com:Bosler-io/parler.git  > /dev/null
+  git clone git@github.com:Orphea-io/parler.git  > /dev/null
   else
   cd parler
   git pull  > /dev/null
   cd ..
   fi
-  docker build parler --tag ${COMPUTE_REGION}-docker.pkg.dev/${PROJECT_ID}/bosler-cr/parler
-  docker push ${COMPUTE_REGION}-docker.pkg.dev/${PROJECT_ID}/bosler-cr/parler
+  docker build parler --tag ${COMPUTE_REGION}-docker.pkg.dev/${PROJECT_ID}/orphea-cr/parler
+  docker push ${COMPUTE_REGION}-docker.pkg.dev/${PROJECT_ID}/orphea-cr/parler
 
   # restart deployment to pick new image
-  kubectl -n bosler scale deploy parler --replicas=0
-  kubectl -n bosler scale deploy parler --replicas=1
+  kubectl -n orphea scale deploy parler --replicas=0
+  kubectl -n orphea scale deploy parler --replicas=1
 }
 
 
@@ -77,7 +77,7 @@ boson()
 {
   
   if [ ! -d boson ]; then
-    git clone git@github.com:Bosler-io/boson.git  > /dev/null
+    git clone git@github.com:Orphea-io/boson.git  > /dev/null
   else
     cd boson
     git pull  > /dev/null
@@ -85,12 +85,12 @@ boson()
     cd ..
   fi
 
-  docker build boson --tag ${COMPUTE_REGION}-docker.pkg.dev/${PROJECT_ID}/bosler-cr/boson
-  docker push ${COMPUTE_REGION}-docker.pkg.dev/${PROJECT_ID}/bosler-cr/boson
+  docker build boson --tag ${COMPUTE_REGION}-docker.pkg.dev/${PROJECT_ID}/orphea-cr/boson
+  docker push ${COMPUTE_REGION}-docker.pkg.dev/${PROJECT_ID}/orphea-cr/boson
 
   # restart deployment to pick new image
-  kubectl -n bosler scale deploy boson --replicas=0
-  kubectl -n bosler scale deploy boson --replicas=1
+  kubectl -n orphea scale deploy boson --replicas=0
+  kubectl -n orphea scale deploy boson --replicas=1
 
 }
 

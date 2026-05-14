@@ -4,7 +4,7 @@ metadata:
   labels:
     name: frontend
   name: frontend
-  namespace: bosler
+  namespace: orphea
 spec:
   replicas: 1
   selector:
@@ -16,7 +16,7 @@ spec:
         name: frontend
     spec:
       containers:
-        - image: rmalik/bosler:frontend
+        - image: rmalik/orphea:frontend
           imagePullPolicy: Always
           name: frontend
           ports:
@@ -32,7 +32,7 @@ metadata:
   labels:
     name: frontend
   name: frontend
-  namespace: bosler
+  namespace: orphea
 spec:
   # type: NodePort
   ports:

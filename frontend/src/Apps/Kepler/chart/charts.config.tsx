@@ -16,7 +16,6 @@ export const chartConfig: { [key: string]: any } = {
     chartType: "pieChart",
     series: [],
     groupBy: true,
-    dimensions: [],
     meta: {
       threshold: "STATIC",
       isSingleDirection: true,
@@ -41,7 +40,6 @@ export const chartConfig: { [key: string]: any } = {
   wordCloudChart: {
     chartType: "wordCloudChart",
     series: [],
-    dimensions: [],
     groupBy: true,
     meta: {
       threshold: "STATIC",
@@ -94,7 +92,6 @@ export const chartConfig: { [key: string]: any } = {
     xaxisSort: undefined,
     xAxisTimeGrain: undefined,
     series: [],
-    dimensions: [],
     groupBy: true,
     meta: {
       threshold: "LABELED",
@@ -314,7 +311,6 @@ export const chartConfig: { [key: string]: any } = {
   gaugeChart: {
     chartType: "gaugeChart",
     series: [],
-    dimensions: [],
     meta: {
       threshold: "STATIC",
       isSingleDirection: true,
@@ -366,52 +362,30 @@ export const chartConfig: { [key: string]: any } = {
 
 export const KeplerConfig = {
   numericDataTypes: [
-    // Integer types
     "TINYINT",
     "SMALLINT",
     "MEDIUMINT",
     "INT",
-    "INTEGER",
     "BIGINT",
-    "SMALLMONEY",
-    "MONEY",
-    "SERIAL",
-    "BIGSERIAL",
-    "INT2",        // PostgreSQL 2-byte integer
-    "INT4",        // PostgreSQL 4-byte integer
-    "INT8",        // PostgreSQL 8-byte integer
-    "UNSIGNED TINYINT",
-    "UNSIGNED SMALLINT",
-    "UNSIGNED MEDIUMINT",
-    "UNSIGNED INT",
-    "UNSIGNED BIGINT",
-    
-    // Floating-point types
-    "REAL",
-    "FLOAT",
-    "FLOAT4",       // PostgreSQL 4-byte floating point
-    "FLOAT8",       // PostgreSQL 8-byte floating point
-    "DOUBLE",
-    "DOUBLE PRECISION",
-    "BINARY_FLOAT", // Oracle specific
-    "BINARY_DOUBLE",// Oracle specific
-
-    // Fixed-point and decimal types
     "DECIMAL",
     "NUMERIC",
-    "NUMBER",       // Oracle specific
-    "DEC",          // Alias for DECIMAL in some databases
-
-    // Specialized numeric types
-    "LONG",         // Common in programming languages, but not SQL
-    "SHORT",        // Common in programming languages, but not SQL
-    "BIGINT UNSIGNED",
-    "MEDIUMINT UNSIGNED"
+    "REAL",
+    "FLOAT",
+    "DOUBLE",
+    "DOUBLE PRECISION",
+    "DECIMAL",
+    "SMALLMONEY",
+    "MONEY",
+    "BINARY_FLOAT",
+    "BINARY_DOUBLE",
+    "INTEGER",
+    "SERIAL",
+    "BIGSERIAL",
   ],
 
   categoricalDataTypes: ["string", "boolean"],
   timeColumnDataTypes: ["timestamp", "date"],
-  nonStringDatatypes: ["integer", "double", "timestamp", "date"],
+  nonStringDatatypes: ["integer", "double", "timestamp"],
   chartLabelMaxLength: 50,
   bigNumberSuffixPrefixLength: 10,
   colorPickerPreset: [
@@ -579,10 +553,6 @@ export const KeplerConfig = {
     {
       label: `Google 20c`,
       value: "theme27",
-    },
-    {
-      label: `Grafana`,
-      value: "theme28",
     },
   ],
   pieLabelOptions: [

@@ -1,11 +1,7 @@
 // import { Outlet, Link } from "react-router-dom";
-import {
-  DataCellsIcon,
-  FromCacheIcon,
-  ProjectIcon,
-} from "assets/icons/boslerDataIcons";
+import { FromCacheIcon } from "assets/icons/boslerDataIcons";
 import { CodeCellIcon, StylesIcon } from "assets/icons/boslerEditorIcons";
-import { PythonIcon } from "assets/icons/boslerExternalIcons";
+import { GitNewBranchIcon, PythonIcon } from "assets/icons/boslerExternalIcons";
 import { EmailIcon } from "assets/icons/boslerFileIcons";
 import { OpenIcon } from "assets/icons/boslerNavigationIcon";
 import BoslerButton from "components/BoslerComponents/ButtonComponent/BoslerButton";
@@ -18,7 +14,8 @@ import { Outlet, useLocation } from "react-router";
 import { Link } from "react-router-dom";
 import { getLanguageLabel, isDefined } from "utils/utilities";
 import {
-  ClearCacheRunIcon,
+  HistoricalRunsIcon,
+  LockIcon,
   MoreMenuIcon,
   NotificationIcon,
   PreferencesIcon,
@@ -44,13 +41,9 @@ import {
   isPlatformAdmin,
   isUserAdmin,
 } from "../../redux/actions/userActions";
-import { RootState, ThunkAppDispatch } from "../../redux/types/store";
-import "./SettingsSidebar.scss";
+import { ThunkAppDispatch } from "../../redux/types/store";
 
 const Setting = () => {
-  const [currentWindowSize, setCurrentWindowSize] = useState<number>(
-    window.innerWidth
-  );
   const dispatch = useDispatch<ThunkAppDispatch>();
 
   const { config, loading } = useSelector(
@@ -77,58 +70,44 @@ const Setting = () => {
 
   const secondToLastSegment = pathSegments[pathSegments.length - 2];
   const lastSegment = pathSegments[pathSegments.length - 1];
-  const { user } = useSelector((state: RootState) => state.userDetails);
-  const [platformAdmin, setPlatformAdmin] = useState<boolean>(false);
+  const { user } = useSelector((state) => (state as $TSFixMe).userDetails);
+  const { user: platformAdmin } = useSelector(
+    (state) => (state as any).platformAdmin
+  );
 
-  const [userAdmin, setuserAdmin] = useState<boolean>(false);
   const notSSOUser = () => {
     return user.provider == "local";
   };
 
   useEffect(() => {
-    dispatch(isPlatformAdmin()).then((data: boolean) => setPlatformAdmin(data));
-    dispatch(isUserAdmin()).then((data: boolean) => setuserAdmin(data));
+    dispatch(isPlatformAdmin());
+    dispatch(isUserAdmin());
     dispatch(isGroupAdmin());
-  }, []);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setCurrentWindowSize(window.innerWidth);
-    };
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
   }, []);
 
   return (
     <div className="settingpage-layout">
-      <div className="settingpage-layout-sidebar">
+
+     <div className="settingpage-layout-sidebar">
         <div className="settingpage-layout-sidebar-menuContainer">
-          {platformAdmin && secondToLastSegment == "platform" ? (
+          {secondToLastSegment == "platform" ? (
             <>
               {" "}
               <div className="settingpage-layout-sidebar-menu">
                 <Link
                   to={`/portal/settings/profile`}
-                  className="text-and-icon-center back-icon-settings-page"
+                  className="text-and-icon-center"
                 >
                   <div className="text-and-icon-center">
                     <OpenIcon size={24} />
-                    <span className="--hide-on-small-screen">
-                      {getLanguageLabel("settings")}
-                    </span>
+                    {getLanguageLabel("settings")}
                   </div>
                 </Link>
                 <div className="settingpage-layout-sidebar-menu-head"></div>
               </div>
               <div className="settingpage-layout-sidebar-menu">
                 <div className="settingpage-layout-sidebar-menu-head">
-                  <BTHInternal>
-                    <span className="--hide-on-small-screen">
-                      {getLanguageLabel("product")}
-                    </span>
-                  </BTHInternal>
+                  <BTHInternal>{getLanguageLabel("product")}</BTHInternal>
                 </div>
                 <Link to={`platform/license`}>
                   <div
@@ -140,20 +119,14 @@ const Setting = () => {
                   >
                     <div className="text-and-icon-center">
                       <KeyIcon />
-                      <span className="--hide-on-small-screen">
-                        {getLanguageLabel("license")}
-                      </span>
+                      {getLanguageLabel("license")}
                     </div>
                   </div>
                 </Link>
               </div>
               <div className="settingpage-layout-sidebar-menu">
                 <div className="settingpage-layout-sidebar-menu-head">
-                  <BTHInternal>
-                    <span className="--hide-on-small-screen">
-                      {getLanguageLabel("dataset")}
-                    </span>
-                  </BTHInternal>
+                  <BTHInternal>{getLanguageLabel("dataset")}</BTHInternal>
                 </div>
 
                 <Link to={`platform/cache`}>
@@ -166,9 +139,7 @@ const Setting = () => {
                   >
                     <div className="text-and-icon-center">
                       <FromCacheIcon />
-                      <span className="--hide-on-small-screen">
-                        {getLanguageLabel("caching")}
-                      </span>
+                      {getLanguageLabel("caching")}
                     </div>
                   </div>
                 </Link>
@@ -183,9 +154,7 @@ const Setting = () => {
                   >
                     <div className="text-and-icon-center">
                       <ComponentIcon />
-                      <span className="--hide-on-small-screen">
-                        {getLanguageLabel("history")}
-                      </span>
+                      {getLanguageLabel("history")}
                     </div>
                   </div>
                 </Link>
@@ -198,10 +167,7 @@ const Setting = () => {
                     }
                   >
                     <div className="text-and-icon-center">
-                      <UploadIcon />{" "}
-                      <span className="--hide-on-small-screen">
-                        {getLanguageLabel("upload")}
-                      </span>
+                      <UploadIcon /> {getLanguageLabel("upload")}
                     </div>
                   </div>
                 </Link>
@@ -214,10 +180,7 @@ const Setting = () => {
                     }
                   >
                     <div className="text-and-icon-center">
-                      <DownloadIcon />{" "}
-                      <span className="--hide-on-small-screen">
-                        {getLanguageLabel("download")}
-                      </span>
+                      <DownloadIcon /> {getLanguageLabel("download")}
                     </div>
                   </div>
                 </Link>
@@ -225,9 +188,7 @@ const Setting = () => {
               <div className="settingpage-layout-sidebar-menu">
                 <div className="settingpage-layout-sidebar-menu-head">
                   <BTHInternal>
-                    <span className="--hide-on-small-screen">
-                      {getLanguageLabel("personalization")}
-                    </span>
+                    {getLanguageLabel("personalization")}
                   </BTHInternal>
                 </div>
 
@@ -240,10 +201,7 @@ const Setting = () => {
                     }
                   >
                     <div className="text-and-icon-center">
-                      <TimeZoneIcon />{" "}
-                      <span className="--hide-on-small-screen">
-                        {getLanguageLabel("timezone")}
-                      </span>
+                      <TimeZoneIcon /> {getLanguageLabel("timezone")}
                     </div>
                   </div>
                 </Link>
@@ -256,21 +214,14 @@ const Setting = () => {
                     }
                   >
                     <div className="text-and-icon-center">
-                      <StylesIcon />{" "}
-                      <span className="--hide-on-small-screen">
-                        {getLanguageLabel("theme")}
-                      </span>
+                      <StylesIcon /> {getLanguageLabel("theme")}
                     </div>
                   </div>
                 </Link>
               </div>
               <div className="settingpage-layout-sidebar-menu">
                 <div className="settingpage-layout-sidebar-menu-head">
-                  <BTHInternal>
-                    <span className="--hide-on-small-screen">
-                      {getLanguageLabel("configuration")}
-                    </span>
-                  </BTHInternal>
+                  <BTHInternal>{getLanguageLabel("configuration")}</BTHInternal>
                 </div>
 
                 <Link to={`platform/smtp`}>
@@ -282,8 +233,7 @@ const Setting = () => {
                     }
                   >
                     <div className="text-and-icon-center">
-                      <EmailIcon />{" "}
-                      <span className="--hide-on-small-screen">SMTP</span>
+                      <EmailIcon /> SMTP
                     </div>
                   </div>
                 </Link>
@@ -296,8 +246,7 @@ const Setting = () => {
                     }
                   >
                     <div className="text-and-icon-center">
-                      <ChangeLogIcon />
-                      <span className="--hide-on-small-screen">HTTP Proxy</span>
+                      <ChangeLogIcon /> HTTP Proxy
                     </div>
                   </div>
                 </Link>
@@ -310,14 +259,11 @@ const Setting = () => {
                     }
                   >
                     <div className="text-and-icon-center">
-                      <PythonIcon />
-                      <span className="--hide-on-small-screen">
-                        Python Artifactory
-                      </span>
+                      <PythonIcon /> Python Artifactory
                     </div>
                   </div>
                 </Link>
-                {/* <Link to={`platform/branch`}>
+                <Link to={`platform/branch`}>
                   <div
                     className={
                       lastSegment == "branch"
@@ -326,12 +272,11 @@ const Setting = () => {
                     }
                   >
                     <div className="text-and-icon-center">
-                      <GitNewBranchIcon />{" "}
-                      <span className="--hide-on-small-screen">Branch</span>
+                      <GitNewBranchIcon /> Branch
                     </div>
                   </div>
-                </Link> */}
-                {/* <Link to={`platform/backingFs`}>
+                </Link>
+                <Link to={`platform/backingFs`}>
                   <div
                     className={
                       lastSegment == "backingFs"
@@ -340,11 +285,10 @@ const Setting = () => {
                     }
                   >
                     <div className="text-and-icon-center">
-                      <HistoricalRunsIcon />
-                      <span className="--hide-on-small-screen">BackingFs</span>
+                      <HistoricalRunsIcon /> BackingFs
                     </div>
                   </div>
-                </Link> */}
+                </Link>
                 <Link to={`platform/git`}>
                   <div
                     className={
@@ -354,8 +298,7 @@ const Setting = () => {
                     }
                   >
                     <div className="text-and-icon-center">
-                      <CodeCellIcon />{" "}
-                      <span className="--hide-on-small-screen">Git</span>
+                      <CodeCellIcon /> Git
                     </div>
                   </div>
                 </Link>
@@ -368,33 +311,14 @@ const Setting = () => {
                     }
                   >
                     <div className="text-and-icon-center">
-                      <SparklesIcon />{" "}
-                      <span className="--hide-on-small-screen">Spark</span>
-                    </div>
-                  </div>
-                </Link>
-                <Link to={`platform/datamart`}>
-                  <div
-                    className={
-                      lastSegment == "datamart"
-                        ? "settingpage-layout-sidebar-menu-subHeadSelected"
-                        : "settingpage-layout-sidebar-menu-subHead"
-                    }
-                  >
-                    <div className="text-and-icon-center">
-                      <DataCellsIcon />{" "}
-                      <span className="--hide-on-small-screen">Datamart</span>
+                      <SparklesIcon /> Spark
                     </div>
                   </div>
                 </Link>
               </div>
               <div className="settingpage-layout-sidebar-menu">
                 <div className="settingpage-layout-sidebar-menu-head">
-                  <BTHInternal>
-                    <span className="--hide-on-small-screen">
-                      {getLanguageLabel("access")}
-                    </span>
-                  </BTHInternal>
+                  <BTHInternal>{getLanguageLabel("access")}</BTHInternal>
                 </div>
 
                 <Link to={`platform/bulkUserCreation`}>
@@ -406,27 +330,11 @@ const Setting = () => {
                     }
                   >
                     <div className="text-and-icon-center">
-                      <GroupsIcon />{" "}
-                      <span className="--hide-on-small-screen">
-                        Bulk User Creation
-                      </span>
+                      <GroupsIcon /> Bulk User Creation
                     </div>
                   </div>
                 </Link>
               </div>
-              <Link to={`platform/mfa`}>
-                <div
-                  className={
-                    lastSegment == "mfa"
-                      ? "settingpage-layout-sidebar-menu-subHeadSelected"
-                      : "settingpage-layout-sidebar-menu-subHead"
-                  }
-                >
-                  <div className="text-and-icon-center">
-                    <ClearCacheRunIcon /> Multi Factor Authentication
-                  </div>
-                </div>
-              </Link>
               {/* {
                 // check if is platform Admin and is development
                 isDev && (
@@ -458,11 +366,7 @@ const Setting = () => {
               <div className="settingpage-layout-sidebar-menu"></div>
               <div className="settingpage-layout-sidebar-menu">
                 <div className="settingpage-layout-sidebar-menu-head">
-                  <BTHInternal>
-                    <span className="--hide-on-small-screen">
-                      {getLanguageLabel("account")}
-                    </span>
-                  </BTHInternal>
+                  <BTHInternal>{getLanguageLabel("account")}</BTHInternal>
                 </div>
 
                 <Link to={`profile`}>
@@ -474,10 +378,7 @@ const Setting = () => {
                     }
                   >
                     <div className="text-and-icon-center">
-                      <UserIcon />{" "}
-                      <span className="--hide-on-small-screen">
-                        {getLanguageLabel("profile")}
-                      </span>
+                      <UserIcon /> {getLanguageLabel("profile")}
                     </div>
                   </div>
                 </Link>
@@ -490,10 +391,7 @@ const Setting = () => {
                     }
                   >
                     <div className="text-and-icon-center">
-                      <PreferencesIcon />{" "}
-                      <span className="--hide-on-small-screen">
-                        {getLanguageLabel("preferences")}
-                      </span>
+                      <PreferencesIcon /> {getLanguageLabel("preferences")}
                     </div>
                   </div>
                 </Link>
@@ -506,10 +404,7 @@ const Setting = () => {
                     }
                   >
                     <div className="text-and-icon-center">
-                      <NotificationIcon />{" "}
-                      <span className="--hide-on-small-screen">
-                        {getLanguageLabel("notifications")}
-                      </span>
+                      <NotificationIcon /> {getLanguageLabel("notifications")}
                     </div>
                   </div>
                 </Link>
@@ -523,26 +418,7 @@ const Setting = () => {
                     }
                   >
                     <div className="text-and-icon-center">
-                      <KeyIcon />{" "}
-                      <span className="--hide-on-small-screen">
-                        {getLanguageLabel("tokens")}
-                      </span>
-                    </div>
-                  </div>
-                </Link>
-                <Link to={`userProjects`}>
-                  <div
-                    className={
-                      lastSegment == "userProjects"
-                        ? "settingpage-layout-sidebar-menu-subHeadSelected"
-                        : "settingpage-layout-sidebar-menu-subHead"
-                    }
-                  >
-                    <div className="text-and-icon-center">
-                      <ProjectIcon />
-                      <span className="--hide-on-small-screen">
-                        {getLanguageLabel("yourProjects")}
-                      </span>
+                      <KeyIcon /> {getLanguageLabel("tokens")}
                     </div>
                   </div>
                 </Link>
@@ -556,9 +432,7 @@ const Setting = () => {
                   >
                     <div className="text-and-icon-center">
                       <GroupsIcon />
-                      <span className="--hide-on-small-screen">
-                        {getLanguageLabel("yourGroups")}
-                      </span>
+                      {getLanguageLabel("yourGroups")}
                     </div>
                   </div>
                 </Link>
@@ -571,10 +445,7 @@ const Setting = () => {
                     }
                   >
                     <div className="text-and-icon-center">
-                      <PulseIcon />{" "}
-                      <span className="--hide-on-small-screen">
-                        {getLanguageLabel("loginActivity")}
-                      </span>
+                      <PulseIcon /> {getLanguageLabel("loginActivity")}
                     </div>
                   </div>
                 </Link>
@@ -589,44 +460,16 @@ const Setting = () => {
                       }
                     >
                       <div className="text-and-icon-center">
-                        <MoreMenuIcon />{" "}
-                        <span className="--hide-on-small-screen">
-                          {getLanguageLabel("changePassword")}
-                        </span>
+                        <MoreMenuIcon /> {getLanguageLabel("changePassword")}
                       </div>
                     </div>
                   </Link>
-                )}
-                {config.mfaEnabled &&
-                (platformAdmin === true || userAdmin === true) ? (
-                  <Link to={`mfaReset`}>
-                    <div
-                      className={
-                        lastSegment == "mfaReset"
-                          ? "settingpage-layout-sidebar-menu-subHeadSelected"
-                          : "settingpage-layout-sidebar-menu-subHead"
-                      }
-                    >
-                      <div className="text-and-icon-center">
-                        <ClearCacheRunIcon />{" "}
-                        <span className="--hide-on-small-screen">
-                          {getLanguageLabel("authentication")}
-                        </span>
-                      </div>
-                    </div>
-                  </Link>
-                ) : (
-                  ""
                 )}
               </div>
 
               <div className="settingpage-layout-sidebar-menu">
                 <div className="settingpage-layout-sidebar-menu-head">
-                  <BTHInternal>
-                    <span className="--hide-on-small-screen">
-                      {getLanguageLabel("access")}
-                    </span>
-                  </BTHInternal>
+                  <BTHInternal>{getLanguageLabel("access")}</BTHInternal>
                 </div>
 
                 <Link to={`users`}>
@@ -638,10 +481,7 @@ const Setting = () => {
                     }
                   >
                     <div className="text-and-icon-center">
-                      <UserIcon />{" "}
-                      <span className="--hide-on-small-screen">
-                        {getLanguageLabel("users")}
-                      </span>
+                      <UserIcon /> {getLanguageLabel("users")}
                     </div>
                   </div>
                 </Link>
@@ -654,14 +494,11 @@ const Setting = () => {
                     }
                   >
                     <div className="text-and-icon-center">
-                      <GroupsIcon />{" "}
-                      <span className="--hide-on-small-screen">
-                        {getLanguageLabel("groups")}
-                      </span>
+                      <GroupsIcon /> {getLanguageLabel("groups")}
                     </div>
                   </div>
                 </Link>
-                {/* {
+                {
                   // check if is platform Admin
                   platformAdmin && (
                     <Link to={`sso`}>
@@ -673,13 +510,12 @@ const Setting = () => {
                         }
                       >
                         <div className="text-and-icon-center">
-                          <LockIcon />{" "}
-                          <span className="--hide-on-small-screen">SSO</span>
+                          <LockIcon /> SSO
                         </div>
                       </div>
                     </Link>
                   )
-                } */}
+                }
               </div>
               {
                 // check if is platform Admin
@@ -687,9 +523,7 @@ const Setting = () => {
                   <div className="settingpage-layout-sidebar-menu">
                     <div className="settingpage-layout-sidebar-menu-head">
                       <BTHInternal>
-                        <span className="--hide-on-small-screen">
-                          {getLanguageLabel("environments")}
-                        </span>
+                        {getLanguageLabel("environments")}
                       </BTHInternal>
                     </div>
                     <Link to={`tags`}>
@@ -701,12 +535,8 @@ const Setting = () => {
                         }
                       >
                         <div className="text-and-icon-center">
-                          <TagsIcon />{" "}
-                          <span className="--hide-on-small-screen">
-                            {getLanguageLabel("resource") +
-                              " " +
-                              getLanguageLabel("tags")}
-                          </span>
+                          <TagsIcon /> {getLanguageLabel("resource")}{" "}
+                          {getLanguageLabel("tags")}
                         </div>
                       </div>
                     </Link>
@@ -720,10 +550,8 @@ const Setting = () => {
                         }
                       >
                         <div className="text-and-icon-center">
-                          <ComponentIcon />{" "}
-                          <span className="--hide-on-small-screen">
-                            {"Platform" + " " + getLanguageLabel("settings")}
-                          </span>
+                          <ComponentIcon /> Platform{" "}
+                          {getLanguageLabel("settings")}
                         </div>
                       </div>
                     </Link>

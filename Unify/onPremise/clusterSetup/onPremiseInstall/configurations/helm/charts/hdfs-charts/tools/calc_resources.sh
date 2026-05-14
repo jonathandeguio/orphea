@@ -1,4 +1,4 @@
-#!/bin/bash
+!/bin/bash
 
 # Calculates cluster resources given a percentage based on what is currently allocatable.
 # Related issue to programmatic resource query: https://github.com/kubernetes/kubernetes/issues/27404

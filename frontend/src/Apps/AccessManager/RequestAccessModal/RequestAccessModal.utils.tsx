@@ -51,7 +51,7 @@ export const ROLES_TYPES = {
   VIEWER: "VIEWER",
   EDITOR: "EDITOR",
   OWNER: "OWNER",
-};
+} as const;
 
 export const ADMINISRATOR_ROLES = {
   MEMBER: "MEMBER",
@@ -62,19 +62,19 @@ export const ADMINISRATOR_ROLES = {
 export type TROLES_TYPES = keyof typeof ROLES_TYPES;
 
 export const ROLES = {
-  [ROLES_TYPES.VIEWER]: {
+  VIEWER: {
     id: 1,
     name: ROLES_TYPES.VIEWER,
     icon: <EyeOpenIcon />,
     administratorName: ADMINISRATOR_ROLES.MEMBER,
   },
-  [ROLES_TYPES.EDITOR]: {
+  EDITOR: {
     id: 2,
     name: ROLES_TYPES.EDITOR,
     icon: <EditIcon />,
     administratorName: ADMINISRATOR_ROLES.MANAGER,
   },
-  [ROLES_TYPES.OWNER]: {
+  OWNER: {
     id: 3,
     name: ROLES_TYPES.OWNER,
     icon: <UserIcon />,

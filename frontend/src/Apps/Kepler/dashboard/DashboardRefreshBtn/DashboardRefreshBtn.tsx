@@ -1,9 +1,8 @@
-import { MenuProps, Tooltip } from "antd";
-import { RefreshIcon } from "assets/icons/boslerActionIcons";
+import { MenuProps } from "antd";
+import { RefreshIcon, RunIcon, StopIcon } from "assets/icons/boslerActionIcons";
 import BoslerButton from "components/BoslerComponents/ButtonComponent/BoslerButton";
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getLanguageLabel } from "utils/utilities";
 import {
   reloadChartForDashboard,
   updateDashboardState,
@@ -47,16 +46,16 @@ const DashboardRefreshBtn: React.FC = () => {
   const handleIntervalChange = (e: MenuProps["onClick"] | any) => {
     e.domEvent.stopPropagation();
     e.domEvent.preventDefault();
-    if (e.key === "off") {
+    if(e.key==="off"){
       setRefreshConfig((prevState: IDashboardRefreshState) => ({
         ...prevState,
-        refreshInterval: 0,
+        refreshInterval:0,
         isPlaying: !prevState.isPlaying,
       }));
       return;
     }
-    if (!refreshConfig?.isPlaying) {
-      handlePlayPause();
+    if(!refreshConfig?.isPlaying){
+      handlePlayPause()
     }
     const newInterval = parseInt(e.key, 10);
     setRefreshConfig((prevState: IDashboardRefreshState) => ({
@@ -78,20 +77,14 @@ const DashboardRefreshBtn: React.FC = () => {
   };
 
   const getBtnText = (interval: number) => {
-    if (interval === 0) {
-      return "off";
+    if(interval===0){
+      return "off"
     }
-
     const intervalInSeconds = interval / 1000;
-
-    if (intervalInSeconds < 60) {
-      return intervalInSeconds + "s";
-    } else if (intervalInSeconds < 3600) {
-      return intervalInSeconds / 60 + "m";
-    } else if (intervalInSeconds < 86400) {
-      return intervalInSeconds / 3600 + "h";
+    if (intervalInSeconds < 60 && intervalInSeconds>0) {
+      return intervalInSeconds + " s";
     } else {
-      return intervalInSeconds / 86400 + "d";
+      return intervalInSeconds / 60 + " mins";
     }
   };
 
@@ -106,19 +99,21 @@ const DashboardRefreshBtn: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      <Tooltip title={getLanguageLabel("refreshIntervalDashboard")}>
-        <BoslerButton
-          menuItems={DASHBOARD_REFRESH_CONFIG}
-          onClickMenuItem={handleIntervalChange}
-          onClick={handleRefreshNow}
-          textTransform={"none"}
-          size="small"
-          minimal
-          actionIcon={<RefreshIcon />}
-        >
-          {getBtnText(refreshConfig.refreshInterval)}
-        </BoslerButton>
-      </Tooltip>
+      <BoslerButton
+        // icon={refreshConfig.isPlaying ? <StopIcon /> : <RunIcon />}
+        // onClick={handlePlayPause}
+        menuItems={DASHBOARD_REFRESH_CONFIG}
+        onClickMenuItem={handleIntervalChange}
+        textTransform={"none"}
+      >
+        {getBtnText(refreshConfig.refreshInterval)}
+      </BoslerButton>
+      <BoslerButton
+        onClick={handleRefreshNow}
+        icon={<RefreshIcon />}
+        icononly={true}
+        minimal
+      />
     </div>
   );
 };

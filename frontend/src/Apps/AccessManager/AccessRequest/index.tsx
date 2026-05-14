@@ -1,7 +1,7 @@
 import { IAccessRequest } from "Apps/AccessManager/AccessManager";
-import { Typography } from "antd";
+import { Flex, Typography } from "antd";
 import { CollapserHandler } from "components/BoslerComponents/ResizablePane/ResizablePaneUtil";
-import Comments from "components/Comments/CommentsSidebar/CommentsSidebar";
+import Comments from "components/Comments/CommentsV2";
 import BoslerLoader from "components/boslerLoader";
 import React, { useEffect, useRef, useState } from "react";
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";

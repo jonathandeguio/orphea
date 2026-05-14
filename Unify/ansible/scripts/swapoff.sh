@@ -1,4 +1,4 @@
-#!/bin/bash
+!/bin/bash
 
 # Get the active swap device or file (Ubuntu might use /swapfile or /dev/sdX)
 SWAP_DEVICE=$(swapon --show --noheadings | awk '{print $1}')

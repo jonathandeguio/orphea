@@ -8,8 +8,6 @@ import { getTableExplanationAPI } from "./SimpleTreePopover.api";
 interface IProps {
   sourceId: string;
   tableNode: Resource;
-  popoverCache: any;
-  setPopoverCache: any;
 }
 
 interface ITableExplanation {
@@ -80,12 +78,7 @@ const DefinationSection = ({ isLoading, data }: IDefinationSectionProps) => {
   return <>Defination</>;
 };
 
-const TreePopoverTable = ({
-  sourceId,
-  tableNode,
-  popoverCache,
-  setPopoverCache,
-}: IProps) => {
+const TreePopoverTable = ({ sourceId, tableNode }: IProps) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isError, setIsError] = useState<false | string>(false);
   const [selectedSection, setSelectedSection] = useState<TSections>("info");
@@ -93,27 +86,18 @@ const TreePopoverTable = ({
     useState<ITableExplanation>();
 
   const getSourceTableExplanation = (sourceId: string, tableName: string) => {
-    const key = `${tableName}-${sourceId}`;
     setIsLoading(true);
-    if (popoverCache[key]) {
-      setTableExplanationData(popoverCache[key]);
-      setIsLoading(false);
-    } else {
-      getTableExplanationAPI(sourceId, tableName)
-        .then(({ data }) => {
-          setTableExplanationData(data);
-          setPopoverCache({
-            ...popoverCache,
-            [key]: data,
-          });
-        })
-        .catch((error) => {
-          setIsError(error.message);
-        })
-        .finally(() => {
-          setIsLoading(false);
-        });
-    }
+    getTableExplanationAPI(sourceId, tableName)
+      .then(({ data }) => {
+        console.log(data);
+        setTableExplanationData(data);
+      })
+      .catch((error) => {
+        setIsError(error.message);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   useEffect(() => {

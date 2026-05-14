@@ -2,16 +2,3 @@
   height: calc(100vh - 100px);
   overflow-y: auto;
 }
-
-.tableHeader {
-  width: 100%;
-  min-height: 40px;
-  height: 40px;
-  max-height: 40px;
-  background-color: var(--bosler-border-color-muted);
-  padding: 1px 1px 1px 100px;
-}
-
-.tableHeaderItem {
-  font-size: 12px;
-}

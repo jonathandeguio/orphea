@@ -112,7 +112,9 @@ export const ExplorerTree: React.FC<Props> = ({
   }, [defaultActiveId]);
 
   useEffect(() => {
-    setFilteredTreeData(treeData);
+    if (treeData) {
+      setFilteredTreeData(treeData);
+    }
   }, [treeData]);
 
   const treeRef = useRef<HTMLDivElement | null>();
@@ -160,7 +162,7 @@ export const ExplorerTree: React.FC<Props> = ({
               <TreeNode
                 isExpanded={true}
                 hidden={hidden}
-                key={filteredTreeData.name + filteredTreeData.chldren?.length}
+                key={treeData.name + treeData.chldren?.length}
                 node={filteredTreeData}
                 type={type}
                 index={0}

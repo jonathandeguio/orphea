@@ -1,15 +1,15 @@
 import { Tabs } from "antd";
-import BoslerLoader from "components/boslerLoader";
-import { TickIcon, UndoIcon } from "assets/icons/boslerNavigationIcon";
+import OrpheaLoader from "components/orpheaLoader";
+import { TickIcon, UndoIcon } from "assets/icons/orpheaNavigationIcon";
 import React, { useEffect, useRef, useState } from "react";
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
 import { useParams } from "react-router";
-import BoslerButton from "components/ButtonComponent/BoslerButton";
+import OrpheaButton from "components/ButtonComponent/OrpheaButton";
 import { CollapserHandler } from "components/ResizablePane/ResizablePaneUtil";
 import "./configuration.scss";
 import CreateNewConfigurationTargetModal from "./CreateNewConfigurationTargetModal";
 import CreateNewLicenseModal from "./CreateNewLicenseModal";
-import BoslerModal from "components/BoslerModalContainer";
+import OrpheaModal from "components/OrpheaModalContainer";
 import {
   fetchDeploymentDetails,
   getConfigurationColumns,
@@ -130,7 +130,7 @@ const Configuration = () => {
   });
 
   if (isLoading) {
-    return <BoslerLoader size="large" />;
+    return <OrpheaLoader size="large" />;
   }
   return (
     <>
@@ -182,7 +182,7 @@ const Configuration = () => {
             items={tabItems}
           />
         </Panel>
-        <BoslerModal
+        <OrpheaModal
           headingIcon={<UndoIcon />}
           heading="Rollback"
           open={isRevertStateModalOpen}
@@ -199,23 +199,23 @@ const Configuration = () => {
               }}
             >
               <div style={{ display: "flex", gap: "8px" }}>
-                <BoslerButton
+                <OrpheaButton
                   icon={<TickIcon />}
                   intent="action"
                   key="submit"
                   onClick={handleConfirmRevert}
                 >
                   Revert
-                </BoslerButton>
-                <BoslerButton key="cancel" onClick={handleCancelRevert}>
+                </OrpheaButton>
+                <OrpheaButton key="cancel" onClick={handleCancelRevert}>
                   Cancel
-                </BoslerButton>
+                </OrpheaButton>
               </div>
             </div>
           }
         >
           {selectedRecord && <SelectedTable selectedRecord={selectedRecord} />}
-        </BoslerModal>
+        </OrpheaModal>
       </PanelGroup>
     </>
   );

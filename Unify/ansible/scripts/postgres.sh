@@ -1,4 +1,4 @@
-#!/bin/bash
+!/bin/bash
 
 # Variables (modify these as needed)
 POSTGRES_DATA_DIR="/var/lib/postgresql/17/main"

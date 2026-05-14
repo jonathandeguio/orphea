@@ -27,7 +27,7 @@
   height: 100%;
   width: 100%;
   padding: 5px;
-  cursor: grab;
+  cursor: pointer;
   &:hover {
     transition: color 0.15s cubic-bezier(0.25, 0.1, 0.25, 1),
       background-color 0.15s cubic-bezier(0.25, 0.1, 0.25, 1),

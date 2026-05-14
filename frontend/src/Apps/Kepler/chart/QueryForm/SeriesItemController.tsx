@@ -24,6 +24,7 @@ const { Text } = Typography;
 interface SeriesItemControllerProps {
   fieldName: any;
   chartType: string;
+  groupBy: boolean;
 }
 
 const SeriesItemController = (props: SeriesItemControllerProps) => {
@@ -108,6 +109,7 @@ const SeriesItemController = (props: SeriesItemControllerProps) => {
           }}
         >
           {props.chartType === "VerticalAxisChart" && (
+            // chartConfig[props.chartType].isSingleSeries &&
             <Form.Item
               name={[props.fieldName, "seriesType"]}
               style={{ marginBottom: "0" }}
@@ -255,7 +257,7 @@ const SeriesItemController = (props: SeriesItemControllerProps) => {
           <div className="metric-subItem-right aggregate">
             <Form.Item name={[props.fieldName, "sort"]}>
               <Select
-                style={{ fontSize: "12px", width: "100%" }}
+                style={{ fontSize: "12px" }}
                 variant={"borderless"}
                 popupMatchSelectWidth={false}
                 options={[
@@ -311,6 +313,94 @@ const SeriesItemController = (props: SeriesItemControllerProps) => {
             </Form.Item>
           </div>
         </div>
+      )}
+      {props.groupBy && (
+        <>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              marginBottom: "0.25rem",
+            }}
+          >
+            <Tag
+              style={{
+                borderRadius: 0,
+                margin: 0,
+                borderRight: 0,
+                lineHeight: 2,
+                maxHeight: "32px",
+                fontSize: "small",
+                fontWeight: "bold",
+              }}
+            >
+              {getLanguageLabel("groupBy").toLocaleUpperCase()}
+            </Tag>
+
+            <Form.Item
+              name={[props.fieldName, "groupBy"]}
+              style={{ marginBottom: "0", width: "100%" }}
+            >
+              <Select
+                placeholder={`Choose a column`}
+                className=""
+                showSearch
+                mode="multiple"
+                optionLabelProp={"value"}
+                maxTagCount={2}
+                optionFilterProp="value"
+                filterOption={(input, option) => {
+                  return (option?.value as any)
+                    .toLowerCase()
+                    .includes(input.toLowerCase());
+                }}
+                allowClear
+              >
+                {columns.map((column: any) => (
+                  <Select.Option value={column.headerName}>
+                    <div
+                      style={{
+                        display: "flex",
+                        gap: "0.4rem",
+                        flexDirection: "row",
+                        alignItems: "center",
+                        height: "100%",
+                        width: "100%",
+                      }}
+                    >
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                          width: "100%",
+                        }}
+                      >
+                        <span style={{ fontSize: "small" }}>
+                          {column.headerName}
+                        </span>
+                        <span
+                          style={{
+                            display: "flex",
+                            marginLeft: "auto",
+                          }}
+                        >
+                          <div className="text-and-icon-center">
+                            <div className="data-type-label">{column.type}</div>
+                            <IconForColumnType
+                              type={column.type}
+                              style={{ color: "#08c" }}
+                            />
+                          </div>
+                        </span>
+                      </div>
+                    </div>
+                  </Select.Option>
+                ))}
+              </Select>
+            </Form.Item>
+          </div>
+        </>
       )}
     </>
   );

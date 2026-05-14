@@ -33,7 +33,8 @@ import { openFileExplorerModal } from "../../redux/ModalSlice";
 import { addNewResource } from "../../redux/fileIndexSlice";
 import BoslerButton from "../BoslerComponents/ButtonComponent/BoslerButton";
 import BoslerInput from "../BoslerComponents/InputComponent/BoslerInput";
-const { Text } = Typography;
+const { Text, Title } = Typography;
+const uuid = require("uuid");
 type CreateNewChartModalProps = {
   id?: string;
   branch: string;

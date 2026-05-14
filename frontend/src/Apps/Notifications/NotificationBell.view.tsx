@@ -28,7 +28,6 @@ import BoslerUserPopover from "components/UserPopover/userpopover";
 import SBElement from "layouts/Sidebar/SBElement";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router";
 import { RootState } from "redux/types/store";
 import {
   getLanguageLabel,
@@ -48,6 +47,7 @@ import {
   getNotificationPrefix,
   NOTIFICATION_TYPES,
 } from "./utils/Notification.utils";
+import { useNavigate } from "react-router";
 
 interface TProps {
   iconSize?: number;
@@ -353,7 +353,7 @@ export const NotificationBell = ({
                               switch (notification.type) {
                                 case NOTIFICATION_TYPES.ACCESS_REQUEST:
                                   navigate(
-                                    `/portal/access_manager/${notification.resourceId}`
+                                    `/portal/accessManager/${notification.resourceId}`
                                   );
                                 case NOTIFICATION_TYPES.MENTION:
                                   navigator(notification.resourceId);
@@ -413,7 +413,7 @@ export const NotificationBell = ({
             icon={
               <NotificationIcon
                 size={iconSize}
-                color={showDot ? "#D3D7E2" : "#D3D7E2"}
+                // color={showDot ? "var(--bosler-intent-danger)" : ""}
               />
             }
             tooltip={getLanguageLabel("notifications")}

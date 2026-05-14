@@ -1,20 +1,15 @@
 import { TooltipInfo } from "Apps/Kepler/kepler";
 import { eChartDarkTheme } from "Apps/Kepler/utils/echartDarkTheme";
 import { fixYAxisNameGap } from "Apps/Kepler/utils/paddingFixEChart";
-import { Tooltip } from "antd";
-import { ZoomOutIcon } from "assets/icons/boslerNavigationIcon";
 import * as echarts from "echarts";
 import "echarts-wordcloud";
 import { useComponentSize } from "hooks/useComponentSize";
 import React, { useEffect, useMemo, useRef } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "redux/types/store";
-import {
-  ObjectKeys,
-  isCurrentConfigThemeDark,
-  isDefined,
-} from "utils/utilities";
+import { isCurrentConfigThemeDark, isDefined } from "utils/utilities";
 import { sunBurstChartArrPrepare } from "../charts.utils";
+import { ZoomOutIcon } from "assets/icons/boslerNavigationIcon";
 echarts.registerTheme("dark-bosler", eChartDarkTheme);
 
 function KeplerEChart({
@@ -39,14 +34,13 @@ function KeplerEChart({
 
   const nameArray: string[] = useMemo(() => {
     const nameArr: string[] = [];
-    if (isDefined(options) && ObjectKeys(options).length > 0) {
+    if (isDefined(options)) {
       if (chartType === "pieChart" || chartType === "wordCloudChart") {
-        return options.series[0].data.map((dElement: any) => dElement.name);
+        return options.series?.[0]?.data?.map((dElement: any) => dElement.name) ?? [];
       } else if (chartType === "VerticalAxisChart") {
-        console.log("options.xAxis", options.xAxis);
-        return options.xAxis.data;
+        return options.xAxis?.data ?? [];
       } else if (chartType === "sunBurstChart") {
-        sunBurstChartArrPrepare(options.series.data, nameArr);
+        sunBurstChartArrPrepare(options.series?.[0]?.data ?? [], nameArr);
         return nameArr;
       }
     }
@@ -181,27 +175,21 @@ function KeplerEChart({
           width: "100%",
         }}
       ></div>
-      {/*DO NOT REMOVE THIS LINE AT ANY COST!!!*/}
-      <div id={"1px_hack"} style={{ width: "0.1px" }}>
-        &nbsp;
-      </div>
       {["VerticalAxisChart", "waterFallChart", "horizontalBarChart"].includes(
         chartType ?? ""
       ) && (
-        <Tooltip title={"Zoom out"}>
-          <div
-            className="data-zoom-reset-icon"
-            onClick={() => {
-              chartInstance.current?.dispatchAction({
-                type: "dataZoom",
-                start: 0,
-                end: 100,
-              });
-            }}
-          >
-            <ZoomOutIcon size={14} />
-          </div>
-        </Tooltip>
+        <div
+          className="data-zoom-reset-icon"
+          onClick={() => {
+            chartInstance.current?.dispatchAction({
+              type: "dataZoom",
+              start: 0,
+              end: 100,
+            });
+          }}
+        >
+          <ZoomOutIcon size={14} />
+        </div>
       )}
     </>
   );

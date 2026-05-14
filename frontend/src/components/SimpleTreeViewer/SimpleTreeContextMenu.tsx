@@ -1,4 +1,3 @@
-import { TDatabaseTreePages } from "Apps/Connect/Connect.types";
 import LinkModal from "Apps/Connect/Links/LinkModal.view";
 import { ResourceSubTypeEnum } from "Apps/explorer/explorer.utils";
 import { CopyIcon } from "assets/icons/boslerEditorIcons";
@@ -26,10 +25,11 @@ import { RootState } from "../../redux/types/store";
 interface SimpleTreeNodeContextMenuProps {
   id: string;
   node: any;
-  page: TDatabaseTreePages;
+  page: TPage;
   store: ContextMenuStore;
 }
 
+type TPage = "LINK" | "SOURCE";
 const regex = new RegExp("SOURCE");
 
 export const SimpleTreeNodeContextMenu: React.FC<
@@ -174,7 +174,7 @@ export const SimpleTreeNodeContextMenu: React.FC<
     },
   ];
 
-  const getContextMenuItems = (node: any, page: TDatabaseTreePages) => {
+  const getContextMenuItems = (node: any, page: TPage) => {
     if (
       regex.test(node.type) &&
       node.subType == ResourceSubTypeEnum.TABLE_CHART
@@ -198,38 +198,30 @@ export const SimpleTreeNodeContextMenu: React.FC<
         <ContextMenu items={getContextMenuItems(node, page)} {...store} />
       </div>
       <BoslerModal destroyOnClose onCancel={cancelHandler} {...modalProps} />
-      {value == "chart" && (
-        <CreateNewChartModal
-          defaultParent={contextMenuId}
-          isVisible={value == "chart"}
-          setIsVisible={setValue}
-          branch={"master"}
-        />
-      )}
-      {value == "datasetChart" && (
-        <CreateNewChartModal
-          isVisible={value == "datasetChart"}
-          setIsVisible={setValue}
-          branch={"master"}
-          id={contextMenuId}
-        />
-      )}
-      {value == "dataset" && (
-        <CreateNewDatasetModal
-          destroyOnClose
-          id={contextMenuId}
-          isVisible={value == "dataset"}
-          setIsVisible={setValue}
-        />
-      )}
-      {value == "link" && (
-        <LinkModal
-          destroyOnClose
-          defaultParent={contextMenuId}
-          isVisible={value == "link"}
-          setIsVisible={setValue}
-        />
-      )}
+      <CreateNewChartModal
+        defaultParent={contextMenuId}
+        isVisible={value == "chart"}
+        setIsVisible={setValue}
+        branch={"master"}
+      />
+      <CreateNewChartModal
+        isVisible={value == "datasetChart"}
+        setIsVisible={setValue}
+        branch={"master"}
+        id={contextMenuId}
+      />
+      <CreateNewDatasetModal
+        destroyOnClose
+        id={contextMenuId}
+        isVisible={value == "dataset"}
+        setIsVisible={setValue}
+      />
+      <LinkModal
+        destroyOnClose
+        defaultParent={contextMenuId}
+        isVisible={value == "link"}
+        setIsVisible={setValue}
+      />
     </>
   );
 };

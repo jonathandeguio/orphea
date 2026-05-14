@@ -80,12 +80,11 @@ const ConnectLinks = () => {
 
             <LinkTable2 tableList={links} loading={linkLoading} />
           </div>
-          {isNewLinkModalOpen && (
-            <LinkModal
-              isVisible={isNewLinkModalOpen}
-              setIsVisible={setIsNewLinkModalOpen}
-            />
-          )}
+
+          <LinkModal
+            isVisible={isNewLinkModalOpen}
+            setIsVisible={setIsNewLinkModalOpen}
+          />
         </React.Fragment>
       ) : (
         <BoslerLoader />

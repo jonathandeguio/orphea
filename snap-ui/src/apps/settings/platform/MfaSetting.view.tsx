@@ -1,12 +1,12 @@
 import { Col, Divider, InputNumber, Row, Switch, Typography } from "antd";
-import { SaveIcon } from "assets/icons/boslerActionIcons";
-import BoslerLoader from "components/boslerLoader";
+import { SaveIcon } from "assets/icons/orpheaActionIcons";
+import OrpheaLoader from "components/orpheaLoader";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getLanguageLabel, isDefined, openNotification } from "utils/utilities";
 import { updatePlatformConfig } from "redux/actions/platformSettingsActions";
 import { ThunkAppDispatch } from "redux/types/store";
-import BoslerButton from "components/ButtonComponent/BoslerButton";
+import OrpheaButton from "components/ButtonComponent/OrpheaButton";
 
 const { Text, Title } = Typography;
 export const MfaSetting = () => {
@@ -33,7 +33,7 @@ export const MfaSetting = () => {
   return (
     <div className="settings-center-block">
       {loading ? (
-        <BoslerLoader />
+        <OrpheaLoader />
       ) : (
         <>
           <p>

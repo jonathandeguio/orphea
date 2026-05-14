@@ -153,8 +153,14 @@ const DatasetHistoryListElement = ({
         </div>
         <div className={styles.editRow}>
           <div>
-              {transaction?.writeMode}
-              <BuildIcon size={12} />
+            {transaction.launchedBy == "UNKNOWN" ? (
+              <></>
+            ) : (
+              <>
+                {transaction.launchedBy}
+                <BuildIcon size={12} />
+              </>
+            )}
           </div>
           <UserInfo userId={transaction.createdBy} />
         </div>

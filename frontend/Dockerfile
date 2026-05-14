@@ -1,3 +1,4 @@
+# Use a node base image for the build stage
 FROM --platform=linux/amd64 node:18.12 as build-stage
 
 # Set the working directory

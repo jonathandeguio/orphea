@@ -1,15 +1,15 @@
 import { Avatar, Dropdown, MenuProps } from "antd";
 import { LogoutIcon, SettingsIcon } from "assets/icons/boslerActionIcons";
 import { DocumentationIcon } from "assets/icons/boslerFileIcons";
-import BoslerAvatar from "components/BoslerComponents/BoslerAvatar/BoslerAvatar";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import { getLanguageLabel } from "utils/utilities";
+import { useNavigate } from "react-router-dom";
+import { getLanguageLabel, getUserDocsLanguage } from "utils/utilities";
 import { refreshTokenStatus } from "../../redux/actions/tokenActions";
 import { logout } from "../../redux/actions/userActions";
 import { ThunkAppDispatch } from "../../redux/types/store";
 import SBElement from "./SBElement";
+import BoslerAvatar from "components/BoslerComponents/BoslerAvatar/BoslerAvatar";
 
 interface TProps {
   iconSize?: number;
@@ -57,19 +57,13 @@ const SBElementAvatar = ({
     {
       key: "2",
       label: (
-        <Link
-          to={`/learn/fr/`}
-          onClick={(e) => {
-            e.preventDefault(); // Prevent default behavior
-            window.open(
-              `/learn/fr/`,
-              "_blank",
-              "noopener,noreferrer"
-            ); // Open in new tab
-          }}
+        <a
+          href={`/learn/${getUserDocsLanguage()}`}
+          target="_blank"
+          rel="noreferrer"
         >
           {getLanguageLabel("documentation")}
-        </Link>
+        </a>
       ),
       icon: <DocumentationIcon size={14} />,
     },
@@ -82,9 +76,12 @@ const SBElementAvatar = ({
     {
       key: "4",
       label: (
-        <Link rel="noopener noreferrer" to="/portal/settings/profile">
+        <a
+          rel="noopener noreferrer"
+          onClick={() => navigate("/portal/settings/profile")}
+        >
           {getLanguageLabel("settings")}
-        </Link>
+        </a>
       ),
       icon: <SettingsIcon size={14} />,
     },
@@ -92,16 +89,16 @@ const SBElementAvatar = ({
     {
       key: "6",
       label: (
-        <Link
+        <a
           rel="noopener noreferrer"
-          to="/Auth/logout"
           onClick={() => {
             dispatch(logout());
             dispatch(refreshTokenStatus());
+            navigate("/Auth/logout");
           }}
         >
           {getLanguageLabel("logout")}
-        </Link>
+        </a>
       ),
       icon: <LogoutIcon size={14} />,
     },

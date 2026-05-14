@@ -84,28 +84,43 @@ const ParentChartComponent = ({
     });
   }, [chartData, dimensions, chartCustomization, setTooltip, !editMode]);
 
-  const onMountElement = useCallback(() => {
-    function onWindowResize(event: UIEvent): void {
-      setDimensions({
-        width: window.innerWidth,
-        height: window.innerHeight,
+  const onMountElement = useCallback(
+    (ele: any) => {
+      function onWindowResize(event: UIEvent): void {
+        setDimensions({
+          width: ele?.offsetWidth ?? 0,
+          height: ele?.offsetHeight ?? 0,
+        });
+      }
+
+      const resizeObserver = new ResizeObserver((entries) => {
+        for (let entry of entries) {
+          setDimensions({
+            width: entry.contentRect.width,
+            height: entry.contentRect.height,
+          });
+        }
       });
-    }
 
-    // Set the initial screen dimensions
-    setDimensions({
-      width: window.innerWidth,
-      height: window.innerHeight,
-    });
+      if (ele) {
+        setDimensions({
+          width: ele?.offsetWidth ?? 0,
+          height: ele?.offsetHeight ?? 0,
+        });
 
-    // Add window resize event listener
-    window.addEventListener("resize", onWindowResize);
+        window.addEventListener("resize", onWindowResize);
 
-    return () => {
-      // Clean up the event listener on unmount
-      window.removeEventListener("resize", onWindowResize);
-    };
-  }, [setDimensions]);
+        resizeObserver.observe(ele);
+      } else {
+        window.removeEventListener("resize", onWindowResize);
+        if (ele) {
+          resizeObserver.unobserve(ele);
+        }
+        resizeObserver.disconnect();
+      }
+    },
+    [setDimensions]
+  );
 
   if (
     isEmpty(chartData?.rows) ||
@@ -127,10 +142,8 @@ const ParentChartComponent = ({
     );
   return (
     <BoslerShimmer loading={loading}>
-      <div
-        className="fullHeightWidth chart-container"
-        ref={onMountElement}
-        style={{ cursor: !editMode ? "move" : "pointer" }}
+      <div className="fullHeightWidth chart-container" ref={onMountElement}
+      style={{cursor: !editMode ? "move" : "pointer"}}
       >
         <div
           style={{
@@ -151,7 +164,6 @@ const ParentChartComponent = ({
             darkTheme={isCurrentConfigThemeDark(user)}
           >
             <LegendWrapper
-              editMode={editMode}
               chartCustomization={chartCustomization}
               chartData={chartData}
               onClickLegend={onClickChart}

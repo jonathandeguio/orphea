@@ -24,7 +24,7 @@ export const eChartDarkTheme = {
       borderWidth: "4",
     },
     lineStyle: {
-      width: "0.2",
+      width: "3",
     },
     symbolSize: "0",
     symbol: "circle",

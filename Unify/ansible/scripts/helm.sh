@@ -1,4 +1,4 @@
-#!/bin/bash
+!/bin/bash
 
 HELM_VERSION="v3.8.0-rc.1"
 HELM_URL="https://get.helm.sh/helm-${HELM_VERSION}-linux-amd64.tar.gz"

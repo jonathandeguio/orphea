@@ -1,8 +1,6 @@
-import { TDatabaseTreePages } from "Apps/Connect/Connect.types";
 import { FileExplorerContextMenuHandlerType } from "Apps/explorer/FileExplorer";
 import { ResourceType } from "Apps/explorer/explorer.utils";
 import { Input } from "antd";
-import { AxiosResponse } from "axios";
 import { useOutsideClickHandler } from "hooks/useOutsideClickHandler";
 import React, { useRef, useState } from "react";
 import { makeDebounceFunction, notEmpty } from "utils/utilities";
@@ -13,13 +11,13 @@ interface Props {
   type?: ResourceType[];
   defaultActiveId?: string;
   onContextMenu?: FileExplorerContextMenuHandlerType;
-  onClick?: (node: any, parent: any) => void;
+  onClick?: (node: any) => void;
   onDoubleClick?: (node: any) => void;
-  dynamicFetching: ((id: string) => Promise<AxiosResponse<any, any>>) | false;
+  dynamicFetching: boolean;
   openOnSingleClick: boolean;
   hidden?: string[];
   onDrop?: (a: any, b: any) => void;
-  page: TDatabaseTreePages;
+  page: "LINK" | "SOURCE";
   originId?: string;
 }
 
@@ -42,17 +40,15 @@ export const SimpleTreeViewer: React.FC<Props> = ({
   const [filteredTreeData, setFilteredTreeData] = useState(treeData);
   const treeRef = useRef<HTMLDivElement | null>();
   const [activeId, setActiveId] = useState<string | undefined>(undefined);
-  const onSingleNodeClickHandler = (node: any, parent: any) => {
+  const onSingleNodeClickHandler = (node: any) => {
     setActiveId(node.id);
-    onClick?.(node, parent);
+    onClick?.(node);
   };
   const onDoubleNodeClickHandler = (node: any) => {
     setActiveId(node.id);
     onDoubleClick?.(node);
   };
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // if (isDefined(dynamicFetching)) return;
-
     const { value } = e.target;
 
     const traverse = (node: any, value: string) => {
@@ -76,7 +72,6 @@ export const SimpleTreeViewer: React.FC<Props> = ({
         }
       });
     };
-
     const nodeData = JSON.parse(JSON.stringify(treeData));
     if (value && value != "") {
       traverse(nodeData, value);
@@ -94,6 +89,7 @@ export const SimpleTreeViewer: React.FC<Props> = ({
   };
 
   useOutsideClickHandler(() => setActiveId(undefined), [treeRef]);
+
   return (
     <div style={{ height: "100%" }} ref={(ref) => (treeRef.current = ref)}>
       <Search
@@ -102,7 +98,6 @@ export const SimpleTreeViewer: React.FC<Props> = ({
         onChange={makeDebounceFunction((e: any) => onChange(e), 500)}
       />
       <TreeNode
-        parent={null}
         isExpanded={true}
         hidden={hidden}
         key={filteredTreeData.id}

@@ -35,14 +35,14 @@ export const GitSettings = () => {
               updateGitConfigAPI(values);
             }}
           >
-            <Row className="settings-git-row">
+            <Row>
               <Col>
                 <Title level={3}>Git</Title>
                 <Text type="secondary">{getLanguageLabel("gitMessage")}</Text>
               </Col>
             </Row>
             <Divider />
-            <Row className="settings-git-row" justify="space-between">
+            <Row justify="space-between">
               <Col span={16}>
                 <Text>Host</Text>
                 <br />
@@ -58,7 +58,7 @@ export const GitSettings = () => {
                 </Form.Item>
               </Col>
             </Row>
-            <Row className="settings-git-row" justify="space-between">
+            <Row justify="space-between">
               <Col span={16}>
                 <Text>API Port</Text>
                 <br />
@@ -73,7 +73,7 @@ export const GitSettings = () => {
                 </Form.Item>
               </Col>
             </Row>
-            <Row className="settings-git-row" justify="space-between">
+            <Row justify="space-between">
               <Col span={16}>
                 <Text>Port</Text>
                 <br />
@@ -88,7 +88,7 @@ export const GitSettings = () => {
                 </Form.Item>
               </Col>
             </Row>
-            <Row className="settings-git-row" justify="space-between">
+            <Row justify="space-between">
               <Col span={16}>
                 <div
                   className="BoslerSubHeader1 text-and-icon-center"

@@ -21,20 +21,16 @@ export type chartDataConfigProps = {
   isDarkTheme: boolean;
   editMode: boolean;
 };
+
 export const getRelativeFontSize = (
   fontSize: number,
-  dimensions: Dimensions,
-  minFontSize: number = 8, // Minimum font size for readability
-  maxFontSize: number = 72 // Maximum font size to avoid overly large text
+  dimensions: Dimensions
 ) => {
   // Calculate a scaling factor based on the geometric mean of width and height
-  const scalingFactor = Math.sqrt(dimensions.width * dimensions.height) / 3000;
+  const scalingFactor = Math.sqrt(dimensions.width * dimensions.height) / 1000;
 
-  // Calculate the scaled font size, ensuring some effect from the scaling factor
-  const scaledFontSize = fontSize * (0.5 + scalingFactor / 2.3); // scaling factor has a balanced effect
-
-  // Ensure the font size remains between the min and max bounds
-  return Math.min(Math.max(scaledFontSize, minFontSize), maxFontSize);
+  // Return the scaled font size
+  return fontSize * (scalingFactor != 0 ? scalingFactor : 1); // todo recheck
 };
 const generateChartOptions = ({
   chartData,

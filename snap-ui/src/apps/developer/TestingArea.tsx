@@ -1,10 +1,10 @@
 import { Popover, Tooltip, Typography } from "antd";
-import { AddIcon } from "assets/icons/boslerActionIcons";
-import { FolderIcon } from "assets/icons/boslerFileIcons";
-import BoslerLoader from "components/boslerLoader";
+import { AddIcon } from "assets/icons/orpheaActionIcons";
+import { FolderIcon } from "assets/icons/orpheaFileIcons";
+import OrpheaLoader from "components/orpheaLoader";
 import React, { useState } from "react";
-import BoslerButton from "components/ButtonComponent/BoslerButton";
-import BoslerModalContainer from "components/BoslerModalContainer";
+import OrpheaButton from "components/ButtonComponent/OrpheaButton";
+import OrpheaModalContainer from "components/OrpheaModalContainer";
 
 const { v4: uuidv4 } = require("uuid");
 // const { Responsive, WidthProvider } = require("c2-react-grid-layout");
@@ -1588,35 +1588,35 @@ const TestingArea = () => {
       <Title level={3}>Version History</Title>
       {/* <VersionHistory  /> */}
       <Tooltip title={"A BERYYYYYYYYYYYYYYYYYYYY PARENT"}>
-        <BoslerButton icon={<FolderIcon />}>With Icon</BoslerButton>
+        <OrpheaButton icon={<FolderIcon />}>With Icon</OrpheaButton>
       </Tooltip>
       <Popover title={"A BERYYYYYYYYYYYYYYYYYYYY PARENT"}>
-        <BoslerButton icon={<FolderIcon />}>With Icon</BoslerButton>
+        <OrpheaButton icon={<FolderIcon />}>With Icon</OrpheaButton>
       </Popover>
-      <BoslerButton>Without Icon</BoslerButton>
-      <BoslerButton icon={<FolderIcon />}>With Icon</BoslerButton>
-      <Title level={3}>Bosler Model Container</Title>
-      <BoslerModalContainer
+      <OrpheaButton>Without Icon</OrpheaButton>
+      <OrpheaButton icon={<FolderIcon />}>With Icon</OrpheaButton>
+      <Title level={3}>Orphea Model Container</Title>
+      <OrpheaModalContainer
         heading="Heading"
         headingIcon={<AddIcon />}
         extraActionHeading={
-          <BoslerButton intent="success">Run Now</BoslerButton>
+          <OrpheaButton intent="success">Run Now</OrpheaButton>
         }
         information={<>Infor</>}
         footerExtraText="footer text"
         footerButtonArea={
           <>
-            <BoslerButton> Submit</BoslerButton>
+            <OrpheaButton> Submit</OrpheaButton>
           </>
         }
       >
         This is the body
-      </BoslerModalContainer>
+      </OrpheaModalContainer>
 
-      <BoslerLoader size="large" />
-      <BoslerLoader size="medium" />
-      <BoslerLoader size="small" />
-      <BoslerLoader size="tiny" />
+      <OrpheaLoader size="large" />
+      <OrpheaLoader size="medium" />
+      <OrpheaLoader size="small" />
+      <OrpheaLoader size="tiny" />
     </>
   );
 };

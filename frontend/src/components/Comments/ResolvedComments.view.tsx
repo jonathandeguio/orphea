@@ -32,8 +32,7 @@ import { User } from "global";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "redux/types/store";
-import Comment from "./modules/Comment/Comment";
-import classNames from "classnames";
+import { ShowMessageFormatter } from "./ShowMessageFormatter";
 
 const { Title, Text } = Typography;
 
@@ -63,7 +62,6 @@ const ResolvedComments = ({
           <div
             onMouseEnter={() => setShowOptionsFor(comment.id)}
             onMouseLeave={() => setShowOptionsFor("")}
-            className={classNames("--pl10", "--pt10", "--pb10", "--pr5")}
           >
             <Row justify="space-between">
               <Col>
@@ -91,9 +89,7 @@ const ResolvedComments = ({
                   (userMap as any)[comment.createdBy]?.name}
                 &nbsp;
                 <Text type="secondary">
-                  <Tooltip title={timeConverter(comment.createdAt)}>
-                    {getTimeDisplay(comment.createdAt)}
-                  </Tooltip>
+                  <Tooltip title={timeConverter(comment.createdAt)}>{getTimeDisplay(comment.createdAt)}</Tooltip>
                 </Text>
                 &nbsp;
                 {comment.updatedAt && (
@@ -118,89 +114,91 @@ const ResolvedComments = ({
                 )}
               </Col>
               {showOptionsFor == comment.id && (
-                <Row justify={"end"}>
-                  <Col
-                    onClick={() =>
-                      openAndResolveCommentAPI(comment.id, {
-                        resourceId: id,
-                        status: "open",
-                      })
-                    }
-                  >
-                    <Tooltip title={getLanguageLabel("open")}>
-                      <span>
-                        <OpenIcon />
-                      </span>
-                    </Tooltip>
-                  </Col>
-                  <Col>
-                    <Dropdown
-                      getPopupContainer={(triggerNode: HTMLElement) =>
-                        triggerNode.parentNode as HTMLElement
+                <Col>
+                  <Row>
+                    <Col
+                      onClick={() =>
+                        openAndResolveCommentAPI(comment.id, {
+                          resourceId: id,
+                          status: "open",
+                        })
                       }
-                      menu={{
-                        items: [
-                          {
-                            label: (
-                              <>
-                                <div
-                                  onClick={(e: any) => {
-                                    // e.preventDefault();
-                                    e.stopPropagation();
-                                    setIsCommentingOn(false);
-                                    setIsReplyOnFor("");
-                                    setIsEditingOnFor(comment.id);
-                                  }}
-                                  className="text-and-icon-center"
-                                  style={{ width: "100%" }}
-                                >
-                                  <EditIcon />
-                                  {getLanguageLabel("edit")}
-                                </div>
-                              </>
-                            ),
-                            disabled:
-                              user.id != comment.createdBy && !platformAdmin,
-                            key: 0,
-                          },
-                          {
-                            label: (
-                              <>
-                                <div
-                                  onClick={(e: any) => {
-                                    // e.preventDefault();
-                                    e.stopPropagation();
-                                    deleteCommentAPI(comment.id);
-                                  }}
-                                  className="text-and-icon-center"
-                                  style={{
-                                    color: "var(--bosler-intent-danger)",
-                                  }}
-                                >
-                                  <TrashIcon
-                                    color={"var(--bosler-intent-danger)"}
-                                  />
-                                  {getLanguageLabel("delete")}
-                                </div>
-                              </>
-                            ),
-                            disabled:
-                              user.id != comment.createdBy && !platformAdmin,
-                            key: 1,
-                          },
-                        ],
-                      }}
-                      trigger={["hover"]}
                     >
-                      <div
-                        onClick={(e) => e.preventDefault()}
-                        style={{ cursor: "pointer" }}
+                      <Tooltip title={getLanguageLabel("open")}>
+                        <span>
+                          <OpenIcon />
+                        </span>
+                      </Tooltip>
+                    </Col>
+                    <Col>
+                      <Dropdown
+                        getPopupContainer={(triggerNode: HTMLElement) =>
+                          triggerNode.parentNode as HTMLElement
+                        }
+                        menu={{
+                          items: [
+                            {
+                              label: (
+                                <>
+                                  <div
+                                    onClick={(e: any) => {
+                                      // e.preventDefault();
+                                      e.stopPropagation();
+                                      setIsCommentingOn(false);
+                                      setIsReplyOnFor("");
+                                      setIsEditingOnFor(comment.id);
+                                    }}
+                                    className="text-and-icon-center"
+                                    style={{ width: "100%" }}
+                                  >
+                                    <EditIcon />
+                                    {getLanguageLabel("edit")}
+                                  </div>
+                                </>
+                              ),
+                              disabled:
+                                user.id != comment.createdBy && !platformAdmin,
+                              key: 0,
+                            },
+                            {
+                              label: (
+                                <>
+                                  <div
+                                    onClick={(e: any) => {
+                                      // e.preventDefault();
+                                      e.stopPropagation();
+                                      deleteCommentAPI(comment.id);
+                                    }}
+                                    className="text-and-icon-center"
+                                    style={{
+                                      color: "var(--bosler-intent-danger)",
+                                    }}
+                                  >
+                                    <TrashIcon
+                                      color={"var(--bosler-intent-danger)"}
+                                    />
+                                    {getLanguageLabel("delete")}
+                                  </div>
+                                </>
+                              ),
+                              disabled:
+                                user.id != comment.createdBy && !platformAdmin,
+                              key: 1,
+                            },
+                          ],
+                        }}
+                        trigger={["hover"]}
                       >
-                        <MoreMenuIcon />
-                      </div>
-                    </Dropdown>
-                  </Col>
-                </Row>
+                        <div
+                          onClick={(e) => e.preventDefault()}
+                          style={{ cursor: "pointer" }}
+                        >
+                          <MoreMenuIcon />
+                        </div>
+                      </Dropdown>
+                    </Col>
+                  </Row>
+                </Col>
               )}
             </Row>
             <Row style={{ marginTop: "0.2rem" }}>
@@ -282,7 +280,7 @@ const ResolvedComments = ({
                   </Row>
                 </Form>
               ) : (
-                <Comment message={comment.message} />
+                <ShowMessageFormatter message={comment.message} />
               )}
             </Row>
             {comment.replies.length > 0 && (
@@ -324,9 +322,7 @@ const ResolvedComments = ({
                             (userMap as any)[reply.createdBy]?.name}
                           &nbsp;
                           <Text type="secondary">
-                            <Tooltip title={timeConverter(reply.createdAt)}>
-                              {getTimeDisplay(reply.createdAt)}
-                            </Tooltip>
+                            <Tooltip title={timeConverter(reply.createdAt)}>{getTimeDisplay(reply.createdAt)}</Tooltip>
                           </Text>
                           &nbsp;
                           {reply.updatedAt && (
@@ -337,11 +333,7 @@ const ResolvedComments = ({
                                   <Text>
                                     {getLanguageLabel("created")}
                                     :&nbsp;
-                                    <Tooltip
-                                      title={timeConverter(reply.createdAt)}
-                                    >
-                                      {getTimeDisplay(reply.createdAt)}
-                                    </Tooltip>
+                                    <Tooltip title={timeConverter(reply.createdAt)}>{getTimeDisplay(reply.createdAt)}</Tooltip>
                                   </Text>
                                   <br />
                                   <Text>
@@ -357,78 +349,76 @@ const ResolvedComments = ({
                         </Col>
                         <Col>
                           {showOptionsFor == comment.id && (
-                            <Row justify={"end"}>
-                              <Dropdown
-                                getPopupContainer={(triggerNode: HTMLElement) =>
-                                  triggerNode.parentNode as HTMLElement
-                                }
-                                menu={{
-                                  items: [
-                                    {
-                                      label: (
-                                        <>
-                                          <div
-                                            onClick={(e: any) => {
-                                              // e.preventDefault();
-                                              e.stopPropagation();
-                                              setIsCommentingOn(false);
-                                              setIsReplyOnFor("");
-                                              setIsEditingOnFor(reply.id);
-                                            }}
-                                            className="text-and-icon-center"
-                                            style={{ width: "100%" }}
-                                          >
-                                            <EditIcon />
-                                            {getLanguageLabel("edit")}
-                                          </div>
-                                        </>
-                                      ),
-                                      disabled:
-                                        user.id != comment.createdBy &&
-                                        !platformAdmin,
-                                      key: 0,
-                                    },
-                                    {
-                                      label: (
-                                        <>
-                                          <div
-                                            onClick={(e: any) => {
-                                              // e.preventDefault();
-                                              e.stopPropagation();
-                                              deleteCommentAPI(reply.id);
-                                            }}
-                                            className="text-and-icon-center"
-                                            style={{
-                                              color:
-                                                "var(--bosler-intent-danger)",
-                                            }}
-                                          >
-                                            <TrashIcon
-                                              color={
-                                                "var(--bosler-intent-danger)"
-                                              }
-                                            />
-                                            {getLanguageLabel("delete")}
-                                          </div>
-                                        </>
-                                      ),
-                                      disabled:
-                                        user.id != comment.createdBy &&
-                                        !platformAdmin,
-                                      key: 1,
-                                    },
-                                  ],
-                                }}
-                                trigger={["hover"]}
+                            <Dropdown
+                              getPopupContainer={(triggerNode: HTMLElement) =>
+                                triggerNode.parentNode as HTMLElement
+                              }
+                              menu={{
+                                items: [
+                                  {
+                                    label: (
+                                      <>
+                                        <div
+                                          onClick={(e: any) => {
+                                            // e.preventDefault();
+                                            e.stopPropagation();
+                                            setIsCommentingOn(false);
+                                            setIsReplyOnFor("");
+                                            setIsEditingOnFor(reply.id);
+                                          }}
+                                          className="text-and-icon-center"
+                                          style={{ width: "100%" }}
+                                        >
+                                          <EditIcon />
+                                          {getLanguageLabel("edit")}
+                                        </div>
+                                      </>
+                                    ),
+                                    disabled:
+                                      user.id != comment.createdBy &&
+                                      !platformAdmin,
+                                    key: 0,
+                                  },
+                                  {
+                                    label: (
+                                      <>
+                                        <div
+                                          onClick={(e: any) => {
+                                            // e.preventDefault();
+                                            e.stopPropagation();
+                                            deleteCommentAPI(reply.id);
+                                          }}
+                                          className="text-and-icon-center"
+                                          style={{
+                                            color:
+                                              "var(--bosler-intent-danger)",
+                                          }}
+                                        >
+                                          <TrashIcon
+                                            color={
+                                              "var(--bosler-intent-danger)"
+                                            }
+                                          />
+                                          {getLanguageLabel("delete")}
+                                        </div>
+                                      </>
+                                    ),
+                                    disabled:
+                                      user.id != comment.createdBy &&
+                                      !platformAdmin,
+                                    key: 1,
+                                  },
+                                ],
+                              }}
+                              trigger={["hover"]}
+                            >
+                              <div
+                                onClick={(e) => e.preventDefault()}
+                                style={{ cursor: "pointer" }}
                               >
-                                <div
-                                  onClick={(e) => e.preventDefault()}
-                                  style={{ cursor: "pointer" }}
-                                >
-                                  <MoreMenuIcon />
-                                </div>
-                              </Dropdown>
-                            </Row>
+                                <MoreMenuIcon />
+                              </div>
+                            </Dropdown>
                           )}
                         </Col>
                       </Row>
@@ -516,7 +506,7 @@ const ResolvedComments = ({
                             </Row>
                           </Form>
                         ) : (
-                          <Comment message={reply.message} />
+                          <ShowMessageFormatter message={reply.message} />
                         )}
                       </Row>
                     </div>

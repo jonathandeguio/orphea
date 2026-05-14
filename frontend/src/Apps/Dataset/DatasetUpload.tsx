@@ -1,13 +1,18 @@
 import { ResourceSubTypeEnum } from "Apps/explorer/explorer.utils";
-import { Card, Col, Divider, Progress, Radio, Row, Typography } from "antd";
+import {
+  Button,
+  Card,
+  Col,
+  Divider,
+  Progress,
+  Radio,
+  Row,
+  Typography,
+} from "antd";
 import { CrossIcon, PublishIcon } from "assets/icons/boslerActionIcons";
 import { DocsIcon } from "assets/icons/boslerFileIcons";
 import { UploadIcon } from "assets/icons/boslerInterfaceIcons";
 import { TableIcon } from "assets/icons/boslerTableIcons";
-import BoslerButton from "components/BoslerComponents/ButtonComponent/BoslerButton";
-import CsvPreprocessing from "components/CsvPreprocessing";
-import { getInitialValues } from "components/CsvPreprocessing/CsvPreprocessing.constants";
-import { ICsvPreprocessing } from "components/CsvPreprocessing/CsvPreprocessing.types";
 import BoslerLoader from "components/boslerLoader";
 import React, { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
@@ -22,15 +27,12 @@ import {
 import * as XLSX from "xlsx";
 import { importDataset } from "../../redux/actions/datasetActions";
 import { ThunkAppDispatch } from "../../redux/types/store";
-import { IDatasetDetails } from "./DatasetDetail";
-import DatasetHeader from "./DatasetHeader.view";
 const { Title, Text } = Typography;
 interface TProps {
   id: string;
   branch: string;
-  datasetDetails?: IDatasetDetails;
 }
-const DatasetUpload = ({ id, branch, datasetDetails }: TProps) => {
+const DatasetUpload = ({ id, branch }: TProps) => {
   const navigate = useNavigate();
   const { config } = useSelector((state) => (state as any).platformConfig);
 
@@ -41,9 +43,6 @@ const DatasetUpload = ({ id, branch, datasetDetails }: TProps) => {
   const [uploadClicked, setUploadClicked] = useState(false);
   const [sheetNames, setSheetNames] = useState([]);
   const [selectedSheet, setSelectedSheet] = useState("");
-  const [csvProcessingData, setCsvProcessingData] = useState<ICsvPreprocessing>(
-    getInitialValues()
-  );
 
   const isFileReadyToUpload = isSelected && !readingFile;
 
@@ -112,14 +111,7 @@ const DatasetUpload = ({ id, branch, datasetDetails }: TProps) => {
     navigate(-1);
 
     dispatch(
-      importDataset(
-        selectedFile,
-        id,
-        branch,
-        setUploading,
-        selectedSheet,
-        JSON.stringify(csvProcessingData)
-      )
+      importDataset(selectedFile, id, branch, setUploading, selectedSheet)
     ).then((data: $TSFixMe) => {
       //   dispatch(checkTransaction(id!, branch!)).finally(() => {
       setIsSelected(false);
@@ -152,15 +144,7 @@ const DatasetUpload = ({ id, branch, datasetDetails }: TProps) => {
     );
 
   return (
-    <div className="dataset-splitpane">
-      {datasetDetails && (
-        <DatasetHeader
-          id={id}
-          branch={branch}
-          datasetDetails={datasetDetails}
-        />
-      )}
-
+    <>
       <div className="dataset-upload-out">
         {!isSelected ? (
           <>
@@ -214,107 +198,139 @@ const DatasetUpload = ({ id, branch, datasetDetails }: TProps) => {
         ) : (
           <div className="dataset-upload">
             <div>
-              <>
-                <Card
-                  title={
-                    <>
-                      <div className="text-and-icon-center">
-                        <DocsIcon /> {getLanguageLabel("files")}{" "}
-                      </div>
-                    </>
-                  }
-                  bordered={false}
-                  // className="scaled-interactive card"
-                  style={{ textAlign: "left" }}
-                >
-                  <Row gutter={16} style={{ textAlign: "left" }}>
-                    <Col className="gutter-row" span={6}>
-                      {" "}
-                      {getLanguageLabel("fileName")}
-                    </Col>
-                    <Col className="gutter-row" span={6}>
-                      {(selectedFile as $TSFixMe).name}
-                    </Col>
-                  </Row>
-                  <Row gutter={16} style={{ textAlign: "left" }}>
-                    <Col className="gutter-row" span={6}>
-                      {" "}
-                      {getLanguageLabel("fileType")}
-                    </Col>
-                    <Col className="gutter-row" span={16}>
-                      {(selectedFile as $TSFixMe).type}
-                    </Col>
-                  </Row>
-                  <Row gutter={16} style={{ textAlign: "left" }}>
-                    <Col className="gutter-row" span={6}>
-                      {" "}
-                      {getLanguageLabel("size")}
-                    </Col>
-                    <Col className="gutter-row" span={6}>
-                      {autoFormatter((selectedFile as $TSFixMe).size, "bytes")}
-                    </Col>
-                  </Row>
-                </Card>
-                <br />
+              {
+                <>
+                  {/* {!uploadClicked ? (
+                        <Card
+                          title={
+                            <>
+                              <span
+                                style={{
+                                  background: "#ff6600",
+                                  color: "white",
+                                  fontWeight: "",
+                                }}
+                              >
+                                {" "}
+                                <div className="text-and-icon-center">
+                                  <WarningIcon color={"white"} size={30} />{" "}
+                                  {getLanguageLabel(
+                                    "dataUploadSecurityWarning"
+                                  )}{" "}
+                                </div>
+                              </span>
+                            </>
+                          }
+                          bordered={false}
+                          className="scaled card"
+                          style={{
+                            textAlign: "left",
+                            width: "72vw",
+                            background: "#ff6600",
+                            color: "white",
+                          }}
+                        >
+                          {getLanguageLabel("dataUploadSecurityWarningText")}
+                        </Card>
+                      ) : (
+                        <></>
+                      )} */}
 
-                {showSheetSelector && (
-                  <>
-                    <Card
-                      title={
-                        <>
-                          <TableIcon /> {getLanguageLabel("selectSheet")}{" "}
-                        </>
-                      }
-                      bordered={false}
-                      // className="scaled-interactive card"
-                      style={{ textAlign: "left" }}
-                    >
-                      <Radio.Group
-                        name="Sheet"
-                        onChange={(e) => {
-                          setSelectedSheet(e.target.value);
-                        }}
-                        value={selectedSheet}
-                        size="small"
-                      >
-                        {sheetNames.map((sheet) => {
-                          return (
-                            <Radio name="sheet" value={sheet}>
-                              {sheet}
-                            </Radio>
-                          );
-                        })}
-                      </Radio.Group>
-                    </Card>
-                  </>
-                )}
-                {selectedFile &&
-                  !Array.isArray(selectedFile) &&
-                  (selectedFile as File).type == "text/csv" && (
-                    <CsvPreprocessing
-                      onValuesChange={(
-                        values: ICsvPreprocessing,
-                        allValues: ICsvPreprocessing
-                      ) => {
-                        setCsvProcessingData(allValues);
-                      }}
-                    />
-                  )}
-
-                {readingFile && (
-                  <Card bordered={false}>
-                    <Row justify={"center"} align={"middle"} gutter={[16, 16]}>
-                      <Col>
-                        <BoslerLoader />
+                  <Card
+                    title={
+                      <>
+                        <div className="text-and-icon-center">
+                          <DocsIcon /> {getLanguageLabel("files")}{" "}
+                        </div>
+                      </>
+                    }
+                    bordered={false}
+                    // className="scaled-interactive card"
+                    style={{ textAlign: "left" }}
+                  >
+                    <Row gutter={16} style={{ textAlign: "left" }}>
+                      <Col className="gutter-row" span={6}>
+                        {" "}
+                        {getLanguageLabel("fileName")}
                       </Col>
-                      <Col>Your file is getting ready...</Col>
+                      <Col className="gutter-row" span={6}>
+                        {(selectedFile as $TSFixMe).name}
+                      </Col>
+                    </Row>
+                    <Row gutter={16} style={{ textAlign: "left" }}>
+                      <Col className="gutter-row" span={6}>
+                        {" "}
+                        {getLanguageLabel("fileType")}
+                      </Col>
+                      <Col className="gutter-row" span={16}>
+                        {(selectedFile as $TSFixMe).type}
+                      </Col>
+                    </Row>
+                    <Row gutter={16} style={{ textAlign: "left" }}>
+                      <Col className="gutter-row" span={6}>
+                        {" "}
+                        {getLanguageLabel("size")}
+                      </Col>
+                      <Col className="gutter-row" span={6}>
+                        {autoFormatter(
+                          (selectedFile as $TSFixMe).size,
+                          "bytes"
+                        )}
+                      </Col>
                     </Row>
                   </Card>
-                )}
-                <br />
-              </>
+                  <br />
 
-              {uploadClicked && (
+                  {showSheetSelector && (
+                    <>
+                      <Card
+                        title={
+                          <>
+                            <TableIcon /> {getLanguageLabel("selectSheet")}{" "}
+                          </>
+                        }
+                        bordered={false}
+                        // className="scaled-interactive card"
+                        style={{ textAlign: "left" }}
+                      >
+                        <Radio.Group
+                          name="Sheet"
+                          onChange={(e) => {
+                            setSelectedSheet(e.target.value);
+                          }}
+                          value={selectedSheet}
+                          size="small"
+                        >
+                          {sheetNames.map((sheet) => {
+                            return (
+                              <Radio name="sheet" value={sheet}>
+                                {sheet}
+                              </Radio>
+                            );
+                          })}
+                        </Radio.Group>
+                      </Card>
+                    </>
+                  )}
+
+                  {readingFile && (
+                    <Card bordered={false}>
+                      <Row
+                        justify={"center"}
+                        align={"middle"}
+                        gutter={[16, 16]}
+                      >
+                        <Col>
+                          <BoslerLoader />
+                        </Col>
+                        <Col>Your file is getting ready...</Col>
+                      </Row>
+                    </Card>
+                  )}
+                  <br />
+                </>
+              }
+              {uploadClicked ? (
                 <Card bordered={false}>
                   {uploading < 100 ? (
                     <>
@@ -347,44 +363,46 @@ const DatasetUpload = ({ id, branch, datasetDetails }: TProps) => {
                     </>
                   )}
                 </Card>
+              ) : (
+                ""
               )}
             </div>
           </div>
         )}
-
-        {isFileReadyToUpload && (
-          <>
-            <br />
-            <Row justify={"center"} align={"middle"} gutter={[16, 16]}>
-              <Col>
-                <BoslerButton
-                  disabled={uploadClicked}
-                  size={"large"}
-                  icon={<CrossIcon />}
-                  onClick={() => {
-                    setIsSelected(false);
-                  }}
-                  intent="dangerous"
-                >
+        <div>
+          {isFileReadyToUpload && (
+            <>
+              <br />
+              <Button
+                disabled={uploadClicked}
+                size={"large"}
+                onClick={() => {
+                  setIsSelected(false);
+                }}
+              >
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <CrossIcon />
+                  &nbsp;
                   {getLanguageLabel("cancel")}
-                </BoslerButton>
-              </Col>
-              <Col>
-                <BoslerButton
-                  disabled={uploadClicked}
-                  icon={<UploadIcon />}
-                  size={"large"}
-                  onClick={uploadAPI}
-                  intent="primary"
-                >
+                </div>
+              </Button>
+              &nbsp; &nbsp;
+              <Button
+                disabled={uploadClicked}
+                size={"large"}
+                onClick={uploadAPI}
+              >
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <UploadIcon />
+                  &nbsp;
                   {getLanguageLabel("upload")}
-                </BoslerButton>
-              </Col>
-            </Row>
-          </>
-        )}
+                </div>
+              </Button>
+            </>
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

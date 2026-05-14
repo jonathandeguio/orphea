@@ -8,9 +8,9 @@ import { ThunkAppDispatch } from "redux/types/store";
 import { getLanguageLabel, openNotification } from "utils/utilities";
 import Loading from "errors/Loading";
 
-import { ArrowRightIcon } from "assets/icons/boslerNavigationIcon";
+import { ArrowRightIcon } from "assets/icons/orpheaNavigationIcon";
 import { ParticleApp } from "utils/ParticleApp";
-import BoslerButton from "components/ButtonComponent/BoslerButton";
+import OrpheaButton from "components/ButtonComponent/OrpheaButton";
 
 const Logout = () => {
   const [form] = Form.useForm();
@@ -93,14 +93,14 @@ const Logout = () => {
         >
           {getLanguageLabel("loggedOutSuccess")}
 
-          <BoslerButton
+          <OrpheaButton
             key="submit"
             onClick={() => navigate("/Auth/login")}
             icon={<ArrowRightIcon />}
             intent="action"
           >
             {getLanguageLabel("login")}
-          </BoslerButton>
+          </OrpheaButton>
         </div>
       </div>
     </>

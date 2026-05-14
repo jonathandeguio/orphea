@@ -1,13 +1,13 @@
 import { Col, Divider, InputNumber, Row, Switch, Typography } from "antd";
-import { SaveIcon } from "assets/icons/boslerActionIcons";
-import BoslerLoader from "components/boslerLoader";
+import { SaveIcon } from "assets/icons/orpheaActionIcons";
+import OrpheaLoader from "components/orpheaLoader";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getLanguageLabel, isDefined, openNotification } from "utils/utilities";
 import { updatePlatformConfig } from "redux/actions/platformSettingsActions";
 import { ThunkAppDispatch } from "redux/types/store";
 import { defaultExpiration } from "./PlatformConfig.constants";
-import BoslerButton from "components/ButtonComponent/BoslerButton";
+import OrpheaButton from "components/ButtonComponent/OrpheaButton";
 
 const { Text, Title } = Typography;
 export const CacheSettings = () => {
@@ -33,7 +33,7 @@ export const CacheSettings = () => {
   return (
     <div className="settings-center-block">
       {loading ? (
-        <BoslerLoader />
+        <OrpheaLoader />
       ) : (
         <>
           <p>
@@ -94,7 +94,7 @@ export const CacheSettings = () => {
               <Row style={{ marginTop: "10px" }}>
                 <Col span={6}></Col>
                 <Col>
-                  <BoslerButton
+                  <OrpheaButton
                     icon={<SaveIcon />}
                     intent="primary"
                     onClick={() => {
@@ -121,7 +121,7 @@ export const CacheSettings = () => {
                   >
                     {" "}
                     {getLanguageLabel("update")}{" "}
-                  </BoslerButton>
+                  </OrpheaButton>
                 </Col>
               </Row>{" "}
             </>

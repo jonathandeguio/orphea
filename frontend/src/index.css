@@ -27,10 +27,10 @@ body {
 
 html a,
 body a {
-  color: var(--bosler-font-color-default);
+  color: rgb(37, 70, 133);
 }
 a:hover {
-  color: var(--bosler-font-color-default);
+  color: rgb(37, 70, 133);
   cursor: pointer;
   text-decoration: underline;
 }

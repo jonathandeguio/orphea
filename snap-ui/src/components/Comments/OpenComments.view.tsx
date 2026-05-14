@@ -11,12 +11,12 @@ import {
   Typography,
 } from "antd";
 
-import { MoreMenuIcon } from "assets/icons/boslerActionIcons";
-import { EditIcon } from "assets/icons/boslerEditorIcons";
-import { TrashIcon } from "assets/icons/boslerMiscellaneousIcons";
-import { ResolveIcon } from "assets/icons/boslerNavigationIcon";
+import { MoreMenuIcon } from "assets/icons/orpheaActionIcons";
+import { EditIcon } from "assets/icons/orpheaEditorIcons";
+import { TrashIcon } from "assets/icons/orpheaMiscellaneousIcons";
+import { ResolveIcon } from "assets/icons/orpheaNavigationIcon";
 import { KeyboardEvent, useState } from "react";
-import BoslerButton from "../ButtonComponent/BoslerButton";
+import OrpheaButton from "../ButtonComponent/OrpheaButton";
 
 import {
   getLanguageLabel,
@@ -200,11 +200,11 @@ const OpenComments = ({
                                       }}
                                       className="text-and-icon-center"
                                       style={{
-                                        color: "var(--bosler-intent-danger)",
+                                        color: "var(--orphea-intent-danger)",
                                       }}
                                     >
                                       <TrashIcon
-                                        color={"var(--bosler-intent-danger)"}
+                                        color={"var(--orphea-intent-danger)"}
                                       />
                                       {getLanguageLabel("delete")}
                                     </div>
@@ -286,7 +286,7 @@ const OpenComments = ({
                     </Form.Item>
 
                     <Row justify="end">
-                      <BoslerButton
+                      <OrpheaButton
                         intent="dangerous"
                         size="small"
                         onClick={(e: any) => {
@@ -297,16 +297,16 @@ const OpenComments = ({
                         minimal
                       >
                         {getLanguageLabel("cancel")}
-                      </BoslerButton>
+                      </OrpheaButton>
                       &nbsp;
-                      <BoslerButton
+                      <OrpheaButton
                         intent="primary"
                         size="small"
                         htmlType="submit"
                         minimal
                       >
                         {getLanguageLabel("save")}
-                      </BoslerButton>
+                      </OrpheaButton>
                     </Row>
                   </Form>
                 ) : (
@@ -317,7 +317,7 @@ const OpenComments = ({
               {comment.replies.length > 0 && (
                 <div
                   style={{
-                    borderLeft: "1px solid var(--bosler-border-color-default)",
+                    borderLeft: "1px solid var(--orphea-border-color-default)",
                     marginTop: "0.5rem",
                     paddingLeft: "0.7rem",
                   }}
@@ -425,12 +425,12 @@ const OpenComments = ({
                                             className="text-and-icon-center"
                                             style={{
                                               color:
-                                                "var(--bosler-intent-danger)",
+                                                "var(--orphea-intent-danger)",
                                             }}
                                           >
                                             <TrashIcon
                                               color={
-                                                "var(--bosler-intent-danger)"
+                                                "var(--orphea-intent-danger)"
                                               }
                                             />
                                             {getLanguageLabel("delete")}
@@ -527,7 +527,7 @@ const OpenComments = ({
                               </Form.Item>
 
                               <Row justify="end">
-                                <BoslerButton
+                                <OrpheaButton
                                   intent="dangerous"
                                   size="small"
                                   onClick={(e: any) => {
@@ -539,9 +539,9 @@ const OpenComments = ({
                                   minimal
                                 >
                                   {getLanguageLabel("cancel")}
-                                </BoslerButton>
+                                </OrpheaButton>
                                 &nbsp;
-                                <BoslerButton
+                                <OrpheaButton
                                   intent="primary"
                                   size="small"
                                   htmlType="submit"
@@ -549,7 +549,7 @@ const OpenComments = ({
                                   minimal
                                 >
                                   {getLanguageLabel("save")}
-                                </BoslerButton>
+                                </OrpheaButton>
                               </Row>
                             </Form>
                           ) : (
@@ -611,7 +611,7 @@ const OpenComments = ({
                     </Form.Item>
 
                     <Row justify="end">
-                      <BoslerButton
+                      <OrpheaButton
                         intent="dangerous"
                         size="small"
                         onClick={(e: any) => {
@@ -623,9 +623,9 @@ const OpenComments = ({
                         minimal
                       >
                         {getLanguageLabel("cancel")}
-                      </BoslerButton>
+                      </OrpheaButton>
                       &nbsp;
-                      <BoslerButton
+                      <OrpheaButton
                         intent="primary"
                         size="small"
                         htmlType="submit"
@@ -633,11 +633,11 @@ const OpenComments = ({
                         minimal
                       >
                         {getLanguageLabel("reply")}
-                      </BoslerButton>
+                      </OrpheaButton>
                     </Row>
                   </Form>
                 ) : (
-                  <BoslerButton
+                  <OrpheaButton
                     onClick={(e: any) => {
                       e.preventDefault();
                       e.stopPropagation();
@@ -649,7 +649,7 @@ const OpenComments = ({
                     // icon={<ChatIcon />}
                   >
                     {getLanguageLabel("reply")}
-                  </BoslerButton>
+                  </OrpheaButton>
                 )}
               </Row>
               <br />

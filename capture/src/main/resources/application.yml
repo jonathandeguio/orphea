@@ -5,7 +5,7 @@ server:
     max-swallow-size: 20GB
     accesslog:
       enabled: true
-      directory: "/bosler/snap/logs/accessLogs"
+      directory: "/orphea/snap/logs/accessLogs"
       prefix: "${spring.application.name}"
       pattern: '%{dd/MMM/yyyy}t %{begin:HH:mm:ss.SSS}t %{end:HH:mm:ss.SSS}t %{RequestId}i %r %s %h %b %T %{Referer}i "%{User-agent}i"'
     basedir: ${log.path:./}
@@ -23,7 +23,7 @@ server:
 #  port: 7845
 spring:
   banner:
-    location: classpath:/banner/bosler.txt
+    location: classpath:/banner/orphea.txt
   sql:
     init:
       schema-locations: classpath:db/quartz_tables_h2.sql
@@ -52,7 +52,7 @@ spring:
 #            driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
 
 file:
-  upload-dir=/Users/rakeshmalik/bosler/uploads
+  upload-dir=/Users/rakeshmalik/orphea/uploads
 
 logging:
   level:

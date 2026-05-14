@@ -16,34 +16,41 @@ const KeplerHeaderDuplicate = ({ id, chart, query }: TProps) => {
     <Popover
       content={
         <>
-          <div style={{ alignItems: "center", display: "flex", gap: "10px" }}>
-            <BoslerButton
-              minimal
-              icon={<CopyCellIcon />}
-              intent="none"
-              onClick={() => duplicateChartHandler(chart, query)}
-            >
-              {getLanguageLabel("duplicate")}
-            </BoslerButton>
-            <div className="text-and-icon-center">D</div>
-          </div>
-          <div
-            style={{ alignItems: "center", display: "flex", marginTop: "5px" }}
-          >
-            <Typography.Text type="secondary">
-              <div
-                style={{
-                  wordWrap: "break-word",
-                  fontSize: "10px",
-                }}
+          <Row justify="space-between" align="middle">
+            <Col span={20}>
+              <BoslerButton
+                minimal
+                icon={<CopyCellIcon />}
+                intent="none"
+                onClick={() => duplicateChartHandler(chart, query)}
               >
-                {getLanguageLabel("clickToDuplicateCharts")}
-              </div>
-            </Typography.Text>
-          </div>
+                {getLanguageLabel("duplicate")}
+              </BoslerButton>
+            </Col>
+            <Col className="key-binding" span={2}>
+              <div className="text-and-icon-center">D</div>
+            </Col>
+          </Row>
+          <Row>
+            <Col span={4}></Col>
+            <Col span={20}>
+              <Typography.Text type="secondary">
+                <div
+                  style={{
+                    maxWidth: "250px",
+                    minWidth: "200px",
+                    wordWrap: "break-word",
+                    fontSize: "10px",
+                  }}
+                >
+                  {getLanguageLabel("clickToDuplicateCharts")}
+                </div>
+              </Typography.Text>
+            </Col>
+          </Row>
         </>
       }
-      placement="bottomRight"
+      placement="bottom"
     >
       <BoslerButton
         minimal

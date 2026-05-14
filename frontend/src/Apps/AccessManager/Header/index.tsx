@@ -1,4 +1,4 @@
-import { Col, Row, Typography } from "antd";
+import { Col, Row, Tag, Typography } from "antd";
 import { BooleanIcon } from "assets/icons/boslerDataIcons";
 import React, { Dispatch, SetStateAction } from "react";
 import { getLanguageLabel } from "utils/utilities";
@@ -18,7 +18,7 @@ export const AccessManagerHeader = ({ filters, setFilters }: IProps) => {
         <Title level={3}>
           <div className="text-and-icon-center">
             <BooleanIcon size={28} color={"var(--ACTION_COLOR)"} />
-            <>{getLanguageLabel("accessManager").toUpperCase()}</>
+            <>{getLanguageLabel("accessManager").toUpperCase()} &nbsp;<Tag color="blue">Beta</Tag></>
           </div>
         </Title>
       </Col>

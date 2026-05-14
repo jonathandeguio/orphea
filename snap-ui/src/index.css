@@ -6,7 +6,7 @@
 /* bezier is using below */
 
 body {
-  color: var(--bosler-font-color-muted) !important;
+  color: var(--orphea-font-color-muted) !important;
   font-family: "IBM Plex Sans", system-ui, -apple-system, BlinkMacSystemFont,
     sans-serif;
   -webkit-font-smoothing: antialiased;

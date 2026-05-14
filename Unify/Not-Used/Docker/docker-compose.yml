@@ -33,7 +33,7 @@ services:
     build:
       context: ./repos/boson
     volumes:
-      - ./db/bosler:/root/bosler
+      - ./db/orphea:/root/orphea
     depends_on:
       - boson-db
       # - julia

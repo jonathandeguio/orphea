@@ -87,22 +87,9 @@
 }
 
 // temporary
-.st0 {
-  fill: #ffffff;
-}
-.st1 {
-  fill: #336791;
-}
-.svgStyle {
-  enable-background: new 0 0 118.53 122.88;
-}
+
 .Selectable-Cards {
-  // padding: 20px;
-  min-height: 4.5rem;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  padding: 20px;
   border-radius: 10px;
   box-shadow: rgba(11, 14, 22, 0.06) 0px 0px 0px 1px,
     rgba(11, 14, 22, 0.04) 0px 1px 3px, rgba(11, 14, 22, 0.03) 0px 2px 3px 0px;
@@ -411,11 +398,5 @@
         background-color: #324155;
       }
     }
-  }
-}
-
-.settingpage-layout-outlet {
-  @media (max-width: 768px) {
-    padding: 0px !important;
   }
 }

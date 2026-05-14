@@ -93,8 +93,8 @@ RUN  apt-get clean && \
 
 # COPY dependency files
 RUN mkdir dependencies
-COPY bosler/dependencies/packages.txt dependencies/
-COPY bosler/dependencies/requirements.txt dependencies/
+COPY orphea/dependencies/packages.txt dependencies/
+COPY orphea/dependencies/requirements.txt dependencies/
 
 RUN \
     apt-get -qq upgrade -y && \
@@ -108,7 +108,7 @@ RUN pip install -q --upgrade pip && \
 
 WORKDIR /opt/
 RUN mkdir /opt/funnel/
-COPY ./bosler /opt/funnel
+COPY ./orphea /opt/funnel
 
 ## Install PySpark and Numpy
 RUN \

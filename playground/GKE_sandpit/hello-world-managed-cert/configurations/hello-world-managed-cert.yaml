@@ -4,4 +4,4 @@ metadata:
   name: hello-world-managed-cert
 spec:
   domains:
-    - hello-world.bosler.io
+    - hello-world.orphea.io

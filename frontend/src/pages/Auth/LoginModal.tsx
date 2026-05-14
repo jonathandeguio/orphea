@@ -1,38 +1,17 @@
-import { Form, Input, Select, Typography } from "antd";
+import { Form, Input } from "antd";
 import { BoslerIcon } from "assets/icons/boslerMiscellaneousIcons";
 import { ArrowRightIcon } from "assets/icons/boslerNavigationIcon";
-import axios from "axios";
 import BoslerButton from "components/BoslerComponents/ButtonComponent/BoslerButton";
 import BoslerInput from "components/BoslerComponents/InputComponent/BoslerInput";
 import BoslerModalContainer from "components/CommonUI/BoslerModalContainer/BoslerModalContainer";
-import React, { useEffect, useState } from "react";
-import { getLanguageLabel, isDefined } from "utils/utilities";
-const { Text } = Typography;
-const LoginModal = ({ form, showMFA }: any) => {
-  const [signInMethod, setSignInMethod] = useState<String | undefined>(
-    undefined
-  );
-  const [signInOptionList, setSignInOptionList] = useState<String[]>([]);
+import React from "react";
+import { getLanguageLabel } from "utils/utilities";
 
-  const signInOption = Form.useWatch("signInOption", form);
-  const [loginWithRecoveryCode, setLoginWithRecoveryCode] =
-    useState<boolean>(false);
-
-  useEffect(() => {
-    axios.get("/sso/list").then(({ data }) => {
-      setSignInOptionList(data.samlList);
-      setSignInMethod((curr) => curr ?? data.default);
-    });
-  }, []);
-
-  if (!isDefined(signInMethod)) {
-    return <></>;
-  }
-
+const LoginModal = () => {
   return (
     <div className="form-containerNew">
       <BoslerModalContainer
-        heading={<><div className="text-and-icon-center"><BoslerIcon size={32} /> &nbsp;&nbsp; Bosler</div></>}
+        heading={<BoslerIcon size={32} />}
         footerExtraText={getLanguageLabel("loginAgreement")}
         footerButtonArea={
           <Form.Item style={{ margin: 0 }}>
@@ -91,79 +70,36 @@ const LoginModal = ({ form, showMFA }: any) => {
           {getLanguageLabel("login")}
         </div>
         <Form.Item
-          name="signInOption"
+          name="username"
           // label={<div className="boslerFormLabel">{getLanguageLabel("userName")}</div>}
           colon={false}
-          // required
-          // rules={[
-          //   {
-          //     required: true,
-          //     message: getLanguageLabel("pleaseInputYourUsername"),
-          //   },
-          // ]}
-          initialValue={signInMethod}
+          required
+          rules={[
+            {
+              required: true,
+              message: getLanguageLabel("pleaseInputYourUsername"),
+            },
+          ]}
         >
-          <Select
-            placeholder={getLanguageLabel("userName")}
-            onChange={(value) => {
-              setSignInMethod(value);
-            }}
-            options={[
-              ...signInOptionList?.map((val) => ({
-                label: val,
-                value: val,
-              })),
-              {
-                label: "Bosler",
-                value: "password",
-              },
-            ]}
-          ></Select>
+          <BoslerInput autofocus placeholder={getLanguageLabel("userName")} />
         </Form.Item>
-        <div
-          className={`passwordUsernameDiv ${
-            signInOption === "password" ? "passwordUsernameDiv--display" : ""
-          }`}
+        <Form.Item
+          name="password"
+          // label={<div className="boslerFormLabel">{getLanguageLabel("password")}</div>}
+          colon={false}
+          required
+          rules={[
+            {
+              required: true,
+              message: getLanguageLabel("pleaseInputYourPassword"),
+            },
+          ]}
         >
-          {signInOption === "password" && (
-            <>
-              <Form.Item
-                name="username"
-                // label={<div className="boslerFormLabel">{getLanguageLabel("userName")}</div>}
-                colon={false}
-                required
-                rules={[
-                  {
-                    required: true,
-                    message: getLanguageLabel("pleaseInputYourUsername"),
-                  },
-                ]}
-              >
-                <BoslerInput
-                  // autofocus
-                  placeholder={getLanguageLabel("userName")}
-                />
-              </Form.Item>
-              <Form.Item
-                name="password"
-                // label={<div className="boslerFormLabel">{getLanguageLabel("password")}</div>}
-                colon={false}
-                required
-                rules={[
-                  {
-                    required: true,
-                    message: getLanguageLabel("pleaseInputYourPassword"),
-                  },
-                ]}
-              >
-                <Input.Password
-                  className="inputPasswordComponent"
-                  placeholder={getLanguageLabel("password")}
-                />
-              </Form.Item>
-            </>
-          )}
-        </div>
+          <Input.Password
+            className="inputPasswordComponent"
+            placeholder={getLanguageLabel("password")}
+          />
+        </Form.Item>
         {/* <Form.Item name="rememberMe" colon={false}>
           <div
             style={{

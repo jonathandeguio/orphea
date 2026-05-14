@@ -2,7 +2,7 @@
 resource "vcd_vapp_vm" "master_node" {
   count            = var.master_vm_count
   name             = "master-${format("%02d", count.index + 1)}"
-  vapp_name        = vcd_vapp.bosler.name
+  vapp_name        = vcd_vapp.orphea.name
   vapp_template_id = data.vcd_catalog_vapp_template.ubuntu.id
   memory           = var.master_memory
   cpus             = var.master_cpu

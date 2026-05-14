@@ -29,9 +29,9 @@ export const getDefaultSchedulesFilter = () => {
     searchText: undefined,
     scheduleTriggerType: [],
     jobStatus: [],
-    rangeFrom: undefined,
+    rangeFrom: getYesterdayDate(),
     rangeTo: undefined,
-    lastExecutionDateFrom: getYesterdayDate(),
+    lastExecutionDateFrom: undefined,
     lastExecutionDateTo: undefined,
   } as unknown as TScheduleFilters;
 };

@@ -13,7 +13,6 @@ export const getPlatformConfig = () => async (dispatch: any, getState: any) => {
   dispatch({ type: PLATFORM_CONFIG_REQUEST });
   getPlatformConfigAPI()
     .then(({ data }) => {
-      console.log(data);
       dispatch({
         type: PLATFORM_CONFIG_SUCCESS,
         payload: {

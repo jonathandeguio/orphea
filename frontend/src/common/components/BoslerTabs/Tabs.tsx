@@ -1,17 +1,19 @@
+import { CrossIcon } from "assets/icons/boslerActionIcons";
 import React, { useCallback, useContext, useEffect, useState } from "react";
-import { DndProvider } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
 import { isDefined, isEmpty, moveElement, notEmpty } from "utils/utilities";
-import { useContextMenuState } from "../ContextMenu";
 import {
   TabContext,
   TabContextProvider,
   initTabState,
   updateActiveKey,
 } from "./BoslerTabsContext";
+import { ITab, ITabPane, TabsComponent } from "./types";
+import { DndProvider, DropTargetMonitor, useDrag, useDrop } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
+import { useContextMenuState } from "../ContextMenu";
+import { FileExplorerContextMenuHandlerType } from "Apps/explorer/FileExplorer";
 import { DraggableTabPaneHeaderItem } from "./TabHeaderItem";
 import { TabsContextMenu } from "./TabsContextMenu";
-import { ITab, ITabPane, TabsComponent } from "./types";
 
 export const ItemType = "TAB";
 
@@ -269,4 +271,4 @@ const Tabs: TabsComponent = (props) => {
 
 Tabs.TabPane = TabPane;
 
-export { TabPane, Tabs };
+export { Tabs, TabPane };

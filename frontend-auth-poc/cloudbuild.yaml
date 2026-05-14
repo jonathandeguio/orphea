@@ -9,7 +9,7 @@ steps:
     args:
       [
         "-c",
-        "docker pull europe-west1-docker.pkg.dev/$PROJECT_ID/bosler-cr/frontend-auth:latest || exit 0",
+        "docker pull europe-west1-docker.pkg.dev/$PROJECT_ID/orphea-cr/frontend-auth:latest || exit 0",
       ]
   # Step 2
   - name: gcr.io/cloud-builders/docker
@@ -17,7 +17,7 @@ steps:
       [
         "build",
         "-t",
-        "europe-west1-docker.pkg.dev/$PROJECT_ID/bosler-cr/frontend-auth:latest",
+        "europe-west1-docker.pkg.dev/$PROJECT_ID/orphea-cr/frontend-auth:latest",
         ".",
       ]
   #    dir: 'frontend'
@@ -26,7 +26,7 @@ steps:
   #    args: ['apply', '-f', 'k8s/']
   #    env:
   #      - 'CLOUDSDK_COMPUTE_ZONE=europe-west6-a'
-  #      - 'CLOUDSDK_CONTAINER_CLUSTER=bosler-dev-1'
+  #      - 'CLOUDSDK_CONTAINER_CLUSTER=orphea-dev-1'
   # Step 4
   # - name: "gcr.io/cloud-builders/kubectl"
   #   args:
@@ -35,13 +35,13 @@ steps:
   #       "image",
   #       "deployment",
   #       "frontend",
-  #       "frontend=europe-west1-docker.pkg.dev/$PROJECT_ID/bosler-cr/frontend:latest",
+  #       "frontend=europe-west1-docker.pkg.dev/$PROJECT_ID/orphea-cr/frontend:latest",
   #       "--namespace",
-  #       "bosler",
+  #       "orphea",
   #     ]
     env:
       - "CLOUDSDK_COMPUTE_ZONE=europe-west1-b"
-      - "CLOUDSDK_CONTAINER_CLUSTER=bosler"
+      - "CLOUDSDK_CONTAINER_CLUSTER=orphea"
     # Push the image to Google Container Registry with the latest tag
-images: ["europe-west1-docker.pkg.dev/$PROJECT_ID/bosler-cr/frontend-auth:latest"]
+images: ["europe-west1-docker.pkg.dev/$PROJECT_ID/orphea-cr/frontend-auth:latest"]
 timeout: 7200s

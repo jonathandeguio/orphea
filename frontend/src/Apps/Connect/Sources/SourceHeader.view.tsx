@@ -6,14 +6,12 @@ import { BoslerInfoPopover } from "components/CommonUI/BoslerInfoPopover/BoslerI
 
 import DeleteModal from "components/Modals/DeleteModal";
 import CustomBreadCrumb from "components/Nav/Manage/breadCrumb";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 
-import { User } from "global";
-import { useUserHook } from "hooks/useUsers";
-import { getLanguageLabel } from "utils/utilities";
+import { getLanguageLabel, isDefined } from "utils/utilities";
 import { MoreMenuIcon } from "../../../assets/icons/boslerActionIcons";
 import { GraphIcon } from "../../../assets/icons/boslerChartIcons";
 import { EditIcon } from "../../../assets/icons/boslerEditorIcons";
@@ -21,11 +19,13 @@ import { TrashIcon } from "../../../assets/icons/boslerMiscellaneousIcons";
 import { PopOutIcon } from "../../../assets/icons/boslerNavigationIcon";
 import SourcesTargets from "../../../helpers/SourcesTargets";
 import {
-  deleteSource,
-  listSources,
+    deleteSource,
+    listSources,
 } from "../../../redux/actions/sourceActions";
 import { ThunkAppDispatch } from "../../../redux/types/store";
 import SourceModal from "./SourceModal.view";
+import { useUserHook } from "hooks/useUsers";
+import { User } from "global";
 
 const { EditText } = require("react-edit-text");
 const { Text } = Typography;
@@ -193,15 +193,17 @@ const SourceHeader = ({
           </div>
         </Dropdown>
       </div>
-      {isUpdateSourceModalOpen && (
-        <SourceModal
-          isVisible={isUpdateSourceModalOpen}
-          setIsVisible={setIsUpdateSourceModalOpen}
-          defaultParent={sourceDetails.parent}
-          defaultSourceDetails={sourceDetails}
-          updateSource={updateSource}
-        />
-      )}
+
+      <SourceModal
+        isVisible={isUpdateSourceModalOpen}
+        setIsVisible={setIsUpdateSourceModalOpen}
+        defaultParent={sourceDetails.id}
+        updateDetails={{
+          sourceDetails: sourceDetails,
+          parent: parent,
+          updateSource: updateSource,
+        }}
+      />
 
       <DeleteModal
         deleteServiceDetails={deleteServiceDetails}

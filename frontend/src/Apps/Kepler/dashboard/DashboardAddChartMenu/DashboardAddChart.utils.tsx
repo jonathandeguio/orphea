@@ -44,7 +44,7 @@ export const getChartIcon = (
     return <TableCellIcon size={defaultSize} />;
   } else if (chartType == "VerticalAxisChart") {
     if (series && series.length == 1) {
-      const subChartType = series[0]?.seriesType;
+      const subChartType = series[0].seriesType;
       if (subChartType == "barChart")
         return <GroupedColumnIcon size={defaultSize} />;
       else if (subChartType == "lineChart")

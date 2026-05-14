@@ -23,7 +23,6 @@ const CustomBreadCrumb = ({ alwaysShow = true }) => {
         lastLink.type == "AGENT" ||
         lastLink.type == "SOURCE" ||
         lastLink.type == "LINK" ||
-        lastLink.type == "WEBHOOK" ||
         lastLink.type == "FILE"
       )
         setShowBreadCrumb(true);
@@ -32,7 +31,7 @@ const CustomBreadCrumb = ({ alwaysShow = true }) => {
   }, [links]);
 
   if (isDefined(activeId) && showBreadCrumb)
-    return <Breadcrumb id={activeId} showMoveButton={true} />;
+    return <Breadcrumb id={activeId} />;
 
   return <></>;
 };

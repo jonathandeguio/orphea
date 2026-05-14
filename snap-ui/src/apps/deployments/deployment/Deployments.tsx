@@ -8,20 +8,20 @@ import {
   globalSearch,
   openNotification,
 } from "utils/utilities";
-import { AddIcon, SearchIcon } from "assets/icons/boslerActionIcons";
+import { AddIcon, SearchIcon } from "assets/icons/orpheaActionIcons";
 
 import { ThunkAppDispatch } from "redux/types/store";
 
-import BoslerLoader from "components/boslerLoader";
-import BoslerModal from "components/BoslerModalContainer";
-import BoslerButton from "components/ButtonComponent/BoslerButton";
-import BoslerInput from "components/InputComponent/BoslerInput";
+import OrpheaLoader from "components/orpheaLoader";
+import OrpheaModal from "components/OrpheaModalContainer";
+import OrpheaButton from "components/ButtonComponent/OrpheaButton";
+import OrpheaInput from "components/InputComponent/OrpheaInput";
 import { deleteDeploymentAPI } from "../apis";
 import CreateNewDeploymentModal from "./CreateNewDeploymentModal";
 import DeploymentsTable from "./DeployementsTable";
-import { TrashIcon } from "assets/icons/boslerMiscellaneousIcons";
+import { TrashIcon } from "assets/icons/orpheaMiscellaneousIcons";
 import { getAllDeploymentDetails } from "redux/actions/DeploymentActions";
-import { getDefaultFavicon } from "components/boslerLoader/FavIconLoader"; // Import the new component
+import { getDefaultFavicon } from "components/orpheaLoader/FavIconLoader"; // Import the new component
 
 const { Title, Text } = Typography;
 
@@ -75,28 +75,28 @@ const Deployments = () => {
     };
   }, [allDeployments]);
 
-  if (loading) return <BoslerLoader />;
+  if (loading) return <OrpheaLoader />;
 
   return (
     <>
-      <BoslerModal
+      <OrpheaModal
         headingIcon={<TrashIcon color="var(--DANGEROUS_COLOR)" />}
         heading={getLanguageLabel("areYouSureYouWantToDeleteThis?")}
         open={deleteModal}
         onCancel={handleDeleteCancel}
         onOk={() => deleteDeploymentHandler()}
         footerButtonArea={
-          <BoslerButton
+          <OrpheaButton
             icon={<TrashIcon />}
             onClick={() => deleteDeploymentHandler()}
             intent="dangerous"
           >
             {getLanguageLabel("delete")}
-          </BoslerButton>
+          </OrpheaButton>
         }
       >
         {deleteDeploymentDetails.name}
-      </BoslerModal>
+      </OrpheaModal>
 
       <CreateNewDeploymentModal
         isOpen={isCreateNewDeploymentModalOpen}
@@ -110,11 +110,11 @@ const Deployments = () => {
               <Title level={3}>
                 Deployments ({allDeployments && allDeployments.length})
               </Title>
-              <Text type="secondary">Here are bosler deployments.</Text>
+              <Text type="secondary">Here are orphea deployments.</Text>
             </Col>
             <Col>
               <Tooltip placement="top" title={"Create New Deployment"}>
-                <BoslerButton
+                <OrpheaButton
                   icon={<AddIcon />}
                   intent="action"
                   onClick={() => {
@@ -122,7 +122,7 @@ const Deployments = () => {
                   }}
                 >
                   New Deployment
-                </BoslerButton>
+                </OrpheaButton>
               </Tooltip>
             </Col>
           </Row>
@@ -130,7 +130,7 @@ const Deployments = () => {
           <Divider />
         </p>
 
-        <BoslerInput
+        <OrpheaInput
           placeholder={getLanguageLabel("search")}
           allowClear
           onChange={(e: any) => {

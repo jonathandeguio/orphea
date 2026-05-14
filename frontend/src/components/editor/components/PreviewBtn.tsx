@@ -1,14 +1,12 @@
 import { Divider, InputNumber, Popover, Switch } from "antd";
 import { AutoModeIcon, StopIcon } from "assets/icons/boslerActionIcons";
 import BoslerButton from "components/BoslerComponents/ButtonComponent/BoslerButton";
-import { fetchBuildLogsAPI } from "components/Builds/Builds.api";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import {
   capitalizeFirstLetter,
   getLanguageLabel,
   notEmpty,
-  runPeriodically,
 } from "utils/utilities";
 import { RootState } from "../../../redux/types/store";
 import { getFileExtension, validScript } from "../editor.utils";
@@ -19,9 +17,7 @@ interface TProps {
   editorPanes: any;
   previewBuild: any;
   previewActive: boolean;
-  setPreviewActive: any;
   previewID: string | undefined;
-  setPreviewID: any;
   abortPreview: (id: string) => Promise<void>;
   doesScriptHasDecorator: boolean;
   trackingStatus: any;
@@ -33,14 +29,11 @@ const PreviewBtn = ({
   editorPanes,
   previewBuild,
   previewActive,
-  setPreviewActive,
   previewID,
-  setPreviewID,
   abortPreview,
   doesScriptHasDecorator,
   trackingStatus,
 }: TProps) => {
-  const user = useSelector((state: RootState) => state.userDetails.user);
   const [previewRowLimit, setPreviewRowLimit] = useState<number>(1000);
   const [previewFullDataset, setPreviewFullDataset] = useState(false);
   const { config } = useSelector((state: RootState) => state.sparkConfig);
@@ -64,8 +57,9 @@ const PreviewBtn = ({
 
   const IS_K8_PREVIEW = isK8Preview();
 
-  const CONDITION = !ON_VALID_SCRIPT || previewActive;
-  // !ON_VALID_SCRIPT || previewActive || !trackingStatus.gitStatus.clean || trackingStatus.ahead != 0;
+  const CONDITION =
+    !ON_VALID_SCRIPT || previewActive;
+    // !ON_VALID_SCRIPT || previewActive || !trackingStatus.gitStatus.clean || trackingStatus.ahead != 0;
   // ||
   // !IS_K8_PREVIEW;
 
@@ -174,33 +168,6 @@ const PreviewBtn = ({
       return "#fff";
     }
   };
-
-  const handleBuildLog = (previewID: string) => {
-    fetchBuildLogsAPI(previewID).then(({ data: updatedBuildLog }) => {
-      if (updatedBuildLog.status == "ACTIVE") {
-        // TODO : Uncomment after, log comming for specific dataset & branch
-        setPreviewActive(true);
-        setPreviewID(updatedBuildLog.id);
-      } else {
-        setPreviewActive(false);
-        setPreviewID(undefined);
-      }
-    });
-  };
-
-  useEffect(() => {
-    let stopPeriodicFunction: (() => void) | undefined;
-
-    if (previewID) {
-      stopPeriodicFunction = runPeriodically(() => handleBuildLog(previewID));
-    }
-
-    return () => {
-      if (stopPeriodicFunction) {
-        stopPeriodicFunction();
-      }
-    };
-  }, [previewID]);
 
   return ON_VALID_SCRIPT ? (
     <Popover title={getTitle()} placement="bottom">

@@ -1,4 +1,4 @@
-import { LANGUAGE, USERNAME } from "Authentication/constants";
+import { BOSLER_TOKEN, LANGUAGE, USERNAME } from "Authentication/constants";
 import axios from "axios";
 import {
   ALL_USER_DETAILS_FAIL,
@@ -8,8 +8,6 @@ import {
   IS_GROUP_ADMIN_FAIL,
   IS_GROUP_ADMIN_REQUEST,
   IS_GROUP_ADMIN_SUCCESS,
-  IS_LOGEDIN_WITH_CREDENTIALS,
-  IS_LOGEDIN_WITH_OTP,
   IS_PLATFORM_ADMIN_FAIL,
   IS_PLATFORM_ADMIN_REQUEST,
   IS_PLATFORM_ADMIN_SUCCESS,
@@ -32,17 +30,9 @@ import {
   USER_LOGIN_SUCCESS,
   USER_LOGOUT,
 } from "../constants/userConstants";
-import { isDefined } from "utils/utilities";
 
 export const login =
-  (
-    username: $TSFixMe,
-    password: $TSFixMe,
-    successCallback: $TSFixMe,
-    errorCallback: $TSFixMe,
-    mfaCallback: $TSFixMe
-  ) =>
-  async (dispatch: $TSFixMe) => {
+  (username: $TSFixMe, password: $TSFixMe) => async (dispatch: $TSFixMe) => {
     try {
       dispatch({
         type: USER_LOGIN_REQUEST,
@@ -54,38 +44,17 @@ export const login =
         },
       };
 
-      const payload = {
-        username: username,
-        password: password,
-        loginType: "plain",
-      };
+      const payload = { username: username, password: password, loginType: "plain" };
 
-      const { data, status } = await axios.post(`/passport/login`, payload);
+      const { data } = await axios.post(`/passport/login`, payload);
 
-      if (status === 200 && data.accessToken) {
-        successCallback(); // Proceed with the success callback
-        dispatch({
-          type: USER_LOGIN_SUCCESS,
-          payload: data,
-        });
-        dispatch(setLoginMethod(IS_LOGEDIN_WITH_CREDENTIALS));
-      } else if (
-        status === 200 &&
-        isDefined(data.mfaEnabled) &&
-        data.mfaEnabled === true
-      ) {
-        dispatch(setLoginMethod(IS_LOGEDIN_WITH_OTP));
-        mfaCallback(); // Trigger MFA flow here
-      } else {
-        // Handle the case where the response is unsuccessful or accessToken is missing
-        errorCallback?.("Login failed: Invalid credentials or response");
-        dispatch({
-          type: USER_LOGIN_FAIL,
-          payload: "Login failed: Invalid credentials or response",
-        });
-      }
+      dispatch({
+        type: USER_LOGIN_SUCCESS,
+        payload: data,
+      });
 
       localStorage.setItem(USERNAME, username);
+      localStorage.setItem(BOSLER_TOKEN, data.accessToken);
     } catch (error) {
       dispatch({
         type: USER_LOGIN_FAIL,
@@ -94,13 +63,9 @@ export const login =
     }
   };
 
-export const setLoginMethod = (type: string) => (dispatch: $TSFixMe) => {
-  dispatch({
-    type: type,
-  });
-};
 export const logout = () => async (dispatch: $TSFixMe) => {
   localStorage.removeItem(USERNAME);
+  localStorage.removeItem(BOSLER_TOKEN);
   dispatch({ type: USER_LOGOUT });
   dispatch({ type: USER_DETAILS_RESET });
 };

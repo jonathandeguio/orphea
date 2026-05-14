@@ -8,12 +8,11 @@ import { SimpleTreeNodeContextMenu } from "components/SimpleTreeViewer/SimpleTre
 import React, { useEffect, useState } from "react";
 import { getLanguageLabel, isDefined } from "utils/utilities";
 import { getSourceContentMetaData } from "./Connect.api";
-import { TDatabaseTreePages } from "./Connect.types";
 
 interface IProps {
   sourceId: string;
-  page: TDatabaseTreePages;
-  onSingleClick?: (node: any, parent: any) => void;
+  page: "SOURCE" | "LINK";
+  onSingleClick?: (node: any) => void;
 }
 
 const DatabaseTreeViewer = ({ sourceId, page, onSingleClick }: IProps) => {
@@ -75,21 +74,17 @@ const DatabaseTreeViewer = ({ sourceId, page, onSingleClick }: IProps) => {
         treeData={treeData}
         dynamicFetching={false}
         openOnSingleClick={true}
-        onContextMenu={
-          page != "LINK_SOURCE_SELECTION" ? contextMenuHandler : undefined
-        }
+        onContextMenu={contextMenuHandler}
         onClick={onSingleClick}
         page={page}
         originId={sourceId}
       />
-      {page != "LINK_SOURCE_SELECTION" && (
-        <SimpleTreeNodeContextMenu
-          id={contextMenuNode ? contextMenuNode.id : ""}
-          page={page}
-          node={contextMenuNode}
-          store={contextMenuStore}
-        />
-      )}
+      <SimpleTreeNodeContextMenu
+        id={contextMenuNode ? contextMenuNode.id : ""}
+        page={page}
+        node={contextMenuNode}
+        store={contextMenuStore}
+      />
     </div>
   );
 };

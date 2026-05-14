@@ -128,9 +128,7 @@ export const EditorTreeContextMenu: React.FC<EditorTreeContextMenuProps> = ({
   const { editorPanes } = useSelector(
     (state: RootState) => state.repositoryEditor
   );
-  const { tabContext } = useSelector((state: RootState) => ({
-    tabContext: state.bottomBar.tabContext,
-  }));
+  const { tabContext } = useSelector((state: RootState) => state.bottomBar);
 
   const dispatch = useDispatch();
 
@@ -589,19 +587,16 @@ export const EditorTreeContextMenu: React.FC<EditorTreeContextMenuProps> = ({
               </Select.Option>
             </Select>
           </Form.Item>
-          <Tooltip
-            title={getLanguageLabel("boilerplateOption")}
-            placement="bottom"
+          <Tooltip title={getLanguageLabel("boilerplateOption")} placement="bottom">
+          <Form.Item
+            name={"includeBoilerPlateCode"}
+            label={"Template"}
+            colon
+            labelCol={{ span: 8 }}
+            valuePropName="unchecked"
           >
-            <Form.Item
-              name={"includeBoilerPlateCode"}
-              label={"Template"}
-              colon
-              labelCol={{ span: 8 }}
-              valuePropName="unchecked"
-            >
-              <Switch size="small" />
-            </Form.Item>
+            <Switch size="small"/>
+          </Form.Item>
           </Tooltip>
         </Form>
       ),

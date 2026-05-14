@@ -20,7 +20,6 @@ import {
 import { RootState } from "redux/types/store";
 import { getLanguageLabel, isDefined, openNotification } from "utils/utilities";
 import BoslerLoader from "../../components/boslerLoader";
-import { NULL_UUID } from "utils/Common.constants";
 
 const antIcon = <BoslerLoader />;
 
@@ -72,7 +71,6 @@ const BezierDetail = () => {
   const datasetMapping = useSelector(
     (state) => (state as $TSFixMe).datasetMapping[id ?? ""]
   );
-
   useEffect(() => {
     pipelineDetails(id, branch);
   }, [id, branch]);
@@ -90,20 +88,19 @@ const BezierDetail = () => {
 
   useEffect(() => {
     if (isDefined(id) && isDefined(branch)) {
-      const transactionId =
-        datasetMapping?.datasetMapping?.currentTransaction ?? NULL_UUID;
-      dispatch(
-        initBottomBar({
-          leftItems: getBezierBottomBarItems(
-            node.id,
-            branch,
-            node.type,
-            // BHAGESH: TODO ADD NODE SUBTYPE HERE
-            node.subType,
-            transactionId
-          ),
-        })
-      );
+      if (isDefined(node)) {
+        dispatch(
+          initBottomBar({
+            leftItems: getBezierBottomBarItems(node.id, branch, node.type),
+          })
+        );
+      } else {
+        dispatch(
+          initBottomBar({
+            leftItems: getBezierBottomBarItems(id, branch, undefined),
+          })
+        );
+      }
     }
   }, [id, node, branch, datasetBuildSpec]);
 
@@ -132,26 +129,27 @@ const BezierDetail = () => {
           <Comments id={id} />
           <Avatars link={`/topic/${id}`} />
         </div>
-      </div>
-      <BottomBarLayout>
-        <div className="pipeline">
-          {pipeline !== null &&
-          pipeline !== undefined &&
-          (pipeline as $TSFixMe).nodes !== null &&
-          (pipeline as $TSFixMe).nodes !== undefined ? (
-            <BezierD3
-              pipeline={pipeline}
-              id={id}
-              branch={branch}
-              buildexist={buildSpec ? true : false}
-              name={selectedName}
-            />
-          ) : (
-            <Spin indicator={<BoslerLoader />} />
-          )}
-          <BottomTabs id={id} branch={branch} page="pipeline" />
         </div>
-      </BottomBarLayout>
+        <BottomBarLayout>
+          <div className="pipeline">
+            {pipeline !== null &&
+            pipeline !== undefined &&
+            (pipeline as $TSFixMe).nodes !== null &&
+            (pipeline as $TSFixMe).nodes !== undefined ? (
+              <BezierD3
+                pipeline={pipeline}
+                id={id}
+                branch={branch}
+                buildexist={buildSpec ? true : false}
+                name={selectedName}
+              />
+            ) : (
+              <Spin indicator={<BoslerLoader />} />
+            )}
+            <BottomTabs id={id} branch={branch} page="pipeline" />
+          </div>
+        </BottomBarLayout>
+      
     </>
   );
 };

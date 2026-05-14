@@ -2,10 +2,10 @@ import { Col, Divider, Popover, Row, Typography } from "antd";
 import React from "react";
 import ReactCountryFlag from "react-country-flag";
 import { useDispatch, useSelector } from "react-redux";
-import { SparklesIcon } from "assets/icons/boslerActionIcons";
+import { SparklesIcon } from "assets/icons/orpheaActionIcons";
 
-import { AppIcon, CollectionIcon } from "assets/icons/boslerInterfaceIcons";
-import { TickIcon } from "assets/icons/boslerNavigationIcon";
+import { AppIcon, CollectionIcon } from "assets/icons/orpheaInterfaceIcons";
+import { TickIcon } from "assets/icons/orpheaNavigationIcon";
 import { updateUserDataAPI } from "components/CommandPalette/CommandPalette.api";
 import { LayoutViewEnum } from "layouts/Sidebar/Sidebar.utils";
 import { getLanguageLabel, getUserLanguage, setTheme } from "utils/utilities";

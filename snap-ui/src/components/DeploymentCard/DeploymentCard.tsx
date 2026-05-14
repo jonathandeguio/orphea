@@ -10,10 +10,10 @@ import {
   RadioChangeEvent,
   Switch,
 } from "antd";
-import { CopyIcon, EditIcon } from "assets/icons/boslerEditorIcons";
+import { CopyIcon, EditIcon } from "assets/icons/orpheaEditorIcons";
 import axios from "axios";
-import BoslerTimePicker from "../BoslerTimePicker";
-import BoslerDatePicker from "../BoslerDatePicker";
+import OrpheaTimePicker from "../OrpheaTimePicker";
+import OrpheaDatePicker from "../OrpheaDatePicker";
 import { useDispatch } from "react-redux";
 import { copyToClipboard, getLanguageLabel } from "utils/utilities";
 
@@ -177,7 +177,7 @@ const DeploymentCard: React.FC<IDeployment> = ({
         <Radio value="Pause Until">Pause Until</Radio>
       </Radio.Group>
       {radioValue === "Pause Until" && (
-        <BoslerDatePicker onChange={handleDateChange} />
+        <OrpheaDatePicker onChange={handleDateChange} />
       )}
       <Button
         onClick={handlePause}
@@ -363,7 +363,7 @@ const DeploymentCard: React.FC<IDeployment> = ({
               rules={[{ required: true }]}
               style={{ width: "100%", maxWidth: "330px" }}
             >
-              <BoslerTimePicker
+              <OrpheaTimePicker
                 value={form.getFieldValue("timeWindowStart")}
                 onChange={(value) =>
                   form.setFieldsValue({ timeWindowStart: value })
@@ -381,7 +381,7 @@ const DeploymentCard: React.FC<IDeployment> = ({
               rules={[{ required: true }]}
               style={{ width: "100%", maxWidth: "330px" }}
             >
-              <BoslerTimePicker
+              <OrpheaTimePicker
                 value={form.getFieldValue("timeWindowEnd")}
                 onChange={(value) =>
                   form.setFieldsValue({ timeWindowEnd: value })

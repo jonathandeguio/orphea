@@ -8,10 +8,10 @@ COMPUTE_ZONE=asia-northeast2-b
 
 SERVIE_ACCOUNT=891266870742-compute@developer.gserviceaccount.com
 
-NETWORK_TAG="bosler-test-eu"
+NETWORK_TAG="orphea-test-eu"
 
-INSTANCE_TAG="bosler-instance-with-access"
-DISK_TAG="bosler-disk-with-access"
+INSTANCE_TAG="orphea-instance-with-access"
+DISK_TAG="orphea-disk-with-access"
 
 
 export PROJECT_ID COMPUTE_REGION COMPUTE_ZONE NETWORK_TAG INSTANCE_TAG DISK_TAG

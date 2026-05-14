@@ -8,7 +8,7 @@ FOLDER Structure needs to be:
 
 
 ```
-\Bosler\
+\Orphea\
 +-- \app\
 |   +-- \frontend\
 |   +-- \boson\
@@ -23,44 +23,44 @@ FOLDER Structure needs to be:
 
 3. Create a db with name - boson and make required changes to startApplication env variables such as db userName and password.
 4. run the startApplication file with admin cmd.
-5. Once the boson is started it should bring up bosler at http://localhost or the specific url set in nginx conf file.
+5. Once the boson is started it should bring up orphea at http://localhost or the specific url set in nginx conf file.
 6. To Stop the server run the stopApplication.bat file
 
 To add as a service
 
 Copy nsmm and use it to add a service
 
-nssm install BoslerBackend "C:\Bosler\startBackend.bat"
-nssm install BoslerFrontend "C:\Bosler\startFrontend.bat"
-nssm install BoslerRedis "C:\Bosler\startRedis.bat"
+nssm install OrpheaBackend "C:\Orphea\startBackend.bat"
+nssm install OrpheaFrontend "C:\Orphea\startFrontend.bat"
+nssm install OrpheaRedis "C:\Orphea\startRedis.bat"
 
 Set description
 
-nssm set BoslerBackend Description "This is the Bosler Backend Application running with java."
-nssm set BoslerFrontend Description "This is the Bosler Frontend Application running with Nginx."
-nssm set BoslerRedis Description "This is the Bosler Caching service."
+nssm set OrpheaBackend Description "This is the Orphea Backend Application running with java."
+nssm set OrpheaFrontend Description "This is the Orphea Frontend Application running with Nginx."
+nssm set OrpheaRedis Description "This is the Orphea Caching service."
 
 
 
 Set logging :
 
 
-C:\Bosler\softwares>nssm set BoslerFrontend AppStdout C:\Bosler\logs\BoslerFrontend.log
-Set parameter "AppStdout" for service "BoslerFrontend".
+C:\Orphea\softwares>nssm set OrpheaFrontend AppStdout C:\Orphea\logs\OrpheaFrontend.log
+Set parameter "AppStdout" for service "OrpheaFrontend".
 
-C:\Bosler\softwares>nssm set BoslerFrontend AppStderr C:\Bosler\logs\BoslerFrontend-error.log
-Set parameter "AppStderr" for service "BoslerFrontend".
+C:\Orphea\softwares>nssm set OrpheaFrontend AppStderr C:\Orphea\logs\OrpheaFrontend-error.log
+Set parameter "AppStderr" for service "OrpheaFrontend".
 
-C:\Bosler\softwares>nssm set BoslerBackend AppStderr C:\Bosler\logs\BoslerBackend-error.log
-Set parameter "AppStderr" for service "BoslerBackend".
+C:\Orphea\softwares>nssm set OrpheaBackend AppStderr C:\Orphea\logs\OrpheaBackend-error.log
+Set parameter "AppStderr" for service "OrpheaBackend".
 
-C:\Bosler\softwares>nssm set BoslerBackend AppStdout C:\Bosler\logs\BoslerBackend.log
-Set parameter "AppStdout" for service "BoslerBackend".
+C:\Orphea\softwares>nssm set OrpheaBackend AppStdout C:\Orphea\logs\OrpheaBackend.log
+Set parameter "AppStdout" for service "OrpheaBackend".
 
 
-C:\Bosler\softwares>nssm set BoslerRedis AppStderr C:\Bosler\logs\BoslerRedis-error.log
-Set parameter "AppStderr" for service "BoslerRedis".
+C:\Orphea\softwares>nssm set OrpheaRedis AppStderr C:\Orphea\logs\OrpheaRedis-error.log
+Set parameter "AppStderr" for service "OrpheaRedis".
 
-C:\Bosler\softwares>nssm set BoslerRedis AppStdout C:\Bosler\logs\BoslerRedis.log
-Set parameter "AppStdout" for service "BoslerRedis".
+C:\Orphea\softwares>nssm set OrpheaRedis AppStdout C:\Orphea\logs\OrpheaRedis.log
+Set parameter "AppStdout" for service "OrpheaRedis".
 

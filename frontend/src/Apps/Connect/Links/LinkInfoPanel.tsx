@@ -1,10 +1,10 @@
 import { useNavigateHelper } from "Apps/explorer/explorer.hooks";
 import { Alert, Checkbox, Col, Row, Tooltip, Typography } from "antd";
 import {
+  CodeCellIcon,
   CopyIcon,
-  EditIcon
+  EditIcon,
 } from "assets/icons/boslerEditorIcons";
-import { GitMergeBranchIcon } from "assets/icons/boslerExternalIcons";
 import { FolderIcon } from "assets/icons/boslerFileIcons";
 import { TableIcon } from "assets/icons/boslerTableIcons";
 import { BoslerCollapse } from "components/BoslerComponents/BoslerCollapse/BoslerCollapse";
@@ -165,9 +165,13 @@ const LinkInfoPanel = ({ dataset, source, getLink, link }: IProps) => {
                     <Text>{getLanguageLabel("branch")}</Text>
                   </Col>
                   <Col span={16}>
-                    <BoslerButton icon={<GitMergeBranchIcon />} minimal>
-                      {link.branch}
-                    </BoslerButton>
+                    <div
+                      className="text-and-icon-center"
+                      style={{ paddingLeft: "6px" }}
+                    >
+                      <CodeCellIcon />
+                      <Text>{link.branch}</Text>
+                    </div>
                   </Col>
                 </Row>
               </>
@@ -254,7 +258,7 @@ const LinkInfoPanel = ({ dataset, source, getLink, link }: IProps) => {
                             <Text>{getLanguageLabel("saveMode")}</Text>
                           </Col>
                           <Col span={16}>
-                            <Text>{link.writeMode}</Text>
+                            <Text>{link.saveMode}</Text>
                           </Col>
                         </Row>
                         <Row

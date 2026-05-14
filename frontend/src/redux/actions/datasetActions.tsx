@@ -497,8 +497,7 @@ export const importDataset =
     id: $TSFixMe,
     branch: $TSFixMe,
     setUploadProgress: $TSFixMeFunction,
-    sheetName = "first",
-    csvPreprocessing: string
+    sheetName = "first"
   ) =>
   async (dispatch: $TSFixMe, getState: $TSFixMe) => {
     try {
@@ -506,14 +505,16 @@ export const importDataset =
 
       const formData = new FormData();
       formData.append("file", selectedFile);
+      formData.append("csvPreprocessing", "");
 
       const fileName = (selectedFile as any).name;
 
       const params = new URLSearchParams({
-        csvPreprocessing: csvPreprocessing,
+        columnSeparator: ",",
         mode: "overwrite",
         sheetName: sheetName,
       }).toString();
+
       const url = `/dataset/import/${id}/${branch}?` + params;
 
       const { data } = await axios.post(url, formData, {

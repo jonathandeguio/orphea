@@ -1,15 +1,11 @@
 import BoslerButton from "components/BoslerComponents/ButtonComponent/BoslerButton";
 import React, { useEffect, useState } from "react";
 import { getLanguageLabel } from "utils/utilities";
-import {
-  abortDatasetWritingTransactionAPI,
-  abortDatasetWritingTransactionForWholeBuildAPI,
-} from "../Builds.api";
+import { abortDatasetWritingTransactionAPI } from "../Builds.api";
 interface IProps {
   text: string;
-  datasetId?: string;
-  branch?: string;
-  buildId: string;
+  datasetId: string;
+  branch: string;
 }
 
 const ALREADY_ACTIVE_TEXT = "There is a transaction already active";
@@ -19,7 +15,6 @@ const BuildTableDatasetWritingTransactionActive = ({
   text,
   datasetId,
   branch,
-  buildId,
 }: IProps) => {
   const [showAbortTransactionBtn, setShowAbortTransactionBtn] =
     useState<boolean>(false);
@@ -30,42 +25,21 @@ const BuildTableDatasetWritingTransactionActive = ({
     }
   };
 
-  const handleTransactionAborting = (
-    buildId: string,
-    datasetId?: string,
-    branch?: string
-  ) => {
-    if (datasetId && branch) {
-      abortDatasetWritingTransactionAPI(datasetId, branch)
-        .then(() => {
-          (window as any).makeButtonTemporarySuccess(
-            ABORT_TRANSACTION_BTN,
-            300000
-          );
-        })
-        .catch(() => {
-          (window as any).makeButtonTemporaryFailure(
-            ABORT_TRANSACTION_BTN,
-            300000
-          );
-        })
-        .finally(() => {});
-    } else {
-      abortDatasetWritingTransactionForWholeBuildAPI(buildId)
-        .then(() => {
-          (window as any).makeButtonTemporarySuccess(
-            ABORT_TRANSACTION_BTN,
-            300000
-          );
-        })
-        .catch(() => {
-          (window as any).makeButtonTemporaryFailure(
-            ABORT_TRANSACTION_BTN,
-            300000
-          );
-        })
-        .finally(() => {});
-    }
+  const handleTransactionAborting = () => {
+    abortDatasetWritingTransactionAPI(datasetId, branch)
+      .then(() => {
+        (window as any).makeButtonTemporarySuccess(
+          ABORT_TRANSACTION_BTN,
+          300000
+        );
+      })
+      .catch(() => {
+        (window as any).makeButtonTemporaryFailure(
+          ABORT_TRANSACTION_BTN,
+          300000
+        );
+      })
+      .finally(() => {});
   };
 
   useEffect(() => {
@@ -75,12 +49,12 @@ const BuildTableDatasetWritingTransactionActive = ({
   if (!showAbortTransactionBtn) {
     return <></>;
   }
-  console.log("DATASET ID : ", datasetId);
+
   return (
     <div>
       <BoslerButton
         intent="action"
-        onClick={() => handleTransactionAborting(buildId, datasetId, branch)}
+        onClick={handleTransactionAborting}
         id={ABORT_TRANSACTION_BTN}
       >
         {getLanguageLabel("abortTransaction")}

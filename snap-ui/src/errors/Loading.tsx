@@ -1,4 +1,4 @@
-import BoslerLoader from "components/boslerLoader";
+import OrpheaLoader from "components/orpheaLoader";
 import React, { useRef } from "react";
 import { ParticleApp } from "utils/ParticleApp";
 import { getLanguageLabel, isIpPlatform } from "utils/utilities";
@@ -54,7 +54,7 @@ const Loading = () => {
           </div>
           <div className="login-icon">
             {!isIpPlatform() && (
-              <BoslerLoader content={getLanguageLabel("loading...")} />
+              <OrpheaLoader content={getLanguageLabel("loading...")} />
             )}
           </div>
         </div>

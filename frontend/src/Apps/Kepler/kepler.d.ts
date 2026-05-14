@@ -139,22 +139,15 @@ export interface KeplerChart {
   updatedBy?: string;
 }
 
-export interface QueryError {
-  status: "VALIDATING" | "FINISHED" | "PENDING" | "ERROR";
-  error: any;
-}
-
 export interface KeplerStore {
   isChartSaved: boolean;
   chart: any;
-  chartStatus?: "LOADING" | "LOADED";
   query?: KeplerQuery;
   customize: any;
   data: any;
   columns: DatasetColumn[];
   dataForm: any;
   customizeForm: any;
-  queryError: QueryError;
 }
 
 export interface DatasetFilters {

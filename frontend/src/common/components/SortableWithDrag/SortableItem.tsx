@@ -26,7 +26,7 @@ const SortableItem = ({ id, children }: IProps) => {
         {...listeners}
         key={id}
       >
-        <DragHandleVerticalIcon style={{ cursor: "grab" }}/>
+        <DragHandleVerticalIcon />
       </div>
       <div style={{ width: "100%" }}>{children}</div>
     </div>

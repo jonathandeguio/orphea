@@ -1,5 +1,5 @@
-from bosler.functions import funnel, Source, Target
-from bosler.internal import spark_session
+from orphea.functions import funnel, Source, Target
+from orphea.internal import spark_session
 
 print("hello world")
 df = spark_session().read \

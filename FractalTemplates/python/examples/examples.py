@@ -1,6 +1,6 @@
 # first
 
-from bosler import funnel
+from orphea import funnel
 
 source_dataset1 = "/Projects/Test/Data/SalesRecords"
 target_dataset = "/Projects/Test/Data/Sales_Visa"
@@ -15,7 +15,7 @@ def user_transform_function(source1):
 
 
 # second
-from bosler import funnel
+from orphea import funnel
 
 source_dataset1 = "/Projects/Test/Data/SalesRecords"
 target_dataset = "/Projects/Test/Data/Sales_Mastercard"
@@ -30,7 +30,7 @@ def user_transform_function(source1):
 
 
 # third
-from bosler import funnel
+from orphea import funnel
 
 source_dataset1 = "/Projects/Test/Data/Sales_Visa"
 target_dataset = "/Projects/Test/Data/Sales_England"
@@ -45,7 +45,7 @@ def user_transform_function(source1):
 
 
 # fourth
-from bosler import funnel
+from orphea import funnel
 
 source_dataset1 = "/Projects/Test/Data/Sales_Mastercard"
 target_dataset = "/Projects/Test/Data/Sales_Scotland"
@@ -60,7 +60,7 @@ def user_transform_function(source1):
 
 
 # fifth
-from bosler import funnel
+from orphea import funnel
 
 source_dataset1 = "/Projects/Test/Data/Sales_England"
 source_dataset2 = "/Projects/Test/Data/Sales_Scotland"
@@ -133,7 +133,7 @@ def user_transform_function(source1, source2):
 
 
 # Multi parent test
-from bosler import funnel
+from orphea import funnel
 
 source_dataset1 = "/Projects/Test/Data/Multi_Parent_Test/Multi_Parent_Test_Dataset1"
 source_dataset2 = "/Projects/Test/Data/Multi_Parent_Test/Multi_Parent_Test_Dataset2"
@@ -163,7 +163,7 @@ def user_transform_function2(source1):
 
 
 # more complex
-from bosler import funnel
+from orphea import funnel
 
 # Transformation 1
 for i in range(4):
@@ -203,7 +203,7 @@ def user_transform_function(source1):
 
 # added complexity with intermediate parents
 
-from bosler import funnel
+from orphea import funnel
 
 source_dataset1 = "/Projects/Test/Data/multiparents_and_complex_interemediate/Parent1"
 source_dataset2 = "/Projects/Test/Data/multiparents_and_complex_interemediate/Parent2"

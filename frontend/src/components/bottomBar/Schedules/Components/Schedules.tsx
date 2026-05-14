@@ -7,10 +7,7 @@ import BoslerLoader from "../../../boslerLoader";
 
 import BoslerButton from "components/BoslerComponents/ButtonComponent/BoslerButton";
 import { FilterPanel } from "components/BoslerComponents/FilterPanel/FilterPanel.view";
-import {
-  CollapserHandler,
-  ResponsivePanel,
-} from "components/BoslerComponents/ResizablePane/ResizablePaneUtil";
+import { CollapserHandler } from "components/BoslerComponents/ResizablePane/ResizablePaneUtil";
 import { fetchResourcesListAPI } from "components/Builds/Builds.api";
 import {
   JobStatusEnum,
@@ -25,8 +22,8 @@ import {
   actionScheduleAPI,
   getAllSchedulesAPI,
 } from "components/bottomBar/Schedules/api";
-import useInfiniteScroll from "hooks/useInfiniteScroll";
 import { useTabMetaDataController } from "hooks/useTabIconController";
+import { useSelector } from "react-redux";
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import {
@@ -37,6 +34,7 @@ import {
 } from "utils/utilities";
 import { getScheduleTableColumns } from "./ScheduleTableHepler";
 import { SchedulesFilters } from "./SchedulesFilters.view";
+import useInfiniteScroll from "hooks/useInfiniteScroll";
 
 import styles from "./Schedules.module.scss";
 
@@ -48,6 +46,7 @@ const Schedules = () => {
   const pageSize = 20;
 
   const [searchParams, setSearchParams] = useSearchParams();
+  const { config } = useSelector((state) => (state as any).platformConfig);
   const [schedulesData, setSchedulesData] = useState<TScheduleJobInfo[]>([]);
   const [page, setPage] = useState(0);
 
@@ -248,11 +247,11 @@ const Schedules = () => {
         </Row>
       </Row>
       <PanelGroup direction={"horizontal"}>
-        <ResponsivePanel defaultSize={20} primaryPanelRef={primaryPanelRef}>
+        <Panel collapsible={true} defaultSize={20} ref={primaryPanelRef}>
           <FilterPanel setFilters={setFilters} type="SCHEDULES">
             <SchedulesFilters filters={filters} setFilters={setFilters} />
           </FilterPanel>
-        </ResponsivePanel>
+        </Panel>
         <PanelResizeHandle className="resizablePane-collapser">
           <CollapserHandler primaryPanelRef={primaryPanelRef} />
         </PanelResizeHandle>
@@ -268,8 +267,7 @@ const Schedules = () => {
                   handleScheduleAction
                 ) as any
               }
-              size="middle"
-              // sticky
+              sticky
               dataSource={schedulesData}
               pagination={false}
               style={{ width: "100%" }}

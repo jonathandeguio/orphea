@@ -1,10 +1,7 @@
 import { Tooltip, Typography } from "antd";
 import { ProjectIcon } from "assets/icons/boslerDataIcons";
-import { CopyIcon } from "assets/icons/boslerEditorIcons";
-import { FolderMoveIcon } from "assets/icons/boslerFileIcons";
 import { StarIcon } from "assets/icons/boslerMiscellaneousIcons";
 import { SingleChevronRightIcon } from "assets/icons/boslerNavigationIcon";
-import BoslerButton from "components/BoslerComponents/ButtonComponent/BoslerButton";
 import BoslerInput from "components/BoslerComponents/InputComponent/BoslerInput";
 import { useFileExplorerService } from "hooks/useFileExplorerService";
 import {
@@ -18,19 +15,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import {
   capitalizeFirstLetter,
-  copyToClipboard,
   getLanguageLabel,
   getLastClassOfUUID,
   isDefined,
   isEmpty,
-  notEmpty,
   openNotification,
 } from "utils/utilities";
-import { openFileExplorerModal } from "../../../redux/ModalSlice";
-import { updateNameAndDesc, updateParent } from "../../../redux/fileIndexSlice";
+import { updateNameAndDesc } from "../../../redux/fileIndexSlice";
 import { RootState } from "../../../redux/types/store";
-import { Resource } from "../explorer";
-import { moveResource, putResource } from "../explorer.api";
+import { putResource } from "../explorer.api";
 import { specialIds } from "../explorer.constants";
 import { usePath } from "../explorer.hooks";
 import { getNodeFavIcon, getNodeIcon } from "../explorer.utils";
@@ -40,24 +33,20 @@ import "./breadCrumb.scss";
 const { Text } = Typography;
 interface Props {
   id: string;
-  showMoveButton?: boolean;
   onClick?: (node: any) => void;
 }
 
-export const Breadcrumb: React.FC<Props> = ({
-  id,
-  onClick,
-  showMoveButton = false,
-}) => {
+export const Breadcrumb: React.FC<Props> = ({ id, onClick }) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [firstResource, setFirstResource] = useState<any>(null);
   const [path, setPath] = useState<any[]>([]);
   const [shiftedPath, setShiftedPath] = useState<any[]>([]);
-  const [isHovered, setIsHovered] = useState<boolean>(false);
   const navigate = useNavigate();
+
   const fileIndexes = useSelector(
     (state: RootState) => state.indexes.fileIndexes
   );
+
   const dispatch = useDispatch();
 
   const [getPath] = usePath();
@@ -67,24 +56,6 @@ export const Breadcrumb: React.FC<Props> = ({
     addToFavourites,
     removeFromFavourites,
   } = useFileExplorerService();
-  // hover and copy handlers
-  const handleMouseEnter = () => {
-    setIsHovered(true);
-  };
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-  };
-  const handleCopy = () => {
-    if (path.length > 0) {
-      getFileIndex(path[path.length - 1].id).then((data) => {
-        copyToClipboard(
-          ["/Projects", ...getPath(data).map((p) => p.name)].join("/")
-        );
-      });
-    } else if (isDefined(firstResource)) {
-      copyToClipboard(["/Projects", firstResource.name].join("/"));
-    }
-  };
 
   // Setting Browser Tab Title and Icon
   useEffect(() => {
@@ -156,6 +127,7 @@ export const Breadcrumb: React.FC<Props> = ({
       }
     }
   };
+
   const changeHandler = (node: any, value: any) => {
     if (value != node.name && value.length > 2) {
       putResource(node.id, {
@@ -177,38 +149,6 @@ export const Breadcrumb: React.FC<Props> = ({
     }
   };
 
-  const handleMoveResource = (resource: Resource) => {
-    if (notEmpty(id)) {
-      dispatch(
-        openFileExplorerModal({
-          action: ({ id: explorerId }) => {
-            if (notEmpty(id)) {
-              moveResource(id, explorerId)
-                .then(({ data }) => {
-                  dispatch(updateParent(data));
-                  // openNotification(
-                  //   "Resource Moved Successfully!",
-                  //   "",
-                  //   "success"
-                  // );
-                })
-                .catch(({ response }) => {
-                  openNotification(
-                    response.data.error,
-                    response.data.description,
-                    "error"
-                  );
-                });
-            }
-          },
-          type: ["FOLDER"],
-          activeId: id,
-          projectSwitchAllowed: false,
-        })
-      );
-    }
-  };
-
   // ======================================================================
   return (
     <div ref={containerRef} className="breadcrumb__container">
@@ -223,15 +163,8 @@ export const Breadcrumb: React.FC<Props> = ({
       ) : (
         isDefined(firstResource) && (
           <div className="breadcrumb">
-            {path.length !== 0 && (
-              <span
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-                onClick={handleCopy}
-              >
-                {isHovered ? <CopyIcon /> : <ProjectIcon />}
-              </span>
-            )}
+            {path.length !== 0 && <ProjectIcon />}
+
             {path.length + shiftedPath.length !== 0 ? (
               <>
                 <div
@@ -257,25 +190,15 @@ export const Breadcrumb: React.FC<Props> = ({
               </>
             ) : (
               <>
-                <span
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
-                  onClick={handleCopy}
-                >
-                  {isHovered ? (
-                    <CopyIcon />
-                  ) : (
-                    <div className="flex">
-                      {getNodeIcon(
-                        firstResource.type,
-                        firstResource.subType,
-                        false,
-                        16,
-                        firstResource.metaData
-                      )}
-                    </div>
+                <div className="flex">
+                  {getNodeIcon(
+                    firstResource.type,
+                    firstResource.subType,
+                    false,
+                    16,
+                    firstResource.metaData
                   )}
-                </span>
+                </div>
                 <Text>
                   <Tooltip title={getLanguageLabel("clickToRename")}>
                     <BoslerInput
@@ -374,8 +297,8 @@ export const Breadcrumb: React.FC<Props> = ({
                       />
                     </Tooltip>
                   </Text>
-                  <BoslerButton
-                    onClick={(e: MouseEvent) => {
+                  <div
+                    onClick={(e) => {
                       if (p.favourite) {
                         removeFromFavourites(p.id);
                       } else {
@@ -385,31 +308,15 @@ export const Breadcrumb: React.FC<Props> = ({
                       e.preventDefault();
                       e.stopPropagation();
                     }}
-                    icon={
-                      <StarIcon
-                        color={p.favourite ? "#ffc940" : "#ffffff"}
-                        stroke={p.favourite ? "#ffc940" : "#717a94"}
-                      />
-                    }
-                    borderless
-                    icononly
-                    trimicononlypadding
-                    minimal
+                    className="flex"
+                    style={{ cursor: "pointer" }}
                   >
-                    {getLanguageLabel("clickToAddToFavouritesS")}
-                  </BoslerButton>
-                  {showMoveButton && (
-                    <BoslerButton
-                      icononly
-                      trimicononlypadding
-                      minimal
-                      icon={<FolderMoveIcon size={20} />}
-                      borderless
-                      onClick={() => handleMoveResource(p)}
-                    >
-                      {getLanguageLabel("move")}
-                    </BoslerButton>
-                  )}
+                    <StarIcon
+                      color={p.favourite ? "#ffc940" : "#ffffff"}
+                      stroke={p.favourite ? "#ffc940" : "#717a94"}
+                      size={16}
+                    />
+                  </div>
                 </>
               )}
             </>

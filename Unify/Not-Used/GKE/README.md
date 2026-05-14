@@ -10,7 +10,7 @@
 
 ***Below is not need if artifactory and kubernetes is in same tenant***
 8. Go to IAM & Admin in the main menu and make a note of the Compute Engine default service account, e.g.:<BR> [751339998510-compute@developer.gserviceaccount.com](mailto:751339998510-compute@developer.gserviceaccount.com)  (example from July tenant)
-9. Grant access to the repos in the main bosler GCP tenant (bosler-334213 project) from the Compute Engine default service account:  In 'IAM & Admin' grant 'Artifact Registry Reader' role to the new Compute Engine default service account.
+9. Grant access to the repos in the main orphea GCP tenant (orphea-334213 project) from the Compute Engine default service account:  In 'IAM & Admin' grant 'Artifact Registry Reader' role to the new Compute Engine default service account.
 
 
 # From the command line:
@@ -18,11 +18,11 @@
 * Google Cloud SDK must be installed on local machine or run within the Google Cloud Shell.  [https://cloud.google.com/sdk/docs/install](https://cloud.google.com/sdk/docs/install)
 * The Kubernetes Kubectl command-line tool needs to be installed on the computer (this is installed by default in Google Cloud Shell)  [https://kubernetes.io/docs/tasks/tools/install-kubectl-macos/](https://kubernetes.io/docs/tasks/tools/install-kubectl-macos/)
 * Install the gke-gcloud-auth-plugin:  gcloud components install gke-gcloud-auth-plugin
-* Configure git command line utility on local machine -- local account must be granted access to the Bosler Github repositories.
+* Configure git command line utility on local machine -- local account must be granted access to the Orphea Github repositories.
 * You must have the SSL certificates (crt and key files), see step below for CERT_FILE_PATH and KEY_FILE_PATH variables.<BR>
 ### 
 1. Clone the Unify git repo locally, i.e.<BR>
-	git clone --recursive [git@ssh.github.com](mailto:git@ssh.github.com):Bosler-io/Unify.git
+	git clone --recursive [git@ssh.github.com](mailto:git@ssh.github.com):Orphea-io/Unify.git
 2. cd Unify/GKE
 3. Set up SDK project and user account:<BR> # gcloud auth login    <-- this should open a browser to authenticate the new tenant
 4. Set the project, region, and zone:<BR> # gcloud config set compute/zone europe-west1<BR> # gcloud config set compute/region europe-west1-b<BR> # gcloud config set project \<new-project-name\><BR> Verify with:<BR> # gcloud config list<BR>
@@ -32,7 +32,7 @@
 8. Run the [start.sh](https://start.sh) script:<BR> # ./start.sh
 
 # In Browser (GCP & Cloudflare)
-1. In the GCP console for the new project, go to the 'VPC network' in the main menu and look in IP Addresses to get the External Static IP address named bosler.
+1. In the GCP console for the new project, go to the 'VPC network' in the main menu and look in IP Addresses to get the External Static IP address named orphea.
 2. Log into Cloudflare:  [https://dash.cloudflare.com/login](https://dash.cloudflare.com/login) 
 3. In DNS, change IPv4 address for dev to the new IP address
 <BR>

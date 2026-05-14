@@ -47,7 +47,7 @@ const FilterAddPopoverInput = ({
         onChange={(e: any) => onChange(e.target.value)}
       />
     );
-  } else if (type == "in" || type == "notIn") {
+  } else if (type == "in") {
     return (
       <Select
         // loading={loadingFilterValues}

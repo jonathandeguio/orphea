@@ -8,10 +8,10 @@ COMPUTE_ZONE=europe-west2-b
 
 SERVIE_ACCOUNT=435091822251-compute@developer.gserviceaccount.com
 
-NETWORK_TAG="bosler-test-eu"
+NETWORK_TAG="orphea-test-eu"
 
-INSTANCE_TAG="bosler-instance-with-access-ubuntu"
-DISK_TAG="bosler-disk-with-access"
+INSTANCE_TAG="orphea-instance-with-access-ubuntu"
+DISK_TAG="orphea-disk-with-access"
 
 IMAGE="projects/debian-cloud/global/images/debian-11-bullseye-v20230411"
 

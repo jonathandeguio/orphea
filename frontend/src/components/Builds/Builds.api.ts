@@ -58,16 +58,6 @@ export const abortDatasetWritingTransactionAPI = (
 };
 
 /**
- * abort a dataset writing transaction for whole build datasets
- * @param buildId
- */
-export const abortDatasetWritingTransactionForWholeBuildAPI = (
-  buildId: string
-): Promise<AxiosResponse<any, any>> => {
-  return axios.post(`/kitab/transactions/${buildId}/abort`);
-};
-
-/**
  * fetch detailed build logs
  * @param id build Id
  */
@@ -95,16 +85,6 @@ export const fetchBuildLogsAPI = (
   id: string
 ): Promise<AxiosResponse<any, any>> => {
   return axios.get(`/build/${id}/log`);
-};
-
-/**
- * fetch preview result
- * @param id previewId
- */
-export const getPreviewResultAPI = (
-  id: string
-): Promise<AxiosResponse<any, any>> => {
-  return axios.get(`/build/previewResult/${id}`);
 };
 
 /**

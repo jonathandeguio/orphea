@@ -32,9 +32,6 @@ import axios from "axios";
 import BoslerInput from "components/BoslerComponents/InputComponent/BoslerInput";
 import BoslerLoader from "components/boslerLoader";
 import BoslerModal from "components/CommonUI/BoslerModalContainer";
-import CsvPreprocessing from "components/CsvPreprocessing";
-import { getInitialValues } from "components/CsvPreprocessing/CsvPreprocessing.constants";
-import { ICsvPreprocessing } from "components/CsvPreprocessing/CsvPreprocessing.types";
 import { useDropzone } from "react-dropzone";
 import { useNavigate } from "react-router";
 import { autoFormatter } from "utils/AutoFormatter";
@@ -114,6 +111,7 @@ export default ({ id, isVisible, setIsVisible }: any) => {
       const formData = new FormData();
 
       formData.append("file", uploadedFile as Blob);
+
       const params = new URLSearchParams({
         sheetName: form.getFieldValue("selectedSheet"),
         fileName: form.getFieldValue("fileName"),
@@ -121,15 +119,11 @@ export default ({ id, isVisible, setIsVisible }: any) => {
           form.getFieldValue("description") != ""
             ? form.getFieldValue("description")
             : getLanguageLabel("uploaded"),
-        csvPreprocessing: JSON.stringify(
-          form.getFieldValue("csvPreprocessing") ?? getInitialValues()
-        ),
       }).toString();
 
       const isDataset =
         blobFileType((uploadedFile as File).name, ResourceSubTypeEnum.XLS) ||
         blobFileType((uploadedFile as File).name, ResourceSubTypeEnum.CSV) ||
-        blobFileType((uploadedFile as File).name, ResourceSubTypeEnum.JSON) ||
         blobFileType((uploadedFile as File).name, ResourceSubTypeEnum.PARQUET);
 
       const url = `/kitab/folder/uploadFile/${id}?` + params;
@@ -419,16 +413,6 @@ export default ({ id, isVisible, setIsVisible }: any) => {
                   )}
                 </Form>
               </Card>
-              {(uploadedFile as File).type == "text/csv" && (
-                <CsvPreprocessing
-                  onValuesChange={(
-                    values: ICsvPreprocessing,
-                    allValues: ICsvPreprocessing
-                  ) => {
-                    form.setFieldValue("csvPreprocessing", allValues);
-                  }}
-                />
-              )}
             </>
           ) : (
             <div
@@ -442,6 +426,35 @@ export default ({ id, isVisible, setIsVisible }: any) => {
                 {...(getInputProps() as any)}
                 className="dataset-upload-btn"
               />
+              {/* <Card
+            title={
+              <>
+                <span
+                  style={{
+                    background: "#ff6600",
+                    color: "white",
+                    fontWeight: "",
+                  }}
+                >
+                  <div className="text-and-icon-center">
+                    <WarningIcon color={"white"} size={30} />
+                    {getLanguageLabel("dataUploadSecurityWarning")}
+                  </div>
+                </span>
+              </>
+            }
+            bordered={false}
+            // className="scaled card"
+            style={{
+              textAlign: "left",
+              // width: "72vw",
+              background: "#ff6600",
+              color: "white",
+            }}
+          >
+            {getLanguageLabel("dataUploadSecurityWarningText")}
+          </Card> */}
+              {/* <br /> */}
 
               <Row
                 style={{

@@ -26,6 +26,10 @@ export const getLegendData = (
           const chartDataSet = new Set(
             (chartData?.data).map((obj: any) => obj[groupBy])
           );
+          console.log(
+            "colors",
+            chartCustomization?.colorScheme["treeMapChart"]
+          );
           return [
             {
               groupBy: [groupBy],
@@ -45,7 +49,10 @@ export const getLegendData = (
       ) {
         return [
           {
-            groupBy: chartData.request.dimensions,
+            groupBy:
+              chartData.request.chartType === "radarChart"
+                ? chartData.request.dimensions
+                : chartData.request.series[0].groupBy,
             seriesName: chartData.request.series[0].seriesName,
             items: Object.keys(chartData?.data).map((key) => ({
               name: key,
@@ -58,7 +65,7 @@ export const getLegendData = (
         ];
       } else if (skeleton.customization.series && chartData.data?.series) {
         return chartData.data?.series?.map((series: any) => ({
-          groupBy: chartData.request.dimensions,
+          groupBy: series.groupBy,
           seriesName: series.name,
           items: Object.keys(series.seriesData).map((sDataKey: any) => ({
             name: sDataKey,

@@ -52,7 +52,7 @@ export const login = (username: string, password: string) => async (dispatch: an
       payload: data,
     });
 
-    localStorage.setItem("boslerToken", data.accessToken);
+    localStorage.setItem("orpheaToken", data.accessToken);
   } catch (error) {
     dispatch({
       type: USER_LOGIN_FAIL,
@@ -62,7 +62,7 @@ export const login = (username: string, password: string) => async (dispatch: an
 };
 
 export const logout = () => async (dispatch: any) => {
-  localStorage.removeItem("boslerToken");
+  localStorage.removeItem("orpheaToken");
   dispatch({ type: USER_LOGOUT });
   dispatch({ type: USER_DETAILS_RESET });
 };
@@ -75,7 +75,7 @@ export const getUserDetails = () => async (dispatch: any, getState: any) => {
 
     const config = {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("boslerToken")}`,
+        Authorization: `Bearer ${localStorage.getItem("orpheaToken")}`,
       },
     };
 
@@ -108,7 +108,7 @@ export const getAllUserDetails = () => async (dispatch: any, getState: any) => {
 
     const config = {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("boslerToken")}`,
+        Authorization: `Bearer ${localStorage.getItem("orpheaToken")}`,
       },
     };
 
@@ -141,7 +141,7 @@ export const isUserAdmin = () => async (dispatch: any, getState: any) => {
 
     const config = {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("boslerToken")}`,
+        Authorization: `Bearer ${localStorage.getItem("orpheaToken")}`,
       },
     };
 
@@ -173,7 +173,7 @@ export const isProjectAdmin = () => async (dispatch: any, getState: any) => {
 
     const config = {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("boslerToken")}`,
+        Authorization: `Bearer ${localStorage.getItem("orpheaToken")}`,
       },
     };
 
@@ -205,7 +205,7 @@ export const isGroupAdmin = () => async (dispatch: any, getState: any) => {
 
     const config = {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("boslerToken")}`,
+        Authorization: `Bearer ${localStorage.getItem("orpheaToken")}`,
       },
     };
 
@@ -237,7 +237,7 @@ export const getUserDetailByID = (id: any) => async (dispatch: any, getState: an
 
     const config = {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("boslerToken")}`,
+        Authorization: `Bearer ${localStorage.getItem("orpheaToken")}`,
       },
     };
 

@@ -129,7 +129,7 @@ export const FolderView: React.FC<Props> = ({
   }, [setSelected, filteredChildren]);
 
   return (
-    <Row style={{ height: "100%", padding: "20px" }}>
+    <Row style={{ height: "100%" }}>
       <Col
         style={{ height: "100%" }}
         span={isEditable && isSidePanelOpen ? 18 : 24}

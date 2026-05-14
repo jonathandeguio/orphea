@@ -10,7 +10,6 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
 }
 
 .headerLeft {
@@ -34,23 +33,4 @@
   flex-direction: row;
   gap: 5px;
   margin-bottom: 10px;
-}
-
-.errorMessage {
-  background: var(--DANGEROUS_COLOR);
-  border-color: var(--DANGEROUS_COLOR_BORDER);
-  color: var(--DANGEROUS_COLOR_FONT);
-  padding: 10px;
-  margin-top: 10px;
-  margin-bottom: 5px;
-  border-radius: 4px;
-}
-
-.requestContainer {
-  border-radius: 3px;
-  padding: 6px;
-  // width: calc(100% - 16px);
-  position: relative;
-  box-shadow: var(--bosler-border-color-default) 0px 0px 0px 1px;
-  transition: box-shadow 0.15s cubic-bezier(0.25, 0.1, 0.25, 1);
 }

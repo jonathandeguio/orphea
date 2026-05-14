@@ -29,12 +29,12 @@ export const listTokens = () => async (dispatch: any, getState: any) => {
   try {
     dispatch({ type: TOKEN_LIST_REQUEST });
 
-    const boslerToken = localStorage.getItem("boslerToken");
+    const orpheaToken = localStorage.getItem("orpheaToken");
 
     const config = {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${boslerToken}`,
+        Authorization: `Bearer ${orpheaToken}`,
       },
     };
 
@@ -70,12 +70,12 @@ export const createToken = ({
         //
         dispatch({ type: TOKEN_CREATE_REQUEST });
 
-        const boslerToken = localStorage.getItem("boslerToken");
+        const orpheaToken = localStorage.getItem("orpheaToken");
 
         const config = {
           headers: {
             "Content-type": "application/json",
-            Authorization: `Bearer ${boslerToken}`,
+            Authorization: `Bearer ${orpheaToken}`,
           },
         };
 

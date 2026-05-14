@@ -2,7 +2,7 @@ spring:
   main:
     allow-circular-references: true # This needs removing it is a temporary fix
   banner:
-    location: classpath:/banner/bosler.txt
+    location: classpath:/banner/orphea.txt
 
   datasource:
     initialization-mode: always

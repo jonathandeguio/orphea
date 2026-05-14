@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(xargs grep *)",
+      "Bash(xargs sed *)",
+      "Bash(grep -v \"\\\\.crt$\")",
+      "Bash(grep -v \"\\\\.key$\")",
+      "Bash(grep -v \"\\\\.pem$\")",
+      "Bash(awk '{ print length\\($0\\), $0 }')"
+    ]
+  }
+}

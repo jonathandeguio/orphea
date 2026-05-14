@@ -1,7 +1,7 @@
 // import { Outlet, Link } from "react-router-dom";
-import { EmailIcon } from "assets/icons/boslerFileIcons";
-import { OpenIcon } from "assets/icons/boslerNavigationIcon";
-import { getDefaultFavicon } from "components/boslerLoader/FavIconLoader";
+import { EmailIcon } from "assets/icons/orpheaFileIcons";
+import { OpenIcon } from "assets/icons/orpheaNavigationIcon";
+import { getDefaultFavicon } from "components/orpheaLoader/FavIconLoader";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Outlet, useLocation } from "react-router";
@@ -15,22 +15,22 @@ import {
   NotificationIcon,
   PreferencesIcon,
   SparklesIcon,
-} from "assets/icons/boslerActionIcons";
+} from "assets/icons/orpheaActionIcons";
 import {
   ChangeLogIcon,
   ComponentIcon,
   GroupsIcon,
   KeyIcon,
   UserIcon,
-} from "assets/icons/boslerInterfaceIcons";
-import { PulseIcon } from "assets/icons/boslerMiscellaneousIcons";
+} from "assets/icons/orpheaInterfaceIcons";
+import { PulseIcon } from "assets/icons/orpheaMiscellaneousIcons";
 import {
   isGroupAdmin,
   isPlatformAdmin,
   isUserAdmin,
 } from "redux/actions/userActions";
 import { ThunkAppDispatch } from "redux/types/store";
-import { CodeCellIcon } from "assets/icons/boslerEditorIcons";
+import { CodeCellIcon } from "assets/icons/orpheaEditorIcons";
 
 const Setting = () => {
   const dispatch = useDispatch<ThunkAppDispatch>();
@@ -48,7 +48,7 @@ const Setting = () => {
       document.title =
         isDefined(config) && isDefined(config.platformName)
           ? config.platformName
-          : "Bosler";
+          : "Orphea";
     };
   }, []);
 

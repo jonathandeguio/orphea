@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Variables for registry configuration
-REGISTRY_URL="snap.bosler.io:7376"
-REGISTRY_USERNAME="robot\$bosler-main"
+REGISTRY_URL="snap.orphea.io:7376"
+REGISTRY_USERNAME="robot\$orphea-main"
 REGISTRY_PASSWORD="8oYRda4Yqah5RfkWF6aQpYPGDZN5cLOd"
 
 # Function to install containerd if not installed
@@ -114,6 +114,6 @@ verify_containerd
 
 # Verify setup by pulling an image from the registry
 echo "Testing image pull from the registry..."
-sudo ctr images pull "snap.bosler.io:7376/bosler/parler@sha256:6fd62ebdf2338074e4a8688863bafa9f5adcccee20a9dc26be88a692a9e99209"
+sudo ctr images pull "snap.orphea.io:7376/orphea/parler@sha256:6fd62ebdf2338074e4a8688863bafa9f5adcccee20a9dc26be88a692a9e99209"
 
 echo "Containerd installation and registry configuration complete!"

@@ -40,7 +40,7 @@ fi
 # cd repos
 
 # if [ ! -d frontend ]; then
-#   git clone git@github.com:Bosler-io/frontend.git  > /dev/null
+#   git clone git@github.com:Orphea-io/frontend.git  > /dev/null
 # else
 #   cd frontend
 #   git pull  > /dev/null
@@ -48,11 +48,11 @@ fi
 # fi
 
 
-# docker build frontend --tag rmalik/bosler:frontend
-# docker push rmalik/bosler:frontend
+# docker build frontend --tag rmalik/orphea:frontend
+# docker push rmalik/orphea:frontend
 
 # if [ ! -d boson ]; then
-#   git clone git@github.com:Bosler-io/boson.git  > /dev/null
+#   git clone git@github.com:Orphea-io/boson.git  > /dev/null
 # else
 #   cd boson
 #   git pull  > /dev/null
@@ -60,12 +60,12 @@ fi
 #   cd ..
 # fi
 
-# docker build boson --tag rmalik/bosler:boson
-# docker push rmalik/bosler:boson
+# docker build boson --tag rmalik/orphea:boson
+# docker push rmalik/orphea:boson
 
 
 # if [ ! -d julia ]; then
-#   git clone git@github.com:Bosler-io/julia.git  > /dev/null
+#   git clone git@github.com:Orphea-io/julia.git  > /dev/null
 # else
 #   cd julia
 #   git pull  > /dev/null
@@ -75,25 +75,25 @@ fi
 
 # cd ..
 
-# docker build julia --tag rmalik/bosler:julia
-# docker push rmalik/bosler:julia
+# docker build julia --tag rmalik/orphea:julia
+# docker push rmalik/orphea:julia
 
 
 git pull > /dev/null
 
 
-# minikube start --mount-string="$HOME/bosler:/bosler"
+# minikube start --mount-string="$HOME/orphea:/orphea"
 
 # Now we configure kubernetes
-kubectl create -f configurations/bosler-namespace.yaml
+kubectl create -f configurations/orphea-namespace.yaml
 
 # add docker registry creds to kubernetes of not already there
 kubectl get secret|grep regcred > /dev/null
 if [ $? != 0 ]; then
-    kubectl -n bosler create secret docker-registry regcred --docker-server=https://index.docker.io/v1/ --docker-username=rmalik --docker-password=Givemeaccess1# --docker-email=rakesh@rkmalik.co.uk
+    kubectl -n orphea create secret docker-registry regcred --docker-server=https://index.docker.io/v1/ --docker-username=rmalik --docker-password=Givemeaccess1# --docker-email=rakesh@rkmalik.co.uk
 fi
 
-kubectl apply -f configurations/bosler-secrets.yaml
+kubectl apply -f configurations/orphea-secrets.yaml
 
 kubectl apply -f configurations/boson-minio-storage.yaml 
 
@@ -106,12 +106,12 @@ kubectl apply -f configurations/boson-db-deployment.yaml
 echo -n "waiting for database to start"
 while true
 do
-  kubectl -n bosler get pods |grep boson-db|grep Running > /dev/null
+  kubectl -n orphea get pods |grep boson-db|grep Running > /dev/null
   if [ $? == 0 ]; then
     echo "|"
     sleep 5
     # kubectl exec -it boson-db-5dd84575cf-z6l2j -- bin/bash -c "su - postgres -c \"psql -c 'DROP DATABASE boson;'\""
-    kubectl -n bosler exec -it `kubectl -n bosler get pods |awk '{print $1}'|grep boson-db` -- /bin/bash -c "su - postgres -c \"psql -c 'CREATE DATABASE boson;'\""
+    kubectl -n orphea exec -it `kubectl -n orphea get pods |awk '{print $1}'|grep boson-db` -- /bin/bash -c "su - postgres -c \"psql -c 'CREATE DATABASE boson;'\""
     break
   fi
   echo -n "."
@@ -119,7 +119,7 @@ do
 done
 
 #create dataset bucket in minio
-kubectl -n bosler exec -it `kubectl -n bosler get pods |awk '{print $1}'|grep minio` -- /bin/bash -c "mkdir /storage/datasets"
+kubectl -n orphea exec -it `kubectl -n orphea get pods |awk '{print $1}'|grep minio` -- /bin/bash -c "mkdir /storage/datasets"
 
 kubectl apply -f configurations/boson-deployment.yaml
 
@@ -127,7 +127,7 @@ kubectl apply -f configurations/boson-deployment.yaml
 echo -n "waiting for backend/boson to start"
 while true
 do
-  kubectl -n bosler get pods |grep -v boson-db|grep boson|grep Running > /dev/null
+  kubectl -n orphea get pods |grep -v boson-db|grep boson|grep Running > /dev/null
   if [ $? == 0 ]; then
     echo "|"
     break
@@ -138,14 +138,14 @@ done
 
 kubectl apply -f configurations/frontend-deployment.yaml
 
-kubectl apply -f configurations/bosler-ingress.yaml 
+kubectl apply -f configurations/orphea-ingress.yaml 
 
 
 # Go in sleep loop until ingress started
 echo -n "waiting for ingress to start"
 while true
 do
-  kubectl -n bosler describe ingress|grep Address|grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b" > /dev/null
+  kubectl -n orphea describe ingress|grep Address|grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b" > /dev/null
   if [ $? == 0 ]; then
     echo "|"
     if [ `uname -s` == "Darwin" ]; then
@@ -164,13 +164,13 @@ done
 echo ""
 echo ""
 echo "+--------------------------------------------------------------------------+"
-echo "|                           Say hello to Bosler                            |"
+echo "|                           Say hello to Orphea                            |"
 echo "+--------------------------------------------------------------------------+"
 echo "|                                                                          |"
 echo "|                                                                          |"
 echo -e "|   Here is the minikube IP : `minikube ip`                            \t   |"
 echo "|                                                                          |"
-echo "|   Connect to Bosler  : http://`minikube ip`                               |"
+echo "|   Connect to Orphea  : http://`minikube ip`                               |"
 echo -e "|   Connect to Swagger : http://`minikube ip`/swagger-ui.html          \t   |"
 echo "|                                                                          |"
 echo "+--------------------------------------------------------------------------+"

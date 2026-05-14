@@ -1,4 +1,4 @@
-from bosler.functions import funnel, Source, Target
+from orphea.functions import funnel, Source, Target
 from pyspark.sql import functions as F
 
 

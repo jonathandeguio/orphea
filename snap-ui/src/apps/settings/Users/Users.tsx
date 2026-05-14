@@ -20,22 +20,22 @@ import {
   getTimeDisplay, globalSearch,
   openNotification,
 } from "utils/utilities";
-import { MoreMenuIcon, SearchIcon } from "assets/icons/boslerActionIcons";
-import { EditIcon } from "assets/icons/boslerEditorIcons";
+import { MoreMenuIcon, SearchIcon } from "assets/icons/orpheaActionIcons";
+import { EditIcon } from "assets/icons/orpheaEditorIcons";
 
 import { ThunkAppDispatch } from "redux/types/store";
 
-import { AddUserIcon } from "assets/icons/boslerInterfaceIcons";
-import { getDefaultFavicon } from "components/boslerLoader/FavIconLoader";
+import { AddUserIcon } from "assets/icons/orpheaInterfaceIcons";
+import { getDefaultFavicon } from "components/orpheaLoader/FavIconLoader";
 import {
   InfoIcon,
   TrashIcon,
-} from "assets/icons/boslerMiscellaneousIcons";
-import BoslerLoader from "components/boslerLoader";
+} from "assets/icons/orpheaMiscellaneousIcons";
+import OrpheaLoader from "components/orpheaLoader";
 import CreateNewUserModal from "./CreateNewUserModal";
-import BoslerButton from "components/ButtonComponent/BoslerButton";
-import BoslerModal from "components/BoslerModalContainer";
-import BoslerInput from "components/InputComponent/BoslerInput";
+import OrpheaButton from "components/ButtonComponent/OrpheaButton";
+import OrpheaModal from "components/OrpheaModalContainer";
+import OrpheaInput from "components/InputComponent/OrpheaInput";
 import { deleteUserAPI } from "../apis";
 
 const { Title, Text } = Typography;
@@ -201,10 +201,10 @@ const Users = () => {
                                   setDeleteModal(true);
                                 }}
                                 className="text-and-icon-center"
-                                style={{ color: "var(--bosler-intent-danger)" }}
+                                style={{ color: "var(--orphea-intent-danger)" }}
                               >
                                 <TrashIcon
-                                  color={"var(--bosler-intent-danger)"}
+                                  color={"var(--orphea-intent-danger)"}
                                 />
                                 {getLanguageLabel("delete")}
                               </div>
@@ -256,28 +256,28 @@ const Users = () => {
     };
   }, [allusers]);
 
-  if (loading) return <BoslerLoader />;
+  if (loading) return <OrpheaLoader />;
 
   return (
     <>
-      <BoslerModal
+      <OrpheaModal
         headingIcon={<TrashIcon color="var(--DANGEROUS_COLOR)" />}
         heading={getLanguageLabel("areYouSureYouWantToDeleteThis?")}
         open={deleteModal}
         onCancel={handleDeleteCancel}
         onOk={() => deleteUserHandler()}
         footerButtonArea={
-          <BoslerButton
+          <OrpheaButton
             icon={<TrashIcon />}
             onClick={() => deleteUserHandler()}
             intent="dangerous"
           >
             {getLanguageLabel("delete")}
-          </BoslerButton>
+          </OrpheaButton>
         }
       >
         {deleteUserDetails.name}
-      </BoslerModal>
+      </OrpheaModal>
 
       <CreateNewUserModal
         isOpen={isCreateNewUserModalOpen}
@@ -300,7 +300,7 @@ const Users = () => {
                   placement="top"
                   title={getLanguageLabel("createANewUser")}
                 >
-                  <BoslerButton
+                  <OrpheaButton
                     icon={<AddUserIcon />}
                     intent="action"
                     onClick={() => {
@@ -308,7 +308,7 @@ const Users = () => {
                     }}
                   >
                     {getLanguageLabel("newUser")}
-                  </BoslerButton>
+                  </OrpheaButton>
                 </Tooltip>
               )}
             </Col>
@@ -317,7 +317,7 @@ const Users = () => {
           <Divider />
         </p>
 
-        <BoslerInput
+        <OrpheaInput
           // size="small"
           placeholder={getLanguageLabel("searchUsersTable")}
           allowClear

@@ -13,16 +13,20 @@ import {
   MenuProps,
   Popover,
   Row,
-  Typography
+  Tooltip,
+  Typography,
 } from "antd";
 import {
+  AddIcon,
   HistoryIcon,
-  LinkIcon
+  LinkIcon,
+  RefreshIcon,
 } from "assets/icons/boslerActionIcons";
 import { GraphIcon } from "assets/icons/boslerChartIcons";
 import { FolderIcon } from "assets/icons/boslerFileIcons";
+import { KeyIcon } from "assets/icons/boslerInterfaceIcons";
 import { MonitorIcon } from "assets/icons/boslerMiscellaneousIcons";
-import { PopOutIcon } from "assets/icons/boslerNavigationIcon";
+import { PopOutIcon, TickIcon } from "assets/icons/boslerNavigationIcon";
 import { TableIcon } from "assets/icons/boslerTableIcons";
 import { PlatformPagesEnum } from "common/enums";
 import Avatars from "components/Avatars/Avatars";
@@ -57,7 +61,7 @@ import {
 } from "../../../../redux/constants/resourcePermissionConstants";
 import CreateNewDashboardModal from "../../utils/CreateNewDashboardModal";
 import { fetchChartDashboards } from "../charts.api";
-import { duplicateChartHandler } from "../charts.utils";
+import { KEPLER_USE_CASES, duplicateChartHandler } from "../charts.utils";
 import KeplerHeaderActionBtn from "./KeplerHeaderActionBtn";
 import KeplerHeaderDuplicate from "./KeplerHeaderDuplicate";
 
@@ -157,7 +161,7 @@ function KeplerHeader({
       label: (
         <>
           <div style={{ marginLeft: "1.5rem", marginRight: "1.5rem" }}>
-            {getLanguageLabel("dashboards")}
+            {getLanguageLabel("dashboard")}
           </div>
         </>
       ),
@@ -165,18 +169,49 @@ function KeplerHeader({
     },
     {
       key: "divider",
-      label: <Divider style={{ margin: "4px 0 10px 0" }}></Divider>,
+      label: <Divider style={{ margin: "1px" }}></Divider>,
+      disabled: true,
+    },
+    {
+      label: (
+        <>
+          <Row justify="space-between" align="middle">
+            <Col>
+              <div className="text-and-icon-center">
+                {getLanguageLabel("new")}
+              </div>
+            </Col>
+            <Col className="key-binding">
+              <div className="text-and-icon-center">N</div>
+            </Col>
+          </Row>
+        </>
+      ),
+      key: "createDashoard",
+      icon: <AddIcon />,
+      onClick: (e: any) => {
+        e.domEvent.stopPropagation();
+        setCreateDashboardModal(!createDashboardModal);
+      },
+    },
+    {
+      key: "divider",
+      label: chartDashboards.length > 0 && (
+        <Divider style={{ margin: "1px" }}>
+          <Text type="secondary" style={{ fontSize: "12px" }}>
+            {getLanguageLabel("attachedTo")}
+          </Text>
+        </Divider>
+      ),
       disabled: true,
     },
     ...chartDashboards?.map((dash: any) => ({
       label: (
-        <div>
-          <Link to={`/portal/kepler/DASHBOARD/${dash?.id}`}>
-            <span className="text-and-icon-center">
-              <MonitorIcon /> {dash?.name}
-            </span>
-          </Link>
-        </div>
+        <Link to={`/portal/kepler/DASHBOARD/${dash?.id}`}>
+          <span className="text-and-icon-center">
+            <MonitorIcon /> {dash?.name}
+          </span>
+        </Link>
       ),
       key: `dashboard-${dash?.id}`,
     })),
@@ -200,6 +235,31 @@ function KeplerHeader({
       )}
 
       <div className="kepler-container-header-btns">
+        <div>
+          {showDialog ? (
+            <Tooltip title={"Saving..."} placement="bottom">
+              <div className="text-and-icon-center">
+                <BoslerButton
+                  icon={<RefreshIcon />}
+                  loading={showDialog}
+                  minimal
+                  icononly
+                  trimicononlypadding
+                />
+              </div>
+            </Tooltip>
+          ) : (
+            <Tooltip title={getLanguageLabel("autoSaved")} placement="bottom">
+              <BoslerButton
+                icon={<TickIcon />}
+                iconColor="var(--SUCCESS_COLOR)"
+                minimal
+                icononly
+                trimicononlypadding
+              />
+            </Tooltip>
+          )}
+        </div>
         <BoslerInfoPopover id={CHART_ID} type={"CHART"} />
         <Popover
           title={
@@ -247,6 +307,10 @@ function KeplerHeader({
             trimicononlypadding
           ></BoslerButton>
         </Popover>
+        <EmbedModal
+          openEmbedModal={openEmbedModal}
+          setOpenEmbedModal={setOpenEmbedModal}
+        />
         <div className="text-and-icon-center">
           <Popover
             title={
@@ -371,48 +435,33 @@ function KeplerHeader({
             />
           </Popover>
         )}
-
+        <Comments id={CHART_ID} />
+        <Avatars link={`/topic/${CHART_ID}`} />
         {isUseCaseBasedOptionActivate(
           "KEPLER",
           info.displayBlockedFeatures,
           info.product
-        ) && chartDashboards?.length > 0 && (
+        ) && (
           <Badge
             count={chartDashboards.length}
-            style={{ marginRight: "4px", marginTop: "5px"}}
+            style={{ backgroundColor: "#52c41a" }}
+            offset={[-5, 3]}
             size="small"
-            color={"#52c41a"}
           >
-            <Popover
-              content={
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "5px",
-                  }}
-                >
-                  {items.map((item: any) => (
-                    <div>{item.label}</div>
-                  ))}
-                </div>
+            <BoslerButton
+              icon={<MonitorIcon />}
+              intent="primary"
+              menuItems={items}
+              onClick={() => setCreateDashboardModal(!createDashboardModal)}
+              actionIcon={
+                KEPLER_USE_CASES.includes(info.product) ? <></> : <KeyIcon />
               }
             >
-              <BoslerButton
-                icon={<MonitorIcon />}
-                minimal
-                icononly
-                trimicononlypadding
-                // menuItems={items}
-                // actionIcon={
-                //   KEPLER_USE_CASES.includes(info.product) ? <></> : <KeyIcon />
-                // }
-              />
-            </Popover>
+              {getLanguageLabel("dashboard")}
+            </BoslerButton>
           </Badge>
         )}
-        <Comments id={CHART_ID} />
-        <Avatars link={`/topic/${CHART_ID}`} />
+
         <KeplerHeaderActionBtn
           id={CHART_ID}
           showDialog={showDialog}
@@ -422,10 +471,6 @@ function KeplerHeader({
         />
         <KeplerHeaderDuplicate id={CHART_ID} chart={chart} query={query} />
       </div>
-      <EmbedModal
-        openEmbedModal={openEmbedModal}
-        setOpenEmbedModal={setOpenEmbedModal}
-      />
     </div>
   );
 }

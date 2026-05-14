@@ -6,9 +6,6 @@
 .outerBody {
   display: flex;
   overflow: hidden;
-  @media only screen and (max-width: 768px) {
-    flex-wrap: wrap;
-  }
 }
 .leftPortion {
   display: flex;
@@ -46,7 +43,7 @@
 }
 .rightPortion {
   width: fit-content;
-  // overflow: auto;
+  /* overflow: auto; */
   display: flex;
   flex-direction: column;
   gap: 32px;
@@ -54,9 +51,6 @@
   min-width: 200px;
   max-width: 450px;
   flex-wrap: wrap;
-  @media only screen and (max-width: 768px) {
-    display: none;
-  }
 }
 
 .footer {

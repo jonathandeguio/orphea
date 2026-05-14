@@ -4,12 +4,19 @@
   }
 }
 
-.prefrence-layout-container {
-  @media (max-width: 768px) {
+.prefrence-layout-container{
+  @media  (max-width:var(--mobile-width)){
     flex: 1 !important;
     box-sizing: content-box !important;
+    :where(.css-dev-only-do-not-override-2czed2) {
+      max-width: 100% !important;
+    box-sizing: content-box !important;
+    }   
   }
 }
+
+
+
 
 .themeBody {
   border: 1px solid var(--bosler-border-color-default);

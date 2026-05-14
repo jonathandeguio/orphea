@@ -180,6 +180,8 @@ export default function Dataset({ datasetDetails, id, branch }: IProps) {
     }
   }, [datasetDetails, datasetMapping]);
 
+  console.log("DATASET MAPPING : ", datasetDetails);
+
   if (!datasetMapping || !datasetMapping.datasetMapping) {
     return <BoslerLoader />;
   }

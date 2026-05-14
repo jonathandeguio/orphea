@@ -1,12 +1,5 @@
-import {
-  Checkbox,
-  Col,
-  ModalProps,
-  Row,
-  Select,
-  Switch,
-  Typography,
-} from "antd";
+import Editor from "@monaco-editor/react";
+import { Checkbox, Col, Row, Select, Switch, Typography } from "antd";
 
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -39,55 +32,37 @@ import {
   decodeFromBase64,
   encodeToBase64,
   getLanguageLabel,
+  getSourceIcon,
+  isCurrentConfigThemeDark,
   isDefined,
   notEmpty,
   openNotification,
 } from "utils/utilities";
+import { listSources } from "../../../redux/actions/sourceActions";
 import { ThunkAppDispatch } from "../../../redux/types/store";
 import {
   ConnectBuildAPI,
-  getSourceDetailsAPI,
   handleConnectUpdateAPI,
   isDatasetFreeToLinkAPI,
 } from "../Connect.api";
 
-import {
-  ResourceSubTypeEnum,
-  ResourceTypeEnum,
-} from "Apps/explorer/explorer.utils";
+import { ResourceTypeEnum } from "Apps/explorer/explorer.utils";
+import { SourceIcon } from "assets/icons/boslerDataIcons";
 import {
   JobStatusEnum,
   ScheduleTriggerType,
 } from "components/bottomBar/Schedules/SchedulesModal.constants";
 import { TScheduleJobInfo } from "components/bottomBar/Schedules/SchedulesModal.types";
-import { WriteModeEnum } from "global.d";
 import { useOnlyOnce } from "hooks/useEffectOnlyOnce";
 import {
   useFileExplorerService,
   useResourceHook,
 } from "hooks/useFileExplorerService";
 import { openFileExplorerModal } from "../../../redux/ModalSlice";
-import { ISourceConfig } from "../Sources/Source";
 import { initialLinkDetails } from "./Link.constants";
-import { ILink } from "./Link.types";
-import { default as LinkSourceFolder } from "./LinkSourceFolder";
-import LinkSourceJdbc from "./LinkSourceJdbc";
-import LinkSourceSelectionBtn from "./LinkSourceSelectionBtn";
-import LinkSourceSharepoint from "./LinkSourceSharepoint";
+import { SourceButtonPopover } from "./SourceButtonPopover";
 
 const { Text } = Typography;
-
-interface IProps extends ModalProps {
-  isVisible: boolean;
-  setIsVisible: any;
-  updateDetails?: any;
-  defaultParent?: any;
-  defaultSource?: string;
-  defaultQuery?: string;
-  defaultFileId?: string;
-  defaultFileType?: ResourceSubTypeEnum;
-  defaultLinkName?: string;
-}
 
 const LinkModal = ({
   isVisible,
@@ -95,30 +70,24 @@ const LinkModal = ({
   updateDetails,
   defaultParent,
   defaultSource,
-  defaultQuery,
-  defaultFileId,
-  defaultFileType,
-  defaultLinkName = "New Link",
-  ...ModalProps
-}: IProps) => {
+}: any) => {
   const dispatch = useDispatch<ThunkAppDispatch>();
 
   const { user } = useSelector((state) => (state as $TSFixMe).userDetails);
 
   const [newLinkDetails, setNewLinkDetails] = useState({
     ...initialLinkDetails,
-    name: defaultLinkName,
-    fileId: defaultFileId,
-    fileType: defaultFileType,
   });
 
   const { getFileIndex, fetchResource } = useFileExplorerService();
 
+  const { sources } = useSelector((state) => (state as $TSFixMe).sourceList);
+
   const [selectedDataset, setSelectedDataset] = useState(null);
   const [sourceType, setSourceType] = useState("");
-  const [code, setCode] = useState<string>();
+  const [code, setCode] = useState("");
   const [selectedParent, setSelectedParent] = useState<string | null>(null);
-  const [selectedSource, setSelectedSource] = useState<ISourceConfig>();
+  const [selectedSource, setSelectedSource] = useState(null);
   const [parentPath, setParentPath] = useState<any[]>([]);
 
   const addDataset = ({ id, path, name }: any) => {
@@ -135,12 +104,9 @@ const LinkModal = ({
       ...newLinkDetails,
       sourceId: id,
     });
-    getSourceDetailsAPI(id).then(({ data }) => {
-      const targetSource = data;
-      setCode(undefined);
-      setSelectedSource(targetSource);
-      setSourceType(targetSource.type);
-    });
+    const targetSource: any = sources?.find((source: any) => source.id == id);
+    setSelectedSource(targetSource);
+    setSourceType(targetSource.type);
   };
   const addParentFolder = ({ id, path, name }: any) => {
     setNewLinkDetails({ ...newLinkDetails, parent: id });
@@ -175,33 +141,28 @@ const LinkModal = ({
     setSelectedParent(null);
     setSelectedDataset(null);
     setNewLinkDetails({ ...initialLinkDetails });
+    console.log("CULPRIT 5");
   };
 
+  useOnlyOnce(
+    () => {
+      if (!sources) {
+        console.log("CULPRIT 4 ", sources);
+        dispatch(listSources());
+      }
+    },
+    () => sources
+  );
+
   const handleOk = async () => {
-    console.log("DATA IS : ", newLinkDetails);
-    if (sourceType === "FOLDER" && !newLinkDetails.subFolder) {
+    if (sourceType === "FOLDER" && !newLinkDetails.script) {
       openNotification(
         "Details Incomplete",
         "Sub Folder is not defined.",
         "warning"
       );
       return;
-    } else if (
-      sourceType === "SHAREPOINT" &&
-      !newLinkDetails.fileId &&
-      !(
-        newLinkDetails.fileType == ResourceSubTypeEnum.CSV ||
-        (newLinkDetails.fileType == ResourceSubTypeEnum.XLS &&
-          newLinkDetails.sheetName)
-      )
-    ) {
-      openNotification(
-        "Details Incomplete",
-        "FileId or sheetName is not defined.",
-        "warning"
-      );
-      return;
-    } else if (sourceType === "jdbc" && !isDefined(code)) {
+    } else if (sourceType === "jdbc" && !code) {
       openNotification(
         "Details Incomplete",
         "There has to be a simple SQL query",
@@ -214,20 +175,20 @@ const LinkModal = ({
     ) {
       openNotification(
         "Details incomplete",
-        "Please enter the complete details " + newLinkDetails.sourceId,
+        "Please enter the complete details.",
         "warning"
       );
       return;
     }
     if (!newLinkDetails.dataLiveLoad) {
-      // if (!(newLinkDetails.datasetId && newLinkDetails.branch)) {
-      //   openNotification(
-      //     "Details incomplete",
-      //     "Dataset and branch needs to be selected for Store.",
-      //     "warning"
-      //   );
-      //   return;
-      // }
+      if (!(newLinkDetails.datasetId && newLinkDetails.branch)) {
+        openNotification(
+          "Details incomplete",
+          "Dataset and branch needs to be selected for Store.",
+          "warning"
+        );
+        return;
+      }
 
       if (
         newLinkDetails.trigger === ScheduleTriggerType.CRON &&
@@ -241,13 +202,31 @@ const LinkModal = ({
         return;
       }
     }
+    let script;
+    if (sourceType === "FOLDER") {
+      newLinkDetails.type = "FOLDER";
+      script = newLinkDetails.script;
+    } else if (sourceType === "jdbc") {
+      newLinkDetails.type = "JDBC";
+      script = encodeToBase64(code);
+    }
 
     await dispatch(
       createLink({
-        ...newLinkDetails,
-        script: encodeToBase64(code ?? ""),
+        name: newLinkDetails.name,
+        description: newLinkDetails.description,
+        script: script,
+        type: newLinkDetails.type,
+        datasetId: newLinkDetails.datasetId,
+        branch: newLinkDetails.branch,
+        sourceId: newLinkDetails.sourceId,
+        parent: newLinkDetails.parent,
+        dataLiveLoad: newLinkDetails.dataLiveLoad,
+        saveMode: newLinkDetails.saveMode,
+        trigger: newLinkDetails.trigger,
+        cronExpression: newLinkDetails.cronExpression,
       })
-    ).then((data: ILink) => {
+    ).then((data: $TSFixMe) => {
       fetchResource(data.id);
       if (newLinkDetails.trigger == ScheduleTriggerType.CRON) {
         const schedulePayload: TScheduleJobInfo = {
@@ -284,29 +263,14 @@ const LinkModal = ({
   };
 
   const handleUpdate = async () => {
-    if (sourceType === "FOLDER" && !newLinkDetails.subFolder) {
+    if (sourceType === "FOLDER" && !newLinkDetails.script) {
       openNotification(
         "Details Incomplete",
-        "Sub Folder is not defined.",
+        "Please enter Sub Folder directory.",
         "warning"
       );
       return;
-    } else if (
-      sourceType === "SHAREPOINT" &&
-      !newLinkDetails.fileId &&
-      !(
-        newLinkDetails.fileType == ResourceSubTypeEnum.CSV ||
-        (newLinkDetails.fileType == ResourceSubTypeEnum.XLS &&
-          newLinkDetails.sheetName)
-      )
-    ) {
-      openNotification(
-        "Details Incomplete",
-        "FileId or sheetName is not defined.",
-        "warning"
-      );
-      return;
-    } else if (sourceType === "jdbc" && !isDefined(code)) {
+    } else if (sourceType === "jdbc" && !code) {
       openNotification(
         "Details Incomplete",
         "There has to be a simple SQL query",
@@ -347,13 +311,29 @@ const LinkModal = ({
         return;
       }
     }
+    let script;
+    if (sourceType === "FOLDER") {
+      newLinkDetails.type = "FOLDER";
+      script = newLinkDetails.script;
+    } else if (sourceType === "jdbc") {
+      newLinkDetails.type = "JDBC";
+      script = encodeToBase64(code);
+    }
 
     const body = {
-      ...newLinkDetails,
-      // Not handling request saving from modal, when sent as null, they are not saved
-      requests: null,
       id: updateDetails.linkDetails.id,
-      script: encodeToBase64(code ?? ""),
+      name: newLinkDetails.name,
+      description: newLinkDetails.description,
+      script: script,
+      type: newLinkDetails.type,
+      datasetId: newLinkDetails.datasetId,
+      branch: newLinkDetails.branch,
+      sourceId: newLinkDetails.sourceId,
+      dataLiveLoad: newLinkDetails.dataLiveLoad,
+      parent: newLinkDetails.parent,
+      saveMode: newLinkDetails.saveMode,
+      trigger: newLinkDetails.trigger,
+      cronExpression: newLinkDetails.cronExpression,
     };
     handleConnectUpdateAPI("link", JSON.stringify(body)).then(
       async ({ data }) => {
@@ -415,38 +395,35 @@ const LinkModal = ({
     resolveCallback: (data: { name: React.SetStateAction<string | null> }) => {
       setSelectedParent(data.name);
       setNewLinkDetails({ ...newLinkDetails, parent: defaultParent });
+      console.log("CULPRIT 3");
     },
   });
 
   useOnlyOnce(
     () => {
-      if (notEmpty(defaultSource)) {
-        getSourceDetailsAPI(defaultSource).then(({ data }) => {
-          const _source = data;
+      if (notEmpty(defaultSource) && notEmpty(sources)) {
+        let _source = sources?.find(
+          (source: any) => source.id == defaultSource
+        );
 
-          setSelectedSource(_source);
-          setSourceType(_source.type);
-          setNewLinkDetails({ ...newLinkDetails, sourceId: defaultSource });
+        setSelectedSource(_source);
+        setSourceType(_source.type);
+        setNewLinkDetails({ ...newLinkDetails, sourceId: defaultSource });
 
-          if (!defaultParent && selectedParent == undefined && _source.parent) {
-            getFileIndex(_source.parent).then((data) => {
-              setSelectedParent(data.name);
-              setNewLinkDetails({
-                ...newLinkDetails,
-                sourceId: defaultSource,
-                parent: _source.parent,
-              });
-            });
-          }
-        });
+        if (!defaultParent && selectedParent == undefined && _source.parent) {
+          getFileIndex(_source.parent).then((data) => {
+            setSelectedParent(data.name);
+            setNewLinkDetails({ ...newLinkDetails, parent: _source.parent });
+          });
+        }
       }
+      console.log("CULPRIT 1");
     },
-    () => notEmpty(defaultSource)
+    () => notEmpty(defaultSource) && notEmpty(sources)
   );
 
   useEffect(() => {
     if (updateDetails) {
-      console.log("IN UPDATE DETAILS : ", updateDetails);
       setSelectedSource(updateDetails.source);
       setNewLinkDetails({ ...updateDetails.linkDetails });
       if (
@@ -458,9 +435,10 @@ const LinkModal = ({
       if (updateDetails.dataset) setSelectedDataset(updateDetails.dataset.name);
       if (updateDetails.source) setSourceType(updateDetails.source.type);
     }
+    console.log("CULPRIT 2");
   }, []);
 
-  console.log("LINK DETAILS : ", newLinkDetails);
+  // console.log("FOUND IT 2");
 
   return (
     <>
@@ -710,7 +688,7 @@ const LinkModal = ({
             </Text>
           </Col>
         </Row>
-        {!newLinkDetails.dataLiveLoad && selectedDataset && (
+        {!newLinkDetails.dataLiveLoad && (
           <Row
             gutter={[16, 16]}
             style={{
@@ -770,31 +748,139 @@ const LinkModal = ({
 
         <br />
 
-        <LinkSourceSelectionBtn
-          selectedSource={selectedSource}
-          defaultParent={defaultParent}
-          addSourceDetails={addSourceDetails}
-        />
-        {sourceType == "FOLDER" && (
-          <LinkSourceFolder
-            setNewLinkDetails={setNewLinkDetails}
-            newLinkDetails={newLinkDetails}
-          />
-        )}
-        {sourceType == "SHAREPOINT" && (
-          <LinkSourceSharepoint
-            setNewLinkDetails={setNewLinkDetails}
-            newLinkDetails={newLinkDetails}
-          />
-        )}
-        {sourceType == "jdbc" && selectedSource && selectedSource.id && (
-          <LinkSourceJdbc
-            sourceId={selectedSource.id}
-            user={user}
-            code={code}
-            setCode={setCode}
-            defaultQuery={defaultQuery}
-          />
+        <Text type="secondary" strong>
+          {getLanguageLabel("dataSource").toUpperCase()}
+        </Text>
+        <Row
+          gutter={[16, 16]}
+          style={{
+            marginTop: "5px",
+          }}
+        >
+          <Col span={8}>
+            <Text>{getLanguageLabel("dataSource")}</Text>
+          </Col>
+          <Col span={16}>
+            <SourceButtonPopover source={selectedSource}>
+              <BoslerButton
+                icon={
+                  selectedSource ? (
+                    getSourceIcon(
+                      (selectedSource as $TSFixMe)["type"],
+                      (selectedSource as $TSFixMe)["dbmsType"]
+                    )
+                  ) : (
+                    <SourceIcon />
+                  )
+                }
+                onClick={() => {
+                  dispatch(
+                    openFileExplorerModal({
+                      type: ["SOURCE"],
+                      action: (data) => {
+                        addSourceDetails(data);
+                      },
+                      activeId: defaultParent,
+                    })
+                  );
+                }}
+                intent={notEmpty(selectedSource) ? "success" : "warning"}
+              >
+                {notEmpty(selectedSource)
+                  ? (selectedSource as any)?.name
+                  : "Select Source"}
+              </BoslerButton>
+            </SourceButtonPopover>
+          </Col>
+        </Row>
+
+        {sourceType == "FOLDER" || sourceType == "rest" ? (
+          <Row
+            gutter={[16, 16]}
+            style={{
+              marginTop: "5px",
+            }}
+          >
+            <Col span={8}>
+              <Text>{getLanguageLabel("subFolder")}</Text>
+            </Col>
+            <Col span={16}>
+              <BoslerInput
+                onChange={(e) =>
+                  setNewLinkDetails({
+                    ...newLinkDetails,
+                    script: e.target.value,
+                  })
+                }
+                value={newLinkDetails.script}
+                required
+              />
+            </Col>
+          </Row>
+        ) : (
+          sourceType == "jdbc" && (
+            <Row
+              gutter={[16, 16]}
+              style={{
+                marginTop: "5px",
+              }}
+            >
+              <Col span={8} style={{ display: "flex", alignItems: "center" }}>
+                <Text>{getLanguageLabel("query")}</Text>
+              </Col>
+              <Col span={16}>
+                <div
+                  style={{
+                    border: "1px solid var(--bosler-border-color-default)",
+                  }}
+                >
+                  <Editor
+                    height="20vh"
+                    defaultLanguage="sql"
+                    theme={isCurrentConfigThemeDark(user) ? "vs-dark" : "light"}
+                    onChange={(value, event) => {
+                      setCode(value as string);
+                    }}
+                    value={code}
+                    options={{
+                      minimap: {
+                        enabled: false,
+                      },
+                      fontSize:
+                        isDefined(user.preferences) &&
+                        isDefined(user.preferences.fontSize)
+                          ? user.preferences.fontSize
+                          : "16",
+                      lineHeight: 19,
+                      lineNumbersMinChars: 2,
+
+                      fontFamily:
+                        '"IBM Plex Mono", "Courier New", Courier, monospace, "Droid Sans Mono", "monospace", monospace',
+                    }}
+
+                    // onChange={(e) =>
+                    //   setNewLinkDetails({
+                    //     ...newLinkDetails,
+                    //     query: e.target.value,
+                    //   })
+                    // }
+                  />
+                </div>
+
+                {/* <TextArea
+                        onChange={(e) =>
+                          setNewLinkDetails({
+                            ...newLinkDetails,
+                            query: e.target.value,
+                          })
+                        }
+                        value={newLinkDetails.query}
+                        required
+                        style={{ width: "20vw", minWidth: "300px" }}
+                      /> */}
+              </Col>
+            </Row>
+          )
         )}
         <br />
 
@@ -852,21 +938,21 @@ const LinkModal = ({
               </Col>
               <Col span={16}>
                 <Select
-                  id="writeMode"
-                  value={newLinkDetails.writeMode}
+                  id="saveMode"
+                  value={newLinkDetails.saveMode}
                   onChange={(e) => {
                     setNewLinkDetails({
                       ...newLinkDetails,
-                      writeMode: e,
+                      saveMode: e,
                     });
                   }}
                   style={{ width: "100%" }}
                 >
-                  <Select.Option value={WriteModeEnum.SNAPSHOT}>
+                  <Select.Option value="overwrite">
                     {getLanguageLabel("snapshot")}
                   </Select.Option>
-                  <Select.Option value={WriteModeEnum.APPEND}>
-                    {getLanguageLabel("append")}
+                  <Select.Option value="append">
+                    {getLanguageLabel("incremental")}
                   </Select.Option>
                 </Select>
               </Col>

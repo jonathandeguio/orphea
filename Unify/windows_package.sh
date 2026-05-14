@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Base path
-BASE_PATH="/Users/commonaccount/Documents/Code/Bosler"
+BASE_PATH="/Users/commonaccount/Documents/Code/Orphea"
 
 # Function to copy directories or files
 copy_resource() {
@@ -44,7 +44,7 @@ build_boson() {
 # Function to build docs
 build_docs() {
     echo "$(date): Building docs"
-    cd "$BASE_PATH/bosler-docs2/bosler-docs" || exit
+    cd "$BASE_PATH/orphea-docs2/orphea-docs" || exit
     git pull
     [ -d build ] && rm -rf build
     yarn build
@@ -53,12 +53,12 @@ build_docs() {
 # Define source paths
 FRONTEND_SOURCE="$BASE_PATH/frontend/build/"
 BOSON_SOURCE="$BASE_PATH/boson/build/libs/boson-0.0.1-SNAPSHOT.jar"
-DOCS_SOURCE="$BASE_PATH/bosler-docs2/bosler-docs/build/"
+DOCS_SOURCE="$BASE_PATH/orphea-docs2/orphea-docs/build/"
 
 # Define destination paths
 FRONTEND_DEST="$BASE_PATH/Unify/windows/app/frontend"
 BOSON_DEST="$BASE_PATH/Unify/windows/app/boson/boson-0.0.1-SNAPSHOT.jar"
-DOCS_DEST="$BASE_PATH/Unify/windows/app/bosler-docs"
+DOCS_DEST="$BASE_PATH/Unify/windows/app/orphea-docs"
 
 # Function to handle build actions
 build_all() {

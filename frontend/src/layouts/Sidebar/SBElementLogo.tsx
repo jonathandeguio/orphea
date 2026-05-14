@@ -26,7 +26,7 @@ const SDElementLogo = ({
   );
 
   return (
-    <Link to="/" style={{ textDecoration: "none", textAlign: "center"}}>
+    <Link to="/" style={{ textDecoration: "none" }}>
       {loading ? (
         <BoslerLoader />
       ) : isDefined(config) && isDefined(config.logo) ? (
@@ -43,7 +43,7 @@ const SDElementLogo = ({
           <BoslerIcon size={iconSize && iconSize > 18 ? 36 : 30} />
           <br />
           {showText ? (
-            <span className="logo">BOSLER</span>
+            <span className="logo">ORPHEA</span>
           ) : (
             <span
               className="logo"
@@ -58,7 +58,7 @@ const SDElementLogo = ({
                 // border-right: none;
               }}
             >
-              BOSLER
+              ORPHEA
             </span>
           )}
         </>

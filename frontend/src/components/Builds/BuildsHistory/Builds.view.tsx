@@ -1,4 +1,4 @@
-import { Checkbox, Col, MenuProps, Row, Skeleton, Table, Typography } from "antd";
+import { Checkbox, Col, MenuProps, Row, Table, Typography } from "antd";
 
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
@@ -8,15 +8,12 @@ import {
   WarningIcon,
 } from "../../../assets/icons/boslerActionIcons";
 import { TickIcon } from "../../../assets/icons/boslerNavigationIcon";
+import BoslerLoader from "../../boslerLoader";
 
 import { ConnectBuildAPI } from "Apps/Connect/Connect.api";
 import BoslerButton from "components/BoslerComponents/ButtonComponent/BoslerButton";
 import { FilterPanel } from "components/BoslerComponents/FilterPanel/FilterPanel.view";
-import {
-  CollapserHandler,
-  ResponsivePanel,
-} from "components/BoslerComponents/ResizablePane/ResizablePaneUtil";
-import useInfiniteScroll from "hooks/useInfiniteScroll";
+import { CollapserHandler } from "components/BoslerComponents/ResizablePane/ResizablePaneUtil";
 import { useSelector } from "react-redux";
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
 import { RootState } from "redux/types/store";
@@ -38,9 +35,10 @@ import { ABORTED, ACTIVE, CONNECT, FAILED, SUCCESS } from "../Builds.constants";
 import { TBuildTrigger } from "../Builds.types";
 import { IBuildFilters } from "./BuildFilters";
 import { getBuildTableColumns } from "./BuildHistoryTableHelper";
-import styles from "./Builds.module.scss";
 import { getDefaultBuildFilters } from "./Builds.utils";
 import { BuildsFilters } from "./BuildsFilters.view";
+import useInfiniteScroll from "hooks/useInfiniteScroll";
+import styles from "./Builds.module.scss";
 
 const { Title } = Typography;
 
@@ -97,7 +95,7 @@ const Builds = () => {
   const items: MenuProps["items"] = [
     {
       label: <>{getLanguageLabel("failed")}</>,
-      key: FAILED,
+      key: "failed",
       icon: (
         <>
           <Checkbox
@@ -106,6 +104,22 @@ const Builds = () => {
                 ? true
                 : false
             }
+            onChange={(e) => {
+              if (e.target.checked)
+                setFilters((filters: any) => {
+                  return { ...filters, status: [...filters.status, FAILED] };
+                });
+              else
+                setFilters((filters: any) => {
+                  const removedStatus = filters.status.filter(
+                    (status: any) => status != FAILED
+                  );
+                  return {
+                    ...filters,
+                    status: removedStatus,
+                  };
+                });
+            }}
           />
           <WarningIcon color="#FFA500" />
         </>
@@ -113,7 +127,7 @@ const Builds = () => {
     },
     {
       label: <>{getLanguageLabel("aborted")}</>,
-      key: ABORTED,
+      key: "aborted",
       icon: (
         <>
           <Checkbox
@@ -122,6 +136,22 @@ const Builds = () => {
                 ? true
                 : false
             }
+            onChange={(e) => {
+              if (e.target.checked)
+                setFilters((filters: any) => {
+                  return { ...filters, status: [...filters.status, ABORTED] };
+                });
+              else
+                setFilters((filters: any) => {
+                  const removedStatus = filters.status.filter(
+                    (status: any) => status != ABORTED
+                  );
+                  return {
+                    ...filters,
+                    status: removedStatus,
+                  };
+                });
+            }}
           />
           <StopIcon color={"var(--bosler-intent-danger)"} />
         </>
@@ -129,7 +159,7 @@ const Builds = () => {
     },
     {
       label: <>{getLanguageLabel("success")}</>,
-      key: SUCCESS,
+      key: "success",
       icon: (
         <>
           <Checkbox
@@ -138,6 +168,19 @@ const Builds = () => {
                 ? true
                 : false
             }
+            onChange={(e) => {
+              if (e.target.checked)
+                setFilters((filters: any) => {
+                  return { ...filters, status: [...filters.status, SUCCESS] };
+                });
+              else
+                setFilters((filters: any) => {
+                  const removedStatus = filters.status.filter(
+                    (status: any) => status != SUCCESS
+                  );
+                  return { ...filters, status: removedStatus };
+                });
+            }}
           />
           <TickIcon color="var(--SUCCESS_COLOR)" />
         </>
@@ -340,34 +383,6 @@ const Builds = () => {
             <Col>
               <BoslerButton
                 menuItems={items}
-                onClickMenuItem={(e: MenuProps["onClick"] | any) => {
-                  e.domEvent.stopPropagation();
-                  e.domEvent.preventDefault();
-                  console.log("CLICKED : ", e.key);
-                  let isChecked = false;
-
-                  filters.status.map((status: any) => {
-                    if (status == e.key) isChecked = true;
-                  });
-
-                  if (!isChecked)
-                    setFilters((filters: any) => {
-                      return {
-                        ...filters,
-                        status: [...filters.status, e.key],
-                      };
-                    });
-                  else
-                    setFilters((filters: any) => {
-                      const removedStatus = filters.status.filter(
-                        (status: any) => status != e.key
-                      );
-                      return {
-                        ...filters,
-                        status: removedStatus,
-                      };
-                    });
-                }}
                 onClick={() => {
                   setFilters((filters: any) => {
                     return {
@@ -393,16 +408,18 @@ const Builds = () => {
         </Col>
       </Row>
       <PanelGroup direction={"horizontal"}>
-        <ResponsivePanel defaultSize={25} primaryPanelRef={primaryPanelRef}>
+        <Panel collapsible={true} defaultSize={20} ref={primaryPanelRef}>
           <FilterPanel setFilters={setFilters} type={"BUILDS"}>
             <BuildsFilters filters={filters} setFilters={setFilters} />
           </FilterPanel>
-        </ResponsivePanel>
+        </Panel>
         <PanelResizeHandle className="resizablePane-collapser">
           <CollapserHandler primaryPanelRef={primaryPanelRef} />
         </PanelResizeHandle>
         <Panel style={{ padding: "1rem" }}>
-            <Skeleton loading={tableLoading} active avatar paragraph={{ rows: 30}}>
+          {tableLoading ? (
+            <BoslerLoader />
+          ) : (
             <Table
               columns={getBuildTableColumns(
                 abortBuild,
@@ -410,9 +427,8 @@ const Builds = () => {
                 resourceDetailsMap,
                 navigate
               )}
-              size={"middle"}
-              
-              // sticky
+              size={"large"}
+              sticky
               dataSource={buildsData}
               pagination={false}
               onRow={(record, rowIndex) => {
@@ -431,9 +447,9 @@ const Builds = () => {
                 };
               }}
               className={styles.buildsTable}
-              {...(isLoading ? { footer: () => <Skeleton /> } : {})}
+              {...(isLoading ? { footer: () => <BoslerLoader /> } : {})}
             />
-            </Skeleton>
+          )}
         </Panel>
       </PanelGroup>
     </div>

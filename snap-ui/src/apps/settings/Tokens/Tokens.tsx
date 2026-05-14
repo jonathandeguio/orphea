@@ -1,14 +1,14 @@
 import { Col, Divider, Row, Switch, Table, Typography } from "antd";
 
-import { AddIcon, SearchIcon } from "assets/icons/boslerActionIcons";
+import { AddIcon, SearchIcon } from "assets/icons/orpheaActionIcons";
 import CreateNewTokenModal from "apps/settings/Tokens/CreateNewTokenModal";
 
 import React, { useEffect, useState } from "react";
 import { getLanguageLabel, globalSearch } from "utils/utilities";
-import BoslerLoader from "components/boslerLoader/BoslerLoader";
+import OrpheaLoader from "components/orpheaLoader/OrpheaLoader";
 import { fetchAllTokensAPI } from "../apis";
-import BoslerInput from "components/InputComponent/BoslerInput";
-import BoslerButton from "components/ButtonComponent/BoslerButton";
+import OrpheaInput from "components/InputComponent/OrpheaInput";
+import OrpheaButton from "components/ButtonComponent/OrpheaButton";
 
 const { Text, Title } = Typography;
 
@@ -92,7 +92,7 @@ const Tokens = () => {
 
   return loading ? (
     <div className="settings-center-block">
-      <BoslerLoader />
+      <OrpheaLoader />
     </div>
   ) : (
     <div className="settings-center-block">
@@ -103,18 +103,18 @@ const Tokens = () => {
           <Text type="secondary">{getLanguageLabel("tokenMsg")}</Text>
         </Col>
         <Col>
-          <BoslerButton
+          <OrpheaButton
             icon={<AddIcon />}
             intent="action"
             onClick={() => setIsCreateNewTokenModalOpen(true)}
           >
             {" "}
             {getLanguageLabel("newToken")}{" "}
-          </BoslerButton>
+          </OrpheaButton>
         </Col>
       </Row>
       <Divider />
-      <BoslerInput
+      <OrpheaInput
         placeholder={getLanguageLabel("searchTokenTable")}
         allowClear
         onChange={(e) => {

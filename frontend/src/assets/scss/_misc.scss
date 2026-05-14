@@ -254,22 +254,6 @@
   flex: 0 0 auto;
   vertical-align: text-bottom;
 }
-
-.failed-cross-circle {
-  display: flex;
-  -webkit-box-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  justify-content: center;
-  min-width: 25px;
-  height: 25px;
-  border-radius: 100%;
-  border: none;
-  background-color: var(--bosler-intent-danger);
-  flex: 0 0 auto;
-  vertical-align: text-bottom;
-}
-
 .clear-tick-circle {
   display: flex;
   -webkit-box-align: center;

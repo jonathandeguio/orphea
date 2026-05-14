@@ -1,8 +1,8 @@
 import { ChartReload } from "Apps/Kepler/chart/charts.utils";
-import { TooltipInfo } from "Apps/Kepler/kepler";
 import ChartErrorBoundary from "ErrorBoundary/ChartErrorBoundary";
 import React, { LegacyRef, ReactNode, useState } from "react";
 import ChartElement from "./ChartElement";
+import { TooltipInfo } from "Apps/Kepler/kepler";
 interface Props {
   children?: ReactNode;
   key?: string;
@@ -47,7 +47,7 @@ export const CustomGridItemComponent = React.forwardRef<Ref, Props>(
           <ChartErrorBoundary
             removeHandler={(e) => {
               e.stopPropagation();
-              props.removeElement(props.element.id);
+              props.removeElement(props.dashboardId, props.element.id);
             }}
             chartId={props.chartId}
           >

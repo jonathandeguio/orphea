@@ -2,13 +2,13 @@ PROJECT_ID=octbos22
 BUCKET_NAME=datasets_collections_$PROJECT_ID
 COMPUTE_REGION=europe-west1
 COMPUTE_ZONE=europe-west1-b
-CLUSTER_NAME=bosler
+CLUSTER_NAME=orphea
 REPO_ID=octbos22
 DATABASE_HOST=10.6.0.2
 
 MACHINE_TYPE=e2-highmem-2
-LOCALREPO=bosler-cr
-CERT_FILE_PATH="./secret/_.bosler.io.crt"
+LOCALREPO=orphea-cr
+CERT_FILE_PATH="./secret/_.orphea.io.crt"
 KEY_FILE_PATH="./secret/myserver.key"
 
 ACTIVE_REPOS="funnel parler spark-history-server boson callisto frontend tycho julia"

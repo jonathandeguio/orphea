@@ -1,0 +1,17 @@
+package io.orphea.snap.artifact.library.models;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class CheckUpdatesModel {
+    String frontend;
+    String boson;
+    String parler;
+    String julia;
+    String callisto;
+    String capture;
+    String orpheaDocs;
+    String sparkHistoryServer;
+}

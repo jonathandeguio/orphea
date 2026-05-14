@@ -1,4 +1,4 @@
-resource "google_compute_instance" "bosler-test" {
+resource "google_compute_instance" "orphea-test" {
   name         = "desktop-svr"
   machine_type = "e2-micro"
 

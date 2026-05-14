@@ -33,7 +33,7 @@ import { IResourceFilters } from "../interfaces/Project";
 import { getDefaultProjectFilters } from "./Projects.utils";
 
 export const useProjectsController = () => {
-  const pageSize = 20;
+  const pageSize = 10;
   const dispatch = useDispatch<ThunkAppDispatch>();
   const { user: allowProjectCreation } = useSelector(
     (state: RootState) => (state as any).projectAdmin
@@ -49,7 +49,6 @@ export const useProjectsController = () => {
   const { filters, setFilters } = useHandleSearchParamsFilters(
     FILTER_TYPES.RESOURCE
   );
-
   const [isPermissionsModalOpen, openPermissionsModal, closePermissionsModal] =
     useToggleState(false);
 
@@ -166,11 +165,10 @@ export const useProjectsController = () => {
     setFilters(getDefaultProjectFilters());
   };
 
-  const updateFilters = (key: string, value: string | []) => {
+  const updateFilters = (key: string, value: string | []) =>
     setFilters((_filter) => {
       return { ..._filter, [key]: value };
     });
-  };
 
   const resurfaceProjectsToPage0 = async () => {
     setLoading(true);

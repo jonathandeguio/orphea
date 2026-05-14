@@ -280,8 +280,7 @@ export default function BezierD3({ pipeline, id, branch, buildexist, name }) {
           nodes_hash.get(link.target.id).parents + 1;
       }
 
-      console.log("LINK : ", link);
-      console.log("CUR GRAPH : ", cur_graph);
+      cur_graph;
       //
       //
       cur_graph.get(link.source.id).children.push(link.target);
@@ -1474,16 +1473,6 @@ export default function BezierD3({ pipeline, id, branch, buildexist, name }) {
         return "node" + String(d.id);
       });
 
-    let node_link_group = g_ref
-      .selectAll(".bezier-node-group")
-      .data(nodes, (d) => d.id)
-      .join("g")
-      .filter((d) => d.type == "link")
-      .attr("class", "bezier-node-group")
-      .attr("id", function (d) {
-        return "node" + String(d.id);
-      });
-
     let node_chart_group = g_ref
       .selectAll(".bezier-node-group")
 
@@ -1523,20 +1512,6 @@ export default function BezierD3({ pipeline, id, branch, buildexist, name }) {
       .style("font-size", "20px");
 
     const texts_source = node_source_group
-      .append("text")
-      .attr("class", "label")
-      .attr("id", function (d) {
-        return "label" + String(d.id);
-      })
-      .attr("fill", "black")
-      .text(function (d) {
-        return d.name;
-      })
-      .attr("text-anchor", "left")
-      .style("font-size", "20px")
-      .style("fill", "#24527a");
-
-    const texts_link = node_link_group
       .append("text")
       .attr("class", "label")
       .attr("id", function (d) {
@@ -1701,7 +1676,7 @@ export default function BezierD3({ pipeline, id, branch, buildexist, name }) {
       .attr("ry", 8)
       .attr("transform", (d) => "translate(" + [d.x, d.y] + ")")
       .on("mouseover", function (event, d) {
-        d3.select(this).style("stroke-width", 6);
+        d3.select(this).style("strokeWidth", 6);
         if (d.totalParents != 0) {
           d3.select("#arrow_outer_left" + String(d.id)).style(
             "display",
@@ -1731,10 +1706,10 @@ export default function BezierD3({ pipeline, id, branch, buildexist, name }) {
                         <div class="info-container-header">
                             <div class="info-container-header-row">` +
               (d.subType == "connect"
-                ? `<svg color="#ffcf00" data-icon="dataset-icon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16" > {" "} <desc>dynamic</desc>{" "} <g id="Artboard-1" transform="translate(0.000000, -1.000000)"> {" "} <path id="Shape" d="M15,2H1C0.4,2,0,2.5,0,3v12c0,0.6,0.4,1,1,1h14c0.6,0,1-0.4,1-1V3 C16,2.5,15.6,2,15,2L15,2z M6,14H2v-2h4V14L6,14z M6,11H2V9h4V11L6,11z M6,8H2V6h4V8L6,8z M14,14H7v-2h7V14L14,14z M14,11H7V9h7 V11L14,11z M14,8H7V6h7V8L14,8z" fill={color} fill-rule="evenodd" />{" "} </g>{" "} </svg>`
+                ? `<svg color="#ffcf00" data-icon="dataset-icon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16" > {" "} <desc>dynamic</desc>{" "} <g id="Artboard-1" transform="translate(0.000000, -1.000000)"> {" "} <path id="Shape" d="M15,2H1C0.4,2,0,2.5,0,3v12c0,0.6,0.4,1,1,1h14c0.6,0,1-0.4,1-1V3 C16,2.5,15.6,2,15,2L15,2z M6,14H2v-2h4V14L6,14z M6,11H2V9h4V11L6,11z M6,8H2V6h4V8L6,8z M14,14H7v-2h7V14L14,14z M14,11H7V9h7 V11L14,11z M14,8H7V6h7V8L14,8z" fill={color} fillRule="evenodd" />{" "} </g>{" "} </svg>`
                 : d.subType == "uploaded"
-                ? `<svg color="#717a94" data-icon="dataset-icon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16" > {" "} <desc>dynamic</desc>{" "} <g id="Artboard-1" transform="translate(0.000000, -1.000000)"> {" "} <path id="Shape" d="M15,2H1C0.4,2,0,2.5,0,3v12c0,0.6,0.4,1,1,1h14c0.6,0,1-0.4,1-1V3 C16,2.5,15.6,2,15,2L15,2z M6,14H2v-2h4V14L6,14z M6,11H2V9h4V11L6,11z M6,8H2V6h4V8L6,8z M14,14H7v-2h7V14L14,14z M14,11H7V9h7 V11L14,11z M14,8H7V6h7V8L14,8z" fill={color} fill-rule="evenodd" />{" "} </g>{" "} </svg>`
-                : `<svg color="#4C90F0" data-icon="dataset-icon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16" > {" "} <desc>dynamic</desc>{" "} <g id="Artboard-1" transform="translate(0.000000, -1.000000)"> {" "} <path id="Shape" d="M15,2H1C0.4,2,0,2.5,0,3v12c0,0.6,0.4,1,1,1h14c0.6,0,1-0.4,1-1V3 C16,2.5,15.6,2,15,2L15,2z M6,14H2v-2h4V14L6,14z M6,11H2V9h4V11L6,11z M6,8H2V6h4V8L6,8z M14,14H7v-2h7V14L14,14z M14,11H7V9h7 V11L14,11z M14,8H7V6h7V8L14,8z" fill={color} fill-rule="evenodd" />{" "} </g>{" "} </svg>`) +
+                ? `<svg color="#717a94" data-icon="dataset-icon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16" > {" "} <desc>dynamic</desc>{" "} <g id="Artboard-1" transform="translate(0.000000, -1.000000)"> {" "} <path id="Shape" d="M15,2H1C0.4,2,0,2.5,0,3v12c0,0.6,0.4,1,1,1h14c0.6,0,1-0.4,1-1V3 C16,2.5,15.6,2,15,2L15,2z M6,14H2v-2h4V14L6,14z M6,11H2V9h4V11L6,11z M6,8H2V6h4V8L6,8z M14,14H7v-2h7V14L14,14z M14,11H7V9h7 V11L14,11z M14,8H7V6h7V8L14,8z" fill={color} fillRule="evenodd" />{" "} </g>{" "} </svg>`
+                : `<svg color="#4C90F0" data-icon="dataset-icon" fill="currentColor" height="16" viewBox="0 0 16 16" width="16" > {" "} <desc>dynamic</desc>{" "} <g id="Artboard-1" transform="translate(0.000000, -1.000000)"> {" "} <path id="Shape" d="M15,2H1C0.4,2,0,2.5,0,3v12c0,0.6,0.4,1,1,1h14c0.6,0,1-0.4,1-1V3 C16,2.5,15.6,2,15,2L15,2z M6,14H2v-2h4V14L6,14z M6,11H2V9h4V11L6,11z M6,8H2V6h4V8L6,8z M14,14H7v-2h7V14L14,14z M14,11H7V9h7 V11L14,11z M14,8H7V6h7V8L14,8z" fill={color} fillRule="evenodd" />{" "} </g>{" "} </svg>`) +
               `
                             
                                 &nbsp;
@@ -1748,7 +1723,7 @@ export default function BezierD3({ pipeline, id, branch, buildexist, name }) {
                         </div>
                        
                         <div class="info-container-header-row">
-                        <svg color="#717a94" data-icon="FOLDER" fill="#717a94" height="16" viewBox="0 0 16 16" width="16" > <desc>dynamic</desc> <g stroke-width="1"> <g transform=""> <path clip-rule="evenodd" d="M2.146 3.146A.5.5 0 0 1 2.5 3h3.793l2 2H13.5a.5.5 0 0 1 .5.5V7H2V3.5a.5.5 0 0 1 .146-.354ZM2 8v4.5a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5V8H2Zm.5-6A1.5 1.5 0 0 0 1 3.5v9A1.5 1.5 0 0 0 2.5 14h11a1.5 1.5 0 0 0 1.5-1.5v-7A1.5 1.5 0 0 0 13.5 4H8.707l-2-2H2.5Z" fill="currentColor" fill-rule="evenodd" ></path> </g> </g> </svg>
+                        <svg color="#717a94" data-icon="FOLDER" fill="#717a94" height="16" viewBox="0 0 16 16" width="16" > <desc>dynamic</desc> <g strokeWidth="1"> <g transform=""> <path clipRule="evenodd" d="M2.146 3.146A.5.5 0 0 1 2.5 3h3.793l2 2H13.5a.5.5 0 0 1 .5.5V7H2V3.5a.5.5 0 0 1 .146-.354ZM2 8v4.5a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5V8H2Zm.5-6A1.5 1.5 0 0 0 1 3.5v9A1.5 1.5 0 0 0 2.5 14h11a1.5 1.5 0 0 0 1.5-1.5v-7A1.5 1.5 0 0 0 13.5 4H8.707l-2-2H2.5Z" fill="currentColor" fillRule="evenodd" ></path> </g> </g> </svg>
                             &nbsp;
                             ${d.path}
                         </div>
@@ -1764,7 +1739,7 @@ export default function BezierD3({ pipeline, id, branch, buildexist, name }) {
                 : ``) +
               `
                         <div class="info-container-header-row">
-                        <svg color="#717a94" data-icon="list-search-icon" fill="#717a94" height="16" viewBox="0 0 16 16" width="16" > <desc>dynamic</desc> <g stroke-width="1"> <g transform=""> <path clip-rule="evenodd" d="M5.682 2c-.426.283-.814.62-1.154 1H.5a.5.5 0 0 1 0-1h5.182ZM.5 13h11.022a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1Zm3.51-2.667a5.986 5.986 0 0 1-.54-1H.5a.5.5 0 0 0 0 1h3.51ZM.5 5.667h2.649a6 6 0 0 0-.14 1H.5a.5.5 0 0 1 0-1Zm6.97-2.363a4 4 0 1 1 3.06 7.391 4 4 0 0 1-3.06-7.39ZM9 2a5 5 0 1 0 3.164 8.871l2.482 2.483.708-.708-2.483-2.482A5 5 0 0 0 9 2Z" fill="currentColor" fill-rule="evenodd" ></path> </g> </g> </svg>
+                        <svg color="#717a94" data-icon="list-search-icon" fill="#717a94" height="16" viewBox="0 0 16 16" width="16" > <desc>dynamic</desc> <g strokeWidth="1"> <g transform=""> <path clipRule="evenodd" d="M5.682 2c-.426.283-.814.62-1.154 1H.5a.5.5 0 0 1 0-1h5.182ZM.5 13h11.022a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1Zm3.51-2.667a5.986 5.986 0 0 1-.54-1H.5a.5.5 0 0 0 0 1h3.51ZM.5 5.667h2.649a6 6 0 0 0-.14 1H.5a.5.5 0 0 1 0-1Zm6.97-2.363a4 4 0 1 1 3.06 7.391 4 4 0 0 1-3.06-7.39ZM9 2a5 5 0 1 0 3.164 8.871l2.482 2.483.708-.708-2.483-2.482A5 5 0 0 0 9 2Z" fill="currentColor" fillRule="evenodd" ></path> </g> </g> </svg>
                             &nbsp;
                             ${autoFormatter(d.size, "bytes")} . ${autoFormatter(
                 d.files
@@ -1774,7 +1749,7 @@ export default function BezierD3({ pipeline, id, branch, buildexist, name }) {
               (d.buildStatus && d.buildStatus != null
                 ? `
                         <div class="info-container-header-row">
-                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" version="1.1" viewBox="0 0 16 16" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg" style="margin-right: 8px;"><path d="M15.784 14.309l-8.572-7.804 0.399-0.4c0.326-0.327 0.503-0.75 0.53-1.181 0.016-0.007 0.031-0.014 0.046-0.023l1.609-1.006c0.218-0.256 0.202-0.66-0.036-0.898l-2.799-2.806c-0.237-0.238-0.641-0.254-0.896-0.036l-1.004 1.614c-0.008 0.015-0.015 0.031-0.022 0.046-0.43 0.027-0.852 0.204-1.178 0.531l-1.522 1.527c-0.327 0.327-0.503 0.75-0.53 1.181-0.016 0.007-0.031 0.014-0.046 0.023l-1.609 1.006c-0.218 0.256-0.202 0.66 0.036 0.898l2.799 2.806c0.237 0.238 0.641 0.254 0.896 0.036l1.004-1.614c0.008-0.015 0.015-0.031 0.023-0.046 0.43-0.027 0.852-0.204 1.178-0.531l0.442-0.443 7.783 8.596c0.226 0.249 0.573 0.289 0.773 0.089l0.787-0.789c0.199-0.2 0.159-0.549-0.089-0.775z"></path></svg>
+                        <svg stroke="currentColor" fill="currentColor" strokeWidth="0" version="1.1" viewBox="0 0 16 16" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg" style="margin-right: 8px;"><path d="M15.784 14.309l-8.572-7.804 0.399-0.4c0.326-0.327 0.503-0.75 0.53-1.181 0.016-0.007 0.031-0.014 0.046-0.023l1.609-1.006c0.218-0.256 0.202-0.66-0.036-0.898l-2.799-2.806c-0.237-0.238-0.641-0.254-0.896-0.036l-1.004 1.614c-0.008 0.015-0.015 0.031-0.022 0.046-0.43 0.027-0.852 0.204-1.178 0.531l-1.522 1.527c-0.327 0.327-0.503 0.75-0.53 1.181-0.016 0.007-0.031 0.014-0.046 0.023l-1.609 1.006c-0.218 0.256-0.202 0.66 0.036 0.898l2.799 2.806c0.237 0.238 0.641 0.254 0.896 0.036l1.004-1.614c0.008-0.015 0.015-0.031 0.023-0.046 0.43-0.027 0.852-0.204 1.178-0.531l0.442-0.443 7.783 8.596c0.226 0.249 0.573 0.289 0.773 0.089l0.787-0.789c0.199-0.2 0.159-0.549-0.089-0.775z"></path></svg>
                             &nbsp;
                             Built ${capitalizeFirstLetter(d.buildStatus)} 
                         </div>
@@ -1782,7 +1757,7 @@ export default function BezierD3({ pipeline, id, branch, buildexist, name }) {
                 : ``) +
               `
                         <div class="info-container-header-row">
-                        <svg data-icon="writeback-cell" fill="#717a94" height="16" viewBox="0 0 16 16" width="16"><desc>dynamic</desc><g stroke-width="1"><g transform=""><path clip-rule="evenodd" d="m2.15.61.042-.014C3.372.222 4.07 0 7 0c1.965 0 3.645.226 4.85.608.601.19 1.113.428 1.485.718.369.287.665.68.665 1.173v3.304a5.971 5.971 0 0 0-1-.462V3.897c-.323.19-.713.353-1.15.491-1.205.382-2.885.609-4.85.609-2.93 0-3.628-.221-4.807-.595l-.044-.014A5.656 5.656 0 0 1 1 3.898v3.598c0 .059.033.192.28.384.242.189.63.382 1.171.553l.13.042c.762.243 1.315.419 2.774.488a5.958 5.958 0 0 0-.264.988c-1.424-.083-2.032-.276-2.899-.55l-.043-.014A5.652 5.652 0 0 1 1 8.895v3.597c0 .059.033.192.279.383.243.19.63.382 1.172.554l.13.04c.834.267 1.416.452 3.207.506.208.363.453.703.73 1.014-2.53-.024-3.214-.24-4.326-.593l-.043-.014c-.6-.19-1.112-.428-1.484-.717-.369-.287-.665-.68-.665-1.173V2.5c0-.493.296-.886.665-1.173.372-.29.884-.527 1.484-.718ZM13 2.498c0 .058-.033.192-.279.383-.242.188-.63.381-1.172.553-1.078.341-2.648.562-4.549.562-2.782 0-3.42-.203-4.42-.52l-.129-.042c-.541-.171-.93-.364-1.172-.553C1.033 2.691 1 2.558 1 2.5c0-.059.033-.192.28-.384.242-.189.63-.382 1.171-.553l.13-.042C3.579 1.203 4.217 1 7 1c1.901 0 3.471.22 4.549.562.541.171.93.364 1.172.553.246.191.279.325.279.384ZM11 6a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm-4 5a4 4 0 1 1 8 0 4 4 0 0 1-8 0Zm3.5-2.25v1.75H8.75v1h1.75v1.75h1V11.5h1.75v-1H11.5V8.75h-1Z" fill="currentColor" fill-rule="evenodd"></path></g></g></svg>
+                        <svg data-icon="writeback-cell" fill="#717a94" height="16" viewBox="0 0 16 16" width="16"><desc>dynamic</desc><g strokeWidth="1"><g transform=""><path clipRule="evenodd" d="m2.15.61.042-.014C3.372.222 4.07 0 7 0c1.965 0 3.645.226 4.85.608.601.19 1.113.428 1.485.718.369.287.665.68.665 1.173v3.304a5.971 5.971 0 0 0-1-.462V3.897c-.323.19-.713.353-1.15.491-1.205.382-2.885.609-4.85.609-2.93 0-3.628-.221-4.807-.595l-.044-.014A5.656 5.656 0 0 1 1 3.898v3.598c0 .059.033.192.28.384.242.189.63.382 1.171.553l.13.042c.762.243 1.315.419 2.774.488a5.958 5.958 0 0 0-.264.988c-1.424-.083-2.032-.276-2.899-.55l-.043-.014A5.652 5.652 0 0 1 1 8.895v3.597c0 .059.033.192.279.383.243.19.63.382 1.172.554l.13.04c.834.267 1.416.452 3.207.506.208.363.453.703.73 1.014-2.53-.024-3.214-.24-4.326-.593l-.043-.014c-.6-.19-1.112-.428-1.484-.717-.369-.287-.665-.68-.665-1.173V2.5c0-.493.296-.886.665-1.173.372-.29.884-.527 1.484-.718ZM13 2.498c0 .058-.033.192-.279.383-.242.188-.63.381-1.172.553-1.078.341-2.648.562-4.549.562-2.782 0-3.42-.203-4.42-.52l-.129-.042c-.541-.171-.93-.364-1.172-.553C1.033 2.691 1 2.558 1 2.5c0-.059.033-.192.28-.384.242-.189.63-.382 1.171-.553l.13-.042C3.579 1.203 4.217 1 7 1c1.901 0 3.471.22 4.549.562.541.171.93.364 1.172.553.246.191.279.325.279.384ZM11 6a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm-4 5a4 4 0 1 1 8 0 4 4 0 0 1-8 0Zm3.5-2.25v1.75H8.75v1h1.75v1.75h1V11.5h1.75v-1H11.5V8.75h-1Z" fill="currentColor" fillRule="evenodd"></path></g></g></svg>
                         &nbsp;
                         Build Source :
                             &nbsp;
@@ -1821,7 +1796,7 @@ export default function BezierD3({ pipeline, id, branch, buildexist, name }) {
           .style("top", event.pageY + 40 + "px");
       })
       .on("mouseout", function (event, d) {
-        d3.select(this).style("stroke-width", 2);
+        d3.select(this).style("strokeWidth", 2);
         d3.select("#arrow_outer_left" + String(d.id)).style(
           "display",
           function (d) {
@@ -1901,163 +1876,6 @@ export default function BezierD3({ pipeline, id, branch, buildexist, name }) {
       .classed("bezier-fixed", (d) => d.fx !== undefined);
     // .style("animation", "transcolor 3s infinite linear alternate");
 
-    let node_link = node_link_group
-      .append("rect")
-      .attr("class", "bezier-node")
-      // .style("filter", "url(#drop-shadow)")
-      .attr("width", function (d) {
-        let width = 117 + 17;
-        if (d3.select("#label" + d.id).size() !== 0) {
-          width += d3
-            .select("#label" + d.id)
-            .node()
-            .getBBox().width;
-          return width;
-        }
-        return width;
-      })
-      .attr("height", 60)
-      .attr("stroke", function (d) {
-        if (
-          pipelineData.type == "children" &&
-          pipelineData.currentSelectedNode.id == pipelineData.lastNode.id
-        ) {
-          let children = cur_graph.get(pipelineData.lastNode.id).children;
-          for (let child of children) {
-            if (child.id == d.id) {
-              return "#FFBF00";
-            }
-          }
-        } else if (
-          pipelineData.type == "parent" &&
-          pipelineData.currentSelectedNode.id == pipelineData.lastNode.id
-        ) {
-          let parents = cur_graph.get(pipelineData.lastNode.id).parents;
-          for (let parent of parents) {
-            if (parent.id == d.id) {
-              return "#FFBF00";
-            }
-          }
-        }
-        if (pipelineData.currentSelectedNode.id === d.id) return "#FFBF00";
-        else if (d.buildStatus === "success") return "#9be9a8";
-        else if (d.buildStatus === "fail") return "#ea5c58";
-        else return "#C4BFBA";
-      })
-      .attr("fill", function (d) {
-        if (pipelineData.color == "project") {
-          if (d.projectName) {
-            return pipelineData.repo_color.project.get(d.projectName)[1];
-          } else {
-            return "white";
-          }
-        } else {
-          return "white";
-        }
-      })
-      .attr("rx", 2)
-      .attr("ry", 2)
-      .attr("transform", (d) => "translate(" + [d.x, d.y] + ")")
-      .on("mouseover", function (event, d) {
-        d3.select(this).style("stroke-width", 6);
-        if (d.totalParents != 0) {
-          d3.select("#arrow_outer_left" + String(d.id)).style(
-            "display",
-            "block"
-          );
-        }
-        if (d.totalChildren != 0) {
-          d3.select("#arrow_outer_right" + String(d.id)).style(
-            "display",
-            "block"
-          );
-        }
-
-        d3.select("#information" + String(d.id)).style("opacity", 1);
-        function displayUser(userDetails) {
-          if (!user_map.has(userDetails)) {
-            return "NONE";
-          }
-          return user_map.get(userDetails).name;
-        }
-      })
-      .on("mouseout", function (event, d) {
-        d3.select(this).style("stroke-width", 2);
-        d3.select("#arrow_outer_left" + String(d.id)).style(
-          "display",
-          function (d) {
-            if (
-              d.totalParents > 0 &&
-              d.totalParents > nodes_hash.get(d.id).parents
-            ) {
-              return "block";
-            } else {
-              return "none";
-            }
-          }
-        );
-        d3.select("#arrow_outer_right" + String(d.id)).style(
-          "display",
-          function (d) {
-            if (
-              d.totalChildren > 0 &&
-              d.totalChildren > nodes_hash.get(d.id).children
-            ) {
-              return "block";
-            } else {
-              return "none";
-            }
-          }
-        );
-
-        d3.select("#information" + String(d.id)).style("opacity", 0);
-      })
-      .on("click", function (event, d) {
-        dispatch(selectedNode({ id: d.id, type: d.type, name: d.name }));
-        setPipelineData({
-          pipeline: pipelineData.pipeline,
-          currentSelectedNode: { id: d.id, name: d.name },
-          type: "selected",
-          flow: pipelineData.flow,
-          color: pipelineData.color,
-          repo_color: pipelineData.repo_color,
-          vis_color: pipelineData.vis_color,
-          colorLegend: pipelineData.colorLegend,
-          loading: pipelineData.loading,
-          lastNode: pipelineData.lastNode,
-        });
-      })
-      .on("contextmenu", function (event, d) {
-        // dispatch(getBuildSpec(d.id, d.branch));
-        div.style("opacity", 0).style("display", "none");
-
-        event.preventDefault();
-        PipelineContextMenus(
-          event,
-          {
-            id: d.id,
-            type: "dataset",
-            branch: d.branch,
-          },
-          dispatch,
-          id,
-          false
-        );
-        setcontextMenu({
-          event: event,
-          record: {
-            id: d.id,
-            type: "dataset",
-            branch: d.branch,
-          },
-          dispatch: dispatch,
-          id: id,
-          buildexist: false,
-        });
-      })
-      .classed("bezier-node", true)
-      .classed("bezier-fixed", (d) => d.fx !== undefined);
-
     let node_source = node_source_group
       .append("rect")
       .attr("class", "bezier-node")
@@ -2116,7 +1934,7 @@ export default function BezierD3({ pipeline, id, branch, buildexist, name }) {
       .attr("ry", 2)
       .attr("transform", (d) => "translate(" + [d.x, d.y] + ")")
       .on("mouseover", function (event, d) {
-        d3.select(this).style("stroke-width", 6);
+        d3.select(this).style("strokeWidth", 6);
         if (d.totalParents != 0) {
           d3.select("#arrow_outer_left" + String(d.id)).style(
             "display",
@@ -2139,7 +1957,7 @@ export default function BezierD3({ pipeline, id, branch, buildexist, name }) {
         }
       })
       .on("mouseout", function (event, d) {
-        d3.select(this).style("stroke-width", 2);
+        d3.select(this).style("strokeWidth", 2);
         d3.select("#arrow_outer_left" + String(d.id)).style(
           "display",
           function (d) {
@@ -2219,7 +2037,7 @@ export default function BezierD3({ pipeline, id, branch, buildexist, name }) {
       .append("rect")
       .attr("class", "bezier-node-chart")
       // .style("filter", "url(#drop-shadow)")
-      .style("stroke-width", 2)
+      .style("strokeWidth", 2)
       .attr("width", function (d) {
         let width = 117 + 0;
         if (d3.select("#label" + d.id).size() !== 0) {
@@ -2290,7 +2108,7 @@ export default function BezierD3({ pipeline, id, branch, buildexist, name }) {
       .attr("ry", 2)
       .attr("transform", (d) => "translate(" + [d.x, d.y] + ")")
       .on("mouseover", function (event, d) {
-        d3.select(this).style("stroke-width", 6);
+        d3.select(this).style("strokeWidth", 6);
         if (d.totalParents != 0) {
           d3.select("#arrow_outer_left" + String(d.id)).style(
             "display",
@@ -2334,7 +2152,7 @@ export default function BezierD3({ pipeline, id, branch, buildexist, name }) {
                         </div>
                        
                         <div class="info-container-header-row">
-                        <svg color="#717a94" data-icon="FOLDER" fill="#717a94" height="16" viewBox="0 0 16 16" width="16" > <desc>dynamic</desc> <g stroke-width="1"> <g transform=""> <path clip-rule="evenodd" d="M2.146 3.146A.5.5 0 0 1 2.5 3h3.793l2 2H13.5a.5.5 0 0 1 .5.5V7H2V3.5a.5.5 0 0 1 .146-.354ZM2 8v4.5a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5V8H2Zm.5-6A1.5 1.5 0 0 0 1 3.5v9A1.5 1.5 0 0 0 2.5 14h11a1.5 1.5 0 0 0 1.5-1.5v-7A1.5 1.5 0 0 0 13.5 4H8.707l-2-2H2.5Z" fill="currentColor" fill-rule="evenodd" ></path> </g> </g> </svg>
+                        <svg color="#717a94" data-icon="FOLDER" fill="#717a94" height="16" viewBox="0 0 16 16" width="16" > <desc>dynamic</desc> <g strokeWidth="1"> <g transform=""> <path clipRule="evenodd" d="M2.146 3.146A.5.5 0 0 1 2.5 3h3.793l2 2H13.5a.5.5 0 0 1 .5.5V7H2V3.5a.5.5 0 0 1 .146-.354ZM2 8v4.5a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5V8H2Zm.5-6A1.5 1.5 0 0 0 1 3.5v9A1.5 1.5 0 0 0 2.5 14h11a1.5 1.5 0 0 0 1.5-1.5v-7A1.5 1.5 0 0 0 13.5 4H8.707l-2-2H2.5Z" fill="currentColor" fillRule="evenodd" ></path> </g> </g> </svg>
                             &nbsp;
                             ${d.path}
                         </div>
@@ -2371,7 +2189,7 @@ export default function BezierD3({ pipeline, id, branch, buildexist, name }) {
           .style("top", event.pageY + 40 + "px");
       })
       .on("mouseout", function (event, d) {
-        d3.select(this).style("stroke-width", 2);
+        d3.select(this).style("strokeWidth", 2);
         d3.select("#arrow_outer_left" + String(d.id)).style(
           "display",
           function (d) {
@@ -2519,7 +2337,7 @@ export default function BezierD3({ pipeline, id, branch, buildexist, name }) {
       .attr("ry", 2)
       .attr("transform", (d) => "translate(" + [d.x, d.y] + ")")
       .on("mouseover", function (event, d) {
-        d3.select(this).style("stroke-width", 6);
+        d3.select(this).style("strokeWidth", 6);
         if (d.totalParents != 0) {
           d3.select("#arrow_outer_left" + String(d.id)).style(
             "display",
@@ -2548,7 +2366,7 @@ export default function BezierD3({ pipeline, id, branch, buildexist, name }) {
                     <div class="info-container"> 
                         <div class="info-container-header">
                             <div class="info-container-header-row">
-                            <svg color="#717a94" data-icon="monitor" fill="#717a94" height="16" viewBox="0 0 16 16" width="16" > <desc>dynamic</desc> <g stroke-width="1"> <g transform=""> <path d="M3 14H13V15H3V14Z" fill="currentColor"></path> <path d="M7 11H9V14H7V11Z" fill="currentColor"></path> <path clip-rule="evenodd" d="M15 2H1V10H15V2ZM1 1C0.447715 1 0 1.44772 0 2V10C0 10.5523 0.447715 11 1 11H15C15.5523 11 16 10.5523 16 10V2C16 1.44772 15.5523 1 15 1H1Z" fill="currentColor" fill-rule="evenodd" ></path> </g> </g> </svg>
+                            <svg color="#717a94" data-icon="monitor" fill="#717a94" height="16" viewBox="0 0 16 16" width="16" > <desc>dynamic</desc> <g strokeWidth="1"> <g transform=""> <path d="M3 14H13V15H3V14Z" fill="currentColor"></path> <path d="M7 11H9V14H7V11Z" fill="currentColor"></path> <path clipRule="evenodd" d="M15 2H1V10H15V2ZM1 1C0.447715 1 0 1.44772 0 2V10C0 10.5523 0.447715 11 1 11H15C15.5523 11 16 10.5523 16 10V2C16 1.44772 15.5523 1 15 1H1Z" fill="currentColor" fillRule="evenodd" ></path> </g> </g> </svg>
                                 &nbsp;
                                 ${d.name}
                             </div>
@@ -2561,7 +2379,7 @@ export default function BezierD3({ pipeline, id, branch, buildexist, name }) {
                        
                         <div class="info-container-header-row">
                         <div className="text-and-icon-center">
-                        <svg color="#717a94" data-icon="FOLDER" fill="#717a94" height="16" viewBox="0 0 16 16" width="16" > <desc>dynamic</desc> <g stroke-width="1"> <g transform=""> <path clip-rule="evenodd" d="M2.146 3.146A.5.5 0 0 1 2.5 3h3.793l2 2H13.5a.5.5 0 0 1 .5.5V7H2V3.5a.5.5 0 0 1 .146-.354ZM2 8v4.5a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5V8H2Zm.5-6A1.5 1.5 0 0 0 1 3.5v9A1.5 1.5 0 0 0 2.5 14h11a1.5 1.5 0 0 0 1.5-1.5v-7A1.5 1.5 0 0 0 13.5 4H8.707l-2-2H2.5Z" fill="currentColor" fill-rule="evenodd" ></path> </g> </g> </svg>
+                        <svg color="#717a94" data-icon="FOLDER" fill="#717a94" height="16" viewBox="0 0 16 16" width="16" > <desc>dynamic</desc> <g strokeWidth="1"> <g transform=""> <path clipRule="evenodd" d="M2.146 3.146A.5.5 0 0 1 2.5 3h3.793l2 2H13.5a.5.5 0 0 1 .5.5V7H2V3.5a.5.5 0 0 1 .146-.354ZM2 8v4.5a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5V8H2Zm.5-6A1.5 1.5 0 0 0 1 3.5v9A1.5 1.5 0 0 0 2.5 14h11a1.5 1.5 0 0 0 1.5-1.5v-7A1.5 1.5 0 0 0 13.5 4H8.707l-2-2H2.5Z" fill="currentColor" fillRule="evenodd" ></path> </g> </g> </svg>
                             &nbsp;
                             ${d.path}
                             </div>
@@ -2599,7 +2417,7 @@ export default function BezierD3({ pipeline, id, branch, buildexist, name }) {
           .style("top", event.pageY + 40 + "px");
       })
       .on("mouseout", function (event, d) {
-        d3.select(this).style("stroke-width", 2);
+        d3.select(this).style("strokeWidth", 2);
         d3.select("#arrow_outer_left" + String(d.id)).style(
           "display",
           function (d) {
@@ -2877,113 +2695,6 @@ export default function BezierD3({ pipeline, id, branch, buildexist, name }) {
       .attr("fill", "rgba(0,0,0,0)");
 
     arrow_outer_left_source
-      .append("path")
-      .attr("d", function (d) {
-        // If parents need to be expanded
-        if (d.totalParents > nodes_hash.get(d.id).parents) {
-          return BEZIER_ICONS.LEFT;
-        }
-        // If parents need to be collapsed on equality case
-        else {
-          return BEZIER_ICONS.RIGHT;
-        }
-      })
-      .attr("fill", function (d) {
-        return "grey";
-      });
-
-    const arrow_outer_left_link = node_link_group
-      .append("g")
-      .attr("class", "arrow_outer_left")
-      .attr("id", function (d) {
-        return "arrow_outer_left" + String(d.id);
-      })
-      .attr("transform", "scale(0.05)")
-      .on("click", function (event, d) {
-        if (d.totalParents > nodes_hash.get(d.id).parents) {
-          setPipelineData({
-            pipeline: pipelineData.pipeline,
-            currentSelectedNode: pipelineData.currentSelectedNode,
-            type: "loading",
-            flow: pipelineData.flow,
-            color: pipelineData.color,
-            repo_color: pipelineData.repo_color,
-            vis_color: pipelineData.vis_color,
-            colorLegend: pipelineData.colorLegend,
-            loading: true,
-            lastNode: pipelineData.lastNode,
-          });
-          getParent(d.id);
-        } else {
-          collapseParent(d.id);
-        }
-      })
-      .on("mouseover", function (event, d) {
-        // Create a small pop over
-        // Only Display if it got parents
-        if (d.totalParents > 0) {
-          d3.select("#arrow_outer_left" + String(d.id)).style(
-            "display",
-            "block"
-          );
-        }
-
-        family_info.style("opacity", 1).style("display", "block");
-        if (d.totalParents > nodes_hash.get(d.id).parents) {
-          family_info
-            .html(
-              d.totalParents -
-                nodes_hash.get(d.id).parents +
-                " more parent" +
-                (d.totalParents - nodes_hash.get(d.id).parents > 1 ? "s" : "") +
-                " to expand."
-            )
-            .style("left", event.pageX + "px")
-            .style("top", event.pageY - 60 + "px");
-        } else {
-          family_info
-            .html("Collapse the parents.")
-            .style("left", event.pageX + "px")
-            .style("top", event.pageY - 60 + "px");
-        }
-      })
-      .on("mouseout", function (event, d) {
-        // Remove pop over
-        d3.select("#arrow_outer_left" + String(d.id)).style(
-          "display",
-          function () {
-            if (
-              d.totalParents > 0 &&
-              d.totalParents > nodes_hash.get(d.id).parents
-            ) {
-              return "block";
-            } else {
-              return "none";
-            }
-          }
-        );
-
-        family_info.style("opacity", 0).style("display", "none");
-      })
-      .style("display", function (d) {
-        if (
-          d.totalParents > 0 &&
-          d.totalParents > nodes_hash.get(d.id).parents
-        ) {
-          return "block";
-        } else {
-          return "none";
-        }
-      });
-
-    arrow_outer_left_link
-      .append("path")
-      .attr("d", function (d) {
-        return BEZIER_ICONS.OUTER;
-      })
-      .attr("fill", "rgba(0,0,0,0)");
-
-    arrow_outer_left_link
       .append("path")
       .attr("d", function (d) {
         // If parents need to be expanded
@@ -3419,115 +3130,6 @@ export default function BezierD3({ pipeline, id, branch, buildexist, name }) {
       .attr("fill", "rgba(0,0,0,0)");
 
     arrow_outer_right_source
-      .append("path")
-      .attr("d", function (d) {
-        // If Children need to be expanded
-        if (d.totalChildren > nodes_hash.get(d.id).children) {
-          return BEZIER_ICONS.RIGHT;
-        }
-        // If children need to be collapsed on equality case
-        else {
-          return BEZIER_ICONS.LEFT;
-        }
-      })
-      .attr("fill", function (d) {
-        return "grey";
-      });
-
-    const arrow_outer_right_link = node_link_group
-      .append("g")
-      .attr("class", "arrow_outer_right")
-      .attr("id", function (d) {
-        return "arrow_outer_right" + String(d.id);
-      })
-      .attr("transform", "scale(0.05)")
-      .on("click", function (event, d) {
-        if (d.totalChildren > nodes_hash.get(d.id).children) {
-          setPipelineData({
-            pipeline: pipelineData.pipeline,
-            currentSelectedNode: pipelineData.currentSelectedNode,
-            type: "loading",
-            flow: pipelineData.flow,
-            color: pipelineData.color,
-            repo_color: pipelineData.repo_color,
-            vis_color: pipelineData.vis_color,
-            colorLegend: pipelineData.colorLegend,
-            loading: true,
-            lastNode: pipelineData.lastNode,
-          });
-          getChildren(d.id);
-        } else {
-          collapseChildren(d.id);
-        }
-      })
-      .on("mouseover", function (event, d) {
-        // Add small pop over
-        // Only Display if it got children
-        if (d.totalChildren > 0) {
-          d3.select("#arrow_outer_right" + String(d.id)).style(
-            "display",
-            "block"
-          );
-        }
-
-        family_info.style("opacity", 1).style("display", "block");
-        if (d.totalChildren > nodes_hash.get(d.id).children) {
-          family_info
-            .html(
-              d.totalChildren -
-                nodes_hash.get(d.id).children +
-                " more " +
-                (d.totalChildren - nodes_hash.get(d.id).children > 1
-                  ? " children"
-                  : " child") +
-                " to expand."
-            )
-            .style("left", event.pageX + "px")
-            .style("top", event.pageY - 60 + "px");
-        } else {
-          family_info
-            .html("Collapse the children.")
-            .style("left", event.pageX + "px")
-            .style("top", event.pageY - 60 + "px");
-        }
-      })
-      .on("mouseout", function (event, d) {
-        // Remove small pop over
-        d3.select("#arrow_outer_right" + String(d.id)).style(
-          "display",
-          function (event, d) {
-            if (
-              d.totalChildren > 0 &&
-              d.totalChildren > nodes_hash.get(d.id).children
-            ) {
-              return "block";
-            } else {
-              return "none";
-            }
-          }
-        );
-
-        family_info.style("opacity", 0).style("display", "none");
-      })
-      .style("display", function (d) {
-        if (
-          d.totalChildren > 0 &&
-          d.totalChildren > nodes_hash.get(d.id).children
-        ) {
-          return "block";
-        } else {
-          return "none";
-        }
-      });
-
-    arrow_outer_right_link
-      .append("path")
-      .attr("d", function (d) {
-        return BEZIER_ICONS.OUTER;
-      })
-      .attr("fill", "rgba(0,0,0,0)");
-
-    arrow_outer_right_link
       .append("path")
       .attr("d", function (d) {
         // If Children need to be expanded
@@ -4125,7 +3727,7 @@ export default function BezierD3({ pipeline, id, branch, buildexist, name }) {
       .attr("cy", 256)
       .attr("r", 256)
       .attr("stroke", "#717A94")
-      .attr("stroke-width", "12")
+      .attr("strokeWidth", "12")
       .attr("fill", "#EFEDED");
 
     sync_icon
@@ -4214,7 +3816,7 @@ export default function BezierD3({ pipeline, id, branch, buildexist, name }) {
         }
       })
       .attr("stroke", "#717A94")
-      .attr("stroke-width", "2")
+      .attr("strokeWidth", "2")
       .attr("stroke-linecap", "round");
 
     const branch_dataset_icon = node_normal_group
@@ -4264,13 +3866,13 @@ export default function BezierD3({ pipeline, id, branch, buildexist, name }) {
           return "url(#arrowhead)";
         }
       })
-      .style("stroke-width", 2.3)
+      .style("strokeWidth", 2.3)
       .classed("bezier-link", true)
       .on("mouseover", function (event, d) {
-        d3.select(this).style("stroke-width", 3.5).style("cursor", "grab");
+        d3.select(this).style("strokeWidth", 3.5).style("cursor", "grab");
       })
       .on("mouseout", function (event, d) {
-        d3.select(this).style("stroke-width", 2.3);
+        d3.select(this).style("strokeWidth", 2.3);
       });
 
     function animLink(d) {
@@ -4365,12 +3967,6 @@ export default function BezierD3({ pipeline, id, branch, buildexist, name }) {
 
       node_source.attr("x", (d) => d.x).attr("y", (d) => d.y);
 
-      node_link.attr("transform", function (d) {
-        return "translate(" + -60 + "," + -30 + ")";
-      });
-
-      node_link.attr("x", (d) => d.x).attr("y", (d) => d.y);
-
       node_chart.attr("transform", function (d) {
         return "translate(" + -54 + "," + -30 + ")";
       });
@@ -4398,10 +3994,6 @@ export default function BezierD3({ pipeline, id, branch, buildexist, name }) {
       });
 
       texts_source.attr("transform", function (d) {
-        return "translate(" + (d.x + 25) + "," + (d.y + 7) + ")";
-      });
-
-      texts_link.attr("transform", function (d) {
         return "translate(" + (d.x + 25) + "," + (d.y + 7) + ")";
       });
 
@@ -5002,7 +4594,6 @@ export default function BezierD3({ pipeline, id, branch, buildexist, name }) {
 
     node_normal_group.call(drag);
     node_source_group.call(drag);
-    node_link_group.call(drag);
     node_chart_group.call(drag);
     node_dashboard_group.call(drag);
     svg_ref.call(zoom).on("dblclick.zoom", null);
@@ -5032,7 +4623,6 @@ export default function BezierD3({ pipeline, id, branch, buildexist, name }) {
 
       node_normal_group.remove();
       node_source_group.remove();
-      node_link_group.remove();
       node_chart_group.remove();
       node_dashboard_group.remove();
     };

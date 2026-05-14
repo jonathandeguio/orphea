@@ -5,13 +5,13 @@
 # - Subnet for backends. A subnet named backend-subnet in the us-west1 region uses 10.1.2.0/24 for its primary IP range.
 # - Subnet for proxies. A subnet named proxy-only-subnet in the us-west1 region uses 10.129.0.0/23 for its primary IP range.
 
-PROJECT_ID=bosler-test
+PROJECT_ID=orphea-test
 COMPUTE_REGION=europe-west2
 COMPUTE_ZONE=europe-west2-a
 CLUSTER_NAME=hello-world
-CERTIFICATE_NAME="bosler-preshared-cert"
-CERT_FILE_PATH="/Users/jamesmorrish/OneDrive/Jim Documents/Bosler/SECRETS/Bosler.io-ssl-cert/_.bosler.io.crt"
-KEY_FILE_PATH="/Users/jamesmorrish/OneDrive/Jim Documents/Bosler/SECRETS/Bosler.io-ssl-cert/myserver.key"
+CERTIFICATE_NAME="orphea-preshared-cert"
+CERT_FILE_PATH="/Users/jamesmorrish/OneDrive/Jim Documents/Orphea/SECRETS/Orphea.io-ssl-cert/_.orphea.io.crt"
+KEY_FILE_PATH="/Users/jamesmorrish/OneDrive/Jim Documents/Orphea/SECRETS/Orphea.io-ssl-cert/myserver.key"
 SOURCE_RANGE="0.0.0.0/0"
 
 # BACKEND NAME ???  

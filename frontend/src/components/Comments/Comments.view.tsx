@@ -6,21 +6,17 @@ import { getLanguageLabel } from "utils/utilities";
 import BoslerButton from "../BoslerComponents/ButtonComponent/BoslerButton";
 import { CommentsContent } from "./Content";
 import { useCommentController } from "./Hooks/useCommentController";
-import styles from "./Comments.module.scss";
 
 const Comments = ({ id }: any) => {
   const { allOpenComments, totalOpenComments, allResolvedComments, userMap } =
     useCommentController(id);
   return (
     <Popover
-      overlayInnerStyle={{
-        margin: 0,
-        padding: 0,
-        zIndex: 1,
-      }}
+      overlayStyle={{ height: "500px", width: "450px" }}
+      overlayInnerStyle={{ margin: 0, padding: 0, zIndex: 0 }}
       content={
         <CommentsContent
-          classes={{ root: styles.root }}
+          height="400px"
           id={id}
           allOpenComments={allOpenComments}
           allResolvedComments={allResolvedComments}

@@ -96,7 +96,7 @@ image:
   digest: ""
 # image:
 #   registry: europe-west1-docker.pkg.dev/decbos221-dev
-#   repository: bosler-cr/funnel
+#   repository: orphea-cr/funnel
 #   tag: latest
 #   digest: ""
   ## Specify a imagePullPolicy

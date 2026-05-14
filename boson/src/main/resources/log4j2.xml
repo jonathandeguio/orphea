@@ -8,8 +8,8 @@
         </Console>
 
         <RollingFile name="File-Appender"
-                     fileName="${env:BOSLER_MOUNT_PATH}/logs/boson/application/boson.log"
-                     filePattern="${env:BOSLER_MOUNT_PATH}/logs/boson/application/archive/boson.%d{yyyy-MM-dd}.log">
+                     fileName="${env:ORPHEA_MOUNT_PATH}/logs/boson/application/boson.log"
+                     filePattern="${env:ORPHEA_MOUNT_PATH}/logs/boson/application/archive/boson.%d{yyyy-MM-dd}.log">
             <PatternLayout pattern="[%-5level] [%d{yyyy-MM-dd HH:mm:ss Z}] [%X{RequestId}] [%logger{36}] - [%msg] %n"/>
             <Policies>
                 <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
@@ -19,7 +19,7 @@
     </Appenders>
 
     <Loggers>
-        <Logger name="io.bosler" level="INFO" additivity="false">
+        <Logger name="io.orphea" level="INFO" additivity="false">
             <AppenderRef ref="File-Appender"/>
             <AppenderRef ref="Console-Appender"/>
         </Logger>

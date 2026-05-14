@@ -26,16 +26,10 @@
     z-index: 1;
     width: 10px;
 
-    &:hover {
-      .resizablePane-collapser-box-button {
-        display: block;
-      }
-    }
-
     &-button {
       border-left: 1px solid var(--bosler-border-color-default);
       border-bottom: 1px solid var(--bosler-border-color-muted);
-      padding: 7px 0px;
+      padding: 7px 4px;
       background: var(--background-color);
       border-top: 1px solid var(--bosler-border-color-default);
       border-right: 1px solid var(--bosler-border-color-default);
@@ -43,13 +37,6 @@
       cursor: pointer;
       position: absolute;
       left: 0;
-
-      display: none;
-
-      &-left {
-        left: auto;
-        right: 8px !important;
-      }
     }
   }
 }

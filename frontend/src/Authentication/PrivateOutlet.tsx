@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import MainLayout from "../layouts/layout";
 import Loading from "../pages/Errors/Loading";
+import { BOSLER_TOKEN } from "./constants";
 
 const PrivateOutlet = () => {
   const navigate = useNavigate();
@@ -12,10 +13,17 @@ const PrivateOutlet = () => {
   const { user } = useSelector((state) => (state as $TSFixMe).userDetails);
 
   useEffect(() => {
-    if (!tokenStatusLoading && !isTokenValid) {
+    if (
+      localStorage.getItem(BOSLER_TOKEN) !== undefined &&
+      localStorage.getItem(BOSLER_TOKEN) !== null
+    ) {
+      if (!isTokenValid && !tokenStatusLoading) {
+        navigate("/auth/relogin");
+      }
+    } else {
       navigate("/auth/login");
     }
-  }, [isTokenValid, tokenStatusLoading, user]);
+  }, [isTokenValid, tokenStatusLoading]);
 
   if (isTokenValid && !tokenStatusLoading && user) {
     return <MainLayout />;

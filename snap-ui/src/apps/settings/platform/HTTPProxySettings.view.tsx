@@ -3,13 +3,13 @@ import React from "react";
 
 import { Form } from "antd";
 
-import BoslerLoader from "components/boslerLoader";
+import OrpheaLoader from "components/orpheaLoader";
 import { useDispatch, useSelector } from "react-redux";
 import { isDefined } from "utils/utilities";
 import { updatePlatformConfig } from "redux/actions/platformSettingsActions";
 import { ThunkAppDispatch } from "redux/types/store";
-import BoslerButton from "components/ButtonComponent/BoslerButton";
-import BoslerInput from "components/InputComponent/BoslerInput";
+import OrpheaButton from "components/ButtonComponent/OrpheaButton";
+import OrpheaInput from "components/InputComponent/OrpheaInput";
 
 const { Title, Text } = Typography;
 
@@ -78,7 +78,7 @@ const HttpProxySettings = () => {
                   <Col span={8}>
                     <Text type="secondary">HTTP Proxy URL</Text>
                     <Form.Item name="httpProxyUrl">
-                      <BoslerInput />
+                      <OrpheaInput />
                     </Form.Item>
                   </Col>
                 </Row>
@@ -86,7 +86,7 @@ const HttpProxySettings = () => {
                 <Row justify="space-between">
                   <Col span={16}>
                     <div
-                      className="BoslerSubHeader1 text-and-icon-center"
+                      className="OrpheaSubHeader1 text-and-icon-center"
                       style={{ marginRight: "0.5rem" }}
                     >
                       Only platform administrators can view or edit this
@@ -95,9 +95,9 @@ const HttpProxySettings = () => {
                   </Col>
                   <Col span={8}>
                     <Form.Item style={{ marginBottom: 0, marginLeft: "auto" }}>
-                      <BoslerButton htmlType="submit" intent="primary">
+                      <OrpheaButton htmlType="submit" intent="primary">
                         Update Configuration
-                      </BoslerButton>
+                      </OrpheaButton>
                     </Form.Item>
                   </Col>
                 </Row>
@@ -105,7 +105,7 @@ const HttpProxySettings = () => {
             )}
           </Form>
         ) : (
-          <BoslerLoader />
+          <OrpheaLoader />
         )}
       </p>
     </div>

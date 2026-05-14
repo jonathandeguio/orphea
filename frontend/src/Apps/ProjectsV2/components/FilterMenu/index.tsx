@@ -267,7 +267,7 @@ const FilterMenu = ({ filters, updateFilters, resetFilters }: IProps) => {
             intent="none"
             trimicononlypadding
             borderless
-            size="middle"
+            size="large"
             icon={
               isSortAsc ? (
                 filters.sortBy == RESOURCE_SORT_BY_TYPE.NAME ? (

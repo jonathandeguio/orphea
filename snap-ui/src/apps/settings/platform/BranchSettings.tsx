@@ -2,12 +2,12 @@ import { Col, Divider, Row, Typography } from "antd";
 import React from "react";
 
 import { Form } from "antd";
-import BoslerLoader from "components/boslerLoader";
+import OrpheaLoader from "components/orpheaLoader";
 import { useDispatch, useSelector } from "react-redux";
 import { updatePlatformConfig } from "redux/actions/platformSettingsActions";
 import { ThunkAppDispatch } from "redux/types/store";
-import BoslerInput from "components/InputComponent/BoslerInput";
-import BoslerButton from "components/ButtonComponent/BoslerButton";
+import OrpheaInput from "components/InputComponent/OrpheaInput";
+import OrpheaButton from "components/ButtonComponent/OrpheaButton";
 
 const { Title, Text } = Typography;
 
@@ -54,22 +54,22 @@ const BranchSettings = () => {
 
               <Col>
                 <Form.Item name="defaultBranch">
-                  <BoslerInput />
+                  <OrpheaInput />
                 </Form.Item>
               </Col>
             </Row>
             <Row justify="end">
               <Col>
                 <Form.Item>
-                  <BoslerButton intent="primary" htmlType="submit">
+                  <OrpheaButton intent="primary" htmlType="submit">
                     Update Branch
-                  </BoslerButton>
+                  </OrpheaButton>
                 </Form.Item>
               </Col>
             </Row>
           </Form>
         ) : (
-          <BoslerLoader />
+          <OrpheaLoader />
         )}
       </p>
     </div>

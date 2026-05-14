@@ -4,28 +4,38 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   generateUUID,
   getLanguageLabel,
+  getSocketClient,
   openNotification,
 } from "utils/utilities";
 
 import NoData from "components/CommonUI/NoData";
 import useEffectOnlyOnDependencyUpdate from "hooks/useEffectOnlyOnDependencyUpdate";
-import { EmptyChartIcon } from "../../../assets/icons/boslerMiscellaneousIcons";
+import {
+  EmptyChartIcon,
+  TrashIcon,
+} from "../../../assets/icons/boslerMiscellaneousIcons";
 import {
   isChartAdded,
   isDashboardChanged,
   revertSaveDashboardStatus,
 } from "../../../redux/actions/dashboardActions";
 import { RootState, ThunkAppDispatch } from "../../../redux/types/store";
+import { ChartReload } from "../chart/charts.utils";
 import { TooltipInfo } from "../kepler";
 import { getTabElementsAPI, updateTabElementAPI } from "./Dashboard.api";
 import { GRID_CONFIG } from "./Dashboard.contants";
-import styles from "./Dashboard.module.scss";
-import { TabElementOperationEnum } from "./Dashboard.types";
 import { getDefaultMeasurementsOfElements } from "./Dashboard.utils";
-import generateDom from "./DashboardGridDom";
-import DashboardEmptyTab from "./DashboardTabs/DashboardEmptyTab";
+import { CustomGridItemComponent } from "./DashboardElements/CustomGridItemComponent";
+import DividerElement from "./DashboardElements/DividerElement";
+import EditorElement from "./DashboardElements/EditorElement";
+import FileElement from "./DashboardElements/FileElement";
+import HeaderElement from "./DashboardElements/HeaderElement";
+import MarkdownElement from "./DashboardElements/MarkdownElement";
+import TextElement from "./DashboardElements/TextElement";
 
 const { Responsive, WidthProvider } = require("react-grid-layout");
+
+const { v4: uuidv4 } = require("uuid");
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
 interface IProps {
@@ -38,13 +48,17 @@ interface IProps {
 const DashboardGrid = ({ editable, tabId, dashboardId, gridRef }: IProps) => {
   const dispatch = useDispatch<ThunkAppDispatch>();
   const fullScreenRef = useRef(null);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [tooltipInfo, setTooltipInfo] = useState<TooltipInfo | undefined>(
     undefined
   );
 
   const [originalLayout, setOriginalLayout] = useState<any>();
   const [tabElementsMap, setTabElementsMap] = useState<any>();
+
+  const [chartReload, setChartReload] = useState<ChartReload>({
+    chartId: "",
+    reloadId: uuidv4(),
+  });
 
   const { subscribeMenu, gridConfig, filterMenu, triggerSave } = useSelector(
     (state: RootState) => state.dashboardEdit
@@ -54,33 +68,20 @@ const DashboardGrid = ({ editable, tabId, dashboardId, gridRef }: IProps) => {
     (state) => (state as $TSFixMe).resourcePermission[dashboardId]
   );
 
-  function handleUpdateTabElement(elementId: string, data: string) {
+  function handleUpdateTabElement(
+    elementId: string,
+    elementType: string,
+    data: string
+  ) {
     tabElementsMap[elementId] = { ...tabElementsMap[elementId], data: data };
     setTabElementsMap(tabElementsMap);
   }
 
-  function removeElement(elementId: string) {
-    if (tabElementsMap[elementId].operation == TabElementOperationEnum.CREATE) {
-      delete tabElementsMap[elementId];
-      const newLayout = originalLayout.filter(
-        (item: any) => item.i !== elementId
-      );
-      setOriginalLayout(newLayout);
-    } else {
-      tabElementsMap[elementId] = {
-        ...tabElementsMap[elementId],
-        operation: TabElementOperationEnum.DELETE,
-      };
-      setOriginalLayout((originalLayout: any) =>
-        originalLayout.map((item: any) =>
-          item.i == elementId
-            ? { ...item, operation: TabElementOperationEnum.DELETE }
-            : item
-        )
-      );
-    }
-
-    setTabElementsMap(tabElementsMap);
+  function removeElement(dashboardId: string, elementId: string) {
+    const newLayout = originalLayout.filter(
+      (item: any) => item.i !== elementId
+    );
+    setOriginalLayout(newLayout);
   }
 
   function handleLayoutChange(layout: any, layouts: any) {
@@ -106,8 +107,6 @@ const DashboardGrid = ({ editable, tabId, dashboardId, gridRef }: IProps) => {
   function onDrop(layout: any, layoutItem: any, _event: any) {
     const layoutElement = _event.dataTransfer.getData("text/plain");
     const chartId = _event.dataTransfer.getData("chart");
-    console.log("CHART ID : ", chartId);
-    console.log("LAYOUT ELE : ", layoutElement);
     const file = _event.dataTransfer.getData("file");
     const layoutElementType = layoutElement.substr(
       layoutElement.indexOf("-") + 1
@@ -183,7 +182,7 @@ const DashboardGrid = ({ editable, tabId, dashboardId, gridRef }: IProps) => {
         })
       ),
       data: elementData(),
-      operation: TabElementOperationEnum.CREATE,
+      createElement: true,
     };
 
     const newLayout = [
@@ -213,10 +212,209 @@ const DashboardGrid = ({ editable, tabId, dashboardId, gridRef }: IProps) => {
     }
   }
 
-  const getTabElements = () => {
-    setIsLoading(true);
-    getTabElementsAPI(dashboardId, tabId)
-      .then(({ data: tabElements }) => {
+  function generateDom() {
+    const layout = originalLayout;
+    return layout.map((l: any) => {
+      const typeElement = l.type;
+
+      if (typeElement === "header") {
+        return (
+          <CustomGridItemComponent
+            key={l.i}
+            data-grid={l}
+            style={{
+              zIndex: l.zIndex,
+            }}
+            dashboardId={dashboardId}
+            tabId={tabId}
+          >
+            <HeaderElement
+              layout={l}
+              element={tabElementsMap[l.i]}
+              editable={editable}
+              removeElement={removeElement}
+              dashboardId={dashboardId}
+              tabId={tabId}
+            />
+          </CustomGridItemComponent>
+        );
+      } else if (typeElement === "editor") {
+        return (
+          <CustomGridItemComponent
+            key={l.i}
+            data-grid={l}
+            style={{
+              zIndex: l.zIndex,
+            }}
+            dashboardId={dashboardId}
+            tabId={tabId}
+          >
+            <EditorElement
+              layout={l}
+              element={tabElementsMap[l.i]}
+              editable={editable}
+              removeElement={removeElement}
+              dashboardId={dashboardId}
+              tabId={tabId}
+              updateTabElement={handleUpdateTabElement}
+            />
+          </CustomGridItemComponent>
+        );
+      } else if (typeElement === "text") {
+        return (
+          <CustomGridItemComponent
+            key={l.i}
+            data-grid={l}
+            style={{
+              zIndex: l.zIndex,
+            }}
+            dashboardId={dashboardId}
+            tabId={tabId}
+          >
+            <TextElement
+              layout={l}
+              element={tabElementsMap[l.i]}
+              editable={editable}
+              removeElement={removeElement}
+              dashboardId={dashboardId}
+              tabId={tabId}
+            />
+          </CustomGridItemComponent>
+        );
+      } else if (typeElement === "divider") {
+        // Divider shouldnt be resizing even in editable mode
+        // l.isResizable = false;
+        return (
+          <CustomGridItemComponent
+            key={l.i}
+            data-grid={l}
+            style={{
+              zIndex: l.zIndex,
+            }}
+            dashboardId={dashboardId}
+            tabId={tabId}
+          >
+            <DividerElement
+              layout={l}
+              element={tabElementsMap[l.i]}
+              dashboardId={dashboardId}
+              tabId={tabId}
+              editable={editable}
+              removeElement={removeElement}
+              updateTabElement={handleUpdateTabElement}
+            />
+          </CustomGridItemComponent>
+        );
+      } else if (typeElement === "file") {
+        return (
+          <CustomGridItemComponent
+            key={l.i}
+            data-grid={l}
+            style={{
+              zIndex: l.zIndex,
+            }}
+            dashboardId={dashboardId}
+            tabId={tabId}
+          >
+            <FileElement
+              layout={l}
+              element={tabElementsMap[l.i]}
+              dashboardId={dashboardId}
+              tabId={tabId}
+              editable={editable}
+              removeElement={removeElement}
+            />
+          </CustomGridItemComponent>
+        );
+      } else if (typeElement === "markdown") {
+        return (
+          <CustomGridItemComponent
+            key={l.i}
+            data-grid={l}
+            style={{
+              zIndex: l.zIndex,
+            }}
+            dashboardId={dashboardId}
+            tabId={tabId}
+          >
+            <MarkdownElement
+              layout={l}
+              element={tabElementsMap[l.i]}
+              editable={editable}
+              removeElement={removeElement}
+              tabId={tabId}
+              dashboardId={dashboardId}
+            />
+          </CustomGridItemComponent>
+        );
+      } else if (typeElement === "chart") {
+        if (!tabElementsMap.hasOwnProperty(l.i)) {
+          return;
+        }
+        if (tabElementsMap[l.i].data == "") {
+          return (
+            <div key={l.i} data-grid={l}>
+              <span className="text">{l.i}</span>
+              <div className="type">{"Type:" + typeElement}</div>
+            </div>
+          );
+        }
+
+        return (
+          <CustomGridItemComponent
+            key={l.i}
+            data-grid={l}
+            style={{
+              borderRadius: "2px",
+              height: "none",
+              background: "var(--background-color)",
+              border: !editable
+                ? "0.25px solid var(--bosler-border-color-default)"
+                : "",
+              zIndex: l.zIndex,
+            }}
+            chartId={tabElementsMap[l.i].data}
+            datasetId={tabElementsMap[l.i].datasetId}
+            fetchCachedData={true}
+            editable={editable}
+            layout={l}
+            removeElement={removeElement}
+            elementType="chart"
+            element={tabElementsMap[l.i]}
+            ref={fullScreenRef}
+            setTooltipInfo={setTooltipInfo}
+            tooltipInfo={tooltipInfo}
+            dashboardId={dashboardId}
+            tabId={tabId}
+            chartReload={chartReload}
+          />
+        );
+      } else {
+        return (
+          <div
+            key={l.i}
+            data-grid={l}
+            className={
+              editable ? "editableElementBorder" : "nonEditableElementBorder"
+            }
+          >
+            <span className="text">{l.i}</span>
+            <div className="type">{"Type:" + typeElement}</div>
+            <div
+              className="editableElementBorder-delete"
+              onClick={() => removeElement(l.i, dashboardId)}
+            >
+              <TrashIcon />
+            </div>
+          </div>
+        );
+      }
+    });
+  }
+
+  const getTabElements = async () => {
+    getTabElementsAPI(dashboardId, tabId).then(
+      (tabElements: any) => {
         const layout: any[] = [];
         const tabElementsMap: any = {};
         tabElements.map((element: any) => {
@@ -227,12 +425,10 @@ const DashboardGrid = ({ editable, tabId, dashboardId, gridRef }: IProps) => {
           tabElementsMap[element.id] = element;
         });
         setTabElementsMap(tabElementsMap);
-        console.log("LAYOUT SETTING : ", layout);
         setOriginalLayout(layout);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+      },
+      (error) => {}
+    );
   };
 
   const handleSaveDashboard = () => {
@@ -257,24 +453,17 @@ const DashboardGrid = ({ editable, tabId, dashboardId, gridRef }: IProps) => {
         ),
         type: tabElementsMap[layoutEle.i].type,
         data: tabElementsMap[layoutEle.i].data,
-        operation: tabElementsMap[layoutEle.i].operation,
+        createElement: tabElementsMap[layoutEle.i].createElement,
       });
     });
 
     updateTabElementAPI(dashboardId, tabId, tabElementsPayload)
       .then(() => {
-        let newLayout = originalLayout;
         Object.values(tabElementsMap).forEach((value: any) => {
-          if (value.operation == TabElementOperationEnum.CREATE) {
-            tabElementsMap[value.id].operation = TabElementOperationEnum.NONE;
-          } else if (value.operation == TabElementOperationEnum.DELETE) {
-            delete tabElementsMap[value.id];
-            newLayout = newLayout.filter((item: any) => item.i !== value.id);
+          if (value.createElement) {
+            tabElementsMap[value.id].createElement = false;
           }
         });
-
-        setOriginalLayout(newLayout);
-        setTabElementsMap(tabElementsMap);
         dispatch(revertSaveDashboardStatus(true));
       })
       .catch(() => {
@@ -302,13 +491,38 @@ const DashboardGrid = ({ editable, tabId, dashboardId, gridRef }: IProps) => {
     handleSaveDashboard();
   }, [triggerSave]);
 
-  if (originalLayout === undefined || isLoading) {
+  useEffect(() => {
+    const client = getSocketClient();
+    client.activate();
+    client.onConnect = (frame) => {
+      client.subscribe(
+        `/topic/dashboard/${dashboardId}/${tabId}`,
+        function (mail) {
+          setChartReload({
+            reloadId: uuidv4(),
+            chartId: JSON.parse(mail.body).message,
+          });
+        }
+      );
+    };
+
+    return () => {
+      client.deactivate();
+    };
+  }, [tabId]);
+
+  if (originalLayout === undefined) {
     return <BoslerLoader />;
   }
 
   if (!editable && originalLayout.length == 0)
     return (
-      <div className={styles.emptyTabContainer}>
+      <div
+        style={{
+          height: "calc(100% - 36px - 3rem)",
+          width: "100%",
+        }}
+      >
         <NoData
           icon={<EmptyChartIcon size={160} />}
           heading={getLanguageLabel("noComponentPresentAddViaEditButton")}
@@ -318,8 +532,10 @@ const DashboardGrid = ({ editable, tabId, dashboardId, gridRef }: IProps) => {
 
   return (
     <div
-      className={styles.gridContainer}
       style={{
+        // 36px reduction is for filters
+        height: "calc(100% - 36px - 3rem)",
+        width: "100%",
         // Pick config, else pick system default
         background: gridConfig.pageBg
           ? gridConfig.pageBg
@@ -327,6 +543,7 @@ const DashboardGrid = ({ editable, tabId, dashboardId, gridRef }: IProps) => {
         padding: `${gridConfig.topPadding}px ${gridConfig.rightPadding}px ${gridConfig.bottomPadding}px ${gridConfig.leftPadding}px`,
       }}
       ref={gridRef}
+      // className={isLoading ? "dashboardShimmer" : ""}
     >
       <ResponsiveGridLayout
         {...GRID_CONFIG}
@@ -362,20 +579,24 @@ const DashboardGrid = ({ editable, tabId, dashboardId, gridRef }: IProps) => {
         draggableCancel=".cancelSelectorName"
         preventCollision={false}
       >
-        {generateDom(
-          originalLayout,
-          tabElementsMap,
-          editable,
-          removeElement,
-          handleUpdateTabElement,
-          dashboardId,
-          tabId,
-          fullScreenRef,
-          setTooltipInfo,
-          tooltipInfo
-        )}
+        {generateDom()}
       </ResponsiveGridLayout>
-      {originalLayout.length == 0 && <DashboardEmptyTab />}
+      {originalLayout.length == 0 ? (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            color: "#80808045",
+            fontSize: "2rem",
+            fontKerning: "normal",
+            fontWeight: "600",
+          }}
+        >
+          {getLanguageLabel("dropComponentsInTheBox")}
+        </div>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };

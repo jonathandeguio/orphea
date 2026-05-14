@@ -1,5 +1,5 @@
 import { Form } from "antd";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 // import { setTheme } from "../App";
@@ -17,20 +17,12 @@ import Loading from "../Errors/Loading";
 
 import "Apps/Kepler/dashboard/DashboardSubscribeMenu/DashboardSubscribeMenu.scss";
 
-import { API_BASE_URL } from "Authentication/constants";
 import { BoslerIcon } from "assets/icons/boslerMiscellaneousIcons";
-import MfaVerification from "pages/Settings/components/MfaEnabled";
 import { ParticleApp } from "utils/ParticleApp";
 import LoginModal from "./LoginModal";
 
 const Login = () => {
   const [form] = Form.useForm();
-  const [userDetails, setUserDetails] = useState<{
-    userName: string;
-    password: string;
-  }>({ userName: "", password: "" });
-  const [loginWithRecoveryCode, setLoginWithRecoveryCode] = useState(false);
-  const [showMFA, setShowMFA] = useState<boolean>(false);
   const dispatch = useDispatch<ThunkAppDispatch>();
   const navigate = useNavigate();
 
@@ -108,67 +100,29 @@ const Login = () => {
             zIndex: 10,
           }}
         >
-          {showMFA ? (
-            <div className="login-containerNew">
-              {!isIpPlatform() && <BoslerIcon size={128} />}
-              <br />
-              <div style={{ minWidth: "500px" }} className="form-containerNew">
-                <MfaVerification
-                  username={userDetails.userName}
-                  password={userDetails.password}
-                  showMFA={showMFA}
-                  loginWithRecoveryCode={loginWithRecoveryCode}
-                  setLoginWithRecoverycode={() =>
-                    setLoginWithRecoveryCode(!loginWithRecoveryCode)
-                  }
-                />
-              </div>
-            </div>
-          ) : (
-            <Form
-              form={form}
-              layout="vertical"
-              initialValues={{}}
-              onFinish={(values) => {
-                if (values.signInOption !== "password") {
-                  window.location.href =
-                    API_BASE_URL?.replace("/api", "") +
-                    "/saml2/authenticate/" +
-                    values.signInOption;
-                } else if (values.username && values.password) {
-                  setUserDetails({
-                    userName: values.username,
-                    password: values.password,
-                  });
-                  dispatch(
-                    login(
-                      convertStringToLowerCase(values.username),
-                      values.password,
-                      () => {
-                        navigate("/portal/home");
-                        dispatch(refreshTokenStatus());
-                        setShowMFA(false);
-                      },
-                      (error: string) => {
-                        openNotification("Login Error", error, "error");
-                      },
-                      () => {
-                        setShowMFA(true);
-                      }
-                    )
-                  ).then((data: $TSFixMe) => {
-                    dispatch(refreshTokenStatus());
-                    setTheme(data);
-                  });
-                }
-              }}
-              className="login-containerNew"
-            >
-              {!isIpPlatform() && <BoslerIcon size={128} />}
-              <br />
-              <LoginModal showMFA={showMFA} form={form} />
-            </Form>
-          )}
+          <Form
+            form={form}
+            layout="vertical"
+            initialValues={{}}
+            onFinish={(values) => {
+              if (values.username && values.password) {
+                dispatch(
+                  login(
+                    convertStringToLowerCase(values.username),
+                    values.password
+                  )
+                ).then((data: $TSFixMe) => {
+                  dispatch(refreshTokenStatus());
+                  setTheme(data);
+                });
+              }
+            }}
+            className="login-containerNew"
+          >
+            {!isIpPlatform() && <BoslerIcon size={128} />}
+            <br />
+            <LoginModal />
+          </Form>
         </div>
       </div>
     </>

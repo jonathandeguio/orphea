@@ -11,12 +11,3 @@ interface PermissionMapping {
   roleId: string;
   inherited: boolean;
 }
-
-interface IRole {
-  delete: boolean;
-  id: string;
-  name: string;
-  read: boolean;
-  status: string;
-  write: boolean;
-}

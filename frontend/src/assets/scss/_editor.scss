@@ -3,7 +3,7 @@
   flex-direction: column;
   overflow: hidden;
   height: calc(100% - 16.8px);
-  // cursor: pointer;
+  cursor: pointer;
   // height: calc(100%);
   width: calc(100%);
 
@@ -164,11 +164,11 @@
     background-clip: padding-box;
   }
 
-  // .Resizer:hover,
-  // .Resizer:active {
-  //   opacity: 1;
-  //   transition: all 0.6s ease;
-  // }
+  .Resizer:hover,
+  .Resizer:active {
+    opacity: 1;
+    transition: all 0.6s ease;
+  }
 
   .Resizer.horizontal {
     height: 11px;

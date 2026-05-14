@@ -20,12 +20,9 @@ import {
   removeFromFavouritesApi,
 } from "Apps/explorer/explorer.api";
 import { useNavigateHelper } from "Apps/explorer/explorer.hooks";
-import { NavigatorLink, getNodeIcon } from "Apps/explorer/explorer.utils";
+import { getNodeIcon } from "Apps/explorer/explorer.utils";
 import UserInfo from "common/components/UserInfo";
 import { getDefaultFavicon } from "components/boslerLoader/FavIconLoader";
-import { useHref } from "react-router";
-import { Link } from "react-router-dom";
-import Item from "antd/lib/list/Item";
 
 const { Title, Text } = Typography;
 
@@ -95,8 +92,7 @@ const RecentlyViewed = () => {
                 )}
                 title={
                   <div style={{ display: "flex", alignItems: "center" }}>
-                    {/* <div onClick={() => navigator(item.id)}>{item.name}</div> */}
-                    <NavigatorLink to={item.id}>{item.name}</NavigatorLink>
+                    <div onClick={() => navigator(item.id)}>{item.name}</div>
 
                     <div
                       onClick={() => {

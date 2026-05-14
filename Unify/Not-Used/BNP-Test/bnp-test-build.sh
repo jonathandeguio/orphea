@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PROJECT_ID=bosler-foo
+PROJECT_ID=orphea-foo
 COMPUTE_REGION=us-central1
 COMPUTE_ZONE=us-central1-c
 
@@ -35,8 +35,8 @@ gcloud compute instances create bnp-instance-1 --project=$PROJECT_ID \
 --network-interface=subnet=bnp-test,no-address \
 --service-account=735596495996-compute@developer.gserviceaccount.com \
 --scopes=https://www.googleapis.com/auth/devstorage.read_only,https://www.googleapis.com/auth/logging.write,https://www.googleapis.com/auth/monitoring.write,https://www.googleapis.com/auth/servicecontrol,https://www.googleapis.com/auth/service.management.readonly,https://www.googleapis.com/auth/trace.append \
---create-disk=auto-delete=yes,boot=yes,device-name=instance-1,image=projects/centos-cloud/global/images/centos-7-v20211214,mode=rw,size=100,type=projects/bosler-foo/zones/us-central1-c/diskTypes/pd-standard \
---create-disk=auto-delete=yes,device-name=bnp-disk-1,mode=rw,name=bnp-disk-1,size=1000,type=projects/bosler-foo/zones/us-central1-c/diskTypes/pd-standard \
+--create-disk=auto-delete=yes,boot=yes,device-name=instance-1,image=projects/centos-cloud/global/images/centos-7-v20211214,mode=rw,size=100,type=projects/orphea-foo/zones/us-central1-c/diskTypes/pd-standard \
+--create-disk=auto-delete=yes,device-name=bnp-disk-1,mode=rw,name=bnp-disk-1,size=1000,type=projects/orphea-foo/zones/us-central1-c/diskTypes/pd-standard \
 --no-shielded-secure-boot --shielded-vtpm --shielded-integrity-monitoring \
 --reservation-affinity=any
 
@@ -47,7 +47,7 @@ gcloud compute instances create bnp-instance-1 --project=$PROJECT_ID \
 # Creating and mounting the external disk:
 # https://cloud.google.com/compute/docs/disks/add-persistent-disk?hl=en
 # e.g.
-# gcloud beta compute ssh --zone "us-central1-c" "bnp-instance-1"  --tunnel-through-iap --project "bosler-foo"
+# gcloud beta compute ssh --zone "us-central1-c" "bnp-instance-1"  --tunnel-through-iap --project "orphea-foo"
 # sudo lsblk
 # sudo mkfs.ext4 -m 0 -E lazy_itable_init=0,lazy_journal_init=0,discard /dev/sdb
 # sudo mkdir -p /mnt/data

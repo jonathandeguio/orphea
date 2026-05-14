@@ -1,4 +1,4 @@
-#!/bin/bash
+!/bin/bash
 
 # Install dependencies if not installed
 echo "Checking for required dependencies..."

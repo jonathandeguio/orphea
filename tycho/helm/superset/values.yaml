@@ -155,7 +155,7 @@ configMountPath: "/app/pythonpath"
 extraConfigMountPath: "/app/configs"
 
 image:
-  repository: europe-west1-docker.pkg.dev/novbos22/bosler-cr/tycho
+  repository: europe-west1-docker.pkg.dev/novbos22/orphea-cr/tycho
   tag: latest
   pullPolicy: Always
 
@@ -179,15 +179,15 @@ ingress:
     # nginx.ingress.kubernetes.io/proxy-connect-timeout: "300"
     # nginx.ingress.kubernetes.io/proxy-read-timeout: "300"
     # nginx.ingress.kubernetes.io/proxy-send-timeout: "300"
-    # kubernetes.io/ingress.global-static-ip-name: bosler-dev-2
-    # networking.gke.io/managed-certificates: bosler-dev-2-managed-cert
+    # kubernetes.io/ingress.global-static-ip-name: orphea-dev-2
+    # networking.gke.io/managed-certificates: orphea-dev-2-managed-cert
     #kubernetes.io/ingress.allow-http: "false"
     # If the class annotation is not specified it defaults to "gce".
     kubernetes.io/ingress.class: "gce"
   path: /*
   pathType: ImplementationSpecific
   hosts:
-    - dev.bosler.io
+    - dev.orphea.io
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:

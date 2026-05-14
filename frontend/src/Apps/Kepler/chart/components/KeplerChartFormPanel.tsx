@@ -8,7 +8,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Panel, PanelResizeHandle } from "react-resizable-panels";
 import { getLanguageLabel } from "utils/utilities";
-import { updateQueryError } from "../../../../redux/actions/keplerActions";
 import { resourceModeUpdate } from "../../../../redux/actions/resourcePermissionActions";
 import {
   DATASET_HISTORY_MODE,
@@ -16,7 +15,7 @@ import {
   VERSION_MODE,
   VIEWER_MODE,
 } from "../../../../redux/constants/resourcePermissionConstants";
-import { RootState, ThunkAppDispatch } from "../../../../redux/types/store";
+import { ThunkAppDispatch } from "../../../../redux/types/store";
 import QueryForm from "../QueryForm";
 import SliderController from "../QueryForm/SliderController";
 import CustomizeForm from "../customizeForm";
@@ -28,38 +27,6 @@ interface TProps {
 
 const ChartForm = ({ resourcePermission }: any) => {
   const [selectedTab, setSelectedTab] = useState<string>("data");
-  const { dataForm } = useSelector((state: RootState) => state.kepler);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dataForm
-      ?.validateFields()
-      .then(() => {
-        dispatch(
-          updateQueryError({
-            status: "FINISHED",
-            error: null,
-          })
-        );
-      })
-      .catch((errorInf: any) => {
-        if (errorInf.errorFields.length > 0) {
-          dispatch(
-            updateQueryError({
-              status: "ERROR",
-              error: errorInf,
-            })
-          );
-        } else {
-          dispatch(
-            updateQueryError({
-              status: "FINISHED",
-              error: null,
-            })
-          );
-        }
-      });
-  }, [dataForm]);
 
   return (
     <div className="--flex-col-center">
@@ -138,14 +105,12 @@ const KeplerChartFormPanel = ({ id, datasetId }: TProps) => {
     <>
       {resourcePermission.mode == EDIT_MODE && (
         <PanelResizeHandle className="resizablePane-collapser">
-          <CollapserHandler
-            primaryPanelRef={primaryPanelRef}
-            alignButton="left"
-          />
+          <CollapserHandler primaryPanelRef={primaryPanelRef} />
         </PanelResizeHandle>
       )}
       <Panel
         collapsible={true}
+        
         ref={primaryPanelRef}
         order={2}
         style={{

@@ -66,12 +66,12 @@ function App() {
 
   async function Ping() {
     const BASE_URL = process.env.REACT_APP_BASE_URL_API;
-    const boslerToken = localStorage.getItem("boslerToken");
+    const orpheaToken = localStorage.getItem("orpheaToken");
 
     const config = {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${boslerToken}`,
+        Authorization: `Bearer ${orpheaToken}`,
       },
     };
 

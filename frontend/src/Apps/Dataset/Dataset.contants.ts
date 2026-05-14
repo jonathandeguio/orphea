@@ -2,7 +2,6 @@ import {
   BuildLauncedByEnum,
   BuildStatusEnum,
 } from "components/Builds/Builds.constants";
-import { WriteModeEnum } from "global";
 
 export interface TTransaction {
   id: string;
@@ -10,7 +9,6 @@ export interface TTransaction {
   branch: string;
   buildStatus: keyof typeof BuildStatusEnum;
   launchedBy: keyof typeof BuildLauncedByEnum;
-  writeMode: keyof typeof WriteModeEnum;
   createdAt: number;
   finishedAt: number;
   createdBy: string;

@@ -15,8 +15,8 @@ import { getAllUserDetails } from "redux/actions/userActions";
 import { ThunkAppDispatch } from "redux/types/store";
 
 import { getLanguageLabel, openNotification } from "utils/utilities";
-import { LockIcon } from "assets/icons/boslerActionIcons";
-import BoslerButton from "components/ButtonComponent/BoslerButton";
+import { LockIcon } from "assets/icons/orpheaActionIcons";
+import OrpheaButton from "components/ButtonComponent/OrpheaButton";
 
 const { Text, Title } = Typography;
 
@@ -244,14 +244,14 @@ const ChangePassword = () => {
         <Row justify="start" style={{ marginTop: "20px" }}>
           <Col span={8}></Col>
           <Col span={6}>
-            <BoslerButton
+            <OrpheaButton
               icon={<LockIcon />}
               intent="action"
               onClick={handleChangePassword}
             >
               {" "}
               {getLanguageLabel("changePassword")}{" "}
-            </BoslerButton>
+            </OrpheaButton>
           </Col>
         </Row>
       </div>

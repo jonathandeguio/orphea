@@ -1,4 +1,4 @@
-import BoslerLoader from "components/boslerLoader";
+import OrpheaLoader from "components/orpheaLoader";
 import UserPopOver from "components/UserPopover/userpopover";
 import React, { useEffect, useState } from "react";
 import { fetchUserDetailsAPI } from "./UserInfo.api";
@@ -32,7 +32,7 @@ const UserInfo = ({ userId }: TProps) => {
   }
 
   if (isLoading) {
-    return <BoslerLoader size="tiny" />;
+    return <OrpheaLoader size="tiny" />;
   }
 
   if (!userData) {

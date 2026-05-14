@@ -11,10 +11,10 @@ import {
   Tooltip,
   Typography,
 } from "antd";
-import { SaveIcon } from "assets/icons/boslerActionIcons";
+import { SaveIcon } from "assets/icons/orpheaActionIcons";
 import axios from "axios";
 import UserPopOver from "components/UserPopover/userpopover";
-import BoslerLoader from "components/boslerLoader";
+import OrpheaLoader from "components/orpheaLoader";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -23,7 +23,7 @@ import { updatePlatformConfig } from "redux/actions/platformSettingsActions";
 import { ThunkAppDispatch } from "redux/types/store";
 import { getDownloadLogsAPI } from "./PlatformConfig.api";
 import { defaultLimit } from "./PlatformConfig.constants";
-import BoslerButton from "components/ButtonComponent/BoslerButton";
+import OrpheaButton from "components/ButtonComponent/OrpheaButton";
 
 const { Text, Title } = Typography;
 export const DownloadSettings = () => {
@@ -207,7 +207,7 @@ export const DownloadSettings = () => {
               <Row>
                 <Col span={6}></Col>
                 <Col>
-                  <BoslerButton
+                  <OrpheaButton
                     icon={<SaveIcon />}
                     intent="primary"
                     onClick={() => {
@@ -223,7 +223,7 @@ export const DownloadSettings = () => {
                   >
                     {" "}
                     {getLanguageLabel("update")}{" "}
-                  </BoslerButton>
+                  </OrpheaButton>
                 </Col>
               </Row>{" "}
             </>
@@ -274,7 +274,7 @@ export const DownloadSettings = () => {
   return (
     <div className="settings-center-block">
       {loading ? (
-        <BoslerLoader />
+        <OrpheaLoader />
       ) : (
         <>
           <Row>

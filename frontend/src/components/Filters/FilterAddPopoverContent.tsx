@@ -276,13 +276,11 @@ const FiltersAddPopoverContent = ({
                             allowClear
                             size="small"
                             maxTagCount={2}
-                            {...(["in", "notIn"].includes(
-                              form.getFieldValue([
-                                "conditionCase",
-                                condition.name,
-                                "operator",
-                              ])
-                            )
+                            {...(form.getFieldValue([
+                              "conditionCase",
+                              condition.name,
+                              "operator",
+                            ]) === "in"
                               ? {
                                   mode: "tags",
                                   value: form.getFieldValue([

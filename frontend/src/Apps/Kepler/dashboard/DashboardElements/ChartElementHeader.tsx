@@ -2,7 +2,7 @@ import { Row } from "antd";
 import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "redux/types/store";
-import { ITabConfig } from "../Dashboard.types";
+import { ITabConfig } from "../Dashboard";
 import ChartElementDropDown from "./ChartElementDropDown";
 import styles from "./DashboardElements.module.scss";
 

@@ -1,7 +1,7 @@
 .resizablePane-collapser {
   width: 2px;
   z-index: 10;
-  background-color: var(--bosler-border-color-muted);
+  background-color: var(--orphea-border-color-muted);
   position: relative;
   &:hover,
   &:focus {
@@ -27,12 +27,12 @@
     width: 10px;
 
     &-button {
-      border-left: 1px solid var(--bosler-border-color-default);
-      border-bottom: 1px solid var(--bosler-border-color-muted);
+      border-left: 1px solid var(--orphea-border-color-default);
+      border-bottom: 1px solid var(--orphea-border-color-muted);
       padding: 7px 4px;
       background: var(--background-color);
-      border-top: 1px solid var(--bosler-border-color-default);
-      border-right: 1px solid var(--bosler-border-color-default);
+      border-top: 1px solid var(--orphea-border-color-default);
+      border-right: 1px solid var(--orphea-border-color-default);
       border-top-right-radius: 2px;
       cursor: pointer;
       position: absolute;
@@ -44,5 +44,5 @@
 .resizablePane-collapser-vertical {
   height: 2px;
   width: auto;
-  background-color: var(--bosler-border-color-default);
+  background-color: var(--orphea-border-color-default);
 }

@@ -1,4 +1,4 @@
-# Bosler setup with HELM
+# Orphea setup with HELM
 
 ## Create new tenant first
 [Create new tenant](README-Create-New-Tenant.md)
@@ -38,13 +38,13 @@ repos
 ## HELM install
 
 ```
-helm install bosler bosler-gke -f charts/bosler-gke/testCluster.yaml
+helm install orphea orphea-gke -f charts/orphea-gke/testCluster.yaml
 ```
 
 ## To Upgrade, if any changes to values etc
 
 ```
-helm upgrade bosler bosler-gke -f charts/bosler-gke/devCluster.yaml
+helm upgrade orphea orphea-gke -f charts/orphea-gke/devCluster.yaml
 ```
 
 ## run post helm scripts for spark and healthcheck etc

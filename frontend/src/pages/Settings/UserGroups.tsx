@@ -1,13 +1,4 @@
-import {
-  Col,
-  Divider,
-  Row,
-  Select,
-  Skeleton,
-  Table,
-  Typography,
-  message,
-} from "antd";
+import { Col, Divider, Row, Select, Table, Typography, message } from "antd";
 import axios from "axios";
 const { Option } = Select;
 
@@ -19,9 +10,8 @@ import React from "react";
 import { getLanguageLabel } from "utils/utilities";
 
 import { GroupsIcon } from "assets/icons/boslerInterfaceIcons";
-import classNames from "classnames";
 import { useNavigate } from "react-router";
-import styles from "./Users.module.scss";
+import BoslerLoader from "../../components/boslerLoader";
 
 const { Title, Text } = Typography;
 
@@ -50,16 +40,7 @@ const LoginActivity = () => {
 
   const userGroupColumns = [
     {
-      title: (
-        <Text
-          type="secondary"
-          strong
-          className={classNames(styles.tableHeaderItem)}
-        >
-          {" "}
-          {getLanguageLabel("groupName").toUpperCase()}{" "}
-        </Text>
-      ),
+      title: getLanguageLabel("groupName"),
       dataIndex: "name",
       key: "name",
       render: (text: any, record: any) => {
@@ -82,12 +63,7 @@ const LoginActivity = () => {
   ];
 
   return !user ? (
-    <Skeleton
-      active
-      avatar
-      paragraph={{ rows: 20 }}
-      className={styles.listItem}
-    />
+    <BoslerLoader />
   ) : (
     <div className="settings-center-block">
       <p>
@@ -104,8 +80,7 @@ const LoginActivity = () => {
         dataSource={userGroups}
         columns={userGroupColumns}
         pagination={false}
-        scroll={{ y: "60vh" }}
-        size="middle"
+        // scroll={{ y: "60vh" }}
       />
     </div>
   );

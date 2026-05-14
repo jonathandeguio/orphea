@@ -31,13 +31,8 @@ import {
 } from "./Tags.api";
 
 import { applyTags, getTagCategory, removeTags } from "./Tags.utils";
-import { get } from "http";
 
-interface ITagsProps {
-  id: string;
-  iconOnly?: boolean;
-}
-const Tags = ({ id, iconOnly }: ITagsProps) => {
+const Tags = ({ id }: { id: string }) => {
   const [datasetTags, setDatasetTags] = useState<object[]>();
   const [tagsModal, setTagsModal] = useState<boolean>();
   const [addedTags, setAddedTags] = useState<object[]>();
@@ -243,7 +238,7 @@ const Tags = ({ id, iconOnly }: ITagsProps) => {
             </>
           ) : (
             <>
-              {datasetTags && datasetTags.length > 0 ? (
+              {datasetTags && (
                 <>
                   {datasetTags.map((value: any) => {
                     return (
@@ -256,12 +251,13 @@ const Tags = ({ id, iconOnly }: ITagsProps) => {
                           ) : (
                             <span style={{ color: "white" }}>
                               <TagsIcon />
+
                               {getTagCategory(value.id, categoriesData)}
                             </span>
                           )
                         }
                         content={
-                          <span className="tag-des" style={{ color: "white" }}>
+                          <span style={{ color: "white" }}>
                             <table>
                               <tbody>
                                 {value.name && (
@@ -334,14 +330,13 @@ const Tags = ({ id, iconOnly }: ITagsProps) => {
                           }}
                           color={value.color}
                         >
+                          {" "}
                           {value.name}
                         </Tag>
                       </Popover>
                     );
                   })}
                 </>
-              ) : (
-                <span>{getLanguageLabel("no")} {getLanguageLabel("tagsAppliedToDataset")}</span>
               )}
             </>
           )}
@@ -365,11 +360,9 @@ const Tags = ({ id, iconOnly }: ITagsProps) => {
           }}
           minimal
           icon={<TagsIcon size={22} />}
-          icononly={iconOnly}
+          icononly
           trimicononlypadding
-        >
-          {getLanguageLabel("tags")}
-        </BoslerButton>
+        />
       </Tooltip>
     </>
   );

@@ -1,0 +1,36 @@
+{
+  "_commentaire": "Fichier de configuration pour la génération de clé de licence Orphea",
+  "_instructions": "Remplissez les champs ci-dessous puis lancez : .\\generate-license.ps1",
+
+  "client": "Mon Entreprise",
+
+  "_produit_options": "DATA_PLATFORM | DATA_HUB | DATA_VIZ",
+  "_produit_detail": {
+    "DATA_PLATFORM": "Accès complet : pipelines + dataviz + catalogue",
+    "DATA_HUB":      "Data Hub uniquement (sans visualisation Kepler)",
+    "DATA_VIZ":      "Data Viz uniquement (sans pipelines Fractal)"
+  },
+  "product": "DATA_PLATFORM",
+
+  "_urls_detail": "Mettez toutes les URLs depuis lesquelles la plateforme sera accessible (window.location.origin). Port 80 est omis par le navigateur (http://host sans :80). Séparez par des point-virgules.",
+  "baseUrls": [
+    "http://192.168.1.41",
+    "http://88.168.190.140:21000",
+    "http://localhost",
+    "http://localhost:3000",
+"http://orpheadc.io:21000"
+  ],
+
+  "_expiration_format": "YYYY-MM-DD",
+  "expiresOn": "2099-12-31",
+
+  "_limites_detail": "-1 = illimité",
+  "maximumUsers":         -1,
+  "maximumDatasets":      -1,
+  "maximumDashboards":    -1,
+  "maximumCharts":        -1,
+  "maximumRepositories":  -1,
+  "maximumBuildsPerDay":  -1,
+
+  "displayBlockedFeatures": false
+}

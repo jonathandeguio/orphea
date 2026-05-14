@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 import { ParticleApp } from "utils/ParticleApp";
 import { getLanguageLabel, isIpPlatform } from "utils/utilities";
 
-import { WarningIcon } from "assets/icons/boslerActionIcons";
-import { BoslerIcon } from "assets/icons/boslerMiscellaneousIcons";
-import { ArrowRightIcon } from "assets/icons/boslerNavigationIcon";
-import BoslerButton from "components/ButtonComponent/BoslerButton";
-import BoslerModalContainer from "components/BoslerModalContainer/BoslerModalContainer";
+import { WarningIcon } from "assets/icons/orpheaActionIcons";
+import { OrpheaIcon } from "assets/icons/orpheaMiscellaneousIcons";
+import { ArrowRightIcon } from "assets/icons/orpheaNavigationIcon";
+import OrpheaButton from "components/ButtonComponent/OrpheaButton";
+import OrpheaModalContainer from "components/OrpheaModalContainer/OrpheaModalContainer";
 
 interface ErrorComponentProps {
   lineStroke: string;
@@ -62,21 +62,21 @@ export const ErrorComponent = ({
             zIndex: 10,
           }}
         >
-          {!isIpPlatform() && <BoslerIcon size={128} />}
+          {!isIpPlatform() && <OrpheaIcon size={128} />}
           <div className="form-containerNew">
-            <BoslerModalContainer
+            <OrpheaModalContainer
               headingIcon={<WarningIcon color="orange" />}
               heading={errorHeading}
               footerExtraText={getLanguageLabel("homePageMsg")}
               footerButtonArea={
                 <Link to="/portal/home">
-                  <BoslerButton
+                  <OrpheaButton
                     intent="action"
                     icon={<ArrowRightIcon />}
                     htmlType="submit"
                   >
                     {getLanguageLabel("homePage")}
-                  </BoslerButton>
+                  </OrpheaButton>
                 </Link>
               }
               outerBorder={false}
@@ -90,7 +90,7 @@ export const ErrorComponent = ({
                     alignItems: "center",
                     gap: "1rem",
                     flexDirection: "column",
-                    backgroundColor: "var(--bosler-bkg-color-muted)",
+                    backgroundColor: "var(--orphea-bkg-color-muted)",
                     textAlign: "left",
                   }}
                 >
@@ -98,7 +98,7 @@ export const ErrorComponent = ({
                     style={{
                       marginBottom: "10px",
                       fontSize: "18px",
-                      color: "var(--bosler-font-color-muted)",
+                      color: "var(--orphea-font-color-muted)",
                     }}
                     className="text-and-icon-center"
                   >
@@ -132,7 +132,7 @@ export const ErrorComponent = ({
               }
             >
               <div
-                className="BoslerHeader1"
+                className="OrpheaHeader1"
                 style={{ marginBottom: "10px" }}
               ></div>
 
@@ -142,7 +142,7 @@ export const ErrorComponent = ({
               <div className="contant_box_404">
                 <h3 className="h4">{errorMsg}</h3>
               </div>
-            </BoslerModalContainer>
+            </OrpheaModalContainer>
           </div>
         </div>
       </div>

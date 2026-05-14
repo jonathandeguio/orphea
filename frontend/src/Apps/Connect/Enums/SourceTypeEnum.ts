@@ -1,6 +1,9 @@
-export enum SourceTypeEnum {
-  SHAREPOINT = "SHAREPOINT",
-  JDBC = "jdbc",
-  REST = "rest",
-  FOLDER = "FOLDER",
+export const enum SourceTypeEnum {
+  JDBC = "JDBC",
+  POSTGRES = "POSTGRES",
+  MYSQL = "MYSQL",
+  ORACLE21 = "ORACLE21",
+  MSSQLSERVER = "MSSQLSERVER",
+  MARIADB = "MARIADB",
+  SNOWFLAKE = "SNOWFLAKE",
 }

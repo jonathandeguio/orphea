@@ -1,4 +1,4 @@
-#!/usr/bin/env /bin/bash
+!/usr/bin/env /bin/bash
 
 if ! uname | grep "Darwin" ; then
     print "Script for MacOS only!"

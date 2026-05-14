@@ -79,7 +79,7 @@ export const SparkSettings = () => {
         ) : (
           sparkSettingsSwitchInputs.map((sparkSwitchInput) => {
             return (
-              <Row className="settings-spark-row" justify="space-between">
+              <Row justify="space-between">
                 <Col>
                   <Text> {sparkSwitchInput.label}</Text>
                   <br />
@@ -101,7 +101,7 @@ export const SparkSettings = () => {
                     )}
                   </Text>
                 </Col>
-                <Col className="settings-spark-col" span={8}>
+                <Col span={8}>
                   <Item name={sparkSwitchInput.value}>
                     {getSparkSwitch(sparkSwitchInput)}
                   </Item>

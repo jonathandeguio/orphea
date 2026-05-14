@@ -14,7 +14,7 @@ server:
   port: ${PORT}
 spring:
   banner:
-    location: classpath:/banner/bosler.txt
+    location: classpath:/banner/orphea.txt
   sql:
     init:
       schema-locations: classpath:db/quartz_tables_h2.sql
@@ -43,7 +43,7 @@ spring:
             driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
 
 file:
-  upload-dir=/Users/rakeshmalik/bosler/uploads
+  upload-dir=/Users/rakeshmalik/orphea/uploads
 
 logging:
   level:

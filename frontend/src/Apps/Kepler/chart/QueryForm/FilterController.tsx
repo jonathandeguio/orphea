@@ -102,7 +102,7 @@ export const FilterComponent = ({
 
   let label = useMemo(() => {
     if (column?.headerName && isDefined(operator)) {
-      if (["exists", "doesNotExist"].includes(operator)) {
+      if (["exists", "does not exists"].includes(operator)) {
         return `${column?.headerName}  ${operator}`;
       } else if (isDefined(filterValue)) {
         const fValue =
@@ -237,7 +237,7 @@ export const FilterComponent = ({
                       >
                         <Form.Item
                           name={
-                            ["in", "notIn"].includes(operator)
+                            operator === "in"
                               ? [field.name, "filterValueMulti"]
                               : [field.name, "filterValue"]
                           }
@@ -261,9 +261,7 @@ export const FilterComponent = ({
                               allowClear
                               size="small"
                               maxTagCount={2}
-                              {...(["in", "notIn"].includes(operator)
-                                ? { mode: "tags" }
-                                : {})}
+                              {...(operator === "in" ? { mode: "tags" } : {})}
                               options={filterValuesOptions}
                             />
                           )}

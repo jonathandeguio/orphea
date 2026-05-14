@@ -2,7 +2,7 @@
 resource "vcd_vapp_vm" "db_node" {
   count            = var.db_vm_count
   name             = "db-${format("%02d", count.index + 1)}"
-  vapp_name        = vcd_vapp.bosler.name
+  vapp_name        = vcd_vapp.orphea.name
   vapp_template_id = data.vcd_catalog_vapp_template.ubuntu.id
   memory           = var.db_memory
   cpus             = var.db_cpu

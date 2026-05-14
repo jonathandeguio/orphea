@@ -24,7 +24,7 @@ cp "$SCRIPT_DIR"/build/libs/Ignite*.jar "$BUILD_PACKAGE"/bin
 echo "# This is the main config for Ignite Envoy Agent
 PORT=7845
 ENVOY_ID=77e14d4a-4366-4692-b70b-26c2ccde0219
-BASE_URL=https://dev.bosler.io/api
+BASE_URL=https://dev.orphea.io/api
 TOKEN=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYWtlc2giLCJpc3MiOiJodHRwOi8vZGV2LmJvc2xlci5pby9hcGkvcGFzc3BvcnQvdG9rZW4vQ3JlYXRlTG9uZ0xpdmVkIiwiZXhwIjoxNjY2MjI0MDAwfQ.gSo0G0XKhcUR9pWm1z6YJj1KbLNz_y2HmGwOCHLbjLY
 PROXY=false
 HTTP_PROXY=None
@@ -43,8 +43,8 @@ if [ ! -d $SCRIPT_DIR/java ]; then
   rm -rf zulu11.52.13-ca-jdk11.0.13-macosx_aarch64.tar.gz
 
   # get certificate and inject into java cacerts
-  echo | openssl s_client -servername NAME -connect dev.bosler.io:443 |  sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > $BUILD_PACKAGE/etc/certs/certificate.crt
-  keytool -import -trustcacerts -keystore $SCRIPT_DIR/java/lib/security/cacerts --storepass changeit -noprompt -alias bosler -file $BUILD_PACKAGE/etc/certs/certificate.crt
+  echo | openssl s_client -servername NAME -connect dev.orphea.io:443 |  sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > $BUILD_PACKAGE/etc/certs/certificate.crt
+  keytool -import -trustcacerts -keystore $SCRIPT_DIR/java/lib/security/cacerts --storepass changeit -noprompt -alias orphea -file $BUILD_PACKAGE/etc/certs/certificate.crt
 
 fi
 

@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+!/usr/bin/env zsh
 
 # https://cloud.google.com/community/tutorials/nginx-ingress-gke
 

@@ -1,14 +1,14 @@
 import { Form, Tooltip, Typography } from "antd";
-import { AddUserIcon } from "assets/icons/boslerInterfaceIcons";
+import { AddUserIcon } from "assets/icons/orpheaInterfaceIcons";
 import { createTokenAPI, fetchAllTokensAPI } from "apps/settings/apis";
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { copyToClipboard, getLanguageLabel } from "utils/utilities";
-import { CopyIcon } from "assets/icons/boslerEditorIcons";
-import { TickIcon } from "assets/icons/boslerNavigationIcon";
-import BoslerModal from "components/BoslerModalContainer/BoslerModal";
-import BoslerButton from "components/ButtonComponent/BoslerButton";
-import BoslerInput from "components/InputComponent/BoslerInput";
-import BoslerDatePicker from "components/BoslerDatePicker";
+import { CopyIcon } from "assets/icons/orpheaEditorIcons";
+import { TickIcon } from "assets/icons/orpheaNavigationIcon";
+import OrpheaModal from "components/OrpheaModalContainer/OrpheaModal";
+import OrpheaButton from "components/ButtonComponent/OrpheaButton";
+import OrpheaInput from "components/InputComponent/OrpheaInput";
+import OrpheaDatePicker from "components/OrpheaDatePicker";
 
 const { Title, Text } = Typography;
 const { Item } = Form;
@@ -33,7 +33,7 @@ const CreateNewTokenModal = ({ isOpen, setIsOpen, setTokens }: Props) => {
 
   return (
     <Form form={form}>
-      <BoslerModal
+      <OrpheaModal
         headingIcon={<AddUserIcon />}
         heading={
           token
@@ -44,15 +44,15 @@ const CreateNewTokenModal = ({ isOpen, setIsOpen, setTokens }: Props) => {
         onCancel={handleCancel}
         footerButtonArea={
           token ? (
-            <BoslerButton
+            <OrpheaButton
               icon={<CopyIcon />}
               intent="action"
               onClick={handleCopy}
             >
               {getLanguageLabel("copy")}
-            </BoslerButton>
+            </OrpheaButton>
           ) : (
-            <BoslerButton
+            <OrpheaButton
               icon={<TickIcon />}
               intent="action"
               onClick={() => {
@@ -67,7 +67,7 @@ const CreateNewTokenModal = ({ isOpen, setIsOpen, setTokens }: Props) => {
               key="submit"
             >
               {getLanguageLabel("create")}
-            </BoslerButton>
+            </OrpheaButton>
           )
         }
       >
@@ -80,15 +80,15 @@ const CreateNewTokenModal = ({ isOpen, setIsOpen, setTokens }: Props) => {
         ) : (
           <>
             <Item name="name" label="Name" required>
-              <BoslerInput autofocus type="name" />
+              <OrpheaInput autofocus type="name" />
             </Item>
 
             <Item name="expiration" label="Expiration" required>
-              <BoslerDatePicker />
+              <OrpheaDatePicker />
             </Item>
           </>
         )}
-      </BoslerModal>
+      </OrpheaModal>
     </Form>
   );
 };

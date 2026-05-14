@@ -1,11 +1,10 @@
 import { SearchFiledIcon } from "assets/icons/boslerActionIcons";
 import BoslerModal from "components/CommonUI/BoslerModalContainer";
-import HeaderSearch from "layouts/components/GlobalSearch";
+import HeaderSearch from "layouts/components/HeaderSearch";
 import React, { useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 import { getLanguageLabel } from "utils/utilities";
 import SBElement from "./SBElement";
-import { BoslerTypography } from "components/CommonUI/BoslerTypography";
 
 interface TProps {
   iconSize?: number;
@@ -30,7 +29,7 @@ const SBElementSearch = ({
   return (
     <>
       <SBElement
-        icon={<SearchFiledIcon size={iconSize} color="#D3D7E2" />}
+        icon={<SearchFiledIcon size={iconSize} />}
         tooltip={getLanguageLabel("searchMsg")}
         text="search"
         showText={showText}
@@ -39,25 +38,13 @@ const SBElementSearch = ({
         }}
       />
       <BoslerModal
-        className="global-search-modal"
-        // footer={
-        //   <div
-        //     style={{
-        //       width: "100%",
-        //       textAlign: "center",
-        //       paddingBottom: "10px",
-        //     }}
-        //   >
-        //     <BoslerTypography variant="para">
-        //       press / to search
-        //     </BoslerTypography>
-        //   </div>
-        // }
+        footer={null}
         open={isHeaderSearchModalOpen}
         onCancel={() => setIsHeaderSearchModalOpen(false)}
-        width={950}
+        width={600}
       >
         <HeaderSearch setIsHeaderSearchModalOpen={setIsHeaderSearchModalOpen} />
+        <br />
       </BoslerModal>
     </>
   );

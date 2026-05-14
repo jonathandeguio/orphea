@@ -1,12 +1,16 @@
+import { Tooltip } from "antd";
+import { RefreshIcon } from "assets/icons/boslerActionIcons";
+import BoslerButton from "components/BoslerComponents/ButtonComponent/BoslerButton";
 import { useFileExplorerService } from "hooks/useFileExplorerService";
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate, useParams } from "react-router";
+import { useParams } from "react-router";
 import { useSearchParams } from "react-router-dom";
 import {
+  getLanguageLabel,
   isDefined,
   notEmpty,
-  openNotification
+  openNotification,
 } from "utils/utilities";
 import { TreeExplorer } from ".";
 import { isProjectAdmin } from "../../redux/actions/userActions";
@@ -46,7 +50,6 @@ const FileExplorerSidebar: React.FC<Props> = ({
   const dispatch = useDispatch<ThunkAppDispatch>();
 
   const navigator = useNavigateHelper();
-  const navigate = useNavigate();
 
   const [rehydrating, setRehydrating] = useState(false);
 
@@ -105,9 +108,7 @@ const FileExplorerSidebar: React.FC<Props> = ({
               showNewButton={isProjectAdminTrue}
               defaultProject={projectId}
               onSelect={(selectedProject) => {
-                navigate(
-                  `/portal/kitab/folder/${selectedProject}?activeId=${selectedProject}`
-                );
+                navigator(selectedProject);
               }}
             />
           )}
@@ -121,7 +122,7 @@ const FileExplorerSidebar: React.FC<Props> = ({
           margin: "0.3rem 1rem",
         }}
       >
-        {/* {getLanguageLabel("explorer")} */}
+        {getLanguageLabel("explorer")}
       </div>
       <TreeExplorer
         hidden={hidden}

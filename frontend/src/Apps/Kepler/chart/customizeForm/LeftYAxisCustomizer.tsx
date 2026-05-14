@@ -57,6 +57,7 @@ export const LeftYAxisCustomizer = () => {
               label={getLanguageLabel("position")}
               style={{ width: "100%" }}
             >
+              {/* <Select options={verticalAlignOptionsList} /> */}
               <Radio.Group size="small">
                 <Radio.Button value="start">
                   <div
@@ -91,6 +92,7 @@ export const LeftYAxisCustomizer = () => {
               label={getLanguageLabel("tickFont")}
             />
 
+            <NumberCustomizer name={"leftYAxis"} />
             <Form.Item
               name="yaxisSplitLine"
               label={getLanguageLabel("splitLine")}
@@ -116,7 +118,6 @@ export const LeftYAxisCustomizer = () => {
                 ]}
               />
             </Form.Item>
-            <NumberCustomizer name={"leftYAxis"} />
           </>
         }
       </div>

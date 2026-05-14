@@ -537,19 +537,5 @@ export const BoslerConfig: {
         "#3B3EAC",
       ],
     },
-    theme28: {
-      name: "Grafana",
-      color: [
-        "#7EB26D", // Green
-        "#EAB839", // Yellow
-        "#6ED0E0", // Light Blue
-        "#EF843C", // Orange
-        "#E24D42", // Red
-        "#1F78C1", // Blue
-        "#BA43A9", // Purple
-        "#705DA0", // Dark Purple
-        "#508642", // Dark Green
-      ],
-    },
   },
 };

@@ -2,7 +2,7 @@ import { PRODUCT_ENUM } from "pages/Settings/PlatformConfig/License/License.util
 
 export const projectUuidPatternRegex =
   /\/Projects\/[^"\`']*|[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/;
-export const projectPatternRegex = /\/Projects\/[^"'\`]*/;
+export const projectPatternRegex = /\/Projects\/[^"\`]*/;
 export const headPatternRegex = /<<<<<<<\sHEAD/g;
 export const UuidRegex =
   /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/;

@@ -23,34 +23,34 @@
 // light
 $color: rgb(1, 1, 27);
 $background-color: #ffffff;
-$bosler-font-color-default: #01011b;
-$bosler-font-color-light-black: #000000a6;
-$bosler-font-color-muted: #717a94;
-$bosler-bkg-color-default: #ffffff;
-$bosler-bkg-color-muted: #f8fafb;
-$bosler-border-color-default: #dadde6;
-$bosler-border-color-muted: #ecedf2;
-$bosler-hover-color: rgba(207, 211, 222, 0.322);
-$bosler-intent-danger: #c84654;
+$orphea-font-color-default: #01011b;
+$orphea-font-color-light-black: #000000a6;
+$orphea-font-color-muted: #717a94;
+$orphea-bkg-color-default: #ffffff;
+$orphea-bkg-color-muted: #f8fafb;
+$orphea-border-color-default: #dadde6;
+$orphea-border-color-muted: #ecedf2;
+$orphea-hover-color: rgba(207, 211, 222, 0.322);
+$orphea-intent-danger: #c84654;
 $top-bar-border: rgb(218, 221, 230);
-$bosler-table-selected: rgb(14, 101, 235, 0.1);
-$bosler-font-color-git-blame: #aeb0b8;
+$orphea-table-selected: rgb(14, 101, 235, 0.1);
+$orphea-font-color-git-blame: #aeb0b8;
 
 // Dark
 $color-dark: rgb(228, 230, 236);
-$background-color-dark: $bosler-900;
-$bosler-font-color-default-dark: #e4e6ec;
-$bosler-font-color-light-black-dark: #e4e6ec;
-$bosler-font-color-muted-dark: #9ca3b4;
-$bosler-bkg-color-default-dark: #1e1e28;
-$bosler-bkg-color-muted-dark: $bosler-900; // previous #17171f
-$bosler-border-color-default-dark: #333345;
-$bosler-border-color-muted-dark: #2d2d3c;
-$bosler-hover-color-dark: rgba(63, 66, 87, 0.35);
-$bosler-intent-danger-dark: #ed6f73;
+$background-color-dark: $orphea-900;
+$orphea-font-color-default-dark: #e4e6ec;
+$orphea-font-color-light-black-dark: #e4e6ec;
+$orphea-font-color-muted-dark: #9ca3b4;
+$orphea-bkg-color-default-dark: #1e1e28;
+$orphea-bkg-color-muted-dark: $orphea-900; // previous #17171f
+$orphea-border-color-default-dark: #333345;
+$orphea-border-color-muted-dark: #2d2d3c;
+$orphea-hover-color-dark: rgba(63, 66, 87, 0.35);
+$orphea-intent-danger-dark: #ed6f73;
 $top-bar-border-dark: #424242;
-$bosler-table-selected-dark: rgb(14, 101, 235, 0.3);
-$bosler-font-color-git-blame-dark: #282837;
+$orphea-table-selected-dark: rgb(14, 101, 235, 0.3);
+$orphea-font-color-git-blame-dark: #282837;
 
 // Button specific css
 $INTENT_COLOR: rgba(0, 0, 0, 0.04);
@@ -69,7 +69,7 @@ $SUCCESS_COLOR: rgb(41, 160, 124);
 $SUCCESS_COLOR_BORDER: green;
 $SUCCESS_COLOR_FONT: white;
 
-$DANGEROUS_COLOR: var(--bosler-intent-danger);
+$DANGEROUS_COLOR: var(--orphea-intent-danger);
 $DANGEROUS_COLOR_BORDER: red;
 $DANGEROUS_COLOR_FONT: white;
 
@@ -102,18 +102,18 @@ $SWITCH_SELECTED_BKG_DARK: rgba(89, 135, 224, 0.15);
   --color: #{$color};
   --icon-color-deafult: #717a94;
   --background-color: #{$background-color};
-  --bosler-font-color-default: #{$bosler-font-color-default};
-  --bosler-font-color-muted: #{$bosler-font-color-muted};
-  --bosler-font-color-light-black: #{$bosler-font-color-light-black};
-  --bosler-bkg-color-default: #{$bosler-bkg-color-default};
-  --bosler-bkg-color-muted: #{$bosler-bkg-color-muted};
-  --bosler-border-color-default: #{$bosler-border-color-default};
-  --bosler-border-color-muted: #{$bosler-border-color-muted};
-  --bosler-hover-color: #{$bosler-hover-color};
-  --bosler-intent-danger: #{$bosler-intent-danger};
+  --orphea-font-color-default: #{$orphea-font-color-default};
+  --orphea-font-color-muted: #{$orphea-font-color-muted};
+  --orphea-font-color-light-black: #{$orphea-font-color-light-black};
+  --orphea-bkg-color-default: #{$orphea-bkg-color-default};
+  --orphea-bkg-color-muted: #{$orphea-bkg-color-muted};
+  --orphea-border-color-default: #{$orphea-border-color-default};
+  --orphea-border-color-muted: #{$orphea-border-color-muted};
+  --orphea-hover-color: #{$orphea-hover-color};
+  --orphea-intent-danger: #{$orphea-intent-danger};
   --top-bar-border: #{$top-bar-border};
-  --bosler-table-selected: #{$bosler-table-selected};
-  --bosler-font-color-git-blame: #{$bosler-font-color-git-blame};
+  --orphea-table-selected: #{$orphea-table-selected};
+  --orphea-font-color-git-blame: #{$orphea-font-color-git-blame};
 
   // Button CSS Vars
   --INTENT_COLOR: #{$INTENT_COLOR};
@@ -154,18 +154,18 @@ $SWITCH_SELECTED_BKG_DARK: rgba(89, 135, 224, 0.15);
 .dark {
   --color: #{$color-dark};
   --background-color: #{$background-color-dark};
-  --bosler-font-color-default: #{$bosler-font-color-default-dark};
-  --bosler-font-color-muted: #{$bosler-font-color-muted-dark};
-  --bosler-font-color-light-black: #{$bosler-font-color-light-black-dark};
-  --bosler-bkg-color-default: #{$bosler-bkg-color-default-dark};
-  --bosler-bkg-color-muted: #{$bosler-bkg-color-muted-dark};
-  --bosler-border-color-default: #{$bosler-border-color-default-dark};
-  --bosler-border-color-muted: #{$bosler-border-color-muted-dark};
-  --bosler-hover-color: #{$bosler-hover-color-dark};
-  --bosler-intent-danger: #{$bosler-intent-danger-dark};
+  --orphea-font-color-default: #{$orphea-font-color-default-dark};
+  --orphea-font-color-muted: #{$orphea-font-color-muted-dark};
+  --orphea-font-color-light-black: #{$orphea-font-color-light-black-dark};
+  --orphea-bkg-color-default: #{$orphea-bkg-color-default-dark};
+  --orphea-bkg-color-muted: #{$orphea-bkg-color-muted-dark};
+  --orphea-border-color-default: #{$orphea-border-color-default-dark};
+  --orphea-border-color-muted: #{$orphea-border-color-muted-dark};
+  --orphea-hover-color: #{$orphea-hover-color-dark};
+  --orphea-intent-danger: #{$orphea-intent-danger-dark};
   --top-bar-border: #{$top-bar-border-dark};
-  --bosler-table-selected: #{$bosler-table-selected-dark};
-  --bosler-font-color-git-blame-dark: #{$bosler-font-color-git-blame-dark};
+  --orphea-table-selected: #{$orphea-table-selected-dark};
+  --orphea-font-color-git-blame-dark: #{$orphea-font-color-git-blame-dark};
 
   // Input CSS Vars
   --INPUT_BOX_SHADOW: #{$INPUT_BOX_SHADOW_DARK};
@@ -316,7 +316,7 @@ $xl: 1.25rem; /* 20px */
   width: 100%;
   height: 2px; /* Adjust the height of the line */
   background-color: var(
-    --bosler-intent-danger
+    --orphea-intent-danger
   ); /* Change the color of the line */
   transform: translateY(-50%) rotate(-0deg); /* Adjust rotation angle */
 }

@@ -3,14 +3,13 @@ import { PermissionModel } from "components/Permissions/PermissionsModal";
 import React from "react";
 
 import { RequestAccessModal } from "Apps/AccessManager/RequestAccessModal";
-import { Typography } from "antd";
 import { isDefined } from "utils/utilities";
-import { IResourceFilters } from "../interfaces/Project";
 import { useProjectsController } from "../utils/useProjectsController";
 import ActionModal from "./ActionModal";
 import DeleteResourceModal from "./DeleteResourceModal";
 import ProjectPageBody from "./ProjectPageBody";
 import ProjectPageHeader from "./ProjectPageHeader";
+import { IResourceFilters } from "../interfaces/Project";
 
 const ProjectsV2 = () => {
   const {
@@ -57,10 +56,7 @@ const ProjectsV2 = () => {
           updateFilters={updateFilters}
           resetFilters={resetFilters}
         />
-
         <ProjectPageBody
-          filters={filters as IResourceFilters}
-          updateFilters={updateFilters}
           openRequestAccessModal={openRequestAccessModal}
           openPermissionsModal={openPermissionsModal}
           setSelectedProject={setSelectedProject}

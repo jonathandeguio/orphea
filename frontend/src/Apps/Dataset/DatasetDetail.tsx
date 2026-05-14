@@ -81,9 +81,7 @@ export default function DatasetDetail() {
   if (!id || !branch || isLoading) {
     return <BoslerLoader />;
   } else if (isDefined(datasetDetails) && !datasetDetails?.transactionId) {
-    return (
-      <DatasetUpload id={id} branch={branch} datasetDetails={datasetDetails} />
-    );
+    return <DatasetUpload id={id} branch={branch} />;
   } else if (datasetDetails)
     return (
       <>

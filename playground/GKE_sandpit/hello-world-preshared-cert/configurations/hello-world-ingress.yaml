@@ -4,13 +4,13 @@ metadata:
   name: hello-world-ingress
   annotations:
     kubernetes.io/ingress.global-static-ip-name: hello-world
-    ingress.gcp.kubernetes.io/pre-shared-cert: bosler-preshared-cert
+    ingress.gcp.kubernetes.io/pre-shared-cert: orphea-preshared-cert
     kubernetes.io/ingress.allow-http: "false"
     # If the class annotation is not specified it defaults to "gce".
     kubernetes.io/ingress.class: "gce"
 spec:
   rules:
-  - host: hello-world.bosler.io
+  - host: hello-world.orphea.io
   - http:
       paths:
       - path: /*

@@ -7,4 +7,4 @@ github:
     branch: ^master$
 id: 657cc19b-e546-4ff1-bd78-e08d689e657e
 name: gcp-python-artifactory-usage
-serviceAccount: projects/bosler-foo/serviceAccounts/boslerbuilds@bosler-foo.iam.gserviceaccount.com
+serviceAccount: projects/orphea-foo/serviceAccounts/orpheabuilds@orphea-foo.iam.gserviceaccount.com

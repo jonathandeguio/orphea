@@ -122,7 +122,7 @@ const Login = () => {
             />
           </svg>
 
-          <div className="login-icon-bosler">BOSLER</div>
+          <div className="login-icon-orphea">ORPHEA</div>
         </div>
 
         <div className="form-container">
@@ -130,7 +130,7 @@ const Login = () => {
           <Box>
 
             <Typography align="center">
-              <h2>Login to Bosler</h2>
+              <h2>Login to Orphea</h2>
             </Typography>
 
 

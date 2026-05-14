@@ -12,8 +12,8 @@ import {
 } from "antd";
 
 import React, { useEffect, useRef, useState } from "react";
-import { AddIcon } from "assets/icons/boslerActionIcons";
-import { CommentIcon } from "assets/icons/boslerMiscellaneousIcons";
+import { AddIcon } from "assets/icons/orpheaActionIcons";
+import { CommentIcon } from "assets/icons/orpheaMiscellaneousIcons";
 
 import {
   getLanguageLabel,
@@ -21,7 +21,7 @@ import {
   isDefined,
   openNotification,
 } from "utils/utilities";
-import BoslerButton from "../ButtonComponent/BoslerButton";
+import OrpheaButton from "../ButtonComponent/OrpheaButton";
 
 import { KeyboardEvent } from "react";
 import {
@@ -30,7 +30,7 @@ import {
   fetchUsersDetailsAPI,
 } from "./Comments.api";
 
-import BoslerLoader from "components/boslerLoader";
+import OrpheaLoader from "components/orpheaLoader";
 import { User } from "global";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUserDetails } from "redux/actions/userActions";
@@ -224,7 +224,7 @@ const Comments = ({ id }: any) => {
                           />
                         </Form.Item>
                         <Row justify="end">
-                          <BoslerButton
+                          <OrpheaButton
                             intent="dangerous"
                             size="small"
                             onClick={(e: any) => {
@@ -236,9 +236,9 @@ const Comments = ({ id }: any) => {
                             minimal
                           >
                             {getLanguageLabel("cancel")}
-                          </BoslerButton>
+                          </OrpheaButton>
                           &nbsp;
-                          <BoslerButton
+                          <OrpheaButton
                             intent="primary"
                             size="small"
                             htmlType="submit"
@@ -246,12 +246,12 @@ const Comments = ({ id }: any) => {
                             minimal
                           >
                             {getLanguageLabel("addComment")}
-                          </BoslerButton>
+                          </OrpheaButton>
                         </Row>
                       </Form>
                     </>
                   ) : (
-                    <BoslerButton
+                    <OrpheaButton
                       onClick={(e: any) => {
                         // e.preventDefault();
                         e.stopPropagation();
@@ -264,13 +264,13 @@ const Comments = ({ id }: any) => {
                       minimal
                     >
                       {getLanguageLabel("new")} {getLanguageLabel("comment")}
-                    </BoslerButton>
+                    </OrpheaButton>
                   )}
                 </div>
               )}
             </div>
           ) : (
-            <BoslerLoader />
+            <OrpheaLoader />
           )
         }
         trigger={"click"}
@@ -288,20 +288,20 @@ const Comments = ({ id }: any) => {
               count={allOpenComments.length}
               color={
                 allOpenComments.length == 0
-                  ? "var(--bosler-font-color-muted)"
-                  : "var(--bosler-intent-danger)"
+                  ? "var(--orphea-font-color-muted)"
+                  : "var(--orphea-intent-danger)"
               }
               offset={[-5, 3]}
               size="small"
             >
-              <BoslerButton
+              <OrpheaButton
                 icon={
                   <CommentIcon
                     size={23}
                     color={
                       allOpenComments.length == 0
-                        ? "var(--bosler-font-color-muted)"
-                        : "var(--bosler-intent-danger)"
+                        ? "var(--orphea-font-color-muted)"
+                        : "var(--orphea-intent-danger)"
                     }
                   />
                 }

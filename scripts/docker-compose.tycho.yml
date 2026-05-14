@@ -1,0 +1,243 @@
+# =============================================================================
+# Orphea Platform — Stack Tycho (Apache Superset BI)
+# Usage : docker compose -f docker-compose.tycho.yml --env-file .env.orphea up -d
+# =============================================================================
+version: "3.8"
+
+x-tycho-image: &tycho-image orphea/tycho:latest
+x-tycho-user:  &tycho-user  root
+
+x-tycho-depends: &tycho-depends
+  - tycho-db
+  - orphea-redis
+
+x-tycho-volumes: &tycho-volumes
+  - ../tycho/docker:/app/docker:ro
+  - ${ORPHEA_MOUNT_PATH:-/orphea}/tycho/superset_home:/app/superset_home
+
+services:
+
+  # ---------------------------------------------------------------------------
+  # Base de données PostgreSQL 14 — Tycho / Superset
+  # ---------------------------------------------------------------------------
+  tycho-db:
+    image: postgres:14-alpine
+    container_name: orphea-tycho-db
+    environment:
+      POSTGRES_DB: ${TYCHO_DB_NAME:-superset}
+      POSTGRES_USER: ${TYCHO_DB_USERNAME:-superset}
+      POSTGRES_PASSWORD: ${TYCHO_DB_PASSWORD}
+    volumes:
+      - ${ORPHEA_MOUNT_PATH:-/orphea}/postgres/tycho:/var/lib/postgresql/data
+    ports:
+      - "127.0.0.1:5433:5432"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${TYCHO_DB_USERNAME:-superset}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    networks:
+      - orphea-tycho-net
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "5"
+
+  # ---------------------------------------------------------------------------
+  # Redis — partagé entre Tycho (Celery) et le réseau Orphea
+  # (Si vous utilisez déjà orphea-redis dans core, décommentez external)
+  # ---------------------------------------------------------------------------
+  orphea-redis:
+    image: redis:7-alpine
+    container_name: orphea-redis
+    command: redis-server --maxmemory 512mb --maxmemory-policy allkeys-lru
+    volumes:
+      - ${ORPHEA_MOUNT_PATH:-/orphea}/redis:/data
+    ports:
+      - "127.0.0.1:6379:6379"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - orphea-tycho-net
+      - orphea-network
+
+  # ---------------------------------------------------------------------------
+  # Tycho App — Superset application principale
+  # ---------------------------------------------------------------------------
+  tycho:
+    image: *tycho-image
+    container_name: orphea-tycho
+    build:
+      context: ../tycho
+      dockerfile: Dockerfile
+    command: ["/app/docker/docker-bootstrap.sh", "app"]
+    user: *tycho-user
+    depends_on: *tycho-depends
+    environment:
+      DATABASE_HOST: tycho-db
+      DATABASE_PORT: 5432
+      DATABASE_DB: ${TYCHO_DB_NAME:-superset}
+      DATABASE_USER: ${TYCHO_DB_USERNAME:-superset}
+      DATABASE_PASSWORD: ${TYCHO_DB_PASSWORD}
+      DATABASE_DIALECT: postgresql
+      POSTGRES_DB: ${TYCHO_DB_NAME:-superset}
+      POSTGRES_USER: ${TYCHO_DB_USERNAME:-superset}
+      POSTGRES_PASSWORD: ${TYCHO_DB_PASSWORD}
+      REDIS_HOST: orphea-redis
+      REDIS_PORT: ${REDIS_PORT:-6379}
+      FLASK_ENV: ${FLASK_ENV:-production}
+      SUPERSET_ENV: ${SUPERSET_ENV:-production}
+      SUPERSET_LOAD_EXAMPLES: ${SUPERSET_LOAD_EXAMPLES:-no}
+      SECRET_KEY: ${SUPERSET_SECRET_KEY}
+      SUPERSET_PORT: ${SUPERSET_PORT:-8088}
+      PYTHONPATH: /app/pythonpath:/app/docker/pythonpath_dev
+    volumes: *tycho-volumes
+    ports:
+      - "8088:8088"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost:8088/health || exit 1"]
+      interval: 30s
+      timeout: 15s
+      retries: 5
+      start_period: 120s
+    networks:
+      - orphea-tycho-net
+      - orphea-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "10"
+
+  # ---------------------------------------------------------------------------
+  # Tycho Init — Initialisation DB + admin user (one-shot)
+  # ---------------------------------------------------------------------------
+  tycho-init:
+    image: *tycho-image
+    container_name: orphea-tycho-init
+    command: ["/app/docker/docker-init.sh"]
+    user: *tycho-user
+    depends_on: *tycho-depends
+    environment:
+      DATABASE_HOST: tycho-db
+      DATABASE_PORT: 5432
+      DATABASE_DB: ${TYCHO_DB_NAME:-superset}
+      DATABASE_USER: ${TYCHO_DB_USERNAME:-superset}
+      DATABASE_PASSWORD: ${TYCHO_DB_PASSWORD}
+      DATABASE_DIALECT: postgresql
+      POSTGRES_DB: ${TYCHO_DB_NAME:-superset}
+      POSTGRES_USER: ${TYCHO_DB_USERNAME:-superset}
+      POSTGRES_PASSWORD: ${TYCHO_DB_PASSWORD}
+      REDIS_HOST: orphea-redis
+      REDIS_PORT: ${REDIS_PORT:-6379}
+      FLASK_ENV: ${FLASK_ENV:-production}
+      SUPERSET_ENV: ${SUPERSET_ENV:-production}
+      SUPERSET_LOAD_EXAMPLES: ${SUPERSET_LOAD_EXAMPLES:-no}
+      SECRET_KEY: ${SUPERSET_SECRET_KEY}
+      ADMIN_PASSWORD: ${TYCHO_ADMIN_PASSWORD:-admin}
+    volumes: *tycho-volumes
+    networks:
+      - orphea-tycho-net
+
+  # ---------------------------------------------------------------------------
+  # Tycho Worker — Celery worker (tâches asynchrones)
+  # ---------------------------------------------------------------------------
+  tycho-worker:
+    image: *tycho-image
+    container_name: orphea-tycho-worker
+    command: ["/app/docker/docker-bootstrap.sh", "worker"]
+    user: *tycho-user
+    depends_on: *tycho-depends
+    environment:
+      DATABASE_HOST: tycho-db
+      DATABASE_PORT: 5432
+      DATABASE_DB: ${TYCHO_DB_NAME:-superset}
+      DATABASE_USER: ${TYCHO_DB_USERNAME:-superset}
+      DATABASE_PASSWORD: ${TYCHO_DB_PASSWORD}
+      REDIS_HOST: orphea-redis
+      REDIS_PORT: ${REDIS_PORT:-6379}
+      FLASK_ENV: ${FLASK_ENV:-production}
+      SECRET_KEY: ${SUPERSET_SECRET_KEY}
+      PYTHONPATH: /app/pythonpath:/app/docker/pythonpath_dev
+    volumes: *tycho-volumes
+    restart: unless-stopped
+    networks:
+      - orphea-tycho-net
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "5"
+
+  # ---------------------------------------------------------------------------
+  # Tycho Beat — Celery beat scheduler (tâches périodiques)
+  # ---------------------------------------------------------------------------
+  tycho-beat:
+    image: *tycho-image
+    container_name: orphea-tycho-beat
+    command: ["/app/docker/docker-bootstrap.sh", "beat"]
+    user: *tycho-user
+    depends_on: *tycho-depends
+    environment:
+      DATABASE_HOST: tycho-db
+      DATABASE_DB: ${TYCHO_DB_NAME:-superset}
+      DATABASE_USER: ${TYCHO_DB_USERNAME:-superset}
+      DATABASE_PASSWORD: ${TYCHO_DB_PASSWORD}
+      REDIS_HOST: orphea-redis
+      REDIS_PORT: ${REDIS_PORT:-6379}
+      FLASK_ENV: ${FLASK_ENV:-production}
+      SECRET_KEY: ${SUPERSET_SECRET_KEY}
+      PYTHONPATH: /app/pythonpath:/app/docker/pythonpath_dev
+    volumes: *tycho-volumes
+    restart: unless-stopped
+    networks:
+      - orphea-tycho-net
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "20m"
+        max-file: "3"
+
+  # ---------------------------------------------------------------------------
+  # Tycho WebSocket — Temps réel
+  # ---------------------------------------------------------------------------
+  tycho-websocket:
+    image: node:18-alpine
+    container_name: orphea-tycho-ws
+    command: ["/app/docker/docker-frontend.sh"]
+    working_dir: /app/superset-websocket
+    depends_on:
+      - orphea-redis
+    environment:
+      PORT: 8090
+      REDIS_HOST: orphea-redis
+      REDIS_PORT: ${REDIS_PORT:-6379}
+      REDIS_SSL: "false"
+    volumes:
+      - ../tycho/superset-websocket:/app/superset-websocket
+    ports:
+      - "127.0.0.1:8090:8090"
+    restart: unless-stopped
+    networks:
+      - orphea-tycho-net
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "20m"
+        max-file: "3"
+
+networks:
+  orphea-tycho-net:
+    name: orphea-tycho-network
+    driver: bridge
+  orphea-network:
+    external: true
+    name: orphea-network

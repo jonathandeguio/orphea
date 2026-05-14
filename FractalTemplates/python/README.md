@@ -1,6 +1,6 @@
 # Python transformation
 
-# To create transformation you have to use an internal bosler package called funnel
+# To create transformation you have to use an internal orphea package called funnel
 
 This internal package is the decorator function where you can pass sources and target dataset.
 

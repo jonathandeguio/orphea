@@ -1,9 +1,9 @@
 import axios from "axios";
 import {
-  BOSLER_TOKEN,
-  BOSLER_LOGGED_IN_USER_PASSWORD,
+  ORPHEA_TOKEN,
+  ORPHEA_LOGGED_IN_USER_PASSWORD,
   LANGUAGE,
-  BOSLER_LOGGED_IN_USER,
+  ORPHEA_LOGGED_IN_USER,
 } from "layouts/auth/constants";
 import {
   ALL_USER_DETAILS_FAIL,
@@ -68,7 +68,7 @@ export const login =
 
       // Step 2: Check for successful status and accessToken
       if (status === 200 && data.accessToken) {
-        localStorage.setItem(BOSLER_TOKEN, data.accessToken);
+        localStorage.setItem(ORPHEA_TOKEN, data.accessToken);
         successCallback(); // Proceed with the success callback
         dispatch({
           type: USER_LOGIN_SUCCESS,
@@ -132,7 +132,7 @@ export const fetchUserDetails =
   };
 
 export const logout = () => async (dispatch: $TSFixMe) => {
-  localStorage.removeItem(BOSLER_TOKEN);
+  localStorage.removeItem(ORPHEA_TOKEN);
   dispatch({ type: USER_LOGOUT });
   dispatch({ type: USER_DETAILS_RESET });
 };

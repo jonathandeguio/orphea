@@ -5,7 +5,7 @@ resource "vcd_independent_disk" "db_disk" {
   size_in_mb   = var.db_disk_size
   bus_type     = var.bus_type
   bus_sub_type = var.bus_sub_type
-  depends_on   = [vcd_vapp.bosler]
+  depends_on   = [vcd_vapp.orphea]
 }
 
 # Independent disk for master nodes
@@ -15,7 +15,7 @@ resource "vcd_independent_disk" "master_disk" {
   size_in_mb   = var.master_disk_size
   bus_type     = var.bus_type
   bus_sub_type = var.bus_sub_type
-  depends_on   = [vcd_vapp.bosler]
+  depends_on   = [vcd_vapp.orphea]
 }
 
 # Independent disk for worker nodes
@@ -25,5 +25,5 @@ resource "vcd_independent_disk" "worker_disk" {
   size_in_mb   = var.worker_disk_size
   bus_type     = var.bus_type
   bus_sub_type = var.bus_sub_type
-  depends_on   = [vcd_vapp.bosler]
+  depends_on   = [vcd_vapp.orphea]
 }

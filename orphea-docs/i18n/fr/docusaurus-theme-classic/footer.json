@@ -1,0 +1,26 @@
+{
+  "link.item.label.Documentation": {
+    "message": "Documentation",
+    "description": "The label of footer link with label=Documentation linking to /docs/getting_started/intro"
+  },
+  "link.item.label.Recent Releases": {
+    "message": "Publications récentes",
+    "description": "The label of footer link with label=Recent Releases linking to #"
+  },
+  "link.item.label.Security": {
+    "message": "Sécurité",
+    "description": "The label of footer link with label=Security linking to #"
+  },
+  "link.item.label.ReleaseNotes": {
+    "message": "ReleaseNotes",
+    "description": "The label of footer link with label=ReleaseNotes linking to /docs/release_notes"
+  },
+  "link.item.label.Back to Orphea": {
+    "message": "Retour à Orphea.",
+    "description": "The label of footer link with label=Back to Orphea linking to /"
+  },
+  "copyright": {
+    "message": "Copyright © 2023 Orphea",
+    "description": "The footer copyright"
+  }
+}

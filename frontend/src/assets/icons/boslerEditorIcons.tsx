@@ -38,13 +38,13 @@ function MarkdownIcon({
         width={size}
       >
         <desc>dynamic</desc>
-        <g stroke-width="1">
+        <g strokeWidth="1">
           <g transform="">
             <path
-              clip-rule="evenodd"
+              clipRule="evenodd"
               d="M0 11.74c0 .879.72 1.593 1.605 1.593h12.79c.885 0 1.605-.714 1.605-1.593V4.26c0-.879-.72-1.593-1.605-1.593H1.605C.72 2.667 0 3.38 0 4.26v7.478Zm1-7.48a.6.6 0 0 1 .605-.593h12.79A.6.6 0 0 1 15 4.26v7.479a.6.6 0 0 1-.605.594H1.605A.6.6 0 0 1 1 11.74V4.26Zm10.685 6.407H11.667a.5.5 0 0 1-.407-.21L9.5 8.873a.5.5 0 0 1 .669-.744l.999.899V5.833a.5.5 0 0 1 1 0v3.213l.996-.915a.501.501 0 0 1 .676.738l-1.816 1.666a.5.5 0 0 1-.338.132Zm-4.185 0a.5.5 0 0 1-.5-.5V7.136l-1.628 1.81a.516.516 0 0 1-.743 0L3 7.136v3.03a.5.5 0 0 1-1 0V5.834a.5.5 0 0 1 .872-.334L5 7.864l2.128-2.365A.5.5 0 0 1 8 5.833v4.334a.5.5 0 0 1-.5.5Z"
               fill="currentColor"
-              fill-rule="evenodd"
+              fillRule="evenodd"
             ></path>
           </g>
         </g>
@@ -69,13 +69,13 @@ function StylesIcon({
         width={size}
       >
         <desc>dynamic</desc>
-        <g stroke-width="1">
+        <g strokeWidth="1">
           <g transform="">
             <path
-              clip-rule="evenodd"
+              clipRule="evenodd"
               d="M4 8.21h-.06c-1.37 0-2.57.91-2.95 2.23l-.97 3.42c-.07.27.08.55.35.62.14.04.29.02.41-.06l.51-.34a1.58 1.58 0 0 1 1.57-.12c.35.17.73.25 1.12.25h.08c1.62 0 2.94-1.32 2.94-2.94v-.06c0-1.65-1.34-3-3-3Zm.06 5h-.08c-.24 0-.47-.05-.69-.15-.62-.3-1.33-.33-1.97-.1l.64-2.25c.25-.88 1.06-1.5 1.98-1.5H4a2 2 0 0 1 2 2v.06c0 1.07-.87 1.94-1.94 1.94ZM14.76.07a.515.515 0 0 0-.51 0l-9.5 5.5a.491.491 0 0 0-.1.78l4 4c.19.2.51.2.71 0 .03-.03.05-.06.08-.1l5.5-9.5a.5.5 0 0 0-.18-.68ZM8.9 9.19 5.81 6.1l1.64-.95 2.4 2.4-.95 1.64Zm1.46-2.54L8.35 4.64l4.79-2.77-2.78 4.78Z"
               fill="currentColor"
-              fill-rule="evenodd"
+              fillRule="evenodd"
             ></path>
           </g>
         </g>
@@ -100,13 +100,13 @@ function TextIcon({
         width={size}
       >
         <desc>dynamic</desc>
-        <g stroke-width="1">
+        <g strokeWidth="1">
           <g transform="">
             <path
-              clip-rule="evenodd"
+              clipRule="evenodd"
               d="M1 1H15V5.23333H14V2H9V14H12V15H4V14H7V2H2V5.23333H1V1Z"
               fill="currentColor"
-              fill-rule="evenodd"
+              fillRule="evenodd"
             ></path>
           </g>
         </g>
@@ -131,13 +131,13 @@ function CodeCellIcon({
         width={size}
       >
         <desc>dynamic</desc>
-        <g stroke-width="1">
+        <g strokeWidth="1">
           <g transform="">
             <path
-              clip-rule="evenodd"
+              clipRule="evenodd"
               d="M6.302 15.147 8.712.688l.986.165-2.41 14.459-.986-.165ZM5.092 4.385 1.478 8l3.614 3.615-.707.707L.063 8l4.322-4.322.707.707Zm6.523-.707L15.937 8l-4.322 4.322-.707-.707L14.522 8l-3.614-3.615.707-.707Z"
               fill="currentColor"
-              fill-rule="evenodd"
+              fillRule="evenodd"
             ></path>
           </g>
         </g>
@@ -161,19 +161,19 @@ function CutIcon({
         width={size}
       >
         <desc>dynamic</desc>
-        <g stroke-width="1">
+        <g strokeWidth="1">
           <g transform="">
             <path
-              clip-rule="evenodd"
+              clipRule="evenodd"
               d="M5.847 5.365A2.798 2.798 0 0 0 6.395 3.7c0-1.625-1.38-2.9-3.027-2.9C1.722.8.342 2.075.342 3.7s1.38 2.9 3.026 2.9c.651 0 1.26-.199 1.759-.54L7.695 8.5l-2.568 2.44a3.111 3.111 0 0 0-1.759-.54c-1.646 0-3.026 1.274-3.026 2.9 0 1.625 1.38 2.9 3.026 2.9 1.647 0 3.027-1.274 3.027-2.9 0-.624-.204-1.197-.548-1.665l9.655-9.172a.5.5 0 1 0-.689-.725L8.421 7.81 5.847 5.365ZM3.368 1.8c-1.143 0-2.026.875-2.026 1.9s.883 1.9 2.026 1.9a2.08 2.08 0 0 0 1.467-.59c.35-.344.56-.809.56-1.31 0-1.025-.883-1.9-2.027-1.9Zm1.416 10.14a.793.793 0 0 0 .051.05c.35.344.56.81.56 1.31 0 1.025-.883 1.9-2.027 1.9-1.143 0-2.026-.874-2.026-1.9 0-1.026.883-1.9 2.026-1.9a2.08 2.08 0 0 1 1.416.54Z"
               fill="currentColor"
-              fill-rule="evenodd"
+              fillRule="evenodd"
             ></path>
             <path
-              clip-rule="evenodd"
+              clipRule="evenodd"
               d="M10.138 10.14a.5.5 0 0 1 .707-.019l4.657 4.416a.5.5 0 0 1-.688.726l-4.657-4.416a.5.5 0 0 1-.019-.707Z"
               fill="currentColor"
-              fill-rule="evenodd"
+              fillRule="evenodd"
             ></path>
           </g>
         </g>
@@ -253,13 +253,13 @@ function CopyIcon({
         width={size}
       >
         <desc>dynamic</desc>
-        <g stroke-width="1">
+        <g strokeWidth="1">
           <g transform="">
             <path
-              clip-rule="evenodd"
+              clipRule="evenodd"
               d="M5 1.242h6v1h3v11.5a1.5 1.5 0 0 1-1.5 1.5h-9a1.5 1.5 0 0 1-1.5-1.5v-11.5h3v-1Zm1 1v1.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-1.5H6Zm-1 1.5v-.5H3v10.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5v-10.5h-2v.5a1.5 1.5 0 0 1-1.5 1.5h-3a1.5 1.5 0 0 1-1.5-1.5Z"
               fill="currentColor"
-              fill-rule="evenodd"
+              fillRule="evenodd"
             ></path>
           </g>
         </g>

@@ -31,7 +31,7 @@
   align-items: center;
   justify-content: space-evenly;
   min-height: 100vh;
-  background-color: $bosler-500;
+  background-color: $orphea-500;
   position: relative;
   display: flex;
   flex-direction: row;
@@ -65,7 +65,7 @@
       }
     }
 
-    &-bosler {
+    &-orphea {
       margin-top: 10vh;
       font-size: 3.5rem;
       color: #5dacbd;
@@ -100,7 +100,7 @@
   }
 
   .form-container {
-    background-color: $bosler-400;
+    background-color: $orphea-400;
     padding: 2rem;
     height: fit-content;
     color: #5dacbd;
@@ -112,7 +112,7 @@
     &-select {
       display: block;
       // color: #5dacbd;
-      background: $bosler-400;
+      background: $orphea-400;
       height: 30px;
       margin: 10px 0;
       color: $text;
@@ -125,8 +125,8 @@
     .ant-select:not(.ant-select-customize-input) .ant-select-selector {
       display: block;
       color: #5dacbd;
-      border: 1px solid $bosler-200;
-      background: $bosler-400;
+      border: 1px solid $orphea-200;
+      background: $orphea-400;
     }
 
     .ant-form-item-label>label {
@@ -136,17 +136,17 @@
     ant-select-selection-item {
       display: block;
       color: #5dacbd;
-      border: 1px solid $bosler-200;
-      background: $bosler-400;
+      border: 1px solid $orphea-200;
+      background: $orphea-400;
     }
 
     .ant-input {
-      background-color: $bosler-100;
+      background-color: $orphea-100;
       padding: 10px;
     }
 
     .ant-input-password {
-      background-color: $bosler-300;
+      background-color: $orphea-300;
       padding: 2px;
     }
 

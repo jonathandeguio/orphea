@@ -57,6 +57,7 @@ ENV BUILD_CMD=${NPM_BUILD_CMD}
 RUN mkdir -p /app/superset-frontend
 RUN mkdir -p /app/superset/assets
 COPY ./docker/frontend-mem-nag.sh /
+RUN chmod +x /frontend-mem-nag.sh
 COPY ./superset-frontend/package* /app/superset-frontend/
 RUN /frontend-mem-nag.sh \
         && cd /app/superset-frontend \
@@ -64,6 +65,10 @@ RUN /frontend-mem-nag.sh \
 
 # Next, copy in the rest and let webpack do its thing
 COPY ./superset-frontend /app/superset-frontend
+# Strip Windows CRLF (\r) from JS/TS sources — prettier enforces LF
+RUN find /app/superset-frontend/src -type f \( \
+        -name "*.js" -o -name "*.jsx" -o -name "*.ts" -o -name "*.tsx" \) \
+    -exec sed -i 's/\r$//' {} +
 # This seems to be the most expensive step
 RUN cd /app/superset-frontend \
         && npm run ${BUILD_CMD} \
@@ -108,6 +113,7 @@ RUN cd /app \
         && pip install -e .
 
 COPY ./docker/docker-entrypoint.sh /usr/bin/
+RUN chmod +x /usr/bin/docker-entrypoint.sh
 
 WORKDIR /app
 

@@ -2,11 +2,11 @@ import { Card, Col, Divider, Row, Tooltip, Typography } from "antd";
 import axios from "axios";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { SparklesIcon } from "assets/icons/boslerActionIcons";
+import { SparklesIcon } from "assets/icons/orpheaActionIcons";
 
 import { openNotification } from "utils/utilities";
 import { ThunkAppDispatch } from "redux/types/store";
-import BoslerButton from "components/ButtonComponent/BoslerButton";
+import OrpheaButton from "components/ButtonComponent/OrpheaButton";
 const { Text, Title } = Typography;
 
 const DeveloperSettings = () => {
@@ -64,14 +64,14 @@ const DeveloperSettings = () => {
                   >
                     <div>
                       <div className="text-and-icon-center">
-                        <BoslerButton
+                        <OrpheaButton
                           dashed
                           intent="dangerous"
                           onClick={() => createSampleData("development")}
                           icon={<SparklesIcon />}
                         >
                           Development Sample Data
-                        </BoslerButton>
+                        </OrpheaButton>
                       </div>
                     </div>
                   </Tooltip>
@@ -100,14 +100,14 @@ const DeveloperSettings = () => {
                   >
                     <div>
                       <div className="text-and-icon-center">
-                        <BoslerButton
+                        <OrpheaButton
                           dashed
                           intent="dangerous"
                           onClick={() => createSampleData("demo")}
                           icon={<SparklesIcon color={"#ffffff"} />}
                         >
                           Demo Sample Data
-                        </BoslerButton>
+                        </OrpheaButton>
                       </div>
                     </div>
                   </Tooltip>

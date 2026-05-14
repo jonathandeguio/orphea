@@ -144,7 +144,7 @@ const ChartElementDropDown = ({
             onClick: () => {
               // Remove Chart is in 3 steps just like add chart
               // Remove ELement, remove chart from dash, remove dash from chart
-              removeElement(layout.i);
+              removeElement(id, layout.i);
 
               // const payload = {
               //   dashboardId: id,
@@ -168,7 +168,7 @@ const ChartElementDropDown = ({
           e.stopPropagation();
         }}
       >
-        <SettingsIcon size={14} />
+        <SettingsIcon size={14}/>
       </div>
     </Dropdown>
   );

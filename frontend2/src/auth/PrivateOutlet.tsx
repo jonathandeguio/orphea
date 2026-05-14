@@ -11,7 +11,7 @@ const PrivateOutlet = () => {
   const { user } = useSelector((state) => (state as any).userDetails);
 
   useEffect(() => {
-    if(localStorage.getItem('boslerToken') !== undefined && localStorage.getItem('boslerToken') !== null) {
+    if(localStorage.getItem('orpheaToken') !== undefined && localStorage.getItem('orpheaToken') !== null) {
       if(!isTokenValid && !tokenStatusLoading) {
         navigate('/relogin');
       }

@@ -37,7 +37,7 @@ const bottomBarSlice = createSlice({
         tabContext: TabState;
       }>
     ) => {
-      // state.tabContext[action.payload.id] = action.payload.tabContext;
+      state.tabContext[action.payload.id] = action.payload.tabContext;
     },
     updateBottomBarItemState: (
       state: BottomBarState,

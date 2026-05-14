@@ -18,7 +18,6 @@ import {
   getLanguageLabel,
   isDefined,
   isEmpty,
-  runPeriodically,
 } from "utils/utilities";
 import { fetchDetailedLogs } from "./Builds.api";
 import DetailedBuildLogModal from "./DetailedBuildLogModal";
@@ -66,23 +65,16 @@ const PreviewBuildData = ({
   }
 
   const getDetailedLogs = () => {
-    setDetailedLogs(undefined);
     setDetailedLogsLoading(true);
     if (!!previewId) {
-      runPeriodically(
-        () =>
-          fetchDetailedLogs(previewId)
-            .then(({ data }) => {
-              setDetailedLogs(data);
-              setIsModalOpen(true);
-            })
-            .finally(() => {
-              setDetailedLogsLoading(false);
-            }),
-        650,
-        3,
-        () => detailedLogs != undefined
-      );
+      fetchDetailedLogs(previewId)
+        .then(({ data }) => {
+          setDetailedLogs(data);
+          setIsModalOpen(true);
+        })
+        .finally(() => {
+          setDetailedLogsLoading(false);
+        });
     }
   };
 

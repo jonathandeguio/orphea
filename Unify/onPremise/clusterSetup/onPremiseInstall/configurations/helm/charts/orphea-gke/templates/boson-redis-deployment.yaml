@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    name: redis
+  name: boson-redis
+  namespace: "{{ .Values.namespace }}"
+spec:
+  progressDeadlineSeconds: 2147483647
+  replicas: 1
+  selector:
+    matchLabels:
+      service: boson-redis
+  template:
+    metadata:
+      labels:
+        service: boson-redis
+    spec:
+      containers:
+        - name: boson-redis
+          image: redis:latest
+          imagePullPolicy: "{{ .Values.imagePullPolicy }}"
+          ports:
+            - containerPort: 6379
+          # volumeMounts:
+          #   - mountPath: /data
+          #     name: orphea-nfs-volume
+          #     subPath: redis
+          volumeMounts:
+            - mountPath: /data
+              name: orphea-local-fs
+              subPath: redis
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+        # - name: orphea-nfs-volume
+        #   persistentVolumeClaim:
+        #     claimName: orphea-pvc
+        - name: orphea-local-fs
+          hostPath:
+            path: "{{ .Values.backend.orpheaMountPath }}"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: boson-redis
+  namespace: "{{ .Values.namespace }}"
+  labels:
+    service: boson-redis
+spec:
+  selector:
+    service: boson-redis
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 6379
+      targetPort: 6379

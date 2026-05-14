@@ -4,7 +4,7 @@
 # https://cloud.google.com/kubernetes-engine/docs/quickstart
 #
 # Pre-Reqs:
-# - An account in the appropriate Directory (Google Workspace in Bosler's case).
+# - An account in the appropriate Directory (Google Workspace in Orphea's case).
 # - Google Cloud SDK must be installed on local machine or run within the 
 #   Google Cloud Shell.  Visit https://cloud.google.com/sdk/docs/install
 # - The Kubernetes Kubectl command-line tool needs to be installed on the 
@@ -24,13 +24,13 @@ if [[ "$VARIN" != [Yy] ]] ; then
     print \n exiting... ; return 1
 fi
 
-PROJECT_ID=bosler-test
+PROJECT_ID=orphea-test
 COMPUTE_REGION=europe-west2
 COMPUTE_ZONE=europe-west2-a
 CLUSTER_NAME=hello-world
-CERTIFICATE_NAME="bosler-preshared-cert"
-CERT_FILE_PATH="/Users/jamesmorrish/OneDrive/Jim Documents/Bosler/SECRETS/Bosler.io-ssl-cert/_.bosler.io.crt"
-KEY_FILE_PATH="/Users/jamesmorrish/OneDrive/Jim Documents/Bosler/SECRETS/Bosler.io-ssl-cert/myserver.key"
+CERTIFICATE_NAME="orphea-preshared-cert"
+CERT_FILE_PATH="/Users/jamesmorrish/OneDrive/Jim Documents/Orphea/SECRETS/Orphea.io-ssl-cert/_.orphea.io.crt"
+KEY_FILE_PATH="/Users/jamesmorrish/OneDrive/Jim Documents/Orphea/SECRETS/Orphea.io-ssl-cert/myserver.key"
 
 gcloud config set project $PROJECT_ID
 gcloud config set compute/region $COMPUTE_REGION

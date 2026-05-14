@@ -9,8 +9,8 @@ import { getLanguageLabel } from "utils/utilities";
 import { updateGridConfig } from "../../../redux/actions/dashboardActions";
 import { RootState, ThunkAppDispatch } from "../../../redux/types/store";
 import { KeplerConfig } from "../chart/charts.config";
+import { ITabConfig } from "./Dashboard";
 import { updateTabCustomizeAPI } from "./Dashboard.api";
-import { ITabConfig } from "./Dashboard.types";
 
 interface IProps {
   tabId: string;

@@ -18,7 +18,7 @@ import {
   LogoutIcon,
   NotificationIcon,
   SearchFiledIcon,
-  SettingsIcon,
+  SettingsIcon
 } from "assets/icons/boslerActionIcons";
 import { CopyIcon } from "assets/icons/boslerEditorIcons";
 import { DocumentationIcon } from "assets/icons/boslerFileIcons";
@@ -43,7 +43,7 @@ import {
   isDefined,
   timeConverter,
 } from "utils/utilities";
-import HeaderSearch from "./GlobalSearch";
+import HeaderSearch from "./HeaderSearch";
 
 const { Text } = Typography;
 

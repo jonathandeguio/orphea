@@ -59,7 +59,7 @@ export const AccessManagerTable = ({ filters }: IProps) => {
             </BoslerTag>
           }
           className={styles.listItem}
-          onClick={() => navigate(`/portal/access_manager/${item.id}`)}
+          onClick={() => navigate(`/portal/accessManager/${item.id}`)}
           {...(requests && index == requests.length - 1
             ? { ref: lastElementRef }
             : {})}

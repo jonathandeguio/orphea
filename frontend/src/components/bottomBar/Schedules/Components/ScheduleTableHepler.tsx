@@ -1,5 +1,5 @@
 import { Resource } from "Apps/explorer/explorer";
-import { Col, Dropdown, MenuProps, Row, Tooltip, Typography } from "antd";
+import { Col, Dropdown, MenuProps, Row, Tooltip } from "antd";
 import {
   MoreMenuIcon,
   RunIcon,
@@ -7,7 +7,6 @@ import {
 } from "assets/icons/boslerActionIcons";
 import { TrashIcon } from "assets/icons/boslerMiscellaneousIcons";
 import { TickIcon } from "assets/icons/boslerNavigationIcon";
-import classNames from "classnames";
 import UserInfo from "common/components/UserInfo";
 import BoslerLoader from "components/boslerLoader";
 import cronParser from "cron-parser";
@@ -16,8 +15,6 @@ import React from "react";
 import { getLanguageLabel, getTimeDisplay, isDefined } from "utils/utilities";
 import { JobStatusEnum } from "../SchedulesModal.constants";
 import { TJobStatusEnum, TScheduleJobInfo } from "../SchedulesModal.types";
-import styles from "./Schedules.module.scss";
-const { Text } = Typography;
 
 const moreDetailsItems = (row: TScheduleJobInfo, handleScheduleAction: any) => {
   const getStatusLabel = () => {
@@ -66,13 +63,13 @@ export const getScheduleTableColumns = (
 ) => {
   return [
     {
-      title: <Text type="secondary" strong className={classNames(styles.tableHeaderItem)} > {getLanguageLabel("status").toUpperCase()} </Text>,
+      title: getLanguageLabel("status"),
       dataIndex: "jobStatus",
       render: (e: TJobStatusEnum) =>
         e != JobStatusEnum.PAUSED && e != JobStatusEnum.DELETED ? (
           <Tooltip title={"The schedule is active."}>
             <div className="success-tick-circle text-and-icon-center">
-              <TickIcon color="#ffffff" size={14}/>
+              <TickIcon color="#ffffff" />
             </div>
           </Tooltip>
         ) : (
@@ -82,12 +79,12 @@ export const getScheduleTableColumns = (
         ),
     },
     {
-      title: <Text type="secondary" strong className={classNames(styles.tableHeaderItem)} > {getLanguageLabel("jobID").toUpperCase()} </Text>,
+      title: getLanguageLabel("jobID"),
       dataIndex: "jobId",
       render: (e: string) => <>{e.slice(-8)}</>,
     },
     {
-      title: <Text type="secondary" strong className={classNames(styles.tableHeaderItem)} > {getLanguageLabel("cronExpression").toUpperCase()} </Text>,
+      title: getLanguageLabel("cronExpression"),
       dataIndex: "triggers",
       render: (text: any, row: $TSFixMe) => {
         if (!text || text.length == 0) {
@@ -112,11 +109,11 @@ export const getScheduleTableColumns = (
     },
 
     {
-      title: <Text type="secondary" strong className={classNames(styles.tableHeaderItem)} > {getLanguageLabel("triggerType").toUpperCase()} </Text>,
+      title: getLanguageLabel("triggerType"),
       dataIndex: "triggerType",
     },
     {
-      title: <Text type="secondary" strong className={classNames(styles.tableHeaderItem)} > {getLanguageLabel("lastExecutionAt").toUpperCase()} </Text>,
+      title: getLanguageLabel("lastExecutionAt"),
       dataIndex: "lastExecution",
       render: (text: number, row: TScheduleJobInfo) => {
         return getTimeDisplay(text);
@@ -140,7 +137,7 @@ export const getScheduleTableColumns = (
     // },
 
     {
-      title: <Text type="secondary" strong className={classNames(styles.tableHeaderItem)} > {getLanguageLabel("resource").toUpperCase()} </Text>,
+      title: getLanguageLabel("resource"),
       dataIndex: "resourceId",
       render: (text: $TSFixMe, row: $TSFixMe) => {
         if (isDefined(resourceList) && isDefined((resourceList as any)[text])) {
@@ -155,18 +152,18 @@ export const getScheduleTableColumns = (
       },
     },
     {
-      title: <Text type="secondary" strong className={classNames(styles.tableHeaderItem)} > {getLanguageLabel("type").toUpperCase()} </Text>,
+      title: getLanguageLabel("resource"),
       dataIndex: "resourceType",
     },
     {
-      title: <Text type="secondary" strong className={classNames(styles.tableHeaderItem)} > {getLanguageLabel("createdBy").toUpperCase()} </Text>,
+      title: getLanguageLabel("createdBy"),
       dataIndex: "createdBy",
       render: (e: $TSFixMe) => {
         return <UserInfo userId={e} />;
       },
     },
     {
-      title: <Text type="secondary" strong className={classNames(styles.tableHeaderItem)} > {getLanguageLabel("createdAt").toUpperCase()} </Text>,
+      title: getLanguageLabel("createdAt"),
       dataIndex: "createdAt",
       render: (e: $TSFixMe, row: any) => {
         return getTimeDisplay(e);

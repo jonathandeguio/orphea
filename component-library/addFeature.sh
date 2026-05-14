@@ -1,4 +1,4 @@
-#!/bin/bash
+!/bin/bash
 
 base_folder="src/components"
 

@@ -1,4 +1,4 @@
-#!/bin/bash
+!/bin/bash
 # List triggers:  gcloud beta builds triggers list
 
 for i in boson funnel parler julia frontend callisto spark-history-server superset

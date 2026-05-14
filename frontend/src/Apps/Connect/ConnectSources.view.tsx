@@ -82,12 +82,10 @@ const ConnectSources = () => {
 
             <SourceTable2 tableList={sources} loading={sourceLoading} />
           </div>
-          {isNewSourceModalOpen && (
-            <SourceModal
-              isVisible={isNewSourceModalOpen}
-              setIsVisible={setIsNewSourceModalOpen}
-            />
-          )}
+          <SourceModal
+            isVisible={isNewSourceModalOpen}
+            setIsVisible={setIsNewSourceModalOpen}
+          />
         </React.Fragment>
       ) : (
         <BoslerLoader />

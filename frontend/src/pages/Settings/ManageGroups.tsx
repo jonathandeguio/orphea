@@ -122,7 +122,10 @@ const ManageGroups = () => {
                 className="pop-over-item"
                 onClick={(e) => navigate(`/portal/settings/user/${row.id}`)}
               >
-                {e}
+                {e
+                  || `${row.givenName ?? ""} ${row.familyName ?? ""}`.trim()
+                  || row.username
+                  || row.id}
               </div>
             </div>
           </BoslerUserPopover>
@@ -286,7 +289,10 @@ const ManageGroups = () => {
                                   icon={<UserIcon />}
                                   src={i.profileImage}
                                 />
-                                {i.name ? i.name : i.id} ({i.username})
+                                {i.name
+                                  || `${i.givenName ?? ""} ${i.familyName ?? ""}`.trim()
+                                  || i.username
+                                  || i.id} ({i.username})
                               </div>
                             </Select.Option>
                           </>

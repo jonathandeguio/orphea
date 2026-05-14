@@ -18,7 +18,6 @@ interface ILegendWrapper {
   chartCustomization: any;
   onClickLegend: any;
   dimensions: Dimensions;
-  editMode: boolean;
 }
 
 export const LegendWrapper: React.FC<ILegendWrapper> = ({
@@ -28,7 +27,6 @@ export const LegendWrapper: React.FC<ILegendWrapper> = ({
   chartCustomization,
   onClickLegend,
   dimensions,
-  editMode,
 }) => {
   const [hidden, setHidden] = useState(false);
 
@@ -106,10 +104,10 @@ export const LegendWrapper: React.FC<ILegendWrapper> = ({
                 {children}
               </div>
               <div
-                className={`horizontalLegend horizontalLegend_${chartCustomization.legendAlign}`}
                 style={{
-                  fontSize: getRelativeFontSize(16, dimensions),
-                  minHeight: getRelativeFontSize(16, dimensions),
+                  display: "flex",
+                  justifyContent: "center",
+                  width: "100%",
                 }}
               >
                 <div
@@ -122,7 +120,6 @@ export const LegendWrapper: React.FC<ILegendWrapper> = ({
                 </div>
                 <HorizontalLegend
                   align={chartCustomization.legendAlign}
-                  editMode={editMode}
                   onClickLegend={onClickLegend}
                   data={legendData}
                   customLabel={chartCustomization?.customLabel}
@@ -170,10 +167,10 @@ export const LegendWrapper: React.FC<ILegendWrapper> = ({
           ) : (
             <>
               <div
-                className={`horizontalLegend horizontalLegend_${chartCustomization.legendAlign}`}
                 style={{
-                  fontSize: getRelativeFontSize(16, dimensions),
-                  minHeight: getRelativeFontSize(16, dimensions),
+                  display: "flex",
+                  justifyContent: "center",
+                  width: "100%",
                 }}
               >
                 <div
@@ -190,7 +187,6 @@ export const LegendWrapper: React.FC<ILegendWrapper> = ({
                   data={legendData}
                   customLabel={chartCustomization?.customLabel}
                   dimensions={dimensions}
-                  editMode={editMode}
                 />
               </div>
               <div
@@ -256,7 +252,6 @@ export const LegendWrapper: React.FC<ILegendWrapper> = ({
                   <SingleChevronRightIcon />
                 </div>
                 <VerticalLegend
-                  editMode={editMode}
                   align={chartCustomization.legendAlign}
                   onClickLegend={onClickLegend}
                   data={legendData}
@@ -300,7 +295,6 @@ export const LegendWrapper: React.FC<ILegendWrapper> = ({
                   onClickLegend={onClickLegend}
                   data={legendData}
                   customLabel={chartCustomization?.customLabel}
-                  editMode={editMode}
                   dimensions={dimensions}
                 />
                 <div

@@ -13,7 +13,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllGroups } from "redux/actions/authActions";
 
-import BoslerLoader from "components/boslerLoader";
+import OrpheaLoader from "components/orpheaLoader";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { getLanguageLabel, globalSearch, openNotification } from "utils/utilities";
@@ -21,20 +21,20 @@ import {
   AddIcon,
   MoreMenuIcon,
   SearchIcon,
-} from "assets/icons/boslerActionIcons";
-import { EditIcon } from "assets/icons/boslerEditorIcons";
+} from "assets/icons/orpheaActionIcons";
+import { EditIcon } from "assets/icons/orpheaEditorIcons";
 import {
   AddUserIcon,
   GroupsIcon,
-} from "assets/icons/boslerInterfaceIcons";
-import { TrashIcon } from "assets/icons/boslerMiscellaneousIcons";
-import { TickIcon } from "assets/icons/boslerNavigationIcon";
+} from "assets/icons/orpheaInterfaceIcons";
+import { TrashIcon } from "assets/icons/orpheaMiscellaneousIcons";
+import { TickIcon } from "assets/icons/orpheaNavigationIcon";
 import { ThunkAppDispatch } from "redux/types/store";
 import { createGroupAPI, deleteGroupAPI } from "./Groups/Groups.api";
-import BoslerButton from "components/ButtonComponent/BoslerButton";
-import BoslerInput from "components/InputComponent/BoslerInput";
-import BoslerModal from "components/BoslerModalContainer";
-import BoslerSwitch from "components/BoslerSwitch/BoslerSwitch";
+import OrpheaButton from "components/ButtonComponent/OrpheaButton";
+import OrpheaInput from "components/InputComponent/OrpheaInput";
+import OrpheaModal from "components/OrpheaModalContainer";
+import OrpheaSwitch from "components/OrpheaSwitch/OrpheaSwitch";
 
 const { TextArea } = Input;
 
@@ -167,9 +167,9 @@ const Groups = () => {
                               setDeleteModal(true);
                             }}
                             className="text-and-icon-center"
-                            style={{ color: "var(--bosler-intent-danger)" }}
+                            style={{ color: "var(--orphea-intent-danger)" }}
                           >
-                            <TrashIcon color={"var(--bosler-intent-danger)"} />
+                            <TrashIcon color={"var(--orphea-intent-danger)"} />
                             {getLanguageLabel("delete")}
                           </div>
                         </>
@@ -258,13 +258,13 @@ const Groups = () => {
                         placement="top"
                         title={getLanguageLabel("createNewGroup")}
                       >
-                        <BoslerButton
+                        <OrpheaButton
                           icon={<AddIcon />}
                           intent="action"
                           onClick={handleNew}
                         >
                           {getLanguageLabel("newGroup")}
-                        </BoslerButton>
+                        </OrpheaButton>
                       </Tooltip>
                     </div>
                   </div>
@@ -277,7 +277,7 @@ const Groups = () => {
           <Divider />
         </p>
 
-        <BoslerInput
+        <OrpheaInput
           // size="small"
           placeholder={getLanguageLabel("searchGroupsTable")}
           allowClear
@@ -319,7 +319,7 @@ const Groups = () => {
           <Divider />
         </p>
 
-        <BoslerInput
+        <OrpheaInput
           // size="small"
           placeholder={getLanguageLabel("searchGroupsTable")}
           allowClear
@@ -348,7 +348,7 @@ const Groups = () => {
     <>
       {loading ? (
         <>
-          <BoslerLoader />
+          <OrpheaLoader />
         </>
       ) : allGroups && allGroups.length == 0 ? (
         <>
@@ -358,25 +358,25 @@ const Groups = () => {
         </>
       ) : (
         <>
-          <BoslerModal
+          <OrpheaModal
             headingIcon={<AddUserIcon />}
             heading={getLanguageLabel("createNewGroup")}
             open={showModal}
             onCancel={handleCancel}
             footerButtonArea={
-              <BoslerButton
+              <OrpheaButton
                 icon={<TickIcon />}
                 intent="action"
                 key="submit"
                 onClick={handleCreate}
               >
                 {getLanguageLabel("create")}
-              </BoslerButton>
+              </OrpheaButton>
             }
           >
-            <div className="BoslerHeader1">{getLanguageLabel("groupName")}</div>
+            <div className="OrpheaHeader1">{getLanguageLabel("groupName")}</div>
 
-            <BoslerInput
+            <OrpheaInput
               placeholder={newGroupDetails.name}
               name={newGroupDetails.name}
               onChange={(e) =>
@@ -387,7 +387,7 @@ const Groups = () => {
               }
               required
             />
-            <div className="BoslerHeader1">
+            <div className="OrpheaHeader1">
               {getLanguageLabel("description")}
             </div>
 
@@ -402,16 +402,16 @@ const Groups = () => {
               name="description"
               required
             />
-          </BoslerModal>
+          </OrpheaModal>
 
           {/* MODAL TO CONFIRM DELETE */}
-          <BoslerModal
+          <OrpheaModal
             headingIcon={<TrashIcon color="var(--DANGEROUS_COLOR)" />}
             heading={getLanguageLabel("areYouSureYouWantToDeleteThis?")}
             open={deleteModal}
             onCancel={() => setDeleteModal(false)}
             footerButtonArea={
-              <BoslerButton
+              <OrpheaButton
                 icon={<TrashIcon />}
                 intent="dangerous"
                 onClick={() =>
@@ -422,15 +422,15 @@ const Groups = () => {
                 }
               >
                 {getLanguageLabel("delete")}
-              </BoslerButton>
+              </OrpheaButton>
             }
           >
             {deleteGroupDetails.name} Group
-          </BoslerModal>
+          </OrpheaModal>
 
           {/* ---------------------------------- */}
 
-          <BoslerSwitch
+          <OrpheaSwitch
             items={[
               {
                 label: "Resource Groups",

@@ -1,12 +1,11 @@
 .sidePanel {
-  // border-left: 1px solid var(--bosler-border-color-default);
-  margin-left: 10px;
+  border-left: 1px solid var(--bosler-border-color-default);
   height: 100%;
 }
 
 .sidePanel-header {
   background-color: var(--bosler-bkg-color-muted);
-  // border-bottom: 1px solid var(--bosler-border-color-default);
+  border-bottom: 1px solid var(--bosler-border-color-default);
   position: sticky;
   top: 0;
   z-index: 999;

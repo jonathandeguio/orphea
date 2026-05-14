@@ -14,8 +14,6 @@ import {
   fetchDataError,
   fetchDataRequest,
   fetchDataSuccess,
-  finishChartSave,
-  initChartSave,
   silentUpdateQuery,
   updateChart,
 } from "../../../redux/actions/keplerActions";
@@ -27,22 +25,6 @@ import Schema from "Apps/Dataset/bottomBar/Schema/Schema";
 import { KeplerConfig } from "Apps/Kepler/chart/charts.config";
 import { Typography } from "antd";
 import {
-  GaugeIcon,
-  GroupedColumnIcon,
-  LineChartIcon,
-  MapIcon,
-  PieChartIcon,
-  RadarIcon,
-  ScatterIcon,
-  SmallAreaChartIcon,
-  StackedGroupedBarIcon,
-  SunburstIcon,
-  TreeMapIcon,
-  WaterFallIcon,
-  WordCloudIcon,
-} from "assets/icons/boslerChartIcons";
-import {
-  BigNumberIcon,
   BooleanIcon,
   DatabaseViewIcon,
   NumberIcon,
@@ -60,7 +42,7 @@ import {
   SortNumericDescHrizontalIcon,
   SortReverseAlphaHorizontalIcon,
 } from "assets/icons/boslerSortIcons";
-import { TableCellIcon, TableIcon } from "assets/icons/boslerTableIcons";
+import { TableIcon } from "assets/icons/boslerTableIcons";
 import { IBoslerBottomBarItem } from "common/components/BoslerLayout/type";
 import DatasetSync from "components/bottomBar/sync/Sync.view";
 import { ErrorResponse } from "global";
@@ -100,83 +82,6 @@ export const getThreshold = (
   }
 
   return finalThreshold;
-};
-
-export const getChartIcon = (chartType: string, seriesType: string) => {
-  const size = 28;
-  let chartIcon = <HelpIcon size={22} color={"#FFA500"} />;
-
-  switch (chartType) {
-    // Charts
-    case "pieChart":
-      chartIcon = <PieChartIcon size={size} />;
-      break;
-    case "bigNumber":
-      chartIcon = <BigNumberIcon size={size} />;
-      break;
-    case "mapChart":
-      chartIcon = <MapIcon size={size} />;
-      break;
-    case "gaugeChart":
-      chartIcon = <GaugeIcon size={size} />;
-      break;
-    case "radarChart":
-      chartIcon = <RadarIcon size={size} />;
-      break;
-    case "sunBurstChart":
-      chartIcon = <SunburstIcon size={size} />;
-      break;
-    case "table":
-      chartIcon = <TableCellIcon size={size} />;
-      break;
-    case "lineChart":
-      chartIcon = <LineChartIcon size={size} />;
-      break;
-    case "barChart":
-      chartIcon = <GroupedColumnIcon size={size} />;
-      break;
-    case "lineAreaChart":
-      chartIcon = <SmallAreaChartIcon size={size} />;
-      break;
-    case "treeMapChart":
-      chartIcon = <TreeMapIcon size={size} />;
-      break;
-    case "wordCloudChart":
-      chartIcon = <WordCloudIcon size={size} />;
-      break;
-    case "waterFallChart":
-      chartIcon = <WaterFallIcon size={size} />;
-      break;
-    case "scatterChart":
-      chartIcon = <ScatterIcon size={size} />;
-      break;
-    case "VerticalAxisChart":
-      switch (seriesType) {
-        case "lineChart":
-          chartIcon = <LineChartIcon size={size} />;
-          break;
-        case "barChart":
-          chartIcon = <GroupedColumnIcon size={size} />;
-          break;
-        case "lineAreaChart":
-          chartIcon = <SmallAreaChartIcon size={size} />;
-          break;
-        case "scatterChart":
-          chartIcon = <ScatterIcon size={size} />;
-          break;
-        default:
-          chartIcon = <GroupedColumnIcon size={size} color={"#FFA500"} />;
-          break;
-      }
-      break;
-    case "horizontalBarChart":
-      chartIcon = <StackedGroupedBarIcon size={size} />;
-      break;
-    default:
-      chartIcon = <GroupedColumnIcon size={size} color={"#FFA500"} />;
-      break;
-  }
-  return chartIcon;
 };
 
 export const getChartBottombarItems = (
@@ -248,14 +153,14 @@ export const syncCustomizeSeries = (querySeries: any, customizeSeries: any) => {
             ...customizeSeriesObject[qSeries.id],
             id: qSeries.id,
             seriesName: qSeries.seriesName,
-            seriesType: qSeries?.seriesType,
+            seriesType: qSeries.seriesType,
           };
         } else {
           return {
             ...defaultSeriesCustomize,
             id: qSeries.id,
             seriesName: qSeries.seriesName,
-            seriesType: qSeries?.seriesType,
+            seriesType: qSeries.seriesType,
           };
         }
       })
@@ -358,35 +263,38 @@ export const putChart = async ({
 
   let state: RootState = store.getState();
 
-  let body: any = {
-    userLocale: getUserLanguage(state.userDetails?.user),
-  };
-  if (isDefined(chart)) {
-    delete newCustomize?.customTheme;
-    body = {
-      ...body,
-      ...chart,
-      chartCustomize: newCustomize,
-      query: undefined,
-    };
-  }
-  if (isDefined(query)) {
-    body = {
-      ...body,
-      chartConfig: {
-        ...query,
-        datasetId: chart.datasetId,
-        branch: "master",
-        mapSeries: null,
-        transactionId: currentTransaction,
-      },
-    };
-  }
   try {
-    dispatch(initChartSave());
-    const { data } = await axios.put(`/kepler/charts/update/${chart.id}`, body);
-    dispatch(finishChartSave());
+    const { data } = await axios.put(`/kepler/charts/update/${chart.id}`, {
+      // SEND CHART IF AVAILABLE
+      ...(isDefined(chart)
+        ? { ...chart, chartCustomize: undefined, query: undefined }
+        : {}),
+      // SEND CUSTOMIZE IF AVAILABLE
+      ...(isDefined(customize)
+        ? {
+            chartCustomize: customize,
+          }
+        : { chartCustomize: undefined }),
+      // SEND QUERY IF AVAILABLE
+      ...(isDefined(query)
+        ? {
+            chartConfig: {
+              ...query,
+              datasetId: chart.datasetId,
+              branch: "master",
+              mapSeries: null,
+              transactionId: currentTransaction,
+            },
+          }
+        : {
+            chartConfig: undefined,
+          }),
+      // transactionId: currentTransaction,
 
+      userLocale: getUserLanguage(state.userDetails?.user),
+    });
+
+    console.log("GET FILE INDEX");
     getFileIndex?.(chart.id, true);
 
     // const chartStateData = mapResponseToChartState(data);
@@ -397,12 +305,7 @@ export const putChart = async ({
           chartUUID: data.id,
         })
       );
-      dispatch(
-        updateChart({
-          chart: mapResponseToChartState(data),
-          isChartSaved: true,
-        })
-      );
+      dispatch(updateChart(mapResponseToChartState(data)));
       // dispatch(updateChart(chartStateData));
     }
   } catch (error) {
@@ -814,11 +717,11 @@ export const getFilterOperatorOptions = (columnType: string) => {
     },
     {
       value: "exists",
-      label: getLanguageLabel("isNotNull"),
+      label: getLanguageLabel("exists"),
     },
     {
-      value: "doesNotExist",
-      label: getLanguageLabel("isNull"),
+      value: "does not exists",
+      label: getLanguageLabel("doesNotExist"),
     },
   ];
   const numericOperators = [
@@ -841,28 +744,12 @@ export const getFilterOperatorOptions = (columnType: string) => {
   ];
   const categoricalOptions = [
     {
-      value: "contains",
-      label: "contains",
-    },
-    {
-      value: "doesNotContains",
-      label: "Does not contains",
-    },
-    {
       value: "like",
       label: getLanguageLabel("like"),
     },
     {
-      value: "notLike",
-      label: "not " + getLanguageLabel("like"),
-    },
-    {
       value: "in",
-      label: getLanguageLabel("inclusion"),
-    },
-    {
-      value: "notIn",
-      label: "not in",
+      label: getLanguageLabel("in"),
     },
   ];
   console.log("columnType", columnType);
@@ -891,10 +778,8 @@ export const SortingIconDescending = ({ type }: { type: string }) => {
   }
 };
 
-export const getTimeGrainOptions = (type: string) => {
-  if (!["date", "timestamp"].includes(type)) return [];
-
-  let options = [
+export const getTimeGrainOptions = () => {
+  return [
     {
       value: "year",
       label: (
@@ -961,52 +846,40 @@ export const getTimeGrainOptions = (type: string) => {
         </div>
       ),
     },
+    {
+      value: "hour",
+      label: (
+        <div className="timeGrainOption">
+          <span className="data-type-label">{getLanguageLabel("hour")}</span>
+          <span style={{ marginLeft: "1rem" }}>
+            {getCurrentDateTime("hour")}
+          </span>
+        </div>
+      ),
+    },
+    {
+      value: "minute",
+      label: (
+        <div className="timeGrainOption">
+          <span className="data-type-label">{getLanguageLabel("minute")}</span>
+          <span style={{ marginLeft: "1rem" }}>
+            {getCurrentDateTime("minute")}
+          </span>
+        </div>
+      ),
+    },
+    {
+      value: "second",
+      label: (
+        <div className="timeGrainOption">
+          <span className="data-type-label">{getLanguageLabel("second")}</span>
+          <span style={{ marginLeft: "1rem" }}>
+            {getCurrentDateTime("second")}
+          </span>
+        </div>
+      ),
+    },
   ];
-
-  if (type === "timestamp") {
-    options = [
-      ...options,
-      {
-        value: "hour",
-        label: (
-          <div className="timeGrainOption">
-            <span className="data-type-label">{getLanguageLabel("hour")}</span>
-            <span style={{ marginLeft: "1rem" }}>
-              {getCurrentDateTime("hour")}
-            </span>
-          </div>
-        ),
-      },
-      {
-        value: "minute",
-        label: (
-          <div className="timeGrainOption">
-            <span className="data-type-label">
-              {getLanguageLabel("minute")}
-            </span>
-            <span style={{ marginLeft: "1rem" }}>
-              {getCurrentDateTime("minute")}
-            </span>
-          </div>
-        ),
-      },
-      {
-        value: "second",
-        label: (
-          <div className="timeGrainOption">
-            <span className="data-type-label">
-              {getLanguageLabel("second")}
-            </span>
-            <span style={{ marginLeft: "1rem" }}>
-              {getCurrentDateTime("second")}
-            </span>
-          </div>
-        ),
-      },
-    ];
-  }
-
-  return options;
 };
 
 export const IconForColumnType = ({
@@ -1016,40 +889,14 @@ export const IconForColumnType = ({
   type: string;
   style?: any;
 }) => {
-  const integerTypes = new Set([
-    "int",
-    "integer",
-    "double",
-    "smallint",
-    "bigint",
-    "tinyint",
-    "mediumint",
-    "serial",
-    "bigserial",
-    "number",
-    "int4",
-    "int8",
-    "ByteType",
-    "ShortType",
-    "IntegerType",
-    "LongType",
-    "unsigned int",
-    "unsigned bigint",
-    "unsigned smallint",
-    "unsigned tinyint",
-    "unsigned mediumint",
-    "float",
-    "long",
-    "short",
-    "byte",
-    "int2",
-    "int4",
-    "int8",
-  ]);
-
   if (type == "string") {
     return <StringIcon />;
-  } else if (integerTypes.has(type)) {
+  } else if (
+    type == "integer" ||
+    type == "double" ||
+    type == "decimal(10,2)" ||
+    type == "long"
+  ) {
     return <NumberIcon />;
   } else if (type == "date" || type == "timestamp") {
     return <CalendarIcon />;
@@ -1089,10 +936,10 @@ export const generateFilterOnLegendSelect = (
   let operator: string = "equal";
 
   if (query.chartType === "wordCloudChart") {
-    if (isDefined(query?.dimensions?.[0])) {
+    if (isDefined(query?.series?.[0]?.groupBy?.[0])) {
       return [
         {
-          columnName: query?.dimensions?.[0],
+          columnName: query?.series?.[0]?.groupBy?.[0],
           FilterValue: params.name,
           operator: "equal",
           checked: true,
@@ -1139,10 +986,10 @@ export const generateFilterOnLegendSelect = (
   }
 
   if (value !== "") {
-    const groupedBy = seriesByName[value];
+    const groupBy = seriesByName[value];
     const seriesName = value.split(",").map((series: string) => series.trim());
 
-    groupedBy.forEach((group: any) => {
+    groupBy.forEach((group: any) => {
       group.forEach((gpName: any, index: number) => {
         if (columns.includes(gpName)) return;
 
@@ -1184,18 +1031,24 @@ export const generateSeriesByName = (chartData: any) => {
         Object.keys(series.seriesData).map((name: string) => {
           seriesNameMap[name] = [
             ...(seriesNameMap[name] ?? []),
-            chartData.request.dimensions,
+            series.groupBy,
           ];
         });
       });
     }
   } else if (chartData?.request?.chartType === "pieChart") {
-    if (chartData?.request?.dimensions) {
+    if (chartData?.request?.series?.[0]?.groupBy) {
       Object.keys(chartData.data).map((name: string) => {
-        seriesNameMap[name] = [chartData.request.dimensions];
+        seriesNameMap[name] = [chartData.request.series?.[0]?.groupBy];
       });
     }
   }
+
+  // else if(isDefined(chartData?.series)) {
+  //   Object.keys(chartData?.series)?.forEach((seriesName: any) => {
+  //     seriesNameMap[seriesName] = [...(seriesNameMap[seriesName] ?? []), series.groupBy];
+  //   });
+  // }
 
   return seriesNameMap;
 };
@@ -1208,13 +1061,9 @@ export const labelMap: any = {
   greaterThan: ">",
   greaterThanEqual: ">=",
   like: "LIKE",
-  notLike: "NOT LIKE",
   in: "in",
-  notIn: "not in",
-  contains: "contains",
-  doesNotContains: "Does not contains",
   exists: "exists",
-  doesNotExist: "doesNotExist",
+  doesNotExist: "does not exist",
 };
 
 export interface ChartReload {

@@ -1,4 +1,4 @@
-# **GUIDELINES Frontend for Bosler**
+# **GUIDELINES Frontend for Orphea**
 
 ## Component Structure
 
@@ -61,7 +61,7 @@ A function containing both logic and state manipulation. In that case, the state
     - Common components will be under this folder
   - Utils
     - AxiosInterceptors.ts
-    - BoslerError.ts
+    - OrpheaError.ts
     - index.ts
   - Api.ts
   - Constants.ts
@@ -121,7 +121,7 @@ A function containing both logic and state manipulation. In that case, the state
 # Error Handling
 
 1.  Don’t wrap your code blocks with try catch for production code. This will be handled by ErrorBundary.
-2.  Throw an instance of the BoslerError class at appropriate places.
+2.  Throw an instance of the OrpheaError class at appropriate places.
 3.  For API error handling
 
     1.  Return a promise from the api function and handle the rejection and resolve.
@@ -129,7 +129,7 @@ A function containing both logic and state manipulation. In that case, the state
         <br/>
         <br/>
 
-    > BoslerError
+    > OrpheaError
 
     ```ts
     {

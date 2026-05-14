@@ -48,7 +48,7 @@ export const getAllGroups =
 
       const config = {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("boslerToken")}`,
+          Authorization: `Bearer ${localStorage.getItem("orpheaToken")}`,
         },
       };
 
@@ -82,7 +82,7 @@ export const getGroupById = (id: any) => async (dispatch: any, getState: any) =>
 
     const config = {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("boslerToken")}`,
+        Authorization: `Bearer ${localStorage.getItem("orpheaToken")}`,
       },
     };
 
@@ -111,12 +111,12 @@ export const createGroup = (groupDetails: any) => async (dispatch: any, getState
   try {
     dispatch({ type: GROUP_CREATE_REQUEST });
 
-    const boslerToken = localStorage.getItem("boslerToken");
+    const orpheaToken = localStorage.getItem("orpheaToken");
 
     const config = {
       headers: {
         "Content-type": "application/json",
-        Authorization: `Bearer ${boslerToken}`,
+        Authorization: `Bearer ${orpheaToken}`,
       },
     };
 
@@ -143,12 +143,12 @@ export const createGroup = (groupDetails: any) => async (dispatch: any, getState
 };
 
 export const deleteGroup = (id: any) => async (dispatch: any) => {
-  const boslerToken = localStorage.getItem("boslerToken");
+  const orpheaToken = localStorage.getItem("orpheaToken");
 
   const config = {
     headers: {
       "Content-type": "application/json",
-      Authorization: `Bearer ${boslerToken}`,
+      Authorization: `Bearer ${orpheaToken}`,
     },
   };
   try {
@@ -174,12 +174,12 @@ export const deleteGroup = (id: any) => async (dispatch: any) => {
 };
 
 export const deleteUser = (id: any) => async (dispatch: any) => {
-  const boslerToken = localStorage.getItem("boslerToken");
+  const orpheaToken = localStorage.getItem("orpheaToken");
 
   const config = {
     headers: {
       "Content-type": "application/json",
-      Authorization: `Bearer ${boslerToken}`,
+      Authorization: `Bearer ${orpheaToken}`,
     },
   };
   try {
@@ -205,12 +205,12 @@ export const deleteUser = (id: any) => async (dispatch: any) => {
 };
 
 export const manageGroup = (newdetails: any) => async (dispatch: any) => {
-  const boslerToken = localStorage.getItem("boslerToken");
+  const orpheaToken = localStorage.getItem("orpheaToken");
 
   const config = {
     headers: {
       "Content-type": "application/json",
-      Authorization: `Bearer ${boslerToken}`,
+      Authorization: `Bearer ${orpheaToken}`,
     },
   };
   try {
@@ -244,7 +244,7 @@ export const getAllRoles = () => async (dispatch: any, getState: any) => {
 
     const config = {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("boslerToken")}`,
+        Authorization: `Bearer ${localStorage.getItem("orpheaToken")}`,
       },
     };
 
@@ -277,7 +277,7 @@ export const getAllPermissionMapping = () => async (dispatch: any, getState: any
 
     const config = {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("boslerToken")}`,
+        Authorization: `Bearer ${localStorage.getItem("orpheaToken")}`,
       },
     };
 
@@ -311,7 +311,7 @@ export const getPermissionsMappingByResourceId =
 
       const config = {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("boslerToken")}`,
+          Authorization: `Bearer ${localStorage.getItem("orpheaToken")}`,
         },
       };
 
@@ -345,7 +345,7 @@ export const getUserRolesOfProject = (id: any) => async (dispatch: any, getState
 
     const config = {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("boslerToken")}`,
+        Authorization: `Bearer ${localStorage.getItem("orpheaToken")}`,
       },
     };
 
@@ -379,7 +379,7 @@ export const getUserResourcePermissions =
 
       const config = {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("boslerToken")}`,
+          Authorization: `Bearer ${localStorage.getItem("orpheaToken")}`,
         },
       };
 
@@ -413,7 +413,7 @@ export const deletePermissionsMapping = (id: any) => async (dispatch: any, getSt
 
     const config = {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("boslerToken")}`,
+        Authorization: `Bearer ${localStorage.getItem("orpheaToken")}`,
       },
     };
 

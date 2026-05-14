@@ -31,7 +31,7 @@ ENV PATH="/root/.nvm/versions/node/v${NODE_VERSION}/bin/:${PATH}"
 # TODO put below in julia or key in vault
 WORKDIR /opt/
 ARG CACHEBUST=1
-RUN git clone https://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@github.com/Bosler-io/boson
+RUN git clone https://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@github.com/Orphea-io/boson
 
 WORKDIR /opt/boson/funnel/
 

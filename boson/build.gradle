@@ -6,7 +6,7 @@ plugins {
     id 'java-library'
 }
 
-group = 'io.bosler'
+group = 'io.orphea'
 version = '0.0.1-SNAPSHOT'
 
 configurations {
@@ -32,7 +32,7 @@ repositories {
 }
 
 bootJar {
-    mainClass = 'io.bosler.Boson'
+    mainClass = 'io.orphea.Boson'
 }
 
 dependencies {

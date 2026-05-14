@@ -4,13 +4,13 @@ import React from "react";
 import type { RcFile } from "antd/es/upload/interface";
 import { isDefined, openNotification } from "utils/utilities";
 
-import { EditIcon } from "assets/icons/boslerEditorIcons";
-import { UploadIcon } from "assets/icons/boslerInterfaceIcons";
-import { BoslerIcon, TrashIcon } from "assets/icons/boslerMiscellaneousIcons";
+import { EditIcon } from "assets/icons/orpheaEditorIcons";
+import { UploadIcon } from "assets/icons/orpheaInterfaceIcons";
+import { OrpheaIcon, TrashIcon } from "assets/icons/orpheaMiscellaneousIcons";
 import { useDispatch, useSelector } from "react-redux";
 import { updatePlatformConfig } from "redux/actions/platformSettingsActions";
 import { ThunkAppDispatch } from "redux/types/store";
-import BoslerButton from "components/ButtonComponent/BoslerButton";
+import OrpheaButton from "components/ButtonComponent/OrpheaButton";
 
 const { Text, Title } = Typography;
 
@@ -58,7 +58,7 @@ const UploadLogoButton = () => {
           isDefined(config) && isDefined(config.logo) ? (
             config.logo
           ) : (
-            <BoslerIcon size={190} />
+            <OrpheaIcon size={190} />
           )
         }
         size={200}
@@ -96,7 +96,7 @@ const UploadLogoButton = () => {
                     style={{ padding: "0.5rem" }}
                     className="text-and-icon-center"
                   >
-                    <TrashIcon color="var(--bosler-intent-danger)" />
+                    <TrashIcon color="var(--orphea-intent-danger)" />
                     Remove
                   </span>
                 ),
@@ -105,9 +105,9 @@ const UploadLogoButton = () => {
             ],
           }}
         >
-          <BoslerButton icon={<EditIcon />} intent="primary">
+          <OrpheaButton icon={<EditIcon />} intent="primary">
             Edit
-          </BoslerButton>
+          </OrpheaButton>
         </Dropdown>
       </div>
     </div>

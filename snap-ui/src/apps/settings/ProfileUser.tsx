@@ -1,16 +1,16 @@
 import { Avatar, Col, Collapse, Divider, Row, Typography } from "antd";
-import { getDefaultFavicon } from "components/boslerLoader/FavIconLoader";
+import { getDefaultFavicon } from "components/orpheaLoader/FavIconLoader";
 import { User } from "global";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { getLanguageLabel, isDefined } from "utils/utilities";
-import { ArrowLeftIcon } from "assets/icons/boslerNavigationIcon";
+import { ArrowLeftIcon } from "assets/icons/orpheaNavigationIcon";
 import { isPlatformAdmin, isUserAdmin } from "redux/actions/userActions";
 import { ThunkAppDispatch } from "redux/types/store";
 import { getUserDetailsByIdAPI } from "./apis";
 import Profile from "./Profile";
-import BoslerInput from "components/InputComponent/BoslerInput";
+import OrpheaInput from "components/InputComponent/OrpheaInput";
 
 const { Title, Text } = Typography;
 const { Panel } = Collapse;
@@ -51,7 +51,7 @@ const ProfileUser = () => {
       document.title =
         isDefined(config) && isDefined(config.platformName)
           ? config.platformName
-          : "Bosler";
+          : "Orphea";
     };
   }, []);
 
@@ -116,32 +116,32 @@ const ProfileUser = () => {
               </Col>
             </Row>
             <Divider />
-            <div className="BoslerHeader1">{getLanguageLabel("givenName")}</div>
-            <BoslerInput
+            <div className="OrpheaHeader1">{getLanguageLabel("givenName")}</div>
+            <OrpheaInput
               placeholder={user.givenName}
               // @ts-expect-error TS(2322): Type 'string[]' is not assignable to type 'string'... Remove this comment to see the full error message
               name={["user", "fname"]}
               disabled
             />
-            <div className="BoslerHeader1">
+            <div className="OrpheaHeader1">
               {getLanguageLabel("familyName")}
             </div>
-            <BoslerInput
+            <OrpheaInput
               // @ts-expect-error TS(2322): Type 'string[]' is not assignable to type 'string'... Remove this comment to see the full error message
               name={["user", "lname"]}
               placeholder={user.familyName}
               disabled
             />
-            <div className="BoslerHeader1">{getLanguageLabel("email")}</div>
-            <BoslerInput
+            <div className="OrpheaHeader1">{getLanguageLabel("email")}</div>
+            <OrpheaInput
               placeholder={user.email}
               // @ts-expect-error TS(2322): Type 'string[]' is not assignable to type 'string'... Remove this comment to see the full error message
               name={["user", "email"]}
               type="email"
               disabled
             />
-            <div className="BoslerHeader1">{getLanguageLabel("location")}</div>
-            <BoslerInput
+            <div className="OrpheaHeader1">{getLanguageLabel("location")}</div>
+            <OrpheaInput
               placeholder={user.location}
               // @ts-expect-error TS(2322): Type 'string[]' is not assignable to type 'string'... Remove this comment to see the full error message
               name={["location"]}

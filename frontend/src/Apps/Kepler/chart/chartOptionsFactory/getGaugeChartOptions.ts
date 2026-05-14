@@ -70,7 +70,7 @@ export default ({
         data: Object.keys(chartData.data).map((key, index) => {
           return {
             value: chartData.data[key][0],
-            name: isEmpty(chartData.request.dimensions)
+            name: isEmpty(chartData.request.series[0].groupBy)
               ? chartCustomization.customLabel?.[
                   `${chartData.request.series[0].aggregate}(${chartData.request.series[0].columnName})`
                 ] ??

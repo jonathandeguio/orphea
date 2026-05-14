@@ -255,7 +255,7 @@ export const TreeNode: React.FC<Props> = ({
 
           {node.type === ResourceTypeEnum.PROJECT && (
             <div
-              className="tree_node__context_menu"
+              className="flex"
               onClick={(e: any) => {
                 e.preventDefault();
                 if (notEmpty(activeId)) {

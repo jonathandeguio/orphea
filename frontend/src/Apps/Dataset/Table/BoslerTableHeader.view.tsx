@@ -93,9 +93,8 @@ export const DraggableColumnHeader: FC<{
   const columnOrder = getState().columnOrder;
   const { column } = header;
   const dispatch = useDispatch<ThunkAppDispatch>();
-  const [showExtraBtns, setShowExtraBtns] = useState<boolean>(false);
 
-  const { schemaDetails: scheduleDetailsRedux } = useSelector(
+  const { loading, schemaDetails: scheduleDetailsRedux } = useSelector(
     (state) => (state as $TSFixMe).schemaDetails
   );
   let schemaDetails = scheduleDetailsRedux;
@@ -259,26 +258,7 @@ export const DraggableColumnHeader: FC<{
           </div>
         ),
       },
-      {
-        key: "date",
-        label: (
-          <div
-            className="text-and-icon-center"
-            onClick={() => {
-              ChangeNameOrType({
-                columnName: header.column.columnDef.header,
-                newName: header.column.columnDef.header,
-                newType: "date",
-              });
-            }}
-          >
-            <CalendarIcon />
-            <Text className="boslertable-header-row-th-container-text-small">
-              Date
-            </Text>
-          </div>
-        ),
-      },
+
       {
         key: "boolean",
         label: (
@@ -443,33 +423,33 @@ export const DraggableColumnHeader: FC<{
   };
 
   const items0: MenuProps["items"] = [
-    {
-      key: "1",
-      label: (
-        <div
-          className="text-and-icon-center"
-          onClick={() =>
-            setRenameServiceDetails({
-              ...renameServiceDetails,
-              id: header.column.columnDef.id as any,
-              name: header.column.columnDef.header as string,
-              modalView: true,
-            })
-          }
-        >
-          {getLanguageLabel("rename")}
-        </div>
-      ),
-    },
-    {
-      key: "2",
-      label: (
-        <div className="text-and-icon-center">
-          {getLanguageLabel("changeType")}
-        </div>
-      ),
-      children: getDataTypes((header.column.columnDef as any).type),
-    },
+    // {
+    //   key: "1",
+    //   label: (
+    //     <div
+    //       className="text-and-icon-center"
+    //       onClick={() =>
+    //         setRenameServiceDetails({
+    //           ...renameServiceDetails,
+    //           id: header.column.columnDef.id as any,
+    //           name: header.column.columnDef.header as string,
+    //           modalView: true,
+    //         })
+    //       }
+    //     >
+    //       {getLanguageLabel("rename")}
+    //     </div>
+    //   ),
+    // },
+    // {
+    //   key: "2",
+    //   label: (
+    //     <div className="text-and-icon-center">
+    //       {getLanguageLabel("changeType")}
+    //     </div>
+    //   ),
+    //   children: getDataTypes((header.column.columnDef as any).type),
+    // },
     {
       key: "3",
       label: (
@@ -777,12 +757,6 @@ export const DraggableColumnHeader: FC<{
           width: header.getSize(),
         }}
         className={"boslertable-header-row-th"}
-        onMouseEnter={(e) => {
-          setShowExtraBtns(true);
-        }}
-        onMouseLeave={(e) => {
-          setShowExtraBtns(false);
-        }}
       >
         <div ref={previewRef} className="boslertable-header-row-th-container">
           <div
@@ -860,13 +834,7 @@ export const DraggableColumnHeader: FC<{
               }`}
             ></div>
           )}
-
-          <div
-            className="boslertable-header-row-th-container-btns"
-            style={{
-              opacity: showExtraBtns ? 1 : 0,
-            }}
-          >
+          <div className="boslertable-header-row-th-container-btns">
             <Dropdown
               menu={{
                 items:

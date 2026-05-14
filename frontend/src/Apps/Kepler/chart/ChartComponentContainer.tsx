@@ -29,7 +29,7 @@ import KeplerChartDataTable from "./components/KeplerChartDataTable";
 const { Text } = Typography;
 
 const ChartComponentContainer = () => {
-  const { query, chart, data, dataForm, customize, customizeForm, queryError } =
+  const { query, chart, data, dataForm, customize, customizeForm } =
     useSelector((state: RootState) => state.kepler);
   const allDatasetMapping = useSelector(
     (state: RootState) => state.datasetMapping
@@ -225,19 +225,17 @@ const ChartComponentContainer = () => {
                 {data.payload?.cachedData && (
                   <Tooltip title={getLanguageLabel("cachedDataMsg")}>
                     <BoslerTag
-                      onClick={() => {
-                        if (queryError?.status === "FINISHED") {
-                          fetchChartData(
-                            false,
-                            chart.id,
-                            query,
-                            dispatch,
-                            undefined,
-                            allDatasetMapping[chart?.datasetId]?.datasetMapping
-                              ?.currentTransaction
-                          );
-                        }
-                      }}
+                      onClick={() =>
+                        fetchChartData(
+                          false,
+                          chart.id,
+                          query,
+                          dispatch,
+                          undefined,
+                          allDatasetMapping[chart?.datasetId]?.datasetMapping
+                            ?.currentTransaction
+                        )
+                      }
                       icon={<RefreshIcon color={"#2D72D2"} size={8} />}
                     >
                       {getLanguageLabel("cached")}
@@ -246,11 +244,7 @@ const ChartComponentContainer = () => {
                 )}
                 {data.payload?.rows !== undefined && (
                   <BoslerTag>
-                    {`${data.payload?.rows} ${getLanguageLabel("rows")} ${
-                      data.payload?.trimmedData
-                        ? " of " + data.payload.totalRows
-                        : ""
-                    }`}{" "}
+                    {`${data.payload?.rows} ${getLanguageLabel("rows")}`}{" "}
                   </BoslerTag>
                 )}
                 <BoslerTag
@@ -296,7 +290,7 @@ const ChartComponentContainer = () => {
           key="1"
           style={{ height: "100%" }}
         >
-          {/* {data.payload?.trimmedData && (
+          {data.payload?.trimmedData && (
             <div
               style={{
                 background: "#137cbd",
@@ -310,7 +304,7 @@ const ChartComponentContainer = () => {
             >
               {getLanguageLabel("dataTrimmedForOptimalPerformance")}
             </div>
-          )} */}
+          )}
           <div className="kepler-container-plane-right-chart">
             {showConfirmationPopup.state && (
               <FilterConfirmationPopup

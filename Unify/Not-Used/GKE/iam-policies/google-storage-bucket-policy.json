@@ -2,7 +2,7 @@
   "bindings": [
     {
       "members": [
-        "serviceAccount:google-storage-sa@bosler-334213.iam.gserviceaccount.com"
+        "serviceAccount:google-storage-sa@orphea-334213.iam.gserviceaccount.com"
       ],
       "role": "roles/storage.admin"
     },

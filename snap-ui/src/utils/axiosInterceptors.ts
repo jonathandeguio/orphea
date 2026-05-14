@@ -1,6 +1,6 @@
 import { notification } from "antd";
 import axios from "axios";
-import { BASE_URL, BOSLER_TOKEN } from "layouts/auth/constants";
+import { BASE_URL, ORPHEA_TOKEN } from "layouts/auth/constants";
 import { getLanguageLabel, isDefined, isEmpty } from "./utilities";
 const uuid = require("uuid");
 
@@ -13,7 +13,7 @@ export const addInterceptors = () => {
       }
 
       config.headers["Authorization"] = `Bearer ${localStorage.getItem(
-        BOSLER_TOKEN
+        ORPHEA_TOKEN
       )}`;
 
       config.baseURL = process.env.REACT_APP_BASE_URL_API;

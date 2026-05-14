@@ -1,4 +1,4 @@
-#!/bin/bash
+!/bin/bash
 # Variables (modify these as needed)
 REDIS_DATA_DIR="/var/lib/redis"
 REDIS_USER="redis"

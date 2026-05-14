@@ -9,7 +9,7 @@ export const NoData = ({
   style,
 }: {
   heading?: string;
-  subHeading?: string | JSX.Element;
+  subHeading?: string;
   icon?: any;
   actionArea?: any;
   style?: any;

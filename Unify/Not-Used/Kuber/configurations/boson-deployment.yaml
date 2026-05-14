@@ -2,7 +2,7 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: boson-pv
-  namespace: bosler
+  namespace: orphea
   labels:
     type: local
 spec:
@@ -12,14 +12,14 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/tmp" # this is for bosler storage which should ideally be in S3
+    path: "/tmp" # this is for orphea storage which should ideally be in S3
 
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: boson-pvc
-  namespace: bosler
+  namespace: orphea
 spec:
   storageClassName: "standard"
   accessModes:
@@ -35,7 +35,7 @@ metadata:
   labels:
     name: boson
   name: boson
-  namespace: bosler
+  namespace: orphea
 spec:
   replicas: 1
   selector:
@@ -52,7 +52,7 @@ spec:
             - -jar
             - -Dspring.profiles.active=kubernetes
             - /app/boson-0.0.1-SNAPSHOT.jar
-          image: rmalik/bosler:boson
+          image: rmalik/orphea:boson
           imagePullPolicy: Always
           name: boson
           ports:
@@ -62,12 +62,12 @@ spec:
             - name: DB_USERNAME
               valueFrom:
                 secretKeyRef:
-                  name: bosler-secret
+                  name: orphea-secret
                   key: boson-db-username
             - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: bosler-secret
+                  name: orphea-secret
                   key: boson-db-password
             - name: DB_HOST
               value: boson-db
@@ -80,15 +80,15 @@ spec:
             - name: MINIO_ACCESS_KEY
               valueFrom:
                 secretKeyRef:
-                  name: bosler-secret
+                  name: orphea-secret
                   key: minio-username
             - name: MINIO_SECRET_KEY
               valueFrom:
                 secretKeyRef:
-                  name: bosler-secret
+                  name: orphea-secret
                   key: minio-password
           volumeMounts:
-            - mountPath: /root/bosler
+            - mountPath: /root/orphea
               name: boson-pv
           workingDir: /app
       imagePullSecrets:
@@ -106,7 +106,7 @@ metadata:
   labels:
     name: boson
   name: boson
-  namespace: bosler
+  namespace: orphea
 spec:
   ports:
     - name: boson

@@ -76,7 +76,7 @@ const XAxisController: React.FC<Props> = (props) => {
                 }}
                 popupMatchSelectWidth={false}
                 variant={"borderless"}
-                options={getTimeGrainOptions(column.type)}
+                options={getTimeGrainOptions()}
               />
             </Form.Item>
           </div>
@@ -84,7 +84,7 @@ const XAxisController: React.FC<Props> = (props) => {
       )}
 
       {/* Sorting Value */}
-      {/* {isDefined(column) && (
+      {isDefined(column) && (
         <div className="metric-subItem">
           <div className="metric-subItem-left">{getLanguageLabel("sort")}</div>
           <div className="metric-subItem-right">
@@ -131,7 +131,7 @@ const XAxisController: React.FC<Props> = (props) => {
             </Form.Item>
           </div>
         </div>
-      )} */}
+      )}
     </>
   );
 };

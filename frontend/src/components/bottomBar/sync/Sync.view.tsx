@@ -1,21 +1,28 @@
+import {
+  Alert,
+  Checkbox,
+  Col,
+  Collapse,
+  Form,
+  message,
+  Row,
+  Select,
+} from "antd";
+import { useForm } from "antd/es/form/Form";
 import { getSourceDetailsAPI } from "Apps/Connect/Connect.api";
 import { initialLinkDetails } from "Apps/Connect/Links/Link.constants";
 import { SourceButtonPopover } from "Apps/Connect/Links/SourceButtonPopover";
 import { ColumnSelectLabel } from "Apps/Kepler/chart/QueryForm/ColumnSelect";
 import { getDatasetColumns } from "Apps/Kepler/dashboard/Dashboard.api";
-import { Checkbox, Col, Form, Row, Select, Tooltip } from "antd";
-import { useForm } from "antd/es/form/Form";
-import { WarningState } from "assets/Illustrations/EmptyState";
 import { AddIcon, RemoveIcon, SyncIcon } from "assets/icons/boslerActionIcons";
-import { DatabaseIcon } from "assets/icons/boslerDataIcons";
-import { BoslerCollapse } from "components/BoslerComponents/BoslerCollapse/BoslerCollapse";
-import BoslerButton, {
-  TBoslerButtonIntent,
-} from "components/BoslerComponents/ButtonComponent/BoslerButton";
-import BoslerInput from "components/BoslerComponents/InputComponent/BoslerInput";
+import { SourceIcon } from "assets/icons/boslerDataIcons";
+import { TrashIcon } from "assets/icons/boslerMiscellaneousIcons";
+import { WarningState } from "assets/Illustrations/EmptyState";
+import UserInfo from "common/components/UserInfo";
+import BoslerButton from "components/BoslerComponents/ButtonComponent/BoslerButton";
+import BoslerLoader from "components/boslerLoader";
 import NoData from "components/CommonUI/NoData";
 import { TDatasetColumn } from "components/Filters/Filters.view";
-import BoslerLoader from "components/boslerLoader";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NULL_UUID } from "utils/Common.constants";
@@ -23,47 +30,183 @@ import {
   generateKey,
   getLanguageLabel,
   getSourceIcon,
+  getTimeDisplay,
   isDefined,
   notEmpty,
 } from "utils/utilities";
 import { openFileExplorerModal } from "../../../redux/ModalSlice";
-import { CreateSyncBtn } from "./CreateSyncButton";
 import {
+  deleteSyncAPI,
   getDatasetSyncAPI,
-  getUnInitializedDataMartsAPI,
+  performDatasetSyncAPI,
   putSyncAPI,
 } from "./Sync.apis";
 import styles from "./Sync.module.scss";
-import { TDatasetSync, TSync, TSyncIndex } from "./Sync.types";
-import { SyncHeader } from "./SyncHeader";
-import { SyncNowBtn } from "./SyncNowButton";
+import BoslerInput from "components/BoslerComponents/InputComponent/BoslerInput";
 
-const SyncBody = ({
+export interface TSync {
+  datasetId: string;
+  branch: string;
+}
+
+export interface TDatasetSync {
+  key: string;
+  id: string | undefined;
+  datasetId: string;
+  branch: string;
+  sourceId: string | undefined;
+  tableName: string;
+  autoSyncOnBuild: boolean;
+  createdAt: number | undefined;
+  createdBy: string | undefined;
+  updatedBy: string | undefined;
+  updatedAt: number | undefined;
+  syncIndexes: TSyncIndex[];
+}
+
+export interface TSyncIndex {
+  key: string;
+  id: undefined | string;
+  columns: string[];
+}
+
+const SyncNowBtn = ({ datasetSync }: { datasetSync: TDatasetSync }) => {
+  const [loading, setLoading] = useState(false);
+  const [intent, setIntent] = useState<"none" | "success" | "dangerous">(
+    "none"
+  );
+  const onClickSync = (e: any) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (!datasetSync.id) {
+      message.error("Sync id not present!");
+      return;
+    }
+    setLoading(true);
+    performDatasetSyncAPI(datasetSync.datasetId, datasetSync.id)
+      .then(() => {
+        setIntent("success");
+      })
+      .catch(() => {
+        setIntent("dangerous");
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+  return (
+    <BoslerButton
+      icon={<SyncIcon />}
+      loading={loading}
+      onClick={onClickSync}
+      intent={intent}
+      disabled={!datasetSync.id}
+    >
+      Sync
+    </BoslerButton>
+  );
+};
+
+const DeleteSyncBtn = ({
   datasetSyncs,
   setDatasetSyncs,
-  key,
   datasetSync,
 }: {
   datasetSyncs: TDatasetSync[];
   setDatasetSyncs: any;
-  key: number;
+  datasetSync: TDatasetSync;
+}) => {
+  const [loading, setLoading] = useState(false);
+  const onClickDeleteSync = () => {
+    if (!datasetSync.id) {
+      message.error("Sync id not present!");
+      return;
+    }
+    setLoading(true);
+    deleteSyncAPI(datasetSync.datasetId, datasetSync.id)
+      .then(() => {
+        setDatasetSyncs(
+          datasetSyncs.filter((sync) => sync.id !== datasetSync.id)
+        );
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+  return (
+    <BoslerButton
+      icon={<TrashIcon />}
+      loading={loading}
+      onClick={onClickDeleteSync}
+      intent={"dangerous"}
+      disabled={!datasetSync.id}
+      icononly
+    />
+  );
+};
+
+const SyncHeader = ({
+  datasetSyncs,
+  setDatasetSyncs,
+  datasetSync,
+}: {
+  datasetSyncs: TDatasetSync[];
+  setDatasetSyncs: any;
+  datasetSync: TDatasetSync;
+}) => {
+  return (
+    <div className={styles.header}>
+      <div className={styles.headerLeft}>
+        <div>{datasetSync.tableName}</div>
+        {datasetSync.updatedBy ? (
+          <UserInfo userId={datasetSync.updatedBy} />
+        ) : null}
+        {datasetSync.updatedAt ? (
+          <div>{getTimeDisplay(datasetSync.updatedAt)}</div>
+        ) : null}
+      </div>
+      <div className={styles.headerRight}>
+        <SyncNowBtn datasetSync={datasetSync} />
+        <DeleteSyncBtn
+          datasetSyncs={datasetSyncs}
+          setDatasetSyncs={setDatasetSyncs}
+          datasetSync={datasetSync}
+        />
+      </div>
+    </div>
+  );
+};
+
+const SyncBody = ({
+  datasetSyncs,
+  setDatasetSyncs,
+  datasetSync,
+}: {
+  datasetSyncs: TDatasetSync[];
+  setDatasetSyncs: any;
   datasetSync: TDatasetSync;
 }) => {
   const [form] = useForm();
   const dispatch = useDispatch();
-  const { sources } = useSelector((state) => (state as $TSFixMe).sourceList);
-  const [intent, setIntent] = useState<TBoslerButtonIntent>("primary");
+  const [intent, setIntent] = useState<"success" | "primary" | "dangerous">(
+    "primary"
+  );
+
   const [newLinkDetails, setNewLinkDetails] = useState({
     ...initialLinkDetails,
   });
+
+  const { sources } = useSelector((state) => (state as $TSFixMe).sourceList);
+
   const [loading, setLoading] = useState(false);
   const [source, setSource] = useState(datasetSync.sourceId);
+  const [sourceName, setSourceName] = useState<string>();
   const [selectedSource, setSelectedSource] = useState(null);
+  const [sourceType, setSourceType] = useState("");
   const [columns, setColumns] = useState([]);
   const [syncIndexes, setSyncIndexes] = useState<TSyncIndex[]>(
     datasetSync.syncIndexes
   );
-  const [errorText, setErrorText] = useState("");
 
   const addSourceDetails = ({ id, path, name, subType }: any) => {
     setNewLinkDetails({
@@ -73,6 +216,7 @@ const SyncBody = ({
 
     const targetSource: any = sources?.find((source: any) => source.id == id);
     setSelectedSource(targetSource);
+    setSourceType(targetSource.type);
   };
 
   const handleDeleteIndex = (key: number) => {
@@ -94,6 +238,7 @@ const SyncBody = ({
 
   const getSourceDetails = (source: string) => {
     getSourceDetailsAPI(source).then(({ data }) => {
+      setSourceName(data.name);
       setSelectedSource(data);
     });
   };
@@ -106,6 +251,7 @@ const SyncBody = ({
     );
     const _columns: any = [];
     data.map((column: any) => {
+      // sync these with BoslerTable and DashboardGridFetcher
       const columnObj = {
         name: column.headerName,
         value: column.headerName,
@@ -121,6 +267,10 @@ const SyncBody = ({
       getSourceDetails(source);
     }
   }, [source]);
+
+  useEffect(() => {
+    getColumns();
+  }, []);
 
   return (
     <div>
@@ -138,31 +288,28 @@ const SyncBody = ({
             simpleSyncIndexes.push(syncIndex.columns);
           });
           const payload = {
-            isDatamartEnabled: false,
             ...datasetSync,
             ...values,
             syncIndexes: simpleSyncIndexes,
           };
-          console.log(payload);
+
           setLoading(true);
           putSyncAPI(payload)
             .then(({ data }) => {
-              console.log("CURRENT : ", datasetSync);
-              console.log("CURENT RESULT : ", data);
               setIntent("success");
               const newDatasetSyncs: TDatasetSync[] = [];
-              datasetSyncs.map((_datasetSync: TDatasetSync, _key: number) => {
-                if (key == _key) {
+              datasetSyncs.map((_datasetSync: TDatasetSync) => {
+                if (_datasetSync.key == datasetSync.key) {
                   newDatasetSyncs.push(data);
                 } else {
                   newDatasetSyncs.push(_datasetSync);
                 }
               });
+
               setDatasetSyncs(newDatasetSyncs);
             })
-            .catch((error) => {
+            .catch(() => {
               setIntent("dangerous");
-              setErrorText(error.response.data.description);
             })
             .finally(() => {
               setLoading(false);
@@ -170,69 +317,65 @@ const SyncBody = ({
         }}
       >
         <Row justify={"space-between"}>
-          {datasetSync.isDataMartSyncSpec != true && (
-            <Col span={6}>
-              <Form.Item
-                label={getLanguageLabel("dataSource")}
-                name="sourceId"
-                rules={[
-                  { required: true, message: "Please input your source!" },
-                ]}
-              >
-                {source ? (
-                  <SourceButtonPopover source={selectedSource}>
-                    <BoslerButton
-                      icon={
-                        selectedSource ? (
-                          getSourceIcon(
-                            (selectedSource as $TSFixMe)["type"],
-                            (selectedSource as $TSFixMe)["dbmsType"]
-                          )
-                        ) : (
-                          <DatabaseIcon />
-                        )
-                      }
-                      onClick={() => {
-                        dispatch(
-                          openFileExplorerModal({
-                            type: ["SOURCE"],
-                            action: (data) => {
-                              addSourceDetails(data);
-                            },
-                            activeId: datasetSync.datasetId,
-                          })
-                        );
-                      }}
-                      intent={notEmpty(selectedSource) ? "success" : "warning"}
-                      icononly
-                    >
-                      {notEmpty(selectedSource)
-                        ? (selectedSource as any)?.name
-                        : "Select Source"}
-                    </BoslerButton>
-                  </SourceButtonPopover>
-                ) : (
+          <Col span={6}>
+            <Form.Item
+              label={getLanguageLabel("dataSource")}
+              name="sourceId"
+              rules={[{ required: true, message: "Please input your source!" }]}
+            >
+              {source ? (
+                <SourceButtonPopover source={selectedSource}>
                   <BoslerButton
+                    icon={
+                      selectedSource ? (
+                        getSourceIcon(
+                          (selectedSource as $TSFixMe)["type"],
+                          (selectedSource as $TSFixMe)["dbmsType"]
+                        )
+                      ) : (
+                        <SourceIcon />
+                      )
+                    }
                     onClick={() => {
                       dispatch(
                         openFileExplorerModal({
                           type: ["SOURCE"],
                           action: (data) => {
-                            form.setFieldValue("sourceId", data.id);
-                            setSource(data.id);
+                            addSourceDetails(data);
                           },
                           activeId: datasetSync.datasetId,
                         })
                       );
                     }}
-                    intent={source ? "success" : "none"}
-                    icon={<DatabaseIcon />}
-                    icononly
-                  />
-                )}
-              </Form.Item>
-            </Col>
-          )}
+                    intent={notEmpty(selectedSource) ? "success" : "warning"}
+                  >
+                    {notEmpty(selectedSource)
+                      ? (selectedSource as any)?.name
+                      : "Select Source"}
+                  </BoslerButton>
+                </SourceButtonPopover>
+              ) : (
+                <BoslerButton
+                  onClick={() => {
+                    dispatch(
+                      openFileExplorerModal({
+                        type: ["SOURCE"],
+                        action: (data) => {
+                          form.setFieldValue("sourceId", data.id);
+                          setSource(data.id);
+                        },
+                        activeId: datasetSync.datasetId,
+                      })
+                    );
+                  }}
+                  intent={source ? "success" : "none"}
+                  icon={<SourceIcon />}
+                >
+                  {sourceName}
+                </BoslerButton>
+              )}
+            </Form.Item>
+          </Col>
           <Col span={18}>
             <Form.Item
               label={getLanguageLabel("table")}
@@ -258,13 +401,9 @@ const SyncBody = ({
                   const _syncIndexes = [...syncIndexes];
                   _syncIndexes[_key].columns = option;
                   setSyncIndexes(_syncIndexes);
-                  console.log(_syncIndexes);
-                  console.log(option);
-                  console.log(_syncIndexes[_key].columns);
                 }}
                 optionLabelProp="label"
                 options={columns}
-                onFocus={() => getColumns()}
               >
                 {columns.map((option: TDatasetColumn) => (
                   <Select.Option value={option.value}>
@@ -282,75 +421,101 @@ const SyncBody = ({
                 icon={<RemoveIcon />}
                 icononly
                 minimal
-              />
+              >
+                DELETE
+              </BoslerButton>
             </div>
           );
         })}
 
         <div className={styles.syncBodyBottomBtns}>
-          {datasetSync.isDataMartSyncSpec == true && (
-            <BoslerButton
-              icon={<AddIcon />}
-              onClick={handleAddIndex}
-              size={"small"}
-              minimal
-            >
-              {getLanguageLabel("addIndex")}
-            </BoslerButton>
-          )}
+          <BoslerButton
+            icon={<AddIcon />}
+            onClick={handleAddIndex}
+            size={"small"}
+            minimal
+          >
+            {getLanguageLabel("addIndex")}
+          </BoslerButton>
         </div>
+
         <br />
         <div className={styles.syncBodyBottomBtns}>
           <Form.Item name="autoSyncOnBuild" valuePropName="checked">
             <Checkbox>{getLanguageLabel("autoSyncOnDatasetBuild")}</Checkbox>
           </Form.Item>
-          <div className="--flex-row-end --flex-gap10">
-            <Form.Item>
-              <SyncNowBtn datasetSync={datasetSync} />
-            </Form.Item>
-            <Form.Item>
-              {intent === "dangerous" && (
-                <div className={styles.errorMessage}>{errorText}</div>
-              )}
-              <Tooltip title="Syncs the datasets and updates the config.">
-                <BoslerButton
-                  htmlType="submit"
-                  icon={<SyncIcon />}
-                  intent={intent}
-                  loading={loading}
-                >
-                  {datasetSync.id ? "update & sync" : "create & sync"}
-                </BoslerButton>
-              </Tooltip>
-            </Form.Item>
-          </div>
+          <Form.Item
+            style={{
+              width: "fit-content",
+            }}
+          >
+            <BoslerButton
+              htmlType="submit"
+              icon={<SyncIcon />}
+              intent={intent}
+              loading={loading}
+            >
+              {datasetSync.id ? "update & sync" : "create & sync"}
+            </BoslerButton>
+          </Form.Item>
         </div>
       </Form>
     </div>
   );
 };
 
+const CreateSyncBtn = ({
+  datasetId,
+  branch,
+  datasetSyncs,
+  setDatasetSyncs,
+}: {
+  datasetId: string;
+  branch: string;
+  datasetSyncs: TDatasetSync[];
+  setDatasetSyncs: any;
+}) => {
+  const createNewSync = () => {
+    const newSync: TDatasetSync = {
+      key: generateKey("sync"),
+      tableName: "untitled_table",
+      id: undefined,
+      datasetId: datasetId,
+      branch: branch,
+      sourceId: undefined,
+      autoSyncOnBuild: false,
+      createdAt: undefined,
+      createdBy: undefined,
+      updatedBy: undefined,
+      updatedAt: undefined,
+      syncIndexes: [],
+    };
+    setDatasetSyncs([...datasetSyncs, newSync]);
+  };
+
+  return (
+    <Alert
+      message={getLanguageLabel("databaseSync")}
+      description={getLanguageLabel("createSyncViaSelectingSource")}
+      type="info"
+      showIcon
+      action={
+        <BoslerButton onClick={() => createNewSync()} icon={<AddIcon />}>
+          {getLanguageLabel("create")}
+        </BoslerButton>
+      }
+    />
+  );
+};
+
 const DatasetSync = ({ datasetId, branch }: TSync) => {
   const [datasetSyncs, setDatasetSyncs] = useState<TDatasetSync[]>([]);
   const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    if (isDefined(datasetId) && isDefined(branch)) {
-      getDatasetSyncs();
-    }
-  }, [datasetId, branch]);
-
   const getDatasetSyncs = () => {
     setLoading(true);
     getDatasetSyncAPI(datasetId, branch)
       .then(({ data }) => {
-        getUnInitializedDataMartsAPI(datasetId, branch)
-          .then(({ data: unInitializedDataMartSyncSpecs }) => {
-            setDatasetSyncs(data.concat(unInitializedDataMartSyncSpecs));
-          })
-          .catch(() => {
-            setDatasetSyncs(data);
-          });
+        setDatasetSyncs(data);
       })
       .catch(() => {})
       .finally(() => {
@@ -358,9 +523,16 @@ const DatasetSync = ({ datasetId, branch }: TSync) => {
       });
   };
 
+  useEffect(() => {
+    if (isDefined(datasetId) && isDefined(branch)) {
+      getDatasetSyncs();
+    }
+  }, [datasetId, branch]);
+
   if (loading) {
     return <BoslerLoader />;
   }
+
   return (
     <div className={styles.wrapper}>
       <CreateSyncBtn
@@ -375,37 +547,26 @@ const DatasetSync = ({ datasetId, branch }: TSync) => {
           heading={getLanguageLabel("noSyncsPresent")}
         />
       ) : (
-        <>
+        <Collapse>
           {datasetSyncs.map((datasetSync: TDatasetSync, _key: number) => (
-            <div
-              className={styles.requestContainer}
-              style={{
-                background: datasetSync.isDataMartSyncSpec
-                  ? "var(--bosler-bkg-color-muted)"
-                  : "auto",
-              }}
-            >
-              <BoslerCollapse
-                header={
-                  <SyncHeader
-                    datasetSync={datasetSync}
-                    datasetSyncs={datasetSyncs}
-                    setDatasetSyncs={setDatasetSyncs}
-                  />
-                }
-                key={datasetSync.id}
-                collapsible={"HEADER"}
-              >
-                <SyncBody
+            <Collapse.Panel
+              header={
+                <SyncHeader
                   datasetSync={datasetSync}
                   datasetSyncs={datasetSyncs}
                   setDatasetSyncs={setDatasetSyncs}
-                  key={_key}
                 />
-              </BoslerCollapse>
-            </div>
+              }
+              key={_key}
+            >
+              <SyncBody
+                datasetSync={datasetSync}
+                datasetSyncs={datasetSyncs}
+                setDatasetSyncs={setDatasetSyncs}
+              />
+            </Collapse.Panel>
           ))}
-        </>
+        </Collapse>
       )}
     </div>
   );

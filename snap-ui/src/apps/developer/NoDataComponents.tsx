@@ -1,9 +1,9 @@
 import { Typography } from "antd";
 import { SearchEmptyState } from "assets/Illustrations/EmptyState";
-import { SyncIcon } from "assets/icons/boslerActionIcons";
+import { SyncIcon } from "assets/icons/orpheaActionIcons";
 import React from "react";
 import NoData from "components/NoData";
-import BoslerButton from "components/ButtonComponent/BoslerButton";
+import OrpheaButton from "components/ButtonComponent/OrpheaButton";
 
 const { Title } = Typography;
 const NoDataComponents = () => {
@@ -15,9 +15,9 @@ const NoDataComponents = () => {
         subHeading="Add charts from the section on right."
         icon={<SearchEmptyState size={"90px"} />}
         actionArea={
-          <BoslerButton icon={<SyncIcon spin={false} />} borderless>
+          <OrpheaButton icon={<SyncIcon spin={false} />} borderless>
             Reload
-          </BoslerButton>
+          </OrpheaButton>
         }
       />
     </>

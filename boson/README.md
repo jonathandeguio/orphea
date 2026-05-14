@@ -11,7 +11,7 @@ To use this project, you need postgres locally installed and it should have a da
 
 1. Clone the project
 ```bash
-  git clone https://github.com/Bosler-io/boson
+  git clone https://github.com/Orphea-io/boson
 ```
 
 2. Install dependencies:
@@ -46,7 +46,7 @@ To use this project, you need postgres locally installed and it should have a da
 
 7. Name it as boson
 
-8. Under 'build and run' select 'Azul Zulu 11', module-cp as boson.main and main class as io.bosler.boson
+8. Under 'build and run' select 'Azul Zulu 11', module-cp as boson.main and main class as io.orphea.boson
 
 9. Add the following string in environment variables
 

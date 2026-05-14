@@ -17,9 +17,9 @@ import dayjs from "dayjs";
 import dayLocaleData from "dayjs/plugin/localeData";
 import { User } from "global";
 import SockJS from "sockjs-client";
-import { KeyCommandIcon } from "../assets/icons/boslerInterfaceIcons";
-import { SingleChevronUpIcon } from "../assets/icons/boslerNavigationIcon";
-import { BoslerConfig } from "../config";
+import { KeyCommandIcon } from "../assets/icons/orpheaInterfaceIcons";
+import { SingleChevronUpIcon } from "../assets/icons/orpheaNavigationIcon";
+import { OrpheaConfig } from "../config";
 import { AllLabels } from "./language";
 
 dayjs.extend(dayLocaleData);
@@ -637,10 +637,10 @@ const copyToClipboard = async (
  * @returns
  */
 const getColorTheme = (themeName: string) => {
-  if (BoslerConfig.colorTheme.hasOwnProperty(themeName)) {
-    return BoslerConfig.colorTheme[themeName];
+  if (OrpheaConfig.colorTheme.hasOwnProperty(themeName)) {
+    return OrpheaConfig.colorTheme[themeName];
   } else {
-    return BoslerConfig.colorTheme.custom;
+    return OrpheaConfig.colorTheme.custom;
   }
 };
 
@@ -713,7 +713,7 @@ const getSQLFormatLink = () => {
     ? location.protocol === "https:"
       ? "https://" + location.host
       : "http://" + location.host
-    : "http://staging.bosler.io";
+    : "http://staging.orphea.io";
 };
 
 const isIpPlatform = () => {

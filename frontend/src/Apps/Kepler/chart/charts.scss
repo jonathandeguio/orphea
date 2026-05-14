@@ -139,12 +139,10 @@
 
 .chart-container {
   .data-zoom-reset-icon {
-    margin-top: 40px;
     opacity: 0;
   }
   &:hover {
     .data-zoom-reset-icon {
-      margin-top: 40px;
       opacity: 1;
     }
   }

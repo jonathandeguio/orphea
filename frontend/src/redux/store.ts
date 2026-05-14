@@ -9,7 +9,6 @@ import {
   isUserAdminReducer,
   userByIdReducer,
   userDetailsReducer,
-  userLoginConfig,
   userLoginReducer,
 } from "./reducers/userReducers";
 
@@ -109,11 +108,10 @@ import indexesReducer from "./fileIndexSlice";
 import licenseInfoSlice from "./licenseInfoSlice";
 import { platformConfigReducer } from "./reducers/platformSettingsReducer";
 import { resourcePermissionReducer } from "./reducers/resourcePermissionReducer";
-import { apiReducer } from "./reducers/userInfoReducer";
 import repositoryEditorReducer from "./repositoryEditorSlice";
 import sparkConfigSlice from "./sparkSlice";
 import IndexedUsersReducer from "./usersSlice";
-import webhookSlice from "./webhookSlice";
+import { apiReducer } from "./reducers/userInfoReducer";
 
 const store = configureStore({
   reducer: {
@@ -220,10 +218,7 @@ const store = configureStore({
     bottomBar: BottomBarReducer,
     license: licenseInfoSlice,
 
-    webhook: webhookSlice,
-
     cache: apiReducer,
-    userLoginConfig: userLoginConfig,
   },
   middleware: (getDefaultMiddleware: any) =>
     getDefaultMiddleware({

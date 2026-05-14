@@ -1,10 +1,10 @@
 import { DragEndEvent } from "@dnd-kit/core";
 import { arrayMove } from "@dnd-kit/sortable";
-import { Typography } from "antd";
+import { Collapse, Typography } from "antd";
 import { AddIcon, CrossIcon } from "assets/icons/boslerActionIcons";
+import { SingleChevronDownIcon } from "assets/icons/boslerNavigationIcon";
 import SortableWithDrag from "common/components/SortableWithDrag";
 import { TSortableWithDragItem } from "common/components/SortableWithDrag/SortableWithDrag";
-import { BoslerCollapse } from "components/BoslerComponents/BoslerCollapse/BoslerCollapse";
 import React, { useEffect, useState } from "react";
 import { getLanguageLabel, openNotification } from "utils/utilities";
 import ColumnSelect from "./ColumnSelect";
@@ -55,13 +55,11 @@ const HierarchyItem = ({ field, remove }: IHierarchyItem) => {
 };
 export const HierarchyController = ({
   form,
-  header,
   remove,
   fields,
   add,
   move,
 }: {
-  header: any;
   form: any;
   remove: any;
   fields: any;
@@ -102,15 +100,20 @@ export const HierarchyController = ({
   };
 
   return (
-   
-      <BoslerCollapse
-      collapsible="HEADER"
-      key="collapsibleLimitAndSorting"
-      defaultCollpased={false}
-      header={<div className="query_item__heading">{header}</div>}
+    <Collapse
+      ghost
+      className="chartCollapse"
+      collapsible="icon"
+      defaultActiveKey={["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]}
+      expandIcon={(props) => (
+        <div className={`rotate ${props.isActive ? "" : "down"}`}>
+          <SingleChevronDownIcon />
+        </div>
+      )}
     >
-    <>
-
+      <Collapse.Panel key="1" header={getLanguageLabel("hierarchy")}>
+        <div className="sideDivider">
+          <div className="sideDivider-body">
             <SortableWithDrag items={items} handleDragEnd={handleDragEnd} />
             <div className="flexEnd">
               <div
@@ -130,10 +133,12 @@ export const HierarchyController = ({
                 }}
               >
                 <AddIcon />
-                {getLanguageLabel("groupBy")}
+                {getLanguageLabel("hierarchy")}
               </div>
             </div>
-        </></BoslerCollapse>
-      
+          </div>
+        </div>
+      </Collapse.Panel>
+    </Collapse>
   );
 };

@@ -22,19 +22,19 @@ Create new:
 
 ```
 certbot certonly --webroot -w /letsencrypt \
--d snap.bosler.io \
--d aurora.bosler.io \
--d orion.bosler.io \
--d nexus.bosler.io \
--d bora.bosler.io \
--d buran.bosler.io \
--d elara.bosler.io \
--d pulsar.bosler.io \
--d saros.bosler.io \
--d nova.bosler.io \
--d solara.bosler.io \
--d rado.bosler.io \
--d aldo.bosler.io
+-d snap.orphea.io \
+-d aurora.orphea.io \
+-d orion.orphea.io \
+-d nexus.orphea.io \
+-d bora.orphea.io \
+-d buran.orphea.io \
+-d elara.orphea.io \
+-d pulsar.orphea.io \
+-d saros.orphea.io \
+-d nova.orphea.io \
+-d solara.orphea.io \
+-d rado.orphea.io \
+-d aldo.orphea.io
 
 ```
 
@@ -48,7 +48,7 @@ Then update kubernetes and reload ingress
 
 ```
 cd certs/live/
-cd demo.bosler.io/
+cd demo.orphea.io/
 
 cat privkey.pem|base64| sed 's/^/    /'
 

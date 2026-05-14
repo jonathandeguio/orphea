@@ -1,10 +1,10 @@
-import { BoslerIcon } from "assets/icons/boslerMiscellaneousIcons";
+import { OrpheaIcon } from "assets/icons/orpheaMiscellaneousIcons";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { ParticleApp } from "utils/ParticleApp";
 import { getLanguageLabel, isIpPlatform } from "utils/utilities";
-import { ArrowRightIcon } from "assets/icons/boslerNavigationIcon";
+import { ArrowRightIcon } from "assets/icons/orpheaNavigationIcon";
 import {
   setTokenInvalid,
   setTokenValid,
@@ -13,7 +13,7 @@ import { RootState, ThunkAppDispatch } from "redux/types/store";
 import Loading from "errors/Loading";
 import { BASE_URL } from "./constants";
 import { ping } from "../app/App.api";
-import BoslerButton from "components/ButtonComponent/BoslerButton";
+import OrpheaButton from "components/ButtonComponent/OrpheaButton";
 
 const LoginError = () => {
   const navigate = useNavigate();
@@ -108,13 +108,13 @@ const LoginError = () => {
             />
           </div>
           <div className="login-icon">
-            {!isIpPlatform() && <BoslerIcon size={"15vw"} />}
+            {!isIpPlatform() && <OrpheaIcon size={"15vw"} />}
 
-            {/* <div className="login-icon-bosler">BOSLER</div> */}
+            {/* <div className="login-icon-orphea">ORPHEA</div> */}
             <h3>{getLanguageLabel("sessionExpired")}</h3>
           </div>
 
-          <BoslerButton
+          <OrpheaButton
             key="submit"
             onClick={() => {
               window.open(
@@ -128,7 +128,7 @@ const LoginError = () => {
             intent="action"
           >
             {getLanguageLabel("login")}
-          </BoslerButton>
+          </OrpheaButton>
         </div>
       </div>
     </>

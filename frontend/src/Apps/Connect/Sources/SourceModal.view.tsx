@@ -1,14 +1,4 @@
-import {
-  Card,
-  Col,
-  Input,
-  ModalProps,
-  Row,
-  Select,
-  Switch,
-  Tag,
-  Typography,
-} from "antd";
+import { Card, Col, Input, Row, Select, Switch, Tag, Typography } from "antd";
 import axios from "axios";
 import BoslerButton from "components/BoslerComponents/ButtonComponent/BoslerButton";
 import BoslerInput from "components/BoslerComponents/InputComponent/BoslerInput";
@@ -44,53 +34,37 @@ import { listAgents } from "../../../redux/actions/agentActions";
 import { listSources } from "../../../redux/actions/sourceActions";
 import { ThunkAppDispatch } from "../../../redux/types/store";
 import { handleConnectUpdateAPI } from "../Connect.api";
-import { SourceAuthTypeEnum } from "../Enums/JDBCSourceAuthTypeEnum";
-import { JDBCSourceTypeEnum } from "../Enums/JDBCSourceTypeEnum";
+import { SourceAuthTypeEnum } from "../Enums/SourceAuthTypeEnum";
 import { SourceTypeEnum } from "../Enums/SourceTypeEnum";
-import RestAPIConnector from "./RestAPIConnector/RestAPIConnector";
-import { ISourceConfig } from "./Source";
 import { connectors, initialSourceDetails } from "./Source.constants";
 import { isSourceConfigValid } from "./Source.utils";
 import { TestConnectionButton } from "./TestConnection.view";
 
 const { Text } = Typography;
-
-interface ISelecetedConnector {
-  type: string | undefined;
-  icon: string | undefined;
-}
-interface IProps extends ModalProps {
-  isVisible: boolean;
-  setIsVisible: any;
-  defaultSourceDetails?: ISourceConfig;
-  updateSource?: () => void;
-  defaultParent?: string;
-}
+const { Option } = Select;
 
 const SourceModal = ({
   isVisible,
   setIsVisible,
-  defaultSourceDetails,
-  updateSource,
+  updateDetails,
   defaultParent,
-}: IProps) => {
+}: any) => {
   const dispatch = useDispatch<ThunkAppDispatch>();
   const [searchText, setSearchText] = useState("");
 
-  const initialConnector: ISelecetedConnector = {
-    type: undefined,
-    icon: undefined,
+  const initialConnector = {
+    type: null,
+    icon: null,
   };
 
-  const [selectedConnector, setSelectedConnector] =
-    useState<ISelecetedConnector>({
-      ...initialConnector,
-    });
+  const [selectedConnector, setSelectedConnector] = useState({
+    ...initialConnector,
+  });
 
   const [filteredConnectors, setFilteredConnectors] = useState(connectors);
 
   const selectConnector = (icon: any, type: any, subType: any) => {
-    if (type == SourceTypeEnum.JDBC) {
+    if (type == "jdbc") {
       setNewSourceDetails({
         ...newSourceDetails,
         dbmsType: subType,
@@ -112,11 +86,10 @@ const SourceModal = ({
 
   const [newSourceDetails, setNewSourceDetails] = useState({
     ...initialSourceDetails,
-    ...defaultSourceDetails,
   });
 
   const [selectedParent, setSelectedParent] = useState(
-    defaultParent ? defaultParent : null
+    updateDetails ? updateDetails.parent.name : null
   );
   const { getFileIndex, fetchResource } = useFileExplorerService();
 
@@ -126,6 +99,7 @@ const SourceModal = ({
     setNewSourceDetails({ ...newSourceDetails, parent: id });
     setSelectedParent(name);
   };
+
   const resetState = () => {
     setIsVisible(false);
     setSelectedParent(null);
@@ -165,7 +139,6 @@ const SourceModal = ({
     axios
       .post(`/connect/source/create`, JSON.stringify(newSourceDetails))
       .then(({ data }) => {
-        console.log("DATA", data);
         fetchResource(data.id);
         dispatch(listSources());
         resetState();
@@ -173,7 +146,6 @@ const SourceModal = ({
   };
 
   const handleUpdate = async () => {
-    console.log("UPDATE CALLING : ", newSourceDetails);
     if (!isSourceConfigValid(newSourceDetails)) {
       openNotification(
         "Details incomplete",
@@ -185,9 +157,17 @@ const SourceModal = ({
 
     const body = {
       ...newSourceDetails,
+      sourceConfig: updateDetails.sourceDetails.sourceConfig,
+      id: updateDetails.sourceDetails.id,
+      name: newSourceDetails.name,
+      description: newSourceDetails.description,
+      parent: newSourceDetails.parent,
+      directLoad: newSourceDetails.directLoad,
+      agentId: newSourceDetails.agentId,
     };
     handleConnectUpdateAPI("source", JSON.stringify(body)).then(() => {
-      updateSource?.();
+      dispatch(listSources());
+      updateDetails.updateSource();
       resetState();
     });
   };
@@ -202,20 +182,21 @@ const SourceModal = ({
   }, [defaultParent]);
 
   useEffect(() => {
-    if (defaultSourceDetails) {
+    if (updateDetails) {
+      setNewSourceDetails({ ...updateDetails.sourceDetails });
       setSelectedConnector({
         type:
-          defaultSourceDetails.type != SourceTypeEnum.JDBC
-            ? defaultSourceDetails.type
-            : defaultSourceDetails.dbmsType,
+          updateDetails.sourceDetails != "jdbc"
+            ? updateDetails.sourceDetails.type
+            : updateDetails.sourceDetails.dbmsType,
         icon: getSourceIcon(
-          defaultSourceDetails.type,
-          defaultSourceDetails.dbmsType
+          updateDetails.sourceDetails.type,
+          updateDetails.sourceDetails?.dbmsType
         ) as any,
       });
-      setSelectedParent(defaultSourceDetails.parent);
+      setSelectedParent(updateDetails.parent.name);
     }
-  }, [defaultSourceDetails]);
+  }, [updateDetails]);
 
   useEffect(() => {
     const newFilteredConnectors = connectors.filter((connector: any) =>
@@ -223,7 +204,7 @@ const SourceModal = ({
     );
     setFilteredConnectors(newFilteredConnectors);
   }, [searchText]);
-
+  console.log(newSourceDetails, selectedConnector);
   return (
     <>
       <BoslerModal
@@ -279,11 +260,11 @@ const SourceModal = ({
           selectedConnector.type && (
             <BoslerButton
               intent="primary"
-              onClick={newSourceDetails.id ? handleUpdate : handleOk}
+              onClick={updateDetails ? handleUpdate : handleOk}
               icon={<TickIcon />}
               textTransform="none"
             >
-              {newSourceDetails.id
+              {updateDetails
                 ? getLanguageLabel("update")
                 : getLanguageLabel("create")}
             </BoslerButton>
@@ -349,7 +330,6 @@ const SourceModal = ({
                     style={
                       isDefined(connector.disabled)
                         ? {
-                            opacity: 0.5,
                             cursor: "not-allowed",
                             border: "1px dotted red",
                           }
@@ -509,7 +489,7 @@ const SourceModal = ({
                     />
                   </Col>
                 </Row>
-                {newSourceDetails.dbmsType == JDBCSourceTypeEnum.SNOWFLAKE && (
+                {newSourceDetails.dbmsType == SourceTypeEnum.SNOWFLAKE && (
                   <Row
                     justify={"space-between"}
                     align="middle"
@@ -559,7 +539,7 @@ const SourceModal = ({
                   </Col>
                 </Row>
 
-                {newSourceDetails.dbmsType == JDBCSourceTypeEnum.SNOWFLAKE && (
+                {newSourceDetails.dbmsType == SourceTypeEnum.SNOWFLAKE && (
                   <Row
                     justify={"space-between"}
                     align="middle"
@@ -587,7 +567,7 @@ const SourceModal = ({
                 <div className="BoslerHeader1">
                   {getLanguageLabel("authentication")}
                 </div>
-                {newSourceDetails.dbmsType == JDBCSourceTypeEnum.SNOWFLAKE && (
+                {newSourceDetails.dbmsType == SourceTypeEnum.SNOWFLAKE && (
                   <>
                     <Row
                       justify={"space-between"}
@@ -759,7 +739,7 @@ const SourceModal = ({
                   </>
                 )}
 
-                {newSourceDetails.dbmsType == JDBCSourceTypeEnum.SNOWFLAKE && (
+                {newSourceDetails.dbmsType == SourceTypeEnum.SNOWFLAKE && (
                   <Row
                     justify={"space-between"}
                     align="middle"
@@ -787,10 +767,81 @@ const SourceModal = ({
             )}
 
             {newSourceDetails.type === "rest" && (
-              <RestAPIConnector
-                newSourceDetails={newSourceDetails}
-                setNewSourceDetails={setNewSourceDetails}
-              />
+              <>
+                <Row
+                  justify={"space-between"}
+                  align="middle"
+                  style={{ marginTop: "10px" }}
+                  gutter={[16, 16]}
+                >
+                  <Col span={8}>
+                    <Text>{getLanguageLabel("token")}</Text>
+                  </Col>
+                  <Col span={16}>
+                    <BoslerInput
+                      onChange={(e) =>
+                        setNewSourceDetails({
+                          ...newSourceDetails,
+                          token: e.target.value,
+                        })
+                      }
+                      value={newSourceDetails.token}
+                      required
+                    />
+                  </Col>
+                </Row>
+
+                <Row
+                  justify={"space-between"}
+                  align="middle"
+                  style={{ marginTop: "10px" }}
+                  gutter={[16, 16]}
+                >
+                  <Col span={8}>
+                    <Text>URL</Text>
+                  </Col>
+                  <Col span={16}>
+                    <BoslerInput
+                      onChange={(e) =>
+                        setNewSourceDetails({
+                          ...newSourceDetails,
+                          url: e.target.value,
+                        })
+                      }
+                      value={newSourceDetails.url}
+                      required
+                    />
+                  </Col>
+                </Row>
+
+                <Row
+                  justify={"space-between"}
+                  align="middle"
+                  style={{ marginTop: "10px" }}
+                  gutter={[16, 16]}
+                >
+                  <Col span={8}>
+                    <Text>{getLanguageLabel("method")}</Text>
+                  </Col>
+                  <Col span={16}>
+                    <Select
+                      placeholder={getLanguageLabel("method")}
+                      onChange={(e) =>
+                        setNewSourceDetails({
+                          ...newSourceDetails,
+                          method: e,
+                        })
+                      }
+                      value={newSourceDetails.method}
+                    >
+                      <Option value={"GET"}>{"GET"}</Option>
+                      <Option value={"POST"}>{"POST"}</Option>
+                      <Option value={"PUT"}>{"PUT"}</Option>
+                      <Option value={"DELETE"}>{"DELETE"}</Option>
+                    </Select>
+                  </Col>
+                </Row>
+              </>
             )}
 
             {newSourceDetails.type === "FOLDER" && (
@@ -817,103 +868,6 @@ const SourceModal = ({
                   />
                 </Col>
               </Row>
-            )}
-            {newSourceDetails.type === "SHAREPOINT" && (
-              <>
-                <Row
-                  justify={"space-between"}
-                  align="middle"
-                  style={{ marginTop: "10px" }}
-                  gutter={[16, 16]}
-                >
-                  <Col span={8}>
-                    <Text>{getLanguageLabel("url")}</Text>
-                  </Col>
-                  <Col span={16}>
-                    <BoslerInput
-                      placeholder="URL"
-                      value={newSourceDetails.url}
-                      required
-                      onChange={(e) =>
-                        setNewSourceDetails({
-                          ...newSourceDetails,
-                          url: e.target.value,
-                        })
-                      }
-                    />
-                  </Col>
-                </Row>
-                <Row
-                  justify={"space-between"}
-                  align="middle"
-                  style={{ marginTop: "10px" }}
-                  gutter={[16, 16]}
-                >
-                  <Col span={8}>
-                    <Text>{getLanguageLabel("tenantId")}</Text>
-                  </Col>
-                  <Col span={16}>
-                    <BoslerInput
-                      placeholder="Tenant Id"
-                      value={newSourceDetails.tenantId}
-                      required
-                      onChange={(e) =>
-                        setNewSourceDetails({
-                          ...newSourceDetails,
-                          tenantId: e.target.value,
-                        })
-                      }
-                    />
-                  </Col>
-                </Row>
-
-                <Row
-                  justify={"space-between"}
-                  align="middle"
-                  style={{ marginTop: "10px" }}
-                  gutter={[16, 16]}
-                >
-                  <Col span={8}>
-                    <Text>{getLanguageLabel("clientId")}</Text>
-                  </Col>
-                  <Col span={16}>
-                    <BoslerInput
-                      placeholder="Client Id"
-                      value={newSourceDetails.clientId}
-                      required
-                      onChange={(e) =>
-                        setNewSourceDetails({
-                          ...newSourceDetails,
-                          clientId: e.target.value,
-                        })
-                      }
-                    />
-                  </Col>
-                </Row>
-                <Row
-                  justify={"space-between"}
-                  align="middle"
-                  style={{ marginTop: "10px" }}
-                  gutter={[16, 16]}
-                >
-                  <Col span={8}>
-                    <Text>{getLanguageLabel("clientSecret")}</Text>
-                  </Col>
-                  <Col span={16}>
-                    <BoslerInput
-                      placeholder="Client Secret"
-                      value={newSourceDetails.clientSecret}
-                      required
-                      onChange={(e) =>
-                        setNewSourceDetails({
-                          ...newSourceDetails,
-                          clientSecret: e.target.value,
-                        })
-                      }
-                    />
-                  </Col>
-                </Row>
-              </>
             )}
 
             <div className="BoslerHeader1">

@@ -7,7 +7,6 @@ import {
 import { CSS } from "@dnd-kit/utilities";
 import { Tabs, TabsProps } from "antd";
 import React from "react";
-import "./DraggableTabs.scss";
 
 interface IProps extends TabsProps {
   isDraggable: boolean;

@@ -204,23 +204,3 @@
     color: #0669bb80;
   }
 }
-
-.resizablePane-collapser-box-button-right {
-  display: block !important;
-}
-.mobile-screen-header {
-  @media (max-width: 768px) {
-    display: block;
-  }
-  @media (min-width: 769px) {
-    display: none;
-  }
-}
-.desktop-screen-header {
-  @media (max-width: 768px) {
-    display: none;
-  }
-  @media (min-width: 769px) {
-    display: flex;
-  }
-}

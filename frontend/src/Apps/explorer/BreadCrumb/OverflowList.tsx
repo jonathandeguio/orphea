@@ -55,18 +55,10 @@ export const OverflowList: React.FC<Props> = ({
                       if (!hasLast || index + 1 !== overflowList.length) {
                         if (isDefined(onClick)) {
                           onClick(listItem.id);
-                          console.log("NOT HERE");
                         } else {
-                          console.log("here", listItem);
-                          if (listItem.type === "PROJECT") {
-                            navigate(
-                              `/portal/kitab/folder/${listItem.id}?activeId=${listItem.id}`
-                            );
-                          } else {
-                            navigate(
-                              `/portal/kitab/folder/${listItem.project}?activeId=${listItem.id}`
-                            );
-                          }
+                          navigate(
+                            `/portal/kitab/folder/${listItem.project}?activeId=${listItem.id}`
+                          );
                         }
                       }
                       setDisplayOverflow(false);

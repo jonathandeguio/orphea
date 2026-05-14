@@ -1,4 +1,4 @@
-import { JDBCSourceTypeEnum } from "Apps/Connect/Enums/JDBCSourceTypeEnum";
+import { SourceTypeEnum } from "Apps/Connect/Enums/SourceTypeEnum";
 import { IDatasetMetaData } from "Apps/Dataset/DatasetDetail";
 import { LinkIcon, SparklesIcon } from "assets/icons/boslerActionIcons";
 import {
@@ -44,33 +44,18 @@ import {
   FolderIcon,
   FolderOpen2Icon,
 } from "assets/icons/boslerFileIcons";
-import {
-  APIIcon,
-  CalendarIcon,
-  MapLegendIcon,
-} from "assets/icons/boslerInterfaceIcons";
+import { CalendarIcon, MapLegendIcon } from "assets/icons/boslerInterfaceIcons";
 import { HelpIcon, MonitorIcon } from "assets/icons/boslerMiscellaneousIcons";
-import {
-  AccessIcon,
-  ExcelIcon,
-  OneNoteIcon,
-  OutlookIcon,
-  PowerPointIcon,
-  PublisherIcon,
-  WordIcon,
-} from "assets/icons/boslerNavigationIcon";
 import { TableCellIcon, TableIcon } from "assets/icons/boslerTableIcons";
 import { CONNECT } from "components/Builds/Builds.constants";
-import React, { ReactNode, useEffect, useState } from "react";
+import React from "react";
 import { isDefined, notEmpty } from "utils/utilities";
-import { useNavigateHelper } from "./explorer.hooks";
 
 export enum ResourceTypeEnum {
   FILE = "FILE",
   FOLDER = "FOLDER",
   CHART = "CHART",
   PROJECT = "PROJECT",
-  NOCODE = "NOCODE",
   REPOSITORY = "REPOSITORY",
   DASHBOARD = "DASHBOARD",
   AGENT = "AGENT",
@@ -83,7 +68,6 @@ export enum ResourceTypeEnum {
   SNOWFLAKESOURCE = "SNOWFLAKESOURCE",
   FILESYSTEMSOURCE = "FILESYSTEMSOURCE",
   LINK = "LINK",
-  WEBHOOK = "WEBHOOK",
   DATASET = "DATASET",
   CONNECT = "CONNECT",
 }
@@ -98,7 +82,7 @@ export enum ResourceSubTypeEnum {
   PARQUET = "PARQUET",
   CSV = "CSV",
   XLS = "XLS",
-  JSON = "JSON",
+
   JDBC = "JDBC",
 
   LIVELINK = "LIVELINK",
@@ -643,27 +627,27 @@ const getMariaDBMySQLDataTypeIcon = (dataType: string) => {
 };
 
 export const getDatabaseColumnIcon = (
-  database: ResourceTypeEnum | JDBCSourceTypeEnum,
+  database: ResourceTypeEnum | SourceTypeEnum,
   column: string
 ) => {
   if (
     database == ResourceTypeEnum.POSTGRESSOURCE ||
-    database == JDBCSourceTypeEnum.POSTGRES
+    database == SourceTypeEnum.POSTGRES
   ) {
     return getPostgresDataTypeIcon(column);
   } else if (
     database == ResourceTypeEnum.MARIASOURCE ||
-    database == JDBCSourceTypeEnum.MARIADB
+    database == SourceTypeEnum.MARIADB
   ) {
     return getMariaDBMySQLDataTypeIcon(column);
   } else if (
     database == ResourceTypeEnum.MYSQLSERVERSOURCE ||
-    database == JDBCSourceTypeEnum.MSSQLSERVER
+    database == SourceTypeEnum.MSSQLSERVER
   ) {
     return getSQLServerDataTypeIcon(column);
   } else if (
     database == ResourceTypeEnum.ORACLE21SOURCE ||
-    database == JDBCSourceTypeEnum.ORACLE21
+    database == SourceTypeEnum.ORACLE21
   ) {
     return getOracleDBDataTypeIcon(column);
   } else {
@@ -678,33 +662,7 @@ export const getNodeIcon = (
   size = 16,
   metaData: IDatasetMetaData | null = null
 ) => {
-  const fileTypeIconMap: any = {
-    "application/vnd.openxmlformats-officedocument.wordprocessingml.document": (
-      <WordIcon />
-    ),
-    "text/csv": <WordIcon />,
-    "application/msword": <WordIcon />,
-    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": (
-      <ExcelIcon />
-    ),
-    "application/vnd.ms-excel": <ExcelIcon />,
-    "application/vnd.openxmlformats-officedocument.presentationml.presentation":
-      <PowerPointIcon />,
-    "application/vnd.ms-powerpoint": <PowerPointIcon />,
-    "application/vnd.openxmlformats-officedocument.presentationml.slideshow": (
-      <PowerPointIcon />
-    ),
-    "application/vnd.ms-outlook": <OutlookIcon />,
-    "application/vnd.ms-access": <AccessIcon />,
-    "application/x-mspublisher": <PublisherIcon />,
-    "application/onenote": <OneNoteIcon />,
-    // 'application/vnd.visio': VisioIcon,
-  };
-
   if (isDefined(subType)) {
-    if (isDefined(fileTypeIconMap[subType])) {
-      return fileTypeIconMap[subType];
-    }
     switch (subType) {
       case ResourceSubTypeEnum.TEXT:
         return <TextIcon size={size} />;
@@ -839,19 +797,19 @@ export const getNodeIcon = (
     case ResourceTypeEnum.LINK:
       switch (subType) {
         case ResourceSubTypeEnum.LIVELINK:
-          return <LinkIcon color={"#9b59b6"} size={size} />;
+          return <LinkIcon color={"var(--bosler-intent-danger)"} size={size} />;
         default:
           return <LinkIcon color={"var(--ACTION_COLOR)"} size={size} />;
       }
     case ResourceTypeEnum.DATASET:
       switch (subType) {
         case ResourceSubTypeEnum.LIVEDATASET:
-          return <TableIcon color={"#9b59b6"} size={size} />;
+          return (
+            <TableIcon color={"var(--bosler-intent-danger)"} size={size} />
+          );
         default:
           return <TableIcon color={"lightgrey"} size={size} />;
       }
-    case ResourceTypeEnum.WEBHOOK:
-      return <APIIcon size={size} />;
     default:
       return <HelpIcon size={size} />;
   }
@@ -935,29 +893,3 @@ export function createRegex(startsWith: string) {
   const escapedString = startsWith.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   return new RegExp(`^${escapedString}.*$`);
 }
-
-interface INavigatorLinkProps {
-  to: string;
-  children: ReactNode;
-}
-
-export const NavigatorLink = ({ to, children }: INavigatorLinkProps) => {
-  const [resolvedLink, setResolvedLink] = useState<string | null>();
-  const navigator = useNavigateHelper();
-  useEffect(() => {
-    let isMounted = true;
-    navigator(to, {}, {}, false, false).then((resolvedLink) => {
-      if (isMounted) {
-        setResolvedLink(resolvedLink);
-      }
-    });
-    return () => {
-      isMounted = false;
-    };
-  }, [navigator, to]);
-
-  if (!isDefined(to)) {
-    return <></>;
-  }
-  return <a href={resolvedLink as string}>{children}</a>;
-};

@@ -9,28 +9,28 @@ source env.sh
 gcloud container clusters get-credentials $CLUSTER_NAME --zone $COMPUTE_ZONE --project $PROJECT_ID
 
 # Now we configure kubernetes
-kubectl create -f configurations/bosler-namespace.yaml
+kubectl create -f configurations/orphea-namespace.yaml
 
 
 # add docker registry creds to kubernetes of not already there
 #kubectl get secret|grep regcred > /dev/null
-kubectl get secret regcred --namespace bosler | grep regcred >/dev/null
+kubectl get secret regcred --namespace orphea | grep regcred >/dev/null
 if [ $? != 0 ]; then
-    kubectl -n bosler create secret docker-registry regcred --docker-server=https://index.docker.io/v1/ --docker-username=rmalik --docker-password=Givemeaccess1# --docker-email=rakesh@rkmalik.co.uk
+    kubectl -n orphea create secret docker-registry regcred --docker-server=https://index.docker.io/v1/ --docker-username=rmalik --docker-password=Givemeaccess1# --docker-email=rakesh@rkmalik.co.uk
 fi
 
 if [ -f /tmp/google-storage-sa-key-file.json.base64 ];
   CLOUD_SA_KEY=$(cat /tmp/google-storage-sa-key-file.json.base64)
-  cat configurations/bosler-secrets.yaml | sed -e "s/google-storage-sa/$CLOUD_SA_KEY/g"| kubectl apply -f -
+  cat configurations/orphea-secrets.yaml | sed -e "s/google-storage-sa/$CLOUD_SA_KEY/g"| kubectl apply -f -
 else
-  kubectl apply -f configurations/bosler-secrets.yaml
+  kubectl apply -f configurations/orphea-secrets.yaml
 fi
 
-kubectl apply -f configurations/bosler-backend-config.yaml
+kubectl apply -f configurations/orphea-backend-config.yaml
 
 # Blow SED change so we don't need to modify yaml files on every tenant move, just need to change in env.sh
-# kubectl apply -f configurations/bosler-callisto.yaml
-cat configurations/bosler-callisto.yaml |sed -e "s/bosler-334213/$PROJECT_ID/g"|sed -e "s/datasets_collections_septbos22/$BUCKET_NAME/g"|sed -e "s/10.90.240.2/$DATABASE_HOST/g"|kubectl apply -f - 
+# kubectl apply -f configurations/orphea-callisto.yaml
+cat configurations/orphea-callisto.yaml |sed -e "s/orphea-334213/$PROJECT_ID/g"|sed -e "s/datasets_collections_septbos22/$BUCKET_NAME/g"|sed -e "s/10.90.240.2/$DATABASE_HOST/g"|kubectl apply -f - 
 
 kubectl apply -f configurations/boson-minio-storage.yaml 
 
@@ -41,13 +41,13 @@ kubectl apply -f configurations/boson-db-deployment.yaml
 # echo -n "waiting for database to start"
 # while true
 # do
-#   kubectl -n bosler get pods |grep boson-db|grep Running > /dev/null
+#   kubectl -n orphea get pods |grep boson-db|grep Running > /dev/null
 #   if [ $? == 0 ]; then
 #     echo "|"
 #     sleep 5
 #     # kubectl exec -it boson-db-5dd84575cf-z6l2j -- bin/bash -c "su - postgres -c \"psql -c 'DROP DATABASE boson;'\""
-#     kubectl -n bosler exec -it `kubectl -n bosler get pods |awk '{print $1}'|grep boson-db` -- /bin/bash -c "su - postgres -c \"psql -c 'CREATE DATABASE boson;'\""
-#     kubectl -n bosler exec -it `kubectl -n bosler get pods |awk '{print $1}'|grep boson-db` -- /bin/bash -c "su - postgres -c \"psql -c 'CREATE DATABASE kepler;'\""
+#     kubectl -n orphea exec -it `kubectl -n orphea get pods |awk '{print $1}'|grep boson-db` -- /bin/bash -c "su - postgres -c \"psql -c 'CREATE DATABASE boson;'\""
+#     kubectl -n orphea exec -it `kubectl -n orphea get pods |awk '{print $1}'|grep boson-db` -- /bin/bash -c "su - postgres -c \"psql -c 'CREATE DATABASE kepler;'\""
 #     break
 #   fi
 #   echo -n "."
@@ -55,28 +55,28 @@ kubectl apply -f configurations/boson-db-deployment.yaml
 # done
 
 # kubectl apply -f configurations/julia-deployment.yaml
-cat configurations/julia-deployment.yaml |sed -e "s/bosler-334213/$PROJECT_ID/g"|kubectl apply -f -
+cat configurations/julia-deployment.yaml |sed -e "s/orphea-334213/$PROJECT_ID/g"|kubectl apply -f -
 
 # create google bucket
 gcloud alpha storage buckets create gs://$BUCKET_NAME --project=$PROJECT_ID
 # the below is just to create the folders
 gsutil cp README.md gs://$BUCKET_NAME/spark-streaming/checkpoint/
 # permissions
-cat iam-policies/google-storage-bucket-policy.json|sed -e "s/septbos22/$PROJECT_ID/g"|sed -e "s/bosler-334213/$PROJECT_ID/g" > google-storage-bucket-policy.tmp.json
+cat iam-policies/google-storage-bucket-policy.json|sed -e "s/septbos22/$PROJECT_ID/g"|sed -e "s/orphea-334213/$PROJECT_ID/g" > google-storage-bucket-policy.tmp.json
 gsutil iam set google-storage-bucket-policy.tmp.json gs://$BUCKET_NAME
 
 #create dataset bucket in minio
-kubectl -n bosler exec -it `kubectl -n bosler get pods |awk '{print $1}'|grep minio` -- /bin/bash -c "mkdir -p /storage/datasets"
-kubectl -n bosler exec -it `kubectl -n bosler get pods |awk '{print $1}'|grep minio` -- /bin/bash -c "mkdir -p /storage/spark-streaming/checkpoint"
+kubectl -n orphea exec -it `kubectl -n orphea get pods |awk '{print $1}'|grep minio` -- /bin/bash -c "mkdir -p /storage/datasets"
+kubectl -n orphea exec -it `kubectl -n orphea get pods |awk '{print $1}'|grep minio` -- /bin/bash -c "mkdir -p /storage/spark-streaming/checkpoint"
 
 # kubectl apply -f configurations/boson-app-deployment.yaml
-cat configurations/boson-app-deployment.yaml |sed -e "s/bosler-334213/$PROJECT_ID/g"|sed -e "s/datasets_collections_septbos22/$BUCKET_NAME/g"|sed -e "s/10.90.240.2/$DATABASE_HOST/g"|kubectl apply -f -
+cat configurations/boson-app-deployment.yaml |sed -e "s/orphea-334213/$PROJECT_ID/g"|sed -e "s/datasets_collections_septbos22/$BUCKET_NAME/g"|sed -e "s/10.90.240.2/$DATABASE_HOST/g"|kubectl apply -f -
 
 # Go in sleep loop until boson started
 echo -n "waiting for backend/boson to start"
 while true
 do
-  kubectl -n bosler get pods |grep -v boson-db|grep boson|grep Running > /dev/null
+  kubectl -n orphea get pods |grep -v boson-db|grep boson|grep Running > /dev/null
   if [ $? == 0 ]; then
     echo "|"
     break
@@ -87,8 +87,8 @@ done
 
 # kubectl apply -f configurations/frontend-deployment.yaml
 # kubectl apply -f configurations/parler-deployment.yaml
-cat configurations/frontend-deployment.yaml |sed -e "s/bosler-334213/$PROJECT_ID/g"|kubectl apply -f -
-cat configurations/parler-deployment.yaml |sed -e "s/bosler-334213/$PROJECT_ID/g"|kubectl apply -f -
+cat configurations/frontend-deployment.yaml |sed -e "s/orphea-334213/$PROJECT_ID/g"|kubectl apply -f -
+cat configurations/parler-deployment.yaml |sed -e "s/orphea-334213/$PROJECT_ID/g"|kubectl apply -f -
 
 
 if ! gcloud compute addresses list | grep -q "$CLUSTER_NAME" ; then
@@ -96,7 +96,7 @@ if ! gcloud compute addresses list | grep -q "$CLUSTER_NAME" ; then
   return 1
 fi
 
-kubectl apply -f configurations/bosler-ingress.yaml
+kubectl apply -f configurations/orphea-ingress.yaml
 
 # This is to modify HC to check /api/jupyter/api , other GCP healthchecks fails
 callisto_hc=$(gcloud compute health-checks list --global|grep callisto|awk '{print $1}')
@@ -107,9 +107,9 @@ gcloud compute health-checks update http $callisto_hc \
     --request-path="/api/jupyter/api"
 
 ## Install Spark and Spark_history
-./bosler_spark_env.sh create
-# kubectl apply -f configurations/bosler-spark-history-server.yaml
-cat configurations/bosler-spark-history-server.yaml |sed -e "s/bosler-334213/$PROJECT_ID/g"|kubectl apply -f -
+./orphea_spark_env.sh create
+# kubectl apply -f configurations/orphea-spark-history-server.yaml
+cat configurations/orphea-spark-history-server.yaml |sed -e "s/orphea-334213/$PROJECT_ID/g"|kubectl apply -f -
 
 #
 ## Install Tycho/Superset
@@ -120,12 +120,12 @@ cat configurations/bosler-spark-history-server.yaml |sed -e "s/bosler-334213/$PR
 echo ""
 echo ""
 echo "+--------------------------------------------------------------------------+"
-echo "|                           Say hello to Bosler                            |"
+echo "|                           Say hello to Orphea                            |"
 echo "+--------------------------------------------------------------------------+"
 echo "|                                                                          |"
 echo "|                                                                          |"
-echo "|   Connect to Bosler  : https://dev.bosler.io                             |"
-echo -e "|   Connect to Swagger : https://dev.bosler.io/swagger-ui.html          |"
+echo "|   Connect to Orphea  : https://dev.orphea.io                             |"
+echo -e "|   Connect to Swagger : https://dev.orphea.io/swagger-ui.html          |"
 echo "|                                                                          |"
 echo "+--------------------------------------------------------------------------+"
 echo ""

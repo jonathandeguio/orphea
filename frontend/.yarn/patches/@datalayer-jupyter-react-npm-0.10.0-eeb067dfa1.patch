@@ -1,0 +1,13 @@
+diff --git a/package.json b/package.json
+index eb6ef078d1bd9eef9302abae36fd4825aebbcd56..a28fa04bcfd77006d7c2b357d4838fe002814a37 100644
+--- a/package.json
++++ b/package.json
+@@ -138,7 +138,7 @@
+     "encoding": "^0.1.13",
+     "lodash": "^4.17.4",
+     "marked": "^4.0.10",
+-    "plotly.js": "^2.26.2",
++    "plotly.js": "2.26.2",
+     "react": "^18.2.0",
+     "react-dom": "^18.2.0",
+     "react-error-boundary": "^3.1.3",

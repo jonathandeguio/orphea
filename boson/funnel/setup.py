@@ -7,7 +7,7 @@ setuptools.setup(
     name="funnel",
     version="0.0.1",
     author="Rakesh Malik",
-    author_email="rakesh.malik@bosler.io",
+    author_email="rakesh.malik@orphea.io",
     description="This is python transform decorators.",
     long_description="long_description",
     long_description_content_type="text/markdown",

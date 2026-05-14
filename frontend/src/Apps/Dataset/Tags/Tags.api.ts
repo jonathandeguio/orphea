@@ -19,7 +19,7 @@ export const manageDatasetTagsAPI = (
 ): Promise<AxiosResponse<any, any>> => {
   return axios.post(`/docket/tag/manage`, body);
 };
-          
+
 /**
  *  get all available  tags for with category
  */

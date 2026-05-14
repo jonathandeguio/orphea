@@ -1,14 +1,13 @@
 import { Col, Menu, Popover, Radio, Row, Typography } from "antd";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { DATASET_DOWNLOADS_FORMATS } from "../../Apps/Dataset/Table/BoslerTable.types";
+
 import {
   DocumentationIcon,
   FolderIcon,
 } from "../../assets/icons/boslerFileIcons";
 
 import {
-  getApplicationLink,
   getLanguageLabel,
   getUserDocsLanguage,
   getUserLanguage,
@@ -44,7 +43,8 @@ import BoslerModal from "components/CommonUI/BoslerModalContainer";
 import { FRACTAL_USE_CASES } from "components/editor/editor.constants";
 import SBElement from "layouts/Sidebar/SBElement";
 import { LayoutViewEnum } from "layouts/Sidebar/Sidebar.utils";
-import { downloadDataset } from "pages/Settings/PlatformConfig/PlatformConfig.utils";
+import { getApplicationLink } from "layouts/components/Header.utils";
+import { downloadCSV } from "pages/Settings/PlatformConfig/PlatformConfig.utils";
 import { useHotkeys } from "react-hotkeys-hook";
 import {
   BuildIcon,
@@ -351,11 +351,10 @@ const BoslerCommandPalette = ({
                 onClick={() => {
                   if (id && datasetMapping.datasetMapping) {
                     openNotification("Download Intiated", "", "success");
-                    downloadDataset(
+                    downloadCSV(
                       id as string,
                       branch as string,
-                      datasetMapping.datasetMapping?.currentTransaction,
-                      DATASET_DOWNLOADS_FORMATS.CSV as string
+                      datasetMapping.datasetMapping?.currentTransaction
                     );
                   } else
                     openNotification(
@@ -884,7 +883,7 @@ const BoslerCommandPalette = ({
           </Text>
           <Item
             onClick={() => {
-              navigate("/learn/fr/");
+              navigate("/learn");
               setIsCmdModalOpen(false);
             }}
           >
@@ -915,7 +914,7 @@ const BoslerCommandPalette = ({
         </Menu>
       </BoslerModal>
       <SBElement
-        icon={<SelectNodeIcon color={"#D3D7E2"} size={iconSize} />}
+        icon={<SelectNodeIcon color={"#7f879f"} size={iconSize} />}
         tooltip={
           <div className="text-and-icon-center">
             {getLanguageLabel("shortcuts")}

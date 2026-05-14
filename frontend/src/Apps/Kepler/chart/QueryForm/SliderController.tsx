@@ -156,7 +156,7 @@ function SliderController() {
   useEffect(() => {
     if (query) {
       if (query.chartType === "VerticalAxisChart") {
-        setSelectedKey(`${query.chartType}_${query.series[0]?.seriesType}`);
+        setSelectedKey(`${query.chartType}_${query.series[0].seriesType}`);
       } else {
         setSelectedKey(query.chartType);
       }

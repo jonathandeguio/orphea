@@ -2,7 +2,6 @@ import {
   Card,
   Col,
   Divider,
-  InputNumber,
   Row,
   Switch,
   Table,
@@ -142,7 +141,7 @@ export const DownloadSettings = () => {
                         title="Select a number of rows in range [1-250000000000]"
                         open={errorPopover}
                       >
-                        <InputNumber
+                        {/* <InputNumber
                           value={selectedLimits.rowLimit}
                           status={
                             selectedLimits.rowLimit < 1 ||
@@ -158,7 +157,7 @@ export const DownloadSettings = () => {
                               rowLimit: val,
                             });
                           }}
-                        />
+                        /> */}
                       </Tooltip>
 
                       <br />
@@ -169,7 +168,7 @@ export const DownloadSettings = () => {
               <br />
               <Row gutter={16}>
                 <Col span={6}>
-                  <Text type="secondary">Maxium Size (in Bytes):</Text>
+                  <Text type="secondary">Maxium Size:</Text>
                 </Col>
 
                 <Col>
@@ -179,7 +178,7 @@ export const DownloadSettings = () => {
                         title="Select a size in range [1-250000000000]"
                         open={errorPopover}
                       >
-                        <InputNumber
+                        {/* <InputNumber
                           value={selectedLimits.sizeLimit}
                           status={
                             selectedLimits.sizeLimit < 1 ||
@@ -195,7 +194,7 @@ export const DownloadSettings = () => {
                               sizeLimit: val,
                             });
                           }}
-                        />
+                        /> */}
                       </Tooltip>
 
                       <br />

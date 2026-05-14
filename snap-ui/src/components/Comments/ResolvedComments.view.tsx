@@ -10,10 +10,10 @@ import {
   Typography,
 } from "antd";
 
-import { MoreMenuIcon } from "assets/icons/boslerActionIcons";
-import { EditIcon } from "assets/icons/boslerEditorIcons";
-import { TrashIcon } from "assets/icons/boslerMiscellaneousIcons";
-import BoslerButton from "../ButtonComponent/BoslerButton";
+import { MoreMenuIcon } from "assets/icons/orpheaActionIcons";
+import { EditIcon } from "assets/icons/orpheaEditorIcons";
+import { TrashIcon } from "assets/icons/orpheaMiscellaneousIcons";
+import OrpheaButton from "../ButtonComponent/OrpheaButton";
 
 import {
   getLanguageLabel,
@@ -27,7 +27,7 @@ import {
   openAndResolveCommentAPI,
 } from "./Comments.api";
 
-import { OpenIcon } from "assets/icons/boslerNavigationIcon";
+import { OpenIcon } from "assets/icons/orpheaNavigationIcon";
 import { User } from "global";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
@@ -173,11 +173,11 @@ const ResolvedComments = ({
                                     }}
                                     className="text-and-icon-center"
                                     style={{
-                                      color: "var(--bosler-intent-danger)",
+                                      color: "var(--orphea-intent-danger)",
                                     }}
                                   >
                                     <TrashIcon
-                                      color={"var(--bosler-intent-danger)"}
+                                      color={"var(--orphea-intent-danger)"}
                                     />
                                     {getLanguageLabel("delete")}
                                   </div>
@@ -256,7 +256,7 @@ const ResolvedComments = ({
                   </Form.Item>
 
                   <Row justify="end">
-                    <BoslerButton
+                    <OrpheaButton
                       intent="dangerous"
                       size="small"
                       onClick={(e: any) => {
@@ -268,9 +268,9 @@ const ResolvedComments = ({
                       minimal
                     >
                       {getLanguageLabel("cancel")}
-                    </BoslerButton>
+                    </OrpheaButton>
                     &nbsp;
-                    <BoslerButton
+                    <OrpheaButton
                       intent="primary"
                       size="small"
                       htmlType="submit"
@@ -278,7 +278,7 @@ const ResolvedComments = ({
                       minimal
                     >
                       {getLanguageLabel("save")}
-                    </BoslerButton>
+                    </OrpheaButton>
                   </Row>
                 </Form>
               ) : (
@@ -288,7 +288,7 @@ const ResolvedComments = ({
             {comment.replies.length > 0 && (
               <div
                 style={{
-                  borderLeft: "1px solid var(--bosler-border-color-default)",
+                  borderLeft: "1px solid var(--orphea-border-color-default)",
                   marginTop: "0.5rem",
                   paddingLeft: "0.7rem",
                 }}
@@ -399,12 +399,12 @@ const ResolvedComments = ({
                                           className="text-and-icon-center"
                                           style={{
                                             color:
-                                              "var(--bosler-intent-danger)",
+                                              "var(--orphea-intent-danger)",
                                           }}
                                         >
                                           <TrashIcon
                                             color={
-                                              "var(--bosler-intent-danger)"
+                                              "var(--orphea-intent-danger)"
                                             }
                                           />
                                           {getLanguageLabel("delete")}
@@ -488,7 +488,7 @@ const ResolvedComments = ({
                             </Form.Item>
 
                             <Row justify="end">
-                              <BoslerButton
+                              <OrpheaButton
                                 intent="dangerous"
                                 size="small"
                                 onClick={(e: any) => {
@@ -500,9 +500,9 @@ const ResolvedComments = ({
                                 minimal
                               >
                                 {getLanguageLabel("cancel")}
-                              </BoslerButton>
+                              </OrpheaButton>
                               &nbsp;
-                              <BoslerButton
+                              <OrpheaButton
                                 intent="primary"
                                 size="small"
                                 htmlType="submit"
@@ -510,7 +510,7 @@ const ResolvedComments = ({
                                 minimal
                               >
                                 {getLanguageLabel("save")}
-                              </BoslerButton>
+                              </OrpheaButton>
                             </Row>
                           </Form>
                         ) : (

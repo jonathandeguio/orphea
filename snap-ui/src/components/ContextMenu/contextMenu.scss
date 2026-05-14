@@ -43,7 +43,7 @@
   li {
     position: relative;
     clear: both;
-    color: var(--bosler-font-color-default);
+    color: var(--orphea-font-color-default);
     font-size: 14px;
     font-weight: normal;
     line-height: 22px;
@@ -62,7 +62,7 @@
       margin-right: 8px;
     }
     &:hover {
-      background-color: var(--bosler-hover-color);
+      background-color: var(--orphea-hover-color);
     }
   }
 
@@ -90,12 +90,12 @@
   }
 
   .li--active {
-    background-color: var(--bosler-hover-color);
+    background-color: var(--orphea-hover-color);
   }
 
   .li--disabled {
     cursor: not-allowed !important;
-    color: var(--bosler-font-color-muted);
+    color: var(--orphea-font-color-muted);
     &:hover {
       background-color: transparent;
 

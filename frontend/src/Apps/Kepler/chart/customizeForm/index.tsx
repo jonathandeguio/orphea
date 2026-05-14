@@ -72,7 +72,7 @@ function customizeForm() {
         {/* THEME SELECTOR NOT SHOWN FOR BIGNUMBER AND TABLE */}
         {skeleton.meta.hasTheme && <ThemeSelector />}
         {/* DATA ZOOM OPTION NOT FOR TABLE, PIECHART, BIGNUMBER */}
-        {/* {skeleton.meta.isAxisChart && (
+        {skeleton.meta.isAxisChart && (
           <Form.Item
             name="dataZoom"
             valuePropName="checked"
@@ -84,9 +84,11 @@ function customizeForm() {
           >
             <Switch size={"small"} />
           </Form.Item>
-        )} */}
+        )}
+
 
         {skeleton.meta.hasTitle && <TitleCustomizer skeleton={skeleton} />}
+
 
         {/* Waterfall Chart Options */}
         {query.chartType === "waterFallChart" && <WaterFallChartCustomizer />}
@@ -94,6 +96,7 @@ function customizeForm() {
         {/* Parameter Chart Options */}
         {query.chartType === "wordCloudChart" && <WordCloudChartCustomizer />}
 
+        
         {skeleton.meta.isAxisChart && (
           <>
             {/* X AXIS PANEL */}
@@ -144,9 +147,7 @@ function customizeForm() {
         {/* Parameter Chart Options */}
         {query.chartType === "treeMapChart" && <TreeMapCustomizer />}
 
-        {skeleton.meta.legend && (
-          <LegendCustomizer query={query} form={customizeForm} />
-        )}
+        {skeleton.meta.legend && <LegendCustomizer />}
         {/* TOOLTIP OPTIONS */}
 
         {skeleton.meta.tooltip && (

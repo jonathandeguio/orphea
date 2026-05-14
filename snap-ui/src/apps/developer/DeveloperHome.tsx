@@ -1,8 +1,8 @@
 import React from "react";
 import { useLocation } from "react-router";
 import { Link, Outlet } from "react-router-dom";
-import { AppIcon, HomeIcon } from "assets/icons/boslerInterfaceIcons";
-import { ArrowTopRightIcon } from "assets/icons/boslerNavigationIcon";
+import { AppIcon, HomeIcon } from "assets/icons/orpheaInterfaceIcons";
+import { ArrowTopRightIcon } from "assets/icons/orpheaNavigationIcon";
 import "../home/Home.scss";
 
 import { Divider } from "antd";
@@ -11,8 +11,8 @@ import {
   SettingsIcon,
   SparklesIcon,
   StopIcon,
-} from "assets/icons/boslerActionIcons";
-import { StylesIcon, TextIcon } from "assets/icons/boslerEditorIcons";
+} from "assets/icons/orpheaActionIcons";
+import { StylesIcon, TextIcon } from "assets/icons/orpheaEditorIcons";
 
 function DeveloperHome() {
   const location = useLocation();

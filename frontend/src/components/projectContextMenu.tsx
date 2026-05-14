@@ -2,27 +2,28 @@ import { Form, Tooltip } from "antd";
 import axios from "axios";
 import React from "react";
 import {
-  copyToClipboard,
-  getLanguageLabel,
-  getURL,
-  openNotification,
+    copyToClipboard,
+    getLanguageLabel,
+    getURL,
+    openNotification,
 } from "utils/utilities";
 import {
-  listFolderDetails,
-  listProjects,
+    listFolderDetails,
+    listProjects,
 } from "../redux/actions/projectActions";
 import Popup, { customContextMenu } from "./customContextMenu";
 
 import { CopyIcon, EditIcon } from "../assets/icons/boslerEditorIcons";
-import { FolderIcon, FolderMoveIcon } from "../assets/icons/boslerFileIcons";
+import { FolderIcon } from "../assets/icons/boslerFileIcons";
 
 import {
-  PopOutIcon
+    ArrowRightIcon,
+    PopOutIcon,
 } from "../assets/icons/boslerNavigationIcon";
 
 import {
-  getTrashBinItems,
-  moveToTrash,
+    getTrashBinItems,
+    moveToTrash,
 } from "../redux/actions/trashBinActions";
 
 import { CardIcon, TrashIcon } from "../assets/icons/boslerMiscellaneousIcons";
@@ -158,7 +159,7 @@ const projectContextMenu = (
     },
     {
       item: getLanguageLabel("move"),
-      icon: <FolderMoveIcon />,
+      icon: <ArrowRightIcon />,
       action: (record: $TSFixMe) => {
         setShowMoveModal(true);
         setSelectedMoveItems(record.id);
@@ -332,7 +333,7 @@ const ProjectContextMenu = (state: {
     },
     {
       item: getLanguageLabel("move"),
-      icon: <FolderMoveIcon />,
+      icon: <ArrowRightIcon />,
       action: (record: $TSFixMe) => {
         setShowMoveModal(true);
         setSelectedMoveItems(record.id);

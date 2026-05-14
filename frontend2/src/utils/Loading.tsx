@@ -42,7 +42,7 @@ const Loading = () => {
 					/>
 					</svg>
 
-					<div className="login-icon-bosler">BOSLER</div>
+					<div className="login-icon-orphea">ORPHEA</div>
 				</div>
 			</div>
 			<a className="re-loading">

@@ -1,4 +1,3 @@
-import { TDatabaseTreePages } from "Apps/Connect/Connect.types";
 import { FileExplorerContextMenuHandlerType } from "Apps/explorer/FileExplorer";
 import {
   ResourceSubTypeEnum,
@@ -7,34 +6,34 @@ import {
   getDatabaseColumnIcon,
   getNodeIcon,
 } from "Apps/explorer/explorer.utils";
+import { Popover } from "antd";
 import { ThreeDotIcon } from "assets/icons/boslerActionIcons";
-import {
-  SingleChevronRightIcon,
-  SpinnerIcon,
-} from "assets/icons/boslerNavigationIcon";
-import { AxiosResponse } from "axios";
-import { BoslerPopover } from "common/components/BoslerPopover/BoslerPopover";
+import { SingleChevronRightIcon } from "assets/icons/boslerNavigationIcon";
 import React, { useEffect, useMemo, useRef, useState } from "react";
+import { useDrag, useDrop } from "react-dnd";
 import { isDefined, notEmpty } from "utils/utilities";
 import NodeExtraOptions from "./NodeExtraOptions";
 import NodeSubText from "./NodeSubText";
-import { getPopoverContent } from "./Popover/SimpleTreePopover";
+import {
+  getPopoverContent,
+  getPopoverTitle,
+} from "./Popover/SimpleTreePopover";
+import { SimpleTreeChildrenLoader } from "./SimpleTree.utils";
 interface Props {
-  parent: any;
   node: any;
   type?: ResourceType[];
   index: any;
   activeId: string | undefined;
   onContextMenu?: FileExplorerContextMenuHandlerType;
   onDoubleClick?: (node: any) => void;
-  onClick?: (node: any, parent: any) => void;
-  dynamicFetching: ((id: string) => Promise<AxiosResponse<any, any>>) | false;
+  onClick?: (node: any) => void;
+  dynamicFetching: boolean;
   openOnSingleClick: boolean;
   hidden?: string[];
   onDrop?: (a: any, b: any) => void;
   isExpanded?: boolean;
   closeAllNodesTrigger?: boolean;
-  page: TDatabaseTreePages;
+  page: "LINK" | "SOURCE";
   originId?: string;
 }
 
@@ -52,7 +51,6 @@ const showThreeDots = (node: any) => {
 };
 
 export const TreeNode: React.FC<Props> = ({
-  parent,
   node,
   index,
   type,
@@ -69,15 +67,34 @@ export const TreeNode: React.FC<Props> = ({
   page,
   originId,
 }) => {
-  const [popoverCache, setPopoverCache] = useState({});
   const doExpand = (): boolean =>
     !!isExpanded && isDefined(activeId) && node.id == activeId;
 
-  const [children, setChildren] = useState<any[] | undefined>(undefined);
+  const [children, setChildren] = useState<any[]>([]);
   const [childrenLoading, setChildrenLoading] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState<boolean>(
     doExpand || (node.isOpen ? true : false)
   );
+
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+
+  const handlePopoverChange = (newOpen: boolean) => {
+    if (node.subType == ResourceSubTypeEnum.TABLE_CHART) {
+      setIsPopoverOpen(newOpen);
+    }
+  };
+
+  const handleMouseEnter: React.MouseEventHandler<HTMLDivElement> = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    handlePopoverChange(true);
+  };
+
+  const handleMouseLeave: React.MouseEventHandler<HTMLDivElement> = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    handlePopoverChange(false);
+  };
 
   const isExpandable: boolean = useMemo(
     () =>
@@ -90,54 +107,48 @@ export const TreeNode: React.FC<Props> = ({
   );
   const nodeRef = useRef<HTMLDivElement | null>(null);
 
+  const [{ isDragging }, drag] = useDrag({
+    type: "NODE",
+    item: { ...node },
+    collect: (monitor) => ({
+      isDragging: !!monitor.isDragging,
+    }),
+  });
+
+  const [{ isOver }, drop] = useDrop({
+    accept: "NODE",
+    collect: (monitor) => ({
+      isOver: !!monitor.isOver({ shallow: false }),
+    }),
+    drop: (item: any, monitor) => {
+      if (
+        isDefined(onContextMenu) &&
+        monitor.getDropResult() === null &&
+        item.id !== node.id
+      ) {
+        onDrop?.(item, node);
+      }
+    },
+  });
+
   const toggleFolder = () => setIsOpen((prevState) => !prevState);
 
   useEffect(() => {
     setIsOpen(isOpen || node.isOpen ? true : false);
 
-    if (isDefined(node.children)) {
-      setChildren(
-        isDefined(node.children)
-          ? [...node.children]
-              //   .sort(treeNodeComparator)
-              .filter(
-                (node) =>
-                  !isDefined(type) ||
-                  node.type === ResourceTypeEnum.PROJECT ||
-                  node.type === ResourceTypeEnum.FOLDER ||
-                  type.includes(node.type)
-              )
-          : []
-      );
-    } else if (
-      node.type === "FOLDER" &&
-      dynamicFetching !== false &&
-      !isDefined(children)
-    ) {
-      setChildrenLoading(true);
-
-      dynamicFetching(node.id)
-        .then(({ data }) => {
-          if (data.value) {
-            setChildren(
-              data.value.map((node: any) => ({
-                ...node,
-                type: node.hasOwnProperty("folder")
-                  ? "FOLDER"
-                  : node.file.mimeType,
-                subType: node.hasOwnProperty("folder")
-                  ? "FOLDER"
-                  : node.file.mimeType,
-              }))
-            );
-          } else {
-            setChildren([]);
-          }
-        })
-        .finally(() => {
-          setChildrenLoading(false);
-        });
-    }
+    setChildren(
+      isDefined(node.children)
+        ? [...node.children]
+            //   .sort(treeNodeComparator)
+            .filter(
+              (node) =>
+                !isDefined(type) ||
+                node.type === ResourceTypeEnum.PROJECT ||
+                node.type === ResourceTypeEnum.FOLDER ||
+                type.includes(node.type)
+            )
+        : []
+    );
   }, [activeId, node]);
 
   useEffect(() => {
@@ -155,7 +166,7 @@ export const TreeNode: React.FC<Props> = ({
     e.stopPropagation();
     e.preventDefault();
     e.stopPropagation();
-    onClick?.(node, parent);
+    onClick?.(node);
 
     if (isExpandable && openOnSingleClick) {
       const _childrenLoadingFlag = !isOpen;
@@ -194,10 +205,12 @@ export const TreeNode: React.FC<Props> = ({
     return (
       <div
         ref={(node) => {
+          drag(drop(node));
           nodeRef.current = node;
         }}
         draggable={node.type === "CHART" || node.type === "FILE"}
         unselectable="on"
+        // style={{ height: "100%", ...(isDragging ? { cursor: "grab" } : {}) }}
         onDragStart={(e) => {
           if (e.target === e.currentTarget && node.type === "CHART") {
             e.dataTransfer.setData("text/plain", "layoutElement-chart");
@@ -207,23 +220,18 @@ export const TreeNode: React.FC<Props> = ({
             e.dataTransfer.setData("file", node.id);
           }
         }}
+        className={`${isOver ? "tree_node--is-over" : ""}`}
         onContextMenu={(e) => {
           e.preventDefault();
           e.stopPropagation();
           onContextMenu?.(e.clientX, e.clientY, node);
         }}
       >
-        <BoslerPopover
-          // placement="rightTop"
-          // ={getPopoverTitle(node)}
-          displayPopover={node.subType == ResourceSubTypeEnum.TABLE_CHART}
-          popover={getPopoverContent(
-            originId,
-            node,
-            popoverCache,
-            setPopoverCache
-          )}
-          trigger={"hover"}
+        <Popover
+          placement="rightTop"
+          title={() => getPopoverTitle(node)}
+          content={() => getPopoverContent(originId, node)}
+          open={isPopoverOpen}
         >
           <div
             className={`tree_node ${
@@ -231,12 +239,10 @@ export const TreeNode: React.FC<Props> = ({
             }`}
             onDoubleClick={(e) => onDoubleClickHandler(e)}
             onClick={(e) => onClickHandler(e)}
-            // onMouseEnter={handleMouseEnter}
-            // onMouseLeave={handleMouseLeave}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
           >
-            {childrenLoading ? (
-              <SpinnerIcon />
-            ) : isExpandable ? (
+            {isExpandable ? (
               <div
                 className={`tree_node__chevron ${
                   isOpen ? "tree_node__chevron--open" : ""
@@ -273,7 +279,6 @@ export const TreeNode: React.FC<Props> = ({
                 node={node}
                 active={activeId === node.id}
                 page={page}
-                parent={parent}
               />
             </div>
             {notEmpty(onContextMenu) && showThreeDots(node) && (
@@ -289,18 +294,19 @@ export const TreeNode: React.FC<Props> = ({
               </div>
             )}
           </div>
-        </BoslerPopover>
+        </Popover>
         {isExpandable && (
           <div
             className={`tree_node__children_container ${
               isOpen ? "" : "tree_node__children_container--hidden"
             }`}
           >
-            {isOpen && isDefined(children) ? (
+            {childrenLoading ? (
+              <SimpleTreeChildrenLoader />
+            ) : isOpen ? (
               <div className="tree_node__children tree_sidebar">
-                {children?.map((child: any, idx: any) => (
+                {children.map((child: any, idx: any) => (
                   <TreeNode
-                    parent={node}
                     key={child.id}
                     node={child}
                     hidden={hidden}

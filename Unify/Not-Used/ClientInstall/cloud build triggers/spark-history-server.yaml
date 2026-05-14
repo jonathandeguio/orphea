@@ -2,9 +2,9 @@ autodetect: true
 createTime: '2021-12-13T10:41:03.880062373Z'
 github:
   name: spark-history-server
-  owner: Bosler-io
+  owner: Orphea-io
   push:
     branch: ^main$
 id: e1ce3d6b-4670-4dc6-aff9-d2d585f0fa2d
 name: spark-history-server
-serviceAccount: projects/bosler-211/serviceAccounts/boslerbuilds@bosler-211.iam.gserviceaccount.com
+serviceAccount: projects/orphea-211/serviceAccounts/orpheabuilds@orphea-211.iam.gserviceaccount.com

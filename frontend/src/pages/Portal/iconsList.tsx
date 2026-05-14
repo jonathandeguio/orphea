@@ -107,7 +107,7 @@ const IconList = () => {
     sortIconNames.filter((name) =>
       name.toLowerCase().includes(searchSortIconsValue.toLowerCase())
     ).length;
-  console.log("Object.keys(NavigationIcons)", Object.keys(NavigationIcons));
+
   const totalIcons =
     fileIconNames.length +
     tableIconNames.length +

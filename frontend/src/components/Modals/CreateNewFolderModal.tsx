@@ -6,6 +6,7 @@ import { getLanguageLabel, openNotification } from "utils/utilities";
 import BoslerButton from "../BoslerComponents/ButtonComponent/BoslerButton";
 
 import { FolderIcon } from "assets/icons/boslerFileIcons";
+import { createFolderApi } from "common/common.api";
 import BoslerModal from "components/CommonUI/BoslerModalContainer";
 import { LockIcon } from "../../assets/icons/boslerActionIcons";
 import { InfoIcon } from "../../assets/icons/boslerMiscellaneousIcons";
@@ -14,7 +15,6 @@ import { addNewResource } from "../../redux/fileIndexSlice";
 import { ThunkAppDispatch } from "../../redux/types/store";
 import BoslerInput from "../BoslerComponents/InputComponent/BoslerInput";
 import { ResourceTypeEnum } from "Apps/explorer/explorer.utils";
-import { createFolderApi } from "Apps/explorer/explorer.api";
 
 const { Text } = Typography;
 
