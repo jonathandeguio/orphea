@@ -52,5 +52,8 @@
   "packageManager": "yarn@3.5.0",
   "resolutions": {
     "webpack": "5.75.0"
+  },
+  "overrides": {
+    "webpack": "5.75.0"
   }
 }
