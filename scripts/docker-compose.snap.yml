@@ -1,6 +1,6 @@
-# =============================================================================
-# Orphea Platform — Stack Snap (service d'artefacts)
-# Usage : docker compose -f docker-compose.snap.yml --env-file .env.orphea up -d
+﻿# =============================================================================
+# MoveToData Platform — Stack Snap (service d'artefacts)
+# Usage : docker compose -f docker-compose.snap.yml --env-file .env.movetodata up -d
 # Prérequis : /dev/fuse disponible sur l'hôte (sudo apt install fuse)
 # =============================================================================
 version: "3.8"
@@ -12,14 +12,14 @@ services:
   # ---------------------------------------------------------------------------
   snap-db:
     image: postgres:16-alpine
-    container_name: orphea-snap-db
+    container_name: movetodata-snap-db
     environment:
       POSTGRES_DB: ${SNAP_DB_NAME:-postgres}
       POSTGRES_USER: ${SNAP_DB_USERNAME:-postgres}
       POSTGRES_PASSWORD: ${SNAP_DB_PASSWORD}
     volumes:
-      - ${ORPHEA_MOUNT_PATH:-/orphea}/snap/db/data:/var/lib/postgresql/data
-      - ${ORPHEA_MOUNT_PATH:-/orphea}/snap/db/dbscripts:/docker-entrypoint-initdb.d:ro
+      - ${MOVETODATA_MOUNT_PATH:-/movetodata}/snap/db/data:/var/lib/postgresql/data
+      - ${MOVETODATA_MOUNT_PATH:-/movetodata}/snap/db/dbscripts:/docker-entrypoint-initdb.d:ro
     ports:
       - "127.0.0.1:15432:5432"
     restart: unless-stopped
@@ -30,7 +30,7 @@ services:
       retries: 10
       start_period: 30s
     networks:
-      - orphea-snap-net
+      - movetodata-snap-net
     logging:
       driver: "json-file"
       options:
@@ -42,8 +42,8 @@ services:
   # Nécessite : /dev/fuse, mode privileged, seccomp désactivé
   # ---------------------------------------------------------------------------
   snap:
-    image: orphea/snap:latest
-    container_name: orphea-snap
+    image: movetodata/snap:latest
+    container_name: movetodata-snap
     build:
       context: ../snap
       dockerfile: Dockerfile
@@ -57,8 +57,8 @@ services:
     environment:
       ALLOWED_ORIGINS: >-
         http://localhost:3000,http://localhost:8080,http://localhost:8082,
-        http://localhost:8090,http://snap.orphea.io:8082,https://snap.orphea.io:8082
-      ARTIFACT_STORE: ${ARTIFACT_STORE:-/orphea/snap/artifactory}
+        http://localhost:8090,http://snap.movetodata.io:8082,https://snap.movetodata.io:8082
+      ARTIFACT_STORE: ${ARTIFACT_STORE:-/movetodata/snap/artifactory}
       BASE_URL: ${BASE_URL:-http://localhost:8080}
       DB_HOST: snap-db
       DB_PORT: 5432
@@ -67,7 +67,7 @@ services:
       TOKEN_SECRET: ${SNAP_TOKEN_SECRET:-${TOKEN_SECRET}}
       TOKEN_EXPIRATION: ${SNAP_TOKEN_EXPIRATION:-604800000}
       SWAGGER_UI: ${SWAGGER_UI:-false}
-      LOG_FILE_PATH: ${SNAP_LOG_FILE_PATH:-/orphea/snap/logs}
+      LOG_FILE_PATH: ${SNAP_LOG_FILE_PATH:-/movetodata/snap/logs}
       GITHUB_PAT: ${GITHUB_PAT:-}
       JAVA_OPTS: >-
         -Xms256m
@@ -80,7 +80,7 @@ services:
     devices:
       - /dev/fuse:/dev/fuse:rw
     volumes:
-      - ${ORPHEA_MOUNT_PATH:-/orphea}/snap:${ORPHEA_MOUNT_PATH:-/orphea}/snap
+      - ${MOVETODATA_MOUNT_PATH:-/movetodata}/snap:${MOVETODATA_MOUNT_PATH:-/movetodata}/snap
       - /var/lib/mycontainer:/var/lib/containers
     restart: on-failure
     healthcheck:
@@ -90,8 +90,8 @@ services:
       retries: 5
       start_period: 90s
     networks:
-      - orphea-snap-net
-      - orphea-network
+      - movetodata-snap-net
+      - movetodata-network
     logging:
       driver: "json-file"
       options:
@@ -102,8 +102,8 @@ services:
   # Snap-UI — Frontend React pour Snap
   # ---------------------------------------------------------------------------
   snap-ui:
-    image: orphea/snap-ui:latest
-    container_name: orphea-snap-ui
+    image: movetodata/snap-ui:latest
+    container_name: movetodata-snap-ui
     build:
       context: ../snap-ui
       dockerfile: Dockerfile
@@ -117,7 +117,7 @@ services:
       timeout: 10s
       retries: 3
     networks:
-      - orphea-snap-net
+      - movetodata-snap-net
     logging:
       driver: "json-file"
       options:
@@ -129,18 +129,18 @@ services:
   # ---------------------------------------------------------------------------
   snap-proxy:
     image: nginx:1.25-alpine
-    container_name: orphea-snap-proxy
+    container_name: movetodata-snap-proxy
     depends_on:
       - snap
       - snap-ui
     volumes:
       - ../Unify/snap/reverse_proxy/nginx.conf:/etc/nginx/nginx.conf:ro
-      - ${ORPHEA_MOUNT_PATH:-/orphea}/ssl/certs:/etc/nginx/ssl:ro
+      - ${MOVETODATA_MOUNT_PATH:-/movetodata}/ssl/certs:/etc/nginx/ssl:ro
     ports:
       - "8082:8082"
     restart: unless-stopped
     networks:
-      - orphea-snap-net
+      - movetodata-snap-net
     logging:
       driver: "json-file"
       options:
@@ -148,9 +148,9 @@ services:
         max-file: "3"
 
 networks:
-  orphea-snap-net:
-    name: orphea-snap-network
+  movetodata-snap-net:
+    name: movetodata-snap-network
     driver: bridge
-  orphea-network:
+  movetodata-network:
     external: true
-    name: orphea-network
+    name: movetodata-network

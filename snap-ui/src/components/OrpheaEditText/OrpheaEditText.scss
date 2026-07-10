@@ -1,12 +1,12 @@
-.orphea_edit_text {
+﻿.movetodata_edit_text {
   padding: 0 0.5rem;
   caret-color: black;
 
   &:hover {
-    background-color: var(--orphea-hover-color);
+    background-color: var(--movetodata-hover-color);
   }
 
   &:focus {
-    background-color: var(--orphea-hover-color);
+    background-color: var(--movetodata-hover-color);
   }
 }

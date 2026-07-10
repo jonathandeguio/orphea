@@ -1,4 +1,4 @@
-import { Mentions, Typography } from "antd";
+﻿import { Mentions, Typography } from "antd";
 import UserPopOver from "components/UserPopover/userpopover";
 import { User } from "global";
 import React from "react";
@@ -64,7 +64,7 @@ export const ShowMessageFormatter = ({ message }: { message: string }) => {
               <UserPopOver record={userDetails}>
                 <span
                   style={{
-                    background: "var(--orphea-table-selected)",
+                    background: "var(--movetodata-table-selected)",
                     cursor: "pointer",
                     padding: "0.2rem",
                     borderRadius: "0.5rem",

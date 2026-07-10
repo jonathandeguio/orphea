@@ -1,5 +1,5 @@
-.orpheaComponents-buttonDisplay {
-  border: 1px solid var(--orphea-border-color-default);
+﻿.movetodataComponents-buttonDisplay {
+  border: 1px solid var(--movetodata-border-color-default);
   display: flex;
   width: 100%;
   display: flex;
@@ -8,7 +8,7 @@
     flex: 1;
     flex-direction: column;
     &-screen {
-      background-color: var(--orphea-bkg-color-default);
+      background-color: var(--movetodata-bkg-color-default);
       flex: 1;
       display: flex;
       justify-content: center;
@@ -19,18 +19,18 @@
       gap: 1rem;
     }
     &-code {
-      border-top: 1px solid var(--orphea-border-color-default);
+      border-top: 1px solid var(--movetodata-border-color-default);
       display: flex;
       padding: 0.2rem;
       justify-content: center;
       align-items: center;
-      background-color: var(--orphea-bkg-color-muted);
+      background-color: var(--movetodata-bkg-color-muted);
     }
   }
   &-controller {
     // background-color: grey;
-    border: 1px solid var(--orphea-border-color-default);
-    background-color: var(--orphea-bkg-color-muted);
+    border: 1px solid var(--movetodata-border-color-default);
+    background-color: var(--movetodata-bkg-color-muted);
     padding: 1rem;
     &-items {
       display: flex;

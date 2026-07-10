@@ -1,4 +1,4 @@
-# Bosker setup with HELM
+﻿# Bosker setup with HELM
 
 ## Create new tenant first
 [Create new tenant](README-Create-New-Tenant.md)
@@ -36,13 +36,13 @@ repos
 ## HELM install
 
 ```
-helm install orphea orphea-gke -f orphea-gke/testCluster.yaml
+helm install movetodata movetodata-gke -f movetodata-gke/testCluster.yaml
 ```
 
 ## To Upgrade, if any changes to values etc
 
 ```
-helm upgrade orphea orphea-gke -f orphea-gke/testCluster.yaml
+helm upgrade movetodata movetodata-gke -f movetodata-gke/testCluster.yaml
 ```
 
 ## run post helm scripts for spark and healthcheck etc
@@ -56,7 +56,7 @@ helm upgrade orphea orphea-gke -f orphea-gke/testCluster.yaml
 ```
 create postgres db in alloy db, it will give an IP. put this IP in values.yaml
 
-➜  helm git:(main) ✗ kubectl -n orphea exec -it `kubectl -n orphea get pods |awk '{print $1}'|grep boson-db` -- /bin/bash 
+➜  helm git:(main) ✗ kubectl -n movetodata exec -it `kubectl -n movetodata get pods |awk '{print $1}'|grep boson-db` -- /bin/bash 
 bash-5.1# 
 bash-5.1# 
 bash-5.1# 

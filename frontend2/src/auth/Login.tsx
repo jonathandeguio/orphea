@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { login } from "../redux/actions/userActions";
@@ -122,7 +122,7 @@ const Login = () => {
             />
           </svg>
 
-          <div className="login-icon-orphea">ORPHEA</div>
+          <div className="login-icon-movetodata">MOVETODATA</div>
         </div>
 
         <div className="form-container">
@@ -130,7 +130,7 @@ const Login = () => {
           <Box>
 
             <Typography align="center">
-              <h2>Login to Orphea</h2>
+              <h2>Login to MoveToData</h2>
             </Typography>
 
 

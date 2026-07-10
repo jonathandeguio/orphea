@@ -1,10 +1,10 @@
-import { SearchIcon } from "assets/icons/orpheaActionIcons";
+﻿import { SearchIcon } from "assets/icons/movetodataActionIcons";
 import HeaderSearch from "layouts/Header/HeaderSearch";
 import React, { useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 import { getLanguageLabel } from "utils/utilities";
 import SBElement from "./SBElement";
-import OrpheaModal from "components/OrpheaModalContainer";
+import MoveToDataModal from "components/MoveToDataModalContainer";
 
 interface TProps {
   iconSize?: number;
@@ -37,7 +37,7 @@ const SBElementSearch = ({
           setIsHeaderSearchModalOpen(true);
         }}
       />
-      <OrpheaModal
+      <MoveToDataModal
         footer={null}
         open={isHeaderSearchModalOpen}
         onCancel={() => setIsHeaderSearchModalOpen(false)}
@@ -45,7 +45,7 @@ const SBElementSearch = ({
       >
         <HeaderSearch setIsHeaderSearchModalOpen={setIsHeaderSearchModalOpen} />
         <br />
-      </OrpheaModal>
+      </MoveToDataModal>
     </>
   );
 };

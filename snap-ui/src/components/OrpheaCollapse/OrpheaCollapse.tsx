@@ -1,8 +1,8 @@
-import {
+﻿import {
   SingleChevronRightIcon,
-} from "assets/icons/orpheaNavigationIcon";
+} from "assets/icons/movetodataNavigationIcon";
 import React, { useEffect, useMemo, useState } from "react";
-import "./OrpheaCollapse.scss";
+import "./MoveToDataCollapse.scss";
 
 interface ICollapse {
   collapsible: "HEADER" | "ICON" | "DISABLED";
@@ -14,7 +14,7 @@ interface ICollapse {
   sections?: "HEADER" | "BODY" | "HEADER_BODY" | "COLLAPSE";
 }
 
-export const OrpheaCollapse: React.FC<ICollapse> = ({
+export const MoveToDataCollapse: React.FC<ICollapse> = ({
   collapsible,
   header,
   children,
@@ -42,11 +42,11 @@ export const OrpheaCollapse: React.FC<ICollapse> = ({
       return <>{children}</>;
     default:
       return (
-        <div className="orphea_collapse__container">
+        <div className="movetodata_collapse__container">
           <div
-            className={`orphea_collapse__head ${
+            className={`movetodata_collapse__head ${
               collapsible === "DISABLED"
-                ? "orphea_collapse__head--disabled"
+                ? "movetodata_collapse__head--disabled"
                 : ""
             }`}
             onClick={(e) => {
@@ -61,8 +61,8 @@ export const OrpheaCollapse: React.FC<ICollapse> = ({
           >
             {section === "COLLAPSE" && (
               <div
-                className={`orphea_collapse__icon ${
-                  isCollapsed ? "" : "orphea_collapse__icon--open"
+                className={`movetodata_collapse__icon ${
+                  isCollapsed ? "" : "movetodata_collapse__icon--open"
                 }`}
                 onClick={(e) => {
                   e.preventDefault();
@@ -79,14 +79,14 @@ export const OrpheaCollapse: React.FC<ICollapse> = ({
                 />
               </div>
             )}
-            <div className="orphea_collapse__label">{header}</div>
+            <div className="movetodata_collapse__label">{header}</div>
           </div>
           <div
-            className={`orphea_collapse__body_container ${
-              isCollapsed ? "orphea_collapse__body_container--hidden" : ""
+            className={`movetodata_collapse__body_container ${
+              isCollapsed ? "movetodata_collapse__body_container--hidden" : ""
             }`}
           >
-            <div className="orphea_collapse__body">
+            <div className="movetodata_collapse__body">
               <div className="sideDivider">
                 <div className="sideDivider-body">{children}</div>
               </div>

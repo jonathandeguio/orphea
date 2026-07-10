@@ -1,10 +1,10 @@
-apiVersion: apps/v1
+﻿apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
     name: frontend
   name: frontend
-  namespace: orphea
+  namespace: movetodata
 spec:
   replicas: 1
   selector:
@@ -16,7 +16,7 @@ spec:
         name: frontend
     spec:
       containers:
-        - image: rmalik/orphea:frontend
+        - image: rmalik/movetodata:frontend
           imagePullPolicy: Always
           name: frontend
           ports:
@@ -32,7 +32,7 @@ metadata:
   labels:
     name: frontend
   name: frontend
-  namespace: orphea
+  namespace: movetodata
 spec:
   # type: NodePort
   ports:

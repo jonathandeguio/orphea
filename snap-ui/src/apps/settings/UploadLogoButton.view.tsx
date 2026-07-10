@@ -1,16 +1,16 @@
-import { Avatar, Dropdown, Typography, Upload } from "antd";
+﻿import { Avatar, Dropdown, Typography, Upload } from "antd";
 import React from "react";
 
 import type { RcFile } from "antd/es/upload/interface";
 import { isDefined, openNotification } from "utils/utilities";
 
-import { EditIcon } from "assets/icons/orpheaEditorIcons";
-import { UploadIcon } from "assets/icons/orpheaInterfaceIcons";
-import { OrpheaIcon, TrashIcon } from "assets/icons/orpheaMiscellaneousIcons";
+import { EditIcon } from "assets/icons/movetodataEditorIcons";
+import { UploadIcon } from "assets/icons/movetodataInterfaceIcons";
+import { MoveToDataIcon, TrashIcon } from "assets/icons/movetodataMiscellaneousIcons";
 import { useDispatch, useSelector } from "react-redux";
 import { updatePlatformConfig } from "redux/actions/platformSettingsActions";
 import { ThunkAppDispatch } from "redux/types/store";
-import OrpheaButton from "components/ButtonComponent/OrpheaButton";
+import MoveToDataButton from "components/ButtonComponent/MoveToDataButton";
 
 const { Text, Title } = Typography;
 
@@ -58,7 +58,7 @@ const UploadLogoButton = () => {
           isDefined(config) && isDefined(config.logo) ? (
             config.logo
           ) : (
-            <OrpheaIcon size={190} />
+            <MoveToDataIcon size={190} />
           )
         }
         size={200}
@@ -96,7 +96,7 @@ const UploadLogoButton = () => {
                     style={{ padding: "0.5rem" }}
                     className="text-and-icon-center"
                   >
-                    <TrashIcon color="var(--orphea-intent-danger)" />
+                    <TrashIcon color="var(--movetodata-intent-danger)" />
                     Remove
                   </span>
                 ),
@@ -105,9 +105,9 @@ const UploadLogoButton = () => {
             ],
           }}
         >
-          <OrpheaButton icon={<EditIcon />} intent="primary">
+          <MoveToDataButton icon={<EditIcon />} intent="primary">
             Edit
-          </OrpheaButton>
+          </MoveToDataButton>
         </Dropdown>
       </div>
     </div>

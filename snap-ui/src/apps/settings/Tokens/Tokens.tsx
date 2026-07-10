@@ -1,14 +1,14 @@
-import { Col, Divider, Row, Switch, Table, Typography } from "antd";
+﻿import { Col, Divider, Row, Switch, Table, Typography } from "antd";
 
-import { AddIcon, SearchIcon } from "assets/icons/orpheaActionIcons";
+import { AddIcon, SearchIcon } from "assets/icons/movetodataActionIcons";
 import CreateNewTokenModal from "apps/settings/Tokens/CreateNewTokenModal";
 
 import React, { useEffect, useState } from "react";
 import { getLanguageLabel, globalSearch } from "utils/utilities";
-import OrpheaLoader from "components/orpheaLoader/OrpheaLoader";
+import MoveToDataLoader from "components/movetodataLoader/MoveToDataLoader";
 import { fetchAllTokensAPI } from "../apis";
-import OrpheaInput from "components/InputComponent/OrpheaInput";
-import OrpheaButton from "components/ButtonComponent/OrpheaButton";
+import MoveToDataInput from "components/InputComponent/MoveToDataInput";
+import MoveToDataButton from "components/ButtonComponent/MoveToDataButton";
 
 const { Text, Title } = Typography;
 
@@ -92,7 +92,7 @@ const Tokens = () => {
 
   return loading ? (
     <div className="settings-center-block">
-      <OrpheaLoader />
+      <MoveToDataLoader />
     </div>
   ) : (
     <div className="settings-center-block">
@@ -103,18 +103,18 @@ const Tokens = () => {
           <Text type="secondary">{getLanguageLabel("tokenMsg")}</Text>
         </Col>
         <Col>
-          <OrpheaButton
+          <MoveToDataButton
             icon={<AddIcon />}
             intent="action"
             onClick={() => setIsCreateNewTokenModalOpen(true)}
           >
             {" "}
             {getLanguageLabel("newToken")}{" "}
-          </OrpheaButton>
+          </MoveToDataButton>
         </Col>
       </Row>
       <Divider />
-      <OrpheaInput
+      <MoveToDataInput
         placeholder={getLanguageLabel("searchTokenTable")}
         allowClear
         onChange={(e) => {

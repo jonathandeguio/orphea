@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+﻿#!/usr/bin/env bash
 
 # get environment variables
 if [ $# -eq 0 ]; then
@@ -7,8 +7,8 @@ fi
 
 source $1
 
-kubectl -n orphea exec -it $(kubectl -n orphea get pods | awk '{print $1}' | grep boson-db) -- /bin/bash -c "su - postgres -c \"psql -c 'CREATE DATABASE kepler;'\""
-kubectl -n orphea exec -it $(kubectl -n orphea get pods | awk '{print $1}' | grep boson-db) -- /bin/bash -c "su - postgres -c \"psql -c 'CREATE DATABASE boson;'\""
+kubectl -n movetodata exec -it $(kubectl -n movetodata get pods | awk '{print $1}' | grep boson-db) -- /bin/bash -c "su - postgres -c \"psql -c 'CREATE DATABASE kepler;'\""
+kubectl -n movetodata exec -it $(kubectl -n movetodata get pods | awk '{print $1}' | grep boson-db) -- /bin/bash -c "su - postgres -c \"psql -c 'CREATE DATABASE boson;'\""
 
 # This is to modify HC to check /api/jupyter/api , other GCP healthchecks fails
 callisto_hc=$(gcloud compute health-checks list --global | grep callisto | awk '{print $1}')
@@ -19,4 +19,4 @@ gcloud compute health-checks update http $callisto_hc \
   --request-path="/api/jupyter/api"
 
 ## Install Spark and Spark_history
-./orphea_spark_env.sh create
+./movetodata_spark_env.sh create

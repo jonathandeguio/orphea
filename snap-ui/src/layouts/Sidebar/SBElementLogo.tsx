@@ -1,5 +1,5 @@
-import { OrpheaIcon } from "assets/icons/orpheaMiscellaneousIcons";
-import OrpheaLoader from "components/orpheaLoader";
+﻿import { MoveToDataIcon } from "assets/icons/movetodataMiscellaneousIcons";
+import MoveToDataLoader from "components/movetodataLoader";
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -28,7 +28,7 @@ const SDElementLogo = ({
   return (
     <Link to="/" style={{ textDecoration: "none" }}>
       {loading ? (
-        <OrpheaLoader />
+        <MoveToDataLoader />
       ) : isDefined(config) && isDefined(config.logo) ? (
         <img
           style={{
@@ -40,10 +40,10 @@ const SDElementLogo = ({
         />
       ) : (
         <>
-          <OrpheaIcon size={iconSize && iconSize > 18 ? 36 : 30} />
+          <MoveToDataIcon size={iconSize && iconSize > 18 ? 36 : 30} />
           <br />
           {showText ? (
-            <span className="logo">ORPHEA</span>
+            <span className="logo">MOVETODATA</span>
           ) : (
             <span
               className="logo"
@@ -52,13 +52,13 @@ const SDElementLogo = ({
                 fontWeight: "bold",
                 lineHeight: "16px",
                 color: "var(--PRIMARY_COLOR)",
-                // background: "var(--orphea-border-color-muted)",
-                // border: 0.1px solid var(--orphea-border-color-default);
+                // background: "var(--movetodata-border-color-muted)",
+                // border: 0.1px solid var(--movetodata-border-color-default);
                 // border-left: none;
                 // border-right: none;
               }}
             >
-              ORPHEA
+              MOVETODATA
             </span>
           )}
         </>

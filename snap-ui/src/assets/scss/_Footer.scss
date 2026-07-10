@@ -1,4 +1,4 @@
-.footer {
+﻿.footer {
   padding-left: 0.5rem;
   background-color: #1890ff;
   font-size: 0.8rem;
@@ -55,7 +55,7 @@
 .popup {
   li {
     clear: both;
-    color: var(--orphea-font-color-default);
+    color: var(--movetodata-font-color-default);
     font-size: 14px;
     font-weight: normal;
     line-height: 22px;
@@ -77,7 +77,7 @@
 }
 
 .popup li:hover {
-  background-color: var(--orphea-border-color-default);
+  background-color: var(--movetodata-border-color-default);
 }
 
 .popup li > i {

@@ -1,4 +1,4 @@
-import OrpheaLoader from "components/orpheaLoader";
+﻿import MoveToDataLoader from "components/movetodataLoader";
 import UserPopOver from "components/UserPopover/userpopover";
 import React, { useEffect, useState } from "react";
 import { fetchUserDetailsAPI } from "./UserInfo.api";
@@ -32,7 +32,7 @@ const UserInfo = ({ userId }: TProps) => {
   }
 
   if (isLoading) {
-    return <OrpheaLoader size="tiny" />;
+    return <MoveToDataLoader size="tiny" />;
   }
 
   if (!userData) {

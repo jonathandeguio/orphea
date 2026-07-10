@@ -1,9 +1,9 @@
-export const API_BASE_URL = process.env.REACT_APP_BASE_URL_API;
+﻿export const API_BASE_URL = process.env.REACT_APP_BASE_URL_API;
 
 export const BASE_URL = window.location.origin;
-export const ORPHEA_TOKEN = "orpheaToken";
-export const ORPHEA_LOGGED_IN_USER_PASSWORD = "orpheaUserPassword";
-export const ORPHEA_LOGGED_IN_USER = "orpheaLoggedInUser";
+export const MOVETODATA_TOKEN = "movetodataToken";
+export const MOVETODATA_LOGGED_IN_USER_PASSWORD = "movetodataUserPassword";
+export const MOVETODATA_LOGGED_IN_USER = "movetodataLoggedInUser";
 
 export const LANGUAGE = "bUserLanguage";
 

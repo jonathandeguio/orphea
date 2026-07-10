@@ -1,12 +1,12 @@
-import { Card, Col, Divider, Row, Tooltip, Typography } from "antd";
+﻿import { Card, Col, Divider, Row, Tooltip, Typography } from "antd";
 import axios from "axios";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { SparklesIcon } from "assets/icons/orpheaActionIcons";
+import { SparklesIcon } from "assets/icons/movetodataActionIcons";
 
 import { openNotification } from "utils/utilities";
 import { ThunkAppDispatch } from "redux/types/store";
-import OrpheaButton from "components/ButtonComponent/OrpheaButton";
+import MoveToDataButton from "components/ButtonComponent/MoveToDataButton";
 const { Text, Title } = Typography;
 
 const DeveloperSettings = () => {
@@ -64,14 +64,14 @@ const DeveloperSettings = () => {
                   >
                     <div>
                       <div className="text-and-icon-center">
-                        <OrpheaButton
+                        <MoveToDataButton
                           dashed
                           intent="dangerous"
                           onClick={() => createSampleData("development")}
                           icon={<SparklesIcon />}
                         >
                           Development Sample Data
-                        </OrpheaButton>
+                        </MoveToDataButton>
                       </div>
                     </div>
                   </Tooltip>
@@ -100,14 +100,14 @@ const DeveloperSettings = () => {
                   >
                     <div>
                       <div className="text-and-icon-center">
-                        <OrpheaButton
+                        <MoveToDataButton
                           dashed
                           intent="dangerous"
                           onClick={() => createSampleData("demo")}
                           icon={<SparklesIcon color={"#ffffff"} />}
                         >
                           Demo Sample Data
-                        </OrpheaButton>
+                        </MoveToDataButton>
                       </div>
                     </div>
                   </Tooltip>

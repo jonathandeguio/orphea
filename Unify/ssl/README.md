@@ -1,4 +1,4 @@
-Update SSL certificate on demo:
+﻿Update SSL certificate on demo:
 
 change 443 port from 240 to 235 
 
@@ -22,19 +22,19 @@ Create new:
 
 ```
 certbot certonly --webroot -w /letsencrypt \
--d snap.orphea.io \
--d aurora.orphea.io \
--d orion.orphea.io \
--d nexus.orphea.io \
--d bora.orphea.io \
--d buran.orphea.io \
--d elara.orphea.io \
--d pulsar.orphea.io \
--d saros.orphea.io \
--d nova.orphea.io \
--d solara.orphea.io \
--d rado.orphea.io \
--d aldo.orphea.io
+-d snap.movetodata.io \
+-d aurora.movetodata.io \
+-d orion.movetodata.io \
+-d nexus.movetodata.io \
+-d bora.movetodata.io \
+-d buran.movetodata.io \
+-d elara.movetodata.io \
+-d pulsar.movetodata.io \
+-d saros.movetodata.io \
+-d nova.movetodata.io \
+-d solara.movetodata.io \
+-d rado.movetodata.io \
+-d aldo.movetodata.io
 
 ```
 
@@ -48,7 +48,7 @@ Then update kubernetes and reload ingress
 
 ```
 cd certs/live/
-cd demo.orphea.io/
+cd demo.movetodata.io/
 
 cat privkey.pem|base64| sed 's/^/    /'
 

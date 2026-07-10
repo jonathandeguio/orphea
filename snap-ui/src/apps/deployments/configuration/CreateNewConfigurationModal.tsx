@@ -1,16 +1,16 @@
-import axios from "axios";
+﻿import axios from "axios";
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getLanguageLabel, isDefined, openNotification } from "utils/utilities";
-import { TickIcon } from "assets/icons/orpheaNavigationIcon";
+import { TickIcon } from "assets/icons/movetodataNavigationIcon";
 import { getAllConfigurationDetails } from "redux/actions/ConfigurationActions";
 import { ThunkAppDispatch } from "redux/types/store";
 
-import { AddIcon } from "assets/icons/orpheaActionIcons";
+import { AddIcon } from "assets/icons/movetodataActionIcons";
 import { ErrorResponse } from "global";
-import OrpheaModal from "components/OrpheaModalContainer";
-import OrpheaButton from "components/ButtonComponent/OrpheaButton";
-import OrpheaInput from "components/InputComponent/OrpheaInput";
+import MoveToDataModal from "components/MoveToDataModalContainer";
+import MoveToDataButton from "components/ButtonComponent/MoveToDataButton";
+import MoveToDataInput from "components/InputComponent/MoveToDataInput";
 
 interface Props {
   isOpen: boolean;
@@ -65,21 +65,21 @@ const CreateNewConfigurationModal = ({ isOpen, setIsOpen }: Props) => {
 
   return (
     <>
-      <OrpheaModal
+      <MoveToDataModal
         headingIcon={<AddIcon />}
         heading={"New Configuration"}
         open={isOpen}
         onCancel={() => setIsOpen(false)}
         onOk={handleOk}
         footerButtonArea={
-          <OrpheaButton
+          <MoveToDataButton
             icon={<TickIcon />}
             intent="action"
             key="submit"
             onClick={handleOk}
           >
             {getLanguageLabel("create")}
-          </OrpheaButton>
+          </MoveToDataButton>
         }
         width={600}
       >
@@ -89,8 +89,8 @@ const CreateNewConfigurationModal = ({ isOpen, setIsOpen }: Props) => {
             overflow: "scoll",
           }}
         >
-          <div className="OrpheaHeader1">License</div>
-          <OrpheaInput
+          <div className="MoveToDataHeader1">License</div>
+          <MoveToDataInput
             autofocus
             onChange={(e: any) =>
               setNewConfigurationDetails({
@@ -104,7 +104,7 @@ const CreateNewConfigurationModal = ({ isOpen, setIsOpen }: Props) => {
           />
           
         </div>
-      </OrpheaModal>
+      </MoveToDataModal>
     </>
   );
 };

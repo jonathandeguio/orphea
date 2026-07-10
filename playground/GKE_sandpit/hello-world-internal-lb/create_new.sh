@@ -1,17 +1,17 @@
-#!/usr/bin/env zsh
+﻿#!/usr/bin/env zsh
 
 # https://cloud.google.com/load-balancing/docs/https/setting-up-reg-ext-https-lb#gcloud
 # - Network. The network is a custom-mode VPC network named lb-network.
 # - Subnet for backends. A subnet named backend-subnet in the us-west1 region uses 10.1.2.0/24 for its primary IP range.
 # - Subnet for proxies. A subnet named proxy-only-subnet in the us-west1 region uses 10.129.0.0/23 for its primary IP range.
 
-PROJECT_ID=orphea-test
+PROJECT_ID=movetodata-test
 COMPUTE_REGION=europe-west2
 COMPUTE_ZONE=europe-west2-a
 CLUSTER_NAME=hello-world
-CERTIFICATE_NAME="orphea-preshared-cert"
-CERT_FILE_PATH="/Users/jamesmorrish/OneDrive/Jim Documents/Orphea/SECRETS/Orphea.io-ssl-cert/_.orphea.io.crt"
-KEY_FILE_PATH="/Users/jamesmorrish/OneDrive/Jim Documents/Orphea/SECRETS/Orphea.io-ssl-cert/myserver.key"
+CERTIFICATE_NAME="movetodata-preshared-cert"
+CERT_FILE_PATH="/Users/jamesmorrish/OneDrive/Jim Documents/MoveToData/SECRETS/MoveToData.io-ssl-cert/_.movetodata.io.crt"
+KEY_FILE_PATH="/Users/jamesmorrish/OneDrive/Jim Documents/MoveToData/SECRETS/MoveToData.io-ssl-cert/myserver.key"
 SOURCE_RANGE="0.0.0.0/0"
 
 # BACKEND NAME ???  

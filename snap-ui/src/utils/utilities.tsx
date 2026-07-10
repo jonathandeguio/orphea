@@ -1,4 +1,4 @@
-import de from "javascript-time-ago/locale/de";
+﻿import de from "javascript-time-ago/locale/de";
 import en from "javascript-time-ago/locale/en";
 import es from "javascript-time-ago/locale/es";
 import fr from "javascript-time-ago/locale/fr";
@@ -17,9 +17,9 @@ import dayjs from "dayjs";
 import dayLocaleData from "dayjs/plugin/localeData";
 import { User } from "global";
 import SockJS from "sockjs-client";
-import { KeyCommandIcon } from "../assets/icons/orpheaInterfaceIcons";
-import { SingleChevronUpIcon } from "../assets/icons/orpheaNavigationIcon";
-import { OrpheaConfig } from "../config";
+import { KeyCommandIcon } from "../assets/icons/movetodataInterfaceIcons";
+import { SingleChevronUpIcon } from "../assets/icons/movetodataNavigationIcon";
+import { MoveToDataConfig } from "../config";
 import { AllLabels } from "./language";
 
 dayjs.extend(dayLocaleData);
@@ -637,10 +637,10 @@ const copyToClipboard = async (
  * @returns
  */
 const getColorTheme = (themeName: string) => {
-  if (OrpheaConfig.colorTheme.hasOwnProperty(themeName)) {
-    return OrpheaConfig.colorTheme[themeName];
+  if (MoveToDataConfig.colorTheme.hasOwnProperty(themeName)) {
+    return MoveToDataConfig.colorTheme[themeName];
   } else {
-    return OrpheaConfig.colorTheme.custom;
+    return MoveToDataConfig.colorTheme.custom;
   }
 };
 
@@ -713,7 +713,7 @@ const getSQLFormatLink = () => {
     ? location.protocol === "https:"
       ? "https://" + location.host
       : "http://" + location.host
-    : "http://staging.orphea.io";
+    : "http://staging.movetodata.io";
 };
 
 const isIpPlatform = () => {

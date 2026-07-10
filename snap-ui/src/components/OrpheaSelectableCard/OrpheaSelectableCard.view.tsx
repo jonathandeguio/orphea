@@ -1,8 +1,8 @@
-import { Card, CardProps, Col, Row, Typography } from "antd";
-import { MoreMenuIcon } from "assets/icons/orpheaActionIcons";
+﻿import { Card, CardProps, Col, Row, Typography } from "antd";
+import { MoreMenuIcon } from "assets/icons/movetodataActionIcons";
 import React from "react";
 
-interface TOrpheaCardProps extends CardProps {
+interface TMoveToDataCardProps extends CardProps {
   heading?: any;
   icon?: any;
   information?: any;
@@ -10,12 +10,12 @@ interface TOrpheaCardProps extends CardProps {
 }
 const { Title } = Typography;
 const { Meta } = Card;
-const OrpheaSelectableCard = ({
+const MoveToDataSelectableCard = ({
   heading,
   icon,
   information,
   disabled,
-}: TOrpheaCardProps) => {
+}: TMoveToDataCardProps) => {
   return (
     <Card
       hoverable
@@ -40,4 +40,4 @@ const OrpheaSelectableCard = ({
   );
 };
 
-export default OrpheaSelectableCard;
+export default MoveToDataSelectableCard;

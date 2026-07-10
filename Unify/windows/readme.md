@@ -1,4 +1,4 @@
-# Steps to follow windows on premise installation
+﻿# Steps to follow windows on premise installation
 
 
 1. Install nginx-1.25.5, jdk-11, spark and hadoop winutils
@@ -8,7 +8,7 @@ FOLDER Structure needs to be:
 
 
 ```
-\Orphea\
+\MoveToData\
 +-- \app\
 |   +-- \frontend\
 |   +-- \boson\
@@ -23,44 +23,44 @@ FOLDER Structure needs to be:
 
 3. Create a db with name - boson and make required changes to startApplication env variables such as db userName and password.
 4. run the startApplication file with admin cmd.
-5. Once the boson is started it should bring up orphea at http://localhost or the specific url set in nginx conf file.
+5. Once the boson is started it should bring up movetodata at http://localhost or the specific url set in nginx conf file.
 6. To Stop the server run the stopApplication.bat file
 
 To add as a service
 
 Copy nsmm and use it to add a service
 
-nssm install OrpheaBackend "C:\Orphea\startBackend.bat"
-nssm install OrpheaFrontend "C:\Orphea\startFrontend.bat"
-nssm install OrpheaRedis "C:\Orphea\startRedis.bat"
+nssm install MoveToDataBackend "C:\MoveToData\startBackend.bat"
+nssm install MoveToDataFrontend "C:\MoveToData\startFrontend.bat"
+nssm install MoveToDataRedis "C:\MoveToData\startRedis.bat"
 
 Set description
 
-nssm set OrpheaBackend Description "This is the Orphea Backend Application running with java."
-nssm set OrpheaFrontend Description "This is the Orphea Frontend Application running with Nginx."
-nssm set OrpheaRedis Description "This is the Orphea Caching service."
+nssm set MoveToDataBackend Description "This is the MoveToData Backend Application running with java."
+nssm set MoveToDataFrontend Description "This is the MoveToData Frontend Application running with Nginx."
+nssm set MoveToDataRedis Description "This is the MoveToData Caching service."
 
 
 
 Set logging :
 
 
-C:\Orphea\softwares>nssm set OrpheaFrontend AppStdout C:\Orphea\logs\OrpheaFrontend.log
-Set parameter "AppStdout" for service "OrpheaFrontend".
+C:\MoveToData\softwares>nssm set MoveToDataFrontend AppStdout C:\MoveToData\logs\MoveToDataFrontend.log
+Set parameter "AppStdout" for service "MoveToDataFrontend".
 
-C:\Orphea\softwares>nssm set OrpheaFrontend AppStderr C:\Orphea\logs\OrpheaFrontend-error.log
-Set parameter "AppStderr" for service "OrpheaFrontend".
+C:\MoveToData\softwares>nssm set MoveToDataFrontend AppStderr C:\MoveToData\logs\MoveToDataFrontend-error.log
+Set parameter "AppStderr" for service "MoveToDataFrontend".
 
-C:\Orphea\softwares>nssm set OrpheaBackend AppStderr C:\Orphea\logs\OrpheaBackend-error.log
-Set parameter "AppStderr" for service "OrpheaBackend".
+C:\MoveToData\softwares>nssm set MoveToDataBackend AppStderr C:\MoveToData\logs\MoveToDataBackend-error.log
+Set parameter "AppStderr" for service "MoveToDataBackend".
 
-C:\Orphea\softwares>nssm set OrpheaBackend AppStdout C:\Orphea\logs\OrpheaBackend.log
-Set parameter "AppStdout" for service "OrpheaBackend".
+C:\MoveToData\softwares>nssm set MoveToDataBackend AppStdout C:\MoveToData\logs\MoveToDataBackend.log
+Set parameter "AppStdout" for service "MoveToDataBackend".
 
 
-C:\Orphea\softwares>nssm set OrpheaRedis AppStderr C:\Orphea\logs\OrpheaRedis-error.log
-Set parameter "AppStderr" for service "OrpheaRedis".
+C:\MoveToData\softwares>nssm set MoveToDataRedis AppStderr C:\MoveToData\logs\MoveToDataRedis-error.log
+Set parameter "AppStderr" for service "MoveToDataRedis".
 
-C:\Orphea\softwares>nssm set OrpheaRedis AppStdout C:\Orphea\logs\OrpheaRedis.log
-Set parameter "AppStdout" for service "OrpheaRedis".
+C:\MoveToData\softwares>nssm set MoveToDataRedis AppStdout C:\MoveToData\logs\MoveToDataRedis.log
+Set parameter "AppStdout" for service "MoveToDataRedis".
 

@@ -1,11 +1,11 @@
-# **Frontend for Orphea**
+﻿# **Frontend for MoveToData**
 
-## **This project is FrontEnd for Orphea.io**
+## **This project is FrontEnd for MoveToData.io**
 
 ### **How to get started ?**
 
 1. Clone this repository on your local system <br>
-   `https://github.com/Orphea-io/frontend.git`
+   `https://github.com/MoveToData-io/frontend.git`
 
 2. Then install Node Modules <br>
    `yarn install `

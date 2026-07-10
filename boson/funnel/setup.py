@@ -1,4 +1,4 @@
-import setuptools
+﻿import setuptools
 
 # with open("README.md", "r", encoding="utf-8") as fh:
 #     long_description = fh.read()
@@ -7,7 +7,7 @@ setuptools.setup(
     name="funnel",
     version="0.0.1",
     author="Rakesh Malik",
-    author_email="rakesh.malik@orphea.io",
+    author_email="rakesh.malik@movetodata.io",
     description="This is python transform decorators.",
     long_description="long_description",
     long_description_content_type="text/markdown",

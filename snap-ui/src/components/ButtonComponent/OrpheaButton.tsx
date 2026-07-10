@@ -1,12 +1,12 @@
-import { Button, Dropdown, Tooltip } from "antd";
+﻿import { Button, Dropdown, Tooltip } from "antd";
 import React, { useEffect, useState } from "react";
 import { isDefined } from "utils/utilities";
 import "./ButtonComponent.scss";
-import { SingleChevronDownIcon } from "assets/icons/orpheaNavigationIcon";
+import { SingleChevronDownIcon } from "assets/icons/movetodataNavigationIcon";
 
 const INTENT_COLOR = "var(--INTENT_COLOR)";
 const INTENT_COLOR_FONT = "var(--INTENT_COLOR_FONT)";
-const INTENT_COLOR_BORDER = "var(--orphea-border-color-default)";
+const INTENT_COLOR_BORDER = "var(--movetodata-border-color-default)";
 
 const PRIMARY_COLOR = "var(--PRIMARY_COLOR)";
 const PRIMARY_COLOR_BORDER = "var(--PRIMARY_COLOR_BORDER)";
@@ -150,12 +150,12 @@ const CustomButton = ({
       return DANGEROUS_COLOR_FONT;
     } else if (intent == "warning") {
       return WARNING_COLOR_FONT;
-      // return "var(--orphea-font-color-default)";
+      // return "var(--movetodata-font-color-default)";
     }
   };
 
   const getBgColor = () => {
-    if (autoFocus) return "var(--orphea-hover-color)";
+    if (autoFocus) return "var(--movetodata-hover-color)";
     if (minimal || outlined || dashed) return "";
 
     if (intent == "none") {
@@ -207,7 +207,7 @@ const CustomButton = ({
       type={getType()}
       loading={loading}
       size={size}
-      className="orpheaButton"
+      className="movetodataButton"
       style={{
         opacity: disabled ? "0.65" : "1",
         padding: padding, // icononly && trimicononlypadding ? "0" : "0 10px",
@@ -235,11 +235,11 @@ const CustomButton = ({
       htmlType={htmlType}
       id={id}
     >
-      {/* <div className="orpheaButton-children"> */}
+      {/* <div className="movetodataButton-children"> */}
       {!icononly && <div style={{ margin: "0 5px 0 0" }}>{children}</div>}
       {actionIcon && (
         <div
-          className="text-and-icon-center orpheaButton-actionIcon"
+          className="text-and-icon-center movetodataButton-actionIcon"
           onClick={onClickActionIcon}
         >
           {React.cloneElement(actionIcon, {
@@ -248,14 +248,14 @@ const CustomButton = ({
         </div>
       )}
       {menuItems && (
-        <div className="text-and-icon-center orpheaButton-actionIcon">
+        <div className="text-and-icon-center movetodataButton-actionIcon">
           <Dropdown
             menu={{ items: menuItems }}
             // placement="topLeft"
             arrow
             trigger={["click"]}
           >
-            <OrpheaButton
+            <MoveToDataButton
               icononly={true}
               intent="none"
               minimal
@@ -270,7 +270,7 @@ const CustomButton = ({
                 border: "none",
                 borderRadius: "0",
               }}
-            ></OrpheaButton>
+            ></MoveToDataButton>
           </Dropdown>
         </div>
       )}
@@ -278,7 +278,7 @@ const CustomButton = ({
     </Button>
   );
 };
-const OrpheaButton: React.FC<btnProps> = ({
+const MoveToDataButton: React.FC<btnProps> = ({
   active = false,
   disabled = false,
   loading = false,
@@ -403,4 +403,4 @@ const OrpheaButton: React.FC<btnProps> = ({
   );
 };
 
-export default OrpheaButton;
+export default MoveToDataButton;

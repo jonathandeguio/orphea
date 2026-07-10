@@ -1,12 +1,12 @@
-#!/usr/bin/env bash
+﻿#!/usr/bin/env bash
 # =============================================================================
-# Orphea Platform — Script 05 : Vérification de santé complète
+# MoveToData Platform — Script 05 : Vérification de santé complète
 # Usage : bash 05-healthcheck.sh
 # =============================================================================
 set -uo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-ENV_FILE="${SCRIPT_DIR}/.env.orphea"
+ENV_FILE="${SCRIPT_DIR}/.env.movetodata"
 
 RED='\033[0;31m'; GREEN='\033[0;32m'; YELLOW='\033[1;33m'; BLUE='\033[0;34m'; NC='\033[0m'
 ok()   { echo -e "  ${GREEN}✓${NC} $*"; }
@@ -24,7 +24,7 @@ BOSON_PORT="8080"
 
 echo ""
 echo -e "${BLUE}================================================${NC}"
-echo -e "${BLUE}   Orphea Platform — Healthcheck$(date '+  %Y-%m-%d %H:%M:%S')${NC}"
+echo -e "${BLUE}   MoveToData Platform — Healthcheck$(date '+  %Y-%m-%d %H:%M:%S')${NC}"
 echo -e "${BLUE}================================================${NC}"
 echo ""
 
@@ -32,13 +32,13 @@ echo ""
 info "=== Containers Docker ==="
 # -----------------------------------------------------------------------------
 CONTAINERS=(
-  "orphea-boson-db"
-  "orphea-redis"
-  "orphea-boson"
-  "orphea-frontend"
+  "movetodata-boson-db"
+  "movetodata-redis"
+  "movetodata-boson"
+  "movetodata-frontend"
 )
-SNAP_CONTAINERS=("orphea-snap-db" "orphea-snap" "orphea-snap-ui" "orphea-snap-proxy")
-TYCHO_CONTAINERS=("orphea-tycho-db" "orphea-tycho" "orphea-tycho-worker" "orphea-tycho-beat")
+SNAP_CONTAINERS=("movetodata-snap-db" "movetodata-snap" "movetodata-snap-ui" "movetodata-snap-proxy")
+TYCHO_CONTAINERS=("movetodata-tycho-db" "movetodata-tycho" "movetodata-tycho-worker" "movetodata-tycho-beat")
 
 check_container() {
   local name="$1"
@@ -104,9 +104,9 @@ echo ""
 # -----------------------------------------------------------------------------
 info "=== Base de données PostgreSQL Boson ==="
 # -----------------------------------------------------------------------------
-if docker exec orphea-boson-db pg_isready -U "${BOSON_DB_USERNAME:-orphea}" -d "${BOSON_DB_NAME:-boson}" &>/dev/null; then
-  ok "PostgreSQL Boson (orphea-boson-db) : ready"
-  TABLE_COUNT=$(docker exec orphea-boson-db psql -U "${BOSON_DB_USERNAME:-orphea}" -d "${BOSON_DB_NAME:-boson}" -tAc "SELECT count(*) FROM information_schema.tables WHERE table_schema='public';" 2>/dev/null || echo "N/A")
+if docker exec movetodata-boson-db pg_isready -U "${BOSON_DB_USERNAME:-movetodata}" -d "${BOSON_DB_NAME:-boson}" &>/dev/null; then
+  ok "PostgreSQL Boson (movetodata-boson-db) : ready"
+  TABLE_COUNT=$(docker exec movetodata-boson-db psql -U "${BOSON_DB_USERNAME:-movetodata}" -d "${BOSON_DB_NAME:-boson}" -tAc "SELECT count(*) FROM information_schema.tables WHERE table_schema='public';" 2>/dev/null || echo "N/A")
   [[ "${TABLE_COUNT}" != "N/A" ]] && ok "Tables Flyway : ${TABLE_COUNT} tables dans boson"
 else
   fail "PostgreSQL Boson : non disponible"
@@ -117,9 +117,9 @@ echo ""
 # -----------------------------------------------------------------------------
 info "=== Redis ==="
 # -----------------------------------------------------------------------------
-REDIS_PING=$(docker exec orphea-redis redis-cli ping 2>/dev/null || echo "FAIL")
+REDIS_PING=$(docker exec movetodata-redis redis-cli ping 2>/dev/null || echo "FAIL")
 if [[ "${REDIS_PING}" == "PONG" ]]; then
-  ok "Redis (orphea-redis) : PONG"
+  ok "Redis (movetodata-redis) : PONG"
 else
   fail "Redis : ${REDIS_PING}"
 fi
@@ -171,7 +171,7 @@ info "=== Utilisation ressources ==="
 # -----------------------------------------------------------------------------
 docker stats --no-stream --format \
   "  {{.Name}}\tCPU: {{.CPUPerc}}\tMEM: {{.MemUsage}}" \
-  $(docker ps --format "{{.Names}}" | grep "^orphea") 2>/dev/null || true
+  $(docker ps --format "{{.Names}}" | grep "^movetodata") 2>/dev/null || true
 
 echo ""
 
@@ -182,9 +182,9 @@ if [[ ${ERRORS} -eq 0 ]]; then
 else
   echo -e "${RED} ✗ ${ERRORS} check(s) en ERREUR — vérifiez les logs${NC}"
   echo ""
-  echo "  Logs Boson   : docker logs orphea-boson --tail 50"
-  echo "  Logs DB      : docker logs orphea-boson-db --tail 20"
-  echo "  Logs Frontend: docker logs orphea-frontend --tail 20"
+  echo "  Logs Boson   : docker logs movetodata-boson --tail 50"
+  echo "  Logs DB      : docker logs movetodata-boson-db --tail 20"
+  echo "  Logs Frontend: docker logs movetodata-frontend --tail 20"
 fi
 echo -e "${BLUE}================================================${NC}"
 echo ""

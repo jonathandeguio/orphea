@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+﻿#!/usr/bin/env bash
 
 # get environment variables
 source env.sh
@@ -12,4 +12,4 @@ gcloud compute health-checks update http $callisto_hc \
     --request-path="/api/jupyter/api"
 
 ## Install Spark and Spark_history
-./orphea_spark_env.sh create
+./movetodata_spark_env.sh create

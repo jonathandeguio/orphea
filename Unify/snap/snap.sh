@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+﻿#!/usr/bin/env bash
 
 # Check if git is installed
 git --version 2>&1 >/dev/null
@@ -45,7 +45,7 @@ pull_images() {
   # Clone or pull snap-ui repository
   cd repos
   if [ ! -d snap-ui ]; then
-    git clone git@github.com:Orphea-io/snap-ui.git >/dev/null
+    git clone git@github.com:MoveToData-io/snap-ui.git >/dev/null
   else
     cd snap-ui
     git pull >/dev/null
@@ -54,7 +54,7 @@ pull_images() {
 
   # Clone or pull snap repository
   if [ ! -d snap ]; then
-    git clone git@github.com:Orphea-io/snap.git >/dev/null
+    git clone git@github.com:MoveToData-io/snap.git >/dev/null
   else
     cd snap
     git pull >/dev/null

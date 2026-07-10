@@ -1,8 +1,8 @@
-
+﻿
 export const API_BASE_URL = process.env.REACT_APP_BASE_URL_API;
 
 export const BASE_URL = window.location.origin;
-export const ORPHEA_TOKEN = 'orpheaToken';
+export const MOVETODATA_TOKEN = 'movetodataToken';
 
 export const OAUTH2_REDIRECT_URI = BASE_URL + '/oauth2/redirect'
 

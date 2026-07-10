@@ -1,12 +1,12 @@
-import { Col, Divider, Form, Row, Typography } from "antd";
-import OrpheaLoader from "components/orpheaLoader";
+﻿import { Col, Divider, Form, Row, Typography } from "antd";
+import MoveToDataLoader from "components/movetodataLoader";
 
 import React, { useEffect, useState } from "react";
 import { getLanguageLabel } from "utils/utilities";
 import { GitConfig } from "./GitConfig";
 import { getGitConfigAPI, updateGitConfigAPI } from "./GitConfig.api";
-import OrpheaInput from "components/InputComponent/OrpheaInput";
-import OrpheaButton from "components/ButtonComponent/OrpheaButton";
+import MoveToDataInput from "components/InputComponent/MoveToDataInput";
+import MoveToDataButton from "components/ButtonComponent/MoveToDataButton";
 
 const { Text, Title } = Typography;
 export const GitSettings = () => {
@@ -24,7 +24,7 @@ export const GitSettings = () => {
   return (
     <div className="settings-center-block">
       {loading ? (
-        <OrpheaLoader />
+        <MoveToDataLoader />
       ) : (
         <>
           <Form
@@ -54,7 +54,7 @@ export const GitSettings = () => {
               <Col span={8}>
                 <Text type="secondary"></Text>
                 <Form.Item name="host">
-                  <OrpheaInput />
+                  <MoveToDataInput />
                 </Form.Item>
               </Col>
             </Row>
@@ -69,7 +69,7 @@ export const GitSettings = () => {
               <Col span={8}>
                 <Text type="secondary"></Text>
                 <Form.Item name="apiPort">
-                  <OrpheaInput />
+                  <MoveToDataInput />
                 </Form.Item>
               </Col>
             </Row>
@@ -84,14 +84,14 @@ export const GitSettings = () => {
               <Col span={8}>
                 <Text type="secondary"></Text>
                 <Form.Item name="port">
-                  <OrpheaInput />
+                  <MoveToDataInput />
                 </Form.Item>
               </Col>
             </Row>
             <Row justify="space-between">
               <Col span={16}>
                 <div
-                  className="OrpheaSubHeader1 text-and-icon-center"
+                  className="MoveToDataSubHeader1 text-and-icon-center"
                   style={{ marginRight: "0.5rem" }}
                 >
                   Only platform administrators can view or edit this
@@ -100,9 +100,9 @@ export const GitSettings = () => {
               </Col>
               <Col span={8}>
                 <Form.Item style={{ marginBottom: 0, marginLeft: "auto" }}>
-                  <OrpheaButton htmlType="submit" intent="primary">
+                  <MoveToDataButton htmlType="submit" intent="primary">
                     Update Configuration
-                  </OrpheaButton>
+                  </MoveToDataButton>
                 </Form.Item>
               </Col>
             </Row>

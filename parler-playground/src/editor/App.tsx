@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+﻿import React, { useEffect } from 'react';
 import { MemoryRouter as Router, Switch, Route } from 'react-router-dom';
 
 import { listen } from '@codingame/monaco-jsonrpc';
@@ -57,8 +57,8 @@ const Hello = () => {
     MonacoServices.install(monaco as typeof monaco_core);
 
     // hardcoded socket URL
-    // const url = 'ws://localhost:8999/orphea/monacoServer';
-    const url = 'ws://34.65.223.197:8999/orphea/monacoServer';
+    // const url = 'ws://localhost:8999/movetodata/monacoServer';
+    const url = 'ws://34.65.223.197:8999/movetodata/monacoServer';
     const webSocket = new WebSocket(url);
 
     // listen when the web socket is opened

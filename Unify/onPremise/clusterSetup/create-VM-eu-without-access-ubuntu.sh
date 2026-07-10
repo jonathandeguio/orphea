@@ -1,4 +1,4 @@
-#!/bin/bash
+﻿#!/bin/bash
 
 PROJECT_ID=gcp-integration-project-382915
 COMPUTE_REGION=europe-west2
@@ -6,10 +6,10 @@ COMPUTE_ZONE=europe-west2-b
 
 SERVIE_ACCOUNT=435091822251-compute@developer.gserviceaccount.com
 
-NETWORK_TAG="orphea-test-eu"
+NETWORK_TAG="movetodata-test-eu"
 
-INSTANCE_TAG="orphea-instance-without-access-ubuntu"
-DISK_TAG="orphea-disk-with-access"
+INSTANCE_TAG="movetodata-instance-without-access-ubuntu"
+DISK_TAG="movetodata-disk-with-access"
 
 gcloud compute networks create $NETWORK_TAG \
     --project=$PROJECT_ID \

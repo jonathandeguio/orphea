@@ -1,8 +1,8 @@
-spring:
+﻿spring:
   main:
     allow-circular-references: true # This needs removing it is a temporary fix
   banner:
-    location: classpath:/banner/orphea.txt
+    location: classpath:/banner/movetodata.txt
 
   datasource:
     initialization-mode: always

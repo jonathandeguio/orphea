@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+﻿import React, { Component } from 'react';
 import {
   Route,
   Switch
@@ -12,7 +12,7 @@ import OAuth2RedirectHandler from '../user/oauth2/OAuth2RedirectHandler';
 import NotFound from '../common/NotFound';
 import LoadingIndicator from '../common/LoadingIndicator';
 import { getCurrentUser } from '../util/APIUtils';
-import { ORPHEA_TOKEN } from '../constants';
+import { MOVETODATA_TOKEN } from '../constants';
 import PrivateRoute from '../common/PrivateRoute';
 import Alert from 'react-s-alert';
 import 'react-s-alert/dist/s-alert-default.css';
@@ -48,7 +48,7 @@ class App extends Component {
   }
 
   handleLogout() {
-    localStorage.removeItem(ORPHEA_TOKEN);
+    localStorage.removeItem(MOVETODATA_TOKEN);
     this.setState({
       authenticated: false,
       currentUser: null

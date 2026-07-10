@@ -1,4 +1,4 @@
-import {
+﻿import {
   Card,
   Col,
   Divider,
@@ -7,11 +7,11 @@ import {
   Switch,
   Typography,
 } from "antd";
-import { CopyIcon } from "assets/icons/orpheaEditorIcons";
-import { ArrowRightIcon } from "assets/icons/orpheaNavigationIcon";
+import { CopyIcon } from "assets/icons/movetodataEditorIcons";
+import { ArrowRightIcon } from "assets/icons/movetodataNavigationIcon";
 import axios from "axios";
-import OrpheaButton from "components/ButtonComponent/OrpheaButton";
-import OrpheaInput from "components/InputComponent/OrpheaInput";
+import MoveToDataButton from "components/ButtonComponent/MoveToDataButton";
+import MoveToDataInput from "components/InputComponent/MoveToDataInput";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setLoginMethod, updateUserDetails } from "redux/actions/userActions";
@@ -187,7 +187,7 @@ const MfaConfiguration: React.FC<{
               </Row>
               <Row gutter={16} align="middle">
                 <Col span={16}>
-                  <OrpheaInput
+                  <MoveToDataInput
                     placeholder={getLanguageLabel("enterVerificationCode")}
                     value={otpCode}
                     onKeyDown={handleKeyPress}
@@ -196,14 +196,14 @@ const MfaConfiguration: React.FC<{
                   />
                 </Col>
                 <Col>
-                  <OrpheaButton
+                  <MoveToDataButton
                     intent={isOTPVerificationError ? "dangerous" : "primary"}
                     onClick={handleOtpSubmit}
                     icon={<ArrowRightIcon />}
                     size={"small"}
                   >
                     {getLanguageLabel("verify")}
-                  </OrpheaButton>
+                  </MoveToDataButton>
                 </Col>
               </Row>
               {isOTPVerificationError &&
@@ -235,13 +235,13 @@ const MfaConfiguration: React.FC<{
             </Row>
             <Row gutter={16} align="middle" style={{ marginTop: 20 }}>
               <Col>
-                <OrpheaButton
+                <MoveToDataButton
                   intent="primary"
                   onClick={handleCopyToClipboard}
                   icon={<CopyIcon />}
                 >
                   {getLanguageLabel("copy")}
-                </OrpheaButton>
+                </MoveToDataButton>
               </Col>
             </Row>
           </Card>

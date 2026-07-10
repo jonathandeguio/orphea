@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import styles from "./Header.module.scss";
 
 interface TProps {
@@ -9,7 +9,7 @@ interface TProps {
   borderBottom?: boolean;
   muted?: boolean;
 }
-const OrpheaHeader = ({
+const MoveToDataHeader = ({
   icon,
   heading,
   actionComponent,
@@ -22,11 +22,11 @@ const OrpheaHeader = ({
       className={styles.wrapper}
       style={{
         borderBottom: borderBottom
-          ? "1px solid var(--orphea-border-color-default)"
+          ? "1px solid var(--movetodata-border-color-default)"
           : "",
         background: muted
-          ? "var(--orphea-bkg-color-muted)"
-          : "var(--orphea-bkg-color-default)",
+          ? "var(--movetodata-bkg-color-muted)"
+          : "var(--movetodata-bkg-color-default)",
       }}
     >
       {icon && <div className={styles.icon}>{icon}</div>}
@@ -45,4 +45,4 @@ const OrpheaHeader = ({
   );
 };
 
-export default OrpheaHeader;
+export default MoveToDataHeader;

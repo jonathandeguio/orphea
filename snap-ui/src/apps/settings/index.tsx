@@ -1,7 +1,7 @@
-// import { Outlet, Link } from "react-router-dom";
-import { EmailIcon } from "assets/icons/orpheaFileIcons";
-import { OpenIcon } from "assets/icons/orpheaNavigationIcon";
-import { getDefaultFavicon } from "components/orpheaLoader/FavIconLoader";
+﻿// import { Outlet, Link } from "react-router-dom";
+import { EmailIcon } from "assets/icons/movetodataFileIcons";
+import { OpenIcon } from "assets/icons/movetodataNavigationIcon";
+import { getDefaultFavicon } from "components/movetodataLoader/FavIconLoader";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Outlet, useLocation } from "react-router";
@@ -15,22 +15,22 @@ import {
   NotificationIcon,
   PreferencesIcon,
   SparklesIcon,
-} from "assets/icons/orpheaActionIcons";
+} from "assets/icons/movetodataActionIcons";
 import {
   ChangeLogIcon,
   ComponentIcon,
   GroupsIcon,
   KeyIcon,
   UserIcon,
-} from "assets/icons/orpheaInterfaceIcons";
-import { PulseIcon } from "assets/icons/orpheaMiscellaneousIcons";
+} from "assets/icons/movetodataInterfaceIcons";
+import { PulseIcon } from "assets/icons/movetodataMiscellaneousIcons";
 import {
   isGroupAdmin,
   isPlatformAdmin,
   isUserAdmin,
 } from "redux/actions/userActions";
 import { ThunkAppDispatch } from "redux/types/store";
-import { CodeCellIcon } from "assets/icons/orpheaEditorIcons";
+import { CodeCellIcon } from "assets/icons/movetodataEditorIcons";
 
 const Setting = () => {
   const dispatch = useDispatch<ThunkAppDispatch>();
@@ -48,7 +48,7 @@ const Setting = () => {
       document.title =
         isDefined(config) && isDefined(config.platformName)
           ? config.platformName
-          : "Orphea";
+          : "MoveToData";
     };
   }, []);
 

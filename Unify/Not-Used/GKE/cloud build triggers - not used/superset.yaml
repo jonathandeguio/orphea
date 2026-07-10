@@ -1,9 +1,9 @@
-autodetect: true
+﻿autodetect: true
 createTime: '2022-08-25T19:29:10.444923504Z'
 disabled: true
 github:
   name: tycho
-  owner: Orphea-io
+  owner: MoveToData-io
   push:
     branch: ^master$
 id: 7e1e8931-0f39-4ce0-9f8a-436dbd021cb2

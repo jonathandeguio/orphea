@@ -1,4 +1,4 @@
-import axios from "axios";
+﻿import axios from "axios";
 import {
   USER_ROLES_OF_PROJECT_REQUEST,
   USER_ROLES_OF_PROJECT_SUCCESS,
@@ -48,7 +48,7 @@ export const getAllGroups =
 
       const config = {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("orpheaToken")}`,
+          Authorization: `Bearer ${localStorage.getItem("movetodataToken")}`,
         },
       };
 
@@ -82,7 +82,7 @@ export const getGroupById = (id: any) => async (dispatch: any, getState: any) =>
 
     const config = {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("orpheaToken")}`,
+        Authorization: `Bearer ${localStorage.getItem("movetodataToken")}`,
       },
     };
 
@@ -111,12 +111,12 @@ export const createGroup = (groupDetails: any) => async (dispatch: any, getState
   try {
     dispatch({ type: GROUP_CREATE_REQUEST });
 
-    const orpheaToken = localStorage.getItem("orpheaToken");
+    const movetodataToken = localStorage.getItem("movetodataToken");
 
     const config = {
       headers: {
         "Content-type": "application/json",
-        Authorization: `Bearer ${orpheaToken}`,
+        Authorization: `Bearer ${movetodataToken}`,
       },
     };
 
@@ -143,12 +143,12 @@ export const createGroup = (groupDetails: any) => async (dispatch: any, getState
 };
 
 export const deleteGroup = (id: any) => async (dispatch: any) => {
-  const orpheaToken = localStorage.getItem("orpheaToken");
+  const movetodataToken = localStorage.getItem("movetodataToken");
 
   const config = {
     headers: {
       "Content-type": "application/json",
-      Authorization: `Bearer ${orpheaToken}`,
+      Authorization: `Bearer ${movetodataToken}`,
     },
   };
   try {
@@ -174,12 +174,12 @@ export const deleteGroup = (id: any) => async (dispatch: any) => {
 };
 
 export const deleteUser = (id: any) => async (dispatch: any) => {
-  const orpheaToken = localStorage.getItem("orpheaToken");
+  const movetodataToken = localStorage.getItem("movetodataToken");
 
   const config = {
     headers: {
       "Content-type": "application/json",
-      Authorization: `Bearer ${orpheaToken}`,
+      Authorization: `Bearer ${movetodataToken}`,
     },
   };
   try {
@@ -205,12 +205,12 @@ export const deleteUser = (id: any) => async (dispatch: any) => {
 };
 
 export const manageGroup = (newdetails: any) => async (dispatch: any) => {
-  const orpheaToken = localStorage.getItem("orpheaToken");
+  const movetodataToken = localStorage.getItem("movetodataToken");
 
   const config = {
     headers: {
       "Content-type": "application/json",
-      Authorization: `Bearer ${orpheaToken}`,
+      Authorization: `Bearer ${movetodataToken}`,
     },
   };
   try {
@@ -244,7 +244,7 @@ export const getAllRoles = () => async (dispatch: any, getState: any) => {
 
     const config = {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("orpheaToken")}`,
+        Authorization: `Bearer ${localStorage.getItem("movetodataToken")}`,
       },
     };
 
@@ -277,7 +277,7 @@ export const getAllPermissionMapping = () => async (dispatch: any, getState: any
 
     const config = {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("orpheaToken")}`,
+        Authorization: `Bearer ${localStorage.getItem("movetodataToken")}`,
       },
     };
 
@@ -311,7 +311,7 @@ export const getPermissionsMappingByResourceId =
 
       const config = {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("orpheaToken")}`,
+          Authorization: `Bearer ${localStorage.getItem("movetodataToken")}`,
         },
       };
 
@@ -345,7 +345,7 @@ export const getUserRolesOfProject = (id: any) => async (dispatch: any, getState
 
     const config = {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("orpheaToken")}`,
+        Authorization: `Bearer ${localStorage.getItem("movetodataToken")}`,
       },
     };
 
@@ -379,7 +379,7 @@ export const getUserResourcePermissions =
 
       const config = {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("orpheaToken")}`,
+          Authorization: `Bearer ${localStorage.getItem("movetodataToken")}`,
         },
       };
 
@@ -413,7 +413,7 @@ export const deletePermissionsMapping = (id: any) => async (dispatch: any, getSt
 
     const config = {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("orpheaToken")}`,
+        Authorization: `Bearer ${localStorage.getItem("movetodataToken")}`,
       },
     };
 

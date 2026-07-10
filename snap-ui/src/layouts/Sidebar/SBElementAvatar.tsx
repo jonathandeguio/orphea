@@ -1,7 +1,7 @@
-import { Avatar, Dropdown, MenuProps } from "antd";
-import { LogoutIcon, SettingsIcon } from "assets/icons/orpheaActionIcons";
-import { DocumentationIcon } from "assets/icons/orpheaFileIcons";
-import { HelpIcon } from "assets/icons/orpheaMiscellaneousIcons";
+﻿import { Avatar, Dropdown, MenuProps } from "antd";
+import { LogoutIcon, SettingsIcon } from "assets/icons/movetodataActionIcons";
+import { DocumentationIcon } from "assets/icons/movetodataFileIcons";
+import { HelpIcon } from "assets/icons/movetodataMiscellaneousIcons";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -11,7 +11,7 @@ import { logout } from "redux/actions/userActions";
 import { ThunkAppDispatch } from "redux/types/store";
 import DebugInfoModal from "./DebugInfoModal";
 import SBElement from "./SBElement";
-import { UserIcon } from "assets/icons/orpheaInterfaceIcons";
+import { UserIcon } from "assets/icons/movetodataInterfaceIcons";
 
 interface TProps {
   iconSize?: number;

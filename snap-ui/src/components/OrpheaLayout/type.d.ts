@@ -1,6 +1,6 @@
-import { ITabPane, TabState } from "../OrpheaComponents/OrpheaTabs/types";
+﻿import { ITabPane, TabState } from "../MoveToDataComponents/MoveToDataTabs/types";
 
-export interface IOrpheaBottomBarItem {
+export interface IMoveToDataBottomBarItem {
   id: string;
   type: "TAB" | "BUTTON";
   label: JSX.Element | string;
@@ -11,19 +11,19 @@ export interface IOrpheaBottomBarItem {
   onOpen?: () => void;
   intent?: "PRIMARY" | "DISABLED" | "WARNING" | "ERROR";
 }
-export interface IOrpheaBottomBarItemBody extends IOrpheaBottomBarItem {
+export interface IMoveToDataBottomBarItemBody extends IMoveToDataBottomBarItem {
   collapseToggle: () => void;
   paneSize: number;
   primaryPanelRef: React.MutableRefObject<any>;
 }
 
-export interface IOrpheaBottomBar {
+export interface IMoveToDataBottomBar {
   primaryPanelRef: React.MutableRefObject<any>;
 }
 export interface BottomBarState {
-  leftItems: IOrpheaBottomBarItem[];
-  rightItems?: IOrpheaBottomBarItem[];
-  bottomBarItems: { [id: string]: IOrpheaBottomBarItem };
+  leftItems: IMoveToDataBottomBarItem[];
+  rightItems?: IMoveToDataBottomBarItem[];
+  bottomBarItems: { [id: string]: IMoveToDataBottomBarItem };
   tabContext: { [id: string]: TabState };
   activeItem: string | null;
 }

@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import styles from "./OrpheaModalContainer.module.scss";
+﻿import React, { useEffect, useState } from "react";
+import styles from "./MoveToDataModalContainer.module.scss";
 
 interface TProps {
   heading: any;
@@ -15,7 +15,7 @@ interface TProps {
   outerBorder?: boolean;
 }
 
-const OrpheaModalContainer = ({
+const MoveToDataModalContainer = ({
   heading,
   headingIcon,
   extraActionHeading,
@@ -77,7 +77,7 @@ const OrpheaModalContainer = ({
               className={styles.header}
               style={{
                 borderBottom: dividers
-                  ? "1px solid var(--orphea-border-color-default)"
+                  ? "1px solid var(--movetodata-border-color-default)"
                   : "none",
               }}
             >
@@ -96,7 +96,7 @@ const OrpheaModalContainer = ({
             className={styles.rightPortion}
             style={{
               borderLeft: divider
-                ? "1px solid var(--orphea-border-color-default)"
+                ? "1px solid var(--movetodata-border-color-default)"
                 : "none",
             }}
           >
@@ -111,7 +111,7 @@ const OrpheaModalContainer = ({
           className={styles.footer}
           style={{
             borderTop: dividers
-              ? "1px solid var(--orphea-border-color-default)"
+              ? "1px solid var(--movetodata-border-color-default)"
               : "none",
           }}
         >
@@ -127,4 +127,4 @@ const OrpheaModalContainer = ({
   );
 };
 
-export default OrpheaModalContainer;
+export default MoveToDataModalContainer;

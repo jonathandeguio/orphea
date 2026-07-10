@@ -1,13 +1,13 @@
-import React from "react";
-import { TOrpheaIconProps } from "./types";
+﻿import React from "react";
+import { TMoveToDataIconProps } from "./types";
 
 export const GitCommitIcon = ({
   size = 16, // or any default size of your choice
   color = "#717a94", // or any color of your choice
   style,
-}: TOrpheaIconProps) => {
+}: TMoveToDataIconProps) => {
   return (
-    <div className="orphea-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="git-commit"
@@ -58,9 +58,9 @@ export const GitDiffIcon = ({
   size = 16, // or any default size of your choice
   color = "#717a94", // or any color of your choice
   style,
-}: TOrpheaIconProps) => {
+}: TMoveToDataIconProps) => {
   return (
-    <div className="orphea-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="git-commit"

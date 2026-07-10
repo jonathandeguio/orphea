@@ -1,8 +1,8 @@
-import { Col, Row, Typography } from "antd";
-import { DuplicateIcon } from "assets/icons/orpheaActionIcons";
-import { CopyIcon } from "assets/icons/orpheaEditorIcons";
+﻿import { Col, Row, Typography } from "antd";
+import { DuplicateIcon } from "assets/icons/movetodataActionIcons";
+import { CopyIcon } from "assets/icons/movetodataEditorIcons";
 import axios from "axios";
-import OrpheaLoader from "components/orpheaLoader";
+import MoveToDataLoader from "components/movetodataLoader";
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { useSelector } from "react-redux";
 import {
@@ -10,8 +10,8 @@ import {
   getLanguageLabel,
   timeConverter,
 } from "utils/utilities";
-import OrpheaModal from "components/OrpheaModalContainer";
-import OrpheaButton from "components/ButtonComponent/OrpheaButton";
+import MoveToDataModal from "components/MoveToDataModalContainer";
+import MoveToDataButton from "components/ButtonComponent/MoveToDataButton";
 const { Text } = Typography;
 interface DebugInfo {
   lastUpdated?: string; // The "?" makes this property optional
@@ -78,7 +78,7 @@ const DebugInfoModal = ({ isOpen, setIsOpen }: Props) => {
   return (
     <>
       {isOpen && (
-        <OrpheaModal
+        <MoveToDataModal
           headingIcon={<DuplicateIcon />}
           afterOpenChange={() => copyDebugInfo()}
           heading={
@@ -91,12 +91,12 @@ const DebugInfoModal = ({ isOpen, setIsOpen }: Props) => {
           onCancel={() => setIsOpen(false)}
           width={600}
           extraActionHeading={
-            <OrpheaButton
+            <MoveToDataButton
               icon={<CopyIcon />}
               onClick={() => debugInfoText && copyToClipboard(debugInfoText)}
               minimal
               icononly
-            ></OrpheaButton>
+            ></MoveToDataButton>
           }
         >
           {debugInfo ? (
@@ -107,7 +107,7 @@ const DebugInfoModal = ({ isOpen, setIsOpen }: Props) => {
                   justify={"space-between"}
                   style={{
                     margin: "0.84rem",
-                    // borderBottom: "1px solid var(--orphea-border-color-default)",
+                    // borderBottom: "1px solid var(--movetodata-border-color-default)",
                   }}
                 >
                   <Col>
@@ -123,13 +123,13 @@ const DebugInfoModal = ({ isOpen, setIsOpen }: Props) => {
 
               <div
                 style={{
-                  background: "var(--orphea-bkg-color-muted)",
+                  background: "var(--movetodata-bkg-color-muted)",
                   borderRadius: "2px",
                   boxShadow:
                     "rgba(11, 14, 22, 0.02) 0px 0px 0px 1px, rgba(11, 14, 22, 0.04) 0px 4px 8px, rgba(11, 14, 22, 0.04) 0px 18px 46px 6px",
 
                   margin: "0.84rem",
-                  border: "1px solid var(--orphea-border-color-default)",
+                  border: "1px solid var(--movetodata-border-color-default)",
                 }}
               >
                 <Row
@@ -138,7 +138,7 @@ const DebugInfoModal = ({ isOpen, setIsOpen }: Props) => {
                   style={{
                     margin: "0.84rem",
                     borderBottom:
-                      "1px solid var(--orphea-border-color-default)",
+                      "1px solid var(--movetodata-border-color-default)",
                   }}
                 >
                   <Col>
@@ -150,7 +150,7 @@ const DebugInfoModal = ({ isOpen, setIsOpen }: Props) => {
                     </Text>
                   </Col>
                   <Col>
-                    <OrpheaButton
+                    <MoveToDataButton
                       icon={<CopyIcon />}
                       onClick={() =>
                         debugInfo &&
@@ -196,7 +196,7 @@ const DebugInfoModal = ({ isOpen, setIsOpen }: Props) => {
                 justify={"space-between"}
                 style={{
                   margin: "0.84rem",
-                  borderBottom: "1px solid var(--orphea-border-color-default)",
+                  borderBottom: "1px solid var(--movetodata-border-color-default)",
                 }}
               >
                 <Col>
@@ -207,7 +207,7 @@ const DebugInfoModal = ({ isOpen, setIsOpen }: Props) => {
                 <Col>
                   <span className="text-and-icon-center">
                     <Text strong>{debugInfo.userId}</Text>
-                    <OrpheaButton
+                    <MoveToDataButton
                       icon={<CopyIcon />}
                       onClick={() =>
                         debugInfo && copyToClipboard(debugInfo.userId)
@@ -225,7 +225,7 @@ const DebugInfoModal = ({ isOpen, setIsOpen }: Props) => {
                 justify={"space-between"}
                 style={{
                   margin: "0.84rem",
-                  borderBottom: "1px solid var(--orphea-border-color-default)",
+                  borderBottom: "1px solid var(--movetodata-border-color-default)",
                 }}
               >
                 <Col>
@@ -236,7 +236,7 @@ const DebugInfoModal = ({ isOpen, setIsOpen }: Props) => {
                     <Text style={{ fontSize: "0.5rem" }} strong>
                       {debugInfo.location}
                     </Text>
-                    <OrpheaButton
+                    <MoveToDataButton
                       icon={<CopyIcon />}
                       onClick={() =>
                         debugInfo && copyToClipboard(debugInfo.location)
@@ -250,11 +250,11 @@ const DebugInfoModal = ({ isOpen, setIsOpen }: Props) => {
               </Row>
             </>
           ) : (
-            <OrpheaLoader />
+            <MoveToDataLoader />
           )}
 
           <br />
-        </OrpheaModal>
+        </MoveToDataModal>
       )}
     </>
   );

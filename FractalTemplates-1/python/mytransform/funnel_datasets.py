@@ -1,4 +1,4 @@
-from orphea import funnel
+﻿from movetodata import funnel
 
 # Transformation 1
 source_dataset1 = "/Projects/Test/Data/SalesRecords"

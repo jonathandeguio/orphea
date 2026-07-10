@@ -1,5 +1,5 @@
-import { notification, Typography } from "antd";
-import { CrossIcon, RefreshIcon } from "assets/icons/orpheaActionIcons";
+﻿import { notification, Typography } from "antd";
+import { CrossIcon, RefreshIcon } from "assets/icons/movetodataActionIcons";
 import ErrorBoundary from "errors/ErrorBoundary/GeneralErrorBoundary";
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,7 +13,7 @@ import { setTokenInvalid, setTokenValid } from "redux/actions/tokenActions";
 import { ThunkAppDispatch } from "redux/types/store";
 import "./_app.scss";
 import { ping } from "./App.api";
-import OrpheaButton from "components/ButtonComponent/OrpheaButton";
+import MoveToDataButton from "components/ButtonComponent/MoveToDataButton";
 
 const { Text } = Typography;
 
@@ -139,7 +139,7 @@ function AppContainer() {
           placement: "top",
           btn: (
             <div style={{ display: "flex" }}>
-              <OrpheaButton
+              <MoveToDataButton
                 onClick={() => {
                   notification.destroy("updatesNotification");
                   setIsCounting(false);
@@ -148,8 +148,8 @@ function AppContainer() {
                 icon={<CrossIcon />}
               >
                 {getLanguageLabel("cancel")}
-              </OrpheaButton>
-              <OrpheaButton
+              </MoveToDataButton>
+              <MoveToDataButton
                 intent="success"
                 onClick={handleReload}
                 style={{ marginLeft: 10 }}
@@ -158,7 +158,7 @@ function AppContainer() {
                 {getLanguageLabel("reload")} ( {countdown} )
                 {/* {<CountdownSpinner seconds={countdown} />} */}
                 <span className="confetti" ref={elementRef}></span>
-              </OrpheaButton>
+              </MoveToDataButton>
             </div>
           ),
         });

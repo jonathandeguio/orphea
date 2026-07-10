@@ -1,6 +1,6 @@
-#!/usr/bin/env bash
+﻿#!/usr/bin/env bash
 
 
-kubectl delete all --all -n orphea
+kubectl delete all --all -n movetodata
 
 

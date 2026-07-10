@@ -1,4 +1,4 @@
-# Followed this to create below ci : https://github.com/maximbetin/maxim-cicd
+﻿# Followed this to create below ci : https://github.com/maximbetin/maxim-cicd
 options:
   logging: CLOUD_LOGGING_ONLY
   machineType: 'E2_HIGHCPU_32'
@@ -9,7 +9,7 @@ steps:
     args:
       [
         "-c",
-        "docker pull europe-west1-docker.pkg.dev/$PROJECT_ID/orphea-cr/frontend2:latest || exit 0",
+        "docker pull europe-west1-docker.pkg.dev/$PROJECT_ID/movetodata-cr/frontend2:latest || exit 0",
       ]
   # Step 2
   - name: gcr.io/cloud-builders/docker
@@ -17,14 +17,14 @@ steps:
       [
         "build",
         "-t",
-        "europe-west1-docker.pkg.dev/$PROJECT_ID/orphea-cr/frontend2:latest",
+        "europe-west1-docker.pkg.dev/$PROJECT_ID/movetodata-cr/frontend2:latest",
         ".",
       ]
   - name: gcr.io/cloud-builders/docker
     args:
       [
         "push",
-        "europe-west1-docker.pkg.dev/$PROJECT_ID/orphea-cr/frontend2:latest"
+        "europe-west1-docker.pkg.dev/$PROJECT_ID/movetodata-cr/frontend2:latest"
       ]
   #    dir: 'frontend'
   # Step 3
@@ -32,7 +32,7 @@ steps:
   #    args: ['apply', '-f', 'k8s/']
   #    env:
   #      - 'CLOUDSDK_COMPUTE_ZONE=europe-west6-a'
-  #      - 'CLOUDSDK_CONTAINER_CLUSTER=orphea-dev-1'
+  #      - 'CLOUDSDK_CONTAINER_CLUSTER=movetodata-dev-1'
   # Step 4
   - name: "gcr.io/cloud-builders/kubectl"
     args:
@@ -41,13 +41,13 @@ steps:
         "image",
         "deployment",
         "frontend",
-        "frontend=europe-west1-docker.pkg.dev/$PROJECT_ID/orphea-cr/frontend2:latest",
+        "frontend=europe-west1-docker.pkg.dev/$PROJECT_ID/movetodata-cr/frontend2:latest",
         "--namespace",
-        "orphea",
+        "movetodata",
       ]
     env:
       - "CLOUDSDK_COMPUTE_ZONE=europe-west1-b"
-      - "CLOUDSDK_CONTAINER_CLUSTER=orphea"
+      - "CLOUDSDK_CONTAINER_CLUSTER=movetodata"
     # Push the image to Google Container Registry with the latest tag
-images: ["europe-west1-docker.pkg.dev/$PROJECT_ID/orphea-cr/frontend2:latest"]
+images: ["europe-west1-docker.pkg.dev/$PROJECT_ID/movetodata-cr/frontend2:latest"]
 timeout: 7200s

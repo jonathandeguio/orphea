@@ -1,9 +1,9 @@
-.OrpheaHeader1 {
+﻿.MoveToDataHeader1 {
   display: flex;
   -webkit-box-align: center;
   align-items: center;
   padding: 10px 0px;
-  color: var(--orphea-font-color-muted);
+  color: var(--movetodata-font-color-muted);
   font-weight: 500;
   font-size: 12px;
   text-transform: uppercase;
@@ -19,39 +19,39 @@
   padding: 10px 0px 20px 0px;
   align-items: center;
   -webkit-box-align: center;
-  color: var(--orphea-font-color-muted);
+  color: var(--movetodata-font-color-muted);
   font-weight: 500;
   font-size: 12px;
   font-family: "IBM Plex Sans", system-ui, -apple-system, BlinkMacSystemFont,
     sans-serif;
 }
 
-.OrpheaSubHeader1 {
-  color: var(--orphea-font-color-muted);
+.MoveToDataSubHeader1 {
+  color: var(--movetodata-font-color-muted);
   font-size: 12px;
 }
-.OrpheaNormalHeader {
+.MoveToDataNormalHeader {
   color: var(--color);
   font-size: 14px;
   font-weight: 500;
 }
 
-.OrpheaSpan {
-  color: var(--orphea-font-color-muted);
+.MoveToDataSpan {
+  color: var(--movetodata-font-color-muted);
   font-size: 14px;
 }
-.orpheaFormLabel {
+.movetodataFormLabel {
   color: var(--color);
   font-size: 14px;
   font-weight: 400;
   text-transform: capitalize;
 }
 
-.OrpheaBtnHeading {
+.MoveToDataBtnHeading {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: var(--orphea-font-color-muted);
+  color: var(--movetodata-font-color-muted);
   min-height: 24px;
   padding: 4px 8px;
   font-size: 12px;
@@ -68,7 +68,7 @@
 }
 
 .selectedHeading {
-  background: var(--orphea-hover-color);
+  background: var(--movetodata-hover-color);
   border-radius: 5px;
 }
 

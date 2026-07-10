@@ -1,13 +1,13 @@
-import store from "redux/store";
+﻿import store from "redux/store";
 
 const myLanguages = {
   welcomeToBosler: {
-    en: "Welcome to Orphea",
-    fr: "Bienvenue sur Orphea",
-    de: "Willkommen bei Orphea",
-    es: "Bienvenido a Orphea",
-    hi: "Orphea में आपका स्वागत है",
-    nl: "Welkom bij Orphea",
+    en: "Welcome to MoveToData",
+    fr: "Bienvenue sur MoveToData",
+    de: "Willkommen bei MoveToData",
+    es: "Bienvenido a MoveToData",
+    hi: "MoveToData में आपका स्वागत है",
+    nl: "Welkom bij MoveToData",
   },
   welcomeToBoslerSubTitle: {
     en: "Your all-in-one data platform — store, manage, orchestrate and visualize your data from a single place.",

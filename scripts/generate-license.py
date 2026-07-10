@@ -1,10 +1,10 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """
-Orphea Platform — Générateur de clé de licence
+MoveToData Platform — Générateur de clé de licence
 Usage : python3 generate-license.py [options]
 
 Options :
-  --client       Nom du client                     (défaut: Orphea)
+  --client       Nom du client                     (défaut: MoveToData)
   --product      Produit : DATA_PLATFORM | DATA_HUB | DATA_VIZ
                                                    (défaut: DATA_PLATFORM)
   --urls         URLs autorisées séparées par ;    (défaut: toutes)
@@ -109,10 +109,10 @@ def parse_urls(url_str: str) -> str:
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Générateur de clé de licence Orphea Platform",
+        description="Générateur de clé de licence MoveToData Platform",
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
-    parser.add_argument("--client",     default="Orphea",         help="Nom du client")
+    parser.add_argument("--client",     default="MoveToData",         help="Nom du client")
     parser.add_argument("--product",    default="DATA_PLATFORM",  choices=list(PRODUCTS), help="Type de produit")
     parser.add_argument("--urls",       default="",               help="URLs autorisées séparées par ; (laisser vide = toutes)")
     parser.add_argument("--expires",    default="2099-12-31",     help="Date expiration YYYY-MM-DD")
@@ -195,7 +195,7 @@ def main():
     # ── Affichage ─────────────────────────────────────────────────────────────
     print()
     print("══════════════════════════════════════════════════════════════")
-    print("  Orphea Platform — Clé de licence générée")
+    print("  MoveToData Platform — Clé de licence générée")
     print("══════════════════════════════════════════════════════════════")
     print()
     print("  CLIENT      :", args.client)

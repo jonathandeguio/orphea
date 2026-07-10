@@ -1,17 +1,17 @@
-import React, { Dispatch, SetStateAction, useState } from "react";
+﻿import React, { Dispatch, SetStateAction, useState } from "react";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { Switch } from "antd";
 import { getLanguageLabel, isDefined, openNotification } from "utils/utilities";
-import { TickIcon } from "assets/icons/orpheaNavigationIcon";
+import { TickIcon } from "assets/icons/movetodataNavigationIcon";
 import { getAllDeploymentDetails } from "redux/actions/DeploymentActions";
 import { ThunkAppDispatch } from "redux/types/store";
-import { AddIcon } from "assets/icons/orpheaActionIcons";
+import { AddIcon } from "assets/icons/movetodataActionIcons";
 import { ErrorResponse } from "global";
-import OrpheaModal from "components/OrpheaModalContainer";
-import OrpheaButton from "components/ButtonComponent/OrpheaButton";
-import OrpheaInput from "components/InputComponent/OrpheaInput";
-import OrpheaTimePicker from "components/OrpheaTimePicker";
+import MoveToDataModal from "components/MoveToDataModalContainer";
+import MoveToDataButton from "components/ButtonComponent/MoveToDataButton";
+import MoveToDataInput from "components/InputComponent/MoveToDataInput";
+import MoveToDataTimePicker from "components/MoveToDataTimePicker";
 
 interface Props {
   isOpen: boolean;
@@ -90,16 +90,16 @@ const CreateNewDeploymentModal = ({ isOpen, setIsOpen }: Props) => {
     }
   };
   return (
-    <OrpheaModal
+    <MoveToDataModal
       headingIcon={<AddIcon />}
       heading={"New Deployment"}
       open={isOpen}
       onCancel={() => setIsOpen(false)}
       onOk={handleOk}
       footerButtonArea={
-        <OrpheaButton icon={<TickIcon />} intent="action" key="submit" onClick={handleOk}>
+        <MoveToDataButton icon={<TickIcon />} intent="action" key="submit" onClick={handleOk}>
           {getLanguageLabel("create")}
-        </OrpheaButton>
+        </MoveToDataButton>
       }
       width={600}
     >
@@ -107,7 +107,7 @@ const CreateNewDeploymentModal = ({ isOpen, setIsOpen }: Props) => {
         <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
           <div style={{ display: "flex", alignItems: "center" }}>
             <div style={{ flex: "0 0 150px" }}>Name</div>
-            <OrpheaInput
+            <MoveToDataInput
               autoFocus
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 setNewDeploymentDetails((prevDetails) => ({
@@ -122,7 +122,7 @@ const CreateNewDeploymentModal = ({ isOpen, setIsOpen }: Props) => {
           </div>
           <div style={{ display: "flex", alignItems: "center" }}>
             <div style={{ flex: "0 0 150px" }}>Branch</div>
-            <OrpheaInput
+            <MoveToDataInput
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 setNewDeploymentDetails((prevDetails) => ({
                   ...prevDetails,
@@ -137,7 +137,7 @@ const CreateNewDeploymentModal = ({ isOpen, setIsOpen }: Props) => {
 
           <div style={{ display: "flex", alignItems: "center" }}>
             <div style={{ flex: "0 0 150px" }}>Location</div>
-            <OrpheaInput
+            <MoveToDataInput
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 setNewDeploymentDetails((prevDetails) => ({
                   ...prevDetails,
@@ -151,7 +151,7 @@ const CreateNewDeploymentModal = ({ isOpen, setIsOpen }: Props) => {
           </div>
           <div style={{ display: "flex", alignItems: "center" }}>
             <div style={{ flex: "0 0 150px" }}>Address</div>
-            <OrpheaInput
+            <MoveToDataInput
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 setNewDeploymentDetails((prevDetails) => ({
                   ...prevDetails,
@@ -165,7 +165,7 @@ const CreateNewDeploymentModal = ({ isOpen, setIsOpen }: Props) => {
           </div>
           <div style={{ display: "flex", alignItems: "center" }}>
             <div style={{ flex: "0 0 150px" }}>Contact Details</div>
-            <OrpheaInput
+            <MoveToDataInput
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 setNewDeploymentDetails((prevDetails) => ({
                   ...prevDetails,
@@ -179,7 +179,7 @@ const CreateNewDeploymentModal = ({ isOpen, setIsOpen }: Props) => {
           </div>
           <div style={{ display: "flex", alignItems: "center" }}>
             <div style={{ flex: "0 0 150px" }}>Email</div>
-            <OrpheaInput
+            <MoveToDataInput
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 setNewDeploymentDetails((prevDetails) => ({
                   ...prevDetails,
@@ -203,7 +203,7 @@ const CreateNewDeploymentModal = ({ isOpen, setIsOpen }: Props) => {
           <div style={{ display: "flex", alignItems: "center" }}>
 
   <div style={{ flex: "0 0 150px" }}>Start Time</div>
-  <OrpheaTimePicker
+  <MoveToDataTimePicker
     onChange={(value: number | undefined) => {
       setNewDeploymentDetails((prevDetails: any) => ({
         ...prevDetails,
@@ -215,7 +215,7 @@ const CreateNewDeploymentModal = ({ isOpen, setIsOpen }: Props) => {
 </div>
 <div style={{ display: "flex", alignItems: "center" }}>
   <div style={{ flex: "0 0 150px" }}>End Time</div>
-  <OrpheaTimePicker
+  <MoveToDataTimePicker
     onChange={(value: number | undefined) => {
       setNewDeploymentDetails((prevDetails: any) => ({
         ...prevDetails,
@@ -228,7 +228,7 @@ const CreateNewDeploymentModal = ({ isOpen, setIsOpen }: Props) => {
 
         </div>
       </div>
-    </OrpheaModal>
+    </MoveToDataModal>
   );
 };
 

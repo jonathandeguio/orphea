@@ -1,10 +1,10 @@
-import { Popover, Tooltip, Typography } from "antd";
-import { AddIcon } from "assets/icons/orpheaActionIcons";
-import { FolderIcon } from "assets/icons/orpheaFileIcons";
-import OrpheaLoader from "components/orpheaLoader";
+﻿import { Popover, Tooltip, Typography } from "antd";
+import { AddIcon } from "assets/icons/movetodataActionIcons";
+import { FolderIcon } from "assets/icons/movetodataFileIcons";
+import MoveToDataLoader from "components/movetodataLoader";
 import React, { useState } from "react";
-import OrpheaButton from "components/ButtonComponent/OrpheaButton";
-import OrpheaModalContainer from "components/OrpheaModalContainer";
+import MoveToDataButton from "components/ButtonComponent/MoveToDataButton";
+import MoveToDataModalContainer from "components/MoveToDataModalContainer";
 
 const { v4: uuidv4 } = require("uuid");
 // const { Responsive, WidthProvider } = require("c2-react-grid-layout");
@@ -1588,35 +1588,35 @@ const TestingArea = () => {
       <Title level={3}>Version History</Title>
       {/* <VersionHistory  /> */}
       <Tooltip title={"A BERYYYYYYYYYYYYYYYYYYYY PARENT"}>
-        <OrpheaButton icon={<FolderIcon />}>With Icon</OrpheaButton>
+        <MoveToDataButton icon={<FolderIcon />}>With Icon</MoveToDataButton>
       </Tooltip>
       <Popover title={"A BERYYYYYYYYYYYYYYYYYYYY PARENT"}>
-        <OrpheaButton icon={<FolderIcon />}>With Icon</OrpheaButton>
+        <MoveToDataButton icon={<FolderIcon />}>With Icon</MoveToDataButton>
       </Popover>
-      <OrpheaButton>Without Icon</OrpheaButton>
-      <OrpheaButton icon={<FolderIcon />}>With Icon</OrpheaButton>
-      <Title level={3}>Orphea Model Container</Title>
-      <OrpheaModalContainer
+      <MoveToDataButton>Without Icon</MoveToDataButton>
+      <MoveToDataButton icon={<FolderIcon />}>With Icon</MoveToDataButton>
+      <Title level={3}>MoveToData Model Container</Title>
+      <MoveToDataModalContainer
         heading="Heading"
         headingIcon={<AddIcon />}
         extraActionHeading={
-          <OrpheaButton intent="success">Run Now</OrpheaButton>
+          <MoveToDataButton intent="success">Run Now</MoveToDataButton>
         }
         information={<>Infor</>}
         footerExtraText="footer text"
         footerButtonArea={
           <>
-            <OrpheaButton> Submit</OrpheaButton>
+            <MoveToDataButton> Submit</MoveToDataButton>
           </>
         }
       >
         This is the body
-      </OrpheaModalContainer>
+      </MoveToDataModalContainer>
 
-      <OrpheaLoader size="large" />
-      <OrpheaLoader size="medium" />
-      <OrpheaLoader size="small" />
-      <OrpheaLoader size="tiny" />
+      <MoveToDataLoader size="large" />
+      <MoveToDataLoader size="medium" />
+      <MoveToDataLoader size="small" />
+      <MoveToDataLoader size="tiny" />
     </>
   );
 };

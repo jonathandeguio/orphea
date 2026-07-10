@@ -1,12 +1,12 @@
-# Orphea Platform — Scripts d'installation Ubuntu
+﻿# MoveToData Platform — Scripts d'installation Ubuntu
 
-Ensemble complet de scripts pour installer et démarrer la plateforme Orphea sur Ubuntu 22.04 LTS.
+Ensemble complet de scripts pour installer et démarrer la plateforme MoveToData sur Ubuntu 22.04 LTS.
 
 ## Architecture de la plateforme
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                     ORPHEA PLATFORM                             │
+│                     MOVETODATA PLATFORM                             │
 │                                                                 │
 │  ┌──────────────┐  ┌─────────────────────────────────────────┐ │
 │  │   Frontend   │  │               Boson API                 │ │
@@ -31,9 +31,9 @@ Ensemble complet de scripts pour installer et démarrer la plateforme Orphea sur
 
 | Fichier | Rôle |
 |---------|------|
-| `orphea.sh` | **Point d'entrée principal** — toutes les commandes |
+| `movetodata.sh` | **Point d'entrée principal** — toutes les commandes |
 | `00-install-system.sh` | Installation Docker + dépendances Ubuntu |
-| `01-setup-env.sh` | Génération du fichier `.env.orphea` (secrets) |
+| `01-setup-env.sh` | Génération du fichier `.env.movetodata` (secrets) |
 | `02-build.sh` | Build des images Docker |
 | `03-start.sh` | Démarrage de la plateforme |
 | `04-stop.sh` | Arrêt propre |
@@ -43,8 +43,8 @@ Ensemble complet de scripts pour installer et démarrer la plateforme Orphea sur
 | `docker-compose.core.yml` | Stack principale (Boson + Frontend + PG + Redis) |
 | `docker-compose.snap.yml` | Stack Snap (artifact manager) |
 | `docker-compose.tycho.yml` | Stack Tycho (Apache Superset) |
-| `orphea-platform.service` | Service systemd — stack core |
-| `orphea-snap.service` | Service systemd — Snap |
+| `movetodata-platform.service` | Service systemd — stack core |
+| `movetodata-snap.service` | Service systemd — Snap |
 
 ## Démarrage rapide (VM Ubuntu propre)
 
@@ -69,31 +69,31 @@ bash scripts/05-healthcheck.sh
 
 ```bash
 # Installation
-sudo bash scripts/orphea.sh install
+sudo bash scripts/movetodata.sh install
 
 # Configuration
-bash scripts/orphea.sh env
+bash scripts/movetodata.sh env
 
 # Build
-bash scripts/orphea.sh build all
+bash scripts/movetodata.sh build all
 
 # Démarrage
-bash scripts/orphea.sh start all
+bash scripts/movetodata.sh start all
 
 # État
-bash scripts/orphea.sh status
+bash scripts/movetodata.sh status
 
 # Healthcheck
-bash scripts/orphea.sh health
+bash scripts/movetodata.sh health
 
 # Logs en temps réel
-bash scripts/orphea.sh logs boson --follow
+bash scripts/movetodata.sh logs boson --follow
 
 # Restart avec rebuild
-bash scripts/orphea.sh update boson
+bash scripts/movetodata.sh update boson
 
 # Arrêt
-bash scripts/orphea.sh stop all
+bash scripts/movetodata.sh stop all
 ```
 
 ## Ports exposés
@@ -107,7 +107,7 @@ bash scripts/orphea.sh stop all
 
 ## Variables d'environnement obligatoires
 
-Éditez `.env.orphea` après génération :
+Éditez `.env.movetodata` après génération :
 
 | Variable | Description |
 |----------|-------------|
@@ -122,11 +122,11 @@ bash scripts/orphea.sh stop all
 ## Service systemd (démarrage automatique)
 
 ```bash
-sudo cp scripts/orphea-platform.service /etc/systemd/system/
-sudo cp scripts/orphea-snap.service /etc/systemd/system/
+sudo cp scripts/movetodata-platform.service /etc/systemd/system/
+sudo cp scripts/movetodata-snap.service /etc/systemd/system/
 sudo systemctl daemon-reload
-sudo systemctl enable orphea-platform orphea-snap
-sudo systemctl start orphea-platform
+sudo systemctl enable movetodata-platform movetodata-snap
+sudo systemctl start movetodata-platform
 ```
 
 ## Prérequis système

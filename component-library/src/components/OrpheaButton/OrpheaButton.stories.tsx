@@ -1,8 +1,8 @@
-import type { Meta } from "@storybook/react";
-import OrpheaButton from "./OrpheaButton";
+﻿import type { Meta } from "@storybook/react";
+import MoveToDataButton from "./MoveToDataButton";
 
 const meta = {
-  component: OrpheaButton,
+  component: MoveToDataButton,
   parameters: {
     layout: "centered",
   },
@@ -25,4 +25,4 @@ const meta = {
 
 export default meta;
 
-export { OrpheaButton };
+export { MoveToDataButton };

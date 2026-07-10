@@ -1,13 +1,13 @@
-import { Card, Col, Modal, Row, Typography } from "antd";
-import { getDefaultFavicon } from "components/orpheaLoader/FavIconLoader";
+﻿import { Card, Col, Modal, Row, Typography } from "antd";
+import { getDefaultFavicon } from "components/movetodataLoader/FavIconLoader";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ParticleApp } from "utils/ParticleApp";
 import { getLanguageLabel, isDefined } from "utils/utilities";
-import OrpheaHomeTable from "./OrpheaHomeTable";
+import MoveToDataHomeTable from "./MoveToDataHomeTable";
 import { getAllDeploymentDetails } from "redux/actions/DeploymentActions";
 import { ThunkAppDispatch } from "redux/types/store"; // Import the new component
-import OrpheaModal from "components/OrpheaModalContainer";
+import MoveToDataModal from "components/MoveToDataModalContainer";
 import MfaConfiguration from "apps/settings/mfaConfiguration";
 import {
   isPlatformAdmin,
@@ -15,13 +15,13 @@ import {
   updateUserDetails,
 } from "redux/actions/userActions";
 import { updateUserDataAPI } from "components/CommandPalette/CommandPalette.api";
-import OrpheaButton from "components/ButtonComponent/OrpheaButton";
-import { CrossIcon } from "assets/icons/orpheaActionIcons";
+import MoveToDataButton from "components/ButtonComponent/MoveToDataButton";
+import { CrossIcon } from "assets/icons/movetodataActionIcons";
 import { IS_LOGEDIN_WITH_OTP } from "redux/constants/userConstants";
 
 const { Title, Text } = Typography;
 
-const OrpheaHome = () => {
+const MoveToDataHome = () => {
   // Get deployments and platform configuration from Redux
   const { allDeployments } = useSelector(
     (state) => (state as any).allDeploymentDetails
@@ -105,7 +105,7 @@ const OrpheaHome = () => {
       document.title =
         isDefined(config) && isDefined(config.platformName)
           ? config.platformName
-          : "Orphea";
+          : "MoveToData";
     };
   }, [config]);
   useEffect(() => {
@@ -134,14 +134,14 @@ const OrpheaHome = () => {
             "linear-gradient(transparent 0%, var(--background-color) 100%)",
         }}
       >
-        <OrpheaModal
+        <MoveToDataModal
           closable={isOnRecoveryCode ? true : false}
           width={"600px"}
           heading={getLanguageLabel("setUpMFA")}
           extraActionHeading={
             config?.mfaEnforced !== true ? (
               <div style={{ display: "flex", justifyContent: "flex-start" }}>
-                <OrpheaButton
+                <MoveToDataButton
                   onClick={() => {
                     handleMFACancel();
                     dispatch(setLoginMethod(IS_LOGEDIN_WITH_OTP));
@@ -163,7 +163,7 @@ const OrpheaHome = () => {
             setIsOnRecoveryCode={setIsOnRecoveryCode}
             setIsOpen={setIsOpen}
           />
-        </OrpheaModal>
+        </MoveToDataModal>
         <br />
         <div
           style={{
@@ -187,7 +187,7 @@ const OrpheaHome = () => {
               {getLanguageLabel("welcome")} sur{" "}
               {isDefined(config) && isDefined(config.platformName)
                 ? config.platformName
-                : "Orphea"}
+                : "MoveToData"}
             </Title>
             <br />
             <br />
@@ -227,7 +227,7 @@ const OrpheaHome = () => {
           <div>
             <Title level={3}>Client</Title>
             {/* Pass FilteredData to the table, fallback to allDeployments */}
-            <OrpheaHomeTable
+            <MoveToDataHomeTable
               dataSource={FilteredData.length > 0 ? FilteredData : []} // Ensure data is passed
               onChange={onChange}
             />
@@ -244,4 +244,4 @@ const OrpheaHome = () => {
   );
 };
 
-export default OrpheaHome;
+export default MoveToDataHome;

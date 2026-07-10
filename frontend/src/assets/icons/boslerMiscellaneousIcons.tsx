@@ -1,15 +1,15 @@
-import React from "react";
+﻿import React from "react";
 import { TBoslerIconProps } from "./types";
 
 function BoslerIcon({
   size = 16,
-  color, // ignored — Orphea uses a fixed gradient
+  color, // ignored — MoveToData uses a fixed gradient
   style,
 }: TBoslerIconProps) {
-  const gradId = `orphea-grad-${size}`;
+  const gradId = `movetodata-grad-${size}`;
   return (
     <svg
-      data-icon="orpheaIcon"
+      data-icon="movetodataIcon"
       height={size}
       width={size}
       viewBox="0 0 300 300"

@@ -1,8 +1,8 @@
-import { Col, Menu, Popover, Radio, Row, Typography } from "antd";
+﻿import { Col, Menu, Popover, Radio, Row, Typography } from "antd";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
-import { DocumentationIcon } from "assets/icons/orpheaFileIcons";
+import { DocumentationIcon } from "assets/icons/movetodataFileIcons";
 
 import {
   getLanguageLabel,
@@ -15,7 +15,7 @@ import {
   HelpIcon,
   PulseIcon,
   StarIcon,
-} from "assets/icons/orpheaMiscellaneousIcons";
+} from "assets/icons/movetodataMiscellaneousIcons";
 import { updateUserDetails } from "redux/actions/userActions";
 
 import ReactCountryFlag from "react-country-flag";
@@ -35,7 +35,7 @@ import {
   SearchIcon,
   SelectNodeIcon,
   SparklesIcon,
-} from "assets/icons/orpheaActionIcons";
+} from "assets/icons/movetodataActionIcons";
 import {
   AppIcon,
   ApplicationIcon,
@@ -44,11 +44,11 @@ import {
   KeyCommandIcon,
   KeyIcon,
   ScheduledRunIcon,
-} from "assets/icons/orpheaInterfaceIcons";
+} from "assets/icons/movetodataInterfaceIcons";
 import { updateUserDataAPI } from "./CommandPalette.api";
 import { CLOSE_COMMAND_PALETTE_HOT_KEYS } from "./CommandPalette.constants";
-import OrpheaModal from "../OrpheaModalContainer/OrpheaModal";
-import OrpheaInput from "../InputComponent/OrpheaInput";
+import MoveToDataModal from "../MoveToDataModalContainer/MoveToDataModal";
+import MoveToDataInput from "../InputComponent/MoveToDataInput";
 
 const { Text, Title } = Typography;
 const { ItemGroup, Item } = Menu;
@@ -64,7 +64,7 @@ interface TProps {
   ref?: any;
 }
 
-const OrpheaCommandPalette = ({
+const MoveToDataCommandPalette = ({
   iconSize,
   showText,
   selected,
@@ -108,14 +108,14 @@ const OrpheaCommandPalette = ({
 
   return (
     <>
-      <OrpheaModal
+      <MoveToDataModal
         headingIcon={<SelectNodeIcon />}
         heading={getLanguageLabel("shortcuts")}
         width={650}
         open={isCmdModalOpen}
         onCancel={() => setIsCmdModalOpen(false)}
         extraActionHeading={
-          <OrpheaInput
+          <MoveToDataInput
             placeholder={getLanguageLabel("search")}
             suffix={<SearchIcon />}
             autofocus
@@ -454,7 +454,7 @@ const OrpheaCommandPalette = ({
             </Row>
           </Item>
         </Menu>
-      </OrpheaModal>
+      </MoveToDataModal>
       <SBElement
         icon={<SelectNodeIcon color={"#9ca3b4"} size={iconSize} />}
         tooltip={
@@ -474,4 +474,4 @@ const OrpheaCommandPalette = ({
   );
 };
 
-export default OrpheaCommandPalette;
+export default MoveToDataCommandPalette;

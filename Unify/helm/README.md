@@ -1,4 +1,4 @@
-# Orphea setup with HELM
+﻿# MoveToData setup with HELM
 
 ## Create new tenant first
 [Create new tenant](README-Create-New-Tenant.md)
@@ -38,13 +38,13 @@ repos
 ## HELM install
 
 ```
-helm install orphea orphea-gke -f charts/orphea-gke/testCluster.yaml
+helm install movetodata movetodata-gke -f charts/movetodata-gke/testCluster.yaml
 ```
 
 ## To Upgrade, if any changes to values etc
 
 ```
-helm upgrade orphea orphea-gke -f charts/orphea-gke/devCluster.yaml
+helm upgrade movetodata movetodata-gke -f charts/movetodata-gke/devCluster.yaml
 ```
 
 ## run post helm scripts for spark and healthcheck etc

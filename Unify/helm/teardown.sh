@@ -1,11 +1,11 @@
-#!/usr/bin/env bash
+﻿#!/usr/bin/env bash
 
 source env-${PROJECT_ID}.sh
 
-kubectl delete all --all -n orphea
+kubectl delete all --all -n movetodata
 kubectl delete all --all -n default
 
-kubectl -n orphea delete pvc $(kubectl -n orphea get pvc | grep -v NAME | awk '{print $1}')
+kubectl -n movetodata delete pvc $(kubectl -n movetodata get pvc | grep -v NAME | awk '{print $1}')
 
 kubectl delete pv $(kubectl get pv | grep -v NAME | awk '{print $1}')
 

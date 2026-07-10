@@ -1,4 +1,4 @@
-plugins {
+﻿plugins {
     id 'org.springframework.boot' version '2.7.2'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'com.github.johnrengelman.shadow' version '8.1.1'
@@ -6,7 +6,7 @@ plugins {
     id 'java-library'
 }
 
-group = 'io.orphea'
+group = 'io.movetodata'
 version = '0.0.1-SNAPSHOT'
 
 configurations {
@@ -32,7 +32,7 @@ repositories {
 }
 
 bootJar {
-    mainClass = 'io.orphea.Boson'
+    mainClass = 'io.movetodata.Boson'
 }
 
 dependencies {

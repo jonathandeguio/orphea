@@ -1,12 +1,12 @@
-import { Form, Select } from "antd";
-import { KeyIcon } from "assets/icons/orpheaInterfaceIcons";
-import { TickIcon } from "assets/icons/orpheaNavigationIcon";
+﻿import { Form, Select } from "antd";
+import { KeyIcon } from "assets/icons/movetodataInterfaceIcons";
+import { TickIcon } from "assets/icons/movetodataNavigationIcon";
 import axios from "axios";
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { openNotification } from "utils/utilities";
-import OrpheaModal from "components/OrpheaModalContainer";
-import OrpheaButton from "components/ButtonComponent/OrpheaButton";
+import MoveToDataModal from "components/MoveToDataModalContainer";
+import MoveToDataButton from "components/ButtonComponent/MoveToDataButton";
 import { ThunkAppDispatch } from "redux/types/store";
 import { updateTargetState } from "../apis";
 
@@ -26,7 +26,7 @@ interface ConfigurationTargetDetails {
   julia: string;
   callisto: string;
   capture: string;
-  orpheaDocs: string;
+  movetodataDocs: string;
   sparkHistoryServer: string;
 }
 
@@ -38,7 +38,7 @@ interface ConfigurationTargetDetailsWithLatest
   julia_latest: string;
   callisto_latest: string;
   capture_latest: string;
-  orpheaDocs_latest: string;
+  movetodataDocs_latest: string;
   sparkHistoryServer_latest: string;
 }
 
@@ -49,7 +49,7 @@ const initialConfigurationTargetDetails: ConfigurationTargetDetails = {
   julia: "",
   callisto: "",
   capture: "",
-  orpheaDocs: "",
+  movetodataDocs: "",
   sparkHistoryServer: "",
 };
 
@@ -60,7 +60,7 @@ const triggerNameMapping: Record<keyof ConfigurationTargetDetails, string> = {
   julia: "julia",
   callisto: "callisto",
   capture: "capture",
-  orpheaDocs: "orphea-docs",
+  movetodataDocs: "movetodata-docs",
   sparkHistoryServer: "spark-history-server",
 };
 
@@ -209,7 +209,7 @@ const CreateNewConfigurationTargetModal = ({
 
   return (
     <Form layout="vertical">
-      <OrpheaModal
+      <MoveToDataModal
         headingIcon={<KeyIcon />}
         heading={"Target State Update"}
         open={isOpen}
@@ -217,14 +217,14 @@ const CreateNewConfigurationTargetModal = ({
         width={800}
         footerButtonArea={
           <>
-            <OrpheaButton
+            <MoveToDataButton
               icon={<TickIcon />}
               intent="action"
               key="submit"
               onClick={handleOk}
             >
               Update
-            </OrpheaButton>
+            </MoveToDataButton>
           </>
         }
       >
@@ -256,7 +256,7 @@ const CreateNewConfigurationTargetModal = ({
             </div>
           ))}
         </div>
-      </OrpheaModal>
+      </MoveToDataModal>
     </Form>
   );
 };

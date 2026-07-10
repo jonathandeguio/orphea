@@ -1,9 +1,9 @@
-import React, { useLayoutEffect, useRef, useState } from "react";
+﻿import React, { useLayoutEffect, useRef, useState } from "react";
 import "./contextMenu.scss";
 import { ContextMenuStore } from "./store";
 
 import { Divider } from "antd";
-import { SingleChevronRightIcon } from "assets/icons/orpheaNavigationIcon";
+import { SingleChevronRightIcon } from "assets/icons/movetodataNavigationIcon";
 
 import { isDefined, notEmpty } from "utils/utilities";
 import { useContextMenuState } from "./store";

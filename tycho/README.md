@@ -1,4 +1,4 @@
-# In Unify
+﻿# In Unify
 
 cd Unify/helm
 
@@ -13,7 +13,7 @@ else image already exists
   
   cd repos/tycho/helm/superset
   modify values.yaml for PROJECT_ID
-  sed -e "s/orphea-334213/$PROJECT_ID/g" values.yaml > new-values.yaml
+  sed -e "s/movetodata-334213/$PROJECT_ID/g" values.yaml > new-values.yaml
   mv new-values.yaml values.yaml
   ./install_helm_superset.sh
   ```

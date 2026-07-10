@@ -1,20 +1,20 @@
-import { Col, Divider, Form, Row, Select, Switch, Typography } from "antd";
-import { KeyIcon } from "assets/icons/orpheaInterfaceIcons";
+﻿import { Col, Divider, Form, Row, Select, Switch, Typography } from "antd";
+import { KeyIcon } from "assets/icons/movetodataInterfaceIcons";
 import {
   LibraryIcon,
   LightBulbIcon,
-} from "assets/icons/orpheaMiscellaneousIcons";
+} from "assets/icons/movetodataMiscellaneousIcons";
 import axios from "axios";
-import OrpheaDatePicker from "components/OrpheaDatePicker";
+import MoveToDataDatePicker from "components/MoveToDataDatePicker";
 import { ErrorResponse } from "global";
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { getLanguageLabel, isDefined, openNotification } from "utils/utilities";
-import { TickIcon } from "assets/icons/orpheaNavigationIcon";
-import OrpheaModal from "components/OrpheaModalContainer";
-import OrpheaButton from "components/ButtonComponent/OrpheaButton";
-import OrpheaInput from "components/InputComponent/OrpheaInput";
+import { TickIcon } from "assets/icons/movetodataNavigationIcon";
+import MoveToDataModal from "components/MoveToDataModalContainer";
+import MoveToDataButton from "components/ButtonComponent/MoveToDataButton";
+import MoveToDataInput from "components/InputComponent/MoveToDataInput";
 import { getAllConfigurationDetails } from "redux/actions/ConfigurationActions";
 import { ThunkAppDispatch } from "redux/types/store";
 
@@ -128,7 +128,7 @@ const CreateNewLicenseModal = ({
   return (
     <>
       <Form>
-        <OrpheaModal
+        <MoveToDataModal
           headingIcon={<KeyIcon />}
           heading={getLanguageLabel("productLicensing")}
           open={isOpen}
@@ -136,14 +136,14 @@ const CreateNewLicenseModal = ({
           width={800}
           footerButtonArea={
             <>
-              <OrpheaButton
+              <MoveToDataButton
                 icon={<TickIcon />}
                 intent="action"
                 key="submit"
                 onClick={handleOk}
               >
                 Create
-              </OrpheaButton>
+              </MoveToDataButton>
             </>
           }
           information={
@@ -160,8 +160,8 @@ const CreateNewLicenseModal = ({
                     fontSize: "0.7rem",
                   }}
                 >
-                  License creation in Orphea is an exclusive feature reserved
-                  for Orphea Team users. When creating a license, you have the
+                  License creation in MoveToData is an exclusive feature reserved
+                  for MoveToData Team users. When creating a license, you have the
                   option to choose from three distinct product types: data
                   platform, data hub, and data platform. Additionally, you can
                   tailor your license by selecting one of four size options:
@@ -192,17 +192,17 @@ const CreateNewLicenseModal = ({
                   <Text strong>{getLanguageLabel("access")}</Text>
                 </div>
                 <div style={{ paddingTop: "10px", paddingLeft: "20px" }}>
-                  License creation is only available for Orphea Team
+                  License creation is only available for MoveToData Team
                 </div>
               </div>
             </div>
           }
-          footerExtraText="License creation is only available for Orphea Team"
+          footerExtraText="License creation is only available for MoveToData Team"
         >
           <Item name={"client"}>
             <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
               <label style={{ width:'25%' }}>Client:</label>
-              <OrpheaInput
+              <MoveToDataInput
                 placeholder="Enter premise name"
                 autofocus
                 onChange={(e: any) =>
@@ -257,7 +257,7 @@ const CreateNewLicenseModal = ({
           <Item name="expiresOn" required>
             <div style={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
               <label style={{ width:'34%' }}>Expires On:</label>
-              <OrpheaDatePicker
+              <MoveToDataDatePicker
                 onChange={(date: any) => {
                   const timestamp = date ? date.valueOf() : null;
                   setNewLicenseDetails({
@@ -284,7 +284,7 @@ const CreateNewLicenseModal = ({
                   <Select.Option value="https">https</Select.Option>
                 </Select>
 
-                <OrpheaInput
+                <MoveToDataInput
                   placeholder="Enter your server FQDN"
                   onChange={handleFqdnChange}
                   value={newLicenseDetails.baseUrl.split("://")[1] || ""}
@@ -298,7 +298,7 @@ const CreateNewLicenseModal = ({
           <Item name={"maximumUsers"}>
           <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
               <label style={{ width:'25%' }}>Users:</label>
-              <OrpheaInput
+              <MoveToDataInput
                 defaultValue={100000}
                 placeholder="Enter Count of max Users"
                 autoFocus
@@ -318,7 +318,7 @@ const CreateNewLicenseModal = ({
           <Item name={"maximumBuildsPerDay"}>
             <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
               <label style={{ width:'25%' }}>Builds per day:</label>
-              <OrpheaInput
+              <MoveToDataInput
                 defaultValue={100000}
                 placeholder="Enter Count of max builds per day"
                 autofocus
@@ -338,7 +338,7 @@ const CreateNewLicenseModal = ({
           <Item name={"maximumDatasets"}>
             <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
               <label style={{ width:'25%' }}>Datasets:</label>
-              <OrpheaInput
+              <MoveToDataInput
                 defaultValue={100000}
                 placeholder="Enter Count of max datasets"
                 autofocus
@@ -358,7 +358,7 @@ const CreateNewLicenseModal = ({
           <Item name={"maximumRepositories"}>
             <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
               <label style={{ width:'25%' }}>Repositories:</label>
-              <OrpheaInput
+              <MoveToDataInput
                 defaultValue={100000}
                 placeholder="Enter Count of max Repositories"
                 autofocus
@@ -378,7 +378,7 @@ const CreateNewLicenseModal = ({
           <Item name={"maximumCharts"}>
             <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
               <label style={{ width:'25%' }}>Charts:</label>
-              <OrpheaInput
+              <MoveToDataInput
                 defaultValue={100000}
                 placeholder="Enter Count of max Charts"
                 autofocus
@@ -398,7 +398,7 @@ const CreateNewLicenseModal = ({
           <Item name={"maximumDashboards"}>
             <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
               <label style={{ width:'25%' }}>Dashboards:</label>
-              <OrpheaInput
+              <MoveToDataInput
                 defaultValue={100000}
                 placeholder="Enter Count of max Dashboards"
                 autofocus
@@ -414,7 +414,7 @@ const CreateNewLicenseModal = ({
               />
             </div>
           </Item>
-        </OrpheaModal>
+        </MoveToDataModal>
       </Form>
     </>
 );

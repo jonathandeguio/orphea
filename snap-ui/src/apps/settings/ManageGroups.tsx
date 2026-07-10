@@ -1,4 +1,4 @@
-import {
+﻿import {
   Avatar,
   Col,
   Divider,
@@ -10,8 +10,8 @@ import {
   Typography,
 } from "antd";
 import axios from "axios";
-import OrpheaInput from "components/InputComponent/OrpheaInput";
-import OrpheaLoader from "components/orpheaLoader";
+import MoveToDataInput from "components/InputComponent/MoveToDataInput";
+import MoveToDataLoader from "components/movetodataLoader";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
@@ -26,13 +26,13 @@ import {
   DisableIcon,
   LockIcon,
   RemoveIcon,
-} from "assets/icons/orpheaActionIcons";
-import { AddUserIcon, UserIcon } from "assets/icons/orpheaInterfaceIcons";
+} from "assets/icons/movetodataActionIcons";
+import { AddUserIcon, UserIcon } from "assets/icons/movetodataInterfaceIcons";
 import {
   ArrowLeftIcon,
   TickIcon,
-} from "assets/icons/orpheaNavigationIcon";
-import OrpheaButton from "components/ButtonComponent/OrpheaButton";
+} from "assets/icons/movetodataNavigationIcon";
+import MoveToDataButton from "components/ButtonComponent/MoveToDataButton";
 import UserPopOver from "components/UserPopover/userpopover";
 import {
   getAllUserDetails,
@@ -125,8 +125,8 @@ const ManageGroups = () => {
           </UserPopOver>
           {canEditGroupDetails() && (
             <Tooltip title={getLanguageLabel("remove")} placement="right">
-              <OrpheaButton
-                icon={<RemoveIcon color={"var(--orphea-intent-danger)"} />}
+              <MoveToDataButton
+                icon={<RemoveIcon color={"var(--movetodata-intent-danger)"} />}
                 onClick={() =>
                   updateGroupDetailsAPI({
                     id: groupDetails?.id,
@@ -185,7 +185,7 @@ const ManageGroups = () => {
               </Col>
               <Col>
                 <Tooltip title={getLanguageLabel("clickToRename")}>
-                  <OrpheaInput
+                  <MoveToDataInput
                     editText={canEditGroupDetails()}
                     className="editText"
                     debounceInterval={1000}
@@ -202,7 +202,7 @@ const ManageGroups = () => {
             <br />
             <Row justify={"center"}>
               <Tooltip title={getLanguageLabel("clickToChangeDescription")}>
-                <OrpheaInput
+                <MoveToDataInput
                   style={{ fontSize: "22px", fontWeight: 500 }}
                   editText={canEditGroupDetails()}
                   className="editText"
@@ -304,7 +304,7 @@ const ManageGroups = () => {
                 </Col>
                 <Col>
                   <Tooltip title={getLanguageLabel("add")} placement={"right"}>
-                    <OrpheaButton
+                    <MoveToDataButton
                       icon={<AddUserIcon />}
                       disabled={addNewUsersToGroupDetails.userIds.length == 0}
                       onClick={() => {
@@ -322,7 +322,7 @@ const ManageGroups = () => {
                       }}
                       minimal
                       icononly
-                    ></OrpheaButton>
+                    ></MoveToDataButton>
                   </Tooltip>
                 </Col>
               </Row>
@@ -371,13 +371,13 @@ const ManageGroups = () => {
             </Tabs>
           </>
         ) : (
-          <OrpheaLoader />
+          <MoveToDataLoader />
         )}
       </Col>
       <Col
         span={9}
         style={{
-          borderLeft: "1px solid var(--orphea-border-color-default)",
+          borderLeft: "1px solid var(--movetodata-border-color-default)",
           padding: "3rem",
         }}
       >
@@ -393,12 +393,12 @@ const ManageGroups = () => {
         <Row
           gutter={[16, 16]}
           style={{
-            background: "var(--orphea-bkg-color-muted)",
+            background: "var(--movetodata-bkg-color-muted)",
             borderRadius: "2px",
             boxShadow:
               "rgba(11, 14, 22, 0.02) 0px 0px 0px 1px, rgba(11, 14, 22, 0.04) 0px 4px 8px, rgba(11, 14, 22, 0.04) 0px 18px 46px 6px",
             padding: "2rem",
-            border: "1px solid var(--orphea-border-color-default)",
+            border: "1px solid var(--movetodata-border-color-default)",
           }}
         >
           <Col span={10}>
@@ -444,7 +444,7 @@ const ManageGroups = () => {
               justifyContent: "center",
             }}
           >
-            <DisableIcon color="var(--orphea-intent-danger)" />
+            <DisableIcon color="var(--movetodata-intent-danger)" />
           </Col>
           <Col
             span={4}
@@ -476,7 +476,7 @@ const ManageGroups = () => {
               justifyContent: "center",
             }}
           >
-            <DisableIcon color="var(--orphea-intent-danger)" />
+            <DisableIcon color="var(--movetodata-intent-danger)" />
           </Col>
           <Col
             span={4}
@@ -508,7 +508,7 @@ const ManageGroups = () => {
               justifyContent: "center",
             }}
           >
-            <DisableIcon color="var(--orphea-intent-danger)" />
+            <DisableIcon color="var(--movetodata-intent-danger)" />
           </Col>
           <Col
             span={4}
@@ -518,7 +518,7 @@ const ManageGroups = () => {
               justifyContent: "center",
             }}
           >
-            <DisableIcon color="var(--orphea-intent-danger)" />
+            <DisableIcon color="var(--movetodata-intent-danger)" />
           </Col>
           <Col
             span={4}
@@ -540,7 +540,7 @@ const ManageGroups = () => {
               justifyContent: "center",
             }}
           >
-            <DisableIcon color="var(--orphea-intent-danger)" />
+            <DisableIcon color="var(--movetodata-intent-danger)" />
           </Col>
           <Col
             span={4}
@@ -550,7 +550,7 @@ const ManageGroups = () => {
               justifyContent: "center",
             }}
           >
-            <DisableIcon color="var(--orphea-intent-danger)" />
+            <DisableIcon color="var(--movetodata-intent-danger)" />
           </Col>
           <Col
             span={4}
@@ -572,7 +572,7 @@ const ManageGroups = () => {
               justifyContent: "center",
             }}
           >
-            <DisableIcon color="var(--orphea-intent-danger)" />
+            <DisableIcon color="var(--movetodata-intent-danger)" />
           </Col>
           <Col
             span={4}
@@ -582,7 +582,7 @@ const ManageGroups = () => {
               justifyContent: "center",
             }}
           >
-            <DisableIcon color="var(--orphea-intent-danger)" />
+            <DisableIcon color="var(--movetodata-intent-danger)" />
           </Col>
           <Col
             span={4}
@@ -616,7 +616,7 @@ const ManageGroups = () => {
               justifyContent: "center",
             }}
           >
-            <DisableIcon color="var(--orphea-intent-danger)" />
+            <DisableIcon color="var(--movetodata-intent-danger)" />
           </Col>
           <Col
             span={4}
@@ -626,7 +626,7 @@ const ManageGroups = () => {
               justifyContent: "center",
             }}
           >
-            <DisableIcon color="var(--orphea-intent-danger)" />
+            <DisableIcon color="var(--movetodata-intent-danger)" />
           </Col>
         </Row>
         <Text style={{ fontSize: "0.8rem" }} type="secondary">

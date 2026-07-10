@@ -1,6 +1,6 @@
-import { notification } from "antd";
+﻿import { notification } from "antd";
 import axios from "axios";
-import { BASE_URL, ORPHEA_TOKEN } from "layouts/auth/constants";
+import { BASE_URL, MOVETODATA_TOKEN } from "layouts/auth/constants";
 import { getLanguageLabel, isDefined, isEmpty } from "./utilities";
 const uuid = require("uuid");
 
@@ -13,7 +13,7 @@ export const addInterceptors = () => {
       }
 
       config.headers["Authorization"] = `Bearer ${localStorage.getItem(
-        ORPHEA_TOKEN
+        MOVETODATA_TOKEN
       )}`;
 
       config.baseURL = process.env.REACT_APP_BASE_URL_API;

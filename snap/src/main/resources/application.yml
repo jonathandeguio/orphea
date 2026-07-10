@@ -1,10 +1,10 @@
-spring:
+﻿spring:
   application:
     name: "snap"
   main:
     allow-circular-references: true # This needs removing it is a temporary fix
   banner:
-    location: classpath:/banner/orphea.txt
+    location: classpath:/banner/movetodata.txt
   datasource:
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
@@ -73,7 +73,7 @@ server:
     max-swallow-size: 20GB
 #    accesslog:
 #      enabled: true
-#      directory: "/orphea/snap/logs/accessLogs"
+#      directory: "/movetodata/snap/logs/accessLogs"
 #      prefix: "${spring.application.name}"
 #      pattern: '%{dd/MMM/yyyy}t %{begin:HH:mm:ss.SSS}t %{end:HH:mm:ss.SSS}t %{RequestId}i %r %s %h %b %T %{Referer}i "%{User-agent}i"'
 #    basedir: ${log.path:./}

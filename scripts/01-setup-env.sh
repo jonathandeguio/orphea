@@ -1,13 +1,13 @@
-#!/usr/bin/env bash
+﻿#!/usr/bin/env bash
 # =============================================================================
-# Orphea Platform — Script 01 : Génération du fichier d'environnement
+# MoveToData Platform — Script 01 : Génération du fichier d'environnement
 # Usage : bash 01-setup-env.sh
-# Génère : scripts/.env.orphea (à protéger — contient des secrets)
+# Génère : scripts/.env.movetodata (à protéger — contient des secrets)
 # =============================================================================
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-ENV_FILE="${SCRIPT_DIR}/.env.orphea"
+ENV_FILE="${SCRIPT_DIR}/.env.movetodata"
 
 RED='\033[0;31m'; GREEN='\033[0;32m'; YELLOW='\033[1;33m'; BLUE='\033[0;34m'; NC='\033[0m'
 info()    { echo -e "${BLUE}[INFO]${NC}  $*"; }
@@ -16,7 +16,7 @@ warn()    { echo -e "${YELLOW}[WARN]${NC}  $*"; }
 ask()     { echo -e "${YELLOW}[INPUT]${NC} $*"; }
 
 # -----------------------------------------------------------------------------
-info "=== Génération du fichier d'environnement Orphea ==="
+info "=== Génération du fichier d'environnement MoveToData ==="
 # -----------------------------------------------------------------------------
 
 if [[ -f "${ENV_FILE}" ]]; then
@@ -33,7 +33,7 @@ REFRESH_TOKEN_SECRET=$(openssl rand -hex 64)
 
 # --- Demande des paramètres obligatoires ---
 echo ""
-ask "URL publique de la plateforme Orphea — IP/domaine interne (ex: http://192.168.1.41) :"
+ask "URL publique de la plateforme MoveToData — IP/domaine interne (ex: http://192.168.1.41) :"
 read -r BASE_URL
 [[ -z "${BASE_URL}" ]] && BASE_URL="http://localhost:8080"
 
@@ -69,13 +69,13 @@ fi
 # --- Écriture du fichier d'environnement ---
 cat > "${ENV_FILE}" << EOF
 # =============================================================================
-# Orphea Platform — Variables d'environnement
+# MoveToData Platform — Variables d'environnement
 # Généré le : $(date '+%Y-%m-%d %H:%M:%S')
 # ATTENTION : ce fichier contient des secrets — ne pas committer dans git
 # =============================================================================
 
 # --- Général ---
-ORPHEA_MOUNT_PATH=/opt/orphea/data
+MOVETODATA_MOUNT_PATH=/opt/movetodata/data
 BASE_URL=${BASE_URL}
 ALLOWED_ORIGINS=${ALLOWED_ORIGINS_VALUE}
 
@@ -88,7 +88,7 @@ REFRESH_TOKEN_SECRET=${REFRESH_TOKEN_SECRET}
 BOSON_DB_HOST=boson-db
 BOSON_DB_PORT=5432
 BOSON_DB_NAME=boson
-BOSON_DB_USERNAME=orphea
+BOSON_DB_USERNAME=movetodata
 BOSON_DB_PASSWORD=${BOSON_DB_PASSWORD}
 
 # --- Base de données Snap ---
@@ -106,7 +106,7 @@ TYCHO_DB_USERNAME=superset
 TYCHO_DB_PASSWORD=${TYCHO_DB_PASSWORD}
 
 # --- Redis ---
-REDIS_HOST=orphea-redis
+REDIS_HOST=movetodata-redis
 REDIS_PORT=6379
 
 # --- Tycho / Superset ---
@@ -117,19 +117,19 @@ SUPERSET_ENV=production
 SUPERSET_LOAD_EXAMPLES=no
 
 # --- Snap ---
-ARTIFACT_STORE=/orphea/snap/artifactory
-SNAP_LOG_FILE_PATH=/orphea/snap/logs
+ARTIFACT_STORE=/movetodata/snap/artifactory
+SNAP_LOG_FILE_PATH=/movetodata/snap/logs
 SNAP_TOKEN_SECRET=${TOKEN_SECRET}
 SNAP_TOKEN_EXPIRATION=604800000
 GITHUB_PAT=${GITHUB_PAT}
 
 # --- SAML SSO ---
-SAML2_SSO_CONFIG=file:/etc/orphea/saml.yml
+SAML2_SSO_CONFIG=file:/etc/movetodata/saml.yml
 
 # --- Swagger (désactiver en prod) ---
 SWAGGER_UI=false
 
-# --- OAuth2 (à remplacer avec les vrais credentials Orphea) ---
+# --- OAuth2 (à remplacer avec les vrais credentials MoveToData) ---
 GITHUB_OAUTH_CLIENT_ID=CHANGEME_github_oauth_client_id
 GITHUB_OAUTH_CLIENT_SECRET=CHANGEME_github_oauth_client_secret
 GOOGLE_OAUTH_CLIENT_ID=CHANGEME_google_oauth_client_id
@@ -139,14 +139,14 @@ EOF
 chmod 600 "${ENV_FILE}"
 
 success "Fichier d'environnement généré : ${ENV_FILE}"
-warn "Ce fichier est confidentiel — vérifiez que .env.orphea est dans .gitignore"
+warn "Ce fichier est confidentiel — vérifiez que .env.movetodata est dans .gitignore"
 
 # Vérifier .gitignore
 GITIGNORE="${SCRIPT_DIR}/../.gitignore"
 if [[ -f "${GITIGNORE}" ]]; then
-  if ! grep -q "\.env\.orphea" "${GITIGNORE}"; then
-    echo "scripts/.env.orphea" >> "${GITIGNORE}"
-    success ".env.orphea ajouté au .gitignore"
+  if ! grep -q "\.env\.movetodata" "${GITIGNORE}"; then
+    echo "scripts/.env.movetodata" >> "${GITIGNORE}"
+    success ".env.movetodata ajouté au .gitignore"
   fi
 fi
 
@@ -155,6 +155,6 @@ info "Variables à compléter manuellement dans ${ENV_FILE} :"
 echo "  - GITHUB_OAUTH_CLIENT_ID / GITHUB_OAUTH_CLIENT_SECRET"
 echo "  - GOOGLE_OAUTH_CLIENT_ID / GOOGLE_OAUTH_CLIENT_SECRET"
 echo "  - GITHUB_PAT (si Snap utilisé)"
-echo "  - /etc/orphea/saml.yml (si SAML SSO activé)"
+echo "  - /etc/movetodata/saml.yml (si SAML SSO activé)"
 echo ""
 info "Prochaine étape : bash 02-build.sh"

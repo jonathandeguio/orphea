@@ -1,4 +1,4 @@
-import {
+﻿import {
   Avatar,
   Col,
   Collapse,
@@ -32,20 +32,20 @@ import { ThunkAppDispatch } from "redux/types/store";
 
 import type { RcFile } from "antd/es/upload/interface";
 
-import { TickIcon } from "assets/icons/orpheaNavigationIcon";
+import { TickIcon } from "assets/icons/movetodataNavigationIcon";
 import { updateUserDataAPI } from "components/CommandPalette/CommandPalette.api";
-import { SaveIcon } from "assets/icons/orpheaActionIcons";
-import { EditIcon } from "assets/icons/orpheaEditorIcons";
-import { UploadIcon } from "assets/icons/orpheaInterfaceIcons";
-import { TrashIcon } from "assets/icons/orpheaMiscellaneousIcons";
-import OrpheaLoader from "components/orpheaLoader";
+import { SaveIcon } from "assets/icons/movetodataActionIcons";
+import { EditIcon } from "assets/icons/movetodataEditorIcons";
+import { UploadIcon } from "assets/icons/movetodataInterfaceIcons";
+import { TrashIcon } from "assets/icons/movetodataMiscellaneousIcons";
+import MoveToDataLoader from "components/movetodataLoader";
 import { updateLanguage } from "redux/actions/languageActions";
 import { updateUserDetails } from "redux/actions/userActions";
-import OrpheaInput from "components/InputComponent/OrpheaInput";
-import OrpheaButton from "components/ButtonComponent/OrpheaButton";
+import MoveToDataInput from "components/InputComponent/MoveToDataInput";
+import MoveToDataButton from "components/ButtonComponent/MoveToDataButton";
 import MfaConfiguration, { openNotificationWithIcon } from "./mfaConfiguration";
 import { useParams } from "react-router";
-import OrpheaModal from "components/OrpheaModalContainer";
+import MoveToDataModal from "components/MoveToDataModalContainer";
 
 const layout = {
   labelCol: {
@@ -258,7 +258,7 @@ const Profile = ({ user, self, showPreferences, loginHistory }: $TSFixMe) => {
   };
 
   return !user ? (
-    <OrpheaLoader />
+    <MoveToDataLoader />
   ) : (
     <div className="settings-center-block">
       <Row gutter={[32, 24]}>
@@ -272,11 +272,11 @@ const Profile = ({ user, self, showPreferences, loginHistory }: $TSFixMe) => {
                 </Text>
                 <Divider />
               </p>
-              <div className="OrpheaHeader1">
+              <div className="MoveToDataHeader1">
                 {getLanguageLabel("givenName")}
               </div>
 
-              <OrpheaInput
+              <MoveToDataInput
                 placeholder={user.givenName}
                 // @ts-expect-error TS(2322): Type 'string[]' is not assignable to type 'string'... Remove this comment to see the full error message
                 name={["user", "fname"]}
@@ -288,11 +288,11 @@ const Profile = ({ user, self, showPreferences, loginHistory }: $TSFixMe) => {
                 }}
                 value={newUserData.givenName}
               />
-              <div className="OrpheaHeader1">
+              <div className="MoveToDataHeader1">
                 {getLanguageLabel("familyName")}
               </div>
 
-              <OrpheaInput
+              <MoveToDataInput
                 placeholder={user.familyName}
                 // @ts-expect-error TS(2322): Type 'string[]' is not assignable to type 'string'... Remove this comment to see the full error message
                 name={["user", "lname"]}
@@ -304,8 +304,8 @@ const Profile = ({ user, self, showPreferences, loginHistory }: $TSFixMe) => {
                 }
                 value={newUserData.familyName}
               />
-              <div className="OrpheaHeader1">{getLanguageLabel("email")}</div>
-              <OrpheaInput
+              <div className="MoveToDataHeader1">{getLanguageLabel("email")}</div>
+              <MoveToDataInput
                 placeholder={user.email}
                 // @ts-expect-error TS(2322): Type 'string[]' is not assignable to type 'string'... Remove this comment to see the full error message
                 name={["user", "email"]}
@@ -317,8 +317,8 @@ const Profile = ({ user, self, showPreferences, loginHistory }: $TSFixMe) => {
               />
 
               {/* 
-              <div className="OrpheaHeader1">{getLanguageLabel("designation")}</div>
-                  <OrpheaInput
+              <div className="MoveToDataHeader1">{getLanguageLabel("designation")}</div>
+                  <MoveToDataInput
                     // @ts-expect-error TS(2322): Type 'string[]' is not assignable to type 'string'... Remove this comment to see the full error message
                     name={["designation"]}
                     value={desig}
@@ -327,10 +327,10 @@ const Profile = ({ user, self, showPreferences, loginHistory }: $TSFixMe) => {
                   />
                  */}
 
-              <div className="OrpheaHeader1">
+              <div className="MoveToDataHeader1">
                 {getLanguageLabel("location")}
               </div>
-              <OrpheaInput
+              <MoveToDataInput
                 placeholder={user.location}
                 // @ts-expect-error TS(2322): Type 'string[]' is not assignable to type 'string'... Remove this comment to see the full error message
                 name={["location"]}
@@ -363,7 +363,7 @@ const Profile = ({ user, self, showPreferences, loginHistory }: $TSFixMe) => {
                 ) : (
                   ""
                 )}
-                <OrpheaModal
+                <MoveToDataModal
                   heading={getLanguageLabel("disableMfa")}
                   closable={true}
                   open={CancelModalOpen}
@@ -377,22 +377,22 @@ const Profile = ({ user, self, showPreferences, loginHistory }: $TSFixMe) => {
                         padding: "10px",
                       }}
                     >
-                      <OrpheaButton
+                      <MoveToDataButton
                         onClick={() => setCancelModalOpen(!CancelModalOpen)}
                       >
                         {getLanguageLabel("cancel")}
-                      </OrpheaButton>
-                      <OrpheaButton onClick={handleResetMfa} intent="dangerous">
+                      </MoveToDataButton>
+                      <MoveToDataButton onClick={handleResetMfa} intent="dangerous">
                         {getLanguageLabel("yes")}
-                      </OrpheaButton>
+                      </MoveToDataButton>
                     </div>
                   }
                 >
                   <Typography>
                     {getLanguageLabel("disableMfaMessage")}
                   </Typography>
-                </OrpheaModal>
-                <OrpheaModal
+                </MoveToDataModal>
+                <MoveToDataModal
                   closable={true}
                   width={"600px"}
                   heading={getLanguageLabel("setUpMFA")}
@@ -413,7 +413,7 @@ const Profile = ({ user, self, showPreferences, loginHistory }: $TSFixMe) => {
                     setIsOnRecoveryCode={setIsOnRecoveryCode}
                     setIsOpen={setIsOpen}
                   />
-                </OrpheaModal>
+                </MoveToDataModal>
               </div>
 
               {/* <Link to={`mfaConfiguration`}>
@@ -430,7 +430,7 @@ const Profile = ({ user, self, showPreferences, loginHistory }: $TSFixMe) => {
                   </div>
                 </Link> */}
 
-              <OrpheaButton
+              <MoveToDataButton
                 icon={updated ? <TickIcon /> : <SaveIcon />}
                 intent={updated ? "success" : "action"}
                 onClick={() => handleUpdate(newUserData)}
@@ -441,13 +441,13 @@ const Profile = ({ user, self, showPreferences, loginHistory }: $TSFixMe) => {
                 textTransform="none"
               >
                 {getLanguageLabel("update")}
-              </OrpheaButton>
+              </MoveToDataButton>
 
               {showPreferences ? (
                 <>
                   <Divider orientation="left">Preferences</Divider>
                   <div className="theme-pref">
-                    <div className="OrpheaHeader1">
+                    <div className="MoveToDataHeader1">
                       {getLanguageLabel("languagePreference")}
                     </div>
 
@@ -595,20 +595,20 @@ const Profile = ({ user, self, showPreferences, loginHistory }: $TSFixMe) => {
                           style={{ padding: "0.5rem" }}
                           className="text-and-icon-center"
                         >
-                          <TrashIcon color="var(--orphea-intent-danger)" />
+                          <TrashIcon color="var(--movetodata-intent-danger)" />
                           Remove photo
                         </span>
                       </Row>
                     </>
                   }
                 >
-                  <OrpheaButton
+                  <MoveToDataButton
                     size="small"
                     icon={<EditIcon />}
                     intent="primary"
                   >
                     {getLanguageLabel("edit")}
-                  </OrpheaButton>
+                  </MoveToDataButton>
                 </Popover>
               </div>
               <Divider />

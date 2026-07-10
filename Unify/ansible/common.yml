@@ -1,11 +1,11 @@
----
+﻿---
 - name: Install common utilties on All Vm's
   hosts: all_vms
   become: yes
   become_method: sudo
   become_user: root
   vars:
-    ansible_become_pass: "orphea2024"
+    ansible_become_pass: "movetodata2024"
   tasks:
     # - name: Echo the current username
     #   command: whoami
@@ -17,42 +17,42 @@
 
     - name: Copy visudo script
       copy:
-        src: /home/dexter/Work/orphea/unify/ansible/scripts/visudo.sh
+        src: /home/dexter/Work/movetodata/unify/ansible/scripts/visudo.sh
         dest: /tmp/visudo.sh
         mode: "0755"
         force: yes
 
     - name: Copy hosts script
       copy:
-        src: /home/dexter/Work/orphea/unify/ansible/scripts/hosts.sh
+        src: /home/dexter/Work/movetodata/unify/ansible/scripts/hosts.sh
         dest: /tmp/hosts.sh
         mode: "0755"
         force: yes
 
     - name: Copy swapoff script
       copy:
-        src: /home/dexter/Work/orphea/unify/ansible/scripts/swapoff.sh
+        src: /home/dexter/Work/movetodata/unify/ansible/scripts/swapoff.sh
         dest: /tmp/swapoff.sh
         mode: "0755"
         force: yes
 
     - name: Copy hostname script
       copy:
-        src: /home/dexter/Work/orphea/unify/ansible/scripts/hostname.sh
+        src: /home/dexter/Work/movetodata/unify/ansible/scripts/hostname.sh
         dest: /tmp/hostname.sh
         mode: "0755"
         force: yes
 
     - name: Copy NFS script
       copy:
-        src: /home/dexter/Work/orphea/unify/ansible/scripts/nfs.sh
+        src: /home/dexter/Work/movetodata/unify/ansible/scripts/nfs.sh
         dest: /tmp/nfs.sh
         mode: "0755"
         force: yes
 
     - name: Copy containerd script
       copy:
-        src: /home/dexter/Work/orphea/unify/ansible/scripts/containerd.sh
+        src: /home/dexter/Work/movetodata/unify/ansible/scripts/containerd.sh
         dest: /tmp/containerd.sh
         mode: "0755"
         force: yes

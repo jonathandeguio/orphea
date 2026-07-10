@@ -1,4 +1,4 @@
-const myLanguages = {
+﻿const myLanguages = {
   welcome: {
     en: "Welcome",
     fr: "Bienvenue",
@@ -3290,7 +3290,7 @@ const myLanguages = {
     nl: "Gegevensopname is beperkt tot connect-beheerders.",
   },
   connectFirewallSettings: {
-    en: "To access certain data sources, firewall settings may need to be adjusted to allow access from Orphea Platform's specific IP addresses.",
+    en: "To access certain data sources, firewall settings may need to be adjusted to allow access from MoveToData Platform's specific IP addresses.",
     fr: "Pour accéder à certaines sources de données, il peut être nécessaire d'ajuster les paramètres du pare-feu pour autoriser l'accès aux adresses IP spécifiques de la plateforme Bosler.",
     de: "Um auf bestimmte Datenquellen zugreifen zu können, müssen möglicherweise die Firewall-Einstellungen angepasst werden, um den Zugriff von den spezifischen IP-Adressen der Bosler-Plattform zuzulassen.",
     es: "Para acceder a ciertas fuentes de datos, es posible que sea necesario ajustar la configuración del firewall para permitir el acceso desde las direcciones IP específicas de la plataforma Bosler.",
@@ -5899,7 +5899,7 @@ const myLanguages = {
     nl: "U kunt een uitgebreid dashboard maken met bijgevoegde grafieken, titels, meerdere tabbladen en ondersteuning voor markdown. Bovendien heeft u de mogelijkheid om u te abonneren op automatische meldingen. Filters kunnen ook worden toegepast binnen het dashboard voor verbeterde gegevensverkenning.",
   },
   codeRepositoryMessage: {
-    en: "The Orphea platform leverages Spark for its transformation pipelines, providing users with the flexibility to utilize either Python or Spark SQL dialect for creating SQL transformations. This enables users to efficiently manipulate and process data using familiar programming paradigms and SQL-based transformations within the Orphea environment.",
+    en: "The MoveToData platform leverages Spark for its transformation pipelines, providing users with the flexibility to utilize either Python or Spark SQL dialect for creating SQL transformations. This enables users to efficiently manipulate and process data using familiar programming paradigms and SQL-based transformations within the MoveToData environment.",
     fr: "La plateforme Bosler exploite Spark pour ses pipelines de transformation, offrant aux utilisateurs la flexibilité d'utiliser soit Python, soit le dialecte Spark SQL pour créer des transformations SQL. Cela permet aux utilisateurs de manipuler et de traiter efficacement les données à l'aide de paradigmes de programmation familiers et de transformations SQL au sein de l'environnement Bosler.",
     de: "Die Bosler-Plattform nutzt Spark für ihre Transformationspipelines und bietet Benutzern die Flexibilität, entweder Python oder den Spark SQL-Dialekt für die Erstellung von SQL-Transformationen zu verwenden. Dies ermöglicht es Benutzern, Daten effizient mit vertrauten Programmierparadigmen und SQL-basierten Transformationen in der Bosler-Umgebung zu manipulieren und zu verarbeiten.",
     es: "La plataforma Bosler utiliza Spark para sus pipelines de transformación, brindando a los usuarios la flexibilidad de utilizar Python o el dialecto Spark SQL para crear transformaciones SQL. Esto permite a los usuarios manipular y procesar datos de manera eficiente utilizando paradigmas de programación familiares y transformaciones basadas en SQL dentro del entorno de Bosler.",

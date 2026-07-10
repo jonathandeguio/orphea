@@ -1,42 +1,42 @@
-# =============================================================================
-# Orphea Platform — Stack principale (Boson + Frontend + PostgreSQL + Redis)
-# Usage : docker compose -f docker-compose.core.yml --env-file .env.orphea up -d
+﻿# =============================================================================
+# MoveToData Platform — Stack principale (Boson + Frontend + PostgreSQL + Redis)
+# Usage : docker compose -f docker-compose.core.yml --env-file .env.movetodata up -d
 # =============================================================================
 
 services:
 
   boson-db:
     image: postgres:14-alpine
-    container_name: orphea-boson-db
+    container_name: movetodata-boson-db
     environment:
       POSTGRES_DB: ${BOSON_DB_NAME:-boson}
-      POSTGRES_USER: ${BOSON_DB_USERNAME:-orphea}
+      POSTGRES_USER: ${BOSON_DB_USERNAME:-movetodata}
       POSTGRES_PASSWORD: ${BOSON_DB_PASSWORD}
     volumes:
-      - ${ORPHEA_MOUNT_PATH:-/orphea}/postgres/boson:/var/lib/postgresql/data
+      - ${MOVETODATA_MOUNT_PATH:-/movetodata}/postgres/boson:/var/lib/postgresql/data
     ports:
       - "127.0.0.1:5432:5432"
     restart: unless-stopped
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${BOSON_DB_USERNAME:-orphea} -d ${BOSON_DB_NAME:-boson}"]
+      test: ["CMD-SHELL", "pg_isready -U ${BOSON_DB_USERNAME:-movetodata} -d ${BOSON_DB_NAME:-boson}"]
       interval: 10s
       timeout: 5s
       retries: 10
       start_period: 30s
     networks:
-      - orphea-net
+      - movetodata-net
     logging:
       driver: "json-file"
       options:
         max-size: "50m"
         max-file: "5"
 
-  orphea-redis:
+  movetodata-redis:
     image: redis:7-alpine
-    container_name: orphea-redis
+    container_name: movetodata-redis
     command: redis-server --maxmemory 512mb --maxmemory-policy allkeys-lru
     volumes:
-      - ${ORPHEA_MOUNT_PATH:-/orphea}/redis:/data
+      - ${MOVETODATA_MOUNT_PATH:-/movetodata}/redis:/data
     ports:
       - "127.0.0.1:6379:6379"
     restart: unless-stopped
@@ -46,7 +46,7 @@ services:
       timeout: 5s
       retries: 5
     networks:
-      - orphea-net
+      - movetodata-net
     logging:
       driver: "json-file"
       options:
@@ -54,8 +54,8 @@ services:
         max-file: "3"
 
   boson:
-    image: orphea/boson:latest
-    container_name: orphea-boson
+    image: movetodata/boson:latest
+    container_name: movetodata-boson
     build:
       context: ../boson
       dockerfile: Dockerfile
@@ -69,10 +69,10 @@ services:
     depends_on:
       boson-db:
         condition: service_healthy
-      orphea-redis:
+      movetodata-redis:
         condition: service_healthy
     environment:
-      DB_USERNAME: ${BOSON_DB_USERNAME:-orphea}
+      DB_USERNAME: ${BOSON_DB_USERNAME:-movetodata}
       DB_PASSWORD: ${BOSON_DB_PASSWORD}
       DB_HOST: boson-db
       DB_PORT: 5432
@@ -80,8 +80,8 @@ services:
       TOKEN_EXPIRATION: ${TOKEN_EXPIRATION:-604800000}
       BASE_URL: ${BASE_URL:-http://localhost:8080}
       ALLOWED_ORIGINS: ${ALLOWED_ORIGINS:-http://localhost:3000,http://localhost:8080}
-      ORPHEA_MOUNT_PATH: ${ORPHEA_MOUNT_PATH:-/orphea}
-      SAML2_SSO_CONFIG: ${SAML2_SSO_CONFIG:-file:/etc/orphea/saml.yml}
+      MOVETODATA_MOUNT_PATH: ${MOVETODATA_MOUNT_PATH:-/movetodata}
+      SAML2_SSO_CONFIG: ${SAML2_SSO_CONFIG:-file:/etc/movetodata/saml.yml}
       GITHUB_OAUTH_CLIENT_ID: ${GITHUB_OAUTH_CLIENT_ID:-}
       GITHUB_OAUTH_CLIENT_SECRET: ${GITHUB_OAUTH_CLIENT_SECRET:-}
       GOOGLE_OAUTH_CLIENT_ID: ${GOOGLE_OAUTH_CLIENT_ID:-}
@@ -90,7 +90,7 @@ services:
       # Mode de stockage : localfs | s3 | gs | hdfs
       BACKING_FS: ${BACKING_FS:-localfs}
       # Répertoire racine pour le stockage local (utilisé si BACKING_FS=localfs)
-      LOCAL_FS_DIRECTORY: ${ORPHEA_MOUNT_PATH:-/orphea}
+      LOCAL_FS_DIRECTORY: ${MOVETODATA_MOUNT_PATH:-/movetodata}
       JAVA_OPTS: >-
         -Xms512m
         -Xmx2g
@@ -98,8 +98,8 @@ services:
         -XX:MaxGCPauseMillis=200
         -Djava.security.egd=file:/dev/./urandom
     volumes:
-      - ${ORPHEA_MOUNT_PATH:-/orphea}:${ORPHEA_MOUNT_PATH:-/orphea}
-      - /etc/orphea:/etc/orphea:ro
+      - ${MOVETODATA_MOUNT_PATH:-/movetodata}:${MOVETODATA_MOUNT_PATH:-/movetodata}
+      - /etc/movetodata:/etc/movetodata:ro
     ports:
       - "8080:8080"
     restart: on-failure
@@ -111,7 +111,7 @@ services:
       retries: 5
       start_period: 120s
     networks:
-      - orphea-net
+      - movetodata-net
     logging:
       driver: "json-file"
       options:
@@ -119,8 +119,8 @@ services:
         max-file: "10"
 
   frontend:
-    image: orphea/frontend:latest
-    container_name: orphea-frontend
+    image: movetodata/frontend:latest
+    container_name: movetodata-frontend
     build:
       context: ../frontend
       dockerfile: Dockerfile
@@ -130,8 +130,8 @@ services:
       boson:
         condition: service_healthy
     volumes:
-      - ${ORPHEA_MOUNT_PATH:-/orphea}/frontend/build:/app
-      - ${ORPHEA_MOUNT_PATH:-/orphea}/frontend/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ${MOVETODATA_MOUNT_PATH:-/movetodata}/frontend/build:/app
+      - ${MOVETODATA_MOUNT_PATH:-/movetodata}/frontend/nginx.conf:/etc/nginx/nginx.conf:ro
     ports:
       - "8081:80"
     restart: unless-stopped
@@ -142,22 +142,22 @@ services:
       retries: 3
       start_period: 30s
     networks:
-      - orphea-net
+      - movetodata-net
     logging:
       driver: "json-file"
       options:
         max-size: "20m"
         max-file: "5"
 
-  orphea-docs:
-    image: orphea/docs:latest
-    container_name: orphea-docs
+  movetodata-docs:
+    image: movetodata/docs:latest
+    container_name: movetodata-docs
     build:
-      context: ../orphea-docs
+      context: ../movetodata-docs
       dockerfile: Dockerfile
     restart: unless-stopped
     networks:
-      - orphea-net
+      - movetodata-net
     logging:
       driver: "json-file"
       options:
@@ -165,6 +165,6 @@ services:
         max-file: "3"
 
 networks:
-  orphea-net:
-    name: orphea-network
+  movetodata-net:
+    name: movetodata-network
     driver: bridge

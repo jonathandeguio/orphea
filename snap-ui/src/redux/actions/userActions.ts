@@ -1,9 +1,9 @@
-import axios from "axios";
+﻿import axios from "axios";
 import {
-  ORPHEA_TOKEN,
-  ORPHEA_LOGGED_IN_USER_PASSWORD,
+  MOVETODATA_TOKEN,
+  MOVETODATA_LOGGED_IN_USER_PASSWORD,
   LANGUAGE,
-  ORPHEA_LOGGED_IN_USER,
+  MOVETODATA_LOGGED_IN_USER,
 } from "layouts/auth/constants";
 import {
   ALL_USER_DETAILS_FAIL,
@@ -68,7 +68,7 @@ export const login =
 
       // Step 2: Check for successful status and accessToken
       if (status === 200 && data.accessToken) {
-        localStorage.setItem(ORPHEA_TOKEN, data.accessToken);
+        localStorage.setItem(MOVETODATA_TOKEN, data.accessToken);
         successCallback(); // Proceed with the success callback
         dispatch({
           type: USER_LOGIN_SUCCESS,
@@ -132,7 +132,7 @@ export const fetchUserDetails =
   };
 
 export const logout = () => async (dispatch: $TSFixMe) => {
-  localStorage.removeItem(ORPHEA_TOKEN);
+  localStorage.removeItem(MOVETODATA_TOKEN);
   dispatch({ type: USER_LOGOUT });
   dispatch({ type: USER_DETAILS_RESET });
 };

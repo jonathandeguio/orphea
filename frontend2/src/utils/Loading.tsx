@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 
 const Loading = () => {
 	return (
@@ -42,7 +42,7 @@ const Loading = () => {
 					/>
 					</svg>
 
-					<div className="login-icon-orphea">ORPHEA</div>
+					<div className="login-icon-movetodata">MOVETODATA</div>
 				</div>
 			</div>
 			<a className="re-loading">

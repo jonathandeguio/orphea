@@ -1,12 +1,12 @@
-import { Col, Divider, Popconfirm, Row, Typography } from "antd";
-import { SaveIcon } from "assets/icons/orpheaActionIcons";
+﻿import { Col, Divider, Popconfirm, Row, Typography } from "antd";
+import { SaveIcon } from "assets/icons/movetodataActionIcons";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getLanguageLabel } from "utils/utilities";
 import { updatePlatformConfig } from "redux/actions/platformSettingsActions";
 import { ThunkAppDispatch } from "redux/types/store";
-import OrpheaInput from "components/InputComponent/OrpheaInput";
-import OrpheaButton from "components/ButtonComponent/OrpheaButton";
+import MoveToDataInput from "components/InputComponent/MoveToDataInput";
+import MoveToDataButton from "components/ButtonComponent/MoveToDataButton";
 
 const { Text, Title } = Typography;
 export const HistorySettings = () => {
@@ -41,7 +41,7 @@ export const HistorySettings = () => {
               <Text type="secondary">{getLanguageLabel("transactions")}</Text>
             </Col>
             <Col>
-              <OrpheaInput
+              <MoveToDataInput
                 value={transactions}
                 onChange={(e) => setTransactions(e.target.value)}
               />
@@ -65,13 +65,13 @@ export const HistorySettings = () => {
                 okText="Yes"
                 cancelText="No"
               >
-                <OrpheaButton
+                <MoveToDataButton
                   icon={<SaveIcon />}
                   intent="primary"
                   textTransform="none"
                 >
                   {getLanguageLabel("update")}{" "}
-                </OrpheaButton>
+                </MoveToDataButton>
               </Popconfirm>
             </Col>
           </Row>

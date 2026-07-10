@@ -1,7 +1,7 @@
-import { Input, InputProps } from "antd";
+﻿import { Input, InputProps } from "antd";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { isDefined } from "utils/utilities";
-import "./OrpheaInput.scss";
+import "./MoveToDataInput.scss";
 import { useDebounceState } from "hooks/useDebounce";
 
 interface MyCustomInputProps extends InputProps {
@@ -14,7 +14,7 @@ interface MyCustomInputProps extends InputProps {
   fontSize?: number;
 }
 
-const OrpheaInput: React.FC<MyCustomInputProps> = (props) => {
+const MoveToDataInput: React.FC<MyCustomInputProps> = (props) => {
   const [value, setValue] = useState(props.value);
   const debounceInterval = props.debounceInterval ?? 0;
 
@@ -83,4 +83,4 @@ const OrpheaInput: React.FC<MyCustomInputProps> = (props) => {
   );
 };
 
-export default OrpheaInput;
+export default MoveToDataInput;

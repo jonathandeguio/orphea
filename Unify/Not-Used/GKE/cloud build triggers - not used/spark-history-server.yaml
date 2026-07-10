@@ -1,9 +1,9 @@
-autodetect: true
+﻿autodetect: true
 createTime: '2022-07-19T16:54:24.053012669Z'
 disabled: true
 github:
   name: spark-history-server
-  owner: Orphea-io
+  owner: MoveToData-io
   push:
     branch: ^main$
 id: ede5126f-7803-4739-bacd-6bdbe89c005d

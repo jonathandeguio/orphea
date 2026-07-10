@@ -1,11 +1,11 @@
-server:
+﻿server:
   port: 7376
   max-http-header-size: 32000
   tomcat:
     max-swallow-size: 20GB
     accesslog:
       enabled: true
-      directory: "/orphea/snap/logs/accessLogs"
+      directory: "/movetodata/snap/logs/accessLogs"
       prefix: "${spring.application.name}"
       pattern: '%{dd/MMM/yyyy}t %{begin:HH:mm:ss.SSS}t %{end:HH:mm:ss.SSS}t %{RequestId}i %r %s %h %b %T %{Referer}i "%{User-agent}i"'
     basedir: ${log.path:./}
@@ -23,7 +23,7 @@ server:
 #  port: 7845
 spring:
   banner:
-    location: classpath:/banner/orphea.txt
+    location: classpath:/banner/movetodata.txt
   sql:
     init:
       schema-locations: classpath:db/quartz_tables_h2.sql
@@ -52,7 +52,7 @@ spring:
 #            driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
 
 file:
-  upload-dir=/Users/rakeshmalik/orphea/uploads
+  upload-dir=/Users/rakeshmalik/movetodata/uploads
 
 logging:
   level:

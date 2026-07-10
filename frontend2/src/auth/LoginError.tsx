@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+﻿import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { BASE_URL } from "./constants";
 import { useSelector, useDispatch } from "react-redux";
@@ -18,12 +18,12 @@ const LoginError = () => {
 
 	async function Ping() {
 		const BASE_URL = process.env.REACT_APP_BASE_URL_API;
-		const orpheaToken = localStorage.getItem("orpheaToken");
+		const movetodataToken = localStorage.getItem("movetodataToken");
 
 		const config = {
 			headers: {
 				"Content-Type": "application/json",
-				Authorization: `Bearer ${orpheaToken}`,
+				Authorization: `Bearer ${movetodataToken}`,
 			},
 		};
 
@@ -104,7 +104,7 @@ const LoginError = () => {
 							/>
 						</svg>
 
-						{/* <div className="login-icon-orphea">ORPHEA</div> */}
+						{/* <div className="login-icon-movetodata">MOVETODATA</div> */}
 						<h3 style={{ "color": "#C5CBD3" }}>Your session has expired.</h3>
 					</div>
 

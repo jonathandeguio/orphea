@@ -1,6 +1,6 @@
-# The base hadoop image to use for all components.
+﻿# The base hadoop image to use for all components.
 # See this repo for image build details: https://github.com/Comcast/kube-yarn/tree/master/image
-namespace: orphea
+namespace: movetodata
 image:
   repository: danisla/hadoop
   tag: 2.9.0

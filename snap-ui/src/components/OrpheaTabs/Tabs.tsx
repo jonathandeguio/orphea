@@ -1,4 +1,4 @@
-import { CrossIcon } from "assets/icons/orpheaActionIcons";
+﻿import { CrossIcon } from "assets/icons/movetodataActionIcons";
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import { isDefined, isEmpty, notEmpty } from "utils/utilities";
 import {
@@ -6,7 +6,7 @@ import {
   TabContextProvider,
   initTabState,
   updateActiveKey,
-} from "./OrpheaTabsContext";
+} from "./MoveToDataTabsContext";
 import { ITab, ITabPane, TabsComponent } from "./types";
 
 const TabPaneHeaderItem: React.FC<ITabPane> = ({
@@ -80,7 +80,7 @@ const TabPane: React.FC<ITabPane> = ({
   );
 };
 
-const OrpheaTabs: React.FC<ITab> = ({
+const MoveToDataTabs: React.FC<ITab> = ({
   defaultActiveKey,
   fallback,
   items: defaultItems,
@@ -192,7 +192,7 @@ const OrpheaTabs: React.FC<ITab> = ({
 const Tabs: TabsComponent = (props) => {
   return (
     <TabContextProvider>
-      <OrpheaTabs {...props} />
+      <MoveToDataTabs {...props} />
     </TabContextProvider>
   );
 };

@@ -1,15 +1,15 @@
-import { Col, Divider, Row, Switch, Typography } from "antd";
+﻿import { Col, Divider, Row, Switch, Typography } from "antd";
 import React from "react";
 
 import { Form } from "antd";
 
-import OrpheaLoader from "components/orpheaLoader";
+import MoveToDataLoader from "components/movetodataLoader";
 import { useDispatch, useSelector } from "react-redux";
 import { isDefined } from "utils/utilities";
 import { updatePlatformConfig } from "redux/actions/platformSettingsActions";
 import { ThunkAppDispatch } from "redux/types/store";
-import OrpheaInput from "components/InputComponent/OrpheaInput";
-import OrpheaButton from "components/ButtonComponent/OrpheaButton";
+import MoveToDataInput from "components/InputComponent/MoveToDataInput";
+import MoveToDataButton from "components/ButtonComponent/MoveToDataButton";
 
 const { Title, Text } = Typography;
 
@@ -83,7 +83,7 @@ const ArtifactorySettings = () => {
                   <Col span={8}>
                     <Text type="secondary">Python Artifactory URL</Text>
                     <Form.Item name="artifactoryUrl">
-                      <OrpheaInput />
+                      <MoveToDataInput />
                     </Form.Item>
                   </Col>
                 </Row>
@@ -91,7 +91,7 @@ const ArtifactorySettings = () => {
                 <Row justify="space-between">
                   <Col span={16}>
                     <div
-                      className="OrpheaSubHeader1 text-and-icon-center"
+                      className="MoveToDataSubHeader1 text-and-icon-center"
                       style={{ marginRight: "0.5rem" }}
                     >
                       Only platform administrators can view or edit this
@@ -100,9 +100,9 @@ const ArtifactorySettings = () => {
                   </Col>
                   <Col span={8}>
                     <Form.Item style={{ marginBottom: 0, marginLeft: "auto" }}>
-                      <OrpheaButton htmlType="submit" intent="primary">
+                      <MoveToDataButton htmlType="submit" intent="primary">
                         Update Configuration
-                      </OrpheaButton>
+                      </MoveToDataButton>
                     </Form.Item>
                   </Col>
                 </Row>
@@ -110,7 +110,7 @@ const ArtifactorySettings = () => {
             )}
           </Form>
         ) : (
-          <OrpheaLoader />
+          <MoveToDataLoader />
         )}
       </p>
     </div>

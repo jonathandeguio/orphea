@@ -1,6 +1,6 @@
-#!/usr/bin/env bash
+﻿#!/usr/bin/env bash
 # =============================================================================
-# Orphea Demo — Script de création du projet démo "Performance Financière 2024"
+# MoveToData Demo — Script de création du projet démo "Performance Financière 2024"
 #
 # Crée :
 #   - 1 Projet          : "Demo — Performance Financière"
@@ -235,7 +235,7 @@ create_chart() {
 # =============================================================================
 echo ""
 echo -e "${BLUE}╔════════════════════════════════════════════════════╗${NC}"
-echo -e "${BLUE}║   Orphea Demo Setup — Performance Financière 2024  ║${NC}"
+echo -e "${BLUE}║   MoveToData Demo Setup — Performance Financière 2024  ║${NC}"
 echo -e "${BLUE}╚════════════════════════════════════════════════════╝${NC}"
 echo ""
 
@@ -302,7 +302,7 @@ create_chart \
 # ─── Résumé ──────────────────────────────────────────────────────────────────
 echo ""
 echo -e "${GREEN}╔════════════════════════════════════════════════════╗${NC}"
-echo -e "${GREEN}║          Demo Orphea créé avec succès !            ║${NC}"
+echo -e "${GREEN}║          Demo MoveToData créé avec succès !            ║${NC}"
 echo -e "${GREEN}╚════════════════════════════════════════════════════╝${NC}"
 echo ""
 echo -e "  Projet         : Demo — Performance Financiere 2024"

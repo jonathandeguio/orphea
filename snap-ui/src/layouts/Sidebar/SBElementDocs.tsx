@@ -1,4 +1,4 @@
-import { DocumentationIcon } from "assets/icons/orpheaFileIcons";
+﻿import { DocumentationIcon } from "assets/icons/movetodataFileIcons";
 import React from "react";
 import { getLanguageLabel, getUserDocsLanguage } from "utils/utilities";
 import SBElement from "./SBElement";

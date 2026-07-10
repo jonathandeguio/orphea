@@ -1,7 +1,7 @@
-import { Divider } from "antd";
+﻿import { Divider } from "antd";
 import React, { useEffect, useState } from "react";
 import { isDefined } from "utils/utilities";
-import styles from "./OrpheaSwitch.module.scss";
+import styles from "./MoveToDataSwitch.module.scss";
 
 type TOption = {
   label: any;
@@ -18,7 +18,7 @@ interface TProps {
   style?: any;
   isDisabled?: boolean;
 }
-const OrpheaSwitch = ({
+const MoveToDataSwitch = ({
   items,
   value,
   onChange,
@@ -84,4 +84,4 @@ const OrpheaSwitch = ({
   );
 };
 
-export default OrpheaSwitch;
+export default MoveToDataSwitch;

@@ -1,4 +1,4 @@
-import { Card, Col, Divider, Row, Typography } from "antd";
+﻿import { Card, Col, Divider, Row, Typography } from "antd";
 import Meta from "antd/es/card/Meta";
 import React from "react";
 import {
@@ -96,7 +96,7 @@ const EditorHome = () => {
                   </Title>
                   <Divider />
                   <Text type="secondary">
-                    Orphea platform uses Spark for the transmation pipelines,
+                    MoveToData platform uses Spark for the transmation pipelines,
                     you can use Spark SQL dialect for creating SQL transform
                   </Text>
                   {/* <br /><br /> */}
@@ -149,7 +149,7 @@ const EditorHome = () => {
               bordered={false}
             >
               <Text type="secondary">
-                Orphea platform uses Spark for the transmation pipelines, you can use Spark SQL format for creating SQL transform
+                MoveToData platform uses Spark for the transmation pipelines, you can use Spark SQL format for creating SQL transform
               </Text>
               <br /><br />
               Please refer to documentation for more details.

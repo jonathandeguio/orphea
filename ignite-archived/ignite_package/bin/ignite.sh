@@ -1,4 +1,4 @@
-#!/bin/bash
+﻿#!/bin/bash
 
 
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
@@ -13,7 +13,7 @@ start)
      export $(grep -v '^#' $igniteConfig | xargs)
      nohup "$BASE_DIR"/java/bin/java -jar $BASE_DIR/bin/Ignite-*.jar >> "$BASE_DIR"/logs/ignite.log 2>&1 &
      echo $!>"$BASE_DIR"/run/ignite.pid
-     echo "$(date) : Orphea agent started..."
+     echo "$(date) : MoveToData agent started..."
    else
      echo "Error: ignite config not found"
    fi

@@ -1,11 +1,11 @@
-plugins {
+﻿plugins {
 	id 'java'
 	id 'java-library'
 	id 'org.springframework.boot' version '2.7.2'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 }
 
-group = 'io.orphea.capture'
+group = 'io.movetodata.capture'
 version = '0.0.1-SNAPSHOT'
 
 configurations {

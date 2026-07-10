@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
+﻿import { useEffect } from 'react';
 
-import { ORPHEA_TOKEN } from './constants';
+import { MOVETODATA_TOKEN } from './constants';
 import { Navigate, useSearchParams } from 'react-router-dom';
 
 const OAuth2RedirectHandler = (props : any) => {
@@ -12,7 +12,7 @@ const OAuth2RedirectHandler = (props : any) => {
         
         
         if(token) {
-            localStorage.setItem(ORPHEA_TOKEN, token);
+            localStorage.setItem(MOVETODATA_TOKEN, token);
         }
     }, [token])
 

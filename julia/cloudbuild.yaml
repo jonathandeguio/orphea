@@ -1,4 +1,4 @@
-options:
+﻿options:
   logging: CLOUD_LOGGING_ONLY
 steps:
   # Step 1
@@ -6,21 +6,21 @@ steps:
     entrypoint: 'bash'
     args: [
         '-c',
-        'docker pull europe-west1-docker.pkg.dev/$PROJECT_ID/orphea-cr/julia:$TAG_NAME || exit 0'
+        'docker pull europe-west1-docker.pkg.dev/$PROJECT_ID/movetodata-cr/julia:$TAG_NAME || exit 0'
     ]
   # Step 2
   - name: gcr.io/cloud-builders/docker
     args: [
         'build',
         '-t',
-        'europe-west1-docker.pkg.dev/$PROJECT_ID/orphea-cr/julia:$TAG_NAME',
+        'europe-west1-docker.pkg.dev/$PROJECT_ID/movetodata-cr/julia:$TAG_NAME',
         '.'
     ]
 
   - name: gcr.io/cloud-builders/docker
     args: [
         'push',
-        'europe-west1-docker.pkg.dev/$PROJECT_ID/orphea-cr/julia:$TAG_NAME'
+        'europe-west1-docker.pkg.dev/$PROJECT_ID/movetodata-cr/julia:$TAG_NAME'
     ]
   # Step 4
 #  - name: 'gcr.io/cloud-builders/kubectl'
@@ -29,15 +29,15 @@ steps:
 #        'image',
 #        'deployment',
 #        'julia',
-#        'julia=europe-west1-docker.pkg.dev/$PROJECT_ID/orphea-cr/julia:$TAG_NAME',
+#        'julia=europe-west1-docker.pkg.dev/$PROJECT_ID/movetodata-cr/julia:$TAG_NAME',
 #        '--namespace',
-#        'orphea'
+#        'movetodata'
 #    ]
 #    env:
 #      - 'CLOUDSDK_COMPUTE_ZONE=europe-west1-b'
-#      - 'CLOUDSDK_CONTAINER_CLUSTER=orphea'
+#      - 'CLOUDSDK_CONTAINER_CLUSTER=movetodata'
 images: [
-    'europe-west1-docker.pkg.dev/$PROJECT_ID/orphea-cr/julia:$TAG_NAME'
+    'europe-west1-docker.pkg.dev/$PROJECT_ID/movetodata-cr/julia:$TAG_NAME'
 ]
 timeout: 2400s
 

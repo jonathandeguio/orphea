@@ -1,4 +1,4 @@
-options:
+﻿options:
   logging: CLOUD_LOGGING_ONLY
 steps:
   # Step 1
@@ -7,7 +7,7 @@ steps:
     args:
       [
         "-c",
-        "docker pull europe-west1-docker.pkg.dev/$PROJECT_ID/orphea-cr/tycho:latest || exit 0",
+        "docker pull europe-west1-docker.pkg.dev/$PROJECT_ID/movetodata-cr/tycho:latest || exit 0",
       ]
   # Step 2
   - name: gcr.io/cloud-builders/docker
@@ -15,7 +15,7 @@ steps:
       [
         "build",
         "-t",
-        "europe-west1-docker.pkg.dev/$PROJECT_ID/orphea-cr/tycho:latest",
+        "europe-west1-docker.pkg.dev/$PROJECT_ID/movetodata-cr/tycho:latest",
         ".",
       ]
 
@@ -24,19 +24,19 @@ steps:
     #   args: ["sleep", "120"]
     # # Step 4
     # - name: "gcr.io/cloud-builders/kubectl"
-    #   args: ["scale", "deploy", "tycho", "--replicas=0", "--namespace", "orphea"]
+    #   args: ["scale", "deploy", "tycho", "--replicas=0", "--namespace", "movetodata"]
     #    args: [
     #        'set',
     #        'image',
     #        'deployment',
     #        'tycho',
-    #        'tycho=europe-west6-docker.pkg.dev/orphea-211/orphea-cr/tycho:latest',
+    #        'tycho=europe-west6-docker.pkg.dev/movetodata-211/movetodata-cr/tycho:latest',
     #        '--namespace',
-    #        'orphea'
+    #        'movetodata'
     #    ]
     env:
       - "CLOUDSDK_COMPUTE_ZONE=europe-west6-a"
-      - "CLOUDSDK_CONTAINER_CLUSTER=orphea-dev-1"
+      - "CLOUDSDK_CONTAINER_CLUSTER=movetodata-dev-1"
 
 
   # below step is for waiting until image gets loaded to repo
@@ -44,10 +44,10 @@ steps:
   #   args: ["sleep", "120"]
 
   # - name: "gcr.io/cloud-builders/kubectl"
-  #   args: ["scale", "deploy", "tycho", "--replicas=1", "--namespace", "orphea"]
+  #   args: ["scale", "deploy", "tycho", "--replicas=1", "--namespace", "movetodata"]
   #   env:
   #     - "CLOUDSDK_COMPUTE_ZONE=europe-west6-a"
-  #     - "CLOUDSDK_CONTAINER_CLUSTER=orphea-dev-1"
+  #     - "CLOUDSDK_CONTAINER_CLUSTER=movetodata-dev-1"
   # Push the image to Google Container Registry with the latest tag
-images: ["europe-west1-docker.pkg.dev/$PROJECT_ID/orphea-cr/tycho:latest"]
+images: ["europe-west1-docker.pkg.dev/$PROJECT_ID/movetodata-cr/tycho:latest"]
 timeout: 9600s

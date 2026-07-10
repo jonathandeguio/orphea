@@ -1,0 +1,30 @@
+﻿package io.movetodata.passport.library.models;
+
+import io.movetodata.passport.enums.AuthRole;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import javax.persistence.*;
+import java.util.UUID;
+
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@Table(name = "passport_role")
+public class Role {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
+    private String name;
+
+    private Boolean delete; // TODO : need to think about this one, needs a better label
+    private Boolean write;
+    private Boolean read;
+
+    public String status;
+}

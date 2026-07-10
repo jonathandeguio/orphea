@@ -1,4 +1,4 @@
-import {
+﻿import {
   Avatar,
   Col,
   Dropdown,
@@ -10,10 +10,10 @@ import {
   Typography,
 } from "antd";
 
-import { MoreMenuIcon } from "assets/icons/orpheaActionIcons";
-import { EditIcon } from "assets/icons/orpheaEditorIcons";
-import { TrashIcon } from "assets/icons/orpheaMiscellaneousIcons";
-import OrpheaButton from "../ButtonComponent/OrpheaButton";
+import { MoreMenuIcon } from "assets/icons/movetodataActionIcons";
+import { EditIcon } from "assets/icons/movetodataEditorIcons";
+import { TrashIcon } from "assets/icons/movetodataMiscellaneousIcons";
+import MoveToDataButton from "../ButtonComponent/MoveToDataButton";
 
 import {
   getLanguageLabel,
@@ -27,7 +27,7 @@ import {
   openAndResolveCommentAPI,
 } from "./Comments.api";
 
-import { OpenIcon } from "assets/icons/orpheaNavigationIcon";
+import { OpenIcon } from "assets/icons/movetodataNavigationIcon";
 import { User } from "global";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
@@ -173,11 +173,11 @@ const ResolvedComments = ({
                                     }}
                                     className="text-and-icon-center"
                                     style={{
-                                      color: "var(--orphea-intent-danger)",
+                                      color: "var(--movetodata-intent-danger)",
                                     }}
                                   >
                                     <TrashIcon
-                                      color={"var(--orphea-intent-danger)"}
+                                      color={"var(--movetodata-intent-danger)"}
                                     />
                                     {getLanguageLabel("delete")}
                                   </div>
@@ -256,7 +256,7 @@ const ResolvedComments = ({
                   </Form.Item>
 
                   <Row justify="end">
-                    <OrpheaButton
+                    <MoveToDataButton
                       intent="dangerous"
                       size="small"
                       onClick={(e: any) => {
@@ -268,9 +268,9 @@ const ResolvedComments = ({
                       minimal
                     >
                       {getLanguageLabel("cancel")}
-                    </OrpheaButton>
+                    </MoveToDataButton>
                     &nbsp;
-                    <OrpheaButton
+                    <MoveToDataButton
                       intent="primary"
                       size="small"
                       htmlType="submit"
@@ -278,7 +278,7 @@ const ResolvedComments = ({
                       minimal
                     >
                       {getLanguageLabel("save")}
-                    </OrpheaButton>
+                    </MoveToDataButton>
                   </Row>
                 </Form>
               ) : (
@@ -288,7 +288,7 @@ const ResolvedComments = ({
             {comment.replies.length > 0 && (
               <div
                 style={{
-                  borderLeft: "1px solid var(--orphea-border-color-default)",
+                  borderLeft: "1px solid var(--movetodata-border-color-default)",
                   marginTop: "0.5rem",
                   paddingLeft: "0.7rem",
                 }}
@@ -399,12 +399,12 @@ const ResolvedComments = ({
                                           className="text-and-icon-center"
                                           style={{
                                             color:
-                                              "var(--orphea-intent-danger)",
+                                              "var(--movetodata-intent-danger)",
                                           }}
                                         >
                                           <TrashIcon
                                             color={
-                                              "var(--orphea-intent-danger)"
+                                              "var(--movetodata-intent-danger)"
                                             }
                                           />
                                           {getLanguageLabel("delete")}
@@ -488,7 +488,7 @@ const ResolvedComments = ({
                             </Form.Item>
 
                             <Row justify="end">
-                              <OrpheaButton
+                              <MoveToDataButton
                                 intent="dangerous"
                                 size="small"
                                 onClick={(e: any) => {
@@ -500,9 +500,9 @@ const ResolvedComments = ({
                                 minimal
                               >
                                 {getLanguageLabel("cancel")}
-                              </OrpheaButton>
+                              </MoveToDataButton>
                               &nbsp;
-                              <OrpheaButton
+                              <MoveToDataButton
                                 intent="primary"
                                 size="small"
                                 htmlType="submit"
@@ -510,7 +510,7 @@ const ResolvedComments = ({
                                 minimal
                               >
                                 {getLanguageLabel("save")}
-                              </OrpheaButton>
+                              </MoveToDataButton>
                             </Row>
                           </Form>
                         ) : (

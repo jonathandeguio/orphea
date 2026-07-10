@@ -1,4 +1,4 @@
-.Button--primary {
+﻿.Button--primary {
   background-color: #1f6feb;
   color: #ffffff;
   border-color: #1f6feb;
@@ -24,9 +24,9 @@
 }
 
 .Button--danger {
-  background-color: var(--orphea-intent-danger);
+  background-color: var(--movetodata-intent-danger);
   color: #ffffff;
-  border-color: var(--orphea-intent-danger);
+  border-color: var(--movetodata-intent-danger);
   border-radius: 3;
   font-weight: 500;
   cursor: pointer;
@@ -41,8 +41,8 @@
   box-shadow: "rgba(25, 27, 52, 0.15) 0px 0px 0px 1px inset, rgba(1, 1, 27, 0.02) 0px 2px 4px 0px, rgba(11, 14, 22, 0.02) 0px 1px 2px 0px";
 
   &:hover {
-    background-color: var(--orphea-intent-danger);
-    border-color: var(--orphea-intent-danger);
+    background-color: var(--movetodata-intent-danger);
+    border-color: var(--movetodata-intent-danger);
     color: #ffffff;
   }
 }

@@ -1,10 +1,10 @@
-#!/usr/bin/env zsh
+﻿#!/usr/bin/env zsh
 
 # Build the GKE cluster
 # https://cloud.google.com/kubernetes-engine/docs/quickstart
 #
 # Pre-Reqs:
-# - An account in the appropriate Directory (Google Workspace in Orphea's case).
+# - An account in the appropriate Directory (Google Workspace in MoveToData's case).
 # - Google Cloud SDK must be installed on local machine or run within the
 #   Google Cloud Shell.  Visit https://cloud.google.com/sdk/docs/install
 # - The Kubernetes Kubectl command-line tool needs to be installed on the
@@ -62,7 +62,7 @@ if [[ "$confirm" == [yY] || "$confirm" == [yY][eE][sS] ]]; then
     #gcloud compute addresses create ${CLUSTER_NAME}-history --global
 
     # Create global pre-shared SSL certificate
-    CERTIFICATE_NAME="orphea-preshared-cert"
+    CERTIFICATE_NAME="movetodata-preshared-cert"
     gcloud compute ssl-certificates create $CERTIFICATE_NAME \
         --certificate $CERT_FILE_PATH \
         --private-key $KEY_FILE_PATH
@@ -118,18 +118,18 @@ if [[ "$confirm" == [yY] || "$confirm" == [yY][eE][sS] ]]; then
     # https://cloud.google.com/build/docs/automating-builds/create-manage-triggers
     # https://cloud.google.com/sdk/gcloud/reference/beta/builds/triggers/create/github
 
-    gcloud iam service-accounts create orpheabuilds \
-        --description="Orphea Cloud Build SA" \
-        --display-name="Orphea Cloud Build SA"
-    gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:orpheabuilds@${PROJECT_ID}.iam.gserviceaccount.com" --role="roles/cloudbuild.serviceAgent"
-    gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:orpheabuilds@${PROJECT_ID}.iam.gserviceaccount.com" --role="roles/logging.logWriter"
-    gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:orpheabuilds@${PROJECT_ID}.iam.gserviceaccount.com" --role="roles/artifactregistry.writer"
-    gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:orpheabuilds@${PROJECT_ID}.iam.gserviceaccount.com" --role="roles/container.developer"
+    gcloud iam service-accounts create movetodatabuilds \
+        --description="MoveToData Cloud Build SA" \
+        --display-name="MoveToData Cloud Build SA"
+    gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:movetodatabuilds@${PROJECT_ID}.iam.gserviceaccount.com" --role="roles/cloudbuild.serviceAgent"
+    gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:movetodatabuilds@${PROJECT_ID}.iam.gserviceaccount.com" --role="roles/logging.logWriter"
+    gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:movetodatabuilds@${PROJECT_ID}.iam.gserviceaccount.com" --role="roles/artifactregistry.writer"
+    gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:movetodatabuilds@${PROJECT_ID}.iam.gserviceaccount.com" --role="roles/container.developer"
 
     # cloud storage
     gcloud iam service-accounts create google-storage-sa \
-        --description="Orphea Cloud Storage SA" \
-        --display-name="Orphea Cloud Storage SA"
+        --description="MoveToData Cloud Storage SA" \
+        --display-name="MoveToData Cloud Storage SA"
 
     gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:google-storage-sa@${PROJECT_ID}.iam.gserviceaccount.com" --role="roles/storage.objectCreator"
     gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:google-storage-sa@${PROJECT_ID}.iam.gserviceaccount.com" --role="roles/storage.objectAdmin"
@@ -142,13 +142,13 @@ if [[ "$confirm" == [yY] || "$confirm" == [yY][eE][sS] ]]; then
     fi
 
     CLOUD_SA_KEY=$(cat /tmp/google-storage-sa-key-file-${PROJECT_ID}.json.base64)
-    cat charts/$HELM_CHART/orpheaCluster.yaml | sed "s/googleCloudCredentials:.*/googleCloudCredentials: $CLOUD_SA_KEY/g" >charts/$HELM_CHART/$HELM_VALUES.new
+    cat charts/$HELM_CHART/movetodataCluster.yaml | sed "s/googleCloudCredentials:.*/googleCloudCredentials: $CLOUD_SA_KEY/g" >charts/$HELM_CHART/$HELM_VALUES.new
     mv charts/$HELM_CHART/$HELM_VALUES.new charts/$HELM_CHART/$HELM_VALUES
 
     cat charts/$HELM_CHART/$HELM_VALUES | sed "s/projectId:.*/projectId: ${PROJECT_ID}/g" >charts/$HELM_CHART/$HELM_VALUES.new
     mv charts/$HELM_CHART/$HELM_VALUES.new charts/$HELM_CHART/$HELM_VALUES
 
-    cat charts/$HELM_CHART/$HELM_VALUES | sed "s/dev.orphea.io/${FQDN}/g" >charts/$HELM_CHART/$HELM_VALUES.new
+    cat charts/$HELM_CHART/$HELM_VALUES | sed "s/dev.movetodata.io/${FQDN}/g" >charts/$HELM_CHART/$HELM_VALUES.new
     mv charts/$HELM_CHART/$HELM_VALUES.new charts/$HELM_CHART/$HELM_VALUES
 
     ## configure auth
@@ -162,7 +162,7 @@ if [[ "$confirm" == [yY] || "$confirm" == [yY][eE][sS] ]]; then
     # the below is just to create the folders
     # gsutil cp README.md gs://$BUCKET_NAME/spark-streaming/checkpoint/
     # permissions
-    cat iam-policies/google-storage-bucket-policy.json | sed -e "s/septbos22/$PROJECT_ID/g" | sed -e "s/orphea-334213/$PROJECT_ID/g" >google-storage-bucket-policy.tmp.json
+    cat iam-policies/google-storage-bucket-policy.json | sed -e "s/septbos22/$PROJECT_ID/g" | sed -e "s/movetodata-334213/$PROJECT_ID/g" >google-storage-bucket-policy.tmp.json
     gsutil iam set google-storage-bucket-policy.tmp.json gs://$BUCKET_NAME
     rm google-storage-bucket-policy.tmp.json
 
@@ -182,8 +182,8 @@ if [[ "$confirm" == [yY] || "$confirm" == [yY][eE][sS] ]]; then
     for i in $(echo $ACTIVE_REPOS); do
         echo "Creating trigger for $i"
         gcloud beta builds triggers create github --name="${i}" \
-            --service-account="projects/${PROJECT_ID}/serviceAccounts/orpheabuilds@${PROJECT_ID}.iam.gserviceaccount.com" \
-            --repo-owner="Orphea-io" \
+            --service-account="projects/${PROJECT_ID}/serviceAccounts/movetodatabuilds@${PROJECT_ID}.iam.gserviceaccount.com" \
+            --repo-owner="MoveToData-io" \
             --repo-name="${i}" \
             --tag-pattern=".*" \
             --build-config="cloudbuild.yaml" # --branch-pattern="^main$" \
@@ -199,7 +199,7 @@ fi
 # echo ""
 # echo ""
 # echo ""
-# echo "Run : helm install orphea orphea-gke -f $HELM_CHART/$HELM_VALUES"
+# echo "Run : helm install movetodata movetodata-gke -f $HELM_CHART/$HELM_VALUES"
 
 # echo "Then run : ./post-helm.sh"
 
@@ -207,23 +207,23 @@ echo -n "Do you wish to run helm after images are ready? (Y|N) : "
 read confirm
 
 if [[ "$confirm" == [yY] || "$confirm" == [yY][eE][sS] ]]; then
-    helm install orphea charts/orphea-gke -f charts/$HELM_CHART/$HELM_VALUES
+    helm install movetodata charts/movetodata-gke -f charts/$HELM_CHART/$HELM_VALUES
 
-    # helm upgrade orphea charts/orphea-gke -f charts/$HELM_CHART/$HELM_VALUES
+    # helm upgrade movetodata charts/movetodata-gke -f charts/$HELM_CHART/$HELM_VALUES
 fi
 
 echo -n "Do you wish to run HDFS helm? (Y|N) : "
 read confirm
 
 if [[ "$confirm" == [yY] || "$confirm" == [yY][eE][sS] ]]; then
-    helm install orphea-hdfs charts/hdfs-charts
+    helm install movetodata-hdfs charts/hdfs-charts
 fi
 
 echo -n "Do you wish to run NFS Server helm? (Y|N) : "
 read confirm
 
 if [[ "$confirm" == [yY] || "$confirm" == [yY][eE][sS] ]]; then
-    helm install orphea-nfs charts/nfs-server
+    helm install movetodata-nfs charts/nfs-server
 fi
 
 echo -n "Do you wish to run post-helm after post helm setup? (Y|N) : "

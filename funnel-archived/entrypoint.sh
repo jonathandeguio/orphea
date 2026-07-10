@@ -1,4 +1,4 @@
-#!/bin/bash
+﻿#!/bin/bash
 #
 
 # echo commands to the terminal output
@@ -76,11 +76,11 @@ function log() {
       -H 'accept: */*' \
       -H "Authorization: Bearer $BUILD_TOKEN" \
       -H "Content-Type: application/json" \
-      -d "$payload" "$ORPHEA_API/api/build/$BUILD_ID/log")
+      -d "$payload" "$MOVETODATA_API/api/build/$BUILD_ID/log")
 
     if [ "$api_response" -ne 200 ]; then
         error_timestamp=$(date +%s)
-        error_message="{\"timestamp\":\"$error_timestamp\",\"status\":\"error\",\"type\":\"ORPHEA\",\"message\":\"Unable to call orphea backend API. $(curl -s -X POST -H \"Content-Type: application/json\" -d \"$payload\" \"$ORPHEA_API/api/build/$BUILD_ID/funnelLog\")\"}"
+        error_message="{\"timestamp\":\"$error_timestamp\",\"status\":\"error\",\"type\":\"MOVETODATA\",\"message\":\"Unable to call movetodata backend API. $(curl -s -X POST -H \"Content-Type: application/json\" -d \"$payload\" \"$MOVETODATA_API/api/build/$BUILD_ID/funnelLog\")\"}"
         echo "$error_message"
         echo "Exiting"
         exit 1
@@ -188,7 +188,7 @@ if ! checkEnvVariables "${variables[@]}"; then
     exit 1
 fi
 
-# Orphea Specific
+# MoveToData Specific
 if [[ -v GOOGLE_CLOUD_CREDENTIALS ]]; then
   echo "$GOOGLE_CLOUD_CREDENTIALS" >>  /root/google_creds.json
 fi
@@ -204,7 +204,7 @@ case "$1" in
       "$@"
     )
 
-    # ORPHEA Specific : git clone the the repository based on repository Id
+    # MOVETODATA Specific : git clone the the repository based on repository Id
     # env
     if [[ -v REPOSITORY_ID ]]; then
         log "INFO" "PREPARING" "Preparing build"

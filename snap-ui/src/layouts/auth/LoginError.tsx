@@ -1,10 +1,10 @@
-import { OrpheaIcon } from "assets/icons/orpheaMiscellaneousIcons";
+﻿import { MoveToDataIcon } from "assets/icons/movetodataMiscellaneousIcons";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { ParticleApp } from "utils/ParticleApp";
 import { getLanguageLabel, isIpPlatform } from "utils/utilities";
-import { ArrowRightIcon } from "assets/icons/orpheaNavigationIcon";
+import { ArrowRightIcon } from "assets/icons/movetodataNavigationIcon";
 import {
   setTokenInvalid,
   setTokenValid,
@@ -13,7 +13,7 @@ import { RootState, ThunkAppDispatch } from "redux/types/store";
 import Loading from "errors/Loading";
 import { BASE_URL } from "./constants";
 import { ping } from "../app/App.api";
-import OrpheaButton from "components/ButtonComponent/OrpheaButton";
+import MoveToDataButton from "components/ButtonComponent/MoveToDataButton";
 
 const LoginError = () => {
   const navigate = useNavigate();
@@ -108,13 +108,13 @@ const LoginError = () => {
             />
           </div>
           <div className="login-icon">
-            {!isIpPlatform() && <OrpheaIcon size={"15vw"} />}
+            {!isIpPlatform() && <MoveToDataIcon size={"15vw"} />}
 
-            {/* <div className="login-icon-orphea">ORPHEA</div> */}
+            {/* <div className="login-icon-movetodata">MOVETODATA</div> */}
             <h3>{getLanguageLabel("sessionExpired")}</h3>
           </div>
 
-          <OrpheaButton
+          <MoveToDataButton
             key="submit"
             onClick={() => {
               window.open(
@@ -128,7 +128,7 @@ const LoginError = () => {
             intent="action"
           >
             {getLanguageLabel("login")}
-          </OrpheaButton>
+          </MoveToDataButton>
         </div>
       </div>
     </>

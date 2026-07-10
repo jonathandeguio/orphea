@@ -1,4 +1,4 @@
-# Followed this to create below ci : https://github.com/maximbetin/maxim-cicd
+﻿# Followed this to create below ci : https://github.com/maximbetin/maxim-cicd
 options:
   logging: CLOUD_LOGGING_ONLY
 steps:
@@ -8,7 +8,7 @@ steps:
     args:
       [
         '-c',
-        'docker pull europe-west1-docker.pkg.dev/$PROJECT_ID/orphea-cr/callisto:$TAG_NAME || exit 0',
+        'docker pull europe-west1-docker.pkg.dev/$PROJECT_ID/movetodata-cr/callisto:$TAG_NAME || exit 0',
       ]
   # Step 2
   - name: gcr.io/cloud-builders/docker
@@ -16,7 +16,7 @@ steps:
       [
         'build',
         '-t',
-        'europe-west1-docker.pkg.dev/$PROJECT_ID/orphea-cr/callisto:$TAG_NAME',
+        'europe-west1-docker.pkg.dev/$PROJECT_ID/movetodata-cr/callisto:$TAG_NAME',
         '.',
       ]
   # Step 4
@@ -27,13 +27,13 @@ steps:
   #       'image',
   #       'deployment',
   #       'callisto',
-  #       'callisto=europe-west6-docker.pkg.dev/orphea-211/orphea-cr/callisto:latest',
+  #       'callisto=europe-west6-docker.pkg.dev/movetodata-211/movetodata-cr/callisto:latest',
   #       '--namespace',
-  #       'orphea',
+  #       'movetodata',
   #     ]
   #   env:
   #     - 'CLOUDSDK_COMPUTE_ZONE=europe-west6-a'
-  #     - 'CLOUDSDK_CONTAINER_CLUSTER=orphea-211'
+  #     - 'CLOUDSDK_CONTAINER_CLUSTER=movetodata-211'
   # Push the image to Google Container Registry with the latest tag
-images: ['europe-west1-docker.pkg.dev/$PROJECT_ID/orphea-cr/callisto:$TAG_NAME']
+images: ['europe-west1-docker.pkg.dev/$PROJECT_ID/movetodata-cr/callisto:$TAG_NAME']
 timeout: 7200s

@@ -1,4 +1,4 @@
-import {
+﻿import {
   Avatar,
   Col,
   Divider,
@@ -13,7 +13,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllGroups } from "redux/actions/authActions";
 
-import OrpheaLoader from "components/orpheaLoader";
+import MoveToDataLoader from "components/movetodataLoader";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { getLanguageLabel, globalSearch, openNotification } from "utils/utilities";
@@ -21,20 +21,20 @@ import {
   AddIcon,
   MoreMenuIcon,
   SearchIcon,
-} from "assets/icons/orpheaActionIcons";
-import { EditIcon } from "assets/icons/orpheaEditorIcons";
+} from "assets/icons/movetodataActionIcons";
+import { EditIcon } from "assets/icons/movetodataEditorIcons";
 import {
   AddUserIcon,
   GroupsIcon,
-} from "assets/icons/orpheaInterfaceIcons";
-import { TrashIcon } from "assets/icons/orpheaMiscellaneousIcons";
-import { TickIcon } from "assets/icons/orpheaNavigationIcon";
+} from "assets/icons/movetodataInterfaceIcons";
+import { TrashIcon } from "assets/icons/movetodataMiscellaneousIcons";
+import { TickIcon } from "assets/icons/movetodataNavigationIcon";
 import { ThunkAppDispatch } from "redux/types/store";
 import { createGroupAPI, deleteGroupAPI } from "./Groups/Groups.api";
-import OrpheaButton from "components/ButtonComponent/OrpheaButton";
-import OrpheaInput from "components/InputComponent/OrpheaInput";
-import OrpheaModal from "components/OrpheaModalContainer";
-import OrpheaSwitch from "components/OrpheaSwitch/OrpheaSwitch";
+import MoveToDataButton from "components/ButtonComponent/MoveToDataButton";
+import MoveToDataInput from "components/InputComponent/MoveToDataInput";
+import MoveToDataModal from "components/MoveToDataModalContainer";
+import MoveToDataSwitch from "components/MoveToDataSwitch/MoveToDataSwitch";
 
 const { TextArea } = Input;
 
@@ -167,9 +167,9 @@ const Groups = () => {
                               setDeleteModal(true);
                             }}
                             className="text-and-icon-center"
-                            style={{ color: "var(--orphea-intent-danger)" }}
+                            style={{ color: "var(--movetodata-intent-danger)" }}
                           >
-                            <TrashIcon color={"var(--orphea-intent-danger)"} />
+                            <TrashIcon color={"var(--movetodata-intent-danger)"} />
                             {getLanguageLabel("delete")}
                           </div>
                         </>
@@ -258,13 +258,13 @@ const Groups = () => {
                         placement="top"
                         title={getLanguageLabel("createNewGroup")}
                       >
-                        <OrpheaButton
+                        <MoveToDataButton
                           icon={<AddIcon />}
                           intent="action"
                           onClick={handleNew}
                         >
                           {getLanguageLabel("newGroup")}
-                        </OrpheaButton>
+                        </MoveToDataButton>
                       </Tooltip>
                     </div>
                   </div>
@@ -277,7 +277,7 @@ const Groups = () => {
           <Divider />
         </p>
 
-        <OrpheaInput
+        <MoveToDataInput
           // size="small"
           placeholder={getLanguageLabel("searchGroupsTable")}
           allowClear
@@ -319,7 +319,7 @@ const Groups = () => {
           <Divider />
         </p>
 
-        <OrpheaInput
+        <MoveToDataInput
           // size="small"
           placeholder={getLanguageLabel("searchGroupsTable")}
           allowClear
@@ -348,7 +348,7 @@ const Groups = () => {
     <>
       {loading ? (
         <>
-          <OrpheaLoader />
+          <MoveToDataLoader />
         </>
       ) : allGroups && allGroups.length == 0 ? (
         <>
@@ -358,25 +358,25 @@ const Groups = () => {
         </>
       ) : (
         <>
-          <OrpheaModal
+          <MoveToDataModal
             headingIcon={<AddUserIcon />}
             heading={getLanguageLabel("createNewGroup")}
             open={showModal}
             onCancel={handleCancel}
             footerButtonArea={
-              <OrpheaButton
+              <MoveToDataButton
                 icon={<TickIcon />}
                 intent="action"
                 key="submit"
                 onClick={handleCreate}
               >
                 {getLanguageLabel("create")}
-              </OrpheaButton>
+              </MoveToDataButton>
             }
           >
-            <div className="OrpheaHeader1">{getLanguageLabel("groupName")}</div>
+            <div className="MoveToDataHeader1">{getLanguageLabel("groupName")}</div>
 
-            <OrpheaInput
+            <MoveToDataInput
               placeholder={newGroupDetails.name}
               name={newGroupDetails.name}
               onChange={(e) =>
@@ -387,7 +387,7 @@ const Groups = () => {
               }
               required
             />
-            <div className="OrpheaHeader1">
+            <div className="MoveToDataHeader1">
               {getLanguageLabel("description")}
             </div>
 
@@ -402,16 +402,16 @@ const Groups = () => {
               name="description"
               required
             />
-          </OrpheaModal>
+          </MoveToDataModal>
 
           {/* MODAL TO CONFIRM DELETE */}
-          <OrpheaModal
+          <MoveToDataModal
             headingIcon={<TrashIcon color="var(--DANGEROUS_COLOR)" />}
             heading={getLanguageLabel("areYouSureYouWantToDeleteThis?")}
             open={deleteModal}
             onCancel={() => setDeleteModal(false)}
             footerButtonArea={
-              <OrpheaButton
+              <MoveToDataButton
                 icon={<TrashIcon />}
                 intent="dangerous"
                 onClick={() =>
@@ -422,15 +422,15 @@ const Groups = () => {
                 }
               >
                 {getLanguageLabel("delete")}
-              </OrpheaButton>
+              </MoveToDataButton>
             }
           >
             {deleteGroupDetails.name} Group
-          </OrpheaModal>
+          </MoveToDataModal>
 
           {/* ---------------------------------- */}
 
-          <OrpheaSwitch
+          <MoveToDataSwitch
             items={[
               {
                 label: "Resource Groups",

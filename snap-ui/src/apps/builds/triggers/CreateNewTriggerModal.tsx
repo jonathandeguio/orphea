@@ -1,17 +1,17 @@
-import axios from "axios";
+﻿import axios from "axios";
 import React, { Dispatch, SetStateAction } from "react";
 import { useDispatch } from "react-redux";
 import { getLanguageLabel, isDefined, openNotification } from "utils/utilities";
-import { TickIcon } from "assets/icons/orpheaNavigationIcon";
+import { TickIcon } from "assets/icons/movetodataNavigationIcon";
 import { getAllTriggerDetails } from "redux/actions/TriggerActions";
 import { ThunkAppDispatch } from "redux/types/store";
 
 import { Form, Select } from "antd";
-import { AddIcon } from "assets/icons/orpheaActionIcons";
+import { AddIcon } from "assets/icons/movetodataActionIcons";
 import { ErrorResponse } from "global";
-import OrpheaModal from "components/OrpheaModalContainer";
-import OrpheaButton from "components/ButtonComponent/OrpheaButton";
-import OrpheaInput from "components/InputComponent/OrpheaInput";
+import MoveToDataModal from "components/MoveToDataModalContainer";
+import MoveToDataButton from "components/ButtonComponent/MoveToDataButton";
+import MoveToDataInput from "components/InputComponent/MoveToDataInput";
 import { createTriggerAPI } from "../apis";
 
 interface Props {
@@ -57,27 +57,27 @@ const CreateNewTriggerModal = ({ isOpen, setIsOpen }: Props) => {
           .finally(() => setIsOpen(false));
       }}
     >
-      <OrpheaModal
+      <MoveToDataModal
         headingIcon={<AddIcon />}
         heading={"New Trigger"}
         open={isOpen}
         onCancel={() => setIsOpen(false)}
         footerButtonArea={
           <Item>
-            <OrpheaButton
+            <MoveToDataButton
               icon={<TickIcon />}
               intent="action"
               htmlType="submit"
               onClick={() => form.submit()}
             >
               {getLanguageLabel("create")}
-            </OrpheaButton>
+            </MoveToDataButton>
           </Item>
         }
         width={600}
       >
         <Item label="Name" name="name" rules={[{ required: true }]}>
-          <OrpheaInput autofocus />
+          <MoveToDataInput autofocus />
         </Item>
 
         <Item
@@ -85,7 +85,7 @@ const CreateNewTriggerModal = ({ isOpen, setIsOpen }: Props) => {
           name="description"
           rules={[{ required: true }]}
         >
-          <OrpheaInput />
+          <MoveToDataInput />
         </Item>
 
         <Item
@@ -93,7 +93,7 @@ const CreateNewTriggerModal = ({ isOpen, setIsOpen }: Props) => {
           name="configFileName"
           rules={[{ required: true }]}
         >
-          <OrpheaInput />
+          <MoveToDataInput />
         </Item>
 
         <Item
@@ -101,7 +101,7 @@ const CreateNewTriggerModal = ({ isOpen, setIsOpen }: Props) => {
           name="harborProjectName"
           rules={[{ required: true }]}
         >
-          <OrpheaInput />
+          <MoveToDataInput />
         </Item>
 
         <Item label="Build Type" name="buildType" rules={[{ required: true }]}>
@@ -120,21 +120,21 @@ const CreateNewTriggerModal = ({ isOpen, setIsOpen }: Props) => {
           />
         </Item>
 
-        <span className="OrpheaHeader1">{getLanguageLabel("repository")}</span>
+        <span className="MoveToDataHeader1">{getLanguageLabel("repository")}</span>
         <Item label="Name" name="repositoryName" rules={[{ required: true }]}>
-          <OrpheaInput />
+          <MoveToDataInput />
         </Item>
         <Item label="URL" name="repositoryURL" rules={[{ required: true }]}>
-          <OrpheaInput />
+          <MoveToDataInput />
         </Item>
         <Item
           label="Branch"
           name="repositoryBranch"
           rules={[{ required: true }]}
         >
-          <OrpheaInput />
+          <MoveToDataInput />
         </Item>
-      </OrpheaModal>
+      </MoveToDataModal>
     </Form>
   );
 };

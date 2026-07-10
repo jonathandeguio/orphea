@@ -1,15 +1,15 @@
-import { Tabs } from "antd";
-import OrpheaLoader from "components/orpheaLoader";
-import { TickIcon, UndoIcon } from "assets/icons/orpheaNavigationIcon";
+﻿import { Tabs } from "antd";
+import MoveToDataLoader from "components/movetodataLoader";
+import { TickIcon, UndoIcon } from "assets/icons/movetodataNavigationIcon";
 import React, { useEffect, useRef, useState } from "react";
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
 import { useParams } from "react-router";
-import OrpheaButton from "components/ButtonComponent/OrpheaButton";
+import MoveToDataButton from "components/ButtonComponent/MoveToDataButton";
 import { CollapserHandler } from "components/ResizablePane/ResizablePaneUtil";
 import "./configuration.scss";
 import CreateNewConfigurationTargetModal from "./CreateNewConfigurationTargetModal";
 import CreateNewLicenseModal from "./CreateNewLicenseModal";
-import OrpheaModal from "components/OrpheaModalContainer";
+import MoveToDataModal from "components/MoveToDataModalContainer";
 import {
   fetchDeploymentDetails,
   getConfigurationColumns,
@@ -130,7 +130,7 @@ const Configuration = () => {
   });
 
   if (isLoading) {
-    return <OrpheaLoader size="large" />;
+    return <MoveToDataLoader size="large" />;
   }
   return (
     <>
@@ -182,7 +182,7 @@ const Configuration = () => {
             items={tabItems}
           />
         </Panel>
-        <OrpheaModal
+        <MoveToDataModal
           headingIcon={<UndoIcon />}
           heading="Rollback"
           open={isRevertStateModalOpen}
@@ -199,23 +199,23 @@ const Configuration = () => {
               }}
             >
               <div style={{ display: "flex", gap: "8px" }}>
-                <OrpheaButton
+                <MoveToDataButton
                   icon={<TickIcon />}
                   intent="action"
                   key="submit"
                   onClick={handleConfirmRevert}
                 >
                   Revert
-                </OrpheaButton>
-                <OrpheaButton key="cancel" onClick={handleCancelRevert}>
+                </MoveToDataButton>
+                <MoveToDataButton key="cancel" onClick={handleCancelRevert}>
                   Cancel
-                </OrpheaButton>
+                </MoveToDataButton>
               </div>
             </div>
           }
         >
           {selectedRecord && <SelectedTable selectedRecord={selectedRecord} />}
-        </OrpheaModal>
+        </MoveToDataModal>
       </PanelGroup>
     </>
   );

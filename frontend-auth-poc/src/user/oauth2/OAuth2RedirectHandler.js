@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { ORPHEA_TOKEN } from '../../constants';
+﻿import React, { Component } from 'react';
+import { MOVETODATA_TOKEN } from '../../constants';
 import { Redirect } from 'react-router-dom'
 
 class OAuth2RedirectHandler extends Component {
@@ -16,7 +16,7 @@ class OAuth2RedirectHandler extends Component {
         const error = this.getUrlParameter('error');
 
         if(token) {
-            localStorage.setItem(ORPHEA_TOKEN, token);
+            localStorage.setItem(MOVETODATA_TOKEN, token);
             return <Redirect to={{
                 pathname: "/profile",
                 state: { from: this.props.location }

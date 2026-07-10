@@ -1,5 +1,5 @@
-
-# High Level Design - Orphea.io Static Information Site
+﻿
+# High Level Design - MoveToData.io Static Information Site
 
 | Date | Name | Comment |
 |:--|:--|:--|
@@ -10,24 +10,24 @@ The static website is hosted via a Google Storage Bucket and Cloudflare's free C
 
 There are many options for static hosting, including hosting directly from github with pages.github.io -- but the solution I have chosen gives us a great deal of flexibility and allows us to host the content anywhere without altering the content in any way.
  
-<img src="Orphea Static Hosting v0.1.jpg">
+<img src="MoveToData Static Hosting v0.1.jpg">
 
-*orphea.io architecture diagram*
+*movetodata.io architecture diagram*
 
-Administration of the Google bucket is permitted through the GCP console.  The production website's bucket is hosted in the orphea-prod project.
+Administration of the Google bucket is permitted through the GCP console.  The production website's bucket is hosted in the movetodata-prod project.
 
-User IDP is delivered through Orphea.io Google Workspace (Enterprise GMail & Google Docs etc.).
+User IDP is delivered through MoveToData.io Google Workspace (Enterprise GMail & Google Docs etc.).
 
-The orphea.io domain registrar is gandi.net.  
+The movetodata.io domain registrar is gandi.net.  
 
-Gandi.net directs DNS requests for orphea.io to Cloudflare's name servers via two NS records:
+Gandi.net directs DNS requests for movetodata.io to Cloudflare's name servers via two NS records:
 <BR>**External nameservers**
 <BR>decker.ns.cloudflare.com
 <BR>kayleigh.ns.cloudflare.com
 
-Within Cloudflare's DNS management there are two proxied CNAME records to *c.storage.googleapis.com*, one for orphea.io and one for the www subdomain.
+Within Cloudflare's DNS management there are two proxied CNAME records to *c.storage.googleapis.com*, one for movetodata.io and one for the www subdomain.
 
-There is also a page rule within cloudflare to perform a 301 redirect of www.orphea.io to orphea.io. 
+There is also a page rule within cloudflare to perform a 301 redirect of www.movetodata.io to movetodata.io. 
 
 ## Tutorials for the above:
 
@@ -39,7 +39,7 @@ There is also a page rule within cloudflare to perform a 301 redirect of www.orp
 
 # Publishing content (Simplified)
 
-The content of the site is held in the orphea.io Github project here: [https://github.com/Orphea-io/orphea.io](https://github.com/Orphea-io/orphea.io)
+The content of the site is held in the movetodata.io Github project here: [https://github.com/MoveToData-io/movetodata.io](https://github.com/MoveToData-io/movetodata.io)
 
 A Github Action has been configured against the repository so that a push will automatically update the website.
 

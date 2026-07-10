@@ -1,10 +1,10 @@
-apiVersion: apps/v1
+﻿apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
     name: frontend
   name: frontend
-  namespace: orphea
+  namespace: movetodata
 spec:
   replicas: 1
   selector:
@@ -16,7 +16,7 @@ spec:
         name: frontend
     spec:
       containers:
-        - image: europe-west1-docker.pkg.dev/octbos22/orphea-cr/frontend:latest
+        - image: europe-west1-docker.pkg.dev/octbos22/movetodata-cr/frontend:latest
           imagePullPolicy: Always
           name: frontend
           ports:
@@ -32,9 +32,9 @@ metadata:
   labels:
     name: frontend
   name: frontend
-  namespace: orphea
+  namespace: movetodata
   annotations:
-    beta.cloud.google.com/backend-config: '{"default": "orphea-backend-config"}'
+    beta.cloud.google.com/backend-config: '{"default": "movetodata-backend-config"}'
 spec:
   type: NodePort
   ports:

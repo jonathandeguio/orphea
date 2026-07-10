@@ -1,4 +1,4 @@
-import { Col, MenuProps, Row, SelectProps, Typography } from "antd";
+﻿import { Col, MenuProps, Row, SelectProps, Typography } from "antd";
 import {
   BuildIcon,
   HistoryIcon,
@@ -9,24 +9,24 @@ import {
   PreferencesIcon,
   PublishIcon,
   SettingsIcon,
-} from "assets/icons/orpheaActionIcons";
+} from "assets/icons/movetodataActionIcons";
 import {
   BooleanIcon,
   DataAgentsIcon,
   DatabaseIcon,
   ProjectIcon,
-} from "assets/icons/orpheaDataIcons";
+} from "assets/icons/movetodataDataIcons";
 import {
   GroupsIcon,
   KeyIcon,
   ScheduledRunIcon,
   UserIcon,
-} from "assets/icons/orpheaInterfaceIcons";
+} from "assets/icons/movetodataInterfaceIcons";
 import {
   PulseIcon,
   StarIcon,
   TagIcon,
-} from "assets/icons/orpheaMiscellaneousIcons";
+} from "assets/icons/movetodataMiscellaneousIcons";
 import React from "react";
 
 const { Text } = Typography;

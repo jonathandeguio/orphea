@@ -1,4 +1,4 @@
-import { Input, Radio, Select, Typography, Upload } from "antd";
+﻿import { Input, Radio, Select, Typography, Upload } from "antd";
 import { RcFile } from "antd/es/upload";
 import axios from "axios";
 import React, { Dispatch, SetStateAction, useState } from "react";
@@ -8,16 +8,16 @@ import { getLanguageLabel, isDefined, openNotification } from "utils/utilities";
 import {
   AddUserIcon,
   UploadIcon,
-} from "assets/icons/orpheaInterfaceIcons";
-import { TickIcon } from "assets/icons/orpheaNavigationIcon";
+} from "assets/icons/movetodataInterfaceIcons";
+import { TickIcon } from "assets/icons/movetodataNavigationIcon";
 import { getAllUserDetails } from "redux/actions/userActions";
 import { ThunkAppDispatch } from "redux/types/store";
 
 
 import { ErrorResponse } from "global";
-import OrpheaModal from "components/OrpheaModalContainer";
-import OrpheaButton from "components/ButtonComponent/OrpheaButton";
-import OrpheaInput from "components/InputComponent/OrpheaInput";
+import MoveToDataModal from "components/MoveToDataModalContainer";
+import MoveToDataButton from "components/ButtonComponent/MoveToDataButton";
+import MoveToDataInput from "components/InputComponent/MoveToDataInput";
 
 const { Text } = Typography;
 const { Option } = Select;
@@ -125,21 +125,21 @@ const CreateNewUserModal = ({ isOpen, setIsOpen }: Props) => {
 
   return (
     <>
-      <OrpheaModal
+      <MoveToDataModal
         headingIcon={<AddUserIcon />}
         heading={getLanguageLabel("addNewUserDetails")}
         open={isOpen}
         onCancel={() => setIsOpen(false)}
         onOk={handleOk}
         footerButtonArea={
-          <OrpheaButton
+          <MoveToDataButton
             icon={<TickIcon />}
             intent="action"
             key="submit"
             onClick={handleOk}
           >
             {getLanguageLabel("create")}
-          </OrpheaButton>
+          </MoveToDataButton>
         }
         width={600}
       >
@@ -149,8 +149,8 @@ const CreateNewUserModal = ({ isOpen, setIsOpen }: Props) => {
             overflow: "scoll",
           }}
         >
-          <div className="OrpheaHeader1">{getLanguageLabel("userName")}</div>
-          <OrpheaInput
+          <div className="MoveToDataHeader1">{getLanguageLabel("userName")}</div>
+          <MoveToDataInput
             autofocus
             onChange={(e) =>
               setNewUserDetails({
@@ -163,7 +163,7 @@ const CreateNewUserModal = ({ isOpen, setIsOpen }: Props) => {
             name="username"
             required
           />
-          <div className="OrpheaHeader1">{getLanguageLabel("password")}</div>
+          <div className="MoveToDataHeader1">{getLanguageLabel("password")}</div>
           <Input.Password
             onChange={(e) =>
               setNewUserDetails({
@@ -175,8 +175,8 @@ const CreateNewUserModal = ({ isOpen, setIsOpen }: Props) => {
             name="password"
             required
           />
-          <div className="OrpheaHeader1">{getLanguageLabel("givenName")}</div>
-          <OrpheaInput
+          <div className="MoveToDataHeader1">{getLanguageLabel("givenName")}</div>
+          <MoveToDataInput
             onChange={(e) =>
               setNewUserDetails({
                 ...newUserDetails,
@@ -187,8 +187,8 @@ const CreateNewUserModal = ({ isOpen, setIsOpen }: Props) => {
             name="fname"
             required
           />
-          <div className="OrpheaHeader1">{getLanguageLabel("familyName")}</div>
-          <OrpheaInput
+          <div className="MoveToDataHeader1">{getLanguageLabel("familyName")}</div>
+          <MoveToDataInput
             onChange={(e) =>
               setNewUserDetails({
                 ...newUserDetails,
@@ -199,8 +199,8 @@ const CreateNewUserModal = ({ isOpen, setIsOpen }: Props) => {
             name="lname"
             required
           />
-          {/* <div className="OrpheaHeader1">{getLanguageLabel("name")}</div>
-          <OrpheaInput
+          {/* <div className="MoveToDataHeader1">{getLanguageLabel("name")}</div>
+          <MoveToDataInput
             bordered
             onChange={(e) =>
               setNewUserDetails({
@@ -212,8 +212,8 @@ const CreateNewUserModal = ({ isOpen, setIsOpen }: Props) => {
             name="Uname"
             required
           /> */}
-          <div className="OrpheaHeader1">{getLanguageLabel("location")}</div>
-          <OrpheaInput
+          <div className="MoveToDataHeader1">{getLanguageLabel("location")}</div>
+          <MoveToDataInput
             onChange={(e) =>
               setNewUserDetails({
                 ...newUserDetails,
@@ -224,8 +224,8 @@ const CreateNewUserModal = ({ isOpen, setIsOpen }: Props) => {
             name="loc"
             required
           />
-          <div className="OrpheaHeader1">{getLanguageLabel("email")}</div>
-          <OrpheaInput
+          <div className="MoveToDataHeader1">{getLanguageLabel("email")}</div>
+          <MoveToDataInput
             onChange={(e) =>
               setNewUserDetails({
                 ...newUserDetails,
@@ -237,7 +237,7 @@ const CreateNewUserModal = ({ isOpen, setIsOpen }: Props) => {
             required
           />
 
-          <div className="OrpheaHeader1">
+          <div className="MoveToDataHeader1">
             {getLanguageLabel("languagePreference")}
           </div>
 
@@ -285,7 +285,7 @@ const CreateNewUserModal = ({ isOpen, setIsOpen }: Props) => {
           </Select>
 
           <div>
-            <div className="OrpheaHeader1">
+            <div className="MoveToDataHeader1">
               {getLanguageLabel("themePreference")}
             </div>
             <Radio.Group
@@ -313,13 +313,13 @@ const CreateNewUserModal = ({ isOpen, setIsOpen }: Props) => {
 
           <br />
           <Upload {...props}>
-            <OrpheaButton icon={<UploadIcon />}>
+            <MoveToDataButton icon={<UploadIcon />}>
               {getLanguageLabel("uploadProfilePicture")}
-            </OrpheaButton>
+            </MoveToDataButton>
           </Upload>
           {isUploaded && <TickIcon color="green" />}
         </div>
-      </OrpheaModal>
+      </MoveToDataModal>
     </>
   );
 };

@@ -1,20 +1,20 @@
-#!/usr/bin/env bash
+﻿#!/usr/bin/env bash
 # =============================================================================
-# Orphea Platform — Installation système CentOS 7 / 8 / 9 / Stream
+# MoveToData Platform — Installation système CentOS 7 / 8 / 9 / Stream
 # Cible   : VM CentOS propre, exécuté en root ou via sudo
 # Usage   : sudo bash 00-install-system-centos.sh
 #
 # Ce script installe et configure :
 #   - Les paquets système nécessaires (via yum ou dnf selon la version)
 #   - Docker Engine CE + Docker Compose plugin
-#   - L'utilisateur système "orphea" + le groupe docker
-#   - L'arborescence de données /orphea
+#   - L'utilisateur système "movetodata" + le groupe docker
+#   - L'arborescence de données /movetodata
 #   - Le module FUSE (requis par Snap)
 #   - SELinux : configuration permissive pour Docker (sans désactiver)
 #   - Firewalld : ouverture des ports applicatifs
 #   - sysctl kernel tuning (Elasticsearch, Docker, réseau)
 #   - Limites système (ulimit nofile/nproc)
-#   - Le fichier /etc/orphea/saml.yml (SAML SSO skeleton)
+#   - Le fichier /etc/movetodata/saml.yml (SAML SSO skeleton)
 # =============================================================================
 set -euo pipefail
 
@@ -30,9 +30,9 @@ section() { echo -e "\n${CYAN}════════════════�
             echo -e "${CYAN}  $*${NC}"; \
             echo -e "${CYAN}══════════════════════════════════════════${NC}"; }
 
-ORPHEA_USER="orphea"
-ORPHEA_DATA="/orphea"
-REPO_DIR="/opt/orphea/repo"
+MOVETODATA_USER="movetodata"
+MOVETODATA_DATA="/movetodata"
+REPO_DIR="/opt/movetodata/repo"
 
 # =============================================================================
 # Pré-requis : root
@@ -255,54 +255,54 @@ else
 fi
 
 # =============================================================================
-# [4] Utilisateur système orphea
+# [4] Utilisateur système movetodata
 # =============================================================================
-section "[4/10] Utilisateur système orphea"
+section "[4/10] Utilisateur système movetodata"
 
-if id "${ORPHEA_USER}" &>/dev/null; then
-  warn "L'utilisateur ${ORPHEA_USER} existe déjà"
+if id "${MOVETODATA_USER}" &>/dev/null; then
+  warn "L'utilisateur ${MOVETODATA_USER} existe déjà"
 else
-  useradd -m -s /bin/bash "${ORPHEA_USER}"
-  success "Utilisateur ${ORPHEA_USER} créé"
+  useradd -m -s /bin/bash "${MOVETODATA_USER}"
+  success "Utilisateur ${MOVETODATA_USER} créé"
 fi
 
 # Ajout au groupe docker
-usermod -aG docker "${ORPHEA_USER}"
-success "Utilisateur ${ORPHEA_USER} ajouté au groupe docker"
+usermod -aG docker "${MOVETODATA_USER}"
+success "Utilisateur ${MOVETODATA_USER} ajouté au groupe docker"
 
 # Répertoire repo
 mkdir -p "${REPO_DIR}"
-chown -R "${ORPHEA_USER}:${ORPHEA_USER}" /opt/orphea
+chown -R "${MOVETODATA_USER}:${MOVETODATA_USER}" /opt/movetodata
 success "Répertoire repo créé : ${REPO_DIR}"
 
 # =============================================================================
-# [5] Arborescence de données /orphea
+# [5] Arborescence de données /movetodata
 # =============================================================================
-section "[5/10] Arborescence de données /orphea"
+section "[5/10] Arborescence de données /movetodata"
 
 mkdir -p \
-  "${ORPHEA_DATA}/boson/logs/accessLogs" \
-  "${ORPHEA_DATA}/boson/data" \
-  "${ORPHEA_DATA}/snap/artifactory" \
-  "${ORPHEA_DATA}/snap/logs" \
-  "${ORPHEA_DATA}/snap/db/data" \
-  "${ORPHEA_DATA}/snap/db/dbscripts" \
-  "${ORPHEA_DATA}/tycho/superset_home" \
-  "${ORPHEA_DATA}/postgres/boson" \
-  "${ORPHEA_DATA}/postgres/tycho" \
-  "${ORPHEA_DATA}/redis" \
-  "${ORPHEA_DATA}/ssl/certs" \
-  "${ORPHEA_DATA}/ssl/keys" \
-  /etc/orphea
+  "${MOVETODATA_DATA}/boson/logs/accessLogs" \
+  "${MOVETODATA_DATA}/boson/data" \
+  "${MOVETODATA_DATA}/snap/artifactory" \
+  "${MOVETODATA_DATA}/snap/logs" \
+  "${MOVETODATA_DATA}/snap/db/data" \
+  "${MOVETODATA_DATA}/snap/db/dbscripts" \
+  "${MOVETODATA_DATA}/tycho/superset_home" \
+  "${MOVETODATA_DATA}/postgres/boson" \
+  "${MOVETODATA_DATA}/postgres/tycho" \
+  "${MOVETODATA_DATA}/redis" \
+  "${MOVETODATA_DATA}/ssl/certs" \
+  "${MOVETODATA_DATA}/ssl/keys" \
+  /etc/movetodata
 
-chown -R "${ORPHEA_USER}:${ORPHEA_USER}" "${ORPHEA_DATA}"
-chmod -R 755 "${ORPHEA_DATA}"
-chown root:root /etc/orphea
-chmod 755 /etc/orphea
+chown -R "${MOVETODATA_USER}:${MOVETODATA_USER}" "${MOVETODATA_DATA}"
+chmod -R 755 "${MOVETODATA_DATA}"
+chown root:root /etc/movetodata
+chmod 755 /etc/movetodata
 
-success "Arborescence /orphea créée"
+success "Arborescence /movetodata créée"
 info "Répertoires créés :"
-find "${ORPHEA_DATA}" -maxdepth 3 -type d | sed 's|^|    |'
+find "${MOVETODATA_DATA}" -maxdepth 3 -type d | sed 's|^|    |'
 
 # =============================================================================
 # [6] Module FUSE (requis par Snap)
@@ -339,7 +339,7 @@ if [[ "${SELINUX_STATUS}" == "Disabled" ]]; then
 
 elif [[ "${SELINUX_STATUS}" == "Enforcing" || "${SELINUX_STATUS}" == "Permissive" ]]; then
 
-  info "Configuration SELinux pour Docker et Orphea..."
+  info "Configuration SELinux pour Docker et MoveToData..."
 
   # --- Vérifier que policycoreutils-python est disponible ---
   if [[ "${OS_MAJOR}" == "7" ]]; then
@@ -361,29 +361,29 @@ elif [[ "${SELINUX_STATUS}" == "Enforcing" || "${SELINUX_STATUS}" == "Permissive
     warn "SELinux: impossible de positionner use_fusefs_home_dirs"
 
   # --- Contextes SELinux pour les volumes Docker ---
-  info "Application des contextes SELinux sur /orphea..."
+  info "Application des contextes SELinux sur /movetodata..."
 
   if command -v semanage &>/dev/null; then
     # Contexte container_file_t : accès R/W depuis les containers Docker
-    semanage fcontext -a -t container_file_t "/orphea(/.*)?" 2>/dev/null || \
-    semanage fcontext -m -t container_file_t "/orphea(/.*)?" 2>/dev/null || \
+    semanage fcontext -a -t container_file_t "/movetodata(/.*)?" 2>/dev/null || \
+    semanage fcontext -m -t container_file_t "/movetodata(/.*)?" 2>/dev/null || \
     warn "semanage fcontext : entrée existante ou erreur — tentative de restorecon"
-    restorecon -Rv /orphea 2>/dev/null | tail -5 || true
-    success "Contexte SELinux container_file_t appliqué sur /orphea"
+    restorecon -Rv /movetodata 2>/dev/null | tail -5 || true
+    success "Contexte SELinux container_file_t appliqué sur /movetodata"
   else
     warn "semanage non disponible — application du contexte avec chcon"
-    chcon -Rt svirt_sandbox_file_t /orphea 2>/dev/null && \
-      success "chcon svirt_sandbox_file_t appliqué sur /orphea" || \
+    chcon -Rt svirt_sandbox_file_t /movetodata 2>/dev/null && \
+      success "chcon svirt_sandbox_file_t appliqué sur /movetodata" || \
       warn "chcon échoué — les volumes Docker pourraient être refusés par SELinux"
   fi
 
-  # Contexte pour /etc/orphea (lecture seule par les containers)
+  # Contexte pour /etc/movetodata (lecture seule par les containers)
   if command -v semanage &>/dev/null; then
-    semanage fcontext -a -t container_file_t "/etc/orphea(/.*)?" 2>/dev/null || \
-    semanage fcontext -m -t container_file_t "/etc/orphea(/.*)?" 2>/dev/null || true
-    restorecon -Rv /etc/orphea 2>/dev/null || true
+    semanage fcontext -a -t container_file_t "/etc/movetodata(/.*)?" 2>/dev/null || \
+    semanage fcontext -m -t container_file_t "/etc/movetodata(/.*)?" 2>/dev/null || true
+    restorecon -Rv /etc/movetodata 2>/dev/null || true
   else
-    chcon -Rt svirt_sandbox_file_t /etc/orphea 2>/dev/null || true
+    chcon -Rt svirt_sandbox_file_t /etc/movetodata 2>/dev/null || true
   fi
 
   # --- Politique pour conteneur Snap (privileged + seccomp:unconfined) ---
@@ -395,8 +395,8 @@ elif [[ "${SELINUX_STATUS}" == "Enforcing" || "${SELINUX_STATUS}" == "Permissive
   info "Statut final SELinux : $(getenforce)"
   info ""
   warn "IMPORTANT — Labels SELinux sur les volumes Docker :"
-  warn "  Si un container refuse d'accéder à /orphea, ajoutez ':z' aux volumes"
-  warn "  dans docker-compose (ex: /orphea/snap:/orphea/snap:z)"
+  warn "  Si un container refuse d'accéder à /movetodata, ajoutez ':z' aux volumes"
+  warn "  dans docker-compose (ex: /movetodata/snap:/movetodata/snap:z)"
   warn "  ':z'  = contexte partagé entre containers"
   warn "  ':Z'  = contexte privé (un seul container)"
 
@@ -430,7 +430,7 @@ else
 fi
 
 if [[ "${FIREWALL_ACTIVE}" == "true" ]]; then
-  # Ports applicatifs Orphea
+  # Ports applicatifs MoveToData
   declare -A PORTS=(
     ["80/tcp"]="Frontend React (Nginx)"
     ["8080/tcp"]="Boson API (Spring Boot)"
@@ -448,7 +448,7 @@ if [[ "${FIREWALL_ACTIVE}" == "true" ]]; then
     fi
   done
 
-  # Autoriser le trafic interne Docker (réseau bridge orphea-network)
+  # Autoriser le trafic interne Docker (réseau bridge movetodata-network)
   if ! firewall-cmd --query-zone=trusted --query-interface=docker0 --permanent &>/dev/null 2>&1; then
     firewall-cmd --permanent --zone=trusted --add-interface=docker0 2>/dev/null || true
     info "Interface docker0 ajoutée à la zone trusted"
@@ -471,8 +471,8 @@ fi
 section "[9/10] Kernel tuning et limites système"
 
 # --- sysctl ---
-cat > /etc/sysctl.d/99-orphea.conf << 'EOF'
-# Orphea Platform — kernel tuning
+cat > /etc/sysctl.d/99-movetodata.conf << 'EOF'
+# MoveToData Platform — kernel tuning
 # Requis par Elasticsearch (ELK stack optionnel)
 vm.max_map_count = 262144
 
@@ -497,21 +497,21 @@ if [[ ! -f /etc/modules-load.d/br_netfilter.conf ]]; then
   echo "br_netfilter" > /etc/modules-load.d/br_netfilter.conf
 fi
 
-sysctl --system -q 2>/dev/null | grep -E "orphea|max_map|somaxconn|ip_forward" || true
-success "Paramètres sysctl appliqués (/etc/sysctl.d/99-orphea.conf)"
+sysctl --system -q 2>/dev/null | grep -E "movetodata|max_map|somaxconn|ip_forward" || true
+success "Paramètres sysctl appliqués (/etc/sysctl.d/99-movetodata.conf)"
 
 # --- ulimits ---
-cat > /etc/security/limits.d/orphea.conf << 'EOF'
-# Orphea Platform — limites de fichiers et processus
-orphea  soft  nofile  65536
-orphea  hard  nofile  65536
-orphea  soft  nproc   65536
-orphea  hard  nproc   65536
+cat > /etc/security/limits.d/movetodata.conf << 'EOF'
+# MoveToData Platform — limites de fichiers et processus
+movetodata  soft  nofile  65536
+movetodata  hard  nofile  65536
+movetodata  soft  nproc   65536
+movetodata  hard  nproc   65536
 root    soft  nofile  65536
 root    hard  nofile  65536
 EOF
 
-success "Limites ulimit configurées (/etc/security/limits.d/orphea.conf)"
+success "Limites ulimit configurées (/etc/security/limits.d/movetodata.conf)"
 
 # Sur CentOS 7, pam_limits peut nécessiter une activation explicite
 if [[ "${OS_MAJOR}" == "7" ]]; then
@@ -534,35 +534,35 @@ fi
 # =============================================================================
 section "[10/10] Configuration SAML et vérifications finales"
 
-if [[ ! -f /etc/orphea/saml.yml ]]; then
+if [[ ! -f /etc/movetodata/saml.yml ]]; then
   # Génération des certificats auto-signés pour le SP SAML2
   # (requis même si SAML non utilisé — Spring refuse de démarrer sans le bean)
   info "Génération des certificats SAML auto-signés..."
-  mkdir -p /etc/orphea
+  mkdir -p /etc/movetodata
 
   if command -v openssl &>/dev/null; then
     openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:2048 \
-      -out /etc/orphea/saml-sp.key 2>/dev/null
-    openssl req -new -x509 -key /etc/orphea/saml-sp.key \
-      -out /etc/orphea/saml-sp.crt -days 3650 \
-      -subj "/CN=orphea-saml-sp" 2>/dev/null
+      -out /etc/movetodata/saml-sp.key 2>/dev/null
+    openssl req -new -x509 -key /etc/movetodata/saml-sp.key \
+      -out /etc/movetodata/saml-sp.crt -days 3650 \
+      -subj "/CN=movetodata-saml-sp" 2>/dev/null
     # Certificat IdP fictif (identique au SP — à remplacer par le vrai cert IdP)
-    cp /etc/orphea/saml-sp.crt /etc/orphea/saml-idp.crt
-    chmod 600 /etc/orphea/saml-sp.key
-    chmod 644 /etc/orphea/saml-sp.crt /etc/orphea/saml-idp.crt
-    success "Certificats SAML générés dans /etc/orphea/"
+    cp /etc/movetodata/saml-sp.crt /etc/movetodata/saml-idp.crt
+    chmod 600 /etc/movetodata/saml-sp.key
+    chmod 644 /etc/movetodata/saml-sp.crt /etc/movetodata/saml-idp.crt
+    success "Certificats SAML générés dans /etc/movetodata/"
   else
-    warn "openssl absent — créez manuellement /etc/orphea/saml-sp.key et saml-sp.crt"
+    warn "openssl absent — créez manuellement /etc/movetodata/saml-sp.key et saml-sp.crt"
   fi
 
   # Fichier saml.yml squelette — nécessaire pour que Spring crée le bean
   # RelyingPartyRegistrationRepository (même sans IdP réel configuré).
   # Pour activer SAML SSO, remplacez les valeurs asserting-party par
   # celles de votre fournisseur d'identité.
-  cat > /etc/orphea/saml.yml << 'SAML_EOF'
+  cat > /etc/movetodata/saml.yml << 'SAML_EOF'
 # =============================================================================
-# Orphea — Configuration SAML2 SSO
-# Référencé par : SAML2_SSO_CONFIG=file:/etc/orphea/saml.yml
+# MoveToData — Configuration SAML2 SSO
+# Référencé par : SAML2_SSO_CONFIG=file:/etc/movetodata/saml.yml
 #
 # Mode d'authentification par défaut : local (login/password)
 # Pour activer le SAML SSO, configurez la section asserting-party avec
@@ -576,12 +576,12 @@ spring:
     saml2:
       relyingparty:
         registration:
-          orphea:
+          movetodata:
             entity-id: "{baseUrl}/saml2/service-provider-metadata/{registrationId}"
             signing:
               credentials:
-                - private-key-location: file:/etc/orphea/saml-sp.key
-                  certificate-location: file:/etc/orphea/saml-sp.crt
+                - private-key-location: file:/etc/movetodata/saml-sp.key
+                  certificate-location: file:/etc/movetodata/saml-sp.crt
             asserting-party:
               # --- À REMPLACER par votre IdP réel ---
               entity-id: https://idp.example.com
@@ -590,17 +590,17 @@ spring:
                 binding: POST
               verification:
                 credentials:
-                  - certificate-location: file:/etc/orphea/saml-idp.crt
+                  - certificate-location: file:/etc/movetodata/saml-idp.crt
 SAML_EOF
-  chmod 644 /etc/orphea/saml.yml
-  success "Fichier /etc/orphea/saml.yml créé"
+  chmod 644 /etc/movetodata/saml.yml
+  success "Fichier /etc/movetodata/saml.yml créé"
 else
   # Vérifier que platform-default-login est présent (ancienne version minimale)
-  if ! grep -q "platform-default-login" /etc/orphea/saml.yml; then
-    warn "/etc/orphea/saml.yml incomplet — ajout de platform-default-login: password"
-    sed -i '1s/^/platform-default-login: password\n\n/' /etc/orphea/saml.yml
+  if ! grep -q "platform-default-login" /etc/movetodata/saml.yml; then
+    warn "/etc/movetodata/saml.yml incomplet — ajout de platform-default-login: password"
+    sed -i '1s/^/platform-default-login: password\n\n/' /etc/movetodata/saml.yml
   fi
-  info "/etc/orphea/saml.yml déjà présent"
+  info "/etc/movetodata/saml.yml déjà présent"
 fi
 
 # =============================================================================
@@ -622,11 +622,11 @@ check() {
 
 check "Docker Engine"           "docker --version"
 check "Docker Compose plugin"   "docker compose version"
-check "Utilisateur orphea"      "id orphea"
-check "orphea dans groupe docker" "id orphea | grep -q docker"
-check "/orphea accessible"      "test -d /orphea"
+check "Utilisateur movetodata"      "id movetodata"
+check "movetodata dans groupe docker" "id movetodata | grep -q docker"
+check "/movetodata accessible"      "test -d /movetodata"
 check "/dev/fuse disponible"    "test -c /dev/fuse"
-check "/etc/orphea/saml.yml"    "test -f /etc/orphea/saml.yml"
+check "/etc/movetodata/saml.yml"    "test -f /etc/movetodata/saml.yml"
 check "vm.max_map_count=262144" "sysctl vm.max_map_count | grep -q 262144"
 check "ip_forward=1"            "sysctl net.ipv4.ip_forward | grep -q 1"
 
@@ -642,24 +642,24 @@ fi
 # =============================================================================
 echo ""
 echo -e "${GREEN}╔══════════════════════════════════════════════════════════╗${NC}"
-echo -e "${GREEN}║   Installation système Orphea terminée sur ${OS_NAME} ${OS_MAJOR}${NC}"
+echo -e "${GREEN}║   Installation système MoveToData terminée sur ${OS_NAME} ${OS_MAJOR}${NC}"
 echo -e "${GREEN}╚══════════════════════════════════════════════════════════╝${NC}"
 echo ""
 info "Répertoire du repo à remplir    : ${REPO_DIR}"
-info "Répertoire des données          : ${ORPHEA_DATA}"
-info "Configuration SAML              : /etc/orphea/saml.yml"
-info "Utilisateur applicatif          : ${ORPHEA_USER}"
+info "Répertoire des données          : ${MOVETODATA_DATA}"
+info "Configuration SAML              : /etc/movetodata/saml.yml"
+info "Utilisateur applicatif          : ${MOVETODATA_USER}"
 echo ""
 warn "Prochaines étapes — dans l'ordre :"
 echo ""
 echo "  ┌─────────────────────────────────────────────────────────────────────┐"
-echo "  │  ÉTAPE 1 — Copier le repo Orphea sur le serveur                    │"
+echo "  │  ÉTAPE 1 — Copier le repo MoveToData sur le serveur                    │"
 echo "  └─────────────────────────────────────────────────────────────────────┘"
 echo "  Depuis votre poste local :"
-echo "    scp -r /chemin/vers/Orphea_repo ${ORPHEA_USER}@SERVEUR:${REPO_DIR}/"
+echo "    scp -r /chemin/vers/MoveToData_repo ${MOVETODATA_USER}@SERVEUR:${REPO_DIR}/"
 echo "  Ou via Git :"
 echo "    git clone <url-du-repo> ${REPO_DIR}"
-echo "    chown -R ${ORPHEA_USER}:${ORPHEA_USER} ${REPO_DIR}"
+echo "    chown -R ${MOVETODATA_USER}:${MOVETODATA_USER} ${REPO_DIR}"
 echo ""
 echo "  ┌─────────────────────────────────────────────────────────────────────┐"
 echo "  │  ÉTAPE 2 — Installer les composants techniques (runtimes)           │"
@@ -669,45 +669,45 @@ echo "             PostgreSQL 16, Redis, Nginx, kubectl, Helm"
 echo ""
 echo "    sudo bash ${REPO_DIR}/scripts/install-components-centos.sh"
 echo "    # ou via le point d'entrée unifié :"
-echo "    sudo bash ${REPO_DIR}/scripts/orphea-centos.sh components"
+echo "    sudo bash ${REPO_DIR}/scripts/movetodata-centos.sh components"
 echo ""
 echo "  ┌─────────────────────────────────────────────────────────────────────┐"
 echo "  │  ÉTAPE 3 — Configurer les variables d'environnement (secrets)       │"
 echo "  └─────────────────────────────────────────────────────────────────────┘"
-echo "    sudo -u ${ORPHEA_USER} bash ${REPO_DIR}/scripts/01-setup-env.sh"
-echo "    # Génère : ${REPO_DIR}/scripts/.env.orphea"
+echo "    sudo -u ${MOVETODATA_USER} bash ${REPO_DIR}/scripts/01-setup-env.sh"
+echo "    # Génère : ${REPO_DIR}/scripts/.env.movetodata"
 echo ""
 echo "  ┌─────────────────────────────────────────────────────────────────────┐"
 echo "  │  ÉTAPE 4 — Builder les images Docker (15–40 min)                    │"
 echo "  └─────────────────────────────────────────────────────────────────────┘"
-echo "    sudo -u ${ORPHEA_USER} bash ${REPO_DIR}/scripts/02-build.sh all"
-echo "    # ou : sudo -u ${ORPHEA_USER} bash ${REPO_DIR}/scripts/orphea-centos.sh build all"
+echo "    sudo -u ${MOVETODATA_USER} bash ${REPO_DIR}/scripts/02-build.sh all"
+echo "    # ou : sudo -u ${MOVETODATA_USER} bash ${REPO_DIR}/scripts/movetodata-centos.sh build all"
 echo ""
 echo "  ┌─────────────────────────────────────────────────────────────────────┐"
 echo "  │  ÉTAPE 5 — Démarrer la plateforme                                   │"
 echo "  └─────────────────────────────────────────────────────────────────────┘"
-echo "    sudo -u ${ORPHEA_USER} bash ${REPO_DIR}/scripts/03-start-centos.sh all"
-echo "    # ou : sudo -u ${ORPHEA_USER} bash ${REPO_DIR}/scripts/orphea-centos.sh start all"
+echo "    sudo -u ${MOVETODATA_USER} bash ${REPO_DIR}/scripts/03-start-centos.sh all"
+echo "    # ou : sudo -u ${MOVETODATA_USER} bash ${REPO_DIR}/scripts/movetodata-centos.sh start all"
 echo ""
 echo "  ┌─────────────────────────────────────────────────────────────────────┐"
 echo "  │  ÉTAPE 6 — Vérifier la santé de la plateforme                       │"
 echo "  └─────────────────────────────────────────────────────────────────────┘"
 echo "    bash ${REPO_DIR}/scripts/05-healthcheck.sh"
-echo "    # ou : bash ${REPO_DIR}/scripts/orphea-centos.sh health"
+echo "    # ou : bash ${REPO_DIR}/scripts/movetodata-centos.sh health"
 echo ""
 echo "  ┌─────────────────────────────────────────────────────────────────────┐"
 echo "  │  OPTIONNEL — SELinux : vérifier les refus après démarrage           │"
 echo "  └─────────────────────────────────────────────────────────────────────┘"
 echo "    ausearch -m avc -ts recent | audit2why"
-echo "    bash ${REPO_DIR}/scripts/orphea-centos.sh selinux"
+echo "    bash ${REPO_DIR}/scripts/movetodata-centos.sh selinux"
 echo ""
 echo "  ┌─────────────────────────────────────────────────────────────────────┐"
 echo "  │  OPTIONNEL — Démarrage automatique via systemd                      │"
 echo "  └─────────────────────────────────────────────────────────────────────┘"
-echo "    sudo cp ${REPO_DIR}/scripts/orphea-platform-centos.service /etc/systemd/system/orphea-platform.service"
-echo "    sudo cp ${REPO_DIR}/scripts/orphea-snap-centos.service     /etc/systemd/system/orphea-snap.service"
+echo "    sudo cp ${REPO_DIR}/scripts/movetodata-platform-centos.service /etc/systemd/system/movetodata-platform.service"
+echo "    sudo cp ${REPO_DIR}/scripts/movetodata-snap-centos.service     /etc/systemd/system/movetodata-snap.service"
 echo "    sudo systemctl daemon-reload"
-echo "    sudo systemctl enable orphea-platform orphea-snap"
+echo "    sudo systemctl enable movetodata-platform movetodata-snap"
 echo ""
 
 # Avertissement redémarrage si kernel mis à jour

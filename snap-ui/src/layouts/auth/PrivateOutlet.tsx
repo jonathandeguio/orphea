@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+﻿import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import MainLayout from "../layout";
 import Loading from "errors/Loading";
-import { ORPHEA_TOKEN } from "./constants";
+import { MOVETODATA_TOKEN } from "./constants";
 
 const PrivateOutlet = () => {
   const navigate = useNavigate();
@@ -14,8 +14,8 @@ const PrivateOutlet = () => {
 
   useEffect(() => {
     if (
-      localStorage.getItem(ORPHEA_TOKEN) !== undefined &&
-      localStorage.getItem(ORPHEA_TOKEN) !== null
+      localStorage.getItem(MOVETODATA_TOKEN) !== undefined &&
+      localStorage.getItem(MOVETODATA_TOKEN) !== null
     ) {
       if (!isTokenValid && !tokenStatusLoading) {
         navigate("/auth/relogin");

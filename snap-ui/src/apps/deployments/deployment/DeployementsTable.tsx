@@ -1,8 +1,8 @@
-import React from "react";
+﻿import React from "react";
 import { Table } from "antd";
 import { Link } from "react-router-dom";
-import OrpheaButton from "components/ButtonComponent/OrpheaButton";
-import { TrashIcon } from "assets/icons/orpheaMiscellaneousIcons";
+import MoveToDataButton from "components/ButtonComponent/MoveToDataButton";
+import { TrashIcon } from "assets/icons/movetodataMiscellaneousIcons";
 import { getLanguageLabel } from "utils/utilities";
 
 const DeploymentsTable = ({
@@ -34,7 +34,7 @@ const DeploymentsTable = ({
       title: `${getLanguageLabel("branch")}`,
       dataIndex: "branch",
       render: (text: string) => (
-        <div className="OrpheaSpan">{text ? text : "None"}</div>
+        <div className="MoveToDataSpan">{text ? text : "None"}</div>
       ),
     },
     {
@@ -59,7 +59,7 @@ const DeploymentsTable = ({
 
         return (
           <div
-            className="OrpheaSpan"
+            className="MoveToDataSpan"
             style={{
               color:
                 activeVersion !== "N/A"
@@ -84,7 +84,7 @@ const DeploymentsTable = ({
         );
 
         return (
-          <div className="OrpheaSpan">
+          <div className="MoveToDataSpan">
             {activeComponent ? activeComponent.globalVersion : "N/A"}
           </div>
         );
@@ -94,42 +94,42 @@ const DeploymentsTable = ({
       title: `${getLanguageLabel("location")}`,
       dataIndex: "location",
       render: (text: string) => (
-        <div className="OrpheaSpan">{text ? text : "None"}</div>
+        <div className="MoveToDataSpan">{text ? text : "None"}</div>
       ),
     },
     {
       title: `${getLanguageLabel("email")}`,
       dataIndex: "email",
       render: (text: string) => (
-        <div className="OrpheaSpan">{text ? text : "None"}</div>
+        <div className="MoveToDataSpan">{text ? text : "None"}</div>
       ),
     },
     {
       title: "Start Time",
       dataIndex: "timeWindowStart",
       render: (text: number) => (
-        <div className="OrpheaSpan">{text ? formatTime(text) : "None"}</div>
+        <div className="MoveToDataSpan">{text ? formatTime(text) : "None"}</div>
       ),
     },
     {
       title: "End Time",
       dataIndex: "timeWindowEnd",
       render: (text: number) => (
-        <div className="OrpheaSpan">{text ? formatTime(text) : "None"}</div>
+        <div className="MoveToDataSpan">{text ? formatTime(text) : "None"}</div>
       ),
     },
     {
       title: "Override Deployment Time",
       dataIndex: "overRideTimeWindow",
       render: (text: number) => (
-        <div className="OrpheaSpan">{text ? text : "None"}</div>
+        <div className="MoveToDataSpan">{text ? text : "None"}</div>
       ),
     },
     {
       title: "Deployment Method",
       dataIndex: "deploymentMethod",
       render: (text: string) => (
-        <div className="OrpheaSpan">{text ? text : "Automatic"}</div>
+        <div className="MoveToDataSpan">{text ? text : "Automatic"}</div>
       ),
     },
     {
@@ -154,7 +154,7 @@ const DeploymentsTable = ({
         };
 
         return (
-          <div className="OrpheaSpan">
+          <div className="MoveToDataSpan">
             {activeComponent
               ? formatTimestamp(activeComponent.deployedAt)
               : "N/A"}
@@ -168,7 +168,7 @@ const DeploymentsTable = ({
       render: (text: any, record: any) => {
         return (
           <>
-            <OrpheaButton
+            <MoveToDataButton
               onClick={() => {
                 setDeleteDeploymentDetails({ ...record });
                 setDeleteModal(true);

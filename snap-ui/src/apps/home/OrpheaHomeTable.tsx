@@ -1,9 +1,9 @@
-import React from "react";
+﻿import React from "react";
 import { Table } from "antd";
 import { Link } from "react-router-dom";
 import { getLanguageLabel } from "utils/utilities";
 
-const OrpheaHomeTable = ({ dataSource, onChange }: any) => {
+const MoveToDataHomeTable = ({ dataSource, onChange }: any) => {
   const columns = [
     {
       title: `${getLanguageLabel("name")}`,
@@ -37,7 +37,7 @@ const OrpheaHomeTable = ({ dataSource, onChange }: any) => {
 
         return (
           <div
-            className="OrpheaSpan"
+            className="MoveToDataSpan"
             style={{
               color:
                 activeVersion !== "N/A"
@@ -62,7 +62,7 @@ const OrpheaHomeTable = ({ dataSource, onChange }: any) => {
         );
 
         return (
-          <div className="OrpheaSpan">
+          <div className="MoveToDataSpan">
             {activeComponent ? activeComponent.globalVersion : "N/A"}
           </div>
         );
@@ -119,7 +119,7 @@ const OrpheaHomeTable = ({ dataSource, onChange }: any) => {
 
         // Render time ago for deployedAt field or return "N/A" if no active component
         return (
-          <div className="OrpheaSpan">
+          <div className="MoveToDataSpan">
             {activeComponent ? getTimeAgo(activeComponent.deployedAt) : "N/A"}
           </div>
         );
@@ -140,4 +140,4 @@ const OrpheaHomeTable = ({ dataSource, onChange }: any) => {
   );
 };
 
-export default OrpheaHomeTable;
+export default MoveToDataHomeTable;

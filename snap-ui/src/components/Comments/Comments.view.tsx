@@ -1,4 +1,4 @@
-import {
+﻿import {
   Avatar,
   Badge,
   Divider,
@@ -12,8 +12,8 @@ import {
 } from "antd";
 
 import React, { useEffect, useRef, useState } from "react";
-import { AddIcon } from "assets/icons/orpheaActionIcons";
-import { CommentIcon } from "assets/icons/orpheaMiscellaneousIcons";
+import { AddIcon } from "assets/icons/movetodataActionIcons";
+import { CommentIcon } from "assets/icons/movetodataMiscellaneousIcons";
 
 import {
   getLanguageLabel,
@@ -21,7 +21,7 @@ import {
   isDefined,
   openNotification,
 } from "utils/utilities";
-import OrpheaButton from "../ButtonComponent/OrpheaButton";
+import MoveToDataButton from "../ButtonComponent/MoveToDataButton";
 
 import { KeyboardEvent } from "react";
 import {
@@ -30,7 +30,7 @@ import {
   fetchUsersDetailsAPI,
 } from "./Comments.api";
 
-import OrpheaLoader from "components/orpheaLoader";
+import MoveToDataLoader from "components/movetodataLoader";
 import { User } from "global";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUserDetails } from "redux/actions/userActions";
@@ -224,7 +224,7 @@ const Comments = ({ id }: any) => {
                           />
                         </Form.Item>
                         <Row justify="end">
-                          <OrpheaButton
+                          <MoveToDataButton
                             intent="dangerous"
                             size="small"
                             onClick={(e: any) => {
@@ -236,9 +236,9 @@ const Comments = ({ id }: any) => {
                             minimal
                           >
                             {getLanguageLabel("cancel")}
-                          </OrpheaButton>
+                          </MoveToDataButton>
                           &nbsp;
-                          <OrpheaButton
+                          <MoveToDataButton
                             intent="primary"
                             size="small"
                             htmlType="submit"
@@ -246,12 +246,12 @@ const Comments = ({ id }: any) => {
                             minimal
                           >
                             {getLanguageLabel("addComment")}
-                          </OrpheaButton>
+                          </MoveToDataButton>
                         </Row>
                       </Form>
                     </>
                   ) : (
-                    <OrpheaButton
+                    <MoveToDataButton
                       onClick={(e: any) => {
                         // e.preventDefault();
                         e.stopPropagation();
@@ -264,13 +264,13 @@ const Comments = ({ id }: any) => {
                       minimal
                     >
                       {getLanguageLabel("new")} {getLanguageLabel("comment")}
-                    </OrpheaButton>
+                    </MoveToDataButton>
                   )}
                 </div>
               )}
             </div>
           ) : (
-            <OrpheaLoader />
+            <MoveToDataLoader />
           )
         }
         trigger={"click"}
@@ -288,20 +288,20 @@ const Comments = ({ id }: any) => {
               count={allOpenComments.length}
               color={
                 allOpenComments.length == 0
-                  ? "var(--orphea-font-color-muted)"
-                  : "var(--orphea-intent-danger)"
+                  ? "var(--movetodata-font-color-muted)"
+                  : "var(--movetodata-intent-danger)"
               }
               offset={[-5, 3]}
               size="small"
             >
-              <OrpheaButton
+              <MoveToDataButton
                 icon={
                   <CommentIcon
                     size={23}
                     color={
                       allOpenComments.length == 0
-                        ? "var(--orphea-font-color-muted)"
-                        : "var(--orphea-intent-danger)"
+                        ? "var(--movetodata-font-color-muted)"
+                        : "var(--movetodata-intent-danger)"
                     }
                   />
                 }

@@ -1,4 +1,4 @@
-import axios from "axios";
+﻿import axios from "axios";
 import {
   ALL_USER_DETAILS_FAIL,
   ALL_USER_DETAILS_REQUEST,
@@ -52,7 +52,7 @@ export const login = (username: string, password: string) => async (dispatch: an
       payload: data,
     });
 
-    localStorage.setItem("orpheaToken", data.accessToken);
+    localStorage.setItem("movetodataToken", data.accessToken);
   } catch (error) {
     dispatch({
       type: USER_LOGIN_FAIL,
@@ -62,7 +62,7 @@ export const login = (username: string, password: string) => async (dispatch: an
 };
 
 export const logout = () => async (dispatch: any) => {
-  localStorage.removeItem("orpheaToken");
+  localStorage.removeItem("movetodataToken");
   dispatch({ type: USER_LOGOUT });
   dispatch({ type: USER_DETAILS_RESET });
 };
@@ -75,7 +75,7 @@ export const getUserDetails = () => async (dispatch: any, getState: any) => {
 
     const config = {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("orpheaToken")}`,
+        Authorization: `Bearer ${localStorage.getItem("movetodataToken")}`,
       },
     };
 
@@ -108,7 +108,7 @@ export const getAllUserDetails = () => async (dispatch: any, getState: any) => {
 
     const config = {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("orpheaToken")}`,
+        Authorization: `Bearer ${localStorage.getItem("movetodataToken")}`,
       },
     };
 
@@ -141,7 +141,7 @@ export const isUserAdmin = () => async (dispatch: any, getState: any) => {
 
     const config = {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("orpheaToken")}`,
+        Authorization: `Bearer ${localStorage.getItem("movetodataToken")}`,
       },
     };
 
@@ -173,7 +173,7 @@ export const isProjectAdmin = () => async (dispatch: any, getState: any) => {
 
     const config = {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("orpheaToken")}`,
+        Authorization: `Bearer ${localStorage.getItem("movetodataToken")}`,
       },
     };
 
@@ -205,7 +205,7 @@ export const isGroupAdmin = () => async (dispatch: any, getState: any) => {
 
     const config = {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("orpheaToken")}`,
+        Authorization: `Bearer ${localStorage.getItem("movetodataToken")}`,
       },
     };
 
@@ -237,7 +237,7 @@ export const getUserDetailByID = (id: any) => async (dispatch: any, getState: an
 
     const config = {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("orpheaToken")}`,
+        Authorization: `Bearer ${localStorage.getItem("movetodataToken")}`,
       },
     };
 

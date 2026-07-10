@@ -1,8 +1,8 @@
-import os
+﻿import os
 
 SPARK_APPLICATION_ID = os.environ.get('SPARK_APPLICATION_ID')
 DEFAULT_BRANCH = os.environ.get('DEFAULT_BRANCH') if os.environ.get('DEFAULT_BRANCH') else "master"
-ORPHEA_API = os.environ.get('ORPHEA_API') if os.environ.get('ORPHEA_API') else "http://localhost:8080"
+MOVETODATA_API = os.environ.get('MOVETODATA_API') if os.environ.get('MOVETODATA_API') else "http://localhost:8080"
 BUILD_TOKEN = os.environ.get('BUILD_TOKEN') if os.environ.get(
     'BUILD_TOKEN') else "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzZDNiMTM3Ni00NWM1LTRiNmYtYWJiYy1kYTIxNWYyZTAxZGMiLCJpYXQiOjE3MTE0NjM3MjAsImV4cCI6MTcxMTUwNjkyMH0.KnH3W1YGOMjTGN4hAzXqf5xnJRfpBS1_Ha8MJT9qot2QNhrQ58b4BeN5VDJTxjZFkk-gn3q-xfo9DveKXTHnzQ"
 BUILD_ID = os.environ.get("BUILD_ID") if os.environ.get("BUILD_ID") else "a22817bb-11d8-46c8-91ea-735f8e48526d"

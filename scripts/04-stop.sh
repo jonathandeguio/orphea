@@ -1,12 +1,12 @@
-#!/usr/bin/env bash
+﻿#!/usr/bin/env bash
 # =============================================================================
-# Orphea Platform — Script 04 : Arrêt de la plateforme
+# MoveToData Platform — Script 04 : Arrêt de la plateforme
 # Usage : bash 04-stop.sh [--stack core|snap|tycho|all] [--volumes]
 # =============================================================================
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-ENV_FILE="${SCRIPT_DIR}/.env.orphea"
+ENV_FILE="${SCRIPT_DIR}/.env.movetodata"
 
 RED='\033[0;31m'; GREEN='\033[0;32m'; YELLOW='\033[1;33m'; BLUE='\033[0;34m'; NC='\033[0m'
 info()    { echo -e "${BLUE}[INFO]${NC}  $*"; }
@@ -25,7 +25,7 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-[[ ! -f "${ENV_FILE}" ]] && { warn "Fichier .env.orphea absent — arrêt sans env"; }
+[[ ! -f "${ENV_FILE}" ]] && { warn "Fichier .env.movetodata absent — arrêt sans env"; }
 
 COMPOSE_FLAGS=""
 ${REMOVE_VOLUMES} && {
@@ -41,9 +41,9 @@ compose_down() {
   if [[ -f "${file}" ]]; then
     info "Arrêt stack ${name}..."
     if [[ -f "${ENV_FILE}" ]]; then
-      docker compose --project-name orphea -f "${file}" --env-file "${ENV_FILE}" down ${COMPOSE_FLAGS} 2>/dev/null || true
+      docker compose --project-name movetodata -f "${file}" --env-file "${ENV_FILE}" down ${COMPOSE_FLAGS} 2>/dev/null || true
     else
-      docker compose --project-name orphea -f "${file}" down ${COMPOSE_FLAGS} 2>/dev/null || true
+      docker compose --project-name movetodata -f "${file}" down ${COMPOSE_FLAGS} 2>/dev/null || true
     fi
     success "Stack ${name} arrêtée"
   fi
@@ -71,6 +71,6 @@ case "${STACK}" in
 esac
 
 echo ""
-success "Plateforme Orphea arrêtée"
+success "Plateforme MoveToData arrêtée"
 info "Containers actifs restants :"
-docker ps --format "table {{.Names}}\t{{.Status}}" | grep "orphea" || echo "  (aucun)"
+docker ps --format "table {{.Names}}\t{{.Status}}" | grep "movetodata" || echo "  (aucun)"

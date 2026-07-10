@@ -1,6 +1,6 @@
-#!/bin/bash
+﻿#!/bin/bash
 
-PROJECT_ID=orphea-foo
+PROJECT_ID=movetodata-foo
 COMPUTE_REGION=europe-west1
 COMPUTE_ZONE=europe-west1-b
 
@@ -37,8 +37,8 @@ gcloud compute instances create $INSTANCE_TAG --project=$PROJECT_ID \
 --enable-nested-virtualization \
 --service-account=735596495996-compute@developer.gserviceaccount.com \
 --scopes=https://www.googleapis.com/auth/devstorage.read_only,https://www.googleapis.com/auth/logging.write,https://www.googleapis.com/auth/monitoring.write,https://www.googleapis.com/auth/servicecontrol,https://www.googleapis.com/auth/service.management.readonly,https://www.googleapis.com/auth/trace.append \
---create-disk=auto-delete=yes,boot=yes,device-name=instance-1,image=projects/centos-cloud/global/images/centos-7-v20211214,mode=rw,size=100,type=projects/orphea-foo/zones/$COMPUTE_ZONE/diskTypes/pd-standard \
---create-disk=auto-delete=yes,device-name=$DISK_TAG,mode=rw,name=$DISK_TAG,size=1000,type=projects/orphea-foo/zones/$COMPUTE_ZONE/diskTypes/pd-standard \
+--create-disk=auto-delete=yes,boot=yes,device-name=instance-1,image=projects/centos-cloud/global/images/centos-7-v20211214,mode=rw,size=100,type=projects/movetodata-foo/zones/$COMPUTE_ZONE/diskTypes/pd-standard \
+--create-disk=auto-delete=yes,device-name=$DISK_TAG,mode=rw,name=$DISK_TAG,size=1000,type=projects/movetodata-foo/zones/$COMPUTE_ZONE/diskTypes/pd-standard \
 --no-shielded-secure-boot --shielded-vtpm --shielded-integrity-monitoring \
 --reservation-affinity=any
 
@@ -49,7 +49,7 @@ gcloud compute instances create $INSTANCE_TAG --project=$PROJECT_ID \
 # Creating and mounting the external disk:
 # https://cloud.google.com/compute/docs/disks/add-persistent-disk?hl=en
 # e.g.
-# gcloud beta compute ssh --zone "$COMPUTE_ZONE" "bnp-instance-1"  --tunnel-through-iap --project "orphea-foo"
+# gcloud beta compute ssh --zone "$COMPUTE_ZONE" "bnp-instance-1"  --tunnel-through-iap --project "movetodata-foo"
 # sudo lsblk
 # sudo mkfs.ext4 -m 0 -E lazy_itable_init=0,lazy_journal_init=0,discard /dev/sdb
 # sudo mkdir -p /mnt/data

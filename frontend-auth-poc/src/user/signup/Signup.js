@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+﻿import React, { Component } from 'react';
 import './Signup.css';
 import { Link, Redirect } from 'react-router-dom'
 import { GOOGLE_AUTH_URL, FACEBOOK_AUTH_URL, GITHUB_AUTH_URL } from '../../constants';
@@ -21,7 +21,7 @@ class Signup extends Component {
         return (
             <div className="signup-container">
                 <div className="signup-content">
-                    <h1 className="signup-title">Signup with Orphea</h1>
+                    <h1 className="signup-title">Signup with MoveToData</h1>
                     <SocialSignup />
                     <div className="or-separator">
                         <span className="or-text">OR</span>

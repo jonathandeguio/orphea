@@ -1,4 +1,4 @@
-import { Col, Divider, Row, Tooltip, Typography } from "antd";
+﻿import { Col, Divider, Row, Tooltip, Typography } from "antd";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -8,20 +8,20 @@ import {
   globalSearch,
   openNotification,
 } from "utils/utilities";
-import { AddIcon, SearchIcon } from "assets/icons/orpheaActionIcons";
+import { AddIcon, SearchIcon } from "assets/icons/movetodataActionIcons";
 
 import { ThunkAppDispatch } from "redux/types/store";
 
-import OrpheaLoader from "components/orpheaLoader";
-import OrpheaModal from "components/OrpheaModalContainer";
-import OrpheaButton from "components/ButtonComponent/OrpheaButton";
-import OrpheaInput from "components/InputComponent/OrpheaInput";
+import MoveToDataLoader from "components/movetodataLoader";
+import MoveToDataModal from "components/MoveToDataModalContainer";
+import MoveToDataButton from "components/ButtonComponent/MoveToDataButton";
+import MoveToDataInput from "components/InputComponent/MoveToDataInput";
 import { deleteDeploymentAPI } from "../apis";
 import CreateNewDeploymentModal from "./CreateNewDeploymentModal";
 import DeploymentsTable from "./DeployementsTable";
-import { TrashIcon } from "assets/icons/orpheaMiscellaneousIcons";
+import { TrashIcon } from "assets/icons/movetodataMiscellaneousIcons";
 import { getAllDeploymentDetails } from "redux/actions/DeploymentActions";
-import { getDefaultFavicon } from "components/orpheaLoader/FavIconLoader"; // Import the new component
+import { getDefaultFavicon } from "components/movetodataLoader/FavIconLoader"; // Import the new component
 
 const { Title, Text } = Typography;
 
@@ -75,28 +75,28 @@ const Deployments = () => {
     };
   }, [allDeployments]);
 
-  if (loading) return <OrpheaLoader />;
+  if (loading) return <MoveToDataLoader />;
 
   return (
     <>
-      <OrpheaModal
+      <MoveToDataModal
         headingIcon={<TrashIcon color="var(--DANGEROUS_COLOR)" />}
         heading={getLanguageLabel("areYouSureYouWantToDeleteThis?")}
         open={deleteModal}
         onCancel={handleDeleteCancel}
         onOk={() => deleteDeploymentHandler()}
         footerButtonArea={
-          <OrpheaButton
+          <MoveToDataButton
             icon={<TrashIcon />}
             onClick={() => deleteDeploymentHandler()}
             intent="dangerous"
           >
             {getLanguageLabel("delete")}
-          </OrpheaButton>
+          </MoveToDataButton>
         }
       >
         {deleteDeploymentDetails.name}
-      </OrpheaModal>
+      </MoveToDataModal>
 
       <CreateNewDeploymentModal
         isOpen={isCreateNewDeploymentModalOpen}
@@ -110,11 +110,11 @@ const Deployments = () => {
               <Title level={3}>
                 Deployments ({allDeployments && allDeployments.length})
               </Title>
-              <Text type="secondary">Here are orphea deployments.</Text>
+              <Text type="secondary">Here are movetodata deployments.</Text>
             </Col>
             <Col>
               <Tooltip placement="top" title={"Create New Deployment"}>
-                <OrpheaButton
+                <MoveToDataButton
                   icon={<AddIcon />}
                   intent="action"
                   onClick={() => {
@@ -122,7 +122,7 @@ const Deployments = () => {
                   }}
                 >
                   New Deployment
-                </OrpheaButton>
+                </MoveToDataButton>
               </Tooltip>
             </Col>
           </Row>
@@ -130,7 +130,7 @@ const Deployments = () => {
           <Divider />
         </p>
 
-        <OrpheaInput
+        <MoveToDataInput
           placeholder={getLanguageLabel("search")}
           allowClear
           onChange={(e: any) => {

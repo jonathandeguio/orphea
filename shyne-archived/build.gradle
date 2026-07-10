@@ -1,10 +1,10 @@
-plugins {
+﻿plugins {
 //    id 'com.github.johnrengelman.shadow' version '7.1.2'
     id 'java'
     id 'java-library'
 }
 
-group 'io.orphea.Synchro'
+group 'io.movetodata.Synchro'
 version '0.0.1-SNAPSHOT'
 sourceCompatibility = "11"
 
@@ -20,7 +20,7 @@ repositories {
 
 //jar {
 //    manifest {
-//        attributes "Main-Class": "io.orphea.Synchro"
+//        attributes "Main-Class": "io.movetodata.Synchro"
 //    }
 //}
 

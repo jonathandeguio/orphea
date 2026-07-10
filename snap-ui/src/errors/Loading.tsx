@@ -1,4 +1,4 @@
-import OrpheaLoader from "components/orpheaLoader";
+﻿import MoveToDataLoader from "components/movetodataLoader";
 import React, { useRef } from "react";
 import { ParticleApp } from "utils/ParticleApp";
 import { getLanguageLabel, isIpPlatform } from "utils/utilities";
@@ -54,7 +54,7 @@ const Loading = () => {
           </div>
           <div className="login-icon">
             {!isIpPlatform() && (
-              <OrpheaLoader content={getLanguageLabel("loading...")} />
+              <MoveToDataLoader content={getLanguageLabel("loading...")} />
             )}
           </div>
         </div>

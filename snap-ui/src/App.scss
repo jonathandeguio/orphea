@@ -1,4 +1,4 @@
-@import "~react-grid-layout/css/styles.css";
+﻿@import "~react-grid-layout/css/styles.css";
 // variables and mixins
 
 @import "./assets/scss/colors";
@@ -23,34 +23,34 @@
 // light
 $color: rgb(1, 1, 27);
 $background-color: #ffffff;
-$orphea-font-color-default: #01011b;
-$orphea-font-color-light-black: #000000a6;
-$orphea-font-color-muted: #717a94;
-$orphea-bkg-color-default: #ffffff;
-$orphea-bkg-color-muted: #f8fafb;
-$orphea-border-color-default: #dadde6;
-$orphea-border-color-muted: #ecedf2;
-$orphea-hover-color: rgba(207, 211, 222, 0.322);
-$orphea-intent-danger: #c84654;
+$movetodata-font-color-default: #01011b;
+$movetodata-font-color-light-black: #000000a6;
+$movetodata-font-color-muted: #717a94;
+$movetodata-bkg-color-default: #ffffff;
+$movetodata-bkg-color-muted: #f8fafb;
+$movetodata-border-color-default: #dadde6;
+$movetodata-border-color-muted: #ecedf2;
+$movetodata-hover-color: rgba(207, 211, 222, 0.322);
+$movetodata-intent-danger: #c84654;
 $top-bar-border: rgb(218, 221, 230);
-$orphea-table-selected: rgb(14, 101, 235, 0.1);
-$orphea-font-color-git-blame: #aeb0b8;
+$movetodata-table-selected: rgb(14, 101, 235, 0.1);
+$movetodata-font-color-git-blame: #aeb0b8;
 
 // Dark
 $color-dark: rgb(228, 230, 236);
-$background-color-dark: $orphea-900;
-$orphea-font-color-default-dark: #e4e6ec;
-$orphea-font-color-light-black-dark: #e4e6ec;
-$orphea-font-color-muted-dark: #9ca3b4;
-$orphea-bkg-color-default-dark: #1e1e28;
-$orphea-bkg-color-muted-dark: $orphea-900; // previous #17171f
-$orphea-border-color-default-dark: #333345;
-$orphea-border-color-muted-dark: #2d2d3c;
-$orphea-hover-color-dark: rgba(63, 66, 87, 0.35);
-$orphea-intent-danger-dark: #ed6f73;
+$background-color-dark: $movetodata-900;
+$movetodata-font-color-default-dark: #e4e6ec;
+$movetodata-font-color-light-black-dark: #e4e6ec;
+$movetodata-font-color-muted-dark: #9ca3b4;
+$movetodata-bkg-color-default-dark: #1e1e28;
+$movetodata-bkg-color-muted-dark: $movetodata-900; // previous #17171f
+$movetodata-border-color-default-dark: #333345;
+$movetodata-border-color-muted-dark: #2d2d3c;
+$movetodata-hover-color-dark: rgba(63, 66, 87, 0.35);
+$movetodata-intent-danger-dark: #ed6f73;
 $top-bar-border-dark: #424242;
-$orphea-table-selected-dark: rgb(14, 101, 235, 0.3);
-$orphea-font-color-git-blame-dark: #282837;
+$movetodata-table-selected-dark: rgb(14, 101, 235, 0.3);
+$movetodata-font-color-git-blame-dark: #282837;
 
 // Button specific css
 $INTENT_COLOR: rgba(0, 0, 0, 0.04);
@@ -69,7 +69,7 @@ $SUCCESS_COLOR: rgb(41, 160, 124);
 $SUCCESS_COLOR_BORDER: green;
 $SUCCESS_COLOR_FONT: white;
 
-$DANGEROUS_COLOR: var(--orphea-intent-danger);
+$DANGEROUS_COLOR: var(--movetodata-intent-danger);
 $DANGEROUS_COLOR_BORDER: red;
 $DANGEROUS_COLOR_FONT: white;
 
@@ -102,18 +102,18 @@ $SWITCH_SELECTED_BKG_DARK: rgba(89, 135, 224, 0.15);
   --color: #{$color};
   --icon-color-deafult: #717a94;
   --background-color: #{$background-color};
-  --orphea-font-color-default: #{$orphea-font-color-default};
-  --orphea-font-color-muted: #{$orphea-font-color-muted};
-  --orphea-font-color-light-black: #{$orphea-font-color-light-black};
-  --orphea-bkg-color-default: #{$orphea-bkg-color-default};
-  --orphea-bkg-color-muted: #{$orphea-bkg-color-muted};
-  --orphea-border-color-default: #{$orphea-border-color-default};
-  --orphea-border-color-muted: #{$orphea-border-color-muted};
-  --orphea-hover-color: #{$orphea-hover-color};
-  --orphea-intent-danger: #{$orphea-intent-danger};
+  --movetodata-font-color-default: #{$movetodata-font-color-default};
+  --movetodata-font-color-muted: #{$movetodata-font-color-muted};
+  --movetodata-font-color-light-black: #{$movetodata-font-color-light-black};
+  --movetodata-bkg-color-default: #{$movetodata-bkg-color-default};
+  --movetodata-bkg-color-muted: #{$movetodata-bkg-color-muted};
+  --movetodata-border-color-default: #{$movetodata-border-color-default};
+  --movetodata-border-color-muted: #{$movetodata-border-color-muted};
+  --movetodata-hover-color: #{$movetodata-hover-color};
+  --movetodata-intent-danger: #{$movetodata-intent-danger};
   --top-bar-border: #{$top-bar-border};
-  --orphea-table-selected: #{$orphea-table-selected};
-  --orphea-font-color-git-blame: #{$orphea-font-color-git-blame};
+  --movetodata-table-selected: #{$movetodata-table-selected};
+  --movetodata-font-color-git-blame: #{$movetodata-font-color-git-blame};
 
   // Button CSS Vars
   --INTENT_COLOR: #{$INTENT_COLOR};
@@ -154,18 +154,18 @@ $SWITCH_SELECTED_BKG_DARK: rgba(89, 135, 224, 0.15);
 .dark {
   --color: #{$color-dark};
   --background-color: #{$background-color-dark};
-  --orphea-font-color-default: #{$orphea-font-color-default-dark};
-  --orphea-font-color-muted: #{$orphea-font-color-muted-dark};
-  --orphea-font-color-light-black: #{$orphea-font-color-light-black-dark};
-  --orphea-bkg-color-default: #{$orphea-bkg-color-default-dark};
-  --orphea-bkg-color-muted: #{$orphea-bkg-color-muted-dark};
-  --orphea-border-color-default: #{$orphea-border-color-default-dark};
-  --orphea-border-color-muted: #{$orphea-border-color-muted-dark};
-  --orphea-hover-color: #{$orphea-hover-color-dark};
-  --orphea-intent-danger: #{$orphea-intent-danger-dark};
+  --movetodata-font-color-default: #{$movetodata-font-color-default-dark};
+  --movetodata-font-color-muted: #{$movetodata-font-color-muted-dark};
+  --movetodata-font-color-light-black: #{$movetodata-font-color-light-black-dark};
+  --movetodata-bkg-color-default: #{$movetodata-bkg-color-default-dark};
+  --movetodata-bkg-color-muted: #{$movetodata-bkg-color-muted-dark};
+  --movetodata-border-color-default: #{$movetodata-border-color-default-dark};
+  --movetodata-border-color-muted: #{$movetodata-border-color-muted-dark};
+  --movetodata-hover-color: #{$movetodata-hover-color-dark};
+  --movetodata-intent-danger: #{$movetodata-intent-danger-dark};
   --top-bar-border: #{$top-bar-border-dark};
-  --orphea-table-selected: #{$orphea-table-selected-dark};
-  --orphea-font-color-git-blame-dark: #{$orphea-font-color-git-blame-dark};
+  --movetodata-table-selected: #{$movetodata-table-selected-dark};
+  --movetodata-font-color-git-blame-dark: #{$movetodata-font-color-git-blame-dark};
 
   // Input CSS Vars
   --INPUT_BOX_SHADOW: #{$INPUT_BOX_SHADOW_DARK};
@@ -316,7 +316,7 @@ $xl: 1.25rem; /* 20px */
   width: 100%;
   height: 2px; /* Adjust the height of the line */
   background-color: var(
-    --orphea-intent-danger
+    --movetodata-intent-danger
   ); /* Change the color of the line */
   transform: translateY(-50%) rotate(-0deg); /* Adjust rotation angle */
 }

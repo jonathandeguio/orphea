@@ -1,13 +1,13 @@
-import { Col, Divider, Row, Typography } from "antd";
+﻿import { Col, Divider, Row, Typography } from "antd";
 import React from "react";
 
 import { Form } from "antd";
-import OrpheaLoader from "components/orpheaLoader";
+import MoveToDataLoader from "components/movetodataLoader";
 import { useDispatch, useSelector } from "react-redux";
 import { updatePlatformConfig } from "redux/actions/platformSettingsActions";
 import { ThunkAppDispatch } from "redux/types/store";
-import OrpheaInput from "components/InputComponent/OrpheaInput";
-import OrpheaButton from "components/ButtonComponent/OrpheaButton";
+import MoveToDataInput from "components/InputComponent/MoveToDataInput";
+import MoveToDataButton from "components/ButtonComponent/MoveToDataButton";
 
 const { Title, Text } = Typography;
 
@@ -54,22 +54,22 @@ const BranchSettings = () => {
 
               <Col>
                 <Form.Item name="defaultBranch">
-                  <OrpheaInput />
+                  <MoveToDataInput />
                 </Form.Item>
               </Col>
             </Row>
             <Row justify="end">
               <Col>
                 <Form.Item>
-                  <OrpheaButton intent="primary" htmlType="submit">
+                  <MoveToDataButton intent="primary" htmlType="submit">
                     Update Branch
-                  </OrpheaButton>
+                  </MoveToDataButton>
                 </Form.Item>
               </Col>
             </Row>
           </Form>
         ) : (
-          <OrpheaLoader />
+          <MoveToDataLoader />
         )}
       </p>
     </div>

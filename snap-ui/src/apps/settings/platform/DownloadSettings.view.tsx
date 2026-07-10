@@ -1,4 +1,4 @@
-import {
+﻿import {
   Card,
   Col,
   Divider,
@@ -11,10 +11,10 @@ import {
   Tooltip,
   Typography,
 } from "antd";
-import { SaveIcon } from "assets/icons/orpheaActionIcons";
+import { SaveIcon } from "assets/icons/movetodataActionIcons";
 import axios from "axios";
 import UserPopOver from "components/UserPopover/userpopover";
-import OrpheaLoader from "components/orpheaLoader";
+import MoveToDataLoader from "components/movetodataLoader";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -23,7 +23,7 @@ import { updatePlatformConfig } from "redux/actions/platformSettingsActions";
 import { ThunkAppDispatch } from "redux/types/store";
 import { getDownloadLogsAPI } from "./PlatformConfig.api";
 import { defaultLimit } from "./PlatformConfig.constants";
-import OrpheaButton from "components/ButtonComponent/OrpheaButton";
+import MoveToDataButton from "components/ButtonComponent/MoveToDataButton";
 
 const { Text, Title } = Typography;
 export const DownloadSettings = () => {
@@ -207,7 +207,7 @@ export const DownloadSettings = () => {
               <Row>
                 <Col span={6}></Col>
                 <Col>
-                  <OrpheaButton
+                  <MoveToDataButton
                     icon={<SaveIcon />}
                     intent="primary"
                     onClick={() => {
@@ -223,7 +223,7 @@ export const DownloadSettings = () => {
                   >
                     {" "}
                     {getLanguageLabel("update")}{" "}
-                  </OrpheaButton>
+                  </MoveToDataButton>
                 </Col>
               </Row>{" "}
             </>
@@ -274,7 +274,7 @@ export const DownloadSettings = () => {
   return (
     <div className="settings-center-block">
       {loading ? (
-        <OrpheaLoader />
+        <MoveToDataLoader />
       ) : (
         <>
           <Row>

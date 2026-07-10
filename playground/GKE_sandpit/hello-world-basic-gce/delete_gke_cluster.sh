@@ -1,10 +1,10 @@
-#!/usr/bin/env zsh
+﻿#!/usr/bin/env zsh
 
 # Build the GKE cluster
 # https://cloud.google.com/kubernetes-engine/docs/quickstart
 #
 # Pre-Reqs:
-# - An account in the appropriate Directory (Google Workspace in Orphea's case).
+# - An account in the appropriate Directory (Google Workspace in MoveToData's case).
 # - Google Cloud SDK must be installed on local machine or run within the 
 #   Google Cloud Shell.  Visit https://cloud.google.com/sdk/docs/install
 # - The Kubernetes Kubectl command-line tool needs to be installed on the 
@@ -24,7 +24,7 @@ if [[ "$VARIN" != [Yy] ]] ; then
     echo "\n exiting..." ; return 1
 fi
 
-#PROJECT_ID=orphea-test
+#PROJECT_ID=movetodata-test
 #COMPUTE_REGION=europe-west2
 #COMPUTE_ZONE=europe-west2-a
 PROJECT_ID=project2-foo

@@ -1,4 +1,4 @@
-import { Col, Divider, Row, Table, Tooltip, Typography } from "antd";
+﻿import { Col, Divider, Row, Table, Tooltip, Typography } from "antd";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios"; // Ensure axios is imported
@@ -23,27 +23,27 @@ import {
   StopIcon,
   SyncIcon,
   WarningIcon,
-} from "assets/icons/orpheaActionIcons";
+} from "assets/icons/movetodataActionIcons";
 
 import { ThunkAppDispatch } from "redux/types/store";
 
-import { ComponentIcon } from "assets/icons/orpheaInterfaceIcons";
-import { TrashIcon } from "assets/icons/orpheaMiscellaneousIcons";
-import { ArrowLeftIcon, TickIcon } from "assets/icons/orpheaNavigationIcon";
-import { getDefaultFavicon } from "components/orpheaLoader/FavIconLoader";
-import OrpheaModal from "components/OrpheaModalContainer";
-import OrpheaButton from "components/ButtonComponent/OrpheaButton";
+import { ComponentIcon } from "assets/icons/movetodataInterfaceIcons";
+import { TrashIcon } from "assets/icons/movetodataMiscellaneousIcons";
+import { ArrowLeftIcon, TickIcon } from "assets/icons/movetodataNavigationIcon";
+import { getDefaultFavicon } from "components/movetodataLoader/FavIconLoader";
+import MoveToDataModal from "components/MoveToDataModalContainer";
+import MoveToDataButton from "components/ButtonComponent/MoveToDataButton";
 import NoData from "components/NoData";
 import { useNavigate, useParams } from "react-router";
 import {
   getAllArtifactsDetails as getAllArtifactsByTriggerId,
   getAllArtifactsDetails,
 } from "redux/actions/ArtifactActions";
-import OrpheaLoader from "components/orpheaLoader";
-import OrpheaInput from "components/InputComponent/OrpheaInput";
+import MoveToDataLoader from "components/movetodataLoader";
+import MoveToDataInput from "components/InputComponent/MoveToDataInput";
 import { artifactLog, deleteArtifact, runTrigger } from "../apis";
 import "../BuildsStyle.scss";
-import { CopyIcon } from "assets/icons/orpheaEditorIcons";
+import { CopyIcon } from "assets/icons/movetodataEditorIcons";
 
 const { Title, Text } = Typography;
 
@@ -244,7 +244,7 @@ const Artifacts = () => {
       dataIndex: "tag",
       sorter: (a: any, b: any) => a.tag.localeCompare(b.tag),
       render: (text: number) => (
-        <div className="OrpheaSpan">{text ? text : "None"}</div>
+        <div className="MoveToDataSpan">{text ? text : "None"}</div>
       ),
     },
     {
@@ -255,7 +255,7 @@ const Artifacts = () => {
         if (text) {
           const shortText = `${text.slice(0, 14)}...`; // Shortened ID with "..."
           return (
-            <OrpheaInput
+            <MoveToDataInput
               value={shortText}
               readOnly
               suffix={
@@ -266,7 +266,7 @@ const Artifacts = () => {
                   <div
                     onClick={() =>
                       copyToClipboard(
-                        `/orphea/snap/artifactory/artifacts/${text}`
+                        `/movetodata/snap/artifactory/artifacts/${text}`
                       )
                     }
                   >
@@ -286,14 +286,14 @@ const Artifacts = () => {
       dataIndex: "commitId",
       render: (latestCommitId: string, record: any) => {
         if (!latestCommitId) {
-          return <div className="OrpheaSpan">None</div>;
+          return <div className="MoveToDataSpan">None</div>;
         }
 
         const shortCommitId = latestCommitId.slice(0, 7);
 
         return (
           <a
-            href={`https://github.com/Orphea-io/${triggerName}/commit/${latestCommitId}`} //////////////////////////////////////
+            href={`https://github.com/MoveToData-io/${triggerName}/commit/${latestCommitId}`} //////////////////////////////////////
             target="_blank"
             rel="noopener noreferrer"
             className={"commitedId"}
@@ -307,7 +307,7 @@ const Artifacts = () => {
       title: getLanguageLabel("startedAt").toUpperCase(),
       dataIndex: "startedAt",
       render: (text: number) => (
-        <div className="OrpheaSpan">{timeConverter(text)}</div>
+        <div className="MoveToDataSpan">{timeConverter(text)}</div>
       ),
     },
     {
@@ -315,9 +315,9 @@ const Artifacts = () => {
       dataIndex: "finishedAt",
       render: (text: number, row: any) => {
         if (!row.finishedAt) {
-          return <div className="OrpheaSpan">None</div>;
+          return <div className="MoveToDataSpan">None</div>;
         }
-        return <div className="OrpheaSpan">{timeConverter(text)}</div>;
+        return <div className="MoveToDataSpan">{timeConverter(text)}</div>;
       },
     },
     {
@@ -329,7 +329,7 @@ const Artifacts = () => {
           return formatDuration(currentTime - row.startedAt);
         }
         return (
-          <div className="OrpheaSpan">
+          <div className="MoveToDataSpan">
             {formatDuration(row.finishedAt - row.startedAt)}
           </div>
         );
@@ -339,13 +339,13 @@ const Artifacts = () => {
       title: getLanguageLabel("detailedLogs").toUpperCase(),
       dataIndex: "id",
       render: (id: string) => (
-        <OrpheaButton
+        <MoveToDataButton
           onClick={() => openLog(id)}
           icon={<ComponentIcon />}
           minimal
         >
           {getLanguageLabel("detailedLogs")}
-        </OrpheaButton>
+        </MoveToDataButton>
       ),
     },
     {
@@ -354,7 +354,7 @@ const Artifacts = () => {
       render: (text: any, record: any) => {
         return (
           <>
-            <OrpheaButton
+            <MoveToDataButton
               onClick={() => {
                 setDeleteArtifactDetails({ ...record });
                 setDeleteArtifactModal(true);
@@ -416,28 +416,28 @@ const Artifacts = () => {
     });
   }
 
-  if (loading) return <OrpheaLoader />;
+  if (loading) return <MoveToDataLoader />;
 
   return (
     <>
-      <OrpheaModal
+      <MoveToDataModal
         headingIcon={<TrashIcon color="var(--DANGEROUS_COLOR)" />}
         heading={getLanguageLabel("areYouSureYouWantToDeleteThis?")}
         open={deleteArtifactModal}
         onCancel={handleDeleteCancel}
         onOk={() => deleteArtifactHandler()}
         footerButtonArea={
-          <OrpheaButton
+          <MoveToDataButton
             icon={<TrashIcon />}
             onClick={() => deleteArtifactHandler()}
             intent="dangerous"
           >
             {getLanguageLabel("delete")}
-          </OrpheaButton>
+          </MoveToDataButton>
         }
       >
         {deleteArtifactDetails.id}
-      </OrpheaModal>
+      </MoveToDataModal>
 
       <div className="settings-center-block">
         <Title className={styles.build_title} level={3}>
@@ -466,7 +466,7 @@ const Artifacts = () => {
                 placement="top"
                 title={"Run a new build on this trigger."}
               >
-                <OrpheaButton
+                <MoveToDataButton
                   icon={<BuildIcon />}
                   intent="action"
                   onClick={() => {
@@ -474,16 +474,16 @@ const Artifacts = () => {
                   }}
                 >
                   Build
-                </OrpheaButton>
+                </MoveToDataButton>
               </Tooltip>
-              <OrpheaModal
+              <MoveToDataModal
                 headingIcon={<BuildIcon />}
                 heading={"Are you sure you want to build : " + triggerName}
                 open={isModalVisible}
                 onCancel={handleCancel}
                 onOk={() => handleOk()}
                 footerButtonArea={[
-                  <OrpheaButton
+                  <MoveToDataButton
                     key="build" // Add key to avoid warnings
                     icon={<BuildIcon />}
                     disabled={isBuildButtonDisabled}
@@ -491,8 +491,8 @@ const Artifacts = () => {
                     intent="action"
                   >
                     {getLanguageLabel("build")}
-                  </OrpheaButton>,
-                  <OrpheaButton
+                  </MoveToDataButton>,
+                  <MoveToDataButton
                     key="cancel" // Add key to avoid warnings
                     icon={<CrossIcon />}
                     onClick={handleCancel}
@@ -508,22 +508,22 @@ const Artifacts = () => {
                     onMouseLeave={() => setIsCancelHovered(false)}
                   >
                     {getLanguageLabel("cancel")}
-                  </OrpheaButton>,
+                  </MoveToDataButton>,
                 ]}
               >
-                <OrpheaInput
+                <MoveToDataInput
                   placeholder="Enter artifact name"
                   value={artifactName}
                   onChange={handleArtifactNameChange}
                 />
-              </OrpheaModal>
+              </MoveToDataModal>
             </Col>
           </Row>
 
           <Divider />
         </p>
 
-        <OrpheaInput
+        <MoveToDataInput
           placeholder={getLanguageLabel("search")}
           allowClear
           onChange={(e: any) => {
@@ -542,7 +542,7 @@ const Artifacts = () => {
           pagination={false}
         />
       </div>
-      <OrpheaModal
+      <MoveToDataModal
         className={styles.modal}
         destroyOnClose
         headingIcon={<ComponentIcon />}
@@ -552,14 +552,14 @@ const Artifacts = () => {
         onCancel={() => setIsLogModalOpen(false)}
         footer={
           <div className={styles.footer}>
-            <OrpheaButton
+            <MoveToDataButton
               onClick={() => setIsLogModalOpen(false)}
               size="large"
               outlined
               style={{ margin: "0 20px" }}
             >
               Close
-            </OrpheaButton>
+            </MoveToDataButton>
           </div>
         }
       >
@@ -568,7 +568,7 @@ const Artifacts = () => {
         ) : (
           <NoData heading={"No logs found"} />
         )}
-      </OrpheaModal>
+      </MoveToDataModal>
     </>
   );
 };

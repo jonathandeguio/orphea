@@ -1,4 +1,4 @@
-name: Automated Run Trigger
+﻿name: Automated Run Trigger
 
 on:
   push:
@@ -17,6 +17,6 @@ jobs:
           elif [ "${{ github.ref_name }}" == "feature" ]; then
             ID="${{ secrets.FEATURE_TRIGGER_ID }}"
           fi
-          curl -X GET "https://snap.orphea.io:8082/api/build/trigger/run/${ID}" \
+          curl -X GET "https://snap.movetodata.io:8082/api/build/trigger/run/${ID}" \
           -H "Authorization: Bearer ${{ secrets.SNAP_TOKEN }}" \
           -H "Content-Type: application/json"

@@ -1,7 +1,7 @@
-import { Col, Divider, Form, Radio, Row, Typography } from "antd";
+﻿import { Col, Divider, Form, Radio, Row, Typography } from "antd";
 import TextArea from "antd/es/input/TextArea";
 
-import OrpheaLoader from "components/orpheaLoader";
+import MoveToDataLoader from "components/movetodataLoader";
 import React, { useEffect, useState } from "react";
 
 import {
@@ -14,8 +14,8 @@ import {
   getBackingFsConfigAPI,
   updateBackingFsConfigAPI,
 } from "./BackingFsConfig.api";
-import OrpheaInput from "components/InputComponent/OrpheaInput";
-import OrpheaButton from "components/ButtonComponent/OrpheaButton";
+import MoveToDataInput from "components/InputComponent/MoveToDataInput";
+import MoveToDataButton from "components/ButtonComponent/MoveToDataButton";
 
 const { Text, Title } = Typography;
 export const BackingFsSettings = () => {
@@ -35,7 +35,7 @@ export const BackingFsSettings = () => {
             <Col span={16}>
               <Text type="secondary"></Text>
               <Form.Item name="localFs">
-                <OrpheaInput />
+                <MoveToDataInput />
               </Form.Item>
             </Col>
           </Row>
@@ -51,7 +51,7 @@ export const BackingFsSettings = () => {
             <Col span={16}>
               <Text type="secondary"></Text>
               <Form.Item name="hdfs">
-                <OrpheaInput />
+                <MoveToDataInput />
               </Form.Item>
             </Col>
           </Row>
@@ -67,7 +67,7 @@ export const BackingFsSettings = () => {
             <Col span={16}>
               <Text type="secondary"></Text>
               <Form.Item name="s3Bucket">
-                <OrpheaInput />
+                <MoveToDataInput />
               </Form.Item>
             </Col>
           </Row>
@@ -78,7 +78,7 @@ export const BackingFsSettings = () => {
             <Col span={16}>
               <Text type="secondary"></Text>
               <Form.Item name="s3AccessKey">
-                <OrpheaInput />
+                <MoveToDataInput />
               </Form.Item>
             </Col>
           </Row>
@@ -89,7 +89,7 @@ export const BackingFsSettings = () => {
             <Col span={16}>
               <Text type="secondary"></Text>
               <Form.Item name="s3SecretKey">
-                <OrpheaInput />
+                <MoveToDataInput />
               </Form.Item>
             </Col>
           </Row>
@@ -105,7 +105,7 @@ export const BackingFsSettings = () => {
             <Col span={16}>
               <Text type="secondary"></Text>
               <Form.Item name="gsBucket">
-                <OrpheaInput />
+                <MoveToDataInput />
               </Form.Item>
             </Col>
           </Row>
@@ -134,7 +134,7 @@ export const BackingFsSettings = () => {
   return (
     <div className="settings-center-block">
       {loading ? (
-        <OrpheaLoader />
+        <MoveToDataLoader />
       ) : (
         <>
           <Form
@@ -208,7 +208,7 @@ export const BackingFsSettings = () => {
             <Row justify="space-between">
               <Col span={8}>
                 <div
-                  className="OrpheaSubHeader1 text-and-icon-center"
+                  className="MoveToDataSubHeader1 text-and-icon-center"
                   style={{ marginRight: "0.5rem" }}
                 >
                   Only platform administrators can view or edit this
@@ -217,13 +217,13 @@ export const BackingFsSettings = () => {
               </Col>
               <Col span={16}>
                 <Form.Item style={{ marginBottom: 0, marginLeft: "auto" }}>
-                  <OrpheaButton
+                  <MoveToDataButton
                     htmlType="submit"
                     intent="primary"
                     disabled={!isUpdateButtonEnabled}
                   >
                     Update Configuration
-                  </OrpheaButton>
+                  </MoveToDataButton>
                 </Form.Item>
               </Col>
             </Row>

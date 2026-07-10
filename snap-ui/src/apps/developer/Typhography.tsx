@@ -1,6 +1,6 @@
-import { Typography } from "antd";
+﻿import { Typography } from "antd";
 import React from "react";
-import { BTH1 } from "components/OrpheaTypography";
+import { BTH1 } from "components/MoveToDataTypography";
 
 const { Title } = Typography;
 

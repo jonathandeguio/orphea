@@ -1,4 +1,4 @@
-import {
+﻿import {
   Avatar,
   Col,
   Dropdown,
@@ -11,12 +11,12 @@ import {
   Typography,
 } from "antd";
 
-import { MoreMenuIcon } from "assets/icons/orpheaActionIcons";
-import { EditIcon } from "assets/icons/orpheaEditorIcons";
-import { TrashIcon } from "assets/icons/orpheaMiscellaneousIcons";
-import { ResolveIcon } from "assets/icons/orpheaNavigationIcon";
+import { MoreMenuIcon } from "assets/icons/movetodataActionIcons";
+import { EditIcon } from "assets/icons/movetodataEditorIcons";
+import { TrashIcon } from "assets/icons/movetodataMiscellaneousIcons";
+import { ResolveIcon } from "assets/icons/movetodataNavigationIcon";
 import { KeyboardEvent, useState } from "react";
-import OrpheaButton from "../ButtonComponent/OrpheaButton";
+import MoveToDataButton from "../ButtonComponent/MoveToDataButton";
 
 import {
   getLanguageLabel,
@@ -200,11 +200,11 @@ const OpenComments = ({
                                       }}
                                       className="text-and-icon-center"
                                       style={{
-                                        color: "var(--orphea-intent-danger)",
+                                        color: "var(--movetodata-intent-danger)",
                                       }}
                                     >
                                       <TrashIcon
-                                        color={"var(--orphea-intent-danger)"}
+                                        color={"var(--movetodata-intent-danger)"}
                                       />
                                       {getLanguageLabel("delete")}
                                     </div>
@@ -286,7 +286,7 @@ const OpenComments = ({
                     </Form.Item>
 
                     <Row justify="end">
-                      <OrpheaButton
+                      <MoveToDataButton
                         intent="dangerous"
                         size="small"
                         onClick={(e: any) => {
@@ -297,16 +297,16 @@ const OpenComments = ({
                         minimal
                       >
                         {getLanguageLabel("cancel")}
-                      </OrpheaButton>
+                      </MoveToDataButton>
                       &nbsp;
-                      <OrpheaButton
+                      <MoveToDataButton
                         intent="primary"
                         size="small"
                         htmlType="submit"
                         minimal
                       >
                         {getLanguageLabel("save")}
-                      </OrpheaButton>
+                      </MoveToDataButton>
                     </Row>
                   </Form>
                 ) : (
@@ -317,7 +317,7 @@ const OpenComments = ({
               {comment.replies.length > 0 && (
                 <div
                   style={{
-                    borderLeft: "1px solid var(--orphea-border-color-default)",
+                    borderLeft: "1px solid var(--movetodata-border-color-default)",
                     marginTop: "0.5rem",
                     paddingLeft: "0.7rem",
                   }}
@@ -425,12 +425,12 @@ const OpenComments = ({
                                             className="text-and-icon-center"
                                             style={{
                                               color:
-                                                "var(--orphea-intent-danger)",
+                                                "var(--movetodata-intent-danger)",
                                             }}
                                           >
                                             <TrashIcon
                                               color={
-                                                "var(--orphea-intent-danger)"
+                                                "var(--movetodata-intent-danger)"
                                               }
                                             />
                                             {getLanguageLabel("delete")}
@@ -527,7 +527,7 @@ const OpenComments = ({
                               </Form.Item>
 
                               <Row justify="end">
-                                <OrpheaButton
+                                <MoveToDataButton
                                   intent="dangerous"
                                   size="small"
                                   onClick={(e: any) => {
@@ -539,9 +539,9 @@ const OpenComments = ({
                                   minimal
                                 >
                                   {getLanguageLabel("cancel")}
-                                </OrpheaButton>
+                                </MoveToDataButton>
                                 &nbsp;
-                                <OrpheaButton
+                                <MoveToDataButton
                                   intent="primary"
                                   size="small"
                                   htmlType="submit"
@@ -549,7 +549,7 @@ const OpenComments = ({
                                   minimal
                                 >
                                   {getLanguageLabel("save")}
-                                </OrpheaButton>
+                                </MoveToDataButton>
                               </Row>
                             </Form>
                           ) : (
@@ -611,7 +611,7 @@ const OpenComments = ({
                     </Form.Item>
 
                     <Row justify="end">
-                      <OrpheaButton
+                      <MoveToDataButton
                         intent="dangerous"
                         size="small"
                         onClick={(e: any) => {
@@ -623,9 +623,9 @@ const OpenComments = ({
                         minimal
                       >
                         {getLanguageLabel("cancel")}
-                      </OrpheaButton>
+                      </MoveToDataButton>
                       &nbsp;
-                      <OrpheaButton
+                      <MoveToDataButton
                         intent="primary"
                         size="small"
                         htmlType="submit"
@@ -633,11 +633,11 @@ const OpenComments = ({
                         minimal
                       >
                         {getLanguageLabel("reply")}
-                      </OrpheaButton>
+                      </MoveToDataButton>
                     </Row>
                   </Form>
                 ) : (
-                  <OrpheaButton
+                  <MoveToDataButton
                     onClick={(e: any) => {
                       e.preventDefault();
                       e.stopPropagation();
@@ -649,7 +649,7 @@ const OpenComments = ({
                     // icon={<ChatIcon />}
                   >
                     {getLanguageLabel("reply")}
-                  </OrpheaButton>
+                  </MoveToDataButton>
                 )}
               </Row>
               <br />

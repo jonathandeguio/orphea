@@ -1,4 +1,4 @@
-options:
+﻿options:
   logging: CLOUD_LOGGING_ONLY
 steps:
   # Step 1
@@ -6,21 +6,21 @@ steps:
 #    entrypoint: 'bash'
 #    args: [
 #        '-c',
-#        'docker pull europe-west2-docker.pkg.dev/$PROJECT_ID/orphea-cr/boson:latest || exit 0'
+#        'docker pull europe-west2-docker.pkg.dev/$PROJECT_ID/movetodata-cr/boson:latest || exit 0'
 #    ]
   # Step 2
   - name: gcr.io/cloud-builders/docker
     args: [
         'build',
         '-t',
-        'europe-west2-docker.pkg.dev/$PROJECT_ID/orphea-cr/boson:latest',
+        'europe-west2-docker.pkg.dev/$PROJECT_ID/movetodata-cr/boson:latest',
         '.'
     ]
 
   - name: gcr.io/cloud-builders/docker
     args: [
         'push',
-        'europe-west2-docker.pkg.dev/$PROJECT_ID/orphea-cr/boson:latest'
+        'europe-west2-docker.pkg.dev/$PROJECT_ID/movetodata-cr/boson:latest'
     ]
   # Step 4
 #  - name: 'gcr.io/cloud-builders/kubectl'
@@ -29,15 +29,15 @@ steps:
 #        'image',
 #        'deployment',
 #        'boson',
-#        'boson=europe-west2-docker.pkg.dev/$PROJECT_ID/orphea-cr/boson:latest',
+#        'boson=europe-west2-docker.pkg.dev/$PROJECT_ID/movetodata-cr/boson:latest',
 #        '--namespace',
-#        'orphea'
+#        'movetodata'
 #    ]
     env:
       - 'CLOUDSDK_COMPUTE_ZONE=europe-west2-b'
-      - 'CLOUDSDK_CONTAINER_CLUSTER=orphea'
+      - 'CLOUDSDK_CONTAINER_CLUSTER=movetodata'
 images: [
-    'europe-west2-docker.pkg.dev/$PROJECT_ID/orphea-cr/boson:latest'
+    'europe-west2-docker.pkg.dev/$PROJECT_ID/movetodata-cr/boson:latest'
 ]
 timeout: 2400s
 

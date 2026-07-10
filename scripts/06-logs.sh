@@ -1,6 +1,6 @@
-#!/usr/bin/env bash
+﻿#!/usr/bin/env bash
 # =============================================================================
-# Orphea Platform — Script 06 : Consultation des logs
+# MoveToData Platform — Script 06 : Consultation des logs
 # Usage : bash 06-logs.sh [--service boson|frontend|snap|tycho|db|redis|all]
 #                         [--tail N] [--follow]
 # =============================================================================
@@ -36,9 +36,9 @@ logs() {
 
 case "${SERVICE}" in
   boson)
-    logs "orphea-boson" "Boson API"
+    logs "movetodata-boson" "Boson API"
     # Logs Tomcat access logs
-    ACCESS_LOG_DIR="${ORPHEA_MOUNT_PATH:-/orphea}/logs/boson/accessLogs"
+    ACCESS_LOG_DIR="${MOVETODATA_MOUNT_PATH:-/movetodata}/logs/boson/accessLogs"
     if [[ -d "${ACCESS_LOG_DIR}" ]]; then
       info "=== Access logs Tomcat ==="
       ls -lah "${ACCESS_LOG_DIR}/" 2>/dev/null | tail -5
@@ -47,37 +47,37 @@ case "${SERVICE}" in
     fi
     ;;
   frontend)
-    logs "orphea-frontend" "Frontend Nginx"
+    logs "movetodata-frontend" "Frontend Nginx"
     ;;
   snap)
-    logs "orphea-snap" "Snap API"
-    logs "orphea-snap-ui" "Snap UI"
-    logs "orphea-snap-proxy" "Snap Proxy Nginx"
+    logs "movetodata-snap" "Snap API"
+    logs "movetodata-snap-ui" "Snap UI"
+    logs "movetodata-snap-proxy" "Snap Proxy Nginx"
     ;;
   tycho)
-    logs "orphea-tycho" "Tycho App"
-    logs "orphea-tycho-worker" "Tycho Worker"
-    logs "orphea-tycho-beat" "Tycho Beat"
+    logs "movetodata-tycho" "Tycho App"
+    logs "movetodata-tycho-worker" "Tycho Worker"
+    logs "movetodata-tycho-beat" "Tycho Beat"
     ;;
   db)
-    logs "orphea-boson-db" "PostgreSQL Boson"
-    logs "orphea-snap-db" "PostgreSQL Snap"
-    logs "orphea-tycho-db" "PostgreSQL Tycho"
+    logs "movetodata-boson-db" "PostgreSQL Boson"
+    logs "movetodata-snap-db" "PostgreSQL Snap"
+    logs "movetodata-tycho-db" "PostgreSQL Tycho"
     ;;
   redis)
-    logs "orphea-redis" "Redis"
+    logs "movetodata-redis" "Redis"
     ;;
   all)
-    logs "orphea-boson-db" "PostgreSQL Boson"
-    logs "orphea-redis" "Redis"
-    logs "orphea-boson" "Boson API"
-    logs "orphea-frontend" "Frontend"
-    logs "orphea-snap" "Snap API"
-    logs "orphea-tycho" "Tycho App"
-    logs "orphea-tycho-worker" "Tycho Worker"
+    logs "movetodata-boson-db" "PostgreSQL Boson"
+    logs "movetodata-redis" "Redis"
+    logs "movetodata-boson" "Boson API"
+    logs "movetodata-frontend" "Frontend"
+    logs "movetodata-snap" "Snap API"
+    logs "movetodata-tycho" "Tycho App"
+    logs "movetodata-tycho-worker" "Tycho Worker"
     ;;
   *)
     # Essai direct avec le nom donné
-    logs "orphea-${SERVICE}" "${SERVICE}"
+    logs "movetodata-${SERVICE}" "${SERVICE}"
     ;;
 esac

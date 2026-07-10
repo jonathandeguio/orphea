@@ -1,8 +1,8 @@
-import { Avatar, Badge, Col, Popover, Row, Spin, Typography } from "antd";
-import { GitCommitIcon } from "assets/icons/orpheaExternalIcons";
-import { EmailIcon } from "assets/icons/orpheaFileIcons";
-import { GroupsIcon } from "assets/icons/orpheaInterfaceIcons";
-import { SharedWorkspaceIcon } from "assets/icons/orpheaMiscellaneousIcons";
+﻿import { Avatar, Badge, Col, Popover, Row, Spin, Typography } from "antd";
+import { GitCommitIcon } from "assets/icons/movetodataExternalIcons";
+import { EmailIcon } from "assets/icons/movetodataFileIcons";
+import { GroupsIcon } from "assets/icons/movetodataInterfaceIcons";
+import { SharedWorkspaceIcon } from "assets/icons/movetodataMiscellaneousIcons";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {

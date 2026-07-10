@@ -1,19 +1,19 @@
-import axios from "axios";
+﻿import axios from "axios";
 import React, { Dispatch, SetStateAction } from "react";
 import { useDispatch } from "react-redux";
 import { getLanguageLabel, isDefined, openNotification } from "utils/utilities";
-import { TickIcon } from "assets/icons/orpheaNavigationIcon";
+import { TickIcon } from "assets/icons/movetodataNavigationIcon";
 import { getAllTriggerDetails } from "redux/actions/TriggerActions";
 import { ThunkAppDispatch } from "redux/types/store";
 
 import { Form, Select } from "antd";
-import { AddIcon } from "assets/icons/orpheaActionIcons";
+import { AddIcon } from "assets/icons/movetodataActionIcons";
 import { ErrorResponse } from "global";
-import OrpheaModal from "components/OrpheaModalContainer";
-import OrpheaButton from "components/ButtonComponent/OrpheaButton";
-import OrpheaInput from "components/InputComponent/OrpheaInput";
+import MoveToDataModal from "components/MoveToDataModalContainer";
+import MoveToDataButton from "components/ButtonComponent/MoveToDataButton";
+import MoveToDataInput from "components/InputComponent/MoveToDataInput";
 import { createTriggerAPI } from "../apis";
-import { EditIcon } from "assets/icons/orpheaEditorIcons";
+import { EditIcon } from "assets/icons/movetodataEditorIcons";
 
 interface Props {
   isOpen: boolean;
@@ -67,35 +67,35 @@ const EditTriggerModal = ({ isOpen, setIsOpen, selectedRecord }: Props) => {
           .finally(() => setIsOpen(false));
       }}
     >
-      <OrpheaModal
+      <MoveToDataModal
         headingIcon={<EditIcon />}
         heading={`Edit ${name} trigger`}
         open={isOpen}
         onCancel={() => setIsOpen(false)}
         footerButtonArea={
           <Item>
-            <OrpheaButton
+            <MoveToDataButton
               icon={<TickIcon />}
               intent="action"
               htmlType="submit"
               onClick={() => form.submit()}
             >
               {getLanguageLabel("edit")}
-            </OrpheaButton>
+            </MoveToDataButton>
           </Item>
         }
         width={600}
       >
         <Item label="Description" name="description">
-          <OrpheaInput defaultValue={description} />
+          <MoveToDataInput defaultValue={description} />
         </Item>
 
         <Item label="Docker File Name" name="configFileName">
-          <OrpheaInput defaultValue={configFileName} />
+          <MoveToDataInput defaultValue={configFileName} />
         </Item>
 
         <Item label="Registry" name="harborProjectName">
-          <OrpheaInput defaultValue={harborProjectName} />
+          <MoveToDataInput defaultValue={harborProjectName} />
         </Item>
 
         <Item label="Build Type" name="buildType">
@@ -114,16 +114,16 @@ const EditTriggerModal = ({ isOpen, setIsOpen, selectedRecord }: Props) => {
           />
         </Item>
 
-        <span className="OrpheaHeader1">{getLanguageLabel("repository")}</span>
+        <span className="MoveToDataHeader1">{getLanguageLabel("repository")}</span>
         <Item
           label="Branch"
           name="repositoryBranch"
 
           //   rules={[{ required: true }]}
         >
-          <OrpheaInput defaultValue={branch} />
+          <MoveToDataInput defaultValue={branch} />
         </Item>
-      </OrpheaModal>
+      </MoveToDataModal>
     </Form>
   );
 };

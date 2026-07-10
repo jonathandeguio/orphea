@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+﻿import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 // import MainLayout from "../layouts/layout";
 import { useSelector } from "react-redux";
@@ -11,7 +11,7 @@ const PrivateOutlet = () => {
   const { user } = useSelector((state) => (state as any).userDetails);
 
   useEffect(() => {
-    if(localStorage.getItem('orpheaToken') !== undefined && localStorage.getItem('orpheaToken') !== null) {
+    if(localStorage.getItem('movetodataToken') !== undefined && localStorage.getItem('movetodataToken') !== null) {
       if(!isTokenValid && !tokenStatusLoading) {
         navigate('/relogin');
       }

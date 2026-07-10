@@ -1,4 +1,4 @@
-server:
+﻿server:
   error:
     include-message: always
     include-binding-errors: always
@@ -13,7 +13,7 @@ server:
   port: 58080
 spring:
   banner:
-    location: classpath:/banner/orphea.txt
+    location: classpath:/banner/movetodata.txt
   datasource:
     driver-class-name: org.h2.Driver
     url: jdbc:h2:mem:localhost;DB_CLOSE_ON_EXIT=FALSE
@@ -29,7 +29,7 @@ spring:
 
 
 file:
-  upload-dir=/Users/rakeshmalik/orphea/uploads
+  upload-dir=/Users/rakeshmalik/movetodata/uploads
 
 logging:
   level:

@@ -1,16 +1,16 @@
-#!/usr/bin/env bash
+﻿#!/usr/bin/env bash
 # =============================================================================
-# Orphea Platform — Script 03 : Démarrage sur Ubuntu
+# MoveToData Platform — Script 03 : Démarrage sur Ubuntu
 # Usage : bash 03-start.sh [--stack core|snap|tycho|all]
 #
 # Chemins :
-#   Application : /opt/orphea      (scripts, code source)
-#   Données     : /opt/orphea/data (volumes Docker)
+#   Application : /opt/movetodata      (scripts, code source)
+#   Données     : /opt/movetodata/data (volumes Docker)
 # =============================================================================
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-ENV_FILE="${SCRIPT_DIR}/.env.orphea"
+ENV_FILE="${SCRIPT_DIR}/.env.movetodata"
 
 RED='\033[0;31m'; GREEN='\033[0;32m'; YELLOW='\033[1;33m'
 BLUE='\033[0;34m'; CYAN='\033[0;36m'; NC='\033[0m'
@@ -25,13 +25,13 @@ section() { echo -e "\n${CYAN}─── $* ───${NC}"; }
 # Chargement de l'environnement
 # =============================================================================
 [[ ! -f "${ENV_FILE}" ]] && \
-  error "Fichier .env.orphea manquant.\n  Exécutez d'abord : bash 01-setup-env.sh"
+  error "Fichier .env.movetodata manquant.\n  Exécutez d'abord : bash 01-setup-env.sh"
 
 set -a
 source "${ENV_FILE}"
 set +a
 
-ORPHEA_MOUNT_PATH="${ORPHEA_MOUNT_PATH:-/opt/orphea/data}"
+MOVETODATA_MOUNT_PATH="${MOVETODATA_MOUNT_PATH:-/opt/movetodata/data}"
 
 # Parsing des arguments
 STACK="all"
@@ -42,9 +42,9 @@ COMPOSE_CORE="${SCRIPT_DIR}/docker-compose.core.yml"
 COMPOSE_SNAP="${SCRIPT_DIR}/docker-compose.snap.yml"
 COMPOSE_TYCHO="${SCRIPT_DIR}/docker-compose.tycho.yml"
 
-compose_core()  { docker compose --project-name orphea -f "${COMPOSE_CORE}"  --env-file "${ENV_FILE}" "$@"; }
-compose_snap()  { docker compose --project-name orphea -f "${COMPOSE_SNAP}"  --env-file "${ENV_FILE}" "$@"; }
-compose_tycho() { docker compose --project-name orphea -f "${COMPOSE_TYCHO}" --env-file "${ENV_FILE}" "$@"; }
+compose_core()  { docker compose --project-name movetodata -f "${COMPOSE_CORE}"  --env-file "${ENV_FILE}" "$@"; }
+compose_snap()  { docker compose --project-name movetodata -f "${COMPOSE_SNAP}"  --env-file "${ENV_FILE}" "$@"; }
+compose_tycho() { docker compose --project-name movetodata -f "${COMPOSE_TYCHO}" --env-file "${ENV_FILE}" "$@"; }
 
 # =============================================================================
 # Vérification port UFW (informatif seulement)
@@ -123,73 +123,73 @@ start_core() {
   section "Stack Core (Boson + Frontend + PostgreSQL + Redis)"
 
   # --- Arrêt des conteneurs existants ---
-  stop_existing orphea-boson-db orphea-redis orphea-boson orphea-frontend
+  stop_existing movetodata-boson-db movetodata-redis movetodata-boson movetodata-frontend
 
   # --- Créer les répertoires nécessaires ---
   info "Préparation des répertoires de données..."
   mkdir -p \
-    "${ORPHEA_MOUNT_PATH}/postgres/boson" \
-    "${ORPHEA_MOUNT_PATH}/redis" \
-    "${ORPHEA_MOUNT_PATH}/boson/logs/accessLogs" \
-    "${ORPHEA_MOUNT_PATH}/boson/data" \
-    "${ORPHEA_MOUNT_PATH}/dataset" \
-    "${ORPHEA_MOUNT_PATH}/file" \
-    "${ORPHEA_MOUNT_PATH}/repositories" \
-    "${ORPHEA_MOUNT_PATH}/spark-streaming" \
-    "${ORPHEA_MOUNT_PATH}/frontend/build"
+    "${MOVETODATA_MOUNT_PATH}/postgres/boson" \
+    "${MOVETODATA_MOUNT_PATH}/redis" \
+    "${MOVETODATA_MOUNT_PATH}/boson/logs/accessLogs" \
+    "${MOVETODATA_MOUNT_PATH}/boson/data" \
+    "${MOVETODATA_MOUNT_PATH}/dataset" \
+    "${MOVETODATA_MOUNT_PATH}/file" \
+    "${MOVETODATA_MOUNT_PATH}/repositories" \
+    "${MOVETODATA_MOUNT_PATH}/spark-streaming" \
+    "${MOVETODATA_MOUNT_PATH}/frontend/build"
 
-  # Vérifier que /etc/orphea/saml.yml est présent et contient une registration SAML2
+  # Vérifier que /etc/movetodata/saml.yml est présent et contient une registration SAML2
   # (le bean RelyingPartyRegistrationRepository doit exister même en mode password)
   _saml_needs_fix=0
-  if [[ ! -f /etc/orphea/saml.yml ]]; then
+  if [[ ! -f /etc/movetodata/saml.yml ]]; then
     _saml_needs_fix=1
-    warn "/etc/orphea/saml.yml absent — création..."
-  elif ! grep -q "relyingparty" /etc/orphea/saml.yml 2>/dev/null; then
+    warn "/etc/movetodata/saml.yml absent — création..."
+  elif ! grep -q "relyingparty" /etc/movetodata/saml.yml 2>/dev/null; then
     _saml_needs_fix=1
-    warn "/etc/orphea/saml.yml incomplet (pas de registration SAML2) — recréation..."
+    warn "/etc/movetodata/saml.yml incomplet (pas de registration SAML2) — recréation..."
   fi
 
   if [[ ${_saml_needs_fix} -eq 1 ]]; then
-    if [[ ! -w /etc/orphea ]] && [[ ! -w /etc/orphea/saml.yml ]]; then
-      warn "Permission refusée pour écrire /etc/orphea/saml.yml"
+    if [[ ! -w /etc/movetodata ]] && [[ ! -w /etc/movetodata/saml.yml ]]; then
+      warn "Permission refusée pour écrire /etc/movetodata/saml.yml"
       warn "Exécutez manuellement (avec sudo) :"
-      warn "  sudo bash -c 'cat > /etc/orphea/saml.yml << EOF"
+      warn "  sudo bash -c 'cat > /etc/movetodata/saml.yml << EOF"
       warn "platform-default-login: password"
       warn "spring:"
       warn "  security:"
       warn "    saml2:"
       warn "      relyingparty:"
       warn "        registration:"
-      warn "          Orphea-SSO:"
+      warn "          MoveToData-SSO:"
       warn "            assertingparty:"
       warn "              singlesignon:"
       warn "                sign-request: false"
       warn "                url: https://login.microsoftonline.com/CHANGEME/saml2"
-      warn "              entity-id: http://orphea.io"
-      warn "            entity-id: http://orphea.io"
+      warn "              entity-id: http://movetodata.io"
+      warn "            entity-id: http://movetodata.io"
       warn "            acs:"
       warn "              location: \${BASE_URL}/api/sso/callback"
       warn "EOF'"
     else
-      mkdir -p /etc/orphea
-      cat > /etc/orphea/saml.yml << 'SAML_EOF'
+      mkdir -p /etc/movetodata
+      cat > /etc/movetodata/saml.yml << 'SAML_EOF'
 platform-default-login: password
 spring:
   security:
     saml2:
       relyingparty:
         registration:
-          Orphea-SSO:
+          MoveToData-SSO:
             assertingparty:
               singlesignon:
                 sign-request: false
                 url: https://login.microsoftonline.com/CHANGEME_TENANT_ID/saml2
-              entity-id: http://orphea.io
-            entity-id: http://orphea.io
+              entity-id: http://movetodata.io
+            entity-id: http://movetodata.io
             acs:
               location: ${BASE_URL}/api/sso/callback
 SAML_EOF
-      success "/etc/orphea/saml.yml créé"
+      success "/etc/movetodata/saml.yml créé"
     fi
   fi
 
@@ -202,7 +202,7 @@ SAML_EOF
   # exister AVANT le démarrage du conteneur, sinon Docker les crée en
   # tant que répertoires et le montage de fichier échoue.
   local FRONTEND_SRC="${SCRIPT_DIR}/../frontend"
-  local FRONTEND_MOUNT="${ORPHEA_MOUNT_PATH}/frontend"
+  local FRONTEND_MOUNT="${MOVETODATA_MOUNT_PATH}/frontend"
 
   info "Écriture du nginx.conf (proxy API + cookies SameSite=Lax)..."
   cat > "${FRONTEND_MOUNT}/nginx.conf" << 'NGINX_EOF'
@@ -309,8 +309,8 @@ NGINX_EOF
   # --- Attente PostgreSQL ---
   info "Attente PostgreSQL (max 60s)..."
   local attempt=0
-  until docker exec orphea-boson-db pg_isready \
-        -U "${BOSON_DB_USERNAME:-orphea}" -d "${BOSON_DB_NAME:-boson}" &>/dev/null; do
+  until docker exec movetodata-boson-db pg_isready \
+        -U "${BOSON_DB_USERNAME:-movetodata}" -d "${BOSON_DB_NAME:-boson}" &>/dev/null; do
     attempt=$((attempt + 1))
     [[ ${attempt} -ge 12 ]] && { warn "PostgreSQL lent — continuez quand même"; break; }
     printf "."
@@ -319,13 +319,13 @@ NGINX_EOF
   echo ""
 
   # --- Attente Boson ---
-  wait_healthy "orphea-boson" 36 || true
+  wait_healthy "movetodata-boson" 36 || true
 
   # --- Activation Upload (si pas encore configuré) ---
-  local DB_USER="${BOSON_DB_USERNAME:-orphea}"
+  local DB_USER="${BOSON_DB_USERNAME:-movetodata}"
   local DB_NAME="${BOSON_DB_NAME:-boson}"
   info "Vérification upload activé dans platform_config..."
-  docker exec orphea-boson-db psql -U "${DB_USER}" -d "${DB_NAME}" -c \
+  docker exec movetodata-boson-db psql -U "${DB_USER}" -d "${DB_NAME}" -c \
     "UPDATE platform_config SET upload = true, download = true WHERE name = 'platformConfig';" \
     2>/dev/null || true
   success "Upload/Download activés (ou déjà actifs)"
@@ -352,10 +352,10 @@ start_snap() {
   # --- Répertoires Snap ---
   info "Création des répertoires Snap..."
   mkdir -p \
-    "${ORPHEA_MOUNT_PATH}/snap/artifactory" \
-    "${ORPHEA_MOUNT_PATH}/snap/logs" \
-    "${ORPHEA_MOUNT_PATH}/snap/db/data" \
-    "${ORPHEA_MOUNT_PATH}/snap/db/dbscripts"
+    "${MOVETODATA_MOUNT_PATH}/snap/artifactory" \
+    "${MOVETODATA_MOUNT_PATH}/snap/logs" \
+    "${MOVETODATA_MOUNT_PATH}/snap/db/data" \
+    "${MOVETODATA_MOUNT_PATH}/snap/db/dbscripts"
 
   if [[ ! -d /var/lib/mycontainer ]]; then
     mkdir -p /var/lib/mycontainer
@@ -380,7 +380,7 @@ start_snap() {
   info "Démarrage des containers Snap..."
   compose_snap up -d --remove-orphans
 
-  wait_healthy "orphea-snap" 36 || true
+  wait_healthy "movetodata-snap" 36 || true
   success "Stack Snap démarrée"
 }
 
@@ -390,17 +390,17 @@ start_snap() {
 start_tycho() {
   section "Stack Tycho (Apache Superset)"
 
-  # --- Réseau orphea-network ---
-  if ! docker network ls --format '{{.Name}}' | grep -q "^orphea-network$"; then
-    info "Création du réseau orphea-network..."
-    docker network create orphea-network 2>/dev/null && \
-      success "Réseau orphea-network créé" || \
+  # --- Réseau movetodata-network ---
+  if ! docker network ls --format '{{.Name}}' | grep -q "^movetodata-network$"; then
+    info "Création du réseau movetodata-network..."
+    docker network create movetodata-network 2>/dev/null && \
+      success "Réseau movetodata-network créé" || \
       warn "Réseau déjà existant"
   fi
 
   mkdir -p \
-    "${ORPHEA_MOUNT_PATH}/tycho/superset_home" \
-    "${ORPHEA_MOUNT_PATH}/postgres/tycho"
+    "${MOVETODATA_MOUNT_PATH}/tycho/superset_home" \
+    "${MOVETODATA_MOUNT_PATH}/postgres/tycho"
 
   # --- Vérification UFW ---
   check_firewall_port "8088/tcp" "Tycho/Superset"
@@ -411,16 +411,16 @@ start_tycho() {
   # --- Attente init Tycho ---
   info "Attente de l'initialisation Tycho (création DB + admin, max 3 min)..."
   local attempt=0
-  until [[ "$(docker inspect --format='{{.State.Status}}' orphea-tycho-init 2>/dev/null)" == "exited" ]] \
-     || ! docker ps -a --format '{{.Names}}' | grep -q "^orphea-tycho-init$"; do
+  until [[ "$(docker inspect --format='{{.State.Status}}' movetodata-tycho-init 2>/dev/null)" == "exited" ]] \
+     || ! docker ps -a --format '{{.Names}}' | grep -q "^movetodata-tycho-init$"; do
     attempt=$((attempt + 1))
-    [[ ${attempt} -ge 36 ]] && { warn "Init Tycho lent — vérifiez : docker logs orphea-tycho-init"; break; }
+    [[ ${attempt} -ge 36 ]] && { warn "Init Tycho lent — vérifiez : docker logs movetodata-tycho-init"; break; }
     printf "."
     sleep 5
   done
   echo ""
 
-  wait_healthy "orphea-tycho" 36 || true
+  wait_healthy "movetodata-tycho" 36 || true
   success "Stack Tycho démarrée"
 }
 
@@ -429,11 +429,11 @@ start_tycho() {
 # =============================================================================
 echo ""
 echo -e "${CYAN}╔══════════════════════════════════════════════╗${NC}"
-echo -e "${CYAN}║   Orphea Platform — Démarrage Ubuntu         ║${NC}"
+echo -e "${CYAN}║   MoveToData Platform — Démarrage Ubuntu         ║${NC}"
 echo -e "${CYAN}╚══════════════════════════════════════════════╝${NC}"
 echo ""
 info "Stack cible : ${STACK}"
-info "Données     : ${ORPHEA_MOUNT_PATH}"
+info "Données     : ${MOVETODATA_MOUNT_PATH}"
 info "Base URL    : ${BASE_URL:-non définie}"
 echo ""
 
@@ -458,7 +458,7 @@ SERVER_IP=$(hostname -I 2>/dev/null | awk '{print $1}' || echo "localhost")
 
 echo ""
 echo -e "${GREEN}╔══════════════════════════════════════════════════════╗${NC}"
-echo -e "${GREEN}║          Plateforme Orphea démarrée                  ║${NC}"
+echo -e "${GREEN}║          Plateforme MoveToData démarrée                  ║${NC}"
 echo -e "${GREEN}╚══════════════════════════════════════════════════════╝${NC}"
 echo ""
 info "URLs d'accès :"
@@ -473,11 +473,11 @@ echo "  Health     : http://${SERVER_IP}:8080/endpoints/health"
 echo ""
 info "État des containers :"
 docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}" \
-  | grep -E "orphea|NAME" || true
+  | grep -E "movetodata|NAME" || true
 
 echo ""
 info "Commandes utiles :"
-echo "  Logs Boson    : docker logs orphea-boson --tail 100 -f"
+echo "  Logs Boson    : docker logs movetodata-boson --tail 100 -f"
 echo "  Health check  : bash ${SCRIPT_DIR}/05-healthcheck.sh"
 echo "  Logs complets : bash ${SCRIPT_DIR}/06-logs.sh --service all"
 echo "  Arrêt         : bash ${SCRIPT_DIR}/04-stop.sh core"

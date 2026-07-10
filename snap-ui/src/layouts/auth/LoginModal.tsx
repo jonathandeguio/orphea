@@ -1,12 +1,12 @@
-import { Form, Input, Typography } from "antd";
-import { LockIcon } from "assets/icons/orpheaActionIcons";
-import { OrpheaIcon } from "assets/icons/orpheaMiscellaneousIcons";
-import { ArrowRightIcon } from "assets/icons/orpheaNavigationIcon";
+﻿import { Form, Input, Typography } from "antd";
+import { LockIcon } from "assets/icons/movetodataActionIcons";
+import { MoveToDataIcon } from "assets/icons/movetodataMiscellaneousIcons";
+import { ArrowRightIcon } from "assets/icons/movetodataNavigationIcon";
 
 import MfaVerification from "apps/settings/mfaEnabled";
-import OrpheaModalContainer from "components/OrpheaModalContainer/OrpheaModalContainer";
-import OrpheaButton from "components/ButtonComponent/OrpheaButton";
-import OrpheaInput from "components/InputComponent/OrpheaInput";
+import MoveToDataModalContainer from "components/MoveToDataModalContainer/MoveToDataModalContainer";
+import MoveToDataButton from "components/ButtonComponent/MoveToDataButton";
+import MoveToDataInput from "components/InputComponent/MoveToDataInput";
 import React, { useRef, useState } from "react";
 import { getLanguageLabel } from "utils/utilities";
 import { GITHUB_AUTH_URL, GOOGLE_AUTH_URL } from "./constants";
@@ -27,18 +27,18 @@ const LoginModal = ({
 
   return (
     <div style={{ minWidth: "31rem" }} className="form-containerNew">
-      <OrpheaModalContainer
-        heading={<OrpheaIcon size={32} />}
+      <MoveToDataModalContainer
+        heading={<MoveToDataIcon size={32} />}
         footerExtraText={getLanguageLabel("loginAgreement")}
         footerButtonArea={
           <Form.Item style={{ margin: 0 }}>
-            <OrpheaButton
+            <MoveToDataButton
               intent="success"
               icon={<ArrowRightIcon />}
               htmlType="submit"
             >
               {getLanguageLabel("login")}
-            </OrpheaButton>
+            </MoveToDataButton>
           </Form.Item>
         }
         information={
@@ -54,14 +54,14 @@ const LoginModal = ({
               textAlign: "left",
             }}
           >
-            <div className="OrpheaHeader1" style={{ marginBottom: "10px" }}>
+            <div className="MoveToDataHeader1" style={{ marginBottom: "10px" }}>
               Single-Sign-On
             </div>
 
             {/* <Link to={GITHUB_AUTH_URL} style={{ width: "100%" }}>
-              <OrpheaButton icon={<CodeCellIcon />} fill outlined>
+              <MoveToDataButton icon={<CodeCellIcon />} fill outlined>
                 Github
-              </OrpheaButton>
+              </MoveToDataButton>
             </Link> */}
             <div className="icons">
               <a
@@ -91,24 +91,24 @@ const LoginModal = ({
             </div>
 
             {/* <Link to={GOOGLE_AUTH_URL} style={{ width: "100%" }}>
-              <OrpheaButton icon={<EmailIcon />} fill outlined>
+              <MoveToDataButton icon={<EmailIcon />} fill outlined>
                 Google
-              </OrpheaButton>
+              </MoveToDataButton>
             </Link> */}
-            <OrpheaButton icon={<LockIcon />} fill outlined disabled>
+            <MoveToDataButton icon={<LockIcon />} fill outlined disabled>
               Keycloak
-            </OrpheaButton>
+            </MoveToDataButton>
           </div>
         }
         outerBorder={false}
       >
         <>
-          <div className="OrpheaHeader1" style={{ marginBottom: "10px" }}>
+          <div className="MoveToDataHeader1" style={{ marginBottom: "10px" }}>
             {getLanguageLabel("login")}
           </div>
           <Form.Item
             name="email"
-            // label={<div className="orpheaFormLabel">{getLanguageLabel("userName")}</div>}
+            // label={<div className="movetodataFormLabel">{getLanguageLabel("userName")}</div>}
             colon={false}
             required
             rules={[
@@ -118,11 +118,11 @@ const LoginModal = ({
               },
             ]}
           >
-            <OrpheaInput autofocus placeholder={getLanguageLabel("userName")} />
+            <MoveToDataInput autofocus placeholder={getLanguageLabel("userName")} />
           </Form.Item>
           <Form.Item
             name="password"
-            // label={<div className="orpheaFormLabel">{getLanguageLabel("password")}</div>}
+            // label={<div className="movetodataFormLabel">{getLanguageLabel("password")}</div>}
             colon={false}
             required
             rules={[
@@ -150,7 +150,7 @@ const LoginModal = ({
         //   </div>
         // </Form.Item> */}
         </>
-      </OrpheaModalContainer>
+      </MoveToDataModalContainer>
     </div>
   );
 };

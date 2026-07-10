@@ -1,4 +1,4 @@
-#!/bin/bash
+﻿#!/bin/bash
 
 # Define colors and formatting
 GREEN='\033[0;32m' # Green color
@@ -9,10 +9,10 @@ RESET='\033[0m'    # Reset color and formatting
 # Define variables
 IMAGE=$1
 IMAGE_VERSION=$2
-BUNDLE_DIR="/orphea/bundle"
+BUNDLE_DIR="/movetodata/bundle"
 HELM_DIR="$BUNDLE_DIR/deployments/configurations/helm"
-ORPHEA_IMAGE_DIR="$BUNDLE_DIR/images/orphea"
-HELM_CHART="orphea-gke"
+MOVETODATA_IMAGE_DIR="$BUNDLE_DIR/images/movetodata"
+HELM_CHART="movetodata-gke"
 HELM_VALUES="demoCluster.yaml"
 
 # Array of valid image names
@@ -24,7 +24,7 @@ valid_images=(
     "shyne"
     "julia"
     "callisto"
-    "orpheaDocs"
+    "movetodataDocs"
     "sparkHistoryServer"
     "connect"
 )
@@ -47,12 +47,12 @@ function load_image() {
     if ctr -n k8s.io images ls -q | grep -q "$IMAGE" | grep -q "$IMAGE_VERSION"; then
         echo -e "$(date) : ${GREEN}[INFO]${RESET} : ${BOLD}${IMAGE}${RESET} ${BOLD}${IMAGE_VERSION}${RESET} already loaded"
     else
-        if [ ! -f "${ORPHEA_IMAGE_DIR}/${IMAGE}-${IMAGE_VERSION}.tar" ]; then
+        if [ ! -f "${MOVETODATA_IMAGE_DIR}/${IMAGE}-${IMAGE_VERSION}.tar" ]; then
             echo -e "$(date) : ${RED}[ERROR]${RESET} : ${BOLD}${IMAGE}-${IMAGE_VERSION}.tar${RESET} Image file not found!"
             exit 1
         fi
 
-        cd "$ORPHEA_IMAGE_DIR" || exit
+        cd "$MOVETODATA_IMAGE_DIR" || exit
         ctr -n k8s.io images import "${IMAGE}-${IMAGE_VERSION}.tar"
     fi
 }
@@ -78,7 +78,7 @@ function update_helm_values() {
 # Upgrade Helm
 function helm_upgrade() {
     cd "$HELM_DIR" || exit
-    helm upgrade orphea charts/"$HELM_CHART" -f "charts/${HELM_CHART}/${HELM_VALUES}"
+    helm upgrade movetodata charts/"$HELM_CHART" -f "charts/${HELM_CHART}/${HELM_VALUES}"
 }
 
 # Display usage information

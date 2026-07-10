@@ -1,8 +1,8 @@
-{
+﻿{
   "bindings": [
     {
       "members": [
-        "serviceAccount:google-storage-sa@orphea-334213.iam.gserviceaccount.com"
+        "serviceAccount:google-storage-sa@movetodata-334213.iam.gserviceaccount.com"
       ],
       "role": "roles/storage.admin"
     },

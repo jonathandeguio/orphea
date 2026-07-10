@@ -1,4 +1,4 @@
-.wrapper {
+﻿.wrapper {
   display: fixed;
   overflow-y: scroll;
   height: 100vh;
@@ -7,7 +7,7 @@
   min-height: 0;
   box-sizing: border-box;
   padding: 6px;
-  border-right: 1px solid var(--orphea-border-color-default);
+  border-right: 1px solid var(--movetodata-border-color-default);
   box-shadow: rgb(236, 237, 242) 1px 0px 0px 0px;
   background-color: #0d1117;
   min-width: 42px;
@@ -30,7 +30,7 @@
 }
 
 .logo {
-  //   border-bottom: 1px solid var(--orphea-bkg-color-muted);
+  //   border-bottom: 1px solid var(--movetodata-bkg-color-muted);
   display: flex;
   -moz-box-align: center;
   align-items: center;
@@ -40,7 +40,7 @@
   font-size: 8px;
   font-weight: "100";
   margin-top: "-10px";
-  color: "var(--orphea-font-color-default)";
+  color: "var(--movetodata-font-color-default)";
   text-decoration: none;
   &:hover {
     text-decoration: none;
@@ -56,7 +56,7 @@
 .element__selected {
   margin-top: 5px;
   padding: 5px 0;
-  // background-color: var(--orphea-border-color-muted);
+  // background-color: var(--movetodata-border-color-muted);
   background-color: #2d2d3c;
   &:hover {
     background-color: rgba(71, 57, 130, 0.07);

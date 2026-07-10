@@ -1,12 +1,12 @@
-import { Col, Divider, Input, Row, Typography } from "antd";
+﻿import { Col, Divider, Input, Row, Typography } from "antd";
 import React, { useEffect, useState } from "react";
 
 import { Form } from "antd";
 
-import OrpheaLoader from "components/orpheaLoader";
+import MoveToDataLoader from "components/movetodataLoader";
 import { getSmtpConfig, updateSmtpConfig } from "../apis";
-import OrpheaInput from "components/InputComponent/OrpheaInput";
-import OrpheaButton from "components/ButtonComponent/OrpheaButton";
+import MoveToDataInput from "components/InputComponent/MoveToDataInput";
+import MoveToDataButton from "components/ButtonComponent/MoveToDataButton";
 
 const { Title, Text } = Typography;
 
@@ -53,7 +53,7 @@ const SMTPSettings = () => {
               <Col span={8}>
                 <Text type="secondary">SMTP host name like smtp.gmail.com</Text>
                 <Form.Item name="host">
-                  <OrpheaInput />
+                  <MoveToDataInput />
                 </Form.Item>
               </Col>
             </Row>
@@ -65,7 +65,7 @@ const SMTPSettings = () => {
               <Col span={8}>
                 <Text type="secondary">Port for the SMTP host like 587</Text>
                 <Form.Item name="port">
-                  <OrpheaInput />
+                  <MoveToDataInput />
                 </Form.Item>
               </Col>
             </Row>
@@ -76,7 +76,7 @@ const SMTPSettings = () => {
               </Col>
               <Col span={8}>
                 <Form.Item name="auth">
-                  <OrpheaInput />
+                  <MoveToDataInput />
                 </Form.Item>
               </Col>
             </Row>
@@ -87,7 +87,7 @@ const SMTPSettings = () => {
               </Col>
               <Col span={8}>
                 <Form.Item name="ttls">
-                  <OrpheaInput />
+                  <MoveToDataInput />
                 </Form.Item>
               </Col>
             </Row>
@@ -99,7 +99,7 @@ const SMTPSettings = () => {
               <Col span={8}>
                 <Text type="secondary">Email for the mailer</Text>
                 <Form.Item name="smtpEmail">
-                  <OrpheaInput />
+                  <MoveToDataInput />
                 </Form.Item>
               </Col>
             </Row>
@@ -119,7 +119,7 @@ const SMTPSettings = () => {
             <Row justify="space-between">
               <Col span={16}>
                 <div
-                  className="OrpheaSubHeader1 text-and-icon-center"
+                  className="MoveToDataSubHeader1 text-and-icon-center"
                   style={{ marginRight: "0.5rem" }}
                 >
                   Only platform administrators can view or edit this
@@ -128,9 +128,9 @@ const SMTPSettings = () => {
               </Col>
               <Col span={8}>
                 <Form.Item style={{ marginBottom: 0, marginLeft: "auto" }}>
-                  <OrpheaButton htmlType="submit" intent="primary">
+                  <MoveToDataButton htmlType="submit" intent="primary">
                     Update Configuration
-                  </OrpheaButton>
+                  </MoveToDataButton>
                 </Form.Item>
               </Col>
             </Row>
@@ -138,7 +138,7 @@ const SMTPSettings = () => {
             <br />
           </Form>
         ) : (
-          <OrpheaLoader />
+          <MoveToDataLoader />
         )}
       </p>
     </div>

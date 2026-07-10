@@ -1,4 +1,4 @@
-# In Browser (Gmail & GCP)
+﻿# In Browser (Gmail & GCP)
 
 1. Sign out of all Google accounts ( or launch browser in inCognitio )
 2. Create free gmail account - make note of password!  Use reasonable security (2FA) in Settings.
@@ -13,14 +13,14 @@
 * Google Cloud SDK must be installed on local machine or run within the Google Cloud Shell.  [https://cloud.google.com/sdk/docs/install](https://cloud.google.com/sdk/docs/install)
 * The Kubernetes Kubectl command-line tool needs to be installed on the computer (this is installed by default in Google Cloud Shell)  [https://kubernetes.io/docs/tasks/tools/install-kubectl-macos/](https://kubernetes.io/docs/tasks/tools/install-kubectl-macos/)
 * Install the gke-gcloud-auth-plugin:  gcloud components install gke-gcloud-auth-plugin
-* Configure git command line utility on local machine -- local account must be granted access to the Orphea Github repositories.
+* Configure git command line utility on local machine -- local account must be granted access to the MoveToData Github repositories.
 * You must have the SSL certificates (crt and key files), see step below for CERT_FILE_PATH and KEY_FILE_PATH variables.<BR>
 
 ### HELM
-1. Go to HELM document [Orphea setup with HELM](README.md)
+1. Go to HELM document [MoveToData setup with HELM](README.md)
 
 # In Browser (GCP & Cloudflare)
-1. In the GCP console for the new project, go to the 'VPC network' in the main menu and look in IP Addresses to get the External Static IP address named orphea.
+1. In the GCP console for the new project, go to the 'VPC network' in the main menu and look in IP Addresses to get the External Static IP address named movetodata.
 2. Log into Cloudflare:  [https://dash.cloudflare.com/login](https://dash.cloudflare.com/login) 
 3. In DNS, change IPv4 address for dev to the new IP address
 <BR>

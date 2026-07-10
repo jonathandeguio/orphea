@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+﻿#!/usr/bin/env bash
 
 #
 git --version 2>&1 >/dev/null # improvement by moi
@@ -31,7 +31,7 @@ cd repos
 frontend() 
 {
   if [ ! -d frontend ]; then
-    git clone git@github.com:Orphea-io/frontend.git  > /dev/null
+    git clone git@github.com:MoveToData-io/frontend.git  > /dev/null
   else
     cd frontend
     git pull  > /dev/null
@@ -39,12 +39,12 @@ frontend()
   fi
 
 
-  docker build frontend --tag rmalik/orphea:frontend
-  docker push rmalik/orphea:frontend
+  docker build frontend --tag rmalik/movetodata:frontend
+  docker push rmalik/movetodata:frontend
 
   # restart deployment to pick new image
-  kubectl -n orphea scale deploy frontend --replicas=0
-  kubectl -n orphea scale deploy frontend --replicas=1
+  kubectl -n movetodata scale deploy frontend --replicas=0
+  kubectl -n movetodata scale deploy frontend --replicas=1
 }
 
 
@@ -53,7 +53,7 @@ boson()
 {
   
   if [ ! -d boson ]; then
-  git clone git@github.com:Orphea-io/boson.git  > /dev/null
+  git clone git@github.com:MoveToData-io/boson.git  > /dev/null
   else
     cd boson
     git pull  > /dev/null
@@ -61,19 +61,19 @@ boson()
     cd ..
   fi
 
-  docker build boson --tag rmalik/orphea:boson
-  docker push rmalik/orphea:boson
+  docker build boson --tag rmalik/movetodata:boson
+  docker push rmalik/movetodata:boson
 
   # restart deployment to pick new image
-  kubectl -n orphea scale deploy boson --replicas=0
-  kubectl -n orphea scale deploy boson --replicas=1
+  kubectl -n movetodata scale deploy boson --replicas=0
+  kubectl -n movetodata scale deploy boson --replicas=1
 }
 
 # Julia : git server
 julia()
 {
   if [ ! -d julia ]; then
-  git clone git@github.com:Orphea-io/julia.git  > /dev/null
+  git clone git@github.com:MoveToData-io/julia.git  > /dev/null
   else
     cd julia
     git pull  > /dev/null
@@ -81,8 +81,8 @@ julia()
     cd ..
   fi
 
-  docker build julia --tag rmalik/orphea:julia
-  docker push rmalik/orphea:julia
+  docker build julia --tag rmalik/movetodata:julia
+  docker push rmalik/movetodata:julia
 }
 
 

@@ -1,2 +1,2 @@
-import OrpheaSelectableCard from "./OrpheaSelectableCard.view";
-export default OrpheaSelectableCard;
+﻿import MoveToDataSelectableCard from "./MoveToDataSelectableCard.view";
+export default MoveToDataSelectableCard;

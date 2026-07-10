@@ -1,4 +1,4 @@
-import { Form } from "antd";
+﻿import { Form } from "antd";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -8,9 +8,9 @@ import { ThunkAppDispatch } from "redux/types/store";
 import { getLanguageLabel, openNotification } from "utils/utilities";
 import Loading from "errors/Loading";
 
-import { ArrowRightIcon } from "assets/icons/orpheaNavigationIcon";
+import { ArrowRightIcon } from "assets/icons/movetodataNavigationIcon";
 import { ParticleApp } from "utils/ParticleApp";
-import OrpheaButton from "components/ButtonComponent/OrpheaButton";
+import MoveToDataButton from "components/ButtonComponent/MoveToDataButton";
 
 const Logout = () => {
   const [form] = Form.useForm();
@@ -93,14 +93,14 @@ const Logout = () => {
         >
           {getLanguageLabel("loggedOutSuccess")}
 
-          <OrpheaButton
+          <MoveToDataButton
             key="submit"
             onClick={() => navigate("/Auth/login")}
             icon={<ArrowRightIcon />}
             intent="action"
           >
             {getLanguageLabel("login")}
-          </OrpheaButton>
+          </MoveToDataButton>
         </div>
       </div>
     </>

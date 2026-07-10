@@ -1,12 +1,12 @@
-import { Input, Select, Typography } from "antd";
+﻿import { Input, Select, Typography } from "antd";
 import React from "react";
 import ButtonComponentDisplay from "components/ButtonComponent/ButtonComponentDisplay";
-import OrpheaInput from "components/InputComponent/OrpheaInput";
+import MoveToDataInput from "components/InputComponent/MoveToDataInput";
 
 
 const { Title } = Typography;
 
-const OrpheaComponents = () => {
+const MoveToDataComponents = () => {
   return (
     <>
       <Title>Platform Components</Title>
@@ -14,7 +14,7 @@ const OrpheaComponents = () => {
       <ButtonComponentDisplay />
 
       <Title level={3}>Input Component</Title>
-      <OrpheaInput placeholder={"hello"} />
+      <MoveToDataInput placeholder={"hello"} />
       <Input.Password></Input.Password>
       <Input.TextArea></Input.TextArea>
       <Select></Select>
@@ -22,4 +22,4 @@ const OrpheaComponents = () => {
   );
 };
 
-export default OrpheaComponents;
+export default MoveToDataComponents;

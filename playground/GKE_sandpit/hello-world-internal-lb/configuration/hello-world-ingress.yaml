@@ -1,15 +1,15 @@
-apiVersion: networking.k8s.io/v1
+﻿apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: hello-world-ingress
   annotations:
-    ingress.gcp.kubernetes.io/pre-shared-cert: "orphea-preshared-cert"
+    ingress.gcp.kubernetes.io/pre-shared-cert: "movetodata-preshared-cert"
     kubernetes.io/ingress.regional-static-ip-name: "hello-world-ingress"
     kubernetes.io/ingress.class: "gce-internal"
     kubernetes.io/ingress.allow-http: "false"
 spec:
   rules:
-  - host: hello-world.orphea.io
+  - host: hello-world.movetodata.io
   - http: 
       paths:
       - path: /*

@@ -1,0 +1,15 @@
+﻿platform-default-login: password
+spring:
+  security:
+    saml2:
+      relyingparty:
+        registration:
+          MoveToData-SSO:
+            assertingparty:
+              singlesignon:
+                sign-request: false
+                url: https://login.microsoftonline.com/6aa76d38-1d16-4a92-9e60-b13be28d5f2a/saml2
+              entity-id: http://movetodata.io
+            entity-id: http://movetodata.io
+            acs:
+              location: ${BASE_URL}/api/sso/callback

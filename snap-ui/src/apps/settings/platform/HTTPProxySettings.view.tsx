@@ -1,15 +1,15 @@
-import { Col, Divider, Row, Switch, Typography } from "antd";
+﻿import { Col, Divider, Row, Switch, Typography } from "antd";
 import React from "react";
 
 import { Form } from "antd";
 
-import OrpheaLoader from "components/orpheaLoader";
+import MoveToDataLoader from "components/movetodataLoader";
 import { useDispatch, useSelector } from "react-redux";
 import { isDefined } from "utils/utilities";
 import { updatePlatformConfig } from "redux/actions/platformSettingsActions";
 import { ThunkAppDispatch } from "redux/types/store";
-import OrpheaButton from "components/ButtonComponent/OrpheaButton";
-import OrpheaInput from "components/InputComponent/OrpheaInput";
+import MoveToDataButton from "components/ButtonComponent/MoveToDataButton";
+import MoveToDataInput from "components/InputComponent/MoveToDataInput";
 
 const { Title, Text } = Typography;
 
@@ -78,7 +78,7 @@ const HttpProxySettings = () => {
                   <Col span={8}>
                     <Text type="secondary">HTTP Proxy URL</Text>
                     <Form.Item name="httpProxyUrl">
-                      <OrpheaInput />
+                      <MoveToDataInput />
                     </Form.Item>
                   </Col>
                 </Row>
@@ -86,7 +86,7 @@ const HttpProxySettings = () => {
                 <Row justify="space-between">
                   <Col span={16}>
                     <div
-                      className="OrpheaSubHeader1 text-and-icon-center"
+                      className="MoveToDataSubHeader1 text-and-icon-center"
                       style={{ marginRight: "0.5rem" }}
                     >
                       Only platform administrators can view or edit this
@@ -95,9 +95,9 @@ const HttpProxySettings = () => {
                   </Col>
                   <Col span={8}>
                     <Form.Item style={{ marginBottom: 0, marginLeft: "auto" }}>
-                      <OrpheaButton htmlType="submit" intent="primary">
+                      <MoveToDataButton htmlType="submit" intent="primary">
                         Update Configuration
-                      </OrpheaButton>
+                      </MoveToDataButton>
                     </Form.Item>
                   </Col>
                 </Row>
@@ -105,7 +105,7 @@ const HttpProxySettings = () => {
             )}
           </Form>
         ) : (
-          <OrpheaLoader />
+          <MoveToDataLoader />
         )}
       </p>
     </div>

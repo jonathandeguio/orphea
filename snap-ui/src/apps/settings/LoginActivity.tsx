@@ -1,4 +1,4 @@
-import { Col, Divider, Row, Select, Table, Typography } from "antd";
+﻿import { Col, Divider, Row, Select, Table, Typography } from "antd";
 import axios from "axios";
 
 import { useEffect, useState } from "react";
@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import React from "react";
 import { getLanguageLabel, openNotification } from "utils/utilities";
 
-import OrpheaLoader from "components/orpheaLoader";
+import MoveToDataLoader from "components/movetodataLoader";
 
 const { Title, Text } = Typography;
 
@@ -59,7 +59,7 @@ const LoginActivity = () => {
     },
   ];
   return !user ? (
-    <OrpheaLoader />
+    <MoveToDataLoader />
   ) : (
     <div className="settings-center-block">
       <p>

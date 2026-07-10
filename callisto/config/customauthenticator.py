@@ -1,4 +1,4 @@
-import os
+﻿import os
 import requests
 from jupyter_server.auth import Authorizer, IdentityProvider
 from tornado.web import RequestHandler
@@ -138,10 +138,10 @@ class CustomIdentityProvider(IdentityProvider):
             return None
 
         # Fetch the platform URL from the environment variable
-        platform_url = os.getenv('ORPHEA_API')
+        platform_url = os.getenv('MOVETODATA_API')
 
         if not platform_url:
-            logger.error("ORPHEA_API environment variable is not set")
+            logger.error("MOVETODATA_API environment variable is not set")
             return None
 
         try:

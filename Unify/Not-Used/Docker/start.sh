@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+﻿#!/usr/bin/env bash
 
 #
 git --version 2>&1 >/dev/null # improvement by tripleee
@@ -17,7 +17,7 @@ fi
 cd repos
 
 if [ ! -d frontend ]; then
-  git clone git@github.com:Orphea-io/frontend.git  > /dev/null
+  git clone git@github.com:MoveToData-io/frontend.git  > /dev/null
 else
   cd frontend
   git pull  > /dev/null
@@ -25,7 +25,7 @@ else
 fi
 
 if [ ! -d boson ]; then
-  git clone git@github.com:Orphea-io/boson.git  > /dev/null
+  git clone git@github.com:MoveToData-io/boson.git  > /dev/null
 else
   cd boson
   git pull  > /dev/null
@@ -52,13 +52,13 @@ fi
 echo ""
 echo ""
 echo "+--------------------------------------------------------------------------+"
-echo "|                           Say hello to Orphea                            |"
+echo "|                           Say hello to MoveToData                            |"
 echo "+--------------------------------------------------------------------------+"
 echo "|                                                                          |"
 echo "|                                                                          |"
-echo -e "|   Here is the orphea IP : localhost                            \t   |"
+echo -e "|   Here is the movetodata IP : localhost                            \t   |"
 echo "|                                                                          |"
-echo "|   Connect to Orphea  : http://localhost                                  |"
+echo "|   Connect to MoveToData  : http://localhost                                  |"
 echo -e "|   Connect to Swagger : http://localhost:8080/swagger-ui.html          \t   |"
 echo "|                                                                          |"
 echo "+--------------------------------------------------------------------------+"

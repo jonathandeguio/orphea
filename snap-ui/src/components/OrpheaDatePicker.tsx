@@ -1,4 +1,4 @@
-import { DatePicker } from "antd";
+﻿import { DatePicker } from "antd";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import customParseFormat from "dayjs/plugin/customParseFormat";
@@ -16,7 +16,7 @@ dayjs.extend(localeData);
 dayjs.extend(weekOfYear);
 dayjs.extend(weekYear);
 
-interface OrpheaDatePickerProps {
+interface MoveToDataDatePickerProps {
   placeholder?: string;
   onChange?: any;
   value?: any;
@@ -24,7 +24,7 @@ interface OrpheaDatePickerProps {
   disabledDates?: any;
 }
 
-const OrpheaDatePicker = (props: OrpheaDatePickerProps) => {
+const MoveToDataDatePicker = (props: MoveToDataDatePickerProps) => {
   const value = useMemo(
     () =>
       !isNaN(new Date(props.value).getDate())
@@ -52,4 +52,4 @@ const OrpheaDatePicker = (props: OrpheaDatePickerProps) => {
   );
 };
 
-export default OrpheaDatePicker;
+export default MoveToDataDatePicker;

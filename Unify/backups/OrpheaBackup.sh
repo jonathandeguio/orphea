@@ -1,4 +1,4 @@
-#!/bin/bash
+﻿#!/bin/bash
 
 # Function to log messages with timestamp
 log_info() {
@@ -25,7 +25,7 @@ backup_postgres() {
 backup_data() {
    log_info "Starting data backup"
 
-   cd "/orphea/$DEPLOYMENT/" || exit
+   cd "/movetodata/$DEPLOYMENT/" || exit
    tar cfz "$BACKUP_DATA_PATH" localFS git
 
    log_info "Finished data backup"
@@ -41,13 +41,13 @@ fi
 
 # Define variables
 DEPLOYMENT="$1"
-NAMESPACE="orphea-$DEPLOYMENT"
+NAMESPACE="movetodata-$DEPLOYMENT"
 POD_NAME=$(kubectl -n "$NAMESPACE" get pods | awk '{print $1}' | grep boson-db)
 DB_USERNAME="postgres"
 DB_NAME="boson"
 BACKUP_TIMESTAMP=$(date +%Y%m%d%H%M%S)
 BACKUP_TMP_PATH="/tmp/$DEPLOYMENT-postgres-backup-$BACKUP_TIMESTAMP.dump"
-BACKUP_PATH="/orphea/$DEPLOYMENT/backups/$BACKUP_TIMESTAMP"
+BACKUP_PATH="/movetodata/$DEPLOYMENT/backups/$BACKUP_TIMESTAMP"
 BACKUP_PG_PATH="$BACKUP_PATH/$DEPLOYMENT-postgres-backup-$BACKUP_TIMESTAMP.dump"
 BACKUP_DATA_PATH="$BACKUP_PATH/$DEPLOYMENT-data-backup-$BACKUP_TIMESTAMP.tar.gz"
 

@@ -1,18 +1,18 @@
-import { Col, Divider, Dropdown, Row, Table, Typography } from "antd";
+﻿import { Col, Divider, Dropdown, Row, Table, Typography } from "antd";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { AddIcon, MoreMenuIcon } from "assets/icons/orpheaActionIcons";
-import { EditIcon } from "assets/icons/orpheaEditorIcons";
-import { TrashIcon } from "assets/icons/orpheaMiscellaneousIcons";
-import { TickIcon } from "assets/icons/orpheaNavigationIcon";
+import { AddIcon, MoreMenuIcon } from "assets/icons/movetodataActionIcons";
+import { EditIcon } from "assets/icons/movetodataEditorIcons";
+import { TrashIcon } from "assets/icons/movetodataMiscellaneousIcons";
+import { TickIcon } from "assets/icons/movetodataNavigationIcon";
 
-import { AddUserIcon } from "assets/icons/orpheaInterfaceIcons";
+import { AddUserIcon } from "assets/icons/movetodataInterfaceIcons";
 import { getLanguageLabel, openNotification } from "utils/utilities";
 import { fetchAllSSODetailsAPI } from "./apis";
-import OrpheaInput from "components/InputComponent/OrpheaInput";
-import OrpheaModal from "components/OrpheaModalContainer/OrpheaModal";
-import OrpheaButton from "components/ButtonComponent/OrpheaButton";
+import MoveToDataInput from "components/InputComponent/MoveToDataInput";
+import MoveToDataModal from "components/MoveToDataModalContainer/MoveToDataModal";
+import MoveToDataButton from "components/ButtonComponent/MoveToDataButton";
 const { Text, Title } = Typography;
 
 const SSO = () => {
@@ -159,7 +159,7 @@ const SSO = () => {
                               className="text-and-icon-center"
                             >
                               <TrashIcon
-                                color={"var(--orphea-intent-danger)"}
+                                color={"var(--movetodata-intent-danger)"}
                               />
                               {getLanguageLabel("delete")}
                             </div>
@@ -198,26 +198,26 @@ const SSO = () => {
   return (
     <>
       {/* create sso provider */}
-      <OrpheaModal
+      <MoveToDataModal
         headingIcon={<AddUserIcon />}
         heading={getLanguageLabel("addNewSSODetails")}
         open={createView}
         onCancel={handleCreateCancel}
         onOk={handleCreateOk}
         footerButtonArea={
-          <OrpheaButton
+          <MoveToDataButton
             icon={<TickIcon />}
             intent="action"
             key="submit"
             onClick={handleCreateOk}
           >
             {getLanguageLabel("create")}
-          </OrpheaButton>
+          </MoveToDataButton>
         }
       >
-        <div className="OrpheaHeader1">{getLanguageLabel("name")}</div>
+        <div className="MoveToDataHeader1">{getLanguageLabel("name")}</div>
 
-        <OrpheaInput
+        <MoveToDataInput
           onChange={(e) =>
             setNewSSODetails({
               ...newSSODetails,
@@ -228,8 +228,8 @@ const SSO = () => {
           name="Uname"
           required
         />
-        <div className="OrpheaHeader1">{getLanguageLabel("description")}</div>
-        <OrpheaInput
+        <div className="MoveToDataHeader1">{getLanguageLabel("description")}</div>
+        <MoveToDataInput
           onChange={(e) =>
             setNewSSODetails({
               ...newSSODetails,
@@ -240,8 +240,8 @@ const SSO = () => {
           name="description"
           required
         />
-        <div className="OrpheaHeader1">{getLanguageLabel("providerName")}</div>
-        <OrpheaInput
+        <div className="MoveToDataHeader1">{getLanguageLabel("providerName")}</div>
+        <MoveToDataInput
           onChange={(e) =>
             setNewSSODetails({
               ...newSSODetails,
@@ -252,8 +252,8 @@ const SSO = () => {
           name="providerName"
           required
         />
-        <div className="OrpheaHeader1">{getLanguageLabel("clientId")}</div>
-        <OrpheaInput
+        <div className="MoveToDataHeader1">{getLanguageLabel("clientId")}</div>
+        <MoveToDataInput
           onChange={(e) =>
             setNewSSODetails({
               ...newSSODetails,
@@ -264,8 +264,8 @@ const SSO = () => {
           name="clientId"
           required
         />
-        <div className="OrpheaHeader1">{getLanguageLabel("clientSecret")}</div>
-        <OrpheaInput
+        <div className="MoveToDataHeader1">{getLanguageLabel("clientSecret")}</div>
+        <MoveToDataInput
           onChange={(e) =>
             setNewSSODetails({
               ...newSSODetails,
@@ -276,11 +276,11 @@ const SSO = () => {
           name="clientSecret"
           required
         />
-      </OrpheaModal>
+      </MoveToDataModal>
 
       {/* are you sure you want to delete modal */}
 
-      <OrpheaModal
+      <MoveToDataModal
         headingIcon={<TrashIcon color="var(--DANGEROUS_COLOR)" />}
         heading={getLanguageLabel("areYouSureYouWantToDeleteThis?")}
         open={deleteModal}
@@ -294,20 +294,20 @@ const SSO = () => {
           // >
           //   <CrossIcon /> {getLanguageLabel("cancel")}
           // </Button>,
-          <OrpheaButton
+          <MoveToDataButton
             key="submit"
             onClick={() => handleDelete(deleteSSO.id)}
             intent="dangerous"
             icon={<TrashIcon />}
           >
             {getLanguageLabel("delete")}
-          </OrpheaButton>
+          </MoveToDataButton>
         }
       >
         {deleteSSO.name} SSO{" "}
-      </OrpheaModal>
+      </MoveToDataModal>
 
-      <OrpheaModal
+      <MoveToDataModal
         headingIcon={<EditIcon />}
         heading={`${getLanguageLabel("edit")} SSO`}
         open={editModal}
@@ -317,17 +317,17 @@ const SSO = () => {
           // <Button className="interactive" key="back" onClick={handleEditCancel}>
           //   <CrossIcon /> {getLanguageLabel("cancel")}
           // </Button>,
-          <OrpheaButton
+          <MoveToDataButton
             icon={<TickIcon />}
             onClick={() => handleEdit(editSSO.id)}
           >
             {getLanguageLabel("edit")}
-          </OrpheaButton>
+          </MoveToDataButton>
         }
       >
-        <div className="OrpheaHeader1">{getLanguageLabel("name")}</div>
+        <div className="MoveToDataHeader1">{getLanguageLabel("name")}</div>
 
-        <OrpheaInput
+        <MoveToDataInput
           onChange={(e) =>
             setEditSSO({
               ...editSSO,
@@ -338,8 +338,8 @@ const SSO = () => {
           name="Uname"
           required
         />
-        <div className="OrpheaHeader1">{getLanguageLabel("description")}</div>
-        <OrpheaInput
+        <div className="MoveToDataHeader1">{getLanguageLabel("description")}</div>
+        <MoveToDataInput
           onChange={(e) =>
             setEditSSO({
               ...editSSO,
@@ -350,8 +350,8 @@ const SSO = () => {
           name="description"
           required
         />
-        <div className="OrpheaHeader1">{getLanguageLabel("providerName")}</div>
-        <OrpheaInput
+        <div className="MoveToDataHeader1">{getLanguageLabel("providerName")}</div>
+        <MoveToDataInput
           onChange={(e) =>
             setEditSSO({
               ...editSSO,
@@ -362,8 +362,8 @@ const SSO = () => {
           name="providerName"
           required
         />
-        <div className="OrpheaHeader1">{getLanguageLabel("clientId")}</div>
-        <OrpheaInput
+        <div className="MoveToDataHeader1">{getLanguageLabel("clientId")}</div>
+        <MoveToDataInput
           onChange={(e) =>
             setEditSSO({
               ...editSSO,
@@ -374,8 +374,8 @@ const SSO = () => {
           name="clientId"
           required
         />
-        <div className="OrpheaHeader1">{getLanguageLabel("clientSecret")}</div>
-        <OrpheaInput
+        <div className="MoveToDataHeader1">{getLanguageLabel("clientSecret")}</div>
+        <MoveToDataInput
           onChange={(e) =>
             setEditSSO({
               ...editSSO,
@@ -386,7 +386,7 @@ const SSO = () => {
           name="clientSecret"
           required
         />
-      </OrpheaModal>
+      </MoveToDataModal>
 
       <div className="settings-center-block">
         <p>
@@ -399,14 +399,14 @@ const SSO = () => {
             </Col>
             <Col>
               {platformAdmin ? (
-                <OrpheaButton
+                <MoveToDataButton
                   icon={<AddIcon />}
                   intent="action"
                   onClick={() => setCreateView(true)}
                 >
                   {" "}
                   {getLanguageLabel("addSSOProvider")}{" "}
-                </OrpheaButton>
+                </MoveToDataButton>
               ) : (
                 ""
               )}

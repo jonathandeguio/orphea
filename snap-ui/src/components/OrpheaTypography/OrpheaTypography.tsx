@@ -1,5 +1,5 @@
-import React from "react";
-import styles from "./OrpheaTypography.module.scss";
+﻿import React from "react";
+import styles from "./MoveToDataTypography.module.scss";
 
 interface TProps {
   size?: number; // Specify in px

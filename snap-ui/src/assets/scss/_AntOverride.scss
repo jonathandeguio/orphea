@@ -1,4 +1,4 @@
-/**
+﻿/**
 * ANT SWITCH OVERRIDE
 */
 
@@ -174,7 +174,7 @@ textarea {
 }
 
 .ant-notification-notice {
-  background-color: var(--orphea-bkg-color-default) !important;
+  background-color: var(--movetodata-bkg-color-default) !important;
   .ant-notification-notice-message,
   .ant-notification-notice-description,
   .ant-notification-notice-close {
@@ -209,7 +209,7 @@ textarea {
 * ANT MODAL OVERRIDES FOR ALL THE MODALS
 */
 
-.orphea-modal {
+.movetodata-modal {
   .ant-modal-content {
     padding: 0 !important;
   }
@@ -230,7 +230,7 @@ textarea {
 */
 
 .ant-popover-inner {
-  border: 1px solid var(--orphea-border-color-default);
+  border: 1px solid var(--movetodata-border-color-default);
 }
 
 .ant-picker-calendar {
@@ -243,7 +243,7 @@ textarea {
   .ant-picker-cell-disabled {
     .ant-picker-cell-inner {
       background: none !important;
-      color: var(--orphea-font-color-muted) !important;
+      color: var(--movetodata-font-color-muted) !important;
     }
   }
 }
@@ -258,7 +258,7 @@ textarea {
 }
 
 .ant-table {
-  border: 1px solid var(--orphea-border-color-muted);
+  border: 1px solid var(--movetodata-border-color-muted);
   @media (max-width: 1900px) {
     border: none;
   }

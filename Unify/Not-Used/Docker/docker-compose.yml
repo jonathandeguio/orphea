@@ -1,4 +1,4 @@
-version: "3.9"
+﻿version: "3.9"
 
 services:
   # Proxies requests to internal services
@@ -33,7 +33,7 @@ services:
     build:
       context: ./repos/boson
     volumes:
-      - ./db/orphea:/root/orphea
+      - ./db/movetodata:/root/movetodata
     depends_on:
       - boson-db
       # - julia

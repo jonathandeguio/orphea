@@ -1,4 +1,4 @@
-import {
+﻿import {
   ApiOutlined,
   BarChartOutlined,
   CodeOutlined,
@@ -194,7 +194,7 @@ const Home: React.FC = () => {
   const platformName =
     isDefined(config) && isDefined(config.platformName)
       ? config.platformName
-      : "Orphea";
+      : "MoveToData";
 
   const firstName: string = user?.givenName ?? user?.username ?? "";
 

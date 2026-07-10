@@ -1,4 +1,4 @@
-import { Form } from "antd";
+﻿import { Form } from "antd";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ThunkAppDispatch } from "redux/types/store";
@@ -8,7 +8,7 @@ import React from "react";
 import { login } from "redux/actions/userActions";
 import Loading from "errors/Loading";
 
-import { OrpheaIcon } from "assets/icons/orpheaMiscellaneousIcons";
+import { MoveToDataIcon } from "assets/icons/movetodataMiscellaneousIcons";
 import { ParticleApp } from "utils/ParticleApp";
 import LoginModal from "./LoginModal";
 import { useNavigate } from "react-router";
@@ -119,7 +119,7 @@ const Login = () => {
         {/* Conditionally Render MFA or Login Form */}
         {showMFA ? (
           <div className="login-containerNew">
-            {!isIpPlatform() && <OrpheaIcon size={128} />}
+            {!isIpPlatform() && <MoveToDataIcon size={128} />}
             <div style={{ minWidth: "500px" }} className="form-containerNew">
               <MfaVerification
                 username={credentials.username}
@@ -140,7 +140,7 @@ const Login = () => {
             onFinish={handleLogin}
             className="login-containerNew"
           >
-            {!isIpPlatform() && <OrpheaIcon size={128} />}
+            {!isIpPlatform() && <MoveToDataIcon size={128} />}
             <br />
 
             <LoginModal

@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
+﻿import React, { useEffect, useState } from "react";
 import { Col, Divider, Row, Typography, Tooltip } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import OrpheaButton from "../../../components/ButtonComponent/OrpheaButton";
-import OrpheaModal from "../../../components/OrpheaModalContainer";
+import MoveToDataButton from "../../../components/ButtonComponent/MoveToDataButton";
+import MoveToDataModal from "../../../components/MoveToDataModalContainer";
 import { getAllTriggerDetails } from "redux/actions/TriggerActions";
 import CreateNewTriggerModal from "./CreateNewTriggerModal";
-import OrpheaLoader from "../../../components/orpheaLoader";
+import MoveToDataLoader from "../../../components/movetodataLoader";
 import TriggersTable from "./TriggersTable";
-import { AddIcon } from "../../../assets/icons/orpheaActionIcons"; // Pour AddIcon
-import { TrashIcon } from "../../../assets/icons/orpheaMiscellaneousIcons"; // Pour TrashIcon
+import { AddIcon } from "../../../assets/icons/movetodataActionIcons"; // Pour AddIcon
+import { TrashIcon } from "../../../assets/icons/movetodataMiscellaneousIcons"; // Pour TrashIcon
 import { getLanguageLabel, openNotification } from "utils/utilities";
 import { deleteTriggerAPI, runTrigger, userById } from "../apis";
 import Filters from "./Filters";
@@ -66,28 +66,28 @@ const Triggers = () => {
     setFilteredTriggers(filteredData);
   };
 
-  if (loading) return <OrpheaLoader />;
+  if (loading) return <MoveToDataLoader />;
 
   return (
     <>
-      <OrpheaModal
+      <MoveToDataModal
         headingIcon={<TrashIcon color="var(--DANGEROUS_COLOR)" />}
         heading={getLanguageLabel("areYouSureYouWantToDeleteThis?")}
         open={deleteModal}
         onCancel={handleDeleteCancel}
         onOk={() => deleteTriggerHandler()}
         footerButtonArea={
-          <OrpheaButton
+          <MoveToDataButton
             icon={<TrashIcon />}
             onClick={() => deleteTriggerHandler()}
             intent="dangerous"
           >
             {getLanguageLabel("delete")}
-          </OrpheaButton>
+          </MoveToDataButton>
         }
       >
         {deleteTriggerDetails.name}
-      </OrpheaModal>
+      </MoveToDataModal>
 
       <CreateNewTriggerModal
         isOpen={isCreateNewTriggerModalOpen}
@@ -102,13 +102,13 @@ const Triggers = () => {
                 Build Triggers ({allTriggers && allTriggers.length})
               </Title>
               <Text type="secondary">
-                Here are orphea build triggers to build images.
+                Here are movetodata build triggers to build images.
               </Text>
               <Filters onFilterUpdate={handleFilterUpdate} />
             </Col>
             <Col>
               <Tooltip placement="top" title={"Create New Trigger"}>
-                <OrpheaButton
+                <MoveToDataButton
                   icon={<AddIcon />}
                   intent="action"
                   onClick={() => {
@@ -116,7 +116,7 @@ const Triggers = () => {
                   }}
                 >
                   New Trigger
-                </OrpheaButton>
+                </MoveToDataButton>
               </Tooltip>
             </Col>
           </Row>

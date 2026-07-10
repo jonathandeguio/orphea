@@ -1,10 +1,10 @@
-#!/usr/bin/env bash
+﻿#!/usr/bin/env bash
 # =============================================================================
-# Orphea Platform — Installation des composants techniques (CentOS / RHEL)
+# MoveToData Platform — Installation des composants techniques (CentOS / RHEL)
 # Cible   : CentOS Stream 9 / RHEL 9 / AlmaLinux 9 / Rocky 9
 # Usage   : sudo bash install-components-centos.sh [--skip java|node|python|pg|redis|nginx|kubectl]
 #
-# Ce script installe les runtimes et outils nécessaires à la plateforme Orphea :
+# Ce script installe les runtimes et outils nécessaires à la plateforme MoveToData :
 #   [1]  OpenJDK 11          — Build Boson (Spring Boot + Spark)
 #   [2]  Gradle 7.6.4        — Build Java local (via SDKMAN)
 #   [3]  Node.js 18 LTS      — Build Frontend React / Snap-UI
@@ -36,7 +36,7 @@ section() {
   echo -e "${CYAN}══════════════════════════════════════════════════════${NC}"
 }
 
-ORPHEA_USER="${ORPHEA_USER:-orphea}"
+MOVETODATA_USER="${MOVETODATA_USER:-movetodata}"
 
 # =============================================================================
 # Pré-requis : root
@@ -96,7 +96,7 @@ done
 
 echo ""
 echo -e "${CYAN}╔════════════════════════════════════════════════════════════╗${NC}"
-echo -e "${CYAN}║    Orphea — Installation des composants techniques         ║${NC}"
+echo -e "${CYAN}║    MoveToData — Installation des composants techniques         ║${NC}"
 echo -e "${CYAN}║    CentOS / RHEL ${OS_MAJOR}                                          ║${NC}"
 echo -e "${CYAN}╚════════════════════════════════════════════════════════════╝${NC}"
 echo ""
@@ -124,7 +124,7 @@ else
   JAVA_HOME_PATH=$(dirname $(dirname $(readlink -f $(which java))))
   if [[ ! -f /etc/profile.d/java.sh ]]; then
     cat > /etc/profile.d/java.sh << JEOF
-# Java 11 — installé par Orphea
+# Java 11 — installé par MoveToData
 export JAVA_HOME=${JAVA_HOME_PATH}
 export PATH=\$JAVA_HOME/bin:\$PATH
 JEOF
@@ -144,27 +144,27 @@ if ${SKIP_GRADLE}; then
 elif command -v gradle &>/dev/null && gradle --version 2>/dev/null | grep -q "7\."; then
   success "Gradle 7.x déjà installé : $(gradle --version | grep Gradle)"
 else
-  info "Installation SDKMAN + Gradle 7.6.4 pour l'utilisateur ${ORPHEA_USER}..."
+  info "Installation SDKMAN + Gradle 7.6.4 pour l'utilisateur ${MOVETODATA_USER}..."
 
   # SDKMAN nécessite curl, unzip, zip
   ${PKG_MGR} install -y curl unzip zip 2>/dev/null || true
 
-  # Installer SDKMAN pour l'utilisateur orphea
-  if [[ ! -d "/home/${ORPHEA_USER}/.sdkman" ]]; then
-    sudo -u "${ORPHEA_USER}" bash -c \
+  # Installer SDKMAN pour l'utilisateur movetodata
+  if [[ ! -d "/home/${MOVETODATA_USER}/.sdkman" ]]; then
+    sudo -u "${MOVETODATA_USER}" bash -c \
       'curl -s "https://get.sdkman.io" | bash' || \
       warn "Téléchargement SDKMAN échoué — vérifiez la connexion Internet"
   fi
 
   # Installer Gradle 7.6.4 via SDKMAN
-  if [[ -d "/home/${ORPHEA_USER}/.sdkman" ]]; then
-    sudo -u "${ORPHEA_USER}" bash -c \
+  if [[ -d "/home/${MOVETODATA_USER}/.sdkman" ]]; then
+    sudo -u "${MOVETODATA_USER}" bash -c \
       'source "$HOME/.sdkman/bin/sdkman-init.sh" && sdk install gradle 7.6.4 && sdk default gradle 7.6.4' \
       2>/dev/null && success "Gradle 7.6.4 installé via SDKMAN" || \
       warn "SDKMAN Gradle installation échouée — installation manuelle:"
 
     # Créer un lien symbolique dans /usr/local/bin
-    GRADLE_BIN="/home/${ORPHEA_USER}/.sdkman/candidates/gradle/current/bin/gradle"
+    GRADLE_BIN="/home/${MOVETODATA_USER}/.sdkman/candidates/gradle/current/bin/gradle"
     if [[ -f "${GRADLE_BIN}" ]]; then
       ln -sf "${GRADLE_BIN}" /usr/local/bin/gradle
       success "Lien symbolique /usr/local/bin/gradle créé"
@@ -185,7 +185,7 @@ else
     ln -sf "${GRADLE_DIR}/bin/gradle" /usr/local/bin/gradle
 
     cat > /etc/profile.d/gradle.sh << 'GEOF'
-# Gradle — installé par Orphea
+# Gradle — installé par MoveToData
 export GRADLE_HOME=/opt/gradle-7.6.4
 export PATH=$GRADLE_HOME/bin:$PATH
 GEOF
@@ -462,11 +462,11 @@ else
     warn "Nginx installé mais NON démarré — le Frontend utilise le container Docker (port 80)"
     warn "Pour démarrer Nginx natif : sudo systemctl start nginx"
 
-    # Création d'un répertoire de config Orphea
-    mkdir -p /etc/nginx/conf.d/orphea.d
-    cat > /etc/nginx/conf.d/orphea.conf << 'NGEOF'
+    # Création d'un répertoire de config MoveToData
+    mkdir -p /etc/nginx/conf.d/movetodata.d
+    cat > /etc/nginx/conf.d/movetodata.conf << 'NGEOF'
 # =============================================================
-# Orphea Platform — Configuration Nginx (mode hôte natif)
+# MoveToData Platform — Configuration Nginx (mode hôte natif)
 # Utiliser uniquement si le frontend ne tourne PAS en container
 # =============================================================
 # Inclure cette configuration uniquement si besoin de proxy natif
@@ -477,12 +477,12 @@ else
 #     proxy_pass http://localhost:8080/;
 #   }
 #   location / {
-#     root /opt/orphea/frontend/build;
+#     root /opt/movetodata/frontend/build;
 #     try_files $uri /index.html;
 #   }
 # }
 NGEOF
-    success "Configuration Nginx Orphea créée dans /etc/nginx/conf.d/"
+    success "Configuration Nginx MoveToData créée dans /etc/nginx/conf.d/"
   else
     warn "Nginx non installé — le Frontend utilise le container Docker"
   fi
@@ -675,12 +675,12 @@ check_component "curl"           "command -v curl"                       \
 check_component "FUSE"           "test -c /dev/fuse"                     \
                                   "echo '/dev/fuse présent'"
 
-REPO_DIR="/opt/orphea/repo"
-ORPHEA_USER="${ORPHEA_USER:-orphea}"
+REPO_DIR="/opt/movetodata/repo"
+MOVETODATA_USER="${MOVETODATA_USER:-movetodata}"
 
 echo ""
 echo -e "${GREEN}╔══════════════════════════════════════════════════════════╗${NC}"
-echo -e "${GREEN}║   Composants techniques Orphea installés                 ║${NC}"
+echo -e "${GREEN}║   Composants techniques MoveToData installés                 ║${NC}"
 echo -e "${GREEN}║   Système : ${OS_NAME} ${OS_MAJOR}                                  ║${NC}"
 echo -e "${GREEN}╚══════════════════════════════════════════════════════════╝${NC}"
 echo ""
@@ -697,24 +697,24 @@ echo ""
 echo "  ┌─────────────────────────────────────────────────────────────────────┐"
 echo "  │  ÉTAPE 3 — Configurer les variables d'environnement (secrets)       │"
 echo "  └─────────────────────────────────────────────────────────────────────┘"
-echo "    sudo -u ${ORPHEA_USER} bash ${REPO_DIR}/scripts/01-setup-env.sh"
-echo "    # Génère : ${REPO_DIR}/scripts/.env.orphea"
+echo "    sudo -u ${MOVETODATA_USER} bash ${REPO_DIR}/scripts/01-setup-env.sh"
+echo "    # Génère : ${REPO_DIR}/scripts/.env.movetodata"
 echo ""
 echo "  ┌─────────────────────────────────────────────────────────────────────┐"
 echo "  │  ÉTAPE 4 — Builder les images Docker (15–40 min)                    │"
 echo "  └─────────────────────────────────────────────────────────────────────┘"
-echo "    sudo -u ${ORPHEA_USER} bash ${REPO_DIR}/scripts/02-build.sh all"
-echo "    # ou : sudo -u ${ORPHEA_USER} bash ${REPO_DIR}/scripts/orphea-centos.sh build all"
+echo "    sudo -u ${MOVETODATA_USER} bash ${REPO_DIR}/scripts/02-build.sh all"
+echo "    # ou : sudo -u ${MOVETODATA_USER} bash ${REPO_DIR}/scripts/movetodata-centos.sh build all"
 echo ""
 echo "  ┌─────────────────────────────────────────────────────────────────────┐"
 echo "  │  ÉTAPE 5 — Démarrer la plateforme                                   │"
 echo "  └─────────────────────────────────────────────────────────────────────┘"
-echo "    sudo -u ${ORPHEA_USER} bash ${REPO_DIR}/scripts/03-start-centos.sh all"
-echo "    # ou : sudo -u ${ORPHEA_USER} bash ${REPO_DIR}/scripts/orphea-centos.sh start all"
+echo "    sudo -u ${MOVETODATA_USER} bash ${REPO_DIR}/scripts/03-start-centos.sh all"
+echo "    # ou : sudo -u ${MOVETODATA_USER} bash ${REPO_DIR}/scripts/movetodata-centos.sh start all"
 echo ""
 echo "  ┌─────────────────────────────────────────────────────────────────────┐"
 echo "  │  ÉTAPE 6 — Vérifier la santé de la plateforme                       │"
 echo "  └─────────────────────────────────────────────────────────────────────┘"
 echo "    bash ${REPO_DIR}/scripts/05-healthcheck.sh"
-echo "    # ou : bash ${REPO_DIR}/scripts/orphea-centos.sh health"
+echo "    # ou : bash ${REPO_DIR}/scripts/movetodata-centos.sh health"
 echo ""

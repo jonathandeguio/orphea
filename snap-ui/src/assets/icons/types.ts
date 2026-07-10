@@ -1,4 +1,4 @@
-export interface TOrpheaIconProps {
+﻿export interface TMoveToDataIconProps {
   size?: number | string;
   color?: string;
   stroke?: string;

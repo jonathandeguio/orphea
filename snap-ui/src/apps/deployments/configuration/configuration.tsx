@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import {
   copyToClipboard,
   getLanguageLabel,
@@ -12,7 +12,7 @@ import {
   getDeploymentDetailsByIdAPI,
   updateTargetState,
 } from "../apis";
-import OrpheaButton from "components/ButtonComponent/OrpheaButton";
+import MoveToDataButton from "components/ButtonComponent/MoveToDataButton";
 import {
   Checkbox,
   Col,
@@ -27,13 +27,13 @@ import {
   AppIcon,
   ComponentIcon,
   UploadIcon,
-} from "assets/icons/orpheaInterfaceIcons";
-import { PulseIcon } from "assets/icons/orpheaMiscellaneousIcons";
+} from "assets/icons/movetodataInterfaceIcons";
+import { PulseIcon } from "assets/icons/movetodataMiscellaneousIcons";
 import { useNavigate } from "react-router";
-import OrpheaInput from "components/InputComponent/OrpheaInput";
-import { CopyIcon } from "assets/icons/orpheaEditorIcons";
-import { AddIcon } from "assets/icons/orpheaActionIcons";
-import { TickIcon } from "assets/icons/orpheaNavigationIcon";
+import MoveToDataInput from "components/InputComponent/MoveToDataInput";
+import { CopyIcon } from "assets/icons/movetodataEditorIcons";
+import { AddIcon } from "assets/icons/movetodataActionIcons";
+import { TickIcon } from "assets/icons/movetodataNavigationIcon";
 
 const { Title, Text } = Typography;
 
@@ -48,7 +48,7 @@ const stateIcon = (text: any) => {
     case "ACTIVE":
       return (
         <Tooltip title={text}>
-          <PulseIcon color={"var(--orphea-intent-danger)"} />{" "}
+          <PulseIcon color={"var(--movetodata-intent-danger)"} />{" "}
         </Tooltip>
       );
     case "TARGET":
@@ -104,7 +104,7 @@ export const shouldHighlightTargetRow = (
     record.julia !== activeRecord.julia ||
     record.callisto !== activeRecord.callisto ||
     record.capture !== activeRecord.capture ||
-    record.orpheaDocs !== activeRecord.orpheaDocs ||
+    record.movetodataDocs !== activeRecord.movetodataDocs ||
     record.sparkHistoryServer !== activeRecord.sparkHistoryServer
   );
 };
@@ -118,7 +118,7 @@ export const transformData = (data: any) => {
     "julia",
     "callisto",
     "capture",
-    "orpheaDocs",
+    "movetodataDocs",
     "sparkHistoryServer",
   ];
 
@@ -203,7 +203,7 @@ export const mergedData = async (data: any, deploymentDetails: any) => {
     "julia",
     "callisto",
     "capture",
-    "orpheaDocs",
+    "movetodataDocs",
     "sparkHistoryServer",
   ];
 
@@ -255,14 +255,14 @@ export const getConfigurationColumns = (
       title: "State",
       dataIndex: "state",
       render: (text: string) => (
-        <div className="OrpheaSpan">{stateIcon(text)}</div>
+        <div className="MoveToDataSpan">{stateIcon(text)}</div>
       ),
     },
     {
       title: "Global Version",
       dataIndex: "globalVersion",
       render: (text: string) => (
-        <div className="OrpheaSpan">{text ? text : getLanguageLabel("none")}</div>
+        <div className="MoveToDataSpan">{text ? text : getLanguageLabel("none")}</div>
       ),
     },
     {
@@ -270,65 +270,65 @@ export const getConfigurationColumns = (
       dataIndex: "deployedAt",
       render: (text: number, row: any) => {
         if (!row.deployedAt) {
-          return <div className="OrpheaSpan">None</div>;
+          return <div className="MoveToDataSpan">None</div>;
         }
-        return <div className="OrpheaSpan">{timeConverter(text)}</div>;
+        return <div className="MoveToDataSpan">{timeConverter(text)}</div>;
       },
     },
     {
       title: "Frontend",
       dataIndex: "frontend",
       render: (text: string) => (
-        <div className="OrpheaSpan">{text ? text : getLanguageLabel("none")}</div>
+        <div className="MoveToDataSpan">{text ? text : getLanguageLabel("none")}</div>
       ),
     },
     {
       title: "Boson",
       dataIndex: "boson",
       render: (text: string) => (
-        <div className="OrpheaSpan">{text ? text : getLanguageLabel("none")}</div>
+        <div className="MoveToDataSpan">{text ? text : getLanguageLabel("none")}</div>
       ),
     },
     {
       title: "Parler",
       dataIndex: "parler",
       render: (text: string) => (
-        <div className="OrpheaSpan">{text ? text : getLanguageLabel("none")}</div>
+        <div className="MoveToDataSpan">{text ? text : getLanguageLabel("none")}</div>
       ),
     },
     {
       title: "Julia",
       dataIndex: "julia",
       render: (text: string) => (
-        <div className="OrpheaSpan">{text ? text : getLanguageLabel("none")}</div>
+        <div className="MoveToDataSpan">{text ? text : getLanguageLabel("none")}</div>
       ),
     },
     {
       title: "Callisto",
       dataIndex: "callisto",
       render: (text: string) => (
-        <div className="OrpheaSpan">{text ? text : getLanguageLabel("none")}</div>
+        <div className="MoveToDataSpan">{text ? text : getLanguageLabel("none")}</div>
       ),
     },
     {
       title: "Capture",
       dataIndex: "capture",
       render: (text: string) => (
-        <div className="OrpheaSpan">{text ? text : getLanguageLabel("none")}</div>
+        <div className="MoveToDataSpan">{text ? text : getLanguageLabel("none")}</div>
       ),
     },
     {
-      title: "OrpheaDocs",
-      dataIndex: "orpheaDocs",
+      title: "MoveToDataDocs",
+      dataIndex: "movetodataDocs",
       render: (text: string) => (
-        <div className="OrpheaSpan">{text ? text : getLanguageLabel("none")}</div>
+        <div className="MoveToDataSpan">{text ? text : getLanguageLabel("none")}</div>
       ),
     },
     {
       title: "SparkHistoryServer",
       dataIndex: "sparkHistoryServer",
       render: (text: string) => (
-        <div className="OrpheaSpan">{text ? text : getLanguageLabel("none")}</div>
+        <div className="MoveToDataSpan">{text ? text : getLanguageLabel("none")}</div>
       ),
     },
     {
@@ -337,12 +337,12 @@ export const getConfigurationColumns = (
       render: (text: any, record: any) => {
         if (record.state === "ARCHIVED") {
           return (
-            <OrpheaButton
+            <MoveToDataButton
               intent="action"
               onClick={() => handleRevertModal(record)}
             >
               Revert
-            </OrpheaButton>
+            </MoveToDataButton>
           );
         }
         return null;
@@ -358,28 +358,28 @@ export const getLicenseColumns = () => {
       title: "State",
       dataIndex: "state",
       render: (text: string) => (
-        <div className="OrpheaSpan">{stateIcon(text)}</div>
+        <div className="MoveToDataSpan">{stateIcon(text)}</div>
       ),
     },
     {
       title: "Client",
       dataIndex: "client",
       render: (text: string) => (
-        <div className="OrpheaSpan">{text ? text : getLanguageLabel("none")}</div>
+        <div className="MoveToDataSpan">{text ? text : getLanguageLabel("none")}</div>
       ),
     },
     {
       title: "Product",
       dataIndex: "product",
       render: (text: string) => (
-        <div className="OrpheaSpan">{text ? text : getLanguageLabel("none")}</div>
+        <div className="MoveToDataSpan">{text ? text : getLanguageLabel("none")}</div>
       ),
     },
     {
       title: "Base URL",
       dataIndex: "baseUrl",
       render: (text: string) => (
-        <div className="OrpheaSpan">{text ? text : getLanguageLabel("none")}</div>
+        <div className="MoveToDataSpan">{text ? text : getLanguageLabel("none")}</div>
       ),
     },
     {
@@ -439,7 +439,7 @@ export const getLicenseColumns = () => {
       title: getLanguageLabel("expiringOn"),
       dataIndex: "expiresOn",
       render: (text: string) => (
-        <div className="OrpheaSpan">
+        <div className="MoveToDataSpan">
           {text ? (
             <Tooltip title={timeConverter(Number(text))}>
               <div
@@ -462,7 +462,7 @@ export const getLicenseColumns = () => {
       title: getLanguageLabel("licenseKey"),
       dataIndex: "licenseKey",
       render: (text: string) => (
-        <OrpheaInput
+        <MoveToDataInput
           value={text ? text : getLanguageLabel("none")}
           readOnly
           suffix={
@@ -501,7 +501,7 @@ export const getColumnsActiveTarget = ({
       title: (
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div>
-            <PulseIcon color={"var(--orphea-intent-danger)"} /> {getLanguageLabel("active")} <br />
+            <PulseIcon color={"var(--movetodata-intent-danger)"} /> {getLanguageLabel("active")} <br />
             <Text style={{ fontSize: "0.8rem" }} type="secondary">
               {getLanguageLabel("thisIsTheCurrentlyActiveVersion")}
             </Text>
@@ -586,7 +586,7 @@ export const getColumnsActiveTarget = ({
           >
             {hasMismatch ? (
               <Tooltip title={getLanguageLabel("clickToUpdateToLatest")}>
-                <OrpheaButton
+                <MoveToDataButton
                   icon={<UploadIcon />}
                   intent="action"
                   onClick={() => setIsCreateConfigurationTargetModalOpen(true)}
@@ -594,18 +594,18 @@ export const getColumnsActiveTarget = ({
                   outlined
                 >
                   {text ? text : getLanguageLabel("none")}
-                </OrpheaButton>
+                </MoveToDataButton>
               </Tooltip>
             ) : (
               <Tooltip title={"Already on the latest."}>
-                <OrpheaButton
+                <MoveToDataButton
                   icon={<TickIcon />}
                   intent={getLanguageLabel("none")}
                   minimal
                   outlined
                 >
                   {text ? text : getLanguageLabel("none")}
-                </OrpheaButton>
+                </MoveToDataButton>
               </Tooltip>
             )}
           </div>
@@ -643,13 +643,13 @@ export const getTabItems = ({
             </Col>
             <Col>
               <Tooltip placement="top" title={getLanguageLabel("updateTargetState")}>
-                <OrpheaButton
+                <MoveToDataButton
                   icon={<AddIcon />}
                   intent="action"
                   onClick={() => setIsCreateConfigurationTargetModalOpen(true)}
                 >
                   {getLanguageLabel("updateTargetState")}
-                </OrpheaButton>
+                </MoveToDataButton>
               </Tooltip>
             </Col>
           </Row>
@@ -689,17 +689,17 @@ export const getTabItems = ({
               <Title level={3}>
                 {getLanguageLabel("license")} ({deploymentDetails?.licenseModel.length})
               </Title>
-              <Text type="secondary">{getLanguageLabel("hereAreOrpheaClientsLicenses")}</Text>
+              <Text type="secondary">{getLanguageLabel("hereAreMoveToDataClientsLicenses")}</Text>
             </Col>
             <Col>
               <Tooltip placement="top" title={"Create New License"}>
-                <OrpheaButton
+                <MoveToDataButton
                   icon={<AddIcon />}
                   intent="action"
                   onClick={() => setIsCreateNewLicenseModalOpen(true)}
                 >
                   {getLanguageLabel("newLicense")}
-                </OrpheaButton>
+                </MoveToDataButton>
               </Tooltip>
             </Col>
           </Row>
@@ -734,7 +734,7 @@ export const handleRevert = async ({
       julia: record.julia,
       callisto: record.callisto,
       capture: record.capture,
-      orpheaDocs: record.orpheaDocs,
+      movetodataDocs: record.movetodataDocs,
       sparkHistoryServer: record.sparkHistoryServer,
       branch: deploymentDetails.branch,
     };

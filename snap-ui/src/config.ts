@@ -1,4 +1,4 @@
-export const OrpheaConfig: {
+﻿export const MoveToDataConfig: {
   [key: string]: any;
 } = {
   colorTheme: {

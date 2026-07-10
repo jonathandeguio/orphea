@@ -1,21 +1,21 @@
-import { Col, Divider, Row, Tooltip, Typography } from "antd";
+﻿import { Col, Divider, Row, Tooltip, Typography } from "antd";
 import React, { useState } from "react";
 
-import * as ActionIcons from "assets/icons/orpheaActionIcons";
-import * as ChartIcons from "assets/icons/orpheaChartIcons";
-import * as DataIcons from "assets/icons/orpheaDataIcons";
-import * as EditorIcons from "assets/icons/orpheaEditorIcons";
-import * as ExternalIcons from "assets/icons/orpheaExternalIcons";
-import * as FileIcons from "assets/icons/orpheaFileIcons";
-import * as InterfaceIcons from "assets/icons/orpheaInterfaceIcons";
-import * as MiscellaneousIcons from "assets/icons/orpheaMiscellaneousIcons";
-import * as NavigationIcons from "assets/icons/orpheaNavigationIcon";
-import * as SortIcons from "assets/icons/orpheaSortIcons";
-import * as TableIcons from "assets/icons/orpheaTableIcons";
+import * as ActionIcons from "assets/icons/movetodataActionIcons";
+import * as ChartIcons from "assets/icons/movetodataChartIcons";
+import * as DataIcons from "assets/icons/movetodataDataIcons";
+import * as EditorIcons from "assets/icons/movetodataEditorIcons";
+import * as ExternalIcons from "assets/icons/movetodataExternalIcons";
+import * as FileIcons from "assets/icons/movetodataFileIcons";
+import * as InterfaceIcons from "assets/icons/movetodataInterfaceIcons";
+import * as MiscellaneousIcons from "assets/icons/movetodataMiscellaneousIcons";
+import * as NavigationIcons from "assets/icons/movetodataNavigationIcon";
+import * as SortIcons from "assets/icons/movetodataSortIcons";
+import * as TableIcons from "assets/icons/movetodataTableIcons";
 
 import { copyToClipboard, getLanguageLabel } from "utils/utilities";
-import { SearchIcon } from "assets/icons/orpheaActionIcons";
-import OrpheaInput from "components/InputComponent/OrpheaInput";
+import { SearchIcon } from "assets/icons/movetodataActionIcons";
+import MoveToDataInput from "components/InputComponent/MoveToDataInput";
 
 const { Text } = Typography;
 
@@ -139,7 +139,7 @@ const IconList = () => {
         <br />
         <Row gutter={[10, 10]}>
           <Col span={24}>
-            <OrpheaInput
+            <MoveToDataInput
               placeholder="Search for icons..."
               onChange={(e) => {
                 setActionIconsSearchValue(e.target.value);

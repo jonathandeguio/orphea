@@ -1,4 +1,4 @@
-.context_menu {
+﻿.context_menu {
   outline: none;
   text-align: left;
   list-style-type: none;
@@ -43,7 +43,7 @@
   li {
     position: relative;
     clear: both;
-    color: var(--orphea-font-color-default);
+    color: var(--movetodata-font-color-default);
     font-size: 14px;
     font-weight: normal;
     line-height: 22px;
@@ -62,7 +62,7 @@
       margin-right: 8px;
     }
     &:hover {
-      background-color: var(--orphea-hover-color);
+      background-color: var(--movetodata-hover-color);
     }
   }
 
@@ -90,12 +90,12 @@
   }
 
   .li--active {
-    background-color: var(--orphea-hover-color);
+    background-color: var(--movetodata-hover-color);
   }
 
   .li--disabled {
     cursor: not-allowed !important;
-    color: var(--orphea-font-color-muted);
+    color: var(--movetodata-font-color-muted);
     &:hover {
       background-color: transparent;
 

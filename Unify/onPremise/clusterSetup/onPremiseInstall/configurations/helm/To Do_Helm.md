@@ -1,10 +1,10 @@
-## HELM
-- Test Helm migration to orphea-foo (under jimothy tenant). 
+﻿## HELM
+- Test Helm migration to movetodata-foo (under jimothy tenant). 
     - merge in any changes to ingress and spark-history configs √
     - dependencies/conditions: wait for database before creating databases boson and kepler (see start.sh)
     - Create S3 directories: /storage/… (see start.sh)
     - dependency: wait for boson before starting frontend etc. (see start.sh)
-    - Spark integration: (see orphea_spark_env.sh, PRE-REQ for Spark)
+    - Spark integration: (see movetodata_spark_env.sh, PRE-REQ for Spark)
         - Install repo, update, install spark-operator
         - create spark service account
         - create cluster role bindings

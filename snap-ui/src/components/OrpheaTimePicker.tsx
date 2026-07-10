@@ -1,9 +1,9 @@
-import { TimePicker } from "antd";
+﻿import { TimePicker } from "antd";
 import dayjs, { Dayjs } from "dayjs";
 import React, { useMemo } from "react";
-import { CrossIcon } from "assets/icons/orpheaActionIcons";
+import { CrossIcon } from "assets/icons/movetodataActionIcons";
 
-interface OrpheaTimePickerProps {
+interface MoveToDataTimePickerProps {
   placeholder?: string;
   onChange?: (value: number | undefined) => void;
   value?: number;
@@ -15,7 +15,7 @@ interface OrpheaTimePickerProps {
   };
 }
 
-const OrpheaTimePicker = (props: OrpheaTimePickerProps) => {
+const MoveToDataTimePicker = (props: MoveToDataTimePickerProps) => {
   const value = useMemo(() => {
     if (props.value === undefined) return undefined;
     const secondsOfDay = props.value / 1000; // Convert milliseconds to seconds
@@ -71,4 +71,4 @@ const OrpheaTimePicker = (props: OrpheaTimePickerProps) => {
   );
 };
 
-export default OrpheaTimePicker;
+export default MoveToDataTimePicker;

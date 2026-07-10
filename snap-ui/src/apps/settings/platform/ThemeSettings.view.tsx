@@ -1,11 +1,11 @@
-import { Col, Divider, Row, Select, Typography } from "antd";
+﻿import { Col, Divider, Row, Select, Typography } from "antd";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { updatePlatformConfig } from "redux/actions/platformSettingsActions";
 import { ThunkAppDispatch } from "redux/types/store";
 import UploadLogoButton from "../UploadLogoButton.view";
-import OrpheaInput from "components/InputComponent/OrpheaInput";
+import MoveToDataInput from "components/InputComponent/MoveToDataInput";
 
 const { Text, Title } = Typography;
 const { Option } = Select;
@@ -37,7 +37,7 @@ export const ThemeSettings = () => {
             </Text>
           </Col>
           <Col>
-            <OrpheaInput
+            <MoveToDataInput
               value={config.platformName}
               debounceInterval={2000}
               onChange={(e) => {
@@ -57,7 +57,7 @@ export const ThemeSettings = () => {
             <Text>Custom logo</Text>
             <br />
             <Text type="secondary">
-              This logo will replace the Orphea logo at all the places.
+              This logo will replace the MoveToData logo at all the places.
             </Text>
           </Col>
           <Col>
@@ -77,7 +77,7 @@ export const ThemeSettings = () => {
         <Row>
           <Col>
             <Text type="secondary">
-              Select the active theme palette used in Orphea charts in your
+              Select the active theme palette used in MoveToData charts in your
               projects, or create your own.
             </Text>
           </Col>

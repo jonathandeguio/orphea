@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+﻿import React, { useEffect } from "react";
 import { RouterProvider } from "react-router-dom";
 import "../../App.scss";
 import { RootState } from "redux/types/store";
@@ -9,7 +9,7 @@ import { ConfigProvider, theme } from "antd";
 import { HotkeysProvider } from "react-hotkeys-hook";
 import { useSelector } from "react-redux";
 import { isCurrentConfigThemeDark, setTheme } from "utils/utilities";
-import OrpheaLoader from "components/orpheaLoader";
+import MoveToDataLoader from "components/movetodataLoader";
 import { useThemeDetector } from "hooks/useThemeDetector";
 import { useRouter } from "routes/Routes";
 
@@ -43,7 +43,7 @@ function App() {
         },
       }}
     >
-      <React.Suspense fallback={<OrpheaLoader type="fallback" />}>
+      <React.Suspense fallback={<MoveToDataLoader type="fallback" />}>
         <HotkeysProvider>
           <RouterProvider router={router} />
         </HotkeysProvider>

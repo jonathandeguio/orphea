@@ -1,11 +1,11 @@
-import React from "react";
-import "./OrpheaEditText.scss";
+﻿import React from "react";
+import "./MoveToDataEditText.scss";
 
-const OrpheaEditText = (props: { children: any }) => {
+const MoveToDataEditText = (props: { children: any }) => {
   return (
     <div
       contentEditable="true"
-      className="orphea_edit_text"
+      className="movetodata_edit_text"
       onInput={(e) => {
         e.preventDefault();
       }}
@@ -15,4 +15,4 @@ const OrpheaEditText = (props: { children: any }) => {
   );
 };
 
-export default OrpheaEditText;
+export default MoveToDataEditText;

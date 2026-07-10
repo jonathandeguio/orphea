@@ -1,9 +1,9 @@
-import { MenuProps, Segmented, Select, Switch, Typography } from "antd";
+﻿import { MenuProps, Segmented, Select, Switch, Typography } from "antd";
 import React, { useEffect, useState } from "react";
 import "../ButtonComponent/ButtonComponentDisplay.scss";
-import OrpheaButton from "./OrpheaButton";
-import { SearchIcon } from "assets/icons/orpheaActionIcons";
-import { ArrowTopRightIcon } from "assets/icons/orpheaNavigationIcon";
+import MoveToDataButton from "./MoveToDataButton";
+import { SearchIcon } from "assets/icons/movetodataActionIcons";
+import { ArrowTopRightIcon } from "assets/icons/movetodataNavigationIcon";
 
 const { Title, Text } = Typography;
 
@@ -45,7 +45,7 @@ const items: MenuProps["items"] = [
     ),
   },
 ];
-const OrpheaComponentDisplay = () => {
+const MoveToDataComponentDisplay = () => {
   const DEFAULT_STATE = {};
   const [btnProps, setBtnProps] = useState<any>(DEFAULT_STATE);
 
@@ -67,8 +67,8 @@ const OrpheaComponentDisplay = () => {
 
   useEffect(() => {}, [btnProps]);
 
-  let buttonString = "<OrpheaButton icon={<SearchIcon />} ";
-  let buttonStringWithActionIcon = `<OrpheaButton icon={<SearchIcon />} actionIcon={<ArrowTopRightIcon />}
+  let buttonString = "<MoveToDataButton icon={<SearchIcon />} ";
+  let buttonStringWithActionIcon = `<MoveToDataButton icon={<SearchIcon />} actionIcon={<ArrowTopRightIcon />}
   onClick={(e: any) => {
     
   }}
@@ -77,7 +77,7 @@ const OrpheaComponentDisplay = () => {
     
   }}`;
   let buttonStringWithMenuItems =
-    "<OrpheaButton icon={<SearchIcon />} menuItems={items} ";
+    "<MoveToDataButton icon={<SearchIcon />} menuItems={items} ";
 
   for (const prop in btnProps) {
     if (
@@ -97,18 +97,18 @@ const OrpheaComponentDisplay = () => {
     }
   }
 
-  buttonString += "> Primary Button </OrpheaButton>";
-  buttonStringWithActionIcon += "> Primary Button </OrpheaButton>";
-  buttonStringWithMenuItems += "> Primary Button </OrpheaButton>";
+  buttonString += "> Primary Button </MoveToDataButton>";
+  buttonStringWithActionIcon += "> Primary Button </MoveToDataButton>";
+  buttonStringWithMenuItems += "> Primary Button </MoveToDataButton>";
 
   return (
-    <div className="orpheaComponents-buttonDisplay">
-      <div className="orpheaComponents-buttonDisplay-preview">
-        <div className="orpheaComponents-buttonDisplay-preview-screen">
-          <OrpheaButton icon={<SearchIcon />} {...btnProps}>
+    <div className="movetodataComponents-buttonDisplay">
+      <div className="movetodataComponents-buttonDisplay-preview">
+        <div className="movetodataComponents-buttonDisplay-preview-screen">
+          <MoveToDataButton icon={<SearchIcon />} {...btnProps}>
             Primary
-          </OrpheaButton>
-          <OrpheaButton
+          </MoveToDataButton>
+          <MoveToDataButton
             icon={<SearchIcon />}
             {...btnProps}
             actionIcon={<ArrowTopRightIcon />}
@@ -118,16 +118,16 @@ const OrpheaComponentDisplay = () => {
             }}
           >
             Primary Button
-          </OrpheaButton>
+          </MoveToDataButton>
 
-          <OrpheaButton icon={<SearchIcon />} menuItems={items} {...btnProps}>
+          <MoveToDataButton icon={<SearchIcon />} menuItems={items} {...btnProps}>
             Primary Button
-          </OrpheaButton>
+          </MoveToDataButton>
         </div>
         <Text
           code
           copyable
-          className="orpheaComponents-buttonDisplay-preview-code"
+          className="movetodataComponents-buttonDisplay-preview-code"
         >
           {buttonString}
         </Text>
@@ -135,7 +135,7 @@ const OrpheaComponentDisplay = () => {
         <Text
           code
           copyable
-          className="orpheaComponents-buttonDisplay-preview-code"
+          className="movetodataComponents-buttonDisplay-preview-code"
         >
           {buttonStringWithActionIcon}
         </Text>
@@ -143,14 +143,14 @@ const OrpheaComponentDisplay = () => {
         <Text
           code
           copyable
-          className="orpheaComponents-buttonDisplay-preview-code"
+          className="movetodataComponents-buttonDisplay-preview-code"
         >
           {buttonStringWithMenuItems}
         </Text>
       </div>
-      <div className="orpheaComponents-buttonDisplay-controller">
+      <div className="movetodataComponents-buttonDisplay-controller">
         <Title level={5}>Props</Title>
-        <div className="orpheaComponents-buttonDisplay-controller-items">
+        <div className="movetodataComponents-buttonDisplay-controller-items">
           {/* <SwitchProp name="Active" /> */}
           <SwitchProp name="Disabled" />
           <SwitchProp name="Loading" />
@@ -163,7 +163,7 @@ const OrpheaComponentDisplay = () => {
           <SwitchProp name="TrimIconOnlyPadding" />
         </div>
         <Title level={5}>Align Text</Title>
-        <div className="orpheaComponents-buttonDisplay-controller-items">
+        <div className="movetodataComponents-buttonDisplay-controller-items">
           <Segmented
             options={["left", "center", "right"]}
             value={
@@ -177,7 +177,7 @@ const OrpheaComponentDisplay = () => {
           />
         </div>
         <Title level={5}>Size</Title>
-        <div className="orpheaComponents-buttonDisplay-controller-items">
+        <div className="movetodataComponents-buttonDisplay-controller-items">
           <Segmented
             options={["small", "middle", "large"]}
             value={
@@ -209,4 +209,4 @@ const OrpheaComponentDisplay = () => {
   );
 };
 
-export default OrpheaComponentDisplay;
+export default MoveToDataComponentDisplay;

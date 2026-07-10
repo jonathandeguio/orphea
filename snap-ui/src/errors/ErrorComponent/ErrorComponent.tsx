@@ -1,13 +1,13 @@
-import React from "react";
+﻿import React from "react";
 import { Link } from "react-router-dom";
 import { ParticleApp } from "utils/ParticleApp";
 import { getLanguageLabel, isIpPlatform } from "utils/utilities";
 
-import { WarningIcon } from "assets/icons/orpheaActionIcons";
-import { OrpheaIcon } from "assets/icons/orpheaMiscellaneousIcons";
-import { ArrowRightIcon } from "assets/icons/orpheaNavigationIcon";
-import OrpheaButton from "components/ButtonComponent/OrpheaButton";
-import OrpheaModalContainer from "components/OrpheaModalContainer/OrpheaModalContainer";
+import { WarningIcon } from "assets/icons/movetodataActionIcons";
+import { MoveToDataIcon } from "assets/icons/movetodataMiscellaneousIcons";
+import { ArrowRightIcon } from "assets/icons/movetodataNavigationIcon";
+import MoveToDataButton from "components/ButtonComponent/MoveToDataButton";
+import MoveToDataModalContainer from "components/MoveToDataModalContainer/MoveToDataModalContainer";
 
 interface ErrorComponentProps {
   lineStroke: string;
@@ -62,21 +62,21 @@ export const ErrorComponent = ({
             zIndex: 10,
           }}
         >
-          {!isIpPlatform() && <OrpheaIcon size={128} />}
+          {!isIpPlatform() && <MoveToDataIcon size={128} />}
           <div className="form-containerNew">
-            <OrpheaModalContainer
+            <MoveToDataModalContainer
               headingIcon={<WarningIcon color="orange" />}
               heading={errorHeading}
               footerExtraText={getLanguageLabel("homePageMsg")}
               footerButtonArea={
                 <Link to="/portal/home">
-                  <OrpheaButton
+                  <MoveToDataButton
                     intent="action"
                     icon={<ArrowRightIcon />}
                     htmlType="submit"
                   >
                     {getLanguageLabel("homePage")}
-                  </OrpheaButton>
+                  </MoveToDataButton>
                 </Link>
               }
               outerBorder={false}
@@ -90,7 +90,7 @@ export const ErrorComponent = ({
                     alignItems: "center",
                     gap: "1rem",
                     flexDirection: "column",
-                    backgroundColor: "var(--orphea-bkg-color-muted)",
+                    backgroundColor: "var(--movetodata-bkg-color-muted)",
                     textAlign: "left",
                   }}
                 >
@@ -98,7 +98,7 @@ export const ErrorComponent = ({
                     style={{
                       marginBottom: "10px",
                       fontSize: "18px",
-                      color: "var(--orphea-font-color-muted)",
+                      color: "var(--movetodata-font-color-muted)",
                     }}
                     className="text-and-icon-center"
                   >
@@ -132,7 +132,7 @@ export const ErrorComponent = ({
               }
             >
               <div
-                className="OrpheaHeader1"
+                className="MoveToDataHeader1"
                 style={{ marginBottom: "10px" }}
               ></div>
 
@@ -142,7 +142,7 @@ export const ErrorComponent = ({
               <div className="contant_box_404">
                 <h3 className="h4">{errorMsg}</h3>
               </div>
-            </OrpheaModalContainer>
+            </MoveToDataModalContainer>
           </div>
         </div>
       </div>

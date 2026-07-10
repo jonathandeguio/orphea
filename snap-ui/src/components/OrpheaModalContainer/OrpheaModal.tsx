@@ -1,7 +1,7 @@
-import { Modal, ModalProps } from "antd";
+﻿import { Modal, ModalProps } from "antd";
 import React from "react";
-import OrpheaModalContainer from "./OrpheaModalContainer";
-interface TOrpheaModalProps extends ModalProps {
+import MoveToDataModalContainer from "./MoveToDataModalContainer";
+interface TMoveToDataModalProps extends ModalProps {
   heading?: any;
   headingIcon?: any;
   extraActionHeading?: any;
@@ -13,7 +13,7 @@ interface TOrpheaModalProps extends ModalProps {
   dividers?: boolean;
 }
 
-const OrpheaModal = ({
+const MoveToDataModal = ({
   heading,
   headingIcon,
   extraActionHeading,
@@ -24,7 +24,7 @@ const OrpheaModal = ({
   dividers = true,
   children,
   ...ModalProps
-}: TOrpheaModalProps) => {
+}: TMoveToDataModalProps) => {
   return (
     <Modal
       destroyOnClose
@@ -39,10 +39,10 @@ const OrpheaModal = ({
       }}
       closable={false}
       width={"fit-content"}
-      className="orphea-modal"
+      className="movetodata-modal"
       {...ModalProps}
     >
-      <OrpheaModalContainer
+      <MoveToDataModalContainer
         heading={heading}
         headingIcon={headingIcon}
         extraActionHeading={extraActionHeading}
@@ -53,9 +53,9 @@ const OrpheaModal = ({
         dividers={dividers}
       >
         {children}
-      </OrpheaModalContainer>
+      </MoveToDataModalContainer>
     </Modal>
   );
 };
 
-export default OrpheaModal;
+export default MoveToDataModal;

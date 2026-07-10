@@ -1,4 +1,4 @@
-import os
+﻿import os
 import sys
 import yaml
 import subprocess
@@ -15,7 +15,7 @@ RED = '\033[0;31m'  # Red color
 BOLD = '\033[1m'  # Bold text
 RESET = '\033[0m'  # Reset color and formatting
 
-LOCK_FILE = "/tmp/orphea_check_updates.lock"
+LOCK_FILE = "/tmp/movetodata_check_updates.lock"
 
 
 def acquire_lock():
@@ -61,12 +61,12 @@ def check_image_name():
 
 # Function to load the image
 def load_image():
-    tar_file_path = os.path.join(ORPHEA_IMAGE_DIR, f"{IMAGE}.tar")
+    tar_file_path = os.path.join(MOVETODATA_IMAGE_DIR, f"{IMAGE}.tar")
     if not os.path.isfile(tar_file_path):
         print(f"{datetime.now()} : {RED}[ERROR]{RESET} : Tar file '{tar_file_path}' not found!")
         exit(1)
 
-    os.chdir(ORPHEA_IMAGE_DIR)
+    os.chdir(MOVETODATA_IMAGE_DIR)
     try:
         # Run the ctr import command and capture the output
         process = subprocess.Popen(
@@ -186,8 +186,8 @@ def change_active_state():
 def download_image():
     print(f"{datetime.now()} : [INFO] : {IMAGE} downloading latest tag")
 
-    DOWNLOAD_IMAGE = IMAGE.replace("orpheaDocs", "orphea-docs").replace("sparkHistoryServer", "spark-history-server")
-    image_path = os.path.join(ORPHEA_IMAGE_DIR, f"{IMAGE}.tar")
+    DOWNLOAD_IMAGE = IMAGE.replace("movetodataDocs", "movetodata-docs").replace("sparkHistoryServer", "spark-history-server")
+    image_path = os.path.join(MOVETODATA_IMAGE_DIR, f"{IMAGE}.tar")
 
     retries = 3
     for attempt in range(retries):
@@ -231,7 +231,7 @@ def download_image():
 # Function to run Helm upgrade
 def helm_upgrade():
     os.chdir(HELM_DIR)
-    subprocess.run(f"helm upgrade orphea charts/{HELM_CHART} -f charts/{HELM_CHART}/{HELM_VALUES}", shell=True)
+    subprocess.run(f"helm upgrade movetodata charts/{HELM_CHART} -f charts/{HELM_CHART}/{HELM_VALUES}", shell=True)
 
 
 # Main function
@@ -269,6 +269,6 @@ if __name__ == "__main__":
     valid_images = config["valid_images"]
 
     HELM_DIR = os.path.join(BUNDLE_DIR, "deployments/configurations/helm")
-    ORPHEA_IMAGE_DIR = os.path.join(BUNDLE_DIR, "images/orphea")
+    MOVETODATA_IMAGE_DIR = os.path.join(BUNDLE_DIR, "images/movetodata")
 
     main()

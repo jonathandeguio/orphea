@@ -1,10 +1,10 @@
-#!/usr/bin/env bash
+﻿#!/usr/bin/env bash
 
 
 #minikube stop
 #minikube delete
 #echo "N/A for this platform!"
 
-kubectl delete all --all -n orphea
+kubectl delete all --all -n movetodata
 
 

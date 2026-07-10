@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -9,7 +9,7 @@ import AppContainer from "layouts/app/AppContainer";
 
 import Home from "apps/home";
 
-import OrpheaUIComponents from "apps/developer/OrpheaUIComponents";
+import MoveToDataUIComponents from "apps/developer/MoveToDataUIComponents";
 import NoDataComponents from "apps/developer/NoDataComponents";
 import TestingArea from "apps/developer/TestingArea";
 import Typhography from "apps/developer/Typhography";
@@ -29,7 +29,7 @@ import SMTPSettings from "apps/settings/platform/SMTPSettings.view";
 import { ThemeSettings } from "apps/settings/platform/ThemeSettings.view";
 import { TimezoneSettings } from "apps/settings/platform/TimezoneSettings.view";
 import { UploadSettings } from "apps/settings/platform/UploadSettings.view";
-import OrpheaComponents from "apps/developer/OrpheaComponents";
+import MoveToDataComponents from "apps/developer/MoveToDataComponents";
 import DeveloperHome from "apps/developer/DeveloperHome";
 import IconList from "apps/developer/iconsList";
 import ChangePassword from "apps/settings/ChangePassword";
@@ -54,7 +54,7 @@ import Settings from "apps/settings";
 import Artifacts from "apps/builds/artifacts/Artifacts";
 import Triggers from "apps/builds/triggers/Triggers";
 import OAuth2RedirectHandler from "layouts/auth/OAuth2RedirectHandler";
-import OrpheaHome from "apps/home/OrpheaHome";
+import MoveToDataHome from "apps/home/MoveToDataHome";
 import ManageGroups from "apps/settings/ManageGroups";
 import ProfileUser from "apps/settings/ProfileUser";
 import Deployments from "apps/deployments/deployment/Deployments";
@@ -71,7 +71,7 @@ const useRouter = () => {
 
           <Route path="/portal" element={<Home />}>
             <Route index element={<Navigate to="/portal/home" />} />
-            <Route path="home" element={<OrpheaHome />} />
+            <Route path="home" element={<MoveToDataHome />} />
           </Route>
           <Route path="/portal/triggers" element={<Triggers />} />
           <Route path="/portal/artifacts/:id" element={<Artifacts />} />
@@ -82,9 +82,9 @@ const useRouter = () => {
             {process.env.NODE_ENV !== "production" && (
               <>
                 <Route path="icons" element={<IconList />} />
-                <Route path="components" element={<OrpheaComponents />} />
+                <Route path="components" element={<MoveToDataComponents />} />
                 <Route path="typography" element={<Typhography />} />
-                <Route path="uicomponents" element={<OrpheaUIComponents />} />
+                <Route path="uicomponents" element={<MoveToDataUIComponents />} />
                 <Route path="nodata" element={<NoDataComponents />} />
                 <Route path="testingarea" element={<TestingArea />} />
               </>

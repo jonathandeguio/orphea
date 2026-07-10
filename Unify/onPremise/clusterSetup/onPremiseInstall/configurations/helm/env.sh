@@ -1,14 +1,14 @@
-HELM_CHART=orphea-gke
+﻿HELM_CHART=movetodata-gke
 HELM_VALUES=testCluster.yaml
 PROJECT_ID=octbos221
 BUCKET_NAME=datasets_collections_$PROJECT_ID
 COMPUTE_REGION=europe-west1
 COMPUTE_ZONE=europe-west1-b
-CLUSTER_NAME=orphea
+CLUSTER_NAME=movetodata
 
 MACHINE_TYPE=e2-highmem-2
-LOCALREPO=orphea-cr
-CERT_FILE_PATH="./ssl-certificates/_.orphea.io.crt"
+LOCALREPO=movetodata-cr
+CERT_FILE_PATH="./ssl-certificates/_.movetodata.io.crt"
 KEY_FILE_PATH="./ssl-certificates/myserver.key"
 
 ACTIVE_REPOS="funnel parler spark-history-server boson callisto frontend tycho julia"

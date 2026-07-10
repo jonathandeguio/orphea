@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+﻿#!/usr/bin/env bash
 #
 # Licensed to the Apache Software Foundation (ASF) under one or more
 # contributor license agreements.  See the NOTICE file distributed with
@@ -75,7 +75,7 @@ elif ! [ -z ${SPARK_HOME+x} ]; then
   SPARK_CLASSPATH="$SPARK_HOME/conf:$SPARK_CLASSPATH";
 fi
 
-# Orphea Specific
+# MoveToData Specific
 # Define a function to convert a string to uppercase
 uppercase() {
     echo "$1" | tr '[:lower:]' '[:upper:]'
@@ -100,11 +100,11 @@ function preview_error_log() {
       -H "Content-Type: application/json" \
       -H "Accept-Language: en-US,en;q=0.5" \
       -H "Source: $SOURCE" \
-      -d "$payload" "$ORPHEA_API/api/funnel/$BUILD_ID/log")
+      -d "$payload" "$MOVETODATA_API/api/funnel/$BUILD_ID/log")
 
     if [ "$api_response" -ne 200 ]; then
         error_timestamp=$(date +%s)
-        error_message="{\"timestamp\":\"$error_timestamp\",\"status\":\"error\",\"type\":\"ORPHEA\",\"message\":\"Unable to call orphea backend API. $(curl -s -X POST -H \"Content-Type: application/json\" -d \"$payload\" \"$ORPHEA_API/api/build/$BUILD_ID/funnelLog\")\"}"
+        error_message="{\"timestamp\":\"$error_timestamp\",\"status\":\"error\",\"type\":\"MOVETODATA\",\"message\":\"Unable to call movetodata backend API. $(curl -s -X POST -H \"Content-Type: application/json\" -d \"$payload\" \"$MOVETODATA_API/api/build/$BUILD_ID/funnelLog\")\"}"
         echo "$error_message"
         echo "Exiting"
         exit 1
@@ -148,11 +148,11 @@ function log() {
       -H "Content-Type: application/json" \
       -H "Accept-Language: en-US,en;q=0.5" \
       -H "Source: $SOURCE" \
-      -d "$payload" "$ORPHEA_API/api/build/$BUILD_ID/log")
+      -d "$payload" "$MOVETODATA_API/api/build/$BUILD_ID/log")
 
     if [ "$api_response" -ne 200 ]; then
         error_timestamp=$(date +%s)
-        error_message="{\"timestamp\":\"$error_timestamp\",\"status\":\"error\",\"type\":\"ORPHEA\",\"message\":\"Unable to call orphea backend API. $(curl -s -X POST -H \"Content-Type: application/json\" -d \"$payload\" \"$ORPHEA_API/api/build/$BUILD_ID/funnelLog\")\"}"
+        error_message="{\"timestamp\":\"$error_timestamp\",\"status\":\"error\",\"type\":\"MOVETODATA\",\"message\":\"Unable to call movetodata backend API. $(curl -s -X POST -H \"Content-Type: application/json\" -d \"$payload\" \"$MOVETODATA_API/api/build/$BUILD_ID/funnelLog\")\"}"
         echo "$error_message"
         echo "Exiting"
         exit 1
@@ -262,11 +262,11 @@ if ! checkEnvVariables "${variables[@]}"; then
     exit 1
 fi
 
-# Orphea Specific
+# MoveToData Specific
 if [[ -v GOOGLE_CLOUD_CREDENTIALS ]]; then
   echo "$GOOGLE_CLOUD_CREDENTIALS" >>  /root/google_creds.json
 fi
-# Orphea Specific
+# MoveToData Specific
 
 
 case "$1" in
@@ -279,7 +279,7 @@ case "$1" in
       "$@"
     )
 
-      # ORPHEA Specific : git clone the the repository based on repository Id
+      # MOVETODATA Specific : git clone the the repository based on repository Id
 #          env
           if [[ -v REPOSITORY_ID ]]; then
               log "INFO" "PREPARING" "Preparing the setup."

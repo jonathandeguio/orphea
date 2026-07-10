@@ -1,11 +1,11 @@
-import { Col, Divider, Popover, Row, Typography } from "antd";
+﻿import { Col, Divider, Popover, Row, Typography } from "antd";
 import React from "react";
 import ReactCountryFlag from "react-country-flag";
 import { useDispatch, useSelector } from "react-redux";
-import { SparklesIcon } from "assets/icons/orpheaActionIcons";
+import { SparklesIcon } from "assets/icons/movetodataActionIcons";
 
-import { AppIcon, CollectionIcon } from "assets/icons/orpheaInterfaceIcons";
-import { TickIcon } from "assets/icons/orpheaNavigationIcon";
+import { AppIcon, CollectionIcon } from "assets/icons/movetodataInterfaceIcons";
+import { TickIcon } from "assets/icons/movetodataNavigationIcon";
 import { updateUserDataAPI } from "components/CommandPalette/CommandPalette.api";
 import { LayoutViewEnum } from "layouts/Sidebar/Sidebar.utils";
 import { getLanguageLabel, getUserLanguage, setTheme } from "utils/utilities";

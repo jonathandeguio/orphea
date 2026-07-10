@@ -1,16 +1,16 @@
-import { Switch, Typography } from "antd";
-import { HistogramIcon } from "assets/icons/orpheaChartIcons";
-import { PostgresIcon } from "assets/icons/orpheaExternalIcons";
+﻿import { Switch, Typography } from "antd";
+import { HistogramIcon } from "assets/icons/movetodataChartIcons";
+import { PostgresIcon } from "assets/icons/movetodataExternalIcons";
 import React, { useState } from "react";
-import OrpheaSwitch from "components/OrpheaSwitch/OrpheaSwitch";
-import OrpheaButton from "components/ButtonComponent/OrpheaButton";
-import OrpheaModal from "components/OrpheaModalContainer";
-import OrpheaHeader from "components/Header/OrpheaHeader";
-import OrpheaSelectableCard from "components/OrpheaSelectableCard";
+import MoveToDataSwitch from "components/MoveToDataSwitch/MoveToDataSwitch";
+import MoveToDataButton from "components/ButtonComponent/MoveToDataButton";
+import MoveToDataModal from "components/MoveToDataModalContainer";
+import MoveToDataHeader from "components/Header/MoveToDataHeader";
+import MoveToDataSelectableCard from "components/MoveToDataSelectableCard";
 
 const { Title } = Typography;
 
-const OrpheaComponents = () => {
+const MoveToDataComponents = () => {
   const [activeTab, setActiveTab] = useState<string>("allHistory");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -56,7 +56,7 @@ const OrpheaComponents = () => {
           gap: "20px",
         }}
       >
-        <OrpheaSwitch
+        <MoveToDataSwitch
           items={[
             { label: "All history", value: "allHistory", children: "" },
             {
@@ -69,7 +69,7 @@ const OrpheaComponents = () => {
           onChange={(value) => setActiveTab(value)}
           padding="4px"
         />
-        <OrpheaSwitch
+        <MoveToDataSwitch
           items={[
             {
               label: "All history",
@@ -87,10 +87,10 @@ const OrpheaComponents = () => {
           onChange={(value) => setActiveTab(value)}
         />
       </div>
-      <Title level={3}>Orphea Model Container</Title>
-      <OrpheaButton onClick={showModal}>Open Modal</OrpheaButton>
+      <Title level={3}>MoveToData Model Container</Title>
+      <MoveToDataButton onClick={showModal}>Open Modal</MoveToDataButton>
 
-      <OrpheaModal
+      <MoveToDataModal
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
@@ -109,16 +109,16 @@ const OrpheaComponents = () => {
         footerExtraText="new footer text"
         footerButtonArea={
           <>
-            <OrpheaButton> Submit</OrpheaButton>
+            <MoveToDataButton> Submit</MoveToDataButton>
           </>
         }
       >
         This is the body
-      </OrpheaModal>
-      <Title level={3}>Orphea Header</Title>
-      <OrpheaHeader heading="heading" description="subheading" />
-      <Title level={3}>Orphea Selectable Card</Title>
-      <OrpheaSelectableCard
+      </MoveToDataModal>
+      <Title level={3}>MoveToData Header</Title>
+      <MoveToDataHeader heading="heading" description="subheading" />
+      <Title level={3}>MoveToData Selectable Card</Title>
+      <MoveToDataSelectableCard
         icon={<PostgresIcon />}
         heading={"Hello"}
         information={"information"}
@@ -128,4 +128,4 @@ const OrpheaComponents = () => {
   );
 };
 
-export default OrpheaComponents;
+export default MoveToDataComponents;

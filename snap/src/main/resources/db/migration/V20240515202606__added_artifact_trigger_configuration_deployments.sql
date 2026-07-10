@@ -1,4 +1,4 @@
-CREATE TABLE deployments
+﻿CREATE TABLE deployments
 (
     id                UUID NOT NULL,
     name              VARCHAR(255),
@@ -22,7 +22,7 @@ CREATE TABLE configuration_components
     parler               VARCHAR(255),
     julia                VARCHAR(255),
     callisto             VARCHAR(255),
-    orphea_docs          VARCHAR(255),
+    movetodata_docs          VARCHAR(255),
     spark_history_server VARCHAR(255),
     state                VARCHAR(255),
     deployed_at          TIMESTAMP WITHOUT TIME ZONE,

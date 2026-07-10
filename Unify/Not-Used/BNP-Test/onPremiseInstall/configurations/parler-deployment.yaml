@@ -1,10 +1,10 @@
-apiVersion: apps/v1
+﻿apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
     name: parler
   name: parler
-  namespace: orphea
+  namespace: movetodata
 spec:
   replicas: 1
   selector:
@@ -20,7 +20,7 @@ spec:
             - npm
             - run
             - start:main
-          image: europe-west1-docker.pkg.dev/orphea-bnp/orphea-cr/parler:latest
+          image: europe-west1-docker.pkg.dev/movetodata-bnp/movetodata-cr/parler:latest
           imagePullPolicy: IfNotPresent
           name: parler
           ports:
@@ -36,9 +36,9 @@ metadata:
   labels:
     name: parler
   name: parler
-  namespace: orphea
+  namespace: movetodata
   annotations:
-    beta.cloud.google.com/backend-config: '{"default": "orphea-backend-config"}'
+    beta.cloud.google.com/backend-config: '{"default": "movetodata-backend-config"}'
 spec:
   type: ClusterIP
   ports:

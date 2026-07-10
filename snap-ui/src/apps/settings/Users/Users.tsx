@@ -1,4 +1,4 @@
-import {
+﻿import {
   Avatar,
   Col,
   Divider,
@@ -20,22 +20,22 @@ import {
   getTimeDisplay, globalSearch,
   openNotification,
 } from "utils/utilities";
-import { MoreMenuIcon, SearchIcon } from "assets/icons/orpheaActionIcons";
-import { EditIcon } from "assets/icons/orpheaEditorIcons";
+import { MoreMenuIcon, SearchIcon } from "assets/icons/movetodataActionIcons";
+import { EditIcon } from "assets/icons/movetodataEditorIcons";
 
 import { ThunkAppDispatch } from "redux/types/store";
 
-import { AddUserIcon } from "assets/icons/orpheaInterfaceIcons";
-import { getDefaultFavicon } from "components/orpheaLoader/FavIconLoader";
+import { AddUserIcon } from "assets/icons/movetodataInterfaceIcons";
+import { getDefaultFavicon } from "components/movetodataLoader/FavIconLoader";
 import {
   InfoIcon,
   TrashIcon,
-} from "assets/icons/orpheaMiscellaneousIcons";
-import OrpheaLoader from "components/orpheaLoader";
+} from "assets/icons/movetodataMiscellaneousIcons";
+import MoveToDataLoader from "components/movetodataLoader";
 import CreateNewUserModal from "./CreateNewUserModal";
-import OrpheaButton from "components/ButtonComponent/OrpheaButton";
-import OrpheaModal from "components/OrpheaModalContainer";
-import OrpheaInput from "components/InputComponent/OrpheaInput";
+import MoveToDataButton from "components/ButtonComponent/MoveToDataButton";
+import MoveToDataModal from "components/MoveToDataModalContainer";
+import MoveToDataInput from "components/InputComponent/MoveToDataInput";
 import { deleteUserAPI } from "../apis";
 
 const { Title, Text } = Typography;
@@ -201,10 +201,10 @@ const Users = () => {
                                   setDeleteModal(true);
                                 }}
                                 className="text-and-icon-center"
-                                style={{ color: "var(--orphea-intent-danger)" }}
+                                style={{ color: "var(--movetodata-intent-danger)" }}
                               >
                                 <TrashIcon
-                                  color={"var(--orphea-intent-danger)"}
+                                  color={"var(--movetodata-intent-danger)"}
                                 />
                                 {getLanguageLabel("delete")}
                               </div>
@@ -256,28 +256,28 @@ const Users = () => {
     };
   }, [allusers]);
 
-  if (loading) return <OrpheaLoader />;
+  if (loading) return <MoveToDataLoader />;
 
   return (
     <>
-      <OrpheaModal
+      <MoveToDataModal
         headingIcon={<TrashIcon color="var(--DANGEROUS_COLOR)" />}
         heading={getLanguageLabel("areYouSureYouWantToDeleteThis?")}
         open={deleteModal}
         onCancel={handleDeleteCancel}
         onOk={() => deleteUserHandler()}
         footerButtonArea={
-          <OrpheaButton
+          <MoveToDataButton
             icon={<TrashIcon />}
             onClick={() => deleteUserHandler()}
             intent="dangerous"
           >
             {getLanguageLabel("delete")}
-          </OrpheaButton>
+          </MoveToDataButton>
         }
       >
         {deleteUserDetails.name}
-      </OrpheaModal>
+      </MoveToDataModal>
 
       <CreateNewUserModal
         isOpen={isCreateNewUserModalOpen}
@@ -300,7 +300,7 @@ const Users = () => {
                   placement="top"
                   title={getLanguageLabel("createANewUser")}
                 >
-                  <OrpheaButton
+                  <MoveToDataButton
                     icon={<AddUserIcon />}
                     intent="action"
                     onClick={() => {
@@ -308,7 +308,7 @@ const Users = () => {
                     }}
                   >
                     {getLanguageLabel("newUser")}
-                  </OrpheaButton>
+                  </MoveToDataButton>
                 </Tooltip>
               )}
             </Col>
@@ -317,7 +317,7 @@ const Users = () => {
           <Divider />
         </p>
 
-        <OrpheaInput
+        <MoveToDataInput
           // size="small"
           placeholder={getLanguageLabel("searchUsersTable")}
           allowClear

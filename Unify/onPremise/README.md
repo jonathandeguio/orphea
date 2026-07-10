@@ -1,7 +1,7 @@
-To create orphea bundle, run below
+﻿To create movetodata bundle, run below
 
 ```
-./build_orphea_offline.sh bundle
+./build_movetodata_offline.sh bundle
 ```
 
 Copy the bundle to install PC or Server
@@ -9,7 +9,7 @@ Copy the bundle to install PC or Server
 Prepare :
 
 ```
-sudo mkdir /orphea && sudo tar -C /orphea -xf orphea_bundle.tar.gz && sudo /orphea/bundle/build_orphea_offline.sh prepare
+sudo mkdir /movetodata && sudo tar -C /movetodata -xf movetodata_bundle.tar.gz && sudo /movetodata/bundle/build_movetodata_offline.sh prepare
 
 ```
 
@@ -19,10 +19,10 @@ After above command reboot
 reboot
 ```
 
-The below command is to install orphea
+The below command is to install movetodata
 
 ```
-sudo /orphea/bundle/build_orphea_offline.sh install
+sudo /movetodata/bundle/build_movetodata_offline.sh install
 ```
 
 Additional info:
