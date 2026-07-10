@@ -1,4 +1,4 @@
-﻿import { CrossIcon } from "assets/icons/movetodataActionIcons";
+import { CrossIcon } from "assets/icons/movetodataActionIcons";
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import { isDefined, isEmpty, notEmpty } from "utils/utilities";
 import {

@@ -1,4 +1,4 @@
-﻿import { Col, Divider, Row, Tooltip, Typography } from "antd";
+import { Col, Divider, Row, Tooltip, Typography } from "antd";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 

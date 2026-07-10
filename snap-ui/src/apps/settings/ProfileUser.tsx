@@ -1,4 +1,4 @@
-﻿import { Avatar, Col, Collapse, Divider, Row, Typography } from "antd";
+import { Avatar, Col, Collapse, Divider, Row, Typography } from "antd";
 import { getDefaultFavicon } from "components/movetodataLoader/FavIconLoader";
 import { User } from "global";
 import React, { useEffect, useState } from "react";

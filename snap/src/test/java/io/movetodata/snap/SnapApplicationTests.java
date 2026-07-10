@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap;
+package io.movetodata.snap;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

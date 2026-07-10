@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env bash
+#!/usr/bin/env bash
 # =============================================================================
 # MoveToData Platform — Script 07 : Redémarrage d'un service (CentOS)
 # Usage : bash 07-restart-centos.sh [--service boson|frontend|snap|snap-ui|tycho|all]

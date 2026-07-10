@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env bash
+#!/usr/bin/env bash
 # =============================================================================
 # MoveToData Platform — Point d'entrée unifié CentOS 7 / 8 / 9 / Stream
 # Usage : bash movetodata-centos.sh <commande> [options]

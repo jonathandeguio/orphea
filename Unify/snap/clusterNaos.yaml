@@ -1,4 +1,4 @@
-﻿UPDATE_HOST: "https://snap.movetodata.io:8082"
+UPDATE_HOST: "https://snap.movetodata.io:8082"
 BUNDLE_DIR: "/movetodata/bundle"
 HELM_CHART: "movetodata-gke"
 HELM_VALUES: "naosCluster.yaml"

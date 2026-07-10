@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.sharedutils;
+package io.movetodata.snap.sharedutils;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeanWrapper;

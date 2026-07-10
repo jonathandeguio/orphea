@@ -1,4 +1,4 @@
-﻿import { Col, Divider, Dropdown, Row, Table, Typography } from "antd";
+import { Col, Divider, Dropdown, Row, Table, Typography } from "antd";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";

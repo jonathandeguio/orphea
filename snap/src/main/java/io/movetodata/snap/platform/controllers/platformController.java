@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.platform.controllers;
+package io.movetodata.snap.platform.controllers;
 
 import io.movetodata.snap.passport.library.Auth;
 import io.movetodata.snap.passport.library.service.AuthzService;

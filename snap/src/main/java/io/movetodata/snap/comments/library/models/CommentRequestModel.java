@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.comments.library.models;
+package io.movetodata.snap.comments.library.models;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

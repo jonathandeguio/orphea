@@ -1,4 +1,4 @@
-﻿import { Avatar, Dropdown, MenuProps } from "antd";
+import { Avatar, Dropdown, MenuProps } from "antd";
 import { LogoutIcon, SettingsIcon } from "assets/icons/movetodataActionIcons";
 import { DocumentationIcon } from "assets/icons/movetodataFileIcons";
 import { HelpIcon } from "assets/icons/movetodataMiscellaneousIcons";

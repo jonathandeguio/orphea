@@ -1,4 +1,4 @@
-﻿#!/bin/bash
+#!/bin/bash
 
 # Change below two variables for different clients.
 NAMESPACE=movetodata-staging

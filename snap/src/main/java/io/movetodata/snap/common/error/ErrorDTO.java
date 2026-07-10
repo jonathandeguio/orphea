@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.common.error;
+package io.movetodata.snap.common.error;
 
 import lombok.*;
 

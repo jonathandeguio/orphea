@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.config;
+package io.movetodata.snap.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

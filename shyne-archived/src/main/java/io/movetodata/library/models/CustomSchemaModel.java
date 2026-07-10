@@ -1,4 +1,4 @@
-﻿package io.movetodata.library.models;
+package io.movetodata.library.models;
 
 // Comments only to be removed when this model is treated as a table instead of a row
 

@@ -1,4 +1,4 @@
-﻿# to Delete
+# to Delete
 
 build_image()
 {

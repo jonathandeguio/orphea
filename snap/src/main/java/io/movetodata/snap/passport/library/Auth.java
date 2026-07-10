@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.passport.library;
+package io.movetodata.snap.passport.library;
 
 public class Auth {
     public static final String VIEWER = "isViewer(#id) or isViewer(@id)";

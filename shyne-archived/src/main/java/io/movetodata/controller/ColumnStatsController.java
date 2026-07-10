@@ -1,4 +1,4 @@
-﻿package io.movetodata.controller;
+package io.movetodata.controller;
 
 import com.amazonaws.thirdparty.apache.codec.binary.Base64;
 import com.fasterxml.jackson.databind.ObjectMapper;

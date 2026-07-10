@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.sharedutils;
+package io.movetodata.snap.sharedutils;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;

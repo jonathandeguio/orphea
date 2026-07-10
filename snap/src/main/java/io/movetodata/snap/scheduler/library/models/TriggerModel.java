@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.scheduler.library.models;
+package io.movetodata.snap.scheduler.library.models;
 
 import lombok.Getter;
 import lombok.Setter;

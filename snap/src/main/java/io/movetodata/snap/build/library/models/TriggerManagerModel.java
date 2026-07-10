@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.build.library.models;
+package io.movetodata.snap.build.library.models;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.movetodata.snap.build.library.enums.BuildStatus;

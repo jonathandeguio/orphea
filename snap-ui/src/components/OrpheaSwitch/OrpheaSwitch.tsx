@@ -1,4 +1,4 @@
-﻿import { Divider } from "antd";
+import { Divider } from "antd";
 import React, { useEffect, useState } from "react";
 import { isDefined } from "utils/utilities";
 import styles from "./MoveToDataSwitch.module.scss";

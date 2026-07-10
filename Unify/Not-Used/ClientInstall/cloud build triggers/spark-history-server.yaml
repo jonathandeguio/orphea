@@ -1,4 +1,4 @@
-﻿autodetect: true
+autodetect: true
 createTime: '2021-12-13T10:41:03.880062373Z'
 github:
   name: spark-history-server

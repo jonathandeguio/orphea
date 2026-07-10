@@ -1,4 +1,4 @@
-﻿#!/bin/bash
+#!/bin/bash
 
 # Variables for registry configuration
 REGISTRY_URL="snap.movetodata.io:7376"

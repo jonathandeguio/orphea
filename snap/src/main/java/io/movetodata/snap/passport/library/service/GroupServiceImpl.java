@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.passport.library.service;
+package io.movetodata.snap.passport.library.service;
 
 import io.movetodata.snap.passport.DTO.GroupDTO;
 import io.movetodata.snap.passport.library.models.GroupWithUserDTO;

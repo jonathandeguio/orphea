@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap;
+package io.movetodata.snap;
 
 
 import io.movetodata.snap.config.AppProperties;

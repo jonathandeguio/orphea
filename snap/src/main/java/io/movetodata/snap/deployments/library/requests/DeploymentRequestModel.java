@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.deployments.library.requests;
+package io.movetodata.snap.deployments.library.requests;
 
 import io.movetodata.snap.deployments.library.Enums.DeploymentMethod;
 import io.movetodata.snap.deployments.library.models.ConfigurationComponentsModel;

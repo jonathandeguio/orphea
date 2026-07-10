@@ -1,4 +1,4 @@
-﻿package io.movetodata;
+package io.movetodata;
 
 import io.movetodata.controller.PythonTransformController;
 import io.movetodata.controller.SqlTransformController;

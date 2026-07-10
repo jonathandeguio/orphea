@@ -1,4 +1,4 @@
-﻿package io.movetodata.BobEnums;
+package io.movetodata.BobEnums;
 
 public enum BuildStatus {
     INFO("info"),

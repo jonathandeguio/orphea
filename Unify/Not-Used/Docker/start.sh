@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env bash
+#!/usr/bin/env bash
 
 #
 git --version 2>&1 >/dev/null # improvement by tripleee

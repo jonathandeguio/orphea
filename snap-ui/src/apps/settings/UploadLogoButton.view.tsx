@@ -1,4 +1,4 @@
-﻿import { Avatar, Dropdown, Typography, Upload } from "antd";
+import { Avatar, Dropdown, Typography, Upload } from "antd";
 import React from "react";
 
 import type { RcFile } from "antd/es/upload/interface";

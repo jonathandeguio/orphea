@@ -1,4 +1,4 @@
-﻿import { Card, CardProps, Col, Row, Typography } from "antd";
+import { Card, CardProps, Col, Row, Typography } from "antd";
 import { MoreMenuIcon } from "assets/icons/movetodataActionIcons";
 import React from "react";
 

@@ -1,4 +1,4 @@
-﻿package io.movetodata;
+package io.movetodata;
 
 import io.movetodata.controller.ColumnStatsController;
 import io.movetodata.controller.SynchroController;

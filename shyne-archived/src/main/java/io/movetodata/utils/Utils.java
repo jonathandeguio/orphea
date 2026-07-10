@@ -1,4 +1,4 @@
-﻿package io.movetodata.utils;
+package io.movetodata.utils;
 
 import com.amazonaws.thirdparty.apache.codec.binary.Base64;
 import org.eclipse.jgit.api.Git;

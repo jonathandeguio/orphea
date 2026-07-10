@@ -1,4 +1,4 @@
-﻿   47  POD_NAME=$(kubectl get pods -n $POD_NAMESPACE -l app.kubernetes.io/name=ingress-nginx --field-selector=status.phase=Running -o name)
+   47  POD_NAME=$(kubectl get pods -n $POD_NAMESPACE -l app.kubernetes.io/name=ingress-nginx --field-selector=status.phase=Running -o name)
    48  kubectl -n movetodata get pods
    49  kubectl -n movetodata logs nginx-reverse-proxy-c845d8bf9-htrmp 
    50  kubectl -n movetodata get svc

@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env bash
+#!/usr/bin/env bash
 # =============================================================================
 # MoveToData Platform — Script 03 : Démarrage sur Ubuntu
 # Usage : bash 03-start.sh [--stack core|snap|tycho|all]

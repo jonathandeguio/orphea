@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.passport.security.oauth2;
+package io.movetodata.snap.passport.security.oauth2;
 
 import io.movetodata.snap.config.AppProperties;
 import io.movetodata.snap.passport.exception.BadRequestException;

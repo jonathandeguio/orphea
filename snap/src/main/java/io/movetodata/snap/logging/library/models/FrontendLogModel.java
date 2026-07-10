@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.logging.library.models;
+package io.movetodata.snap.logging.library.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;

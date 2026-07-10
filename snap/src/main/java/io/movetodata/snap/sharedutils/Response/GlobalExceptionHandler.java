@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.sharedutils.Response;
+package io.movetodata.snap.sharedutils.Response;
 
 import com.esotericsoftware.minlog.Log;
 import io.movetodata.snap.passport.exception.UnauthorizedException;

@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.passport.controller;
+package io.movetodata.snap.passport.controller;
 
 import io.movetodata.snap.passport.enums.LoginType;
 import io.movetodata.snap.passport.library.models.LoginHistory;

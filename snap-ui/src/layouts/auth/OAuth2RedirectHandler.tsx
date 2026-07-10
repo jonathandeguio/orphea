@@ -1,4 +1,4 @@
-﻿import React, { useEffect } from "react";
+import React, { useEffect } from "react";
 
 import { MOVETODATA_TOKEN } from "./constants";
 import { Navigate, useSearchParams } from "react-router-dom";

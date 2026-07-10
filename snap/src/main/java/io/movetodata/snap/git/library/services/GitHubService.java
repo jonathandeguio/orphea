@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.git.library.services;
+package io.movetodata.snap.git.library.services;
 
 import io.movetodata.snap.git.library.models.GitBranchModel;
 import io.movetodata.snap.git.library.models.GitRepositoryModel;

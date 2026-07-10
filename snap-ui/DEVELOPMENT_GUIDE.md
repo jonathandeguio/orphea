@@ -1,4 +1,4 @@
-﻿# **GUIDELINES Frontend for MoveToData**
+# **GUIDELINES Frontend for MoveToData**
 
 ## Component Structure
 

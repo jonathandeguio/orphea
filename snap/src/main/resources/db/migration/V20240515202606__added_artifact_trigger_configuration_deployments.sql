@@ -1,4 +1,4 @@
-﻿CREATE TABLE deployments
+CREATE TABLE deployments
 (
     id                UUID NOT NULL,
     name              VARCHAR(255),

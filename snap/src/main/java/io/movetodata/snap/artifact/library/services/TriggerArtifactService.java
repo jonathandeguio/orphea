@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.artifact.library.services;
+package io.movetodata.snap.artifact.library.services;
 
 import io.movetodata.snap.build.library.enums.BuildStatus;
 import io.movetodata.snap.build.library.models.TriggerArtifactModel;

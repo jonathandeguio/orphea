@@ -1,4 +1,4 @@
-﻿options:
+options:
   logging: CLOUD_LOGGING_ONLY
 steps:
   # Step 1

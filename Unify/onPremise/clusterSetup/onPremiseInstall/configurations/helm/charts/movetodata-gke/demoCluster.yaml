@@ -1,4 +1,4 @@
-﻿fqdn: demo.movetodata.io
+fqdn: demo.movetodata.io
 computeRegion: europe-west2
 computeZone: europe-west2-b
 containerRegistery: movetodata-cr

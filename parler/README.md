@@ -1,4 +1,4 @@
-﻿# This is for movetodata language servers and code completion in editors
+# This is for movetodata language servers and code completion in editors
 
 To test locally :
 

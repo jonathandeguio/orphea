@@ -1,4 +1,4 @@
-﻿# Steps to follow windows on premise installation
+# Steps to follow windows on premise installation
 
 
 1. Install nginx-1.25.5, jdk-11, spark and hadoop winutils

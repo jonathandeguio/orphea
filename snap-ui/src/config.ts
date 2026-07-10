@@ -1,4 +1,4 @@
-﻿export const MoveToDataConfig: {
+export const MoveToDataConfig: {
   [key: string]: any;
 } = {
   colorTheme: {

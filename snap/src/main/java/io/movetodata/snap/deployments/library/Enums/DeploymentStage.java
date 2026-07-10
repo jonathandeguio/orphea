@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.deployments.library.Enums;
+package io.movetodata.snap.deployments.library.Enums;
 
 public enum DeploymentStage {
     STARTING("starting"),

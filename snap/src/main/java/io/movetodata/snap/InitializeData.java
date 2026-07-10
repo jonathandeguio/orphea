@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap;
+package io.movetodata.snap;
 
 import io.movetodata.snap.build.library.enums.BuildType;
 import io.movetodata.snap.build.library.models.TriggerManagerModel;

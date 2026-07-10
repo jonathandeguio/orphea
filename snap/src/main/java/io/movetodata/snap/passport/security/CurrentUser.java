@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.passport.security;
+package io.movetodata.snap.passport.security;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 

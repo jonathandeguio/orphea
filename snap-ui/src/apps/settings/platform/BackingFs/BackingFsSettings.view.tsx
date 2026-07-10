@@ -1,4 +1,4 @@
-﻿import { Col, Divider, Form, Radio, Row, Typography } from "antd";
+import { Col, Divider, Form, Radio, Row, Typography } from "antd";
 import TextArea from "antd/es/input/TextArea";
 
 import MoveToDataLoader from "components/movetodataLoader";

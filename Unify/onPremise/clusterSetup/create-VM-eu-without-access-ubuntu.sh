@@ -1,4 +1,4 @@
-﻿#!/bin/bash
+#!/bin/bash
 
 PROJECT_ID=gcp-integration-project-382915
 COMPUTE_REGION=europe-west2

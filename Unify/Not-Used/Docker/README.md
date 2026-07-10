@@ -1,4 +1,4 @@
-﻿# Unify is a infrastructure as code project
+# Unify is a infrastructure as code project
 
 Clone it with recursive since it has submodules
 

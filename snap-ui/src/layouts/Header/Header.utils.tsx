@@ -1,4 +1,4 @@
-﻿import { Col, MenuProps, Row, SelectProps, Typography } from "antd";
+import { Col, MenuProps, Row, SelectProps, Typography } from "antd";
 import {
   BuildIcon,
   HistoryIcon,

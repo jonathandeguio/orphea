@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python3
+#!/usr/bin/env python3
 """
 MoveToData Platform — Générateur de clé de licence
 Usage : python3 generate-license.py [options]

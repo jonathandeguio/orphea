@@ -1,4 +1,4 @@
-﻿To create movetodata bundle, run below
+To create movetodata bundle, run below
 
 ```
 ./build_movetodata_offline.sh bundle

@@ -1,4 +1,4 @@
-﻿import { MoveToDataIcon } from "assets/icons/movetodataMiscellaneousIcons";
+import { MoveToDataIcon } from "assets/icons/movetodataMiscellaneousIcons";
 import MoveToDataLoader from "components/movetodataLoader";
 import React from "react";
 import { useSelector } from "react-redux";

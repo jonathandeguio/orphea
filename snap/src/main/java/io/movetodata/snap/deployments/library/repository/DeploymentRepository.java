@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.deployments.library.repository;
+package io.movetodata.snap.deployments.library.repository;
 
 import io.movetodata.snap.deployments.library.models.DeploymentModel;
 import org.springframework.data.jpa.repository.JpaRepository;

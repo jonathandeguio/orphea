@@ -1,4 +1,4 @@
-﻿import { Card, Col, Modal, Row, Typography } from "antd";
+import { Card, Col, Modal, Row, Typography } from "antd";
 import { getDefaultFavicon } from "components/movetodataLoader/FavIconLoader";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";

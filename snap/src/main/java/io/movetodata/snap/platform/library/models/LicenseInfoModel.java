@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.platform.library.models;
+package io.movetodata.snap.platform.library.models;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

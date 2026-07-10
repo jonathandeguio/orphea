@@ -1,4 +1,4 @@
-﻿apiVersion: v2
+apiVersion: v2
 name: movetodata-gke
 description: MoveToData Helm chart for GKE
 

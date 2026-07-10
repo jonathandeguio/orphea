@@ -1,4 +1,4 @@
-﻿import { Form, Tooltip, Typography } from "antd";
+import { Form, Tooltip, Typography } from "antd";
 import { AddUserIcon } from "assets/icons/movetodataInterfaceIcons";
 import { createTokenAPI, fetchAllTokensAPI } from "apps/settings/apis";
 import React, { Dispatch, SetStateAction, useState } from "react";

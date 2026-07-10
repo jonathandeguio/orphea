@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env bash
+#!/usr/bin/env bash
 # =============================================================================
 # MoveToData Platform — Point d'entrée unifié
 # Usage : bash movetodata.sh <commande> [options]

@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.notifications.library.models;
+package io.movetodata.snap.notifications.library.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env bash
+#!/usr/bin/env bash
 # =============================================================================
 # MoveToData Platform — Script 01 : Génération du fichier d'environnement
 # Usage : bash 01-setup-env.sh

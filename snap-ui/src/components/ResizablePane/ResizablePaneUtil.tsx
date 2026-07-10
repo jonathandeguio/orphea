@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import "./ResizablePane.scss";
 import { DragHandleVerticalIcon } from "assets/icons/movetodataActionIcons";
 

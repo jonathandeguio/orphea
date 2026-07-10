@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.passport.security.oauth2;
+package io.movetodata.snap.passport.security.oauth2;
 
 import com.nimbusds.oauth2.sdk.util.StringUtils;
 import io.movetodata.snap.passport.util.CookieUtils;

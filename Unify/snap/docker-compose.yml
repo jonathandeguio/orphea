@@ -1,4 +1,4 @@
-﻿services:
+services:
   reverse-proxy:
     image: nginx:1.17.10
     container_name: reverse_proxy

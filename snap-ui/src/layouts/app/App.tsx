@@ -1,4 +1,4 @@
-﻿import React, { useEffect } from "react";
+import React, { useEffect } from "react";
 import { RouterProvider } from "react-router-dom";
 import "../../App.scss";
 import { RootState } from "redux/types/store";

@@ -1,4 +1,4 @@
-﻿#!/bin/env bash
+#!/bin/env bash
 
 PROJECT_ID=aprbos23
 COMPUTE_REGION=asia-northeast2

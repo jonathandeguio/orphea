@@ -1,4 +1,4 @@
-﻿import { Col, Divider, Row, Typography } from "antd";
+import { Col, Divider, Row, Typography } from "antd";
 import { ArrowLeftIcon } from "assets/icons/movetodataNavigationIcon";
 import DeploymentCard from "components/DeploymentCard/DeploymentCard";
 import React from "react";

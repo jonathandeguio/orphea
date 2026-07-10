@@ -1,4 +1,4 @@
-﻿import { Col, Divider, InputNumber, Row, Switch, Typography } from "antd";
+import { Col, Divider, InputNumber, Row, Switch, Typography } from "antd";
 import { SaveIcon } from "assets/icons/movetodataActionIcons";
 import MoveToDataLoader from "components/movetodataLoader";
 import React, { useEffect, useState } from "react";

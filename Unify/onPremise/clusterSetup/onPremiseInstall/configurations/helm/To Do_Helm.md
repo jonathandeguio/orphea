@@ -1,4 +1,4 @@
-﻿## HELM
+## HELM
 - Test Helm migration to movetodata-foo (under jimothy tenant). 
     - merge in any changes to ingress and spark-history configs √
     - dependencies/conditions: wait for database before creating databases boson and kepler (see start.sh)

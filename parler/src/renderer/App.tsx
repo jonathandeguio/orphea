@@ -1,4 +1,4 @@
-﻿import React, { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { MemoryRouter as Router, Switch, Route } from 'react-router-dom';
 
 import { listen } from '@codingame/monaco-jsonrpc';

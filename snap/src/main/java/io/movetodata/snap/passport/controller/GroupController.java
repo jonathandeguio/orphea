@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.passport.controller;
+package io.movetodata.snap.passport.controller;
 
 import io.movetodata.snap.passport.DTO.GroupDTO;
 import io.movetodata.snap.passport.library.models.GroupManagementSpecification;

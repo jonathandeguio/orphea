@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import { getLanguageLabel } from "utils/utilities";
 import { RefreshIcon, WarningIcon } from "assets/icons/movetodataActionIcons";
 

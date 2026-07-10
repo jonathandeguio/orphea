@@ -1,4 +1,4 @@
-﻿options:
+options:
   logging: CLOUD_LOGGING_ONLY
 steps:
   # Step 1 Get the latest docker image from google artifact repository

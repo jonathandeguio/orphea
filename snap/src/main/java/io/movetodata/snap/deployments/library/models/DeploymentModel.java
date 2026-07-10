@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.deployments.library.models;
+package io.movetodata.snap.deployments.library.models;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.movetodata.snap.deployments.library.Enums.DeploymentMethod;

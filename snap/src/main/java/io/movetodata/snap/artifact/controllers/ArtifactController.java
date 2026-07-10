@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.artifact.controllers;
+package io.movetodata.snap.artifact.controllers;
 
 import io.movetodata.snap.artifact.library.models.CheckUpdatesModel;
 import io.movetodata.snap.build.library.enums.BuildStatus;

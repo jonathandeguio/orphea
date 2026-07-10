@@ -1,4 +1,4 @@
-﻿import { Col, Row, Typography } from "antd";
+import { Col, Row, Typography } from "antd";
 import { DuplicateIcon } from "assets/icons/movetodataActionIcons";
 import { CopyIcon } from "assets/icons/movetodataEditorIcons";
 import axios from "axios";

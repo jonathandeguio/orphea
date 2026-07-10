@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env bash
+#!/usr/bin/env bash
 # =============================================================================
 # MoveToData Platform — Script 00 : Installation système Ubuntu 22.04 / 24.04 LTS
 # Cible : VM Ubuntu propre, exécuté en tant que root ou sudo

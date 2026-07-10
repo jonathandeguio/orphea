@@ -1,4 +1,4 @@
-﻿import { TimePicker } from "antd";
+import { TimePicker } from "antd";
 import dayjs, { Dayjs } from "dayjs";
 import React, { useMemo } from "react";
 import { CrossIcon } from "assets/icons/movetodataActionIcons";

@@ -1,4 +1,4 @@
-﻿---
+---
 - name: Install Helm, Containerd, Postgres, Redis on movetodata-db
   hosts: db
   become: yes

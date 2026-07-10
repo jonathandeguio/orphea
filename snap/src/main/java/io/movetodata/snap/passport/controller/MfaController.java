@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.passport.controller;
+package io.movetodata.snap.passport.controller;
 
 import com.warrenstrange.googleauth.GoogleAuthenticatorKey;
 import io.movetodata.snap.passport.library.models.User;

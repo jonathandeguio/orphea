@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import { TMoveToDataIconProps } from "./types";
 
 function BigArea100Icon({

@@ -1,4 +1,4 @@
-﻿import { Input, Select, Typography } from "antd";
+import { Input, Select, Typography } from "antd";
 import React from "react";
 import ButtonComponentDisplay from "components/ButtonComponent/ButtonComponentDisplay";
 import MoveToDataInput from "components/InputComponent/MoveToDataInput";

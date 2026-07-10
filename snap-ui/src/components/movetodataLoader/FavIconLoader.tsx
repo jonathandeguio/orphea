@@ -1,4 +1,4 @@
-﻿export const getDefaultFavicon = (): string => {
+export const getDefaultFavicon = (): string => {
   return "/favicons/movetodataLogo.svg";
 };
 

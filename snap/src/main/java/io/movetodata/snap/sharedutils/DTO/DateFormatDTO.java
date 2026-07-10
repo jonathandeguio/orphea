@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.sharedutils.DTO;
+package io.movetodata.snap.sharedutils.DTO;
 
 import lombok.*;
 

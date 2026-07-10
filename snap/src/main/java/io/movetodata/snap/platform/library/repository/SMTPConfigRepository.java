@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.platform.library.repository;
+package io.movetodata.snap.platform.library.repository;
 
 import io.movetodata.snap.platform.library.models.SMTPConfigModel;
 import org.springframework.data.jpa.repository.JpaRepository;

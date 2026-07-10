@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.subscribe.library.repository;
+package io.movetodata.snap.subscribe.library.repository;
 
 import io.movetodata.snap.subscribe.library.models.SubscriptionModel;
 import org.springframework.data.jpa.repository.JpaRepository;

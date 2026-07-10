@@ -1,4 +1,4 @@
-﻿package io.movetodata.library.models;
+package io.movetodata.library.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

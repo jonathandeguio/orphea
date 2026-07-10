@@ -1,4 +1,4 @@
-﻿
+
 # gcloud compute addresses list
 
 NAME                 ADDRESS/RANGE  TYPE      PURPOSE       NETWORK  REGION        SUBNET          STATUS

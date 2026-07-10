@@ -1,4 +1,4 @@
-﻿import {
+import {
   Avatar,
   Col,
   Collapse,

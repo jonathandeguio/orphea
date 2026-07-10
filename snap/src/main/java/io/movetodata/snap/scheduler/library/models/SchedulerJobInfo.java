@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.scheduler.library.models;
+package io.movetodata.snap.scheduler.library.models;
 
 import io.movetodata.snap.kitab.library.enums.ResourceType;
 import io.movetodata.snap.scheduler.enums.JobExecutionStatus;

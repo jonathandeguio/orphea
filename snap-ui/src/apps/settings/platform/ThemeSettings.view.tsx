@@ -1,4 +1,4 @@
-﻿import { Col, Divider, Row, Select, Typography } from "antd";
+import { Col, Divider, Row, Select, Typography } from "antd";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 

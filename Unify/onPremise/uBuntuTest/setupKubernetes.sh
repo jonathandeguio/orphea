@@ -1,4 +1,4 @@
-﻿BUNDLE_DIR=/movetodata/bundle
+BUNDLE_DIR=/movetodata/bundle
 
 OFFLINE_INSTALL="false"
 

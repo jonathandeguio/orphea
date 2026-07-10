@@ -1,4 +1,4 @@
-﻿import { notification, Typography } from "antd";
+import { notification, Typography } from "antd";
 import { CrossIcon, RefreshIcon } from "assets/icons/movetodataActionIcons";
 import ErrorBoundary from "errors/ErrorBoundary/GeneralErrorBoundary";
 import React, { useEffect, useRef, useState } from "react";

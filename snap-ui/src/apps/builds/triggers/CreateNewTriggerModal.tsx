@@ -1,4 +1,4 @@
-﻿import axios from "axios";
+import axios from "axios";
 import React, { Dispatch, SetStateAction } from "react";
 import { useDispatch } from "react-redux";
 import { getLanguageLabel, isDefined, openNotification } from "utils/utilities";

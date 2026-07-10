@@ -1,4 +1,4 @@
-﻿HELM_CHART=movetodata-gke
+HELM_CHART=movetodata-gke
 HELM_VALUES=testCluster.yaml
 PROJECT_ID=octbos221
 BUCKET_NAME=datasets_collections_$PROJECT_ID

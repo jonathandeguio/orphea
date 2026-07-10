@@ -1,4 +1,4 @@
-﻿import { Col, Divider, Row, Typography } from "antd";
+import { Col, Divider, Row, Typography } from "antd";
 import React from "react";
 
 import { Form } from "antd";

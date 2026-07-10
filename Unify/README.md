@@ -1,4 +1,4 @@
-﻿# :crystal_ball: Unify is a infrastructure as code project
+# :crystal_ball: Unify is a infrastructure as code project
 
 [![Whitelist Workflow - Dev2](https://github.com/MoveToData-io/Unify/actions/workflows/dev2.workflow.yml/badge.svg)](https://github.com/MoveToData-io/Unify/actions/workflows/dev2.workflow.yml)
 

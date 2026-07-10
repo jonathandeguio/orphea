@@ -1,4 +1,4 @@
-﻿//package io.movetodata.snap.logging.library.services;
+//package io.movetodata.snap.logging.library.services;
 //
 //import io.movetodata.snap.logging.library.models.AccessLogModel;
 //import lombok.RequiredArgsConstructor;

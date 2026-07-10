@@ -1,4 +1,4 @@
-﻿## Infrastructure To Do 
+## Infrastructure To Do 
 
 - Fix SuperSet's external IP
 - Test Helm build

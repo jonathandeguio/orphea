@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.sharedutils.models;
+package io.movetodata.snap.sharedutils.models;
 
 import lombok.*;
 

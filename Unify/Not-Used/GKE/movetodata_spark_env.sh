@@ -1,4 +1,4 @@
-﻿# to Build
+# to Build
 
 # get environment variables
 source env.sh

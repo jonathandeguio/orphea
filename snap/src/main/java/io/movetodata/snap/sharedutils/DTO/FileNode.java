@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.sharedutils.DTO;
+package io.movetodata.snap.sharedutils.DTO;
 
 import io.movetodata.snap.kitab.library.enums.ResourceStatus;
 import io.movetodata.snap.kitab.library.enums.ResourceSubtype;

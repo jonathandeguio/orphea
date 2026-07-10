@@ -1,4 +1,4 @@
-﻿import { Modal, ModalProps } from "antd";
+import { Modal, ModalProps } from "antd";
 import React from "react";
 import MoveToDataModalContainer from "./MoveToDataModalContainer";
 interface TMoveToDataModalProps extends ModalProps {

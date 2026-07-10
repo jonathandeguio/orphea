@@ -1,4 +1,4 @@
-﻿# movetodata.io
+# movetodata.io
 This is static information site project
 
 The 'Public' folder contains prod public content. A 'git push' will trigger an rsync to the storage bucket behind www.movetodata.io & movetodata.io.

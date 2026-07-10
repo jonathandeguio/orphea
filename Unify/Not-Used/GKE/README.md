@@ -1,4 +1,4 @@
-﻿# In Browser (Gmail & GCP)
+# In Browser (Gmail & GCP)
 
 1. Sign out of all Google accounts ( or launch browser in inCognitio )
 2. Create free gmail account - make note of password!  Use reasonable security (2FA) in Settings.

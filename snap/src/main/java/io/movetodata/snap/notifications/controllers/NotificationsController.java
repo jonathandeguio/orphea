@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.notifications.controllers;
+package io.movetodata.snap.notifications.controllers;
 
 import io.movetodata.snap.notifications.library.models.Notification;
 import io.movetodata.snap.notifications.library.repository.NotificationRepository;

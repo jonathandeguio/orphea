@@ -1,4 +1,4 @@
-﻿#!/bin/bash
+#!/bin/bash
 
 # Base path
 BASE_PATH="/Users/commonaccount/Documents/Code/MoveToData"

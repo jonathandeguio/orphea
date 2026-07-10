@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.passport.exception;
+package io.movetodata.snap.passport.exception;
 
 import org.springframework.security.core.AuthenticationException;
 

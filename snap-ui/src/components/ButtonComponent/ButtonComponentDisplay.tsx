@@ -1,4 +1,4 @@
-﻿import { MenuProps, Segmented, Select, Switch, Typography } from "antd";
+import { MenuProps, Segmented, Select, Switch, Typography } from "antd";
 import React, { useEffect, useState } from "react";
 import "../ButtonComponent/ButtonComponentDisplay.scss";
 import MoveToDataButton from "./MoveToDataButton";

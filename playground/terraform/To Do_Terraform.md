@@ -1,4 +1,4 @@
-﻿## TERRAFORM
+## TERRAFORM
 - Test Terraform migration to movetodata-foo
     - move to europe-west1 / europe-west1-b
     - repo builds - central/permanent in movetodata.io tenant

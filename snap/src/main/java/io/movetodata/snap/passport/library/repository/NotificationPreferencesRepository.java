@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.passport.library.repository;
+package io.movetodata.snap.passport.library.repository;
 
 import io.movetodata.snap.passport.library.models.NotificationPreferences;
 import org.springframework.data.jpa.repository.JpaRepository;

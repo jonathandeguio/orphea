@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.build.controllers;
+package io.movetodata.snap.build.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

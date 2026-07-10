@@ -1,4 +1,4 @@
-﻿// import { Outlet, Link } from "react-router-dom";
+// import { Outlet, Link } from "react-router-dom";
 import { EmailIcon } from "assets/icons/movetodataFileIcons";
 import { OpenIcon } from "assets/icons/movetodataNavigationIcon";
 import { getDefaultFavicon } from "components/movetodataLoader/FavIconLoader";

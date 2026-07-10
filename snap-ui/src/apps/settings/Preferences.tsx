@@ -1,4 +1,4 @@
-﻿import { Col, Divider, Popover, Row, Typography } from "antd";
+import { Col, Divider, Popover, Row, Typography } from "antd";
 import React from "react";
 import ReactCountryFlag from "react-country-flag";
 import { useDispatch, useSelector } from "react-redux";

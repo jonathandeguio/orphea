@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.passport.library.models;
+package io.movetodata.snap.passport.library.models;
 
 
 import io.movetodata.snap.passport.DTO.UserDTO;

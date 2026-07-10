@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.kitab.library.enums;
+package io.movetodata.snap.kitab.library.enums;
 
 public enum ResourceType {
     FILE("File"),

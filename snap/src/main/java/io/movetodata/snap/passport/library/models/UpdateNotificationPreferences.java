@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.passport.library.models;
+package io.movetodata.snap.passport.library.models;
 
 import lombok.Getter;
 import lombok.Setter;

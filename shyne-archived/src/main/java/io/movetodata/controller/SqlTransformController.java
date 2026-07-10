@@ -1,4 +1,4 @@
-﻿package io.movetodata.controller;
+package io.movetodata.controller;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;

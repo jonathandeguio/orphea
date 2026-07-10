@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.passport.library.service;
+package io.movetodata.snap.passport.library.service;
 
 import io.movetodata.snap.passport.library.models.TokenLongLived;
 import org.jvnet.hk2.annotations.Service;

@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.passport.security.oauth2;
+package io.movetodata.snap.passport.security.oauth2;
 
 import io.movetodata.snap.passport.exception.OAuth2AuthenticationProcessingException;
 import io.movetodata.snap.passport.library.models.AuthProvider;

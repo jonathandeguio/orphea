@@ -1,4 +1,4 @@
-﻿import axios from "axios";
+import axios from "axios";
 import {
   MOVETODATA_TOKEN,
   MOVETODATA_LOGGED_IN_USER_PASSWORD,

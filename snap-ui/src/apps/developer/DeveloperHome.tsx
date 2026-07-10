@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import { useLocation } from "react-router";
 import { Link, Outlet } from "react-router-dom";
 import { AppIcon, HomeIcon } from "assets/icons/movetodataInterfaceIcons";

@@ -1,4 +1,4 @@
-﻿---
+---
 - name: Setup Kubernetes Cluster - Master and Worker Nodes
   hosts: k8s
   become: yes

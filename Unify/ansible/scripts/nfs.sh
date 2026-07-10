@@ -1,4 +1,4 @@
-﻿#!/bin/bash
+#!/bin/bash
 
 # Variables (modify these as needed)
 NFS_SERVER="100.101.1.250"

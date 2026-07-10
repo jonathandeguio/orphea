@@ -1,4 +1,4 @@
-﻿import React, { useLayoutEffect, useRef, useState } from "react";
+import React, { useLayoutEffect, useRef, useState } from "react";
 import "./contextMenu.scss";
 import { ContextMenuStore } from "./store";
 

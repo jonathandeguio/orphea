@@ -1,4 +1,4 @@
-﻿import { Popover, Tooltip, Typography } from "antd";
+import { Popover, Tooltip, Typography } from "antd";
 import { AddIcon } from "assets/icons/movetodataActionIcons";
 import { FolderIcon } from "assets/icons/movetodataFileIcons";
 import MoveToDataLoader from "components/movetodataLoader";

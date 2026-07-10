@@ -1,4 +1,4 @@
-﻿import { Col, Divider, Form, Row, Typography } from "antd";
+import { Col, Divider, Form, Row, Typography } from "antd";
 import MoveToDataLoader from "components/movetodataLoader";
 
 import React, { useEffect, useState } from "react";

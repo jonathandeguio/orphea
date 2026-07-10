@@ -1,4 +1,4 @@
-﻿import { Col, Divider, Popconfirm, Row, Typography } from "antd";
+import { Col, Divider, Popconfirm, Row, Typography } from "antd";
 import { SaveIcon } from "assets/icons/movetodataActionIcons";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";

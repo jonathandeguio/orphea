@@ -1,4 +1,4 @@
-﻿package io.movetodata.utils;
+package io.movetodata.utils;
 
 import org.apache.hadoop.shaded.com.google.gson.Gson;
 

@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.comments.library.repository;
+package io.movetodata.snap.comments.library.repository;
 
 import io.movetodata.snap.comments.library.models.CommentModel;
 import org.springframework.data.jpa.repository.JpaRepository;

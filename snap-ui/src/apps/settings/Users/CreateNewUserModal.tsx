@@ -1,4 +1,4 @@
-﻿import { Input, Radio, Select, Typography, Upload } from "antd";
+import { Input, Radio, Select, Typography, Upload } from "antd";
 import { RcFile } from "antd/es/upload";
 import axios from "axios";
 import React, { Dispatch, SetStateAction, useState } from "react";

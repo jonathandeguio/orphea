@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { ParticleApp } from "utils/ParticleApp";
 import { getLanguageLabel, isIpPlatform } from "utils/utilities";

@@ -1,4 +1,4 @@
-﻿import MoveToDataLoader from "components/movetodataLoader";
+import MoveToDataLoader from "components/movetodataLoader";
 import UserPopOver from "components/UserPopover/userpopover";
 import React, { useEffect, useState } from "react";
 import { fetchUserDetailsAPI } from "./UserInfo.api";

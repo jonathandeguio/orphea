@@ -1,4 +1,4 @@
-﻿package io.movetodata.utils;
+package io.movetodata.utils;
 
 import io.minio.messages.Item;
 import io.minio.messages.Owner;

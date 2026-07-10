@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env bash
+#!/usr/bin/env bash
 # =============================================================================
 # MoveToData Platform — Script 05 : Vérification de santé complète
 # Usage : bash 05-healthcheck.sh

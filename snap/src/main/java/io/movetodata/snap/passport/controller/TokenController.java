@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.passport.controller;
+package io.movetodata.snap.passport.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.movetodata.snap.config.AppProperties;

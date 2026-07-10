@@ -1,4 +1,4 @@
-﻿# to Build
+# to Build
 
 PROJECT_ID=movetodata-bnp
 COMPUTE_REGION=europe-west1

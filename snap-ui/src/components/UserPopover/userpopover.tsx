@@ -1,4 +1,4 @@
-﻿import { Avatar, Badge, Col, Popover, Row, Spin, Typography } from "antd";
+import { Avatar, Badge, Col, Popover, Row, Spin, Typography } from "antd";
 import { GitCommitIcon } from "assets/icons/movetodataExternalIcons";
 import { EmailIcon } from "assets/icons/movetodataFileIcons";
 import { GroupsIcon } from "assets/icons/movetodataInterfaceIcons";

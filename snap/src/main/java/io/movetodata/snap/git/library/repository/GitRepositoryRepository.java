@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.git.library.repository;
+package io.movetodata.snap.git.library.repository;
 
 import io.movetodata.snap.git.library.models.GitRepositoryModel;
 import org.springframework.data.jpa.repository.JpaRepository;

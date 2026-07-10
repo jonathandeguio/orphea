@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Table, Tooltip, Typography } from "antd";
 import { Link } from "react-router-dom";
 import MoveToDataInput from "../../../components/InputComponent/MoveToDataInput";

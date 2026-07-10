@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env bash
+#!/usr/bin/env bash
 
 # JM 29/09/2021 - Initial hack of Kuber start script for GKE.
 

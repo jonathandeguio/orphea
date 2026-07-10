@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.kitab.library.models;
+package io.movetodata.snap.kitab.library.models;
 
 public interface IResource {
 

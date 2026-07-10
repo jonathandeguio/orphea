@@ -1,4 +1,4 @@
-﻿import { SearchIcon } from "assets/icons/movetodataActionIcons";
+import { SearchIcon } from "assets/icons/movetodataActionIcons";
 import HeaderSearch from "layouts/Header/HeaderSearch";
 import React, { useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";

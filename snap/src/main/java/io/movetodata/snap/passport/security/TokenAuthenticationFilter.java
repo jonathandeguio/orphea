@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.passport.security;
+package io.movetodata.snap.passport.security;
 
 import io.movetodata.snap.passport.util.AuthUtils;
 import org.slf4j.Logger;

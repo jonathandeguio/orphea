@@ -1,4 +1,4 @@
-﻿Update SSL certificate on demo:
+Update SSL certificate on demo:
 
 change 443 port from 240 to 235 
 

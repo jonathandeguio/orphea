@@ -1,4 +1,4 @@
-﻿import { Col, Divider, Row, Skeleton, Typography, Upload } from "antd";
+import { Col, Divider, Row, Skeleton, Typography, Upload } from "antd";
 import { WarningIcon } from "assets/icons/movetodataActionIcons";
 import { DownloadIcon, UploadIcon } from "assets/icons/movetodataInterfaceIcons";
 import { TickIcon } from "assets/icons/movetodataNavigationIcon";

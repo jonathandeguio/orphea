@@ -1,4 +1,4 @@
-﻿# spark-history-server : modified for movetodata
+# spark-history-server : modified for movetodata
 
 # Modifications :
 

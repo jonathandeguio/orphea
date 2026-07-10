@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.passport.library.models;
+package io.movetodata.snap.passport.library.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;

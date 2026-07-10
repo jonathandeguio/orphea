@@ -1,4 +1,4 @@
-﻿import { Card, Col, Divider, Row, Tooltip, Typography } from "antd";
+import { Card, Col, Divider, Row, Tooltip, Typography } from "antd";
 import axios from "axios";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";

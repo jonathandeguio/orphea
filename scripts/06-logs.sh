@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env bash
+#!/usr/bin/env bash
 # =============================================================================
 # MoveToData Platform — Script 06 : Consultation des logs
 # Usage : bash 06-logs.sh [--service boson|frontend|snap|tycho|db|redis|all]

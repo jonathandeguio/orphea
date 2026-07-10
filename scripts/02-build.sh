@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env bash
+#!/usr/bin/env bash
 # =============================================================================
 # MoveToData Platform — Script 02 : Build de toutes les images Docker
 # Usage : bash 02-build.sh [--service boson|frontend|snap|snap-ui|tycho|all]

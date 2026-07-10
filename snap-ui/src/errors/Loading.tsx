@@ -1,4 +1,4 @@
-﻿import MoveToDataLoader from "components/movetodataLoader";
+import MoveToDataLoader from "components/movetodataLoader";
 import React, { useRef } from "react";
 import { ParticleApp } from "utils/ParticleApp";
 import { getLanguageLabel, isIpPlatform } from "utils/utilities";

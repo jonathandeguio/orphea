@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env bash
+#!/usr/bin/env bash
 # =============================================================================
 # MoveToData Platform — Installation système CentOS 7 / 8 / 9 / Stream
 # Cible   : VM CentOS propre, exécuté en root ou via sudo

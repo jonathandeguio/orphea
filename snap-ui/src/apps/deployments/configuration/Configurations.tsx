@@ -1,4 +1,4 @@
-﻿import { Tabs } from "antd";
+import { Tabs } from "antd";
 import MoveToDataLoader from "components/movetodataLoader";
 import { TickIcon, UndoIcon } from "assets/icons/movetodataNavigationIcon";
 import React, { useEffect, useRef, useState } from "react";

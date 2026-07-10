@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env zsh
+#!/usr/bin/env zsh
 
 # Build the GKE cluster
 # https://cloud.google.com/kubernetes-engine/docs/quickstart

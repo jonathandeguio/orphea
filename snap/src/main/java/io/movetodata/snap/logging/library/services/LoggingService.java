@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.logging.library.services;
+package io.movetodata.snap.logging.library.services;
 
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;

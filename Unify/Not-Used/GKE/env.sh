@@ -1,4 +1,4 @@
-﻿PROJECT_ID=octbos22
+PROJECT_ID=octbos22
 BUCKET_NAME=datasets_collections_$PROJECT_ID
 COMPUTE_REGION=europe-west1
 COMPUTE_ZONE=europe-west1-b

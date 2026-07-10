@@ -1,4 +1,4 @@
-﻿import { Divider } from "antd";
+import { Divider } from "antd";
 
 import { APIIcon, HomeIcon } from "assets/icons/movetodataInterfaceIcons";
 import MoveToDataCommandPalette from "components/CommandPalette/CommandPalette.view";

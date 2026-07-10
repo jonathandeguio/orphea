@@ -1,4 +1,4 @@
-﻿import { Form, Input, Typography } from "antd";
+import { Form, Input, Typography } from "antd";
 import { LockIcon } from "assets/icons/movetodataActionIcons";
 import { MoveToDataIcon } from "assets/icons/movetodataMiscellaneousIcons";
 import { ArrowRightIcon } from "assets/icons/movetodataNavigationIcon";

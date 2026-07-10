@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.artifact.library.services;
+package io.movetodata.snap.artifact.library.services;
 
 import io.movetodata.snap.artifact.library.models.CheckUpdatesModel;
 import org.springframework.stereotype.Component;

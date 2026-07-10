@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.sharedutils.Response;
+package io.movetodata.snap.sharedutils.Response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;

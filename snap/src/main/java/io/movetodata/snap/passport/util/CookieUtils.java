@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.passport.util;
+package io.movetodata.snap.passport.util;
 
 import org.springframework.util.SerializationUtils;
 

@@ -1,4 +1,4 @@
-﻿import { Col, Menu, Popover, Radio, Row, Typography } from "antd";
+import { Col, Menu, Popover, Radio, Row, Typography } from "antd";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 

@@ -1,4 +1,4 @@
-﻿PROJECT_ID=aprbos23
+PROJECT_ID=aprbos23
 
 BUNDLE_DIR=/movetodata/bundle
 ARTIFACTORY_PATH="europe-west2-docker.pkg.dev/$PROJECT_ID/movetodata-cr"

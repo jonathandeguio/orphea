@@ -1,4 +1,4 @@
-﻿fqdn: staging.movetodata.io
+fqdn: staging.movetodata.io
 containerRegistery: movetodatastagingacr
 namespace: movetodata
 imagePullPolicy: Always

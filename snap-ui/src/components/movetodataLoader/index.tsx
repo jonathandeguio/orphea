@@ -1,2 +1,2 @@
-﻿import MoveToDataLoader from "./MoveToDataLoader";
+import MoveToDataLoader from "./MoveToDataLoader";
 export default MoveToDataLoader;

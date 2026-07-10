@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.logging.library.enums;
+package io.movetodata.snap.logging.library.enums;
 
 public enum BosonComponent {
     ACCESSMANAGER("accessManager"),

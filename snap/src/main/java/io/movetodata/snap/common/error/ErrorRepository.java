@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.common.error;
+package io.movetodata.snap.common.error;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

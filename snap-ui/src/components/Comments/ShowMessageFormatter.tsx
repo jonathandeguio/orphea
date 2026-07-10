@@ -1,4 +1,4 @@
-﻿import { Mentions, Typography } from "antd";
+import { Mentions, Typography } from "antd";
 import UserPopOver from "components/UserPopover/userpopover";
 import { User } from "global";
 import React from "react";

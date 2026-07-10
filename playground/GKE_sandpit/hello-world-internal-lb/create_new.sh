@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env zsh
+#!/usr/bin/env zsh
 
 # https://cloud.google.com/load-balancing/docs/https/setting-up-reg-ext-https-lb#gcloud
 # - Network. The network is a custom-mode VPC network named lb-network.

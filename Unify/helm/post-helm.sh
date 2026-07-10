@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env bash
+#!/usr/bin/env bash
 
 # get environment variables
 if [ $# -eq 0 ]; then

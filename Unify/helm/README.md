@@ -1,4 +1,4 @@
-﻿# MoveToData setup with HELM
+# MoveToData setup with HELM
 
 ## Create new tenant first
 [Create new tenant](README-Create-New-Tenant.md)

@@ -1,4 +1,4 @@
-﻿package io.movetodata.controller;
+package io.movetodata.controller;
 
 import io.movetodata.library.models.ColumnsModel;
 import io.movetodata.library.models.ConditionsModel;

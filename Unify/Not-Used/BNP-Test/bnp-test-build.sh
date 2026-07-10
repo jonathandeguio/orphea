@@ -1,4 +1,4 @@
-﻿#!/bin/bash
+#!/bin/bash
 
 PROJECT_ID=movetodata-foo
 COMPUTE_REGION=us-central1

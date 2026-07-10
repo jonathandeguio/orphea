@@ -1,4 +1,4 @@
-﻿package io.movetodata;
+package io.movetodata;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.movetodata.controller.ColumnStatsController;

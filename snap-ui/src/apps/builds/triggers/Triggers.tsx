@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Divider, Row, Typography, Tooltip } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import MoveToDataButton from "../../../components/ButtonComponent/MoveToDataButton";

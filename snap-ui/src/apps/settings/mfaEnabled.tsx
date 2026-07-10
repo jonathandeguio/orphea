@@ -1,4 +1,4 @@
-﻿import { Col, Form, notification, Row, Typography } from "antd";
+import { Col, Form, notification, Row, Typography } from "antd";
 import axios from "axios";
 import MoveToDataInput from "components/InputComponent/MoveToDataInput";
 import { MOVETODATA_TOKEN } from "layouts/auth/constants";

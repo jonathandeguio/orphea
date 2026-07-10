@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.build.library.services;
+package io.movetodata.snap.build.library.services;
 
 import com.github.dockerjava.api.command.BuildImageResultCallback;
 import com.github.dockerjava.api.model.BuildResponseItem;

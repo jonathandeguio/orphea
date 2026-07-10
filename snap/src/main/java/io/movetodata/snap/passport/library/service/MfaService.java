@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.passport.library.service;
+package io.movetodata.snap.passport.library.service;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;

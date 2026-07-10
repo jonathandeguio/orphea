@@ -1,4 +1,4 @@
-﻿---
+---
 - name: Install common utilties on All Vm's
   hosts: all_vms
   become: yes

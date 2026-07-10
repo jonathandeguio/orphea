@@ -1,4 +1,4 @@
-﻿package io.movetodata.utils;
+package io.movetodata.utils;
 
 import com.amazonaws.services.kinesisvideo.model.InvalidEndpointException;
 import io.minio.*;

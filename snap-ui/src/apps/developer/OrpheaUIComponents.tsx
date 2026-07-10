@@ -1,4 +1,4 @@
-﻿import { Switch, Typography } from "antd";
+import { Switch, Typography } from "antd";
 import { HistogramIcon } from "assets/icons/movetodataChartIcons";
 import { PostgresIcon } from "assets/icons/movetodataExternalIcons";
 import React, { useState } from "react";

@@ -1,4 +1,4 @@
-﻿const myLanguages = {
+const myLanguages = {
   welcome: {
     en: "Welcome",
     fr: "Bienvenue",

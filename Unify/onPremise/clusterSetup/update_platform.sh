@@ -1,4 +1,4 @@
-﻿#!/bin/bash
+#!/bin/bash
 
 # Define colors and formatting
 GREEN='\033[0;32m' # Green color

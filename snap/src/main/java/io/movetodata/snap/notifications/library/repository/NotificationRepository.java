@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.notifications.library.repository;
+package io.movetodata.snap.notifications.library.repository;
 
 import io.movetodata.snap.notifications.library.models.Notification;
 import org.springframework.data.domain.Page;

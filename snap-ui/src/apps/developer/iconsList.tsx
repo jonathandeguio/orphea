@@ -1,4 +1,4 @@
-﻿import { Col, Divider, Row, Tooltip, Typography } from "antd";
+import { Col, Divider, Row, Tooltip, Typography } from "antd";
 import React, { useState } from "react";
 
 import * as ActionIcons from "assets/icons/movetodataActionIcons";

@@ -1,4 +1,4 @@
-﻿# Snap
+# Snap
 The Project is to maintain Version Stability globally around MoveToData
 
 # Architecture Diagram

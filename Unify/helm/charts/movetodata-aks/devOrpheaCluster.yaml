@@ -1,4 +1,4 @@
-﻿fqdn: dev.movetodata.io
+fqdn: dev.movetodata.io
 containerRegistery: movetodatadevacr
 namespace: movetodata
 imagePullPolicy: Always

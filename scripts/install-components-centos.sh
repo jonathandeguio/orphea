@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env bash
+#!/usr/bin/env bash
 # =============================================================================
 # MoveToData Platform — Installation des composants techniques (CentOS / RHEL)
 # Cible   : CentOS Stream 9 / RHEL 9 / AlmaLinux 9 / Rocky 9

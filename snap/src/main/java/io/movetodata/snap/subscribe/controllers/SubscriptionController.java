@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.subscribe.controllers;
+package io.movetodata.snap.subscribe.controllers;
 
 import io.movetodata.snap.passport.library.service.UserService;
 import io.movetodata.snap.passport.security.TokenProvider;

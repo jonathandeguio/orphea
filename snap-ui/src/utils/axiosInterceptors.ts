@@ -1,4 +1,4 @@
-﻿import { notification } from "antd";
+import { notification } from "antd";
 import axios from "axios";
 import { BASE_URL, MOVETODATA_TOKEN } from "layouts/auth/constants";
 import { getLanguageLabel, isDefined, isEmpty } from "./utilities";

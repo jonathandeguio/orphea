@@ -1,4 +1,4 @@
-﻿import { Col, Divider, Form, Row, Select, Switch, Typography } from "antd";
+import { Col, Divider, Form, Row, Select, Switch, Typography } from "antd";
 import { KeyIcon } from "assets/icons/movetodataInterfaceIcons";
 import {
   LibraryIcon,

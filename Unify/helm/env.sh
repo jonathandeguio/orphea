@@ -1,4 +1,4 @@
-﻿HELM_CHART=movetodata-gke
+HELM_CHART=movetodata-gke
 FQDN=dev.movetodata.io
 PROJECT_ID=janbos2023
 BUCKET_NAME=datasets_collections_$PROJECT_ID

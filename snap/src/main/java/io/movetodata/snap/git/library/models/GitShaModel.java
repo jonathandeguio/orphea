@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.git.library.models;
+package io.movetodata.snap.git.library.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;

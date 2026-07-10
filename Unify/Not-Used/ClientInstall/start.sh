@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env bash
+#!/usr/bin/env bash
 
 PROJECT_ID=movetodata-bnp
 COMPUTE_REGION=europe-west1

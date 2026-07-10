@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.comments.controllers;
+package io.movetodata.snap.comments.controllers;
 
 //import io.movetodata.snap.build.library.models.SocketMessage;
 

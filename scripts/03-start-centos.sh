@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env bash
+#!/usr/bin/env bash
 # =============================================================================
 # MoveToData Platform — Script 03 : Démarrage sur CentOS 7 / 8 / 9
 # Usage : bash 03-start-centos.sh [--stack core|snap|tycho|all]

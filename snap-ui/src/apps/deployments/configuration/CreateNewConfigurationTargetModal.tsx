@@ -1,4 +1,4 @@
-﻿import { Form, Select } from "antd";
+import { Form, Select } from "antd";
 import { KeyIcon } from "assets/icons/movetodataInterfaceIcons";
 import { TickIcon } from "assets/icons/movetodataNavigationIcon";
 import axios from "axios";

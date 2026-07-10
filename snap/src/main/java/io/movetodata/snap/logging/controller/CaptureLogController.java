@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.logging.controller;
+package io.movetodata.snap.logging.controller;
 
 import io.movetodata.snap.deployments.library.repository.DeploymentRepository;
 import io.movetodata.snap.logging.library.models.ApplicationLogModel;

@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.sharedutils.language;
+package io.movetodata.snap.sharedutils.language;
 
 
 import com.fasterxml.jackson.databind.JsonNode;

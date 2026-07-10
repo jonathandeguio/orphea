@@ -1,4 +1,4 @@
-﻿import { Col, Divider, Row, Switch, Table, Typography } from "antd";
+import { Col, Divider, Row, Switch, Table, Typography } from "antd";
 
 import { AddIcon, SearchIcon } from "assets/icons/movetodataActionIcons";
 import CreateNewTokenModal from "apps/settings/Tokens/CreateNewTokenModal";

@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.build.library.enums;
+package io.movetodata.snap.build.library.enums;
 
 public enum BuildStage {
     STARTING("starting"),

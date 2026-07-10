@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.sharedutils.Exceptions;
+package io.movetodata.snap.sharedutils.Exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

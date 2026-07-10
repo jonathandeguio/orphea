@@ -1,2 +1,2 @@
-﻿import MoveToDataSelectableCard from "./MoveToDataSelectableCard.view";
+import MoveToDataSelectableCard from "./MoveToDataSelectableCard.view";
 export default MoveToDataSelectableCard;

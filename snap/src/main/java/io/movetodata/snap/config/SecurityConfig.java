@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.config;
+package io.movetodata.snap.config;
 
 import io.movetodata.snap.passport.security.CustomUserDetailsService;
 import io.movetodata.snap.passport.security.RestAuthenticationEntryPoint;

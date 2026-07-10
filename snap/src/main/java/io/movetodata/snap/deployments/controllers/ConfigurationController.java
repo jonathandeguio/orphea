@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.deployments.controllers;
+package io.movetodata.snap.deployments.controllers;
 
 import io.movetodata.snap.build.library.repository.TriggerRepository;
 import io.movetodata.snap.deployments.library.Enums.ConfigurationState;

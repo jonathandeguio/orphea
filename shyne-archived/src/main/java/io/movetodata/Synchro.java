@@ -1,4 +1,4 @@
-﻿package io.movetodata;
+package io.movetodata;
 
 import io.movetodata.controller.SynchroController;
 import io.movetodata.utils.Utils;

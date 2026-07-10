@@ -1,4 +1,4 @@
-﻿import { MoveToDataIcon } from "assets/icons/movetodataMiscellaneousIcons";
+import { MoveToDataIcon } from "assets/icons/movetodataMiscellaneousIcons";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";

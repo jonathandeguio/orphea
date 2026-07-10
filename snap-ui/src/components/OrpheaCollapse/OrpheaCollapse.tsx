@@ -1,4 +1,4 @@
-﻿import {
+import {
   SingleChevronRightIcon,
 } from "assets/icons/movetodataNavigationIcon";
 import React, { useEffect, useMemo, useState } from "react";

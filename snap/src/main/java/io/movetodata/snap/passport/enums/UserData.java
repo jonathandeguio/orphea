@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.passport.enums;
+package io.movetodata.snap.passport.enums;
 
 public enum UserData {
     userName,

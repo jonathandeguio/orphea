@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env bash
+#!/usr/bin/env bash
 # =============================================================================
 # MoveToData Platform — Script 04 : Arrêt de la plateforme
 # Usage : bash 04-stop.sh [--stack core|snap|tycho|all] [--volumes]

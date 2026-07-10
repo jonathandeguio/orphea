@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.artifact.library.repository;
+package io.movetodata.snap.artifact.library.repository;
 
 import io.movetodata.snap.artifact.library.models.ArtifactModel;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,4 +1,4 @@
-﻿import { Col, Divider, Input, Row, Typography } from "antd";
+import { Col, Divider, Input, Row, Typography } from "antd";
 import React, { useEffect, useState } from "react";
 
 import { Form } from "antd";

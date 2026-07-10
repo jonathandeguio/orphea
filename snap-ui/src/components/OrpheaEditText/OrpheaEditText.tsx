@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import "./MoveToDataEditText.scss";
 
 const MoveToDataEditText = (props: { children: any }) => {

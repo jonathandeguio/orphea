@@ -1,4 +1,4 @@
-﻿import { Typography } from "antd";
+import { Typography } from "antd";
 import { SearchEmptyState } from "assets/Illustrations/EmptyState";
 import { SyncIcon } from "assets/icons/movetodataActionIcons";
 import React from "react";

@@ -1,4 +1,4 @@
-﻿package io.movetodata.snap.passport.DTO;
+package io.movetodata.snap.passport.DTO;
 
 import lombok.Getter;
 import lombok.Setter;
