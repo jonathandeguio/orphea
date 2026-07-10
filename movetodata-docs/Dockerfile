@@ -4,13 +4,11 @@ WORKDIR /app
 # ENV NODE_OPTIONS=--max_old_space_size=32000
 
 COPY ./ .
-# Set the yarn version and install dependencies
-RUN corepack enable && yarn set version 3.5.0 && \
-    yarn install --silent
+RUN npm install --legacy-peer-deps --silent
 
 ENV NODE_ENV=production
 ENV NODE_OPTIONS="--max-old-space-size=8192"
-RUN yarn build 
+RUN npm run build
 
 # RUN npm install --legacy-peer-deps -prefer-offline --no-audit --progress=false --silent
 # RUN npm install typescript @types/node ts-node --legacy-peer-deps -prefer-offline --no-audit --progress=false --silent
