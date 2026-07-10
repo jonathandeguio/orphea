@@ -1,4 +1,4 @@
-﻿import { TMoveToDataIconProps } from "./types";
+import { TMoveToDataIconProps } from "./types";
 import React from "react";
 
 function ArrowUpIcon({

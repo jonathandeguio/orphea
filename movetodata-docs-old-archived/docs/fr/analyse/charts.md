@@ -1,3 +1,3 @@
-﻿# Graphiques
+# Graphiques
   
  Bientôt à MoveToData

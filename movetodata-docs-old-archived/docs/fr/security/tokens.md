@@ -1,4 +1,4 @@
-﻿# Jetons
+# Jetons
 
 <div style="text-align: justify">Les jetons sont la méthode d'authentification de sécurité de MoveToData.
 MoveToData utilise des jetons pour envoyer et recevoir des données vers et depuis des systèmes externes.

@@ -1,4 +1,4 @@
-﻿# This is the package for ignite agent installation.
+# This is the package for ignite agent installation.
 
 ## it needs below certificate in java store
 

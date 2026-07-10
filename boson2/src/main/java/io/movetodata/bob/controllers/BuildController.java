@@ -1,4 +1,4 @@
-﻿package io.movetodata.bob.controllers;
+package io.movetodata.bob.controllers;
 
 import io.movetodata.bob.library.models.*;
 import io.movetodata.bob.library.repository.BuildLogRepository;

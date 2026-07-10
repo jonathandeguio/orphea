@@ -1,4 +1,4 @@
-﻿package io.movetodata.cassini.library.models;
+package io.movetodata.cassini.library.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;

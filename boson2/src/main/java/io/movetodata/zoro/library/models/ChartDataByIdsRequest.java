@@ -1,4 +1,4 @@
-﻿package io.movetodata.zoro.library.models;
+package io.movetodata.zoro.library.models;
 
 import io.movetodata.kepler.library.models.DashboardFilterModel;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (C) 2015, Sasa Zivkov <sasa.zivkov@sap.com> and others
  *
  * This program and the accompanying materials are made available under the

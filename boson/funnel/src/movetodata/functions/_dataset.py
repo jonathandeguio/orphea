@@ -1,4 +1,4 @@
-﻿import json
+import json
 
 from movetodata.internal import Build, Kitab, spark_session
 from movetodata.functions._dataset_transform import DatasetTransform, log

@@ -1,4 +1,4 @@
-﻿package io.movetodata.kitab.controllers;
+package io.movetodata.kitab.controllers;
 
 import io.movetodata.bob.library.models.SocketMessage;
 import io.movetodata.kitab.library.models.TransactionModel;

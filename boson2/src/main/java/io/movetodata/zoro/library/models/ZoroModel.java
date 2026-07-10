@@ -1,4 +1,4 @@
-﻿package io.movetodata.zoro.library.models;
+package io.movetodata.zoro.library.models;
 
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;

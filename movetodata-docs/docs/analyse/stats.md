@@ -1,4 +1,4 @@
-﻿# Statistics
+# Statistics
 
 Statistics play a big role in using MoveToData to its maximum potential.
 MoveToData allows you to view statistics of any column in a dataset

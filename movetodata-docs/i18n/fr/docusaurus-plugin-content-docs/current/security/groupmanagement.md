@@ -1,4 +1,4 @@
-﻿# Gestion des Groupes
+# Gestion des Groupes
 
 Dans MoveToData, les Administrateurs peuvent créer des groupes de sécurité et ont un accès complet et un contrôle total sur ces groupes pour déléguer des rôles de sécurité à certains utilisateurs.
 

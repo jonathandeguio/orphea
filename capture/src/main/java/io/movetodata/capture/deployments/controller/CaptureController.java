@@ -1,4 +1,4 @@
-﻿package io.movetodata.capture.deployments.controller;
+package io.movetodata.capture.deployments.controller;
 
 import io.movetodata.capture.deployments.library.model.EnvConfig;
 import io.movetodata.capture.deployments.library.services.UpdateChecker;

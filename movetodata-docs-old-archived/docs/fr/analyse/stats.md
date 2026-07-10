@@ -1,4 +1,4 @@
-﻿# Statistiques
+# Statistiques
 
 <div style="text-align: justify">Les statistiques jouent un grand rôle dans l'utilisation de MoveToData à son potentiel maximum.
 MoveToData vous permet d'afficher les statistiques de n'importe quelle colonne d'un ensemble de données.

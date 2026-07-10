@@ -1,4 +1,4 @@
-﻿import os
+import os
 
 spark_application_id = os.environ.get('SPARK_APPLICATION_ID')
 

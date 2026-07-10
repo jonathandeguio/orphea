@@ -1,4 +1,4 @@
-﻿# Notebook
+# Notebook
 
 The notebook constitutes an integral component of data science workflows. Within MoveToData, we've seamlessly integrated the notebook functionality into our code repository infrastructure.
 

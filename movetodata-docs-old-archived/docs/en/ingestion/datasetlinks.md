@@ -1,4 +1,4 @@
-﻿# Dataset Links
+# Dataset Links
 
 <div style="text-align: justify"> Creating a Link allows you to pull specific data from a Source and import it into MoveToData. For instance, if you have a relational database Source that holds various tables, you can set up a Link to select a specific table and bring it into MoveToData.
 Establishing a Link results in the creation of a MoveToData dataset within a selected Project. The process of transferring data from the Source to the dataset is carried out by building the dataset. While builds can be initiated manually, scheduling them is a more common practice.

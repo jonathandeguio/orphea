@@ -1,4 +1,4 @@
-﻿package io.movetodata.sharedUtils;
+package io.movetodata.sharedUtils;
 
 import io.movetodata.kepler.library.models.ChartsModel;
 import io.movetodata.kepler.library.models.DashboardsModel;

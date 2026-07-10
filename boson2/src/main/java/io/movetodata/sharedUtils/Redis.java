@@ -1,4 +1,4 @@
-﻿package io.movetodata.sharedUtils;
+package io.movetodata.sharedUtils;
 
 import io.movetodata.sharedUtils.Response.ResourceNotFoundException;
 import redis.clients.jedis.Jedis;

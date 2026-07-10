@@ -1,4 +1,4 @@
-﻿import os
+import os
 import requests
 from jupyter_server.auth import Authorizer, IdentityProvider
 from tornado.web import RequestHandler

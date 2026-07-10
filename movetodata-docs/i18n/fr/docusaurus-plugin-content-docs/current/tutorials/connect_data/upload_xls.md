@@ -1,4 +1,4 @@
-﻿# Importer un fichier Excel
+# Importer un fichier Excel
 
 <subheader>Apprenez des méthodes simples pour transférer vos données dans MoveToData en importer des fichiers et en configurant des connexions de données</subheader>
 

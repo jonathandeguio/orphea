@@ -1,4 +1,4 @@
-﻿# Group Management
+# Group Management
 
 <div style="text-align: justify"> In MoveToData, Administrators can create security groups and can have full access and control over those groups to delegate security roles to certain users.
 

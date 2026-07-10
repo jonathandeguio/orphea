@@ -1,4 +1,4 @@
-﻿# Tokens
+# Tokens
 
 <div style="text-align: justify">Tokens are MoveToData’s security authentication method.
 MoveToData uses tokens to send and receive data to and from external systems.

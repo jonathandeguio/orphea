@@ -1,4 +1,4 @@
-﻿# Gestion des utilisateurs
+# Gestion des utilisateurs
 
 MoveToData permet aux administrateurs de gérer les utilisateurs sur une seule page.
 

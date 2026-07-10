@@ -1,4 +1,4 @@
-﻿# Data Lineage
+# Data Lineage
 
 <div style="text-align: justify">A data pipeline is a system that manages the flow of data from various sources to a common destination. It is used to integrate data from different systems and create a unified view of the organization's data. Data pipelines are typically overseen by a team or individual who ensures that the data flows through the pipeline regularly and reliably.
 

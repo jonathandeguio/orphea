@@ -1,4 +1,4 @@
-﻿package io.movetodata.julia.lfs.server;
+package io.movetodata.julia.lfs.server;
 
 public class LfsRef {
 

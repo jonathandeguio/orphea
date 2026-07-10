@@ -1,4 +1,4 @@
-﻿# Liens d'ensemble de données
+# Liens d'ensemble de données
 
 <div style="text-align: justify"> La création d'un lien vous permet d'extraire des données spécifiques d'une source et de les importer dans MoveToData. Par exemple, si vous avez une source de base de données relationnelle contenant plusieurs tables, vous pouvez configurer un lien pour sélectionner une table spécifique et l'importer dans MoveToData.
 L'établissement d'un lien entraîne la création d'un ensemble de données MoveToData dans un projet sélectionné. Le processus de transfert des données de la source vers l'ensemble de données est effectué en créant l'ensemble de données. Bien que les générations puissent être lancées manuellement, leur planification est une pratique plus courante.

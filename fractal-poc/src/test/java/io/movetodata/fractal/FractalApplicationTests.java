@@ -1,4 +1,4 @@
-﻿package io.movetodata.fractal;
+package io.movetodata.fractal;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

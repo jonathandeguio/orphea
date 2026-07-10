@@ -1,4 +1,4 @@
-﻿package io.movetodata.capture.config;
+package io.movetodata.capture.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

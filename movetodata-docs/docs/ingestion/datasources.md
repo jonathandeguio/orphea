@@ -1,4 +1,4 @@
-﻿# Data Sources
+# Data Sources
 
 A Data Source is any external data system that can be connected to MoveToData. Examples of a Data Source include, but are not limited to:
 

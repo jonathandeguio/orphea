@@ -1,4 +1,4 @@
-﻿package io.movetodata.scheduler.job;
+package io.movetodata.scheduler.job;
 
 import io.movetodata.bob.library.models.BuildProperties;
 import io.movetodata.bob.library.models.BuildSpecification;

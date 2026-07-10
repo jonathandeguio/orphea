@@ -1,3 +1,3 @@
-﻿# Base de données
+# Base de données
 
 Bientôt à MoveToData

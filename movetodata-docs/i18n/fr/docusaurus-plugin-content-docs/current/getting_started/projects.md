@@ -1,4 +1,4 @@
-﻿# Présentation des projets
+# Présentation des projets
 
 Un projet est l'unité organisationnelle centrale de MoveToData. Il comprend la visualisation (graphiques, tableau de bord), la logique (pipeline de données), les données et la documentation. Un projet est isolé avec sécurité afin que seul un ensemble autorisé d'utilisateurs puisse accéder à l'espace.
 

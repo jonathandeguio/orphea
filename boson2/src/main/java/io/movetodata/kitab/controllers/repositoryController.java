@@ -1,4 +1,4 @@
-﻿package io.movetodata.kitab.controllers;
+package io.movetodata.kitab.controllers;
 
 import io.movetodata.fractal.library.models.GitCommit;
 import io.movetodata.fractal.library.services.GitService;

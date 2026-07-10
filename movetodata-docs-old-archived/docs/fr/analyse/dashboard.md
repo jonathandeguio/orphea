@@ -1,3 +1,3 @@
-﻿# Tableau de bord
+# Tableau de bord
 
 Bientôt à MoveToData

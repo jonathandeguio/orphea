@@ -1,4 +1,4 @@
-﻿package io.movetodata.passport.library.service;
+package io.movetodata.passport.library.service;
 
 import io.movetodata.passport.library.repository.TokenRepository;
 import jakarta.servlet.http.HttpServletRequest;

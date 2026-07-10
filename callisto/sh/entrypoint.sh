@@ -1,4 +1,4 @@
-﻿#!/bin/bash
+#!/bin/bash
 
 #if [[ ! -v NOTEBOOK_DIR ]]; then
 #	NOTEBOOK_DIR=/notebooks

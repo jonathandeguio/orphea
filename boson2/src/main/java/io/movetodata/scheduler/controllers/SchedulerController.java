@@ -1,4 +1,4 @@
-﻿package io.movetodata.scheduler.controllers;
+package io.movetodata.scheduler.controllers;
 
 import io.movetodata.bob.library.repository.BuildSpecificationsRepository;
 import io.movetodata.kitab.library.repository.FolderRepository;

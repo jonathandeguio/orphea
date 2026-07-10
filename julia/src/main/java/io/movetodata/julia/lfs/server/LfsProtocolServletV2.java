@@ -1,4 +1,4 @@
-﻿package io.movetodata.julia.lfs.server;
+package io.movetodata.julia.lfs.server;
 
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.jgit.lfs.errors.*;

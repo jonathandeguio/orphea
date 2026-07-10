@@ -1,4 +1,4 @@
-﻿<!-- _coverpage.md -->
+<!-- _coverpage.md -->
 <style>
 th {
    border: 0.01rem solid ;!important;

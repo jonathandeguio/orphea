@@ -1,4 +1,4 @@
-﻿# MoveToData Documentation
+# MoveToData Documentation
 
 This is the documentation for MoveToData
 

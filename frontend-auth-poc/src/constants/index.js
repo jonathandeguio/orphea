@@ -1,4 +1,4 @@
-﻿// export const API_BASE_URL = 'http://localhost:8080';
+// export const API_BASE_URL = 'http://localhost:8080';
 export const API_BASE_URL = 'https://dev.movetodata.io/api';
 export const MOVETODATA_TOKEN = 'movetodataToken';
 

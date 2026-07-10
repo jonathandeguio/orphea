@@ -1,4 +1,4 @@
-﻿package io.movetodata.passport.library.service;
+package io.movetodata.passport.library.service;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;

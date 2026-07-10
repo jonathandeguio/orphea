@@ -1,3 +1,3 @@
-﻿# Charts
+# Charts
   
   Coming soon to MoveToData

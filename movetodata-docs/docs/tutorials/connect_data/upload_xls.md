@@ -1,4 +1,4 @@
-﻿# Upload an Excel
+# Upload an Excel
 
 <subheader>Learn simple methods to get your data into MoveToData by uploading files and setting up data connections</subheader>
 

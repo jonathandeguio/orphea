@@ -1,4 +1,4 @@
-﻿package io.movetodata.passport.util;
+package io.movetodata.passport.util;
 
 import jakarta.servlet.http.Cookie;
 import org.springframework.util.SerializationUtils;

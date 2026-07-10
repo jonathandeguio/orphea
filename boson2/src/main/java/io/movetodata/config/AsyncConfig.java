@@ -1,4 +1,4 @@
-﻿package io.movetodata.config;
+package io.movetodata.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

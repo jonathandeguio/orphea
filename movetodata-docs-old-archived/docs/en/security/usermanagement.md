@@ -1,4 +1,4 @@
-﻿# User Management
+# User Management
 
 <div style="text-align: justify"> MoveToData allows administrators to manage users in MoveToData on one page.
 

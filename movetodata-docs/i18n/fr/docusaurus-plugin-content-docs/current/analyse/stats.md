@@ -1,4 +1,4 @@
-﻿# Statistiques
+# Statistiques
 
 Les statistiques jouent un grand rôle dans l'utilisation optimale de MoveToData.
 La plateforme vous permet d'afficher les statistiques de n'importe quelle colonne d'un ensemble de données.

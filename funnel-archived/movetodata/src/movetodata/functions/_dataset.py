@@ -1,4 +1,4 @@
-﻿import json
+import json
 
 from movetodata import DatasetTransform, Build, Kitab
 from movetodata.functions._param import MoveToDataSourceParam, MoveToDataTargetParam

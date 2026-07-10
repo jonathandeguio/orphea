@@ -1,4 +1,4 @@
-﻿package io.movetodata.julia.controllers;
+package io.movetodata.julia.controllers;
 
 
 import io.swagger.v3.oas.annotations.Hidden;

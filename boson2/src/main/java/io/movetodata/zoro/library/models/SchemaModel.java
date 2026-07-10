@@ -1,4 +1,4 @@
-﻿package io.movetodata.zoro.library.models;
+package io.movetodata.zoro.library.models;
 
 import io.movetodata.passport.library.models.Role;
 import lombok.AllArgsConstructor;

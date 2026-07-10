@@ -1,4 +1,4 @@
-﻿package io.movetodata.sharedUtils;
+package io.movetodata.sharedUtils;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeanWrapper;

@@ -1,4 +1,4 @@
-﻿package io.movetodata.passport.payload;
+package io.movetodata.passport.payload;
 
 
 import jakarta.validation.constraints.*;

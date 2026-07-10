@@ -1,4 +1,4 @@
-﻿package io.movetodata.sharedUtils;
+package io.movetodata.sharedUtils;
 
 import com.amazonaws.thirdparty.apache.codec.binary.Base64;
 import io.movetodata.bob.library.models.SocketMessage;

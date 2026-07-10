@@ -1,4 +1,4 @@
-﻿package io.movetodata.docket.controllers;
+package io.movetodata.docket.controllers;
 
 import io.movetodata.docket.library.models.Tags;
 import io.movetodata.docket.library.models.TagsCategory;

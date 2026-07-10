@@ -1,4 +1,4 @@
-﻿from movetodata import funnel
+from movetodata import funnel
 
 for i in range(15):
     source_dataset1 = "/Projects/Test/Data/Complex_Pipeline/Parent1"

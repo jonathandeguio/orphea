@@ -1,4 +1,4 @@
-﻿package io.movetodata.synchro.library.services;
+package io.movetodata.synchro.library.services;
 
 import io.movetodata.bob.library.models.SocketMessage;
 import io.movetodata.passport.library.repository.UserRepository;

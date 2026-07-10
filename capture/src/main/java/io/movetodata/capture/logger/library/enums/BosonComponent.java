@@ -1,4 +1,4 @@
-﻿package io.movetodata.capture.logger.library.enums;
+package io.movetodata.capture.logger.library.enums;
 
 public enum BosonComponent {
     ACCESSMANAGER("accessManager"),

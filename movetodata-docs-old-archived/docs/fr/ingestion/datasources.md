@@ -1,4 +1,4 @@
-﻿# Les sources de données
+# Les sources de données
 
 <div style="text-align: justify"> Une source de données est tout système de données externe pouvant être connecté à MoveToData. Les exemples d'une source de données incluent, mais ne sont pas limités à :
 

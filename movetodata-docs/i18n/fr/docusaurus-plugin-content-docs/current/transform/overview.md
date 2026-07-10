@@ -1,4 +1,4 @@
-﻿# Aperçu
+# Aperçu
 
 ## L'intégration
 

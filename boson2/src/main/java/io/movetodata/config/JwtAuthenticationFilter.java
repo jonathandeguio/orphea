@@ -1,4 +1,4 @@
-﻿package io.movetodata.config;
+package io.movetodata.config;
 
 import io.movetodata.passport.library.repository.TokenRepository;
 import io.movetodata.passport.library.service.JwtService;

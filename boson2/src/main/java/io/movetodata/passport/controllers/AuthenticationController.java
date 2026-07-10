@@ -1,4 +1,4 @@
-﻿package io.movetodata.passport.controllers;
+package io.movetodata.passport.controllers;
 
 
 import io.movetodata.passport.library.models.AuthenticationRequest;

@@ -1,4 +1,4 @@
-﻿# Planification
+# Planification
 
 <div style="text-align: justify"> Une planification est une tâche de génération récurrente qui assure un flux constant de données dans MoveToData. Le déclencheur dans une planification détermine quand la génération doit s'exécuter.
 

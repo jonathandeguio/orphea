@@ -1,4 +1,4 @@
-﻿package io.movetodata.boson;
+package io.movetodata.boson;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

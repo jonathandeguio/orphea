@@ -1,4 +1,4 @@
-﻿package io.movetodata.sharedUtils.Response;
+package io.movetodata.sharedUtils.Response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-﻿from movetodata.functions import funnel, Source, Target
+from movetodata.functions import funnel, Source, Target
 from movetodata.internal import spark_session
 
 print("hello world")

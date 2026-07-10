@@ -1,4 +1,4 @@
-﻿import os
+import os
 
 SPARK_APPLICATION_ID = os.environ.get('SPARK_APPLICATION_ID')
 DEFAULT_BRANCH = os.environ.get('DEFAULT_BRANCH') if os.environ.get('DEFAULT_BRANCH') else "master"

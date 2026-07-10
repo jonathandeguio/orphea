@@ -1,4 +1,4 @@
-﻿package io.movetodata.cassini.library.repository;
+package io.movetodata.cassini.library.repository;
 
 import io.movetodata.docket.library.models.Tags;
 import io.movetodata.docket.library.models.TagsCategory;

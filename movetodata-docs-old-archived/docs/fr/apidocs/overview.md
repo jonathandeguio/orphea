@@ -1,3 +1,3 @@
-﻿# Aperçu
+# Aperçu
 
 Bientôt à MoveToData

@@ -1,4 +1,4 @@
-﻿# pylint: disable=cyclic-import,  import-outside-toplevel
+# pylint: disable=cyclic-import,  import-outside-toplevel
 import inspect
 import logging
 

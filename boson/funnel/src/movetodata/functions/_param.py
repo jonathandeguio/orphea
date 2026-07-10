@@ -1,4 +1,4 @@
-﻿from utils import _json_schema
+from utils import _json_schema
 from typing import Any, Dict, List, Optional
 
 

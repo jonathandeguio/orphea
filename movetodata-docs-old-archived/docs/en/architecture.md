@@ -1,4 +1,4 @@
-﻿# Architecture
+# Architecture
 
 MoveToData is an architecture that is built to cater to all types of users, handle high-demand data-driven workloads and adapt to various infrastructure substrates. To accomplish this, it utilizes a service mesh that is managed by Palantir Apollo and follows a set of software-defined principles.
 As MoveToData has grown in importance for many organizations, it has been important to ensure that:

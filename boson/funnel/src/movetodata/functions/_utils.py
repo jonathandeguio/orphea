@@ -1,4 +1,4 @@
-﻿import math
+import math
 import os
 
 from pyspark.sql import types as T

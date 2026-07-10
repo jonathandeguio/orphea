@@ -1,4 +1,4 @@
-﻿package io.movetodata;
+package io.movetodata;
 
 import io.movetodata.julia.WebLB;
 import io.movetodata.julia.gitserver.LfsBatchServlet;

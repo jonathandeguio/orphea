@@ -1,4 +1,4 @@
-﻿package io.movetodata.fractal.fractal.library.models;
+package io.movetodata.fractal.fractal.library.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

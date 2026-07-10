@@ -1,4 +1,4 @@
-﻿# Principes de base de PySpark
+# Principes de base de PySpark
 
 Ce guide vous aidera à transformer différents ensembles de données dans MoveToData. Voici un tutoriel étape par étape pour transformer des données :
 

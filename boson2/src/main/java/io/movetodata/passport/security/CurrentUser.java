@@ -1,4 +1,4 @@
-﻿package io.movetodata.passport.security;
+package io.movetodata.passport.security;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import java.lang.annotation.*;

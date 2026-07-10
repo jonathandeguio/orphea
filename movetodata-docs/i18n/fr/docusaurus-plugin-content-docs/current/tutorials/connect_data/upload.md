@@ -1,4 +1,4 @@
-﻿# Importer un fichier CSV
+# Importer un fichier CSV
 
 <subheader>Apprenez des méthodes simples pour transférer vos données dans MoveToData en importer des fichiers et en configurant des connexions de données</subheader>
 

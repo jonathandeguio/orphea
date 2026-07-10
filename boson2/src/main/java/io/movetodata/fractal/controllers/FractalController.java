@@ -1,4 +1,4 @@
-﻿package io.movetodata.fractal.controllers;
+package io.movetodata.fractal.controllers;
 
 import io.movetodata.bob.library.models.SocketMessage;
 import io.movetodata.bob.library.services.BuildService;

@@ -1,4 +1,4 @@
-﻿package io.movetodata.ignite.controllers;
+package io.movetodata.ignite.controllers;
 
 import io.movetodata.ignite.library.models.IgniteConfig;
 import io.movetodata.ignite.library.models.Links;

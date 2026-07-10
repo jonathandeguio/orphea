@@ -1,4 +1,4 @@
-﻿package io.movetodata.ignite.library.models;
+package io.movetodata.ignite.library.models;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;

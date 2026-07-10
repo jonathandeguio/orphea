@@ -1,4 +1,4 @@
-﻿# Aperçu
+# Aperçu
 
 Présentation de MoveToData - une plate-forme d'opérations tout-en-un qui connecte de manière transparente les équipes de données, d'analyse et opérationnelles. Les utilisateurs techniques et non techniques peuvent facilement collaborer sur des défis organisationnels complexes en utilisant la large gamme de services de MoveToData. Ces services sont organisés en catégories distinctes, ce qui facilite la recherche des outils adaptés à vos besoins. Avec une configuration minimale requise, la conception modulaire de MoveToData vous permet de rationaliser et d'optimiser vos opérations. Parcourez nos services pour voir comment MoveToData peut aider votre organisation :
 

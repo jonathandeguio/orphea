@@ -1,4 +1,4 @@
-﻿# Python transformation
+# Python transformation
 
 # To create transformation you have to use an internal movetodata package called funnel
 

@@ -1,4 +1,4 @@
-﻿export interface TMoveToDataIconProps {
+export interface TMoveToDataIconProps {
   size?: number | string;
   color?: string;
   stroke?: string;

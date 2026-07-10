@@ -1,4 +1,4 @@
-﻿package io.movetodata.capture;
+package io.movetodata.capture;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Contact;

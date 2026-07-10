@@ -1,4 +1,4 @@
-﻿package io.movetodata.sharedUtils.storage;
+package io.movetodata.sharedUtils.storage;
 
 import com.amazonaws.services.kinesisvideo.model.InvalidEndpointException;
 import io.minio.*;

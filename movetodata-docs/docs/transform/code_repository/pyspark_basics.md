@@ -1,4 +1,4 @@
-﻿# PySpark Basics
+# PySpark Basics
 
 This guide will help you transform different datasets within MoveToData. Here's a step-by step tutorial to transform data:
 

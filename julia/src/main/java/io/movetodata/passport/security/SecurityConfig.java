@@ -1,4 +1,4 @@
-﻿package io.movetodata.passport.security;
+package io.movetodata.passport.security;
 
 import io.movetodata.passport.library.repository.LoginHistoryRepo;
 import io.movetodata.passport.library.repository.UserRepo;

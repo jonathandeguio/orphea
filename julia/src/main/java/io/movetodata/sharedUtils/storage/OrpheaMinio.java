@@ -1,4 +1,4 @@
-﻿package io.movetodata.sharedUtils.storage;
+package io.movetodata.sharedUtils.storage;
 
 import io.minio.*;
 import io.minio.errors.*;

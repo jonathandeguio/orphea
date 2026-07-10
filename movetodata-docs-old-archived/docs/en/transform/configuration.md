@@ -1,4 +1,4 @@
-﻿# Overview
+# Overview
 
 <div style="text-align: justify">Code Repositories is a web-based IDE that allows users to write and collaborate on production-ready code within MoveToData. The platform features a user-friendly interface for interacting with Git repositories, and offers various additional capabilities such as:
 

@@ -1,4 +1,4 @@
-﻿# Architecture
+# Architecture
 
 MoveToData est une architecture conçue pour répondre à tous les types d'utilisateurs, gérer les charges de travail basées sur les données à forte demande et s'adapter à divers substrats d'infrastructure.
 

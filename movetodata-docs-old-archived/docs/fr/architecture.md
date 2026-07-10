@@ -1,4 +1,4 @@
-﻿# Architecture
+# Architecture
 
 MoveToData est une architecture conçue pour répondre à tous les types d'utilisateurs, gérer les charges de travail basées sur les données à forte demande et s'adapter à divers substrats d'infrastructure. Pour ce faire, il utilise un maillage de services géré par Palantir Apollo et suit un ensemble de principes définis par logiciel.
 Comme MoveToData a gagné en importance pour de nombreuses organisations, il a été important de s'assurer que :

@@ -1,4 +1,4 @@
-﻿# Scheduling
+# Scheduling
 
 <div style="text-align: justify"> A schedule is a recurring build task that ensures a steady flow of data in MoveToData. The trigger in a schedule determines when the build should run.
 

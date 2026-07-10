@@ -1,4 +1,4 @@
-﻿# Installer des agents
+# Installer des agents
 
 <div style="text-align: justify">Un programme appelé Agent peut être téléchargé et ajouté à votre réseau organisationnel. Il est géré via l'interface de connexion de données de MoveToData, également connue sous le nom d'Ignite.
 L'agent peut se connecter à diverses sources de données au sein de votre réseau et sa fonction principale est de récupérer les données de ces sources et de les envoyer en toute sécurité à MoveToData à l'aide d'un jeton d'accès sécurisé.

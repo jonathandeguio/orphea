@@ -1,4 +1,4 @@
-﻿package io.movetodata.sharedUtils;
+package io.movetodata.sharedUtils;
 
 import com.amazonaws.util.StringInputStream;
 import com.google.api.gax.paging.Page;

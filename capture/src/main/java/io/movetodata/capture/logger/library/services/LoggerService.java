@@ -1,4 +1,4 @@
-﻿//package io.movetodata.capture.logger.library.services;
+//package io.movetodata.capture.logger.library.services;
 //
 //import com.fasterxml.jackson.databind.JsonNode;
 //import com.fasterxml.jackson.databind.ObjectMapper;

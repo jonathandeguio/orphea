@@ -1,4 +1,4 @@
-﻿package io.movetodata.bob.library.repository;
+package io.movetodata.bob.library.repository;
 
 import io.movetodata.bob.library.models.BuildLog;
 import org.springframework.data.jpa.repository.JpaRepository;

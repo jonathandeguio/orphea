@@ -1,4 +1,4 @@
-﻿package io.movetodata.zoro.library.repository;
+package io.movetodata.zoro.library.repository;
 
 import io.movetodata.zoro.library.models.ZoroModel;
 import org.springframework.data.jpa.repository.JpaRepository;

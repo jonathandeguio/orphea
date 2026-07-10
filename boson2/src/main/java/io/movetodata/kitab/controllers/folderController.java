@@ -1,4 +1,4 @@
-﻿package io.movetodata.kitab.controllers;
+package io.movetodata.kitab.controllers;
 
 import io.movetodata.ignite.library.repository.LinkRepository;
 import io.movetodata.kitab.library.models.FolderModel;

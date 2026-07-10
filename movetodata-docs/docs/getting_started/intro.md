@@ -1,4 +1,4 @@
-﻿# What is MoveToData ?
+# What is MoveToData ?
 
 MoveToData is a modern data platform designed to fulfill the diverse data needs of organizations. It follows the "batteries included" philosophy, providing all necessary components to streamline the data management process. It boasts an integrated code editor that allows users to manage their transformation code, as well as visualize their data pipelines and insights through interactive charts and dashboards.
 

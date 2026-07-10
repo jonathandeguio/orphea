@@ -1,3 +1,3 @@
-﻿# Documentation API
+# Documentation API
 
     Bientôt sur MoveToData

@@ -1,4 +1,4 @@
-﻿package io.movetodata.scheduler.library.models;
+package io.movetodata.scheduler.library.models;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

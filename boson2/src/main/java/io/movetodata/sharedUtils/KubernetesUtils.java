@@ -1,4 +1,4 @@
-﻿package io.movetodata.sharedUtils;
+package io.movetodata.sharedUtils;
 
 import io.movetodata.sparkoperator.models.*;
 import io.kubernetes.client.openapi.ApiClient;

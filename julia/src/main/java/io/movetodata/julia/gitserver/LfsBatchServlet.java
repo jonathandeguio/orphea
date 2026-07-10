@@ -1,4 +1,4 @@
-﻿package io.movetodata.julia.gitserver;
+package io.movetodata.julia.gitserver;
 
 import io.movetodata.julia.lfs.server.LfsProtocolServletV2;
 import io.movetodata.julia.lfs.server.LfsRef;

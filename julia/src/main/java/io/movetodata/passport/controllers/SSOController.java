@@ -1,4 +1,4 @@
-﻿package io.movetodata.passport.controllers;
+package io.movetodata.passport.controllers;
 
 import io.movetodata.passport.library.service.UserService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;

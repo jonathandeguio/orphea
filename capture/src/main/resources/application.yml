@@ -1,4 +1,4 @@
-﻿server:
+server:
   port: 7376
   max-http-header-size: 32000
   tomcat:

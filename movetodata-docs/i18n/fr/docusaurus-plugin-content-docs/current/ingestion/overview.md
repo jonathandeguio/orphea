@@ -1,4 +1,4 @@
-﻿# Aperçu
+# Aperçu
 
 ## La configuration initiale
 

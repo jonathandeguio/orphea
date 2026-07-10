@@ -1,4 +1,4 @@
-﻿platform-default-login: password
+platform-default-login: password
 spring:
   security:
     saml2:

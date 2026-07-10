@@ -1,4 +1,4 @@
-﻿//package io.movetodata.passport.security.oauth2;
+//package io.movetodata.passport.security.oauth2;
 //
 //import io.movetodata.config.AppProperties;
 //import io.movetodata.passport.exception.BadRequestException;

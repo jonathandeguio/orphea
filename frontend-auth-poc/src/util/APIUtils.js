@@ -1,4 +1,4 @@
-﻿import { API_BASE_URL, MOVETODATA_TOKEN } from '../constants';
+import { API_BASE_URL, MOVETODATA_TOKEN } from '../constants';
 
 const request = (options) => {
     const headers = new Headers({

@@ -1,4 +1,4 @@
-﻿package io.movetodata.ignite.library.repository;
+package io.movetodata.ignite.library.repository;
 
 import io.movetodata.ignite.library.models.Links;
 import org.springframework.data.jpa.repository.JpaRepository;

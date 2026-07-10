@@ -1,4 +1,4 @@
-﻿package io.movetodata.fractal.library.services;
+package io.movetodata.fractal.library.services;
 
 import io.movetodata.fractal.library.models.GitCommit;
 import org.apache.commons.io.FileUtils;

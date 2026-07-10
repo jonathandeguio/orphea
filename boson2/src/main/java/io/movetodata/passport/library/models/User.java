@@ -1,4 +1,4 @@
-﻿package io.movetodata.passport.library.models;
+package io.movetodata.passport.library.models;
 
 import com.amazonaws.services.dynamodbv2.xspec.S;
 import com.fasterxml.jackson.annotation.JsonBackReference;

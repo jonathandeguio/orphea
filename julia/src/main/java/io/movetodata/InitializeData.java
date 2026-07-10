@@ -1,4 +1,4 @@
-﻿package io.movetodata;
+package io.movetodata;
 
 
 import lombok.RequiredArgsConstructor;

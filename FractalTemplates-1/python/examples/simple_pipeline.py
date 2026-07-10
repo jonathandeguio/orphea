@@ -1,4 +1,4 @@
-﻿from movetodata import funnel
+from movetodata import funnel
 
 
 

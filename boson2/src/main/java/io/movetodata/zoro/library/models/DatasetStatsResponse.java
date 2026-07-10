@@ -1,4 +1,4 @@
-﻿package io.movetodata.zoro.library.models;
+package io.movetodata.zoro.library.models;
 
 import io.movetodata.kitab.library.models.DatasetStatsModel;
 import io.movetodata.kitab.library.models.FolderModel;

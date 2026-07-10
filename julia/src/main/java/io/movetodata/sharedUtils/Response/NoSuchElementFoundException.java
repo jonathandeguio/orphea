@@ -1,4 +1,4 @@
-﻿package io.movetodata.sharedUtils.Response;
+package io.movetodata.sharedUtils.Response;
 
 public class NoSuchElementFoundException extends RuntimeException {
 

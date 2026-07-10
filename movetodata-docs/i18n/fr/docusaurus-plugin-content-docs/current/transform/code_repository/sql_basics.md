@@ -1,4 +1,4 @@
-﻿# Bases SQL
+# Bases SQL
 
 Ce guide vous aidera à transformer différents ensembles de données dans MoveToData. Voici un tutoriel étape par étape pour transformer des données :
 

@@ -1,4 +1,4 @@
-﻿package io.movetodata.passport.security.oauth2.user;
+package io.movetodata.passport.security.oauth2.user;
 
 import java.util.Map;
 

@@ -1,4 +1,4 @@
-﻿# Notebook
+# Notebook
 
 Le notebook constitue un élément essentiel des flux de travail en science des données. Au sein de MoveToData, nous avons intégré de manière transparente la fonctionnalité de notebook dans notre infrastructure de dépôt de code.
 

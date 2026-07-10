@@ -1,4 +1,4 @@
-﻿import axios from "axios";
+import axios from "axios";
 import {
   ALL_USER_DETAILS_FAIL,
   ALL_USER_DETAILS_REQUEST,

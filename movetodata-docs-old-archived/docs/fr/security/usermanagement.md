@@ -1,4 +1,4 @@
-﻿# Gestion des utilisateurs
+# Gestion des utilisateurs
 <div style="text-align: justify"> MoveToData permet aux administrateurs de gérer les utilisateurs dans MoveToData sur une seule page.
 
 ![Users Splash](../../_media/uman1.jpg)

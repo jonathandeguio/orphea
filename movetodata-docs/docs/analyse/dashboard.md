@@ -1,4 +1,4 @@
-﻿# Dashboard
+# Dashboard
 
 Dashboards are a way to display a range of charts and data right inside MoveToData. 
 The dashboards implement a drag and drop solution to add and change different charts and views.

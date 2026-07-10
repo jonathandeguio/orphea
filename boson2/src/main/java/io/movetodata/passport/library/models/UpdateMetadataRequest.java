@@ -1,4 +1,4 @@
-﻿package io.movetodata.passport.library.models;
+package io.movetodata.passport.library.models;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

@@ -1,4 +1,4 @@
-﻿package io.movetodata.julia.library.models;
+package io.movetodata.julia.library.models;
 
 import lombok.*;
 

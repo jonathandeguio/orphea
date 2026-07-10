@@ -1,4 +1,4 @@
-﻿import { Button, Dropdown, Tooltip } from "antd";
+import { Button, Dropdown, Tooltip } from "antd";
 import React, { useEffect, useState } from "react";
 import { SingleChevronDownIcon } from "../../assets/icons/movetodataNavigationIcon";
 //import "./ButtonComponent.scss";

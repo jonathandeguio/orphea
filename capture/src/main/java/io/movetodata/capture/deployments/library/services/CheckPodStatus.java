@@ -1,4 +1,4 @@
-﻿package io.movetodata.capture.deployments.library.services;
+package io.movetodata.capture.deployments.library.services;
 
 import io.kubernetes.client.openapi.ApiClient;
 import io.kubernetes.client.openapi.ApiException;

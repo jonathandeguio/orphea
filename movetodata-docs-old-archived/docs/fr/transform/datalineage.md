@@ -1,4 +1,4 @@
-﻿# Lignage des données
+# Lignage des données
 
 <div style="text-align: justify">Un pipeline de données est un système qui gère le flux de données provenant de diverses sources vers une destination commune. Il est utilisé pour intégrer les données de différents systèmes et créer une vue unifiée des données de l'organisation. Les pipelines de données sont généralement supervisés par une équipe ou une personne qui s'assure que les données circulent régulièrement et de manière fiable dans le pipeline.
 

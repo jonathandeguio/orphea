@@ -1,4 +1,4 @@
-﻿# Tableau de bord
+# Tableau de bord
 
 Les tableaux de bord sont un moyen d'afficher une gamme de graphiques et de données directement dans MoveToData.
 Les tableaux de bord utilisent une solution de glisser-déposer pour ajouter et modifier différents graphiques et vues.

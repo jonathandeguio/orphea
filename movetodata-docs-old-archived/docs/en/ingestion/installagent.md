@@ -1,4 +1,4 @@
-﻿# Install Agents
+# Install Agents
 
 <div style="text-align: justify">A program called an Agent can be downloaded and added to your organizational network. It is managed through MoveToData's Data Connection interface also known as Ignite.
 The Agent can connect to various data sources within your network and its main function is to retrieve data from these sources and securely send it to MoveToData using a secure access token.

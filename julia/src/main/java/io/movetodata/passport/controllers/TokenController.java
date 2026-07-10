@@ -1,4 +1,4 @@
-﻿package io.movetodata.passport.controllers;
+package io.movetodata.passport.controllers;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;

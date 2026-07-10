@@ -1,4 +1,4 @@
-﻿package io.movetodata.capture.logger.library.models;
+package io.movetodata.capture.logger.library.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;

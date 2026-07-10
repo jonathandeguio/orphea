@@ -1,4 +1,4 @@
-﻿package io.movetodata.passport.library.service;
+package io.movetodata.passport.library.service;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;

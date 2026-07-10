@@ -1,4 +1,4 @@
-﻿# Introduction to projects
+# Introduction to projects
 
 A project is the central organizational unit in MoveToData. It includes the Visualization (Charts, Dashboard), Logic (Data Pipeline), Data and Documentation. A project is isolated with security so that only a allowed set of users can access the space.
 

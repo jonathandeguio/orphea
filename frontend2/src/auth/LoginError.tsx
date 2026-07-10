@@ -1,4 +1,4 @@
-﻿import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { BASE_URL } from "./constants";
 import { useSelector, useDispatch } from "react-redux";

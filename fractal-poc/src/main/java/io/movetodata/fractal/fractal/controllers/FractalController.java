@@ -1,4 +1,4 @@
-﻿package io.movetodata.fractal.fractal.controllers;
+package io.movetodata.fractal.fractal.controllers;
 
 
 import io.swagger.v3.oas.annotations.Operation;

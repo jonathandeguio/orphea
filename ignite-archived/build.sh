@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env bash
+#!/usr/bin/env bash
 
 VERSION=0.0.1
 BUILD_VERSION=Ignite-$VERSION

@@ -1,4 +1,4 @@
-﻿package io.movetodata.passport.library.models;
+package io.movetodata.passport.library.models;
 
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;

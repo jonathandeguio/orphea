@@ -1,4 +1,4 @@
-﻿package io.movetodata.scheduler.library.models;
+package io.movetodata.scheduler.library.models;
 
 import jakarta.persistence.*;
 import lombok.Getter;

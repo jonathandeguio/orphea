@@ -1,4 +1,4 @@
-﻿spring:
+spring:
   main:
     allow-circular-references: true # This needs removing it is a temporary fix
   banner:

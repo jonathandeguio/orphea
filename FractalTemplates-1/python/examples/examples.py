@@ -1,4 +1,4 @@
-﻿# first
+# first
 
 from movetodata import funnel
 

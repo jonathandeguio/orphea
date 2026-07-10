@@ -1,4 +1,4 @@
-﻿package io.movetodata.bezier.library.repository;
+package io.movetodata.bezier.library.repository;
 
 import io.movetodata.bezier.library.models.PipelineModel;
 import org.springframework.data.jpa.repository.JpaRepository;

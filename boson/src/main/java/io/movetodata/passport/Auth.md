@@ -1,4 +1,4 @@
-﻿# Authorization Based Endpoints
+# Authorization Based Endpoints
 
 Whenever creating any new endpoint make sure you annotate it with `@PreAuthorize`.
 

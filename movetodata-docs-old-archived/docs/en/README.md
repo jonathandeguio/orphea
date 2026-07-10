@@ -1,4 +1,4 @@
-﻿# Overview
+# Overview
 
 Introducing MoveToData - an all-in-one operations platform that seamlessly connects data, analytics and operational teams. Both technical and non-technical users can easily collaborate on complex organizational challenges using MoveToData's wide range of services. These services are organized into distinct categories, making it easy to find the right tools for your needs. With minimal setup required, MoveToData's modular design allows you to streamline and optimize your operations. Browse our services to see how MoveToData can help your organization:
 

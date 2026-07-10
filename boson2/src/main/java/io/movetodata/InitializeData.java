@@ -1,4 +1,4 @@
-﻿package io.movetodata;
+package io.movetodata;
 
 import com.amazonaws.util.StringInputStream;
 import com.google.auth.Credentials;

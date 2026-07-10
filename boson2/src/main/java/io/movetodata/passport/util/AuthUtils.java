@@ -1,4 +1,4 @@
-﻿package io.movetodata.passport.util;
+package io.movetodata.passport.util;
 
 
 import io.jsonwebtoken.Claims;

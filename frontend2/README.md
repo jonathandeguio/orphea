@@ -1,4 +1,4 @@
-﻿# **Frontend for MoveToData**
+# **Frontend for MoveToData**
 
 ## **This project is FrontEnd for MoveToData.io**
 

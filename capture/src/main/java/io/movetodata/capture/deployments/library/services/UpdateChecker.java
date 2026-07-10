@@ -1,4 +1,4 @@
-﻿package io.movetodata.capture.deployments.library.services;
+package io.movetodata.capture.deployments.library.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;

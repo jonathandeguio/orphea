@@ -1,4 +1,4 @@
-﻿# Installer des agents
+# Installer des agents
 
 Un Agent est un programme qui peut être téléchargé et ajouté au sein de votre réseau. Il est géré via l'interface de connexion de données.
 L'agent peut se connecter à diverses sources de données et sa fonction principale est de récupérer les données de celles-ci et de les envoyer en toute sécurité dans la plateforme à l'aide d'un jeton d'accès sécurisé.

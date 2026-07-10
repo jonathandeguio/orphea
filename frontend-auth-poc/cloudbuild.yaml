@@ -1,4 +1,4 @@
-﻿# Followed this to create below ci : https://github.com/maximbetin/maxim-cicd
+# Followed this to create below ci : https://github.com/maximbetin/maxim-cicd
 options:
   logging: CLOUD_LOGGING_ONLY
   machineType: 'E2_HIGHCPU_32'

@@ -1,4 +1,4 @@
-﻿package io.movetodata.sharedUtils.Response;
+package io.movetodata.sharedUtils.Response;
 
 import java.util.Comparator;
 import java.util.Map;

@@ -1,4 +1,4 @@
-﻿from ._checks import Check
+from ._checks import Check
 from ._dataset import Source, Target
 from ._decorators import funnel
 from ._param import Param, MoveToDataSourceParam, MoveToDataTargetParam

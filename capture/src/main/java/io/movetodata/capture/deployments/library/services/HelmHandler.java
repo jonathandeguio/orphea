@@ -1,4 +1,4 @@
-﻿package io.movetodata.capture.deployments.library.services;
+package io.movetodata.capture.deployments.library.services;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

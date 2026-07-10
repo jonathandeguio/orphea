@@ -1,4 +1,4 @@
-﻿package io.movetodata.julia.library.services;
+package io.movetodata.julia.library.services;
 
 import io.movetodata.julia.library.models.GitCommit;
 import org.apache.commons.io.FileUtils;

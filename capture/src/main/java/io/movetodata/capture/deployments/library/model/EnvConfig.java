@@ -1,4 +1,4 @@
-﻿package io.movetodata.capture.deployments.library.model;
+package io.movetodata.capture.deployments.library.model;
 
 public class EnvConfig {
 

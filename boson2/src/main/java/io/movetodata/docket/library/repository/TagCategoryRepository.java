@@ -1,4 +1,4 @@
-﻿package io.movetodata.docket.library.repository;
+package io.movetodata.docket.library.repository;
 
 import io.movetodata.docket.library.models.TagsCategory;
 import jakarta.transaction.Transactional;
