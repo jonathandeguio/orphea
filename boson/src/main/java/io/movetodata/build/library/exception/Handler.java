@@ -1,4 +1,4 @@
-﻿package io.movetodata.build.library.exception;
+package io.movetodata.build.library.exception;
 
 import io.movetodata.sharedutils.Response.ErrorDTO;
 import lombok.extern.slf4j.Slf4j;

@@ -1,4 +1,4 @@
-﻿package io.movetodata.scheduler.library.models;
+package io.movetodata.scheduler.library.models;
 
 import io.movetodata.scheduler.enums.JobExecutionStatus;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-﻿package io.movetodata.scheduler.library.models;
+package io.movetodata.scheduler.library.models;
 
 import io.movetodata.kitab.library.enums.ResourceStatus;
 import io.movetodata.kitab.library.enums.ResourceType;

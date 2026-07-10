@@ -1,4 +1,4 @@
-﻿package io.movetodata.docket.library.models;
+package io.movetodata.docket.library.models;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;

@@ -1,4 +1,4 @@
-﻿package io.movetodata.scheduler.config;
+package io.movetodata.scheduler.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.quartz.QuartzProperties;

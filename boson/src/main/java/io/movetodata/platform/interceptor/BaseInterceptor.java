@@ -1,4 +1,4 @@
-﻿package io.movetodata.platform.interceptor;
+package io.movetodata.platform.interceptor;
 
 import io.movetodata.platform.library.models.LicenseInfoModel;
 import io.movetodata.platform.library.services.PlatformConfigService;

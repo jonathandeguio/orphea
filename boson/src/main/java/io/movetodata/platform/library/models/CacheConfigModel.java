@@ -1,4 +1,4 @@
-﻿package io.movetodata.platform.library.models;
+package io.movetodata.platform.library.models;
 
 
 import lombok.*;

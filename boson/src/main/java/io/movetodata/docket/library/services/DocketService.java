@@ -1,4 +1,4 @@
-﻿package io.movetodata.docket.library.services;
+package io.movetodata.docket.library.services;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

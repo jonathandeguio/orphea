@@ -1,4 +1,4 @@
-﻿package io.movetodata.build.library.repository;
+package io.movetodata.build.library.repository;
 
 import io.movetodata.build.library.models.BuildLogMessages;
 import org.springframework.data.jpa.repository.JpaRepository;

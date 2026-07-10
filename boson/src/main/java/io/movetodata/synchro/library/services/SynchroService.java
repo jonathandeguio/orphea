@@ -1,4 +1,4 @@
-﻿package io.movetodata.synchro.library.services;
+package io.movetodata.synchro.library.services;
 
 import io.movetodata.build.BobEnums.BuildLaunchedBy;
 import io.movetodata.build.BobEnums.BuildStage;

@@ -1,4 +1,4 @@
-﻿package io.movetodata.build.library.models;
+package io.movetodata.build.library.models;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.movetodata.build.BobEnums.BuildLaunchedBy;

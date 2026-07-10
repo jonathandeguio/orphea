@@ -1,4 +1,4 @@
-﻿package io.movetodata.connect.library.services;
+package io.movetodata.connect.library.services;
 
 import io.movetodata.connect.library.models.Result;
 import io.movetodata.connect.library.models.Results;

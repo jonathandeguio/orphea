@@ -1,4 +1,4 @@
-﻿package io.movetodata.platform.library.services;
+package io.movetodata.platform.library.services;
 
 import io.movetodata.platform.library.models.DataMartConfigModel;
 import io.movetodata.platform.library.models.DataMartModel;

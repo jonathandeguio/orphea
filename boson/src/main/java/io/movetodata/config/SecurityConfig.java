@@ -1,4 +1,4 @@
-﻿package io.movetodata.config;
+package io.movetodata.config;
 
 import io.movetodata.passport.security.CustomUserDetailsService;
 import io.movetodata.passport.security.RestAuthenticationEntryPoint;

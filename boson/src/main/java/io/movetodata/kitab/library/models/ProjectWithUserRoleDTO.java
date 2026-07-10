@@ -1,4 +1,4 @@
-﻿package io.movetodata.kitab.library.models;
+package io.movetodata.kitab.library.models;
 
 import io.movetodata.passport.library.models.Role;
 import lombok.Builder;

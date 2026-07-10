@@ -1,4 +1,4 @@
-﻿package io.movetodata.subscribe.controllers;
+package io.movetodata.subscribe.controllers;
 
 import io.movetodata.passport.library.service.UserService;
 import io.movetodata.passport.security.TokenProvider;

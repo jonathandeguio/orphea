@@ -1,4 +1,4 @@
-﻿package io.movetodata.platform.requests;
+package io.movetodata.platform.requests;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

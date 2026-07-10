@@ -1,4 +1,4 @@
-﻿package io.movetodata.passport.controllers;
+package io.movetodata.passport.controllers;
 
 import io.movetodata.kitab.library.services.ResourceService;
 import io.movetodata.passport.DTO.PermissionMappingWithIdentityAndInheritance;

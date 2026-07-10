@@ -1,4 +1,4 @@
-﻿package io.movetodata.scheduler.job;
+package io.movetodata.scheduler.job;
 
 import lombok.extern.slf4j.Slf4j;
 import org.quartz.DisallowConcurrentExecution;

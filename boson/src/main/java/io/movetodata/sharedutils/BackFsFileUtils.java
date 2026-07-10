@@ -1,4 +1,4 @@
-﻿package io.movetodata.sharedutils;
+package io.movetodata.sharedutils;
 
 import com.google.auth.Credentials;
 import com.google.cloud.storage.BlobId;

@@ -1,4 +1,4 @@
-﻿package io.movetodata.kepler.library.models;
+package io.movetodata.kepler.library.models;
 
 import io.movetodata.dataset.requests.ChartDataRequest;
 import lombok.AllArgsConstructor;

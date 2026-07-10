@@ -1,4 +1,4 @@
-﻿package io.movetodata.connect.library.DTOs;
+package io.movetodata.connect.library.DTOs;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

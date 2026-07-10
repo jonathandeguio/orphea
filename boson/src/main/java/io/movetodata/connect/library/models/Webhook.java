@@ -1,4 +1,4 @@
-﻿package io.movetodata.connect.library.models;
+package io.movetodata.connect.library.models;
 
 import io.movetodata.dataset.library.models.CsvPreprocessingModel;
 import io.movetodata.kitab.library.models.IResource;

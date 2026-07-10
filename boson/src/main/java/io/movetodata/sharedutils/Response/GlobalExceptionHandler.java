@@ -1,4 +1,4 @@
-﻿package io.movetodata.sharedutils.Response;
+package io.movetodata.sharedutils.Response;
 
 import com.esotericsoftware.minlog.Log;
 import io.movetodata.fractal.library.Exceptions.GitOutOfSyncException;

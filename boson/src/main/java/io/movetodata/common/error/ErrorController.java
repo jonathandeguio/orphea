@@ -1,4 +1,4 @@
-﻿package io.movetodata.common.error;
+package io.movetodata.common.error;
 
 
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;

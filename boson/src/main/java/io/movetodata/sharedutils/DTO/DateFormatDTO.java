@@ -1,4 +1,4 @@
-﻿package io.movetodata.sharedutils.DTO;
+package io.movetodata.sharedutils.DTO;
 
 import lombok.*;
 

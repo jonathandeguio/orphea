@@ -1,4 +1,4 @@
-﻿package io.movetodata.kitab.controllers;
+package io.movetodata.kitab.controllers;
 
 import io.movetodata.build.BobEnums.BuildTrigger;
 import io.movetodata.build.library.models.BuildLog;

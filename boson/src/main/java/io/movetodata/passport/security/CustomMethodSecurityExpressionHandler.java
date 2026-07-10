@@ -1,4 +1,4 @@
-﻿package io.movetodata.passport.security;
+package io.movetodata.passport.security;
 
 import io.movetodata.notifications.library.repository.NotificationRepository;
 import io.movetodata.passport.library.service.AuthzService;

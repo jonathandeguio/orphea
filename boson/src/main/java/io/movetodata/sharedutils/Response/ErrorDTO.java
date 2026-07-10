@@ -1,4 +1,4 @@
-﻿package io.movetodata.sharedutils.Response;
+package io.movetodata.sharedutils.Response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;

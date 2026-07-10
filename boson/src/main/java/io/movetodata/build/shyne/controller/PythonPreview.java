@@ -1,4 +1,4 @@
-﻿package io.movetodata.build.shyne.controller;
+package io.movetodata.build.shyne.controller;
 
 import io.movetodata.build.BobEnums.BuildType;
 import io.movetodata.build.library.exception.FunnelServiceException;

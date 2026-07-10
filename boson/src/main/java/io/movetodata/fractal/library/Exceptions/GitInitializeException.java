@@ -1,4 +1,4 @@
-﻿package io.movetodata.fractal.library.Exceptions;
+package io.movetodata.fractal.library.Exceptions;
 
 public class GitInitializeException extends RuntimeException{
     public GitInitializeException() {

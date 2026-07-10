@@ -1,4 +1,4 @@
-﻿package io.movetodata.kitab.library.services;
+package io.movetodata.kitab.library.services;
 
 import com.google.auth.Credentials;
 import com.google.cloud.storage.Blob;

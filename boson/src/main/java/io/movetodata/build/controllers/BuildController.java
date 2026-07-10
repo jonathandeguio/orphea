@@ -1,4 +1,4 @@
-﻿package io.movetodata.build.controllers;
+package io.movetodata.build.controllers;
 
 import com.esotericsoftware.minlog.Log;
 import com.fasterxml.jackson.core.JsonProcessingException;

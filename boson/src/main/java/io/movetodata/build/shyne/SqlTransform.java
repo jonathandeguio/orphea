@@ -1,4 +1,4 @@
-﻿package io.movetodata.build.shyne;
+package io.movetodata.build.shyne;
 
 import io.movetodata.build.BobEnums.BuildType;
 import io.movetodata.build.shyne.Utils.Utils;

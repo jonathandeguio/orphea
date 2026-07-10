@@ -1,4 +1,4 @@
-﻿package io.movetodata.scheduler.job;
+package io.movetodata.scheduler.job;
 
 import io.movetodata.passport.library.models.NotificationPreferences;
 import io.movetodata.passport.library.models.User;

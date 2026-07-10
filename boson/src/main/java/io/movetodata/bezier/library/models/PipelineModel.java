@@ -1,4 +1,4 @@
-﻿package io.movetodata.bezier.library.models;
+package io.movetodata.bezier.library.models;
 
 import io.movetodata.build.BobEnums.BuildStatus;
 import lombok.*;

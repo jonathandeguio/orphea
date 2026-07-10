@@ -1,4 +1,4 @@
-﻿package io.movetodata.sharedutils;
+package io.movetodata.sharedutils;
 
 import io.movetodata.platform.library.models.CacheConfigModel;
 import io.movetodata.platform.library.models.GitConfigModel;

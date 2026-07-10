@@ -1,4 +1,4 @@
-﻿package io.movetodata.sharedutils;
+package io.movetodata.sharedutils;
 
 import io.movetodata.build.library.services.K8Service;
 import io.kubernetes.client.openapi.ApiClient;

@@ -1,4 +1,4 @@
-﻿package io.movetodata.passport.security;
+package io.movetodata.passport.security;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;

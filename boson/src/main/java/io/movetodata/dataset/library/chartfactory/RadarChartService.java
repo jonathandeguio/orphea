@@ -1,4 +1,4 @@
-﻿package io.movetodata.dataset.library.chartfactory;
+package io.movetodata.dataset.library.chartfactory;
 
 import com.google.common.collect.ImmutableMap;
 import io.movetodata.dataset.library.DTOs.ChartResponse;

@@ -1,4 +1,4 @@
-﻿package io.movetodata.sharedutils;
+package io.movetodata.sharedutils;
 
 import java.security.SecureRandom;
 import java.util.Locale;

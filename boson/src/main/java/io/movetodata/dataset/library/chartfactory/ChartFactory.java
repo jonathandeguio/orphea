@@ -1,4 +1,4 @@
-﻿package io.movetodata.dataset.library.chartfactory;
+package io.movetodata.dataset.library.chartfactory;
 
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedCaseInsensitiveMap;

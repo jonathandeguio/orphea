@@ -1,4 +1,4 @@
-﻿package io.movetodata.dataset.library.models;
+package io.movetodata.dataset.library.models;
 
 import io.movetodata.dataset.library.DTOs.DatasetFiltersDTO;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-﻿package io.movetodata.passport.exception;
+package io.movetodata.passport.exception;
 
 public class UnauthorizedException extends RuntimeException{
     public UnauthorizedException() {

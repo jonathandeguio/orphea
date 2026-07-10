@@ -1,4 +1,4 @@
-﻿package io.movetodata.build.library.services;
+package io.movetodata.build.library.services;
 
 import io.movetodata.kitab.library.enums.ResourceStatus;
 import io.movetodata.kitab.library.models.ResourceModel;

@@ -1,4 +1,4 @@
-﻿package io.movetodata.sharedutils;
+package io.movetodata.sharedutils;
 
 import io.movetodata.kitab.library.enums.ResourceStatus;
 import io.movetodata.kitab.library.models.ResourceModel;

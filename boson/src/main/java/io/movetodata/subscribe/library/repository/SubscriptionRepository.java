@@ -1,4 +1,4 @@
-﻿package io.movetodata.subscribe.library.repository;
+package io.movetodata.subscribe.library.repository;
 
 import io.movetodata.scheduler.library.models.SchedulerJobInfo;
 import io.movetodata.subscribe.library.models.SubscriptionModel;

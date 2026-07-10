@@ -1,4 +1,4 @@
-﻿package io.movetodata.platform.library.repository;
+package io.movetodata.platform.library.repository;
 
 import io.movetodata.platform.library.models.GitConfigModel;
 import org.springframework.data.jpa.repository.JpaRepository;

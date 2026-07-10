@@ -1,4 +1,4 @@
-﻿package io.movetodata.connect.library.DTOs;
+package io.movetodata.connect.library.DTOs;
 
 import lombok.Getter;
 import lombok.Setter;

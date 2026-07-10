@@ -1,4 +1,4 @@
-﻿package io.movetodata.passport.util;
+package io.movetodata.passport.util;
 
 import com.nimbusds.jose.JWSVerifier;
 import com.nimbusds.jose.crypto.RSASSAVerifier;

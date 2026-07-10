@@ -1,4 +1,4 @@
-﻿package io.movetodata.comments.library.repository;
+package io.movetodata.comments.library.repository;
 
 import io.movetodata.comments.library.models.CommentModel;
 import org.springframework.data.jpa.repository.JpaRepository;

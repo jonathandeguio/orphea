@@ -1,4 +1,4 @@
-﻿package io.movetodata.subscribe.library.models;
+package io.movetodata.subscribe.library.models;
 
 import io.movetodata.kitab.library.enums.ResourceType;
 import lombok.AllArgsConstructor;

@@ -1,4 +1,4 @@
-﻿package io.movetodata.dataset.library.models;
+package io.movetodata.dataset.library.models;
 
 import io.movetodata.kitab.library.models.DatasetStatsModel;
 import io.movetodata.kitab.library.models.ResourceModel;

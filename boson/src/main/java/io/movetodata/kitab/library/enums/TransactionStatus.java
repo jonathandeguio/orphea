@@ -1,4 +1,4 @@
-﻿package io.movetodata.kitab.library.enums;
+package io.movetodata.kitab.library.enums;
 
 public enum TransactionStatus {
     ACTIVE("active"),

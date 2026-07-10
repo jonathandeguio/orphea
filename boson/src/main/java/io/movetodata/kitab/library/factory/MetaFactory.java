@@ -1,4 +1,4 @@
-﻿package io.movetodata.kitab.library.factory;
+package io.movetodata.kitab.library.factory;
 
 import io.movetodata.kitab.library.enums.ResourceType;
 import io.movetodata.kitab.library.services.IMetaService;

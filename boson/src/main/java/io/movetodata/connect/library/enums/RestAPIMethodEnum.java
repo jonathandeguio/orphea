@@ -1,4 +1,4 @@
-﻿package io.movetodata.connect.library.enums;
+package io.movetodata.connect.library.enums;
 
 public enum RestAPIMethodEnum {
     GET("NONE"),

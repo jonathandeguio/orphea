@@ -1,4 +1,4 @@
-﻿package io.movetodata.passport.library.models;
+package io.movetodata.passport.library.models;
 
 import io.movetodata.passport.enums.LayoutView;
 import lombok.*;

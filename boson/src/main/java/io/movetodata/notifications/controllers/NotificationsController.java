@@ -1,4 +1,4 @@
-﻿package io.movetodata.notifications.controllers;
+package io.movetodata.notifications.controllers;
 
 import io.movetodata.sharedutils.DTO.PageToPageDTOMapper;
 import io.movetodata.notifications.library.models.Notification;

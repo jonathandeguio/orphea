@@ -1,4 +1,4 @@
-﻿package io.movetodata.platform.controllers;
+package io.movetodata.platform.controllers;
 
 
 import io.movetodata.passport.library.Auth;

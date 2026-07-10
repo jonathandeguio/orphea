@@ -1,4 +1,4 @@
-﻿package io.movetodata.synchro.controllers;
+package io.movetodata.synchro.controllers;
 
 import io.movetodata.passport.library.Auth;
 import io.movetodata.passport.security.AuthUser;

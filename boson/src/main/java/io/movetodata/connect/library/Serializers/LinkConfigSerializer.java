@@ -1,4 +1,4 @@
-﻿package io.movetodata.connect.library.Serializers;
+package io.movetodata.connect.library.Serializers;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.BeanDescription;

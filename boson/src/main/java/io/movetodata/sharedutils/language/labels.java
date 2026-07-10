@@ -1,4 +1,4 @@
-﻿package io.movetodata.sharedutils.language;
+package io.movetodata.sharedutils.language;
 
 
 import com.fasterxml.jackson.databind.JsonNode;

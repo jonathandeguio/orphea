@@ -1,4 +1,4 @@
-﻿package io.movetodata.passport.security;
+package io.movetodata.passport.security;
 
 import io.movetodata.passport.util.AuthUtils;
 import io.movetodata.sharedutils.Utils;

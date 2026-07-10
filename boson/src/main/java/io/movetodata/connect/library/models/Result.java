@@ -1,4 +1,4 @@
-﻿package io.movetodata.connect.library.models;
+package io.movetodata.connect.library.models;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-﻿import { Card, Col, Divider, Row, Typography } from "antd";
+import { Card, Col, Divider, Row, Typography } from "antd";
 import Meta from "antd/es/card/Meta";
 import React from "react";
 import {

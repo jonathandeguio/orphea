@@ -1,4 +1,4 @@
-﻿package io.movetodata.passport.controllers;
+package io.movetodata.passport.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.movetodata.config.AppProperties;

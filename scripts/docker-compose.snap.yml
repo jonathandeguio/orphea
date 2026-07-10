@@ -1,4 +1,4 @@
-﻿# =============================================================================
+# =============================================================================
 # MoveToData Platform — Stack Snap (service d'artefacts)
 # Usage : docker compose -f docker-compose.snap.yml --env-file .env.movetodata up -d
 # Prérequis : /dev/fuse disponible sur l'hôte (sudo apt install fuse)

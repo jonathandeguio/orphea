@@ -1,4 +1,4 @@
-﻿package io.movetodata.accessManager.controllers;
+package io.movetodata.accessManager.controllers;
 
 import io.movetodata.accessManager.library.enums.AccessRequestStatus;
 import io.movetodata.accessManager.library.models.AccessManagerFilters;

@@ -1,4 +1,4 @@
-﻿package io.movetodata.passport.DTO;
+package io.movetodata.passport.DTO;
 
 
 import io.movetodata.passport.library.models.Role;

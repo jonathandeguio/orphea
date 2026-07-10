@@ -1,4 +1,4 @@
-﻿package io.movetodata.passport.payload;
+package io.movetodata.passport.payload;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;

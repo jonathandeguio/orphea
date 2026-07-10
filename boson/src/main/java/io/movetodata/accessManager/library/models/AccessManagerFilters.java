@@ -1,4 +1,4 @@
-﻿package io.movetodata.accessManager.library.models;
+package io.movetodata.accessManager.library.models;
 
 import io.movetodata.accessManager.library.enums.AccessRequestStatus;
 import io.movetodata.accessManager.library.enums.AccessRequestType;

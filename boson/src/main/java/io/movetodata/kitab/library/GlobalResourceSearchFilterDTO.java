@@ -1,4 +1,4 @@
-﻿package io.movetodata.kitab.library;
+package io.movetodata.kitab.library;
 
 import io.movetodata.kitab.library.enums.ResourceStatus;
 import io.movetodata.kitab.library.enums.ResourceType;

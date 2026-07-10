@@ -1,4 +1,4 @@
-﻿package io.movetodata.kitab.library.models;
+package io.movetodata.kitab.library.models;
 
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;

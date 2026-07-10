@@ -1,4 +1,4 @@
-﻿package io.movetodata.bezier.library.dto;
+package io.movetodata.bezier.library.dto;
 
 import io.movetodata.build.library.dto.SourceDataset;
 import lombok.AllArgsConstructor;

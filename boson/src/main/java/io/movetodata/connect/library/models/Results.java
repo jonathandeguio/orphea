@@ -1,4 +1,4 @@
-﻿package io.movetodata.connect.library.models;
+package io.movetodata.connect.library.models;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

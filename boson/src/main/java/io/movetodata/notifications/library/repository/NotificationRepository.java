@@ -1,4 +1,4 @@
-﻿package io.movetodata.notifications.library.repository;
+package io.movetodata.notifications.library.repository;
 
 import io.movetodata.notifications.library.models.Notification;
 import org.springframework.data.domain.Page;

@@ -1,4 +1,4 @@
-﻿{
+{
   "_commentaire": "Fichier de configuration pour la génération de clé de licence MoveToData",
   "_instructions": "Remplissez les champs ci-dessous puis lancez : .\\generate-license.ps1",
 

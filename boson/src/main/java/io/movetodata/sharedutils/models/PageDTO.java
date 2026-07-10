@@ -1,4 +1,4 @@
-﻿package io.movetodata.sharedutils.models;
+package io.movetodata.sharedutils.models;
 
 import lombok.*;
 

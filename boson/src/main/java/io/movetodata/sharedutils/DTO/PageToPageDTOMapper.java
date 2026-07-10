@@ -1,4 +1,4 @@
-﻿package io.movetodata.sharedutils.DTO;
+package io.movetodata.sharedutils.DTO;
 
 import io.movetodata.sharedutils.models.PageDTO;
 import org.springframework.data.domain.Page;

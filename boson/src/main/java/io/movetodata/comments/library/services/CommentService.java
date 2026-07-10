@@ -1,4 +1,4 @@
-﻿package io.movetodata.comments.library.services;
+package io.movetodata.comments.library.services;
 
 import io.movetodata.build.library.models.SocketMessage;
 import io.movetodata.comments.library.models.CommentModel;

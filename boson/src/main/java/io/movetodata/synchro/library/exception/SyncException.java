@@ -1,4 +1,4 @@
-﻿package io.movetodata.synchro.library.exception;
+package io.movetodata.synchro.library.exception;
 
 public class SyncException extends RuntimeException {
     public SyncException(String message) {

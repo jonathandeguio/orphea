@@ -1,4 +1,4 @@
-﻿package io.movetodata.sharedutils.Exceptions;
+package io.movetodata.sharedutils.Exceptions;
 
 public class EnvConfigurationException extends RuntimeException {
     public EnvConfigurationException(String message) {

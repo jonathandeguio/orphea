@@ -1,4 +1,4 @@
-﻿package io.movetodata.dataset.helper;
+package io.movetodata.dataset.helper;
 
 import org.apache.spark.sql.expressions.UserDefinedFunction;
 

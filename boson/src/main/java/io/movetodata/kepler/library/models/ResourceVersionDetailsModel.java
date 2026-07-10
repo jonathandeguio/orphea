@@ -1,4 +1,4 @@
-﻿package io.movetodata.kepler.library.models;
+package io.movetodata.kepler.library.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;

@@ -1,4 +1,4 @@
-﻿package io.movetodata.synchro.library.models;
+package io.movetodata.synchro.library.models;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;

@@ -1,4 +1,4 @@
-﻿package io.movetodata.passport.controllers;
+package io.movetodata.passport.controllers;
 
 import com.warrenstrange.googleauth.GoogleAuthenticatorKey;
 import io.movetodata.passport.library.models.User;

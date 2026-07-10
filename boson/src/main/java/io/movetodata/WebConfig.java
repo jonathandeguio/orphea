@@ -1,4 +1,4 @@
-﻿package io.movetodata;
+package io.movetodata;
 
 import io.movetodata.config.LogFilter;
 import io.movetodata.fractal.interceptors.FractalInterceptor;

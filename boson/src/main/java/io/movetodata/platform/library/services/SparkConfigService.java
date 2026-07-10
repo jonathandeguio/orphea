@@ -1,4 +1,4 @@
-﻿package io.movetodata.platform.library.services;
+package io.movetodata.platform.library.services;
 
 public class SparkConfigService {
     

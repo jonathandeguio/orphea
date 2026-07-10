@@ -1,4 +1,4 @@
-﻿package io.movetodata.accessManager.library.enums;
+package io.movetodata.accessManager.library.enums;
 
 public enum AccessRequestType {
     ADMINISTRATOR("ADMINISTRATOR"),

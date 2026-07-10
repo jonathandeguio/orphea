@@ -1,4 +1,4 @@
-﻿package io.movetodata.passport.library.service;
+package io.movetodata.passport.library.service;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

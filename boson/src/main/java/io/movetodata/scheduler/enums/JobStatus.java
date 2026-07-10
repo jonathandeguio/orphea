@@ -1,4 +1,4 @@
-﻿package io.movetodata.scheduler.enums;
+package io.movetodata.scheduler.enums;
 
 public enum JobStatus {
 

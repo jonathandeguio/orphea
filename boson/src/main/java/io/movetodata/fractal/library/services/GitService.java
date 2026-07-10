@@ -1,4 +1,4 @@
-﻿package io.movetodata.fractal.library.services;
+package io.movetodata.fractal.library.services;
 
 import io.movetodata.fractal.library.Exceptions.GitCheckoutConflict;
 import io.movetodata.fractal.library.Exceptions.GitInitializeException;

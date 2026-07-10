@@ -1,4 +1,4 @@
-﻿package io.movetodata.dataset.library.models;
+package io.movetodata.dataset.library.models;
 
 import io.movetodata.build.BobEnums.BuildLaunchedBy;
 import io.movetodata.build.BobEnums.BuildStatus;

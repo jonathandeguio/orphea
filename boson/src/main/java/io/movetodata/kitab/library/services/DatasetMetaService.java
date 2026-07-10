@@ -1,4 +1,4 @@
-﻿package io.movetodata.kitab.library.services;
+package io.movetodata.kitab.library.services;
 
 import io.movetodata.build.BobEnums.BuildTrigger;
 import io.movetodata.kitab.library.enums.ResourceType;

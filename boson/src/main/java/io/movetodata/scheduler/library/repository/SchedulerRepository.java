@@ -1,4 +1,4 @@
-﻿package io.movetodata.scheduler.library.repository;
+package io.movetodata.scheduler.library.repository;
 
 import io.movetodata.kitab.library.enums.ResourceType;
 import io.movetodata.scheduler.library.models.SchedulerJobInfo;

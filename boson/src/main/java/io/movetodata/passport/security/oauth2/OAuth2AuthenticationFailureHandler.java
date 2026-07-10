@@ -1,4 +1,4 @@
-﻿package io.movetodata.passport.security.oauth2;
+package io.movetodata.passport.security.oauth2;
 
 import io.movetodata.passport.util.CookieUtils;
 import org.springframework.beans.factory.annotation.Autowired;

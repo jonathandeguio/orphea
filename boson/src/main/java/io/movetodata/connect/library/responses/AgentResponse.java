@@ -1,4 +1,4 @@
-﻿package io.movetodata.connect.library.responses;
+package io.movetodata.connect.library.responses;
 
 import io.movetodata.connect.library.models.AgentOneTimeCode;
 import io.movetodata.connect.library.models.Agents;

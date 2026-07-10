@@ -1,4 +1,4 @@
-﻿package io.movetodata.platform.library.services;
+package io.movetodata.platform.library.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;

@@ -1,4 +1,4 @@
-﻿package io.movetodata.connect.library.repository;
+package io.movetodata.connect.library.repository;
 
 import io.movetodata.connect.library.models.RestAPISourceConfig;
 import org.springframework.data.jpa.repository.JpaRepository;

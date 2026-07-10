@@ -1,4 +1,4 @@
-﻿package io.movetodata.dataset.library.repository;
+package io.movetodata.dataset.library.repository;
 
 import io.movetodata.dataset.library.models.DatasetDownloadLog;
 import org.springframework.data.jpa.repository.JpaRepository;

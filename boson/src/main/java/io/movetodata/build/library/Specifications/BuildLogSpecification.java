@@ -1,4 +1,4 @@
-﻿package io.movetodata.build.library.Specifications;
+package io.movetodata.build.library.Specifications;
 
 import io.movetodata.build.BobEnums.BuildStatus;
 import io.movetodata.build.BobEnums.BuildTrigger;

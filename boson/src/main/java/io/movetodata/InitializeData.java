@@ -1,4 +1,4 @@
-﻿package io.movetodata;
+package io.movetodata;
 
 import com.google.cloud.storage.BlobId;
 import com.google.cloud.storage.BlobInfo;

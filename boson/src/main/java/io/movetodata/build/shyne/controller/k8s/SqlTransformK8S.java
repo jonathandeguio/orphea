@@ -1,4 +1,4 @@
-﻿package io.movetodata.build.shyne.controller.k8s;
+package io.movetodata.build.shyne.controller.k8s;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;

@@ -1,4 +1,4 @@
-﻿package io.movetodata.synchro.DTOs;
+package io.movetodata.synchro.DTOs;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

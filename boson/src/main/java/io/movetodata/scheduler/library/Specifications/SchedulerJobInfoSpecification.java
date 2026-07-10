@@ -1,4 +1,4 @@
-﻿package io.movetodata.scheduler.library.Specifications;
+package io.movetodata.scheduler.library.Specifications;
 
 import io.movetodata.kitab.library.enums.ResourceStatus;
 import io.movetodata.scheduler.enums.JobStatus;

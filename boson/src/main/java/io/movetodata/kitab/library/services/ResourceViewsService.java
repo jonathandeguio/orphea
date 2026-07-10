@@ -1,4 +1,4 @@
-﻿package io.movetodata.kitab.library.services;
+package io.movetodata.kitab.library.services;
 
 import io.movetodata.kitab.library.enums.ViewAction;
 import io.movetodata.kitab.library.models.ResourceViewsModel;

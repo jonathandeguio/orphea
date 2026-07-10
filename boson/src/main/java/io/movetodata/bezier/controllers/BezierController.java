@@ -1,4 +1,4 @@
-﻿package io.movetodata.bezier.controllers;
+package io.movetodata.bezier.controllers;
 
 import io.movetodata.bezier.library.dto.ResolveBezierLinksDTO;
 import io.movetodata.bezier.library.models.PipelineModel;

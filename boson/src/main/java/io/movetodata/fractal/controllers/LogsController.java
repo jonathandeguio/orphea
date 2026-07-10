@@ -1,4 +1,4 @@
-﻿package io.movetodata.fractal.controllers;
+package io.movetodata.fractal.controllers;
 
 import io.movetodata.fractal.library.models.*;
 import io.movetodata.fractal.library.services.GitService;

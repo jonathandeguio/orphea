@@ -1,4 +1,4 @@
-﻿package io.movetodata.news.library.models;
+package io.movetodata.news.library.models;
 
 import io.movetodata.news.library.enums.NewsStatus;
 import lombok.Getter;

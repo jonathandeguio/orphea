@@ -1,4 +1,4 @@
-﻿package io.movetodata.connect.controllers;
+package io.movetodata.connect.controllers;
 
 import io.movetodata.build.library.models.BuildLog;
 import io.movetodata.connect.library.DTOs.LinkPreviewDTO;

@@ -1,4 +1,4 @@
-﻿package io.movetodata.connect.library.models;
+package io.movetodata.connect.library.models;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.movetodata.kitab.library.models.IResource;

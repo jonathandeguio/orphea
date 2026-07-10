@@ -1,4 +1,4 @@
-﻿package io.movetodata.platform.interceptor;
+package io.movetodata.platform.interceptor;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;

@@ -1,4 +1,4 @@
-﻿package io.movetodata.common.error;
+package io.movetodata.common.error;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

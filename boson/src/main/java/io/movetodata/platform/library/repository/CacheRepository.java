@@ -1,4 +1,4 @@
-﻿package io.movetodata.platform.library.repository;
+package io.movetodata.platform.library.repository;
 
 import io.movetodata.platform.library.models.CacheConfigModel;
 import org.springframework.data.jpa.repository.JpaRepository;

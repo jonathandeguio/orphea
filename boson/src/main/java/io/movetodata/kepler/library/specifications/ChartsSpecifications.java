@@ -1,4 +1,4 @@
-﻿package io.movetodata.kepler.library.specifications;
+package io.movetodata.kepler.library.specifications;
 
 import io.movetodata.kitab.library.enums.ResourceType;
 import io.movetodata.kitab.library.models.ResourceModel;

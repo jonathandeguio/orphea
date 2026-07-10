@@ -1,4 +1,4 @@
-﻿package io.movetodata.accessManager.library.models;
+package io.movetodata.accessManager.library.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.movetodata.accessManager.library.enums.AccessRequestStatus;

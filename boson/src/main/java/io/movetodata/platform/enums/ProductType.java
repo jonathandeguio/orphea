@@ -1,4 +1,4 @@
-﻿package io.movetodata.platform.enums;
+package io.movetodata.platform.enums;
 
 public enum ProductType {
     DATA_PLATFORM("DATA_PLATFORM"),

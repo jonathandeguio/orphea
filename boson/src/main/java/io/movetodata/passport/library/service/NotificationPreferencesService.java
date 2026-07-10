@@ -1,4 +1,4 @@
-﻿package io.movetodata.passport.library.service;
+package io.movetodata.passport.library.service;
 
 import io.movetodata.passport.library.models.NotificationPreferences;
 import io.movetodata.passport.library.repository.NotificationPreferencesRepository;

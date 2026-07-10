@@ -1,4 +1,4 @@
-﻿package io.movetodata.kepler.library.DTOs;
+package io.movetodata.kepler.library.DTOs;
 
 import lombok.*;
 

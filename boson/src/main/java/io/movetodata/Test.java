@@ -1,4 +1,4 @@
-﻿package io.movetodata;
+package io.movetodata;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;

@@ -1,4 +1,4 @@
-﻿package io.movetodata.sharedutils;
+package io.movetodata.sharedutils;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;

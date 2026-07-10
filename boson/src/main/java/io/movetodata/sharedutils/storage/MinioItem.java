@@ -1,4 +1,4 @@
-﻿package io.movetodata.sharedutils.storage;
+package io.movetodata.sharedutils.storage;
 
 import io.minio.messages.Item;
 import io.minio.messages.Owner;

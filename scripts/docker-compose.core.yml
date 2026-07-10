@@ -1,4 +1,4 @@
-﻿# =============================================================================
+# =============================================================================
 # MoveToData Platform — Stack principale (Boson + Frontend + PostgreSQL + Redis)
 # Usage : docker compose -f docker-compose.core.yml --env-file .env.movetodata up -d
 # =============================================================================

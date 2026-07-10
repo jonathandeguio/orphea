@@ -1,4 +1,4 @@
-﻿package io.movetodata.build.shyne.models;
+package io.movetodata.build.shyne.models;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;

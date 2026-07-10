@@ -1,4 +1,4 @@
-﻿package io.movetodata.connect.controllers;
+package io.movetodata.connect.controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import io.movetodata.connect.library.models.SharePointSourceConfig;

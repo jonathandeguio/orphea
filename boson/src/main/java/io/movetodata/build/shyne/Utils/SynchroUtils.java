@@ -1,4 +1,4 @@
-﻿package io.movetodata.build.shyne.Utils;
+package io.movetodata.build.shyne.Utils;
 
 
 import io.movetodata.connect.library.models.DatabaseSourceConfig;

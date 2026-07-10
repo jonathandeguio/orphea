@@ -1,4 +1,4 @@
-﻿package io.movetodata.dataset.library.chartfactory;
+package io.movetodata.dataset.library.chartfactory;
 
 import io.movetodata.dataset.library.DTOs.ChartResponse;
 import io.movetodata.dataset.requests.ChartDataRequest;

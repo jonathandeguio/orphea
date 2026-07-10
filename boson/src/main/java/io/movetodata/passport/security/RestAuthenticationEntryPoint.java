@@ -1,4 +1,4 @@
-﻿package io.movetodata.passport.security;
+package io.movetodata.passport.security;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

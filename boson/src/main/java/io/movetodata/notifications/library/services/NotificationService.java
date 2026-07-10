@@ -1,4 +1,4 @@
-﻿package io.movetodata.notifications.library.services;
+package io.movetodata.notifications.library.services;
 
 import io.movetodata.notifications.library.models.Notification;
 import io.movetodata.sharedutils.models.PageSettings;

@@ -1,4 +1,4 @@
-﻿package io.movetodata.connect.library.models;
+package io.movetodata.connect.library.models;
 
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;

@@ -1,4 +1,4 @@
-﻿import { BoslerIcon } from "assets/icons/boslerMiscellaneousIcons";
+import { BoslerIcon } from "assets/icons/boslerMiscellaneousIcons";
 import BoslerLoader from "components/boslerLoader";
 import React from "react";
 import { useSelector } from "react-redux";

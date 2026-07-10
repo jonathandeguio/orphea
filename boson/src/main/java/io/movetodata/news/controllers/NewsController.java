@@ -1,4 +1,4 @@
-﻿package io.movetodata.news.controllers;
+package io.movetodata.news.controllers;
 
 import io.movetodata.news.library.enums.NewsStatus;
 import io.movetodata.news.library.models.News;

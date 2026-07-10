@@ -1,4 +1,4 @@
-﻿package io.movetodata.fractal.interceptors;
+package io.movetodata.fractal.interceptors;
 
 import io.movetodata.platform.enums.ProductType;
 import io.movetodata.platform.library.models.LicenseInfoModel;

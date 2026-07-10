@@ -1,4 +1,4 @@
-﻿package io.movetodata.dataset.library.models.DataHealth;
+package io.movetodata.dataset.library.models.DataHealth;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

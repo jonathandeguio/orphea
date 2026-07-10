@@ -1,4 +1,4 @@
-﻿package io.movetodata.docket.library.models;
+package io.movetodata.docket.library.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

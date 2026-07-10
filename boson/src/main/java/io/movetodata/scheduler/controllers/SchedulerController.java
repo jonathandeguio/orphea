@@ -1,4 +1,4 @@
-﻿package io.movetodata.scheduler.controllers;
+package io.movetodata.scheduler.controllers;
 
 import io.movetodata.kitab.library.enums.ResourceType;
 import io.movetodata.kitab.library.services.ResourceService;

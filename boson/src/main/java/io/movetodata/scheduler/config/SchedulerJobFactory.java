@@ -1,4 +1,4 @@
-﻿package io.movetodata.scheduler.config;
+package io.movetodata.scheduler.config;
 
 import org.quartz.spi.TriggerFiredBundle;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;

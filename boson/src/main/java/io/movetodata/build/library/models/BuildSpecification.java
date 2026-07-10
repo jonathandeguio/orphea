@@ -1,4 +1,4 @@
-﻿package io.movetodata.build.library.models;
+package io.movetodata.build.library.models;
 
 import io.movetodata.build.BobEnums.BuildLanguage;
 import io.movetodata.build.library.enums.WriteModeEnum;

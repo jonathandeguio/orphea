@@ -1,4 +1,4 @@
-﻿package io.movetodata.kepler.controllers;
+package io.movetodata.kepler.controllers;
 
 import io.movetodata.kepler.library.DTOs.VersionRenameDTO;
 import io.movetodata.kepler.library.models.ResourceVersionDetailsModel;

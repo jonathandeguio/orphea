@@ -1,4 +1,4 @@
-﻿package io.movetodata.build.library.services;
+package io.movetodata.build.library.services;
 
 import io.movetodata.build.BobEnums.BuildLanguage;
 import io.movetodata.build.BobEnums.BuildLaunchedBy;

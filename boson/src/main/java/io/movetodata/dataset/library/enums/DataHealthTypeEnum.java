@@ -1,4 +1,4 @@
-﻿package io.movetodata.dataset.library.enums;
+package io.movetodata.dataset.library.enums;
 
 public enum DataHealthTypeEnum {
     // Status

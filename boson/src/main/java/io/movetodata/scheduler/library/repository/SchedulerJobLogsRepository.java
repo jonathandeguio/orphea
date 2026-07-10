@@ -1,4 +1,4 @@
-﻿package io.movetodata.scheduler.library.repository;
+package io.movetodata.scheduler.library.repository;
 
 import io.movetodata.scheduler.library.models.SchedulerJobLogs;
 import org.springframework.data.domain.Page;

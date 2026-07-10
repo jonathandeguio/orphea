@@ -1,4 +1,4 @@
-﻿package io.movetodata.sharedutils.DTO;
+package io.movetodata.sharedutils.DTO;
 
 import io.movetodata.kitab.library.enums.ResourceStatus;
 import io.movetodata.kitab.library.enums.ResourceSubtype;

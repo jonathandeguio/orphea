@@ -1,4 +1,4 @@
-﻿package io.movetodata.passport.library.repository;
+package io.movetodata.passport.library.repository;
 
 import io.movetodata.passport.library.models.UserPreferences;
 import org.springframework.data.jpa.repository.JpaRepository;

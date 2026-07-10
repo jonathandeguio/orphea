@@ -1,4 +1,4 @@
-﻿package io.movetodata.notifications.library.models;
+package io.movetodata.notifications.library.models;
 
 import io.movetodata.notifications.library.enums.NotificationType;
 import lombok.AllArgsConstructor;

@@ -1,4 +1,4 @@
-﻿package io.movetodata.notifications.library.enums;
+package io.movetodata.notifications.library.enums;
 
 public enum NotificationType {
     MENTION("MENTION"),

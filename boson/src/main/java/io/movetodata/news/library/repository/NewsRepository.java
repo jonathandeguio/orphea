@@ -1,4 +1,4 @@
-﻿package io.movetodata.news.library.repository;
+package io.movetodata.news.library.repository;
 
 import io.movetodata.news.library.enums.NewsStatus;
 import io.movetodata.news.library.models.News;

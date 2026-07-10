@@ -1,4 +1,4 @@
-﻿package io.movetodata.scheduler.library.services;
+package io.movetodata.scheduler.library.services;
 
 import io.movetodata.platform.library.models.SMTPConfigModel;
 import io.movetodata.platform.library.repository.SMTPConfigRepository;

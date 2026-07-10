@@ -1,4 +1,4 @@
-﻿package io.movetodata.build.library.dto;
+package io.movetodata.build.library.dto;
 
 import io.movetodata.build.BobEnums.BuildTrigger;
 import lombok.AllArgsConstructor;

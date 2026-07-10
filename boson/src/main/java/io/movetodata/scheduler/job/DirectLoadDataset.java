@@ -1,4 +1,4 @@
-﻿package io.movetodata.scheduler.job;
+package io.movetodata.scheduler.job;
 
 import io.movetodata.build.BobEnums.BuildLaunchedBy;
 import io.movetodata.build.BobEnums.BuildTrigger;

@@ -1,4 +1,4 @@
-﻿package io.movetodata.platform.requests;
+package io.movetodata.platform.requests;
 
 import io.movetodata.kepler.library.models.DatasetFilterModel;
 import io.movetodata.dataset.requests.ChartSeriesRequest;

@@ -1,4 +1,4 @@
-﻿package io.movetodata.passport.library;
+package io.movetodata.passport.library;
 
 import java.util.UUID;
 

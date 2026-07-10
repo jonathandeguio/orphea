@@ -1,4 +1,4 @@
-﻿package io.movetodata.fractal.controllers;
+package io.movetodata.fractal.controllers;
 
 import io.movetodata.fractal.library.Exceptions.NoSuchBranchException;
 import io.movetodata.fractal.library.models.BlameResultDTO;

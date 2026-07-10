@@ -1,4 +1,4 @@
-﻿package io.movetodata.comments.controllers;
+package io.movetodata.comments.controllers;
 
 import io.movetodata.build.library.models.SocketMessage;
 import io.movetodata.comments.library.models.CommentModel;

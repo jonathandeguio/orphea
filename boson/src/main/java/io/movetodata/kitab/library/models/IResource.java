@@ -1,4 +1,4 @@
-﻿package io.movetodata.kitab.library.models;
+package io.movetodata.kitab.library.models;
 
 import org.springframework.beans.BeanUtils;
 

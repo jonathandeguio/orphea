@@ -1,4 +1,4 @@
-﻿<Configuration monitorInterval="30" name="Default">
+<Configuration monitorInterval="30" name="Default">
     <Appenders>
         <Console name="Console-Appender" target="SYSTEM_OUT">
             <PatternLayout pattern="[%-5level] [%d{yyyy-MM-dd HH:mm:ss Z}] [%X{RequestId}] [%logger{36}] - [%msg] %n"/>

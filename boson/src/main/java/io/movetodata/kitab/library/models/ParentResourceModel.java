@@ -1,4 +1,4 @@
-﻿package io.movetodata.kitab.library.models;
+package io.movetodata.kitab.library.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;

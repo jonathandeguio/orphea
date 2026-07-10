@@ -1,4 +1,4 @@
-﻿package io.movetodata.build.shyne.models;
+package io.movetodata.build.shyne.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

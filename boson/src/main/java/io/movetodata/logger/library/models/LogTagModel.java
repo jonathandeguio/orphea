@@ -1,4 +1,4 @@
-﻿package io.movetodata.logger.library.models;
+package io.movetodata.logger.library.models;
 
 import io.movetodata.logger.library.enums.BosonComponent;
 import io.movetodata.logger.library.enums.LogType;

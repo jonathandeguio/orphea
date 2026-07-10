@@ -1,4 +1,4 @@
-﻿package io.movetodata.sharedutils;
+package io.movetodata.sharedutils;
 
 import com.google.api.gax.paging.Page;
 import com.google.auth.Credentials;

@@ -1,4 +1,4 @@
-﻿package io.movetodata.connect.library.exceptions;
+package io.movetodata.connect.library.exceptions;
 
 public class LinkException extends RuntimeException{
     public LinkException(String message) {

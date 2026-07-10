@@ -1,4 +1,4 @@
-﻿package io.movetodata.logger.library.enums;
+package io.movetodata.logger.library.enums;
 
 public enum LogType {
     INFO("info"),

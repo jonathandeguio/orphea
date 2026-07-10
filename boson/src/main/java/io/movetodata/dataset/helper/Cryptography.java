@@ -1,4 +1,4 @@
-﻿package io.movetodata.dataset.helper;
+package io.movetodata.dataset.helper;
 
 public class Cryptography {
 //    private final String secretKey = System.getenv("SECRET_KEY");

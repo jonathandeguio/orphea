@@ -1,4 +1,4 @@
-﻿package io.movetodata.kepler.enums;
+package io.movetodata.kepler.enums;
 
 public enum TabElementOperationEnum {
     CREATE,

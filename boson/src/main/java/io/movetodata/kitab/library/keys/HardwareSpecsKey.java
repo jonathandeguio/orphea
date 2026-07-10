@@ -1,4 +1,4 @@
-﻿package io.movetodata.kitab.library.keys;
+package io.movetodata.kitab.library.keys;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

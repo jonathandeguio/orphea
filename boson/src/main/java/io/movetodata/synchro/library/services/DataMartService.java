@@ -1,4 +1,4 @@
-﻿package io.movetodata.synchro.library.services;
+package io.movetodata.synchro.library.services;
 
 import io.movetodata.connect.library.enums.SourceAuthTypeEnum;
 import io.movetodata.connect.library.enums.SourceTypeEnum;

@@ -1,4 +1,4 @@
-﻿package io.movetodata.kitab.controllers;
+package io.movetodata.kitab.controllers;
 
 import io.movetodata.kitab.library.enums.ResourceSubtype;
 import io.movetodata.kitab.library.enums.ResourceType;

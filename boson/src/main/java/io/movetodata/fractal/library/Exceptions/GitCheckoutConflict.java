@@ -1,4 +1,4 @@
-﻿package io.movetodata.fractal.library.Exceptions;
+package io.movetodata.fractal.library.Exceptions;
 
 import org.eclipse.jgit.api.errors.CheckoutConflictException;
 import org.eclipse.jgit.api.errors.GitAPIException;

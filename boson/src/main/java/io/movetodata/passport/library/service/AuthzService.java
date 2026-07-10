@@ -1,4 +1,4 @@
-﻿package io.movetodata.passport.library.service;
+package io.movetodata.passport.library.service;
 
 import io.movetodata.kitab.library.models.ResourceModel;
 import io.movetodata.kitab.library.repository.ResourceRepository;

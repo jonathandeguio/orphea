@@ -1,4 +1,4 @@
-﻿package io.movetodata.platform.library.models;
+package io.movetodata.platform.library.models;
 
 import io.movetodata.sharedutils.Utils;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-﻿package io.movetodata.kitab.controllers;
+package io.movetodata.kitab.controllers;
 
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;

@@ -1,4 +1,4 @@
-﻿package io.movetodata.passport.exception;
+package io.movetodata.passport.exception;
 
 import org.springframework.security.core.AuthenticationException;
 

@@ -1,4 +1,4 @@
-﻿# MoveToData Platform — Scripts d'installation Ubuntu
+# MoveToData Platform — Scripts d'installation Ubuntu
 
 Ensemble complet de scripts pour installer et démarrer la plateforme MoveToData sur Ubuntu 22.04 LTS.
 

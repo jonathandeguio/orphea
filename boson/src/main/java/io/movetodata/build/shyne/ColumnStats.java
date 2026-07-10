@@ -1,4 +1,4 @@
-﻿package io.movetodata.build.shyne;
+package io.movetodata.build.shyne;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import io.movetodata.build.BobEnums.BuildType;

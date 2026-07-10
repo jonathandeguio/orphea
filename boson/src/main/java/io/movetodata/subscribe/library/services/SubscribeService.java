@@ -1,4 +1,4 @@
-﻿package io.movetodata.subscribe.library.services;
+package io.movetodata.subscribe.library.services;
 
 import org.springframework.stereotype.Component;
 

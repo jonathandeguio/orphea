@@ -1,4 +1,4 @@
-﻿package io.movetodata.dataset.requests;
+package io.movetodata.dataset.requests;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

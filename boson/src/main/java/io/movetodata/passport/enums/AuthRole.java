@@ -1,4 +1,4 @@
-﻿package io.movetodata.passport.enums;
+package io.movetodata.passport.enums;
 
 public enum AuthRole {
     OWNER("Owner"), EDITOR("Editor"), VIEWER("Viewer");

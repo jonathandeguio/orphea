@@ -1,4 +1,4 @@
-﻿package io.movetodata.kepler.interceptors;
+package io.movetodata.kepler.interceptors;
 
 import io.movetodata.platform.enums.ProductType;
 import io.movetodata.platform.library.models.LicenseInfoModel;

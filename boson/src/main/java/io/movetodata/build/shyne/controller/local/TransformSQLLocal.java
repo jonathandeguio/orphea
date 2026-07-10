@@ -1,4 +1,4 @@
-﻿package io.movetodata.build.shyne.controller.local;
+package io.movetodata.build.shyne.controller.local;
 
 
 import com.fasterxml.jackson.core.type.TypeReference;

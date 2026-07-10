@@ -1,4 +1,4 @@
-﻿package io.movetodata.connect.controllers;
+package io.movetodata.connect.controllers;
 
 import io.movetodata.connect.library.DTOs.LinkPreviewDTO;
 import io.movetodata.connect.library.DTOs.SourceSQLTableExplanation;

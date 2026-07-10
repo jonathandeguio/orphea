@@ -1,4 +1,4 @@
-﻿package io.movetodata.connect.library.services;
+package io.movetodata.connect.library.services;
 
 import io.movetodata.connect.library.models.FolderSourceConfig;
 import io.movetodata.connect.library.repository.FolderSourceConfigRepository;

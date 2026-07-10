@@ -1,4 +1,4 @@
-﻿package io.movetodata.dataset.library.models.DataHealth;
+package io.movetodata.dataset.library.models.DataHealth;
 
 import io.movetodata.dataset.library.enums.DataHealthTypeEnum;
 import lombok.AllArgsConstructor;

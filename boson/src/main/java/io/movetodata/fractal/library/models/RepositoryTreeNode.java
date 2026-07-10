@@ -1,4 +1,4 @@
-﻿package io.movetodata.fractal.library.models;
+package io.movetodata.fractal.library.models;
 
 import io.movetodata.kitab.library.enums.ResourceStatus;
 import io.movetodata.kitab.library.enums.ResourceSubtype;

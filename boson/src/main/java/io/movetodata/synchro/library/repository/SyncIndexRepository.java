@@ -1,4 +1,4 @@
-﻿package io.movetodata.synchro.library.repository;
+package io.movetodata.synchro.library.repository;
 
 import io.movetodata.synchro.library.models.SyncIndex;
 import org.springframework.data.jpa.repository.JpaRepository;

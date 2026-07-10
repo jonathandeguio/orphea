@@ -1,4 +1,4 @@
-﻿package io.movetodata.passport.library.service;
+package io.movetodata.passport.library.service;
 
 import io.movetodata.passport.library.models.PermissionsMapping;
 import io.movetodata.passport.library.repository.PermissionMappingRepository;

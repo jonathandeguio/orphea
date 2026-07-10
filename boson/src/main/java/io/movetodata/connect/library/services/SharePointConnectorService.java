@@ -1,4 +1,4 @@
-﻿package io.movetodata.connect.library.services;
+package io.movetodata.connect.library.services;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
