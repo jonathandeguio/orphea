@@ -1,4 +1,3 @@
-import { BoslerIcon } from "assets/icons/boslerMiscellaneousIcons";
 import { ping } from "common/common.api";
 import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -109,7 +108,7 @@ const LoginError = () => {
             />
           </div>
           <div className="login-icon">
-            {!isIpPlatform() && <BoslerIcon size={"15vw"} />}
+            {!isIpPlatform() && <img src="/logo.png" alt="MoveToData" style={{ height: "15vw" }} />}
 
             {/* <div className="login-icon-movetodata">MOVETODATA</div> */}
             <h3>{getLanguageLabel("sessionExpired")}</h3>

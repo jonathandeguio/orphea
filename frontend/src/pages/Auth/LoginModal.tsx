@@ -1,5 +1,4 @@
 import { Form, Input } from "antd";
-import { BoslerIcon } from "assets/icons/boslerMiscellaneousIcons";
 import { ArrowRightIcon } from "assets/icons/boslerNavigationIcon";
 import BoslerButton from "components/BoslerComponents/ButtonComponent/BoslerButton";
 import BoslerInput from "components/BoslerComponents/InputComponent/BoslerInput";
@@ -11,7 +10,7 @@ const LoginModal = () => {
   return (
     <div className="form-containerNew">
       <BoslerModalContainer
-        heading={<BoslerIcon size={32} />}
+        heading={<img src="/logo.png" alt="MoveToData" style={{ height: 48 }} />}
         footerExtraText={getLanguageLabel("loginAgreement")}
         footerButtonArea={
           <Form.Item style={{ margin: 0 }}>

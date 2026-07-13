@@ -17,7 +17,6 @@ import Loading from "../Errors/Loading";
 
 import "Apps/Kepler/dashboard/DashboardSubscribeMenu/DashboardSubscribeMenu.scss";
 
-import { BoslerIcon } from "assets/icons/boslerMiscellaneousIcons";
 import { ParticleApp } from "utils/ParticleApp";
 import LoginModal from "./LoginModal";
 
@@ -119,7 +118,7 @@ const Login = () => {
             }}
             className="login-containerNew"
           >
-            {!isIpPlatform() && <BoslerIcon size={128} />}
+            {!isIpPlatform() && <img src="/logo.png" alt="MoveToData" style={{ height: 128, marginBottom: 8 }} />}
             <br />
             <LoginModal />
           </Form>

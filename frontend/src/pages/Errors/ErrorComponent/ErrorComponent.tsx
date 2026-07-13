@@ -7,7 +7,6 @@ import { ParticleApp } from "utils/ParticleApp";
 import { getLanguageLabel, isIpPlatform } from "utils/utilities";
 import "../../../Apps/Kepler/dashboard/DashboardSubscribeMenu/DashboardSubscribeMenu.scss";
 import { WarningIcon } from "../../../assets/icons/boslerActionIcons";
-import { BoslerIcon } from "../../../assets/icons/boslerMiscellaneousIcons";
 import { ArrowRightIcon } from "../../../assets/icons/boslerNavigationIcon";
 import BoslerButton from "../../../components/BoslerComponents/ButtonComponent/BoslerButton";
 
@@ -76,7 +75,7 @@ export const ErrorComponent = ({
             zIndex: 10,
           }}
         >
-          {!isIpPlatform() && <BoslerIcon size={128} />}
+          {!isIpPlatform() && <img src="/logo.png" alt="MoveToData" style={{ height: 128, marginBottom: 8 }} />}
           <div className="form-containerNew">
             <BoslerModalContainer
               headingIcon={<WarningIcon color="orange" />}
