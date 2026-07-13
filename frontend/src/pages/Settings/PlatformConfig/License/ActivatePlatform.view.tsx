@@ -54,7 +54,7 @@ export const ActivatePlatform = () => {
             numberOfParticles={50}
             speed={2}
             logoSize={8}
-            image="/logo_hexa.svg"
+            image="/logo_hexa.png"
           />
         </div>
 

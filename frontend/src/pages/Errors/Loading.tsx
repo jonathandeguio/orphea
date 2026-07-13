@@ -49,7 +49,7 @@ const Loading = () => {
               numberOfParticles={20}
               speed={2}
               logoSize={12}
-              image="/logo_hexa.svg"
+              image="/logo_hexa.png"
             />
           </div>
           <div className="login-icon">

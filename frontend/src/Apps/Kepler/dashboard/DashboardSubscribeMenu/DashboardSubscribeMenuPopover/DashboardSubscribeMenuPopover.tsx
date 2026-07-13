@@ -2,7 +2,7 @@ import { ResourceTypeEnum } from "Apps/explorer/explorer.utils";
 import { Alert, Checkbox, Divider, Form, Select, Tag } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import { EyeOpenIcon } from "assets/icons/boslerInterfaceIcons";
-import { ReactComponent as Logo } from "assets/images/logoSmall.svg";
+import LogoImg from "assets/images/logoSmall.png";
 import BoslerButton from "components/BoslerComponents/ButtonComponent/BoslerButton";
 import BoslerInput from "components/BoslerComponents/InputComponent/BoslerInput";
 import {
@@ -381,7 +381,7 @@ const DashboardSubscribeMenuPopover = ({ initialData }: TProps) => {
               <div className="kepler-container-plane-subscribe-modal-container-top-right-preview-email">
                 <div className="kepler-container-plane-subscribe-modal-container-top-right-preview-email-header">
                   <div className="kepler-container-plane-subscribe-modal-container-top-right-preview-email-header-icon">
-                    <Logo />
+                    <img src={LogoImg} alt="MoveToData" style={{ height: 32 }} />
                   </div>
                   <Alert
                     type="warning"
