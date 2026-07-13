@@ -365,6 +365,19 @@ public class UserController {
         return ResponseEntity.ok().body(stats);
     }
 
+    @Operation(summary = "Clear all login history for a user")
+    @DeleteMapping("/{userId}/loginHistory")
+    ResponseEntity<Object> clearLoginHistory(Principal principal, @PathVariable("userId") UUID Id) {
+        UUID userId = userService.getUser(principal.getName()).getId();
+
+        if (!userId.equals(Id) && !authzService.isPlatformAdmin(userId)
+                && !authzService.isUserAdmin(userId))
+            return new ResponseEntity<>("Access Denied", HttpStatus.FORBIDDEN);
+
+        loginHistoryRepository.deleteAllByUserId(Id);
+        return ResponseEntity.ok().build();
+    }
+
     @Operation(summary = "Gives true or false if the logged in user is project administrator or not")
     @GetMapping("/isProjectAdministrator")
     ResponseEntity<Object> isProjectAdministrator(Principal principal) {

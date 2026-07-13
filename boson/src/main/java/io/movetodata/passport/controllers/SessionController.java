@@ -1,5 +1,6 @@
 package io.movetodata.passport.controllers;
 
+import io.movetodata.passport.enums.EndReason;
 import io.movetodata.passport.library.repository.LoginHistoryRepository;
 import io.movetodata.passport.library.service.AuthzService;
 import io.movetodata.passport.library.service.UserService;
@@ -80,6 +81,32 @@ public class SessionController {
         Map<String, Object> response = new HashMap<>();
         response.put("sessionTimeoutMinutes", minutes);
         return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/sessions/{sessionId}/terminate")
+    public ResponseEntity<Object> terminateSession(
+            Principal principal,
+            @PathVariable UUID sessionId) {
+
+        UUID requesterId = userService.getUser(principal.getName()).getId();
+
+        loginHistoryRepository.findById(sessionId).ifPresent(session -> {
+            if (!session.getUserId().equals(requesterId) && !authzService.isPlatformAdmin(requesterId)) {
+                return;
+            }
+            if (session.getLastLogoutAt() == null) {
+                Date now = new Date();
+                session.setLastLogoutAt(now);
+                session.setEndReason(EndReason.FORCED);
+                if (session.getLastLoginAt() != null) {
+                    session.setDurationSeconds(
+                            (now.getTime() - session.getLastLoginAt().getTime()) / 1000);
+                }
+                loginHistoryRepository.save(session);
+            }
+        });
+
+        return ResponseEntity.ok().build();
     }
 
     private int getSessionTimeoutMinutes() {

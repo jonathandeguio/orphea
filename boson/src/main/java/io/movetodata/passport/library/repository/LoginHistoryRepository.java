@@ -16,4 +16,6 @@ public interface LoginHistoryRepository
     List<LoginHistory> findTop100ByUserIdOrderByLastLoginAtDesc(UUID userId);
 
     Optional<LoginHistory> findFirstByUserIdAndLastLogoutAtIsNullOrderByLastLoginAtDesc(UUID userId);
+
+    void deleteAllByUserId(UUID userId);
 }

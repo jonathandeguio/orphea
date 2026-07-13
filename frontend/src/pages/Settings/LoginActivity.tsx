@@ -3,8 +3,26 @@ import {
   CalendarOutlined,
   ThunderboltOutlined,
   UserOutlined,
+  DeleteOutlined,
+  PoweroffOutlined,
+  SaveOutlined,
 } from "@ant-design/icons";
-import { Avatar, Badge, Card, Col, Divider, Row, Statistic, Table, Tag, Typography } from "antd";
+import {
+  Avatar,
+  Badge,
+  Button,
+  Card,
+  Col,
+  Divider,
+  InputNumber,
+  Popconfirm,
+  Row,
+  Statistic,
+  Table,
+  Tag,
+  Tooltip,
+  Typography,
+} from "antd";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -32,11 +50,13 @@ const EndReasonTag = ({ reason }: { reason: string | null }) => {
     MANUAL: "blue",
     TIMEOUT: "orange",
     EXPIRED: "red",
+    FORCED: "purple",
   };
   const labels: Record<string, string> = {
     MANUAL: "Manual",
     TIMEOUT: "Timeout",
     EXPIRED: "Expired",
+    FORCED: "Forced",
   };
   return <Tag color={colors[reason] ?? "default"}>{labels[reason] ?? reason}</Tag>;
 };
@@ -47,29 +67,82 @@ const LoginActivity = () => {
   const [sessions, setSessions] = useState<any[]>([]);
   const [stats, setStats] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [timeoutMinutes, setTimeoutMinutes] = useState<number>(30);
+  const [timeoutInput, setTimeoutInput] = useState<number>(30);
+  const [savingTimeout, setSavingTimeout] = useState(false);
+  const [terminating, setTerminating] = useState<string | null>(null);
+  const [clearingHistory, setClearingHistory] = useState(false);
 
   const displayName = user?.name || user?.givenName || user?.username || "—";
   const email = user?.email || "";
 
-  useEffect(() => {
+  const fetchData = () => {
     if (!user?.id) return;
+    setLoading(true);
     Promise.all([
       axios.get(`/passport/users/${user.id}/last10Login`),
       axios.get(`/passport/users/${user.id}/activityStats`),
+      axios.get("/session/config"),
     ])
-      .then(([sessionsRes, statsRes]) => {
+      .then(([sessionsRes, statsRes, configRes]) => {
         setSessions(sessionsRes.data);
         setStats(statsRes.data);
+        const t = configRes.data?.sessionTimeoutMinutes ?? 30;
+        setTimeoutMinutes(t);
+        setTimeoutInput(t);
       })
       .catch(() => openNotification("Something went wrong", " ", "error"))
       .finally(() => setLoading(false));
+  };
+
+  useEffect(() => {
+    fetchData();
   }, [user?.id]);
+
+  const handleTerminate = async (sessionId: string) => {
+    setTerminating(sessionId);
+    try {
+      await axios.post(`/session/sessions/${sessionId}/terminate`);
+      openNotification("Session terminated", " ", "success");
+      fetchData();
+    } catch {
+      openNotification("Failed to terminate session", " ", "error");
+    } finally {
+      setTerminating(null);
+    }
+  };
+
+  const handleClearHistory = async () => {
+    setClearingHistory(true);
+    try {
+      await axios.delete(`/passport/users/${user.id}/loginHistory`);
+      openNotification("Login history cleared", " ", "success");
+      fetchData();
+    } catch {
+      openNotification("Failed to clear history", " ", "error");
+    } finally {
+      setClearingHistory(false);
+    }
+  };
+
+  const handleSaveTimeout = async () => {
+    setSavingTimeout(true);
+    try {
+      await axios.put("/session/config", { sessionTimeoutMinutes: timeoutInput });
+      setTimeoutMinutes(timeoutInput);
+      openNotification("Session timeout updated", " ", "success");
+    } catch {
+      openNotification("Failed to update timeout", " ", "error");
+    } finally {
+      setSavingTimeout(false);
+    }
+  };
 
   const columns = [
     {
       title: "User",
       key: "user",
-      width: 160,
+      width: 180,
       render: () => (
         <Text>
           {displayName}
@@ -116,6 +189,29 @@ const LoginActivity = () => {
       width: 110,
       render: (v: string) => <EndReasonTag reason={v} />,
     },
+    {
+      title: "Actions",
+      key: "actions",
+      width: 90,
+      render: (_: any, record: any) =>
+        record.lastLogoutAt == null ? (
+          <Tooltip title="Terminate session">
+            <Popconfirm
+              title="Terminate this session?"
+              onConfirm={() => handleTerminate(record.id)}
+              okText="Yes"
+              cancelText="No"
+            >
+              <Button
+                danger
+                size="small"
+                icon={<PoweroffOutlined />}
+                loading={terminating === record.id}
+              />
+            </Popconfirm>
+          </Tooltip>
+        ) : null,
+    },
   ];
 
   if (!user) return <BoslerLoader />;
@@ -144,6 +240,38 @@ const LoginActivity = () => {
         </Row>
         <Divider />
       </p>
+
+      <Card size="small" style={{ marginBottom: 24 }}>
+        <Row align="middle" gutter={16}>
+          <Col>
+            <Text strong>Session timeout :</Text>
+          </Col>
+          <Col>
+            <InputNumber
+              min={1}
+              max={1440}
+              value={timeoutInput}
+              onChange={(v) => setTimeoutInput(v ?? 30)}
+              addonAfter="min"
+              style={{ width: 130 }}
+            />
+          </Col>
+          <Col>
+            <Button
+              type="primary"
+              icon={<SaveOutlined />}
+              loading={savingTimeout}
+              disabled={timeoutInput === timeoutMinutes}
+              onClick={handleSaveTimeout}
+            >
+              Save
+            </Button>
+          </Col>
+          <Col>
+            <Text type="secondary">Current: {timeoutMinutes} min</Text>
+          </Col>
+        </Row>
+      </Card>
 
       {loading ? (
         <BoslerLoader />
@@ -193,6 +321,24 @@ const LoginActivity = () => {
               <Divider />
             </>
           )}
+
+          <Row justify="end" style={{ marginBottom: 12 }}>
+            <Popconfirm
+              title="Clear all login history?"
+              description="This cannot be undone."
+              onConfirm={handleClearHistory}
+              okText="Yes, clear"
+              cancelText="Cancel"
+            >
+              <Button
+                danger
+                icon={<DeleteOutlined />}
+                loading={clearingHistory}
+              >
+                Clear history
+              </Button>
+            </Popconfirm>
+          </Row>
 
           <Table
             dataSource={sessions}
