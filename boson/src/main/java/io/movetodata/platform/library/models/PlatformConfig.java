@@ -61,6 +61,7 @@ public class PlatformConfig {
     private Boolean mfaEnabled;
     private Boolean mfaEnforced;
     private Boolean dataMartEnabled;
+    private Integer sessionTimeoutMinutes = 30;
 
     public void setLogsValidDays(Integer days) {
         if (days == null || days < 2) {

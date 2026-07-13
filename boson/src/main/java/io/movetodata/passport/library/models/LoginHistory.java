@@ -1,5 +1,6 @@
 package io.movetodata.passport.library.models;
 
+import io.movetodata.passport.enums.EndReason;
 import io.movetodata.passport.enums.LoginType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,4 +28,8 @@ public class LoginHistory {
     private Date lastLogoutAt;
     @Enumerated(EnumType.STRING)
     private LoginType loginType;
+    private Date lastActivityAt;
+    private Long durationSeconds;
+    @Enumerated(EnumType.STRING)
+    private EndReason endReason;
 }

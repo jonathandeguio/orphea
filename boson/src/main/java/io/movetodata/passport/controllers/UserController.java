@@ -318,6 +318,53 @@ public class UserController {
         return ResponseEntity.ok().body(loginHistoryRepository.findTop100ByUserIdOrderByLastLoginAtDesc(Id));
     }
 
+    @Operation(summary = "Activity stats for a user: total sessions, total time, and per-period breakdown")
+    @GetMapping("/{userId}/activityStats")
+    ResponseEntity<Object> activityStats(Principal principal, @PathVariable("userId") UUID Id) {
+        UUID userId = userService.getUser(principal.getName()).getId();
+
+        if (!userId.equals(Id) && !authzService.isPlatformAdmin(userId)
+                && !authzService.isUserAdmin(userId))
+            return new ResponseEntity<>("Access Denied to get activity stats", HttpStatus.FORBIDDEN);
+
+        List<io.movetodata.passport.library.models.LoginHistory> history =
+                loginHistoryRepository.findTop100ByUserIdOrderByLastLoginAtDesc(Id);
+
+        long totalSeconds = history.stream()
+                .filter(h -> h.getDurationSeconds() != null)
+                .mapToLong(io.movetodata.passport.library.models.LoginHistory::getDurationSeconds)
+                .sum();
+
+        long now = System.currentTimeMillis();
+        long day = 86400_000L;
+
+        long todaySeconds = history.stream()
+                .filter(h -> h.getDurationSeconds() != null && h.getLastLoginAt() != null
+                        && h.getLastLoginAt().getTime() >= now - day)
+                .mapToLong(io.movetodata.passport.library.models.LoginHistory::getDurationSeconds)
+                .sum();
+
+        long week7dSeconds = history.stream()
+                .filter(h -> h.getDurationSeconds() != null && h.getLastLoginAt() != null
+                        && h.getLastLoginAt().getTime() >= now - 7 * day)
+                .mapToLong(io.movetodata.passport.library.models.LoginHistory::getDurationSeconds)
+                .sum();
+
+        long month30dSeconds = history.stream()
+                .filter(h -> h.getDurationSeconds() != null && h.getLastLoginAt() != null
+                        && h.getLastLoginAt().getTime() >= now - 30 * day)
+                .mapToLong(io.movetodata.passport.library.models.LoginHistory::getDurationSeconds)
+                .sum();
+
+        Map<String, Object> stats = new HashMap<>();
+        stats.put("totalSessions", history.size());
+        stats.put("totalSeconds", totalSeconds);
+        stats.put("todaySeconds", todaySeconds);
+        stats.put("week7dSeconds", week7dSeconds);
+        stats.put("month30dSeconds", month30dSeconds);
+        return ResponseEntity.ok().body(stats);
+    }
+
     @Operation(summary = "Gives true or false if the logged in user is project administrator or not")
     @GetMapping("/isProjectAdministrator")
     ResponseEntity<Object> isProjectAdministrator(Principal principal) {

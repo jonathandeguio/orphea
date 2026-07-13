@@ -63,12 +63,19 @@ export const login =
     }
   };
 
-export const logout = () => async (dispatch: $TSFixMe) => {
-  localStorage.removeItem(USERNAME);
-  localStorage.removeItem(BOSLER_TOKEN);
-  dispatch({ type: USER_LOGOUT });
-  dispatch({ type: USER_DETAILS_RESET });
-};
+export const logout =
+  (endReason: "MANUAL" | "TIMEOUT" | "EXPIRED" = "MANUAL") =>
+  async (dispatch: $TSFixMe) => {
+    try {
+      await axios.post(`/passport/logout?endReason=${endReason}`);
+    } catch {
+      // ignore — cookies still get cleared by the backend response headers
+    }
+    localStorage.removeItem(USERNAME);
+    localStorage.removeItem(BOSLER_TOKEN);
+    dispatch({ type: USER_LOGOUT });
+    dispatch({ type: USER_DETAILS_RESET });
+  };
 
 export const getUserDetails =
   () => async (dispatch: $TSFixMe, getState: $TSFixMe) => {

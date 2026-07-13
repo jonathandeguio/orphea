@@ -1,5 +1,6 @@
 package io.movetodata.passport.controllers;
 
+import io.movetodata.passport.enums.EndReason;
 import io.movetodata.passport.enums.LoginType;
 import io.movetodata.passport.library.models.LoginHistory;
 import io.movetodata.passport.library.models.User;
@@ -13,6 +14,7 @@ import io.movetodata.passport.security.TokenProvider;
 import io.movetodata.passport.util.AuthUtils;
 import io.movetodata.platform.library.repository.PlatformConfigRepository;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import org.springframework.util.StringUtils;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -200,7 +202,27 @@ public class AuthController {
         return new ResponseEntity<>(false, HttpStatus.UNAUTHORIZED);
     }
     @PostMapping("/logout")
-    public ResponseEntity<?> logoutUser(HttpServletRequest request) {
+    public ResponseEntity<?> logoutUser(
+            HttpServletRequest request,
+            @RequestParam(required = false, defaultValue = "MANUAL") EndReason endReason) {
+        try {
+            String jwt = AuthUtils.getAccessTokenFromRequest(request);
+            if (StringUtils.hasText(jwt) && tokenProvider.validateAccessToken(jwt)) {
+                UUID userId = tokenProvider.getUserIdFromAccessToken(jwt);
+                loginHistoryRepository
+                        .findFirstByUserIdAndLastLogoutAtIsNullOrderByLastLoginAtDesc(userId)
+                        .ifPresent(session -> {
+                            Date now = new Date();
+                            session.setLastLogoutAt(now);
+                            session.setEndReason(endReason);
+                            if (session.getLastLoginAt() != null) {
+                                session.setDurationSeconds(
+                                        (now.getTime() - session.getLastLoginAt().getTime()) / 1000);
+                            }
+                            loginHistoryRepository.save(session);
+                        });
+            }
+        } catch (Exception ignored) {}
         HttpHeaders headers = getAuthHeaders("", "", request.getScheme());
         return new ResponseEntity<>("OK", headers, HttpStatus.OK);
     }

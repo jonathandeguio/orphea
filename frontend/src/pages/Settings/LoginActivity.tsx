@@ -1,67 +1,116 @@
-import { Col, Divider, Row, Select, Table, Typography } from "antd";
+import {
+  ClockCircleOutlined,
+  CalendarOutlined,
+  ThunderboltOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
+import { Card, Col, Divider, Row, Statistic, Table, Tag, Typography } from "antd";
 import axios from "axios";
-const { Option } = Select;
-
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-
-// import { setTheme } from "../../App";
-import React from "react";
+import BoslerLoader from "../../components/boslerLoader";
 import { getLanguageLabel, openNotification } from "utils/utilities";
 
-import BoslerLoader from "../../components/boslerLoader";
-
 const { Title, Text } = Typography;
+
+const formatDuration = (seconds: number | null | undefined): string => {
+  if (seconds == null || seconds <= 0) return "—";
+  const h = Math.floor(seconds / 3600);
+  const m = Math.floor((seconds % 3600) / 60);
+  const s = seconds % 60;
+  if (h > 0) return `${h}h ${m}m`;
+  if (m > 0) return `${m}m ${s}s`;
+  return `${s}s`;
+};
+
+const EndReasonTag = ({ reason }: { reason: string | null }) => {
+  if (!reason) return <Text type="secondary">—</Text>;
+  const colors: Record<string, string> = {
+    MANUAL: "blue",
+    TIMEOUT: "orange",
+    EXPIRED: "red",
+  };
+  const labels: Record<string, string> = {
+    MANUAL: "Manual",
+    TIMEOUT: "Timeout",
+    EXPIRED: "Expired",
+  };
+  return <Tag color={colors[reason] ?? "default"}>{labels[reason] ?? reason}</Tag>;
+};
 
 const LoginActivity = () => {
   const { user } = useSelector((state) => (state as $TSFixMe).userDetails);
 
-  const [last10Login, setLast10Login] = useState();
+  const [sessions, setSessions] = useState<any[]>([]);
+  const [stats, setStats] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getLoginActivity();
-  }, []);
-
-  const getLoginActivity = async () => {
-    try {
-      const data = axios
-        .get(`/passport/users/${user?.id}/last10Login`)
-        .then((data) => {
-          setLast10Login(data.data);
-        });
-    } catch (error) {
-      openNotification("Something went wrong", " ", "error");
-    }
-  };
+    if (!user?.id) return;
+    Promise.all([
+      axios.get(`/passport/users/${user.id}/last10Login`),
+      axios.get(`/passport/users/${user.id}/activityStats`),
+    ])
+      .then(([sessionsRes, statsRes]) => {
+        setSessions(sessionsRes.data);
+        setStats(statsRes.data);
+      })
+      .catch(() => openNotification("Something went wrong", " ", "error"))
+      .finally(() => setLoading(false));
+  }, [user?.id]);
 
   const columns = [
     {
       title: "Agent",
       dataIndex: "agent",
       key: "agent",
+      ellipsis: true,
+      render: (text: string) => (
+        <Text ellipsis style={{ maxWidth: 220 }} title={text}>
+          {text || "—"}
+        </Text>
+      ),
     },
     {
-      title: "Remote Address",
+      title: "IP",
       dataIndex: "remoteAddr",
       key: "remoteAddr",
+      width: 130,
     },
     {
-      title: "Last Login",
+      title: "Login",
       dataIndex: "lastLoginAt",
       key: "lastLoginAt",
-      render: (text: number) => new Date(text).toLocaleString(),
+      width: 160,
+      render: (ts: number) => (ts ? new Date(ts).toLocaleString() : "—"),
     },
     {
-      title: "Logged Out",
+      title: "Logout",
       dataIndex: "lastLogoutAt",
       key: "lastLogoutAt",
-      render: (text: number) =>
-        text ? new Date(text).toLocaleString() : getLanguageLabel("noStatus"),
+      width: 160,
+      render: (ts: number) =>
+        ts ? new Date(ts).toLocaleString() : <Text type="secondary">{getLanguageLabel("noStatus")}</Text>,
+    },
+    {
+      title: getLanguageLabel("sessionDuration"),
+      dataIndex: "durationSeconds",
+      key: "durationSeconds",
+      width: 110,
+      render: (v: number) => formatDuration(v),
+    },
+    {
+      title: getLanguageLabel("endReason"),
+      dataIndex: "endReason",
+      key: "endReason",
+      width: 110,
+      render: (v: string) => <EndReasonTag reason={v} />,
     },
   ];
-  return !user ? (
-    <BoslerLoader />
-  ) : (
+
+  if (!user) return <BoslerLoader />;
+
+  return (
     <div className="settings-center-block">
       <p>
         <Row>
@@ -73,13 +122,65 @@ const LoginActivity = () => {
         <Divider />
       </p>
 
-      <Table
-        dataSource={last10Login}
-        columns={columns}
-        pagination={false}
-        scroll={{x:true}}
-        // scroll={{ y: "60vh" }}
-      />
+      {loading ? (
+        <BoslerLoader />
+      ) : (
+        <>
+          {stats && (
+            <>
+              <Title level={5}>{getLanguageLabel("sessionStats")}</Title>
+              <Row gutter={[16, 16]} style={{ marginBottom: 24 }}>
+                <Col xs={12} sm={6}>
+                  <Card size="small">
+                    <Statistic
+                      title={getLanguageLabel("totalSessions")}
+                      value={stats.totalSessions ?? 0}
+                      prefix={<UserOutlined />}
+                    />
+                  </Card>
+                </Col>
+                <Col xs={12} sm={6}>
+                  <Card size="small">
+                    <Statistic
+                      title={getLanguageLabel("today")}
+                      value={formatDuration(stats.todaySeconds)}
+                      prefix={<ThunderboltOutlined />}
+                    />
+                  </Card>
+                </Col>
+                <Col xs={12} sm={6}>
+                  <Card size="small">
+                    <Statistic
+                      title={getLanguageLabel("last7Days")}
+                      value={formatDuration(stats.week7dSeconds)}
+                      prefix={<CalendarOutlined />}
+                    />
+                  </Card>
+                </Col>
+                <Col xs={12} sm={6}>
+                  <Card size="small">
+                    <Statistic
+                      title={getLanguageLabel("totalTime")}
+                      value={formatDuration(stats.totalSeconds)}
+                      prefix={<ClockCircleOutlined />}
+                    />
+                  </Card>
+                </Col>
+              </Row>
+              <Divider />
+            </>
+          )}
+
+          <Table
+            dataSource={sessions}
+            columns={columns}
+            rowKey="id"
+            pagination={{ pageSize: 20, hideOnSinglePage: true }}
+            scroll={{ x: true }}
+            size="small"
+          />
+        </>
+      )}
     </div>
   );
 };
