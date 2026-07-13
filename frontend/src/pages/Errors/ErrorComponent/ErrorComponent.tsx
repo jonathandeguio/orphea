@@ -67,7 +67,7 @@ export const ErrorComponent = ({
             numberOfParticles={50}
             speed={2}
             logoSize={8}
-            image="/logo_hexa.png"
+            image="/logo_hexa.svg"
           />
         </div>
         <div
