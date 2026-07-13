@@ -1378,15 +1378,10 @@ function getNextCronOccurenceDate(
 }
 
 function isLicenseKeyUsedValid(license: License) {
-  if (!isDefined(license.expiresOn) || !isDefined(license.baseUrl))
+  if (!isDefined(license.expiresOn))
     return false;
   const date = new Date();
-  let baseUrlCheck = true;
-  if (!isReactAppDevelopment()) {
-    const baseUrls = license.baseUrl.split(";");
-    baseUrlCheck = baseUrls.findIndex((baseUrl) => baseUrl == BASE_URL) != -1;
-  }
-  return license.expiresOn.valueOf() >= date.valueOf() && baseUrlCheck;
+  return license.expiresOn.valueOf() >= date.valueOf();
 }
 
 function isUseCaseBasedOptionActivate(
