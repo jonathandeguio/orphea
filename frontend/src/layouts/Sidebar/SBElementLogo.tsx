@@ -1,4 +1,3 @@
-import { BoslerIcon } from "assets/icons/boslerMiscellaneousIcons";
 import BoslerLoader from "components/boslerLoader";
 import React from "react";
 import { useSelector } from "react-redux";
@@ -40,7 +39,7 @@ const SDElementLogo = ({
         />
       ) : (
         <>
-          <BoslerIcon size={iconSize && iconSize > 18 ? 36 : 30} />
+          <img src="/logo.png" alt="MoveToData" style={{ height: iconSize && iconSize > 18 ? 36 : 30 }} />
           <br />
           {showText ? (
             <span className="logo">MOVETODATA</span>

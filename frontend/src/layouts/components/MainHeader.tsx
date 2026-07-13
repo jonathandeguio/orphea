@@ -22,7 +22,7 @@ import {
 } from "assets/icons/boslerActionIcons";
 import { CopyIcon } from "assets/icons/boslerEditorIcons";
 import { DocumentationIcon } from "assets/icons/boslerFileIcons";
-import { BoslerIcon, HelpIcon } from "assets/icons/boslerMiscellaneousIcons";
+import { HelpIcon } from "assets/icons/boslerMiscellaneousIcons";
 import axios from "axios";
 import { getIsConnectAdmin } from "common/common.api";
 import BoslerButton from "components/BoslerComponents/ButtonComponent/BoslerButton";
@@ -256,7 +256,7 @@ const MainHeader = () => {
                         src={config.logo}
                       />
                     ) : (
-                      <BoslerIcon size={32} />
+                      <img src="/logo.png" alt="MoveToData" style={{ height: 32 }} />
                     )}
                   </Link>
                 </div>
