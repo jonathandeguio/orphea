@@ -23,6 +23,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -365,6 +366,7 @@ public class UserController {
         return ResponseEntity.ok().body(stats);
     }
 
+    @Transactional
     @Operation(summary = "Clear all login history for a user")
     @DeleteMapping("/{userId}/loginHistory")
     ResponseEntity<Object> clearLoginHistory(Principal principal, @PathVariable("userId") UUID Id) {
