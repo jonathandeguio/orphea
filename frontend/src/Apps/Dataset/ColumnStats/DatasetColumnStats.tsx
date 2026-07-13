@@ -113,7 +113,7 @@ const DatasetColumnStats = (props: $TSFixMe) => {
           </Col>
           <Col>
             <BoslerTag
-              color={props.info.loading ? "var(--bosler-intent-danger)" : ""}
+              color={props.info.loading ? "var(--movetodata-intent-danger)" : ""}
               icon={
                 <HistoricalRunsIcon
                   size={11}

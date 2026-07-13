@@ -1,11 +1,11 @@
 .gridCustomizer {
-  // background-color: var(--bosler-border-color-default);
+  // background-color: var(--movetodata-border-color-default);
   padding: 0.5rem;
   border-radius: 3px;
   .ant-form-item {
     margin-bottom: 0px !important;
   }
-  border: 1px dashed var(--bosler-border-color-default);
+  border: 1px dashed var(--movetodata-border-color-default);
 }
 
 .bigNumberAlign {
@@ -35,8 +35,8 @@
 .customThemeCross {
   padding: 1px;
   position: absolute;
-  border: 1px solid var(--bosler-border-color-default);
-  background: var(--bosler-hover-color);
+  border: 1px solid var(--movetodata-border-color-default);
+  background: var(--movetodata-hover-color);
   cursor: pointer;
   top: -5px;
   border-radius: 50%;
@@ -47,7 +47,7 @@
   margin: 0 !important;
 
   &:hover {
-    background-color: var(--bosler-border-color-default);
+    background-color: var(--movetodata-border-color-default);
   }
 }
 

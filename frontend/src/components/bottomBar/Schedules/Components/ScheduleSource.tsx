@@ -59,8 +59,8 @@ const ScheduleSource = ({
         {triggers.length > 0 && (
           <div
             style={{
-              background: "var(--bosler-bkg-color-muted)",
-              border: "1px solid var(--bosler-border-color-default)",
+              background: "var(--movetodata-bkg-color-muted)",
+              border: "1px solid var(--movetodata-border-color-default)",
               padding: "0.5rem 0 0.5rem 0.5rem",
               marginBottom: "0.5rem",
             }}
@@ -76,7 +76,7 @@ const ScheduleSource = ({
                 >
                   <TableIcon />
                   <div style={{ flex: 1 }}>{trigger.name}</div>
-                  <div style={{ fontStyle: "italic", color: "var(--bosler" }}>
+                  <div style={{ fontStyle: "italic", color: "var(--movetodata" }}>
                     {trigger.operator}
                   </div>
                   <BoslerButton

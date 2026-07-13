@@ -174,7 +174,7 @@ const Schedules = () => {
         justify={"space-between"}
         align="middle"
         style={{
-          borderBottom: "1px solid var(--bosler-border-color-default)",
+          borderBottom: "1px solid var(--movetodata-border-color-default)",
           padding: "5px 20px",
           width: "100%",
         }}

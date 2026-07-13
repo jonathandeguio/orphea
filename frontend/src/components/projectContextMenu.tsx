@@ -173,7 +173,7 @@ const projectContextMenu = (
     },
     {
       item: getLanguageLabel("delete"),
-      icon: <TrashIcon color="var(--bosler-intent-danger)" />,
+      icon: <TrashIcon color="var(--movetodata-intent-danger)" />,
       action: (record: any) => {
         dispatch(moveToTrash(record.id)).then(() => {
           if (id) {
@@ -347,7 +347,7 @@ const ProjectContextMenu = (state: {
     },
     {
       item: getLanguageLabel("delete"),
-      icon: <TrashIcon color="var(--bosler-intent-danger)" />,
+      icon: <TrashIcon color="var(--movetodata-intent-danger)" />,
       action: (record: any) => {
         dispatch(moveToTrash(record.id)).then(() => {
           if (id) {

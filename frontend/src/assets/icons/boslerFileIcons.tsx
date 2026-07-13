@@ -7,7 +7,7 @@ function DocsIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="docs"
@@ -38,7 +38,7 @@ function ArchiveIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="archive"
@@ -69,7 +69,7 @@ function LeftAlignIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg height={size} width={size} viewBox="0 0 16 16">
         <desc>dynamic</desc>
         <g stroke-width="1">
@@ -92,7 +92,7 @@ function RightAlignIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="align-right"
@@ -121,7 +121,7 @@ function CenterAlignIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="center-align"
@@ -151,7 +151,7 @@ function DocumentationIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="documentation"
@@ -182,7 +182,7 @@ function FolderOpen2Icon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         data-icon="folder-open"
         fill={color}
@@ -209,7 +209,7 @@ function FolderOpenIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="files"
@@ -246,7 +246,7 @@ function FolderIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="FOLDER"
@@ -277,7 +277,7 @@ function EmailIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="email"

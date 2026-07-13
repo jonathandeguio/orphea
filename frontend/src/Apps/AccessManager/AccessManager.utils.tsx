@@ -109,7 +109,7 @@ export const getClosedRequestMenuItems = (props: {
                 });
             }}
           />
-          <CrossIcon color={"var(--bosler-intent-danger)"} />
+          <CrossIcon color={"var(--movetodata-intent-danger)"} />
         </>
       ),
     },

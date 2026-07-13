@@ -14,7 +14,7 @@ const BuildSparkTab = ({ sparkApplicationId }: TProps) => {
       }}
     >
       <iframe
-        src={`${BASE_URL}/bosler-shs/history/${sparkApplicationId}/jobs/`}
+        src={`${BASE_URL}/movetodata-shs/history/${sparkApplicationId}/jobs/`}
         width="100%"
         height="100%"
       ></iframe>

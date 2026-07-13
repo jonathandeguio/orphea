@@ -769,7 +769,7 @@ const Tags = () => {
             <Divider
               type="vertical"
               style={{
-                backgroundColor: "var(--bosler-border-color-default)",
+                backgroundColor: "var(--movetodata-border-color-default)",
                 height: "auto",
               }}
             />
@@ -796,7 +796,7 @@ const Tags = () => {
             <Divider
               type="vertical"
               style={{
-                backgroundColor: "var(--bosler-border-color-default)",
+                backgroundColor: "var(--movetodata-border-color-default)",
                 height: "auto",
               }}
             />

@@ -43,7 +43,7 @@ const ScheduleDetailsTable = ({ id, jobInfo }: IProps) => {
               width: "100%",
               justifyContent: "space-between",
               padding: "1rem",
-              border: "1px solid var(--bosler-border-color-muted)",
+              border: "1px solid var(--movetodata-border-color-muted)",
             }}
           >
             <div style={{ flex: "0 0 40%" }}>
@@ -64,7 +64,7 @@ const ScheduleDetailsTable = ({ id, jobInfo }: IProps) => {
                   <div className="text-and-icon-center">
                     <WarningIcon
                       size={24}
-                      color="var(--bosler-intent-danger)"
+                      color="var(--movetodata-intent-danger)"
                     />
                     <Text style={{ fontSize: "1.2rem" }} type="danger">
                       {getLanguageLabel("buildFailed")}
@@ -171,9 +171,9 @@ const ScheduleDetailsTable = ({ id, jobInfo }: IProps) => {
           style={{
             display: "flex",
             paddingRight: "6px",
-            borderRight: "1px solid var(--bosler-border-color-muted)",
-            borderBottom: "1px solid var(--bosler-border-color-muted)",
-            borderLeft: "1px solid var(--bosler-border-color-muted)",
+            borderRight: "1px solid var(--movetodata-border-color-muted)",
+            borderBottom: "1px solid var(--movetodata-border-color-muted)",
+            borderLeft: "1px solid var(--movetodata-border-color-muted)",
           }}
         >
           <PanelGroup direction={"horizontal"}>
@@ -187,7 +187,7 @@ const ScheduleDetailsTable = ({ id, jobInfo }: IProps) => {
                     width: "100%",
 
                     padding: "0.75rem",
-                    borderBottom: "1px solid var(--bosler-border-color-muted)",
+                    borderBottom: "1px solid var(--movetodata-border-color-muted)",
                   }}
                 >
                   <div>
@@ -240,8 +240,8 @@ const ScheduleDetailsTable = ({ id, jobInfo }: IProps) => {
                           style={{
                             padding: "0.5rem",
                             borderBottom:
-                              "1px solid var(--bosler-border-color-default)",
-                            backgroundColor: "var(--bosler-bkg-color-muted)",
+                              "1px solid var(--movetodata-border-color-default)",
+                            backgroundColor: "var(--movetodata-bkg-color-muted)",
                           }}
                           span={20}
                         >
@@ -260,7 +260,7 @@ const ScheduleDetailsTable = ({ id, jobInfo }: IProps) => {
                                 <Col
                                   style={{
                                     borderBottom:
-                                      "0.2px solid var(--bosler-border-color-default)",
+                                      "0.2px solid var(--movetodata-border-color-default)",
                                     padding: "0.2rem",
                                   }}
                                   span={20}

@@ -2,7 +2,7 @@
   min-height: 0;
   box-sizing: border-box;
   padding: 6px;
-  border-right: 1px solid var(--bosler-border-color-default);
+  border-right: 1px solid var(--movetodata-border-color-default);
   box-shadow: rgb(236, 237, 242) 1px 0px 0px 0px;
 }
 
@@ -19,7 +19,7 @@
 }
 
 .logo {
-  //   border-bottom: 1px solid var(--bosler-bkg-color-muted);
+  //   border-bottom: 1px solid var(--movetodata-bkg-color-muted);
   display: flex;
   -moz-box-align: center;
   align-items: center;
@@ -29,7 +29,7 @@
   font-size: 8px;
   font-weight: "100";
   margin-top: "-10px";
-  color: "var(--bosler-font-color-default)";
+  color: "var(--movetodata-font-color-default)";
   text-decoration: none;
   &:hover {
     text-decoration: none;
@@ -45,11 +45,11 @@
 .element__selected {
   margin-top: 5px;
   padding: 5px 0;
-  background-color: var(--bosler-border-color-muted);
+  background-color: var(--movetodata-border-color-muted);
   &:hover {
     background-color: rgba(71, 57, 130, 0.07);
   }
-  border-left: 4px solid var(--bosler-border-color-default);
+  border-left: 4px solid var(--movetodata-border-color-default);
 }
 
 
@@ -93,7 +93,7 @@
   height: 100%; /* Ensure the flex container has height */
   text-align: center; /* In case the flex properties don't apply to inline elements */
   cursor: pointer;
-  color: var(--bosler-font-color-default);
+  color: var(--movetodata-font-color-default);
   font-size: 0.6rem;
   font-weight: 500;
 }

@@ -3849,7 +3849,7 @@ export default function BezierD3({ pipeline, id, branch, buildexist, name }) {
         ) {
           return "#FFBF00";
         } else {
-          return "var(--bosler-font-color-muted)";
+          return "var(--movetodata-font-color-muted)";
         }
       })
       .attr("stroke-linecap", "round")
@@ -4235,7 +4235,7 @@ export default function BezierD3({ pipeline, id, branch, buildexist, name }) {
       .attr("markerHeight", 12)
       .append("svg:path")
       .attr("d", "M2,2 L10,6 L2,10 L2,2")
-      .attr("fill", "var(--bosler-font-color-muted)")
+      .attr("fill", "var(--movetodata-font-color-muted)")
       .style("stroke", "none");
 
     const defs_selected = svg_ref

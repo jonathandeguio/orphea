@@ -117,7 +117,7 @@ const BezierDetail = () => {
       document.title =
         isDefined(config) && isDefined(config.platformName)
           ? config.platformName
-          : "Bosler";
+          : "MoveToData";
     };
   }, []);
 

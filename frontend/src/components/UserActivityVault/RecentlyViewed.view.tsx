@@ -62,7 +62,7 @@ const RecentlyViewed = () => {
       document.title =
         isDefined(config) && isDefined(config.platformName)
           ? config.platformName
-          : "Bosler";
+          : "MoveToData";
     };
   }, []);
 

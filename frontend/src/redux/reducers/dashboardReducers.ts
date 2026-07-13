@@ -52,7 +52,7 @@ export const editDashboardReducer = (
     dashboardRefreshConfig: DASHBOARD_REFRESH_DEFAULT_CONFIG,
     reloadDashboardElement: 0,
     gridConfig: {
-      background: "var(--bosler-bkg-color-muted)",
+      background: "var(--movetodata-bkg-color-muted)",
       topPadding: 2,
       rightPadding: 2,
       bottomPadding: 2,

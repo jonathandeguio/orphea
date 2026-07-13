@@ -1,7 +1,7 @@
 export const registerOneTimeWindowsFunctions = () => {
   /**
    * Purpose : To temporary make the button successful
-   * Related Component : Bosler Button
+   * Related Component : MoveToData Button
    */
   (window as any).makeButtonTemporarySuccess = (
     id: string,
@@ -13,7 +13,7 @@ export const registerOneTimeWindowsFunctions = () => {
       button.classList.add("boslerButton-tempsuccess");
       // For Tick Icon
       const tickIcon = document.createElement("span");
-      tickIcon.className = "bosler-icons";
+      tickIcon.className = "movetodata-icons";
       tickIcon.innerHTML = `
         <svg
           color="white"
@@ -48,7 +48,7 @@ export const registerOneTimeWindowsFunctions = () => {
 
   /**
    * Purpose : To temporary make the button failure
-   * Related Component : Bosler Button
+   * Related Component : MoveToData Button
    */
   (window as any).makeButtonTemporaryFailure = (
     id: string,
@@ -60,7 +60,7 @@ export const registerOneTimeWindowsFunctions = () => {
       button.classList.add("boslerButton-tempfailure");
       // For Cross Icon
       const crossIcon = document.createElement("span");
-      crossIcon.className = "bosler-icons";
+      crossIcon.className = "movetodata-icons";
       crossIcon.innerHTML = `
       <svg
         color="white

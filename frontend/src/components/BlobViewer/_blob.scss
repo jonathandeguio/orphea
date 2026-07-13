@@ -305,7 +305,7 @@ canvas {
     -webkit-box-pack: justify;
     justify-content: space-between;
 
-    border-bottom: 1px solid var(--bosler-border-color-default);
+    border-bottom: 1px solid var(--movetodata-border-color-default);
     padding: 4px 16px;
     z-index: 2;
 
@@ -318,7 +318,7 @@ canvas {
       gap: 1em;
 
       &-star {
-        color: var(--bosler-font-color-muted);
+        color: var(--movetodata-font-color-muted);
         font-size: 18px;
       }
 
@@ -339,8 +339,8 @@ canvas {
         align-items: center;
         // margin-left: 4px;
         // padding-left: 8px;
-        background-color: var(--bosler-bkg-color-muted); //rgb(247, 247, 247);
-        color: var(--bosler-font-color-muted);
+        background-color: var(--movetodata-bkg-color-muted); //rgb(247, 247, 247);
+        color: var(--movetodata-font-color-muted);
         border-radius: 4px;
         line-height: 1;
 
@@ -349,7 +349,7 @@ canvas {
           -webkit-box-align: center;
           align-items: center;
           padding: 8px 12px;
-          color: var(--bosler-font-color-muted);
+          color: var(--movetodata-font-color-muted);
           font-size: 13px;
           min-width: 104px;
           border-radius: 4px;
@@ -365,13 +365,13 @@ canvas {
             cursor: default;
 
             &-icon {
-              color: var(--bosler-font-color-muted);
+              color: var(--movetodata-font-color-muted);
               padding-right: 8px;
               font-size: 16px;
             }
 
             &-text {
-              color: var(--bosler-font-color-muted);
+              color: var(--movetodata-font-color-muted);
               overflow: hidden;
               text-overflow: ellipsis;
               white-space: nowrap;
@@ -411,7 +411,7 @@ canvas {
       gap: 1rem;
 
       &-save {
-        // color: $bosler-300;
+        // color: $movetodata-300;
         background-color: var(--background-color);
         border-color: transparent;
         display: inline-flex;
@@ -439,7 +439,7 @@ canvas {
         &:hover {
           // border-color: transparent;
           color: #ffffff;
-          // background-color: $bosler-600;
+          // background-color: $movetodata-600;
           border: 0.2px solid rgba(11, 14, 22, 0.3);
           box-shadow: 0px 0px 2px 0px rgba(11, 14, 22, 0.4);
         }
@@ -468,8 +468,8 @@ canvas {
       }
 
       &-un-saved {
-        // color: $bosler-300;
-        background-color: var(--bosler-bkg-color-muted);
+        // color: $movetodata-300;
+        background-color: var(--movetodata-bkg-color-muted);
         border-color: transparent;
         display: inline-flex;
         -webkit-box-align: center;
@@ -497,7 +497,7 @@ canvas {
         &:hover {
           // border-color: transparent;
           color: #ffffff;
-          // background-color: $bosler-600;
+          // background-color: $movetodata-600;
           border: 0.2px solid rgba(11, 14, 22, 0.3);
           box-shadow: 0px 0px 2px 0px rgba(11, 14, 22, 0.4);
         }
@@ -546,17 +546,17 @@ canvas {
           rgba(11, 14, 22, 0.03) 0px 2px 4px;
         transition: box-shadow 0.15s cubic-bezier(0.25, 0.1, 0.25, 1) 0s;
         border-radius: 4px;
-        color: $bosler-500;
+        color: $movetodata-500;
         background-color: var(--background-color);
         margin-left: 8px;
         width: 32px;
         height: 32px;
         padding: 0px;
-        border: 0.3px solid $bosler-300;
+        border: 0.3px solid $movetodata-300;
 
         &-icon {
           // color: #ffffff;
-          // background-color: $bosler-600;
+          // background-color: $movetodata-600;
           border: 0.2px solid rgba(11, 14, 22, 0.3);
           box-shadow: 0px 0px 2px 0px rgba(11, 14, 22, 0.4);
         }
@@ -702,7 +702,7 @@ canvas {
         );
 
         &-btn {
-          color: $bosler-300;
+          color: $movetodata-300;
           background-color: var(--background-color);
           border-color: transparent;
           display: inline-flex;
@@ -730,7 +730,7 @@ canvas {
 
           &:hover {
             color: #ffffff;
-            // background-color: $bosler-600;
+            // background-color: $movetodata-600;
             border-color: transparent;
           }
         }
@@ -769,7 +769,7 @@ canvas {
     // For dashboard
 
     &-menu {
-      // border-right: 1px solid var(--bosler-border-color-default);
+      // border-right: 1px solid var(--movetodata-border-color-default);
       // background-color: var(--background-color);
     }
 
@@ -839,7 +839,7 @@ canvas {
       justify-content: space-between;
       text-transform: uppercase;
       font-size: 12px;
-      color: var(--bosler-font-color-muted);
+      color: var(--movetodata-font-color-muted);
       margin-bottom: 2px;
       position: relative;
     }
@@ -872,7 +872,7 @@ canvas {
       justify-content: space-between;
       text-transform: uppercase;
       font-size: 12px;
-      color: var(--bosler-font-color-muted);
+      color: var(--movetodata-font-color-muted);
       margin-bottom: 2px;
       position: relative;
     }
@@ -905,7 +905,7 @@ canvas {
       justify-content: space-between;
       text-transform: uppercase;
       font-size: 12px;
-      color: var(--bosler-font-color-muted);
+      color: var(--movetodata-font-color-muted);
       margin-bottom: 2px;
       position: relative;
     }
@@ -938,7 +938,7 @@ canvas {
       justify-content: space-between;
       text-transform: uppercase;
       font-size: 12px;
-      color: var(--bosler-font-color-muted);
+      color: var(--movetodata-font-color-muted);
       margin-bottom: 2px;
       position: relative;
     }
@@ -968,7 +968,7 @@ canvas {
       justify-content: space-between;
       text-transform: uppercase;
       font-size: 12px;
-      color: var(--bosler-font-color-muted);
+      color: var(--movetodata-font-color-muted);
       margin-bottom: 2px;
       position: relative;
     }
@@ -1126,7 +1126,7 @@ canvas {
   // Don't remove this : This is hack to not decrease height on hover i.e when border is added
   // padding: 1px;
   height: 100%;
-  border: 0.25px solid var(--bosler-border-color-default);
+  border: 0.25px solid var(--movetodata-border-color-default);
 
   &:hover {
     // padding: 0px;
@@ -1163,7 +1163,7 @@ canvas {
 }
 
 .react-grid-item.react-grid-placeholder {
-  background: var(--bosler-border-color-default);
+  background: var(--movetodata-border-color-default);
   opacity: 0.1;
   transition-duration: 100ms;
   z-index: 2;
@@ -1389,7 +1389,7 @@ canvas {
     left: 4px;
     display: flex;
     width: 1px;
-    background-color: var(--bosler-border-color-default);
+    background-color: var(--movetodata-border-color-default);
     content: "";
   }
 

@@ -236,7 +236,7 @@ const BuildDetailsTable = ({
       <div
         style={{
           height: "100%",
-          borderTop: "1px solid var(--bosler-border-color-muted)",
+          borderTop: "1px solid var(--movetodata-border-color-muted)",
           minHeight: "0",
           flex: 1,
         }}
@@ -252,7 +252,7 @@ const BuildDetailsTable = ({
                   width: "100%",
 
                   padding: "0.75rem",
-                  borderBottom: "1px solid var(--bosler-border-color-muted)",
+                  borderBottom: "1px solid var(--movetodata-border-color-muted)",
                 }}
               >
                 <div>
@@ -335,8 +335,8 @@ const BuildDetailsTable = ({
                           style={{
                             padding: "0.5rem",
                             borderBottom:
-                              "1px solid var(--bosler-border-color-default)",
-                            backgroundColor: "var(--bosler-bkg-color-muted)",
+                              "1px solid var(--movetodata-border-color-default)",
+                            backgroundColor: "var(--movetodata-bkg-color-muted)",
                           }}
                           span={4}
                         >
@@ -348,8 +348,8 @@ const BuildDetailsTable = ({
                           style={{
                             padding: "0.5rem",
                             borderBottom:
-                              "1px solid var(--bosler-border-color-default)",
-                            backgroundColor: "var(--bosler-bkg-color-muted)",
+                              "1px solid var(--movetodata-border-color-default)",
+                            backgroundColor: "var(--movetodata-bkg-color-muted)",
                           }}
                           span={20}
                         >
@@ -384,7 +384,7 @@ const BuildDetailsTable = ({
                             <Col
                               style={{
                                 borderBottom:
-                                  "0.2px solid var(--bosler-border-color-default)",
+                                  "0.2px solid var(--movetodata-border-color-default)",
                                 padding: "0.2rem",
                                 fontFamily:
                                   "Space Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace",
@@ -414,7 +414,7 @@ const BuildDetailsTable = ({
                             <Col
                               style={{
                                 borderBottom:
-                                  "0.2px solid var(--bosler-border-color-default)",
+                                  "0.2px solid var(--movetodata-border-color-default)",
                                 padding: "0.2rem",
                               }}
                               span={20}
@@ -440,7 +440,7 @@ const BuildDetailsTable = ({
                                             style={{
                                               display: "inline",
                                               color:
-                                                "var(--bosler-font-color-muted)",
+                                                "var(--movetodata-font-color-muted)",
                                               overflow: "hidden",
                                             }}
                                           >

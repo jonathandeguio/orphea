@@ -831,7 +831,7 @@ const LinkModal = ({
               <Col span={16}>
                 <div
                   style={{
-                    border: "1px solid var(--bosler-border-color-default)",
+                    border: "1px solid var(--movetodata-border-color-default)",
                   }}
                 >
                   <Editor

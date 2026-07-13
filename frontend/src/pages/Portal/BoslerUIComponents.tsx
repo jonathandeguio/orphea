@@ -87,7 +87,7 @@ const BoslerComponents = () => {
           onChange={(value) => setActiveTab(value)}
         />
       </div>
-      <Title level={3}>Bosler Model Container</Title>
+      <Title level={3}>MoveToData Model Container</Title>
       <BoslerButton onClick={showModal}>Open Modal</BoslerButton>
 
       <BoslerModal
@@ -115,9 +115,9 @@ const BoslerComponents = () => {
       >
         This is the body
       </BoslerModal>
-      <Title level={3}>Bosler Header</Title>
+      <Title level={3}>MoveToData Header</Title>
       <BoslerHeader heading="heading" description="subheading" />
-      <Title level={3}>Bosler Selectable Card</Title>
+      <Title level={3}>MoveToData Selectable Card</Title>
       <BoslerSelectableCard
         icon={<PostgresIcon />}
         heading={"Hello"}

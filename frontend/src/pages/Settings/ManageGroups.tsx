@@ -132,7 +132,7 @@ const ManageGroups = () => {
           {canEditGroupDetails(false) && (
             <Tooltip title={getLanguageLabel("remove")} placement="right">
               <BoslerButton
-                icon={<RemoveIcon color={"var(--bosler-intent-danger)"} />}
+                icon={<RemoveIcon color={"var(--movetodata-intent-danger)"} />}
                 onClick={() =>
                   updateGroupDetailsAPI({
                     id: groupDetails?.id,
@@ -401,7 +401,7 @@ const ManageGroups = () => {
       <Col
         span={9}
         style={{
-          borderLeft: "1px solid var(--bosler-border-color-default)",
+          borderLeft: "1px solid var(--movetodata-border-color-default)",
           padding: "3rem",
         }}
       >
@@ -417,12 +417,12 @@ const ManageGroups = () => {
         <Row
           gutter={[16, 16]}
           style={{
-            background: "var(--bosler-bkg-color-muted)",
+            background: "var(--movetodata-bkg-color-muted)",
             borderRadius: "2px",
             boxShadow:
               "rgba(11, 14, 22, 0.02) 0px 0px 0px 1px, rgba(11, 14, 22, 0.04) 0px 4px 8px, rgba(11, 14, 22, 0.04) 0px 18px 46px 6px",
             padding: "2rem",
-            border: "1px solid var(--bosler-border-color-default)",
+            border: "1px solid var(--movetodata-border-color-default)",
           }}
         >
           <Col span={10}>
@@ -468,7 +468,7 @@ const ManageGroups = () => {
               justifyContent: "center",
             }}
           >
-            <DisableIcon color="var(--bosler-intent-danger)" />
+            <DisableIcon color="var(--movetodata-intent-danger)" />
           </Col>
           <Col
             span={4}
@@ -500,7 +500,7 @@ const ManageGroups = () => {
               justifyContent: "center",
             }}
           >
-            <DisableIcon color="var(--bosler-intent-danger)" />
+            <DisableIcon color="var(--movetodata-intent-danger)" />
           </Col>
           <Col
             span={4}
@@ -532,7 +532,7 @@ const ManageGroups = () => {
               justifyContent: "center",
             }}
           >
-            <DisableIcon color="var(--bosler-intent-danger)" />
+            <DisableIcon color="var(--movetodata-intent-danger)" />
           </Col>
           <Col
             span={4}
@@ -542,7 +542,7 @@ const ManageGroups = () => {
               justifyContent: "center",
             }}
           >
-            <DisableIcon color="var(--bosler-intent-danger)" />
+            <DisableIcon color="var(--movetodata-intent-danger)" />
           </Col>
           <Col
             span={4}
@@ -564,7 +564,7 @@ const ManageGroups = () => {
               justifyContent: "center",
             }}
           >
-            <DisableIcon color="var(--bosler-intent-danger)" />
+            <DisableIcon color="var(--movetodata-intent-danger)" />
           </Col>
           <Col
             span={4}
@@ -574,7 +574,7 @@ const ManageGroups = () => {
               justifyContent: "center",
             }}
           >
-            <DisableIcon color="var(--bosler-intent-danger)" />
+            <DisableIcon color="var(--movetodata-intent-danger)" />
           </Col>
           <Col
             span={4}
@@ -596,7 +596,7 @@ const ManageGroups = () => {
               justifyContent: "center",
             }}
           >
-            <DisableIcon color="var(--bosler-intent-danger)" />
+            <DisableIcon color="var(--movetodata-intent-danger)" />
           </Col>
           <Col
             span={4}
@@ -606,7 +606,7 @@ const ManageGroups = () => {
               justifyContent: "center",
             }}
           >
-            <DisableIcon color="var(--bosler-intent-danger)" />
+            <DisableIcon color="var(--movetodata-intent-danger)" />
           </Col>
           <Col
             span={4}
@@ -640,7 +640,7 @@ const ManageGroups = () => {
               justifyContent: "center",
             }}
           >
-            <DisableIcon color="var(--bosler-intent-danger)" />
+            <DisableIcon color="var(--movetodata-intent-danger)" />
           </Col>
           <Col
             span={4}
@@ -650,7 +650,7 @@ const ManageGroups = () => {
               justifyContent: "center",
             }}
           >
-            <DisableIcon color="var(--bosler-intent-danger)" />
+            <DisableIcon color="var(--movetodata-intent-danger)" />
           </Col>
         </Row>
         <Text style={{ fontSize: "0.8rem" }} type="secondary">

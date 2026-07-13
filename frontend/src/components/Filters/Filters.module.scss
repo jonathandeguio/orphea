@@ -1,10 +1,10 @@
 .container {
   width: 100%;
   padding: 2px 3px;
-  //   background-color: var(--bosler-bkg-color-muted);
+  //   background-color: var(--movetodata-bkg-color-muted);
   background-color: var(--background-color);
-  border: 1px solid var(--bosler-border-color-default);
-  color: var(--bosler-font-color-muted);
+  border: 1px solid var(--movetodata-border-color-default);
+  color: var(--movetodata-font-color-muted);
   display: flex;
   align-items: center;
   .heading {
@@ -23,7 +23,7 @@
   .body {
     flex: 1;
     padding-left: 10px;
-    border-left: 1px solid var(--bosler-border-color-default);
+    border-left: 1px solid var(--movetodata-border-color-default);
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -37,13 +37,13 @@
   border-radius: 2px;
   cursor: pointer;
   &:hover {
-    color: var(--bosler-intent-danger);
+    color: var(--movetodata-intent-danger);
     background-color: rgb(218, 90, 100, 0.25);
   }
 }
 
 .tag {
-  background-color: var(--bosler-bkg-color-muted);
+  background-color: var(--movetodata-bkg-color-muted);
   background-color: #b1b6c426;
   color: var(--color);
   display: inline-block;
@@ -54,7 +54,7 @@
 
 .dangerTag {
   background-color: rgb(218, 90, 100, 0.25);
-  color: var(--bosler-intent-danger);
+  color: var(--movetodata-intent-danger);
   display: inline-block;
   line-height: 14px;
   padding: 4px;
@@ -128,7 +128,7 @@
   background-color: var(--background-color);
   opacity: 8;
   border-radius: 2px;
-  border: 0.7px solid var(--bosler-border-color-default);
+  border: 0.7px solid var(--movetodata-border-color-default);
   box-shadow: 0 0 0 1px rgba(64, 87, 109, 0.07),
     0 2px 12px rgba(53, 71, 90, 0.2);
   width: fit-content;

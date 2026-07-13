@@ -303,7 +303,7 @@ const FilterMenu = ({ filters, updateFilters, resetFilters }: IProps) => {
               intent="none"
               trimicononlypadding
               borderless
-              iconColor={"var(--bosler-intent-danger)"}
+              iconColor={"var(--movetodata-intent-danger)"}
               icon={<CrossIcon />}
               onClick={resetFilters}
               // icononly

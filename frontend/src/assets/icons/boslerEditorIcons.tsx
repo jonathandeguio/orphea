@@ -7,7 +7,7 @@ function GithubIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         color={color}
@@ -28,7 +28,7 @@ function MarkdownIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="markdown"
@@ -59,7 +59,7 @@ function StylesIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="styles-icon"
@@ -90,7 +90,7 @@ function TextIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="text"
@@ -121,7 +121,7 @@ function CodeCellIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="code-cell-icon"
@@ -152,7 +152,7 @@ function CutIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         data-icon="scissors"
         fill={color}
@@ -188,7 +188,7 @@ function PasteIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="copy"
@@ -243,7 +243,7 @@ function CopyIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="copy"
@@ -274,7 +274,7 @@ function EditIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="edit"

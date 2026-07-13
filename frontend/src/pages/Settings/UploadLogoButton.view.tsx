@@ -96,7 +96,7 @@ const UploadLogoButton = () => {
                     style={{ padding: "0.5rem" }}
                     className="text-and-icon-center"
                   >
-                    <TrashIcon color="var(--bosler-intent-danger)" />
+                    <TrashIcon color="var(--movetodata-intent-danger)" />
                     Remove
                   </span>
                 ),

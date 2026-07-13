@@ -2026,7 +2026,7 @@ const TestingArea = () => {
       </Popover>
       <BoslerButton>Without Icon</BoslerButton>
       <BoslerButton icon={<FolderIcon />}>With Icon</BoslerButton>
-      <Title level={3}>Bosler Model Container</Title>
+      <Title level={3}>MoveToData Model Container</Title>
       <BoslerModalContainer
         heading="Heading"
         headingIcon={<AddIcon />}

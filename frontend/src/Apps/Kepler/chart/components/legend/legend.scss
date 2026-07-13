@@ -67,18 +67,18 @@
 
     .seriesName {
       padding: 0.3rem;
-      background-color: var(--bosler-border-color-default);
+      background-color: var(--movetodata-border-color-default);
     }
     .groupBy {
       padding: 0.3rem;
 
-      border-right: 1px solid var(--bosler-border-color-default);
+      border-right: 1px solid var(--movetodata-border-color-default);
     }
 
     &_meta {
       white-space: break-spaces;
       overflow: visible;
-      background-color: var(--bosler-bkg-color-muted);
+      background-color: var(--movetodata-bkg-color-muted);
       position: sticky;
       left: 0px;
       display: flex;
@@ -120,13 +120,13 @@
     display: flex;
     flex-direction: column;
     gap: 0.2rem;
-    border-bottom: 1px solid var(--bosler-border-color-default);
+    border-bottom: 1px solid var(--movetodata-border-color-default);
     border-radius: 0.3rem;
 
     &_meta {
       white-space: break-spaces;
       overflow: visible;
-      background-color: var(--bosler-border-color-default);
+      background-color: var(--movetodata-border-color-default);
       position: sticky;
       height: 2rem;
       top: 0px;
@@ -160,6 +160,6 @@
   height: 70%;
 
   &:hover {
-    background-color: var(--bosler-hover-color);
+    background-color: var(--movetodata-hover-color);
   }
 }

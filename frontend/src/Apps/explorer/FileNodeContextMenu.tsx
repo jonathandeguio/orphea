@@ -837,7 +837,7 @@ export const TreeNodeContextMenu: React.FC<TreeNodeContextMenuProps> = ({
       type: multiSelect ? "HIDDEN" : "PRIMARY",
     },
     {
-      icon: <TrashIcon color={"var(--bosler-intent-danger)"} />,
+      icon: <TrashIcon color={"var(--movetodata-intent-danger)"} />,
       label: `${getLanguageLabel("delete")} ${
         multiSelect ? "(" + selected.length + ")" : ""
       }`,

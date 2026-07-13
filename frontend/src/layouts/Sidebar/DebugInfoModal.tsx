@@ -108,7 +108,7 @@ const DebugInfoModal = ({ isOpen, setIsOpen }: Props) => {
                   justify={"space-between"}
                   style={{
                     margin: "0.84rem",
-                    // borderBottom: "1px solid var(--bosler-border-color-default)",
+                    // borderBottom: "1px solid var(--movetodata-border-color-default)",
                   }}
                 >
                   <Col>
@@ -124,13 +124,13 @@ const DebugInfoModal = ({ isOpen, setIsOpen }: Props) => {
 
               {/* <div
                 style={{
-                  background: "var(--bosler-bkg-color-muted)",
+                  background: "var(--movetodata-bkg-color-muted)",
                   borderRadius: "2px",
                   boxShadow:
                     "rgba(11, 14, 22, 0.02) 0px 0px 0px 1px, rgba(11, 14, 22, 0.04) 0px 4px 8px, rgba(11, 14, 22, 0.04) 0px 18px 46px 6px",
 
                   margin: "0.84rem",
-                  border: "1px solid var(--bosler-border-color-default)",
+                  border: "1px solid var(--movetodata-border-color-default)",
                 }}
               > */}
                 <BoslerCollapse
@@ -143,7 +143,7 @@ const DebugInfoModal = ({ isOpen, setIsOpen }: Props) => {
                       // style={{
                       //   // margin: "0.84rem",
                       //   borderBottom:
-                      //     "1px solid var(--bosler-border-color-default)",
+                      //     "1px solid var(--movetodata-border-color-default)",
                       // }}
                     >
                       <Col>
@@ -206,7 +206,7 @@ const DebugInfoModal = ({ isOpen, setIsOpen }: Props) => {
                 justify={"space-between"}
                 style={{
                   margin: "0.84rem",
-                  borderBottom: "1px solid var(--bosler-border-color-default)",
+                  borderBottom: "1px solid var(--movetodata-border-color-default)",
                 }}
               >
                 <Col>
@@ -235,7 +235,7 @@ const DebugInfoModal = ({ isOpen, setIsOpen }: Props) => {
                 justify={"space-between"}
                 style={{
                   margin: "0.84rem",
-                  borderBottom: "1px solid var(--bosler-border-color-default)",
+                  borderBottom: "1px solid var(--movetodata-border-color-default)",
                 }}
               >
                 <Col>

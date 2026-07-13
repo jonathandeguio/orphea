@@ -4,7 +4,7 @@
   padding: 6px 5px 5px 8px;
 }
 .icon {
-  border-right: 1px solid var(--bosler-border-color-default);
+  border-right: 1px solid var(--movetodata-border-color-default);
   padding: 10px;
   align-self: center;
 }
@@ -21,7 +21,7 @@
   display: ruby;
   overflow: hidden;
   text-overflow: ellipsis;
-  color: var(--bosler-font-color-default);
+  color: var(--movetodata-font-color-default);
   font-weight: 500;
   font-size: 14px;
 }
@@ -40,7 +40,7 @@
 }
 
 .description {
-  color: var(--bosler-font-color-muted);
+  color: var(--movetodata-font-color-muted);
   font-size: 8px;
   line-height: 16px;
 }

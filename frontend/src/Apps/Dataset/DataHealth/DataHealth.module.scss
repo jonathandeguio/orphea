@@ -1,11 +1,11 @@
 .emptyCheck {
-  background-color: var(--bosler-bkg-color-muted);
+  background-color: var(--movetodata-bkg-color-muted);
   height: 80px;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  border: 1px solid var(--bosler-border-color-default);
+  border: 1px solid var(--movetodata-border-color-default);
 }
 
 // Logging
@@ -53,7 +53,7 @@
 
 .log_expanded {
   height: 100%;
-  background-color: var(--bosler-bkg-color-muted);
+  background-color: var(--movetodata-bkg-color-muted);
   padding: 10px;
 }
 

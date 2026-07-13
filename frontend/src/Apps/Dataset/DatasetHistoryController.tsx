@@ -31,7 +31,7 @@ const DatasetHistoryController = ({ id, branch, datasetMapping }: TProps) => {
       collapsedSize={0}
       ref={panelRef}
       style={{
-        borderRight: "1px solid var(--bosler-border-color-default)",
+        borderRight: "1px solid var(--movetodata-border-color-default)",
       }}
     >
       {!resourcePermission ? (

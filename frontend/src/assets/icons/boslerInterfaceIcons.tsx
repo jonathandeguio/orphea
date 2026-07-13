@@ -7,7 +7,7 @@ function APIIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="api"
@@ -38,7 +38,7 @@ function AppIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="app-icon"
@@ -81,7 +81,7 @@ function CalendarIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="calendar"
@@ -112,7 +112,7 @@ function ScheduledRunIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="scheduled-runs"
@@ -149,7 +149,7 @@ function ScheduledRunDarkIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="scheduled-runs"
@@ -192,7 +192,7 @@ function ApplicationIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         data-icon="application"
         fill={color}
@@ -222,7 +222,7 @@ function EnterKeyIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="escape"
@@ -247,7 +247,7 @@ function EscapeIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="escape"
@@ -271,7 +271,7 @@ function ChangeLogIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="changelog"
@@ -302,7 +302,7 @@ function CommandPaletteIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         data-icon="command-palette"
         color={color}
@@ -358,7 +358,7 @@ function EnvironmentIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         data-icon="environment"
         fill={color}
@@ -393,7 +393,7 @@ function ComponentIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="component"
@@ -424,7 +424,7 @@ function EyeOpenIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="eye-open"
@@ -455,7 +455,7 @@ function EyeClosedIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="eye-closed"
@@ -486,7 +486,7 @@ function GroupsIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="groups"
@@ -517,7 +517,7 @@ function DropdownInputParameterIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         data-icon="dropdown-input-parameter"
         fill={color}
@@ -547,7 +547,7 @@ function KeyIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="key"
@@ -578,7 +578,7 @@ function OutputArrowIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         data-icon="outputs-arrow"
         fill={color}
@@ -609,7 +609,7 @@ function PackageIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="package-icon"
@@ -640,7 +640,7 @@ function UserIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="user"
@@ -671,7 +671,7 @@ function HomeIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="home"
@@ -700,7 +700,7 @@ function UploadIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="upload"
@@ -731,7 +731,7 @@ function DownloadIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="download"
@@ -762,7 +762,7 @@ function AddUserIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="add-user"
@@ -793,7 +793,7 @@ function KeyCommandIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="hkey-commandome"
@@ -818,7 +818,7 @@ function PanIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="pan"
@@ -849,7 +849,7 @@ function MapLegendIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="map-legend"
@@ -880,7 +880,7 @@ function CollectionIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="collection"
@@ -911,7 +911,7 @@ function SidePanelIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="collection"
@@ -943,7 +943,7 @@ function UnorderedListIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="unordered-list"

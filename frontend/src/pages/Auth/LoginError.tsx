@@ -111,7 +111,7 @@ const LoginError = () => {
           <div className="login-icon">
             {!isIpPlatform() && <BoslerIcon size={"15vw"} />}
 
-            {/* <div className="login-icon-bosler">BOSLER</div> */}
+            {/* <div className="login-icon-movetodata">MOVETODATA</div> */}
             <h3>{getLanguageLabel("sessionExpired")}</h3>
           </div>
 

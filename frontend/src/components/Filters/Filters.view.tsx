@@ -232,7 +232,7 @@ const Filters = ({
       >
         <div className={styles.heading} onClick={() => setOpenAddPopover(true)}>
           <div className="text-and-icon-center">
-            <FilterLinesIcon color="var(--bosler-font-color-muted)" />
+            <FilterLinesIcon color="var(--movetodata-font-color-muted)" />
             {currentFilters.length == 0 ? (
               <div>{getLanguageLabel("filters")}</div>
             ) : (
@@ -251,7 +251,7 @@ const Filters = ({
             }}
             onClick={() => setCurrentFilters([])}
           >
-            <CrossIcon color={"var(--bosler-intent-danger)"} />
+            <CrossIcon color={"var(--movetodata-intent-danger)"} />
           </div>
         </Tooltip>
       )}

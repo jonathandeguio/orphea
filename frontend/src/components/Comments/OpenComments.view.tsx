@@ -200,11 +200,11 @@ const OpenComments = ({
                                       }}
                                       className="text-and-icon-center"
                                       style={{
-                                        color: "var(--bosler-intent-danger)",
+                                        color: "var(--movetodata-intent-danger)",
                                       }}
                                     >
                                       <TrashIcon
-                                        color={"var(--bosler-intent-danger)"}
+                                        color={"var(--movetodata-intent-danger)"}
                                       />
                                       {getLanguageLabel("delete")}
                                     </div>
@@ -317,7 +317,7 @@ const OpenComments = ({
               {comment.replies.length > 0 && (
                 <div
                   style={{
-                    borderLeft: "1px solid var(--bosler-border-color-default)",
+                    borderLeft: "1px solid var(--movetodata-border-color-default)",
                     marginTop: "0.5rem",
                     paddingLeft: "0.7rem",
                   }}
@@ -425,12 +425,12 @@ const OpenComments = ({
                                             className="text-and-icon-center"
                                             style={{
                                               color:
-                                                "var(--bosler-intent-danger)",
+                                                "var(--movetodata-intent-danger)",
                                             }}
                                           >
                                             <TrashIcon
                                               color={
-                                                "var(--bosler-intent-danger)"
+                                                "var(--movetodata-intent-danger)"
                                               }
                                             />
                                             {getLanguageLabel("delete")}

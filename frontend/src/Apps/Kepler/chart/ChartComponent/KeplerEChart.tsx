@@ -10,7 +10,7 @@ import { RootState } from "redux/types/store";
 import { isCurrentConfigThemeDark, isDefined } from "utils/utilities";
 import { sunBurstChartArrPrepare } from "../charts.utils";
 import { ZoomOutIcon } from "assets/icons/boslerNavigationIcon";
-echarts.registerTheme("dark-bosler", eChartDarkTheme);
+echarts.registerTheme("dark-movetodata", eChartDarkTheme);
 
 function KeplerEChart({
   options,
@@ -57,7 +57,7 @@ function KeplerEChart({
       } else {
         chartInstance.current = echarts.init(
           chartRef.current,
-          isCurrentConfigThemeDark(user) ? "dark-bosler" : "light",
+          isCurrentConfigThemeDark(user) ? "dark-movetodata" : "light",
           {}
         );
       }

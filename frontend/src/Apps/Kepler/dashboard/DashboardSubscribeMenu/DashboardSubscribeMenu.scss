@@ -20,7 +20,7 @@
         rgba(11, 14, 22, 0.2) 0px 4px 8px,
         rgba(11, 14, 22, 0.2) 0px 18px 46px 6px;
       transition: transform 0.15s cubic-bezier(0.25, 0.1, 0.25, 1) 0s;
-      color: var(--bosler-font-color-muted);
+      color: var(--movetodata-font-color-muted);
 
       .ant-modal-content {
         padding: 0;
@@ -38,11 +38,11 @@
             flex: 3;
             display: flex;
             flex-direction: column;
-            border-right: 1px solid var(--bosler-border-color-default);
+            border-right: 1px solid var(--movetodata-border-color-default);
             &-header {
               font-family: "Poppins", system-ui, -apple-system,
                 BlinkMacSystemFont, sans-serif;
-              border-bottom: 1px solid var(--bosler-border-color-default);
+              border-bottom: 1px solid var(--movetodata-border-color-default);
               padding: 20px;
               display: flex;
               justify-content: space-between;
@@ -103,7 +103,7 @@
           }
         }
         &-bottom {
-          border-top: 1px solid var(--bosler-border-color-default);
+          border-top: 1px solid var(--movetodata-border-color-default);
           padding: 20px;
           display: flex;
           justify-content: flex-end;
@@ -134,7 +134,7 @@
       &-item {
         width: 100%;
         // padding: 1rem;
-        // color: var(--bosler-font-color-muted);
+        // color: var(--movetodata-font-color-muted);
       }
     }
   }

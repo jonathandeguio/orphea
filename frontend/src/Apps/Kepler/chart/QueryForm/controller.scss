@@ -17,7 +17,7 @@
     margin-bottom: 0.5rem;
 
     &--active {
-      background-color: var(--bosler-border-color-default);
+      background-color: var(--movetodata-border-color-default);
 
       .slider__option {
         width: 100%;
@@ -156,7 +156,7 @@
     font-weight: 400;
     cursor: pointer;
     &:hover {
-      background-color: var(--bosler-hover-color);
+      background-color: var(--movetodata-hover-color);
     }
   }
 }

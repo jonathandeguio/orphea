@@ -320,7 +320,7 @@ function KeplerHeader({
                   style={{
                     justifyContent: "space-between",
                     width: "100%",
-                    color: "var(--bosler-font-color-muted)",
+                    color: "var(--movetodata-font-color-muted)",
                   }}
                 >
                   {getLanguageLabel("dataLineage")}

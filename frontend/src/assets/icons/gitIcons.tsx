@@ -7,7 +7,7 @@ export const GitCommitIcon = ({
   style,
 }: TBoslerIconProps) => {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="git-commit"
@@ -60,7 +60,7 @@ export const GitDiffIcon = ({
   style,
 }: TBoslerIconProps) => {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="git-commit"

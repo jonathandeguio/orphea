@@ -101,8 +101,8 @@ export const GroupTab = ({
                     isOpen: true,
                   });
                 }}
-                style={{ color: "var(--bosler-intent-danger)" }}
-                icon={<TrashIcon color={"var(--bosler-intent-danger)"} />}
+                style={{ color: "var(--movetodata-intent-danger)" }}
+                icon={<TrashIcon color={"var(--movetodata-intent-danger)"} />}
                 intent="dangerous"
               >
                 {getLanguageLabel("delete")}

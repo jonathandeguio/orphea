@@ -20,11 +20,11 @@ const Sparks = () => {
       document.title =
         isDefined(config) && isDefined(config.platformName)
           ? config.platformName
-          : "Bosler";
+          : "MoveToData";
     };
   }, []);
 
-  const url_history = `${BASE_URL}/bosler-shs/history/${id}/jobs/`;
+  const url_history = `${BASE_URL}/movetodata-shs/history/${id}/jobs/`;
 
   return (
     // @ts-expect-error TS(2322): Type '{ children: string; src: string; className: ... Remove this comment to see the full error message

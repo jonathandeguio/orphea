@@ -59,7 +59,7 @@ const Setting = () => {
       document.title =
         isDefined(config) && isDefined(config.platformName)
           ? config.platformName
-          : "Bosler";
+          : "MoveToData";
     };
   }, []);
 

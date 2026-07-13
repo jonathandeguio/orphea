@@ -7,7 +7,7 @@ function FilterIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="list-search-icon"
@@ -38,7 +38,7 @@ function FilterLinesIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="filter"
@@ -69,7 +69,7 @@ function TableCellIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="table-cell-icon"
@@ -100,7 +100,7 @@ function TableIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon={color}
@@ -131,7 +131,7 @@ function VariablesIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="variables"
@@ -166,7 +166,7 @@ function FxIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         data-icon="fx"
         width={size}
@@ -192,7 +192,7 @@ function PivotIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         data-icon="pivot"
         fill={color}
@@ -222,7 +222,7 @@ function RunCellSelectIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         data-icon="forward"
         fill={color}
@@ -252,7 +252,7 @@ function RunCellInsertIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         data-icon="next"
         fill={color}
@@ -282,7 +282,7 @@ function AddCellAboveIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="add-cell-above"
@@ -313,7 +313,7 @@ function AddCellBelowIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         data-icon="add-cell-below"
         color={color}
@@ -344,7 +344,7 @@ function CopyCellIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         data-icon="duplicate"
         color={color}

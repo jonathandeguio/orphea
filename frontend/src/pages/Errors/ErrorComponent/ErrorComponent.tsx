@@ -104,7 +104,7 @@ export const ErrorComponent = ({
                     alignItems: "center",
                     gap: "1rem",
                     flexDirection: "column",
-                    backgroundColor: "var(--bosler-bkg-color-muted)",
+                    backgroundColor: "var(--movetodata-bkg-color-muted)",
                     textAlign: "left",
                   }}
                 >
@@ -112,7 +112,7 @@ export const ErrorComponent = ({
                     style={{
                       marginBottom: "10px",
                       fontSize: "18px",
-                      color: "var(--bosler-font-color-muted)",
+                      color: "var(--movetodata-font-color-muted)",
                     }}
                     className="text-and-icon-center"
                   >

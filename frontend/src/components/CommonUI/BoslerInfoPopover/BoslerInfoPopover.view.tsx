@@ -116,7 +116,7 @@ export const BoslerInfoPopover: React.FC<Props> = ({
             <Row
               justify={"space-between"}
               style={{
-                borderBottom: "1px solid var(--bosler-border-color-default)",
+                borderBottom: "1px solid var(--movetodata-border-color-default)",
               }}
               align="middle"
               gutter={[16, 16]}

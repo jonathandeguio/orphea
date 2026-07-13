@@ -29,7 +29,7 @@ const PARLER_URL =
     ? location.protocol === "https:"
       ? "wss://" + location.host
       : "ws://" + location.host
-    : "ws://bora.bosler.io:8058"; // This is hardcoded for devs
+    : "ws://bora.movetodata.io:8058"; // This is hardcoded for devs
 
 interface IBoslerEditor {
   pane: IEditorPane;

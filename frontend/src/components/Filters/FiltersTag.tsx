@@ -69,8 +69,8 @@ const FilterTag = ({ filter, handleTagDelete, onClick }: TProps) => {
           <CrossIcon
             color={
               isDangerTag
-                ? "var(--bosler-intent-danger)"
-                : "var(--bosler-font-color-muted)"
+                ? "var(--movetodata-intent-danger)"
+                : "var(--movetodata-font-color-muted)"
             }
           />
         </div>

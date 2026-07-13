@@ -369,7 +369,7 @@ const DashboardGrid = ({ editable, tabId, dashboardId, gridRef }: IProps) => {
               height: "none",
               background: "var(--background-color)",
               border: !editable
-                ? "0.25px solid var(--bosler-border-color-default)"
+                ? "0.25px solid var(--movetodata-border-color-default)"
                 : "",
               zIndex: l.zIndex,
             }}
@@ -539,7 +539,7 @@ const DashboardGrid = ({ editable, tabId, dashboardId, gridRef }: IProps) => {
         // Pick config, else pick system default
         background: gridConfig.pageBg
           ? gridConfig.pageBg
-          : "var(--bosler-bkg-color-muted)",
+          : "var(--movetodata-bkg-color-muted)",
         padding: `${gridConfig.topPadding}px ${gridConfig.rightPadding}px ${gridConfig.bottomPadding}px ${gridConfig.leftPadding}px`,
       }}
       ref={gridRef}
@@ -568,12 +568,12 @@ const DashboardGrid = ({ editable, tabId, dashboardId, gridRef }: IProps) => {
                 minHeight: "calc(100% - 1rem - 3rem)",
                 background: gridConfig.canvasBg
                   ? gridConfig.canvasBg
-                  : "var(--bosler-bkg-color-muted)",
+                  : "var(--movetodata-bkg-color-muted)",
               }
             : {
                 background: gridConfig.canvasBg
                   ? gridConfig.canvasBg
-                  : "var(--bosler-bkg-color-muted)",
+                  : "var(--movetodata-bkg-color-muted)",
               }
         }
         draggableCancel=".cancelSelectorName"

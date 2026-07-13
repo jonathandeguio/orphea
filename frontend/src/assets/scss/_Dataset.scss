@@ -12,8 +12,8 @@
     padding: 1em;
     margin: 1em;
     max-width: 100%;
-    border: 1px solid var(--bosler-border-color-default);
-    background: var(--bosler-bkg-color-muted);
+    border: 1px solid var(--movetodata-border-color-default);
+    background: var(--movetodata-bkg-color-muted);
   }
 
   &-available-tags {
@@ -31,7 +31,7 @@
     overflow: scroll;
     width: 100%;
     // flex: 2.5;
-    border: 1px solid var(--bosler-border-color-default);
+    border: 1px solid var(--movetodata-border-color-default);
     // margin-right: 0.3rem;
     display: flex;
     flex-direction: column;
@@ -334,7 +334,7 @@
     -webkit-box-pack: justify;
     justify-content: space-between;
 
-    border-bottom: 1px solid var(--bosler-border-color-default);
+    border-bottom: 1px solid var(--movetodata-border-color-default);
     // height: 64px;
     padding: 4px 16px;
     z-index: 2;
@@ -348,7 +348,7 @@
       gap: 1em;
 
       &-star {
-        color: var(--bosler-font-color-muted);
+        color: var(--movetodata-font-color-muted);
         font-size: 18px;
       }
 
@@ -369,8 +369,8 @@
         align-items: center;
         // margin-left: 4px;
         // padding-left: 8px;
-        background-color: var(--bosler-bkg-color-muted); //rgb(247, 247, 247);
-        color: var(--bosler-font-color-muted);
+        background-color: var(--movetodata-bkg-color-muted); //rgb(247, 247, 247);
+        color: var(--movetodata-font-color-muted);
         border-radius: 4px;
         line-height: 1;
 
@@ -379,7 +379,7 @@
           -webkit-box-align: center;
           align-items: center;
           padding: 8px 12px;
-          color: var(--bosler-font-color-muted);
+          color: var(--movetodata-font-color-muted);
           font-size: 13px;
           min-width: 104px;
           border-radius: 4px;
@@ -395,13 +395,13 @@
             cursor: default;
 
             &-icon {
-              color: var(--bosler-font-color-muted);
+              color: var(--movetodata-font-color-muted);
               padding-right: 8px;
               font-size: 16px;
             }
 
             &-text {
-              color: var(--bosler-font-color-muted);
+              color: var(--movetodata-font-color-muted);
               overflow: hidden;
               text-overflow: ellipsis;
               white-space: nowrap;
@@ -448,7 +448,7 @@
     flex: 2.5;
     box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3),
       0 2px 6px 2px rgba(60, 64, 67, 0.15);
-    border: 0px solid var(--bosler-border-color-default);
+    border: 0px solid var(--movetodata-border-color-default);
     // margin-right: 0.3rem;
     display: flex;
     flex-direction: column;
@@ -587,12 +587,12 @@
     // width: 80vw;
     width: 80%;
     text-align: center;
-    border: 1px solid var(--bosler-border-color-default);
+    border: 1px solid var(--movetodata-border-color-default);
     border-style: dashed;
     border-radius: 6px;
 
     &-btn {
-      border: 1px solid var(--bosler-border-color-default);
+      border: 1px solid var(--movetodata-border-color-default);
       margin-bottom: 0.2vh;
     }
 
@@ -620,7 +620,7 @@
 .dataset-scheduler {
   background-color: $component;
   padding: 2rem;
-  border: 1px solid var(--bosler-border-color-default);
+  border: 1px solid var(--movetodata-border-color-default);
 }
 
 .distribution {
@@ -676,7 +676,7 @@
 // }
 
 .data-type-label {
-  box-shadow: var(--bosler-border-color-default) 0px 0px 0px 1px inset;
+  box-shadow: var(--movetodata-border-color-default) 0px 0px 0px 1px inset;
   display: inline-block;
   height: 18px;
   padding: 3px 4px;
@@ -695,9 +695,9 @@
   justify-content: center;
   min-width: 20px;
   height: 20px;
-  color: var(--bosler-font-color-muted);
+  color: var(--movetodata-font-color-muted);
   text-transform: uppercase;
   padding: 0px 4px;
-  border: 1px solid var(--bosler-border-color-default);
+  border: 1px solid var(--movetodata-border-color-default);
   border-radius: 2px;
 }

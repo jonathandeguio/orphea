@@ -217,10 +217,10 @@ export const getScheduleTableColumns = (
                             }}
                             className="text-and-icon-center"
                             style={{
-                              color: "var(--bosler-intent-danger)",
+                              color: "var(--movetodata-intent-danger)",
                             }}
                           >
-                            <TrashIcon color={"var(--bosler-intent-danger)"} />
+                            <TrashIcon color={"var(--movetodata-intent-danger)"} />
                             {getLanguageLabel("delete")}
                           </div>
                         </>

@@ -64,7 +64,7 @@ export const ShowMessageFormatter = ({ message }: { message: string }) => {
               <BoslerUserPopover record={userDetails}>
                 <span
                   style={{
-                    background: "var(--bosler-table-selected)",
+                    background: "var(--movetodata-table-selected)",
                     cursor: "pointer",
                     padding: "0.2rem",
                     borderRadius: "0.5rem",

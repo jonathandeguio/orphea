@@ -39,7 +39,7 @@ const BoslerModal = ({
       }}
       closable={false}
       width={"fit-content"}
-      className="bosler-modal"
+      className="movetodata-modal"
       {...ModalProps}
     >
       <BoslerModalContainer

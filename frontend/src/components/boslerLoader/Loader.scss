@@ -4,7 +4,7 @@
   align-items: center;
   height: 100%;
   width: 100%;
-  background: var(--bosler-font-color-default);
+  background: var(--movetodata-font-color-default);
   transition: opacity 0.3s linear;
   flex-grow: 1;
   flex-direction: column;
@@ -32,7 +32,7 @@
 }
 
 .atomloader {
-  border: 7px dotted var(--bosler-border-color-default);
+  border: 7px dotted var(--movetodata-border-color-default);
   border-radius: 50%;
   display: inline-block;
   position: relative;

@@ -45,7 +45,7 @@ const BoslerModalContainer = ({
               className={styles.header}
               style={{
                 borderBottom: dividers
-                  ? "1px solid var(--bosler-border-color-default)"
+                  ? "1px solid var(--movetodata-border-color-default)"
                   : "none",
               }}
             >
@@ -64,7 +64,7 @@ const BoslerModalContainer = ({
             className={styles.rightPortion}
             style={{
               borderLeft: dividers
-                ? "1px solid var(--bosler-border-color-default)"
+                ? "1px solid var(--movetodata-border-color-default)"
                 : "none",
             }}
           >
@@ -78,7 +78,7 @@ const BoslerModalContainer = ({
           className={styles.footer}
           style={{
             borderTop: dividers
-              ? "1px solid var(--bosler-border-color-default)"
+              ? "1px solid var(--movetodata-border-color-default)"
               : "none",
           }}
         >

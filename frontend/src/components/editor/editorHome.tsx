@@ -46,7 +46,7 @@ const EditorHome = () => {
                   </Title>
                   <Divider />
                   <Text type="secondary">
-                    To create transformation you have to use an internal bosler
+                    To create transformation you have to use an internal movetodata
                     package called funnel
                   </Text>
                   <br />

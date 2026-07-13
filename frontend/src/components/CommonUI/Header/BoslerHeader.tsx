@@ -22,11 +22,11 @@ const BoslerHeader = ({
       className={styles.wrapper}
       style={{
         borderBottom: borderBottom
-          ? "1px solid var(--bosler-border-color-default)"
+          ? "1px solid var(--movetodata-border-color-default)"
           : "",
         background: muted
-          ? "var(--bosler-bkg-color-muted)"
-          : "var(--bosler-bkg-color-default)",
+          ? "var(--movetodata-bkg-color-muted)"
+          : "var(--movetodata-bkg-color-default)",
       }}
     >
       {icon && <div className={styles.icon}>{icon}</div>}

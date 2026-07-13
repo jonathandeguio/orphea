@@ -250,7 +250,7 @@ export const NotificationBell = ({
             style={{
               height: "65vh",
               overflowY: "auto",
-              border: "1px solid var(--bosler-border-color-default)",
+              border: "1px solid var(--movetodata-border-color-default)",
             }}
           >
             {notifications.length == 0 && (
@@ -282,7 +282,7 @@ export const NotificationBell = ({
                               padding: "1rem",
                             }
                           : {
-                              background: "var(--bosler-bkg-color-muted)",
+                              background: "var(--movetodata-bkg-color-muted)",
                               padding: "1rem",
                             }
                       }
@@ -403,7 +403,7 @@ export const NotificationBell = ({
     >
       <div ref={buttonRef}>
         <Badge
-          color={showDot ? "var(--bosler-intent-danger)" : ""}
+          color={showDot ? "var(--movetodata-intent-danger)" : ""}
           text={""}
           count={showDot ? 1 : 0}
           // dot
@@ -413,7 +413,7 @@ export const NotificationBell = ({
             icon={
               <NotificationIcon
                 size={iconSize}
-                // color={showDot ? "var(--bosler-intent-danger)" : ""}
+                // color={showDot ? "var(--movetodata-intent-danger)" : ""}
               />
             }
             tooltip={getLanguageLabel("notifications")}

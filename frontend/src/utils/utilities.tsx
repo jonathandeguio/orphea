@@ -1282,7 +1282,7 @@ const getSQLFormatLink = () => {
     ? location.protocol === "https:"
       ? "https://" + location.host
       : "http://" + location.host
-    : "http://bora.bosler.io:8058";
+    : "http://bora.movetodata.io:8058";
 };
 
 const isIpPlatform = () => {

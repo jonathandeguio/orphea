@@ -201,7 +201,7 @@ const DashboardAddChartMenuChartsTab = () => {
           //                           }}
           //                         >
           //                           <InfoIcon
-          //                             color={"var(--bosler-font-color-muted)"}
+          //                             color={"var(--movetodata-font-color-muted)"}
           //                           />
           //                         </div>
           //                       </Popover>

@@ -103,7 +103,7 @@ const Avatars = ({ link }: any) => {
                             borderStyle: "dashed",
                           }
                         : {
-                            // "var(--bosler-border-color-default)"
+                            // "var(--movetodata-border-color-default)"
                             borderColor: "#72CA9B",
                             borderWidth: 2,
                           }

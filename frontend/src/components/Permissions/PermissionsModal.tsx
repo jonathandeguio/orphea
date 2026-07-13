@@ -336,7 +336,7 @@ export const PermissionModel = ({ id, open, handleClose }: any) => {
             <div style={{ paddingTop: "10px", paddingLeft: "20px" }}>
               <Row
                 gutter={[6, 6]}
-                style={{ background: "var(--bosler-bkg-color-muted)" }}
+                style={{ background: "var(--movetodata-bkg-color-muted)" }}
               >
                 <Col span={3}></Col>
                 <Col
@@ -453,7 +453,7 @@ export const PermissionModel = ({ id, open, handleClose }: any) => {
                     justifyContent: "center",
                   }}
                 >
-                  <DisableIcon color="var(--bosler-intent-danger)" />
+                  <DisableIcon color="var(--movetodata-intent-danger)" />
                 </Col>
 
                 <Col
@@ -486,7 +486,7 @@ export const PermissionModel = ({ id, open, handleClose }: any) => {
                     justifyContent: "center",
                   }}
                 >
-                  <DisableIcon color="var(--bosler-intent-danger)" />
+                  <DisableIcon color="var(--movetodata-intent-danger)" />
                 </Col>
                 <Col
                   span={8}
@@ -496,7 +496,7 @@ export const PermissionModel = ({ id, open, handleClose }: any) => {
                     justifyContent: "center",
                   }}
                 >
-                  <DisableIcon color="var(--bosler-intent-danger)" />
+                  <DisableIcon color="var(--movetodata-intent-danger)" />
                 </Col>
 
                 <Col
@@ -529,7 +529,7 @@ export const PermissionModel = ({ id, open, handleClose }: any) => {
                     justifyContent: "center",
                   }}
                 >
-                  <DisableIcon color="var(--bosler-intent-danger)" />
+                  <DisableIcon color="var(--movetodata-intent-danger)" />
                 </Col>
                 <Col
                   span={8}
@@ -539,7 +539,7 @@ export const PermissionModel = ({ id, open, handleClose }: any) => {
                     justifyContent: "center",
                   }}
                 >
-                  <DisableIcon color="var(--bosler-intent-danger)" />
+                  <DisableIcon color="var(--movetodata-intent-danger)" />
                 </Col>
               </Row>
             </div>
@@ -577,7 +577,7 @@ export const PermissionModel = ({ id, open, handleClose }: any) => {
             top: "0",
             zIndex: "999",
 
-            borderBottom: "1px solid var(--bosler-border-color-default)",
+            borderBottom: "1px solid var(--movetodata-border-color-default)",
             width: "100%",
             padding: "0.5rem 0",
             height: "30px",

@@ -69,7 +69,7 @@ const PreviewLink = ({ data, loading }: TProps) => {
         ) : previewData && previewData?.status == "FAILED" ? (
           <>
             <div className="BoslerHeader1">
-              <WarningIcon color={"var(--bosler-intent-danger)"} />{" "}
+              <WarningIcon color={"var(--movetodata-intent-danger)"} />{" "}
               {previewData?.status} | There was an error running preview{" "}
             </div>
             <br />

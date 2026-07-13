@@ -6,7 +6,7 @@ import "./ButtonComponent.scss";
 
 const INTENT_COLOR = "var(--INTENT_COLOR)";
 const INTENT_COLOR_FONT = "var(--INTENT_COLOR_FONT)";
-const INTENT_COLOR_BORDER = "var(--bosler-border-color-default)";
+const INTENT_COLOR_BORDER = "var(--movetodata-border-color-default)";
 
 const PRIMARY_COLOR = "var(--PRIMARY_COLOR)";
 const PRIMARY_COLOR_BORDER = "var(--PRIMARY_COLOR_BORDER)";
@@ -160,12 +160,12 @@ const CustomButton = ({
       return DANGEROUS_COLOR_FONT;
     } else if (intent == "warning") {
       return WARNING_COLOR_FONT;
-      // return "var(--bosler-font-color-default)";
+      // return "var(--movetodata-font-color-default)";
     }
   };
 
   const getBgColor = () => {
-    if (autoFocus) return "var(--bosler-hover-color)";
+    if (autoFocus) return "var(--movetodata-hover-color)";
     if (minimal || outlined || dashed) return "";
 
     if (intent == "none") {

@@ -38,8 +38,8 @@ const Comments = ({ id }: any) => {
             count={totalOpenComments}
             color={
               totalOpenComments == 0
-                ? "var(--bosler-font-color-muted)"
-                : "var(--bosler-intent-danger)"
+                ? "var(--movetodata-font-color-muted)"
+                : "var(--movetodata-intent-danger)"
             }
             offset={[-5, 3]}
             size="small"
@@ -50,8 +50,8 @@ const Comments = ({ id }: any) => {
                   size={20}
                   color={
                     totalOpenComments == 0
-                      ? "var(--bosler-font-color-muted)"
-                      : "var(--bosler-intent-danger)"
+                      ? "var(--movetodata-font-color-muted)"
+                      : "var(--movetodata-intent-danger)"
                   }
                 />
               }

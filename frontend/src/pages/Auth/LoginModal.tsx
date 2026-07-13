@@ -34,7 +34,7 @@ const LoginModal = () => {
         //       alignItems: "center",
         //       gap: "1rem",
         //       flexDirection: "column",
-        //       backgroundColor: "var(--bosler-bkg-color-muted)",
+        //       backgroundColor: "var(--movetodata-bkg-color-muted)",
         //       textAlign: "left",
         //     }}
         //   >

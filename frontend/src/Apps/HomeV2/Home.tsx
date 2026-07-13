@@ -184,7 +184,7 @@ const Home: React.FC = () => {
       document.title =
         isDefined(config) && isDefined(config.platformName)
           ? config.platformName
-          : "Bosler";
+          : "MoveToData";
     };
   }, [config]);
 

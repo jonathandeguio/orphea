@@ -77,7 +77,7 @@ export const DashboardTabName = ({
                 </div>
                 <div className="dashboardTabs-header-item-icon-popover-mail">
                   <a
-                    href={`mailto:?Subject=Bosler Tab%20&Body=Check out this tab in dashboard:${window.location.href}`}
+                    href={`mailto:?Subject=MoveToData Tab%20&Body=Check out this tab in dashboard:${window.location.href}`}
                   >
                     <EmailIcon />
                   </a>

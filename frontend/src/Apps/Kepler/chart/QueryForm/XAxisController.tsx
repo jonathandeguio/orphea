@@ -38,7 +38,7 @@ const XAxisController: React.FC<Props> = (props) => {
                   type="danger"
                   style={{
                     fontSize: "10px",
-                    color: "var(--bosler-intent-danger)",
+                    color: "var(--movetodata-intent-danger)",
                   }}
                 >
                   X-Axis is required!

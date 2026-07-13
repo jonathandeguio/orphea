@@ -237,7 +237,7 @@ export const News = () => {
                             }}
                             icon={<TrashIcon />}
                             icononly
-                            iconColor={"var(--bosler-intent-danger)"}
+                            iconColor={"var(--movetodata-intent-danger)"}
                             minimal
                             trimicononlypadding
                           />
@@ -257,7 +257,7 @@ export const News = () => {
                         <>
                           {news.description}{" "}
                           <div
-                            style={{ color: "var(--bosler-font-color-muted)" }}
+                            style={{ color: "var(--movetodata-font-color-muted)" }}
                           >
                             {timeConverter(news.createdAt)}
                           </div>

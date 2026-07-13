@@ -74,7 +74,7 @@ const AgentDetails = () => {
   );
   const [agentStats, setAgentStats] = useState();
   const [agentStatus, setAgentStatus] = useState({
-    color: "var(--bosler-intent-danger)",
+    color: "var(--movetodata-intent-danger)",
     text: "Never Reported",
   });
 
@@ -138,7 +138,7 @@ const AgentDetails = () => {
         });
       } else {
         setAgentStatus({
-          color: "var(--bosler-intent-danger)",
+          color: "var(--movetodata-intent-danger)",
           text: "Never Reported",
         });
       }

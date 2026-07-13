@@ -1,5 +1,5 @@
 .container {
-  border: 1px solid var(--bosler-border-color-default);
+  border: 1px solid var(--movetodata-border-color-default);
   border-radius: 2px;
 }
 
@@ -61,12 +61,12 @@
   -webkit-box-pack: end;
   justify-content: flex-end;
   padding: 16px 24px;
-  border-top: 1px solid var(--bosler-border-color-default);
+  border-top: 1px solid var(--movetodata-border-color-default);
 }
 .footerText {
   display: flex;
   margin-right: 16px;
-  color: var(--bosler-font-color-muted);
+  color: var(--movetodata-font-color-muted);
   font-size: 12px;
 }
 .footerBtns {

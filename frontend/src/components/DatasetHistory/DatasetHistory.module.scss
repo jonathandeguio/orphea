@@ -64,7 +64,7 @@
   // flex-direction: row;
   width: 100%;
 
-  // background: var(--bosler-bkg-color-muted);
+  // background: var(--movetodata-bkg-color-muted);
   border-radius: 2px;
   padding: 5px;
   padding-right: 10px;
@@ -83,11 +83,11 @@
 .editRowName {
   font-weight: 500;
   margin-right: 4px;
-  color: var(--bosler-font-color-default);
+  color: var(--movetodata-font-color-default);
 }
 .editRowChanges {
   margin-right: 6px;
-  color: var(--bosler-font-color-default);
+  color: var(--movetodata-font-color-default);
 }
 .editRowChangesTransaction {
   text-transform: uppercase;
@@ -96,7 +96,7 @@
   word-break: break-all;
 }
 .editRowTime {
-  color: var(--bosler-font-color-muted);
+  color: var(--movetodata-font-color-muted);
 }
 
 .editRowContent {
@@ -129,7 +129,7 @@
 .calendarWrapper {
   width: 100%;
   width: fit-content;
-  // border: 1px solid var(--bosler-border-color-default);
+  // border: 1px solid var(--movetodata-border-color-default);
   border-radius: 5px;
   display: flex;
   flex-direction: row;
@@ -144,7 +144,7 @@
   width: 300px;
 }
 .rightPanelHeader {
-  border-bottom: 1px solid var(--bosler-border-color-default);
+  border-bottom: 1px solid var(--movetodata-border-color-default);
 }
 .rightPanelContent {
   overflow: auto;

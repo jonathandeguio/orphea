@@ -44,7 +44,7 @@
   -webkit-box-align: center;
   align-items: center;
   padding: 10px 0px;
-  color: var(--bosler-font-color-muted);
+  color: var(--movetodata-font-color-muted);
   font-weight: 500;
   font-size: 12px;
   text-transform: uppercase;
@@ -56,7 +56,7 @@
 }
 
 .BoslerSubHeader1 {
-  color: var(--bosler-font-color-muted);
+  color: var(--movetodata-font-color-muted);
   font-size: 12px;
   text-transform: capitalize;
 }
@@ -67,7 +67,7 @@
 }
 
 .BoslerSpan {
-  color: var(--bosler-font-color-muted);
+  color: var(--movetodata-font-color-muted);
   font-size: 14px;
 }
 .boslerFormLabel {
@@ -81,7 +81,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: var(--bosler-font-color-muted);
+  color: var(--movetodata-font-color-muted);
   min-height: 24px;
   padding: 4px 8px;
   font-size: 12px;
@@ -98,7 +98,7 @@
 }
 
 .selectedHeading {
-  background: var(--bosler-hover-color);
+  background: var(--movetodata-hover-color);
   border-radius: 5px;
 }
 
@@ -110,7 +110,7 @@
   box-shadow: none;
   transition: background-color 0.15s cubic-bezier(0.25, 0.1, 0.25, 1) 0s;
   padding: 2px;
-  box-shadow: var(--bosler-border-color-default) 0px 0px 0px 1px inset;
+  box-shadow: var(--movetodata-border-color-default) 0px 0px 0px 1px inset;
   width: fit-content;
 }
 

@@ -49,7 +49,7 @@ const Loader = ({ computedSize, color, content, size, type }: TLoaderProps) => {
         />
       </svg>
       {content && <div style={{ color: color }}>{content}</div>}
-      {/* <div className="login-icon-bosler">
+      {/* <div className="login-icon-movetodata">
 
     </div> */}
     </div>
@@ -58,7 +58,7 @@ const Loader = ({ computedSize, color, content, size, type }: TLoaderProps) => {
 const BoslerLoader: FC<TLoaderProps> = ({
   content,
   size = "medium",
-  color = "var(--bosler-border-color-default)",
+  color = "var(--movetodata-border-color-default)",
   type = "atom",
 }: TLoaderProps) => {
   let computedSize: string;
@@ -101,7 +101,7 @@ const BoslerLoader: FC<TLoaderProps> = ({
           style={{
             height: atomLoaderSize,
             width: atomLoaderSize,
-            border: `${borderSize} dotted var(--bosler-border-color-default)`,
+            border: `${borderSize} dotted var(--movetodata-border-color-default)`,
           }}
         ></div>
       </div>
@@ -114,7 +114,7 @@ const BoslerLoader: FC<TLoaderProps> = ({
           style={{
             height: atomLoaderSize,
             width: atomLoaderSize,
-            border: `${borderSize} dotted var(--bosler-border-color-default)`,
+            border: `${borderSize} dotted var(--movetodata-border-color-default)`,
           }}
         ></div>
         {content && (

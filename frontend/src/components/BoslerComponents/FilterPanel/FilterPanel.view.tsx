@@ -57,9 +57,9 @@ export const FilterPanel: React.FC<Props> = ({
           flexDirection: "column",
           position: "sticky",
           bottom: "0",
-          borderTop: "1px solid var(--bosler-border-color-default)",
+          borderTop: "1px solid var(--movetodata-border-color-default)",
           padding: "1px",
-          backgroundColor: "var(--bosler-bkg-color-muted)",
+          backgroundColor: "var(--movetodata-bkg-color-muted)",
           width: "100%",
         }}
       >

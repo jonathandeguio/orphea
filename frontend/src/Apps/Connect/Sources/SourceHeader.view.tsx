@@ -108,7 +108,7 @@ const SourceHeader = ({
                 style={{
                   justifyContent: "space-between",
                   width: "100%",
-                  color: "var(--bosler-font-color-muted)",
+                  color: "var(--movetodata-font-color-muted)",
                 }}
               >
                 {getLanguageLabel("dataLineage")}
@@ -170,10 +170,10 @@ const SourceHeader = ({
                       }
                       className="text-and-icon-center"
                       style={{
-                        color: "var(--bosler-intent-danger)",
+                        color: "var(--movetodata-intent-danger)",
                       }}
                     >
-                      <TrashIcon color={"var(--bosler-intent-danger)"} />
+                      <TrashIcon color={"var(--movetodata-intent-danger)"} />
                       {getLanguageLabel("delete")}
                     </div>
                   </>

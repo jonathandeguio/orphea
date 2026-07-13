@@ -76,7 +76,7 @@ export const ThemeSettings = () => {
             <Text>Custom logo</Text>
             <br />
             <Text type="secondary">
-              This logo will replace the Bosler logo at all the places.
+              This logo will replace the MoveToData logo at all the places.
             </Text>
           </Col>
           <Col>
@@ -138,7 +138,7 @@ export const ThemeSettings = () => {
                           margin: "1px",
                           padding: "5px 7px 10px 7px",
                           borderBottom:
-                            "1px solid var(--bosler-border-color-default)",
+                            "1px solid var(--movetodata-border-color-default)",
                         }}
                       >
                         <Col span={8}>
@@ -157,7 +157,7 @@ export const ThemeSettings = () => {
                               borderBottom:
                                 index === themeFields.length - 1
                                   ? "none"
-                                  : "1px solid var(--bosler-border-color-default)",
+                                  : "1px solid var(--movetodata-border-color-default)",
                             }}
                           >
                             <Col

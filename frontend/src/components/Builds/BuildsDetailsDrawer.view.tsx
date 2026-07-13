@@ -16,7 +16,7 @@ const BuildLog = ({ id, visible, page }: $TSFixMe) => {
       {visible && (
         <Resizable
           style={{
-            borderTop: "solid 1px var(--bosler-border-color-default)",
+            borderTop: "solid 1px var(--movetodata-border-color-default)",
             background: "var(--background-color)",
             position: "absolute",
             bottom: "0",

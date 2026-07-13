@@ -50,7 +50,7 @@ const FileElement = (props: Props) => {
                 props.removeElement(props.dashboardId, props.element.id);
               }}
             >
-              <TrashIcon color="var(--bosler-intent-danger)"/>
+              <TrashIcon color="var(--movetodata-intent-danger)"/>
             </div>
           </>
         )}

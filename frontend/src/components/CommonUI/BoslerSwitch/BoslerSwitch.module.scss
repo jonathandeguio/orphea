@@ -28,7 +28,7 @@
   flex: 0 0 auto;
   -webkit-box-align: center;
   align-items: center;
-  box-shadow: var(--bosler-border-color-default) 0px 0px 0px 1px inset;
+  box-shadow: var(--movetodata-border-color-default) 0px 0px 0px 1px inset;
   border-radius: 2px;
   margin: 15px;
 }
@@ -50,7 +50,7 @@
   text-transform: capitalize;
 }
 .notselected {
-  color: var(--bosler-font-color-muted);
+  color: var(--movetodata-font-color-muted);
   background-color: transparent;
   box-shadow: none;
   background: none;

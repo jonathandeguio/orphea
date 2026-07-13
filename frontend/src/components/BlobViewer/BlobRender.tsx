@@ -116,8 +116,8 @@ const BlobRender = ({ resourceId }: IProps) => {
           secondary: "transparent",
           tertiary: "transparent",
           //   textPrimary: "var(--color)",
-          //   textSecondary: "var(--bosler-font-color-muted)",
-          //   textTertiary: "var(--bosler-font-color-muted)",
+          //   textSecondary: "var(--movetodata-font-color-muted)",
+          //   textTertiary: "var(--movetodata-font-color-muted)",
           //   disableThemeScrollbar: true,
         }}
       />

@@ -98,7 +98,7 @@
 
       .customOptions {
         background-color: $component;
-        border: 1px solid var(--bosler-border-color-default);
+        border: 1px solid var(--movetodata-border-color-default);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -114,7 +114,7 @@
 
       .ant-menu-item-selected {
         background-color: $component;
-        border: 1px solid var(--bosler-border-color-default);
+        border: 1px solid var(--movetodata-border-color-default);
       }
     }
 
@@ -258,14 +258,14 @@
     // width: 22px;
     // cursor: pointer;
 
-    border-left: 1px solid var(--bosler-border-color-default);
-    border-bottom: 1px solid var(--bosler-border-color-muted);
+    border-left: 1px solid var(--movetodata-border-color-default);
+    border-bottom: 1px solid var(--movetodata-border-color-muted);
     /* border-radius: 0 8px 8px 0; */
     /* background: var(--background-color) 7px center/7px 10px no-repeat; */
     padding: 7px 4px;
     background: var(--background-color);
-    border-top: 1px solid var(--bosler-border-color-default);
-    border-right: 1px solid var(--bosler-border-color-default);
+    border-top: 1px solid var(--movetodata-border-color-default);
+    border-right: 1px solid var(--movetodata-border-color-default);
     border-top-right-radius: 2px;
     cursor: pointer;
   }
@@ -316,7 +316,7 @@
 .monaco-hover-content {
   font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont,
     sans-serif;
-  background-color: var(--bosler-bkg-color-muted);
+  background-color: var(--movetodata-bkg-color-muted);
   -webkit-font-smoothing: antialiased;
   -moz-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

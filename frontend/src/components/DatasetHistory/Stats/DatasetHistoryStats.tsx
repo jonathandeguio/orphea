@@ -24,7 +24,7 @@ const ContentCard = ({ title, content, color }: TContentCard) => {
     >
       <Text
         style={{
-          color: "var(--bosler-font-color-muted)",
+          color: "var(--movetodata-font-color-muted)",
         }}
       >
         {title}
@@ -88,7 +88,7 @@ const DatasetHistoryStats = ({ transactions }: TProps) => {
       <ContentCard
         title={"Time"}
         content={"~" + formatTime(averageTime)}
-        color={"var(--bosler-border-color-default)"}
+        color={"var(--movetodata-border-color-default)"}
       />
     </div>
   );

@@ -109,7 +109,7 @@
 
 //--------D3-JS----------
 .link {
-  stroke: var(--bosler-border-color-default);
+  stroke: var(--movetodata-border-color-default);
   strokewidth: 2.3px;
   z-index: 9;
 }
@@ -147,7 +147,7 @@ div.tooltip {
   text-align: left;
   padding: 15px;
   border-radius: 4px;
-  box-shadow: 2px 6px 14px 6px var(--bosler-border-color-muted);
+  box-shadow: 2px 6px 14px 6px var(--movetodata-border-color-muted);
 
   .title {
     border-bottom: 1px solid $border;
@@ -169,7 +169,7 @@ div.tooltip {
     justify-content: space-between;
     align-items: center;
     align-content: center;
-    border-bottom: 1px solid var(--bosler-border-color-default);
+    border-bottom: 1px solid var(--movetodata-border-color-default);
     margin-bottom: 1rem;
     font-weight: bold;
     color: var(--groups-edittext-color);
@@ -462,7 +462,7 @@ div.family_info {
         border-radius: 6px;
         border: 1px solid transparent;
         box-shadow: 0px 2px 4px rgb(0 0 0 / 7%);
-        border-color: var(--bosler-border-color-default);
+        border-color: var(--movetodata-border-color-default);
         background: var(--background-color);
         color: rgba(0, 0, 0, 0.85);
         cursor: pointer;
@@ -485,7 +485,7 @@ div.family_info {
 
             &-colorbox {
               border-radius: 2px;
-              border: 1px solid var(--bosler-border-color-default);
+              border: 1px solid var(--movetodata-border-color-default);
               /* box-shadow: 0px 2px 4px rgb(0 0 0 / 7%); */
               /* border-color: #d9d9d9; */
               transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);

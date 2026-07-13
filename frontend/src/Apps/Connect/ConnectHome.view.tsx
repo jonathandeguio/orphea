@@ -82,12 +82,12 @@ const ConnectHome = () => {
                       <Divider />
                       <Text type="secondary">
                         A Link is responsible for obtaining specific data from a
-                        Source and incorporating it into Bosler. For instance,
+                        Source and incorporating it into MoveToData. For instance,
                         if a Postgres database Source contains various tables,
                         it is possible to configure a Link to ingest a
-                        particular table into Bosler. Once a Link has been
-                        executed successfully, the outcome within Bosler will be
-                        a dataset, which can be utilized across all of Bosler's
+                        particular table into MoveToData. Once a Link has been
+                        executed successfully, the outcome within MoveToData will be
+                        a dataset, which can be utilized across all of MoveToData's
                         data processing, model development, and analytical
                         tools.
                       </Text>
@@ -128,13 +128,13 @@ const ConnectHome = () => {
                       </Title>
                       <Divider />
                       <Text type="secondary">
-                        To establish a connection with Bosler, it is necessary
+                        To establish a connection with MoveToData, it is necessary
                         to utilize an external data system known as a Source.
                         These sources can include, among others, a Postgres
                         database, an S3 bucket, a file system on a Linux server,
                         an SAP instance, and a REST API on the internet. It
                         should be noted that prior to making a connection to
-                        Bosler, the Source must be appropriately configured.
+                        MoveToData, the Source must be appropriately configured.
                       </Text>
                     </div>
                   }
@@ -175,10 +175,10 @@ const ConnectHome = () => {
                       <Text type="secondary">
                         The Agent, a software component that runs within an
                         organization's network, serves as a secure intermediary
-                        between the organization's data sources and the Bosler
+                        between the organization's data sources and the MoveToData
                         instance. It is required for connecting to certain data
                         sources, unless the data source is a cloud-based one
-                        that Bosler can access directly.
+                        that MoveToData can access directly.
                       </Text>
                     </div>
                   }

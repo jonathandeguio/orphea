@@ -7,7 +7,7 @@ function SortAscendingIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         data-icon="sort-alpha-horizontal"
         fill={color}
@@ -37,7 +37,7 @@ function SortAlphaIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="sort-alpha"
@@ -68,7 +68,7 @@ function SortReverseAlphaIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="sort-reverse-alpha"
@@ -99,7 +99,7 @@ function SortDescIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="sort-desc"
@@ -130,7 +130,7 @@ function SortAscIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="sort-asc"
@@ -161,7 +161,7 @@ function SortAlphaHorizontalIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         data-icon="sort-alpha-horizontal"
         fill={color}
@@ -191,7 +191,7 @@ function SortAscHorizontalIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         data-icon="sort-asc-horizontal"
         fill={color}
@@ -221,7 +221,7 @@ function SortDescHorizontalIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         data-icon="sort-desc-horizontal"
         fill={color}
@@ -251,7 +251,7 @@ function SortNumericAscHrizontalIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         data-icon="sort-numeric-asc-horizontal"
         fill={color}
@@ -281,7 +281,7 @@ function SortNumericDescHrizontalIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         data-icon="sort-numeric-desc-horizontal"
         fill={color}
@@ -311,7 +311,7 @@ function SortReverseAlphaHorizontalIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         data-icon="sort-reverse-alpha-horizontal"
         fill={color}

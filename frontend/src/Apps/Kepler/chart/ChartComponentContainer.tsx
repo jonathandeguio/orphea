@@ -249,7 +249,7 @@ const ChartComponentContainer = () => {
                 )}
                 <BoslerTag
                   color={
-                    data.loading === true ? "var(--bosler-intent-danger)" : ""
+                    data.loading === true ? "var(--movetodata-intent-danger)" : ""
                   }
                   icon={
                     <HistoricalRunsIcon

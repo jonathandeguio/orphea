@@ -53,7 +53,7 @@ const CreatedByYou = () => {
       document.title =
         isDefined(config) && isDefined(config.platformName)
           ? config.platformName
-          : "Bosler";
+          : "MoveToData";
     };
   }, []);
 
@@ -93,7 +93,7 @@ const CreatedByYou = () => {
         style={{
           height: "65vh",
           overflowY: "auto",
-          border: "1px solid var(--bosler-border-color-default)",
+          border: "1px solid var(--movetodata-border-color-default)",
           borderRadius: "5px",
           background: "none",
         }}

@@ -47,7 +47,7 @@
     flex: 0 0 auto;
     padding: 30px 30px 50px;
     overflow: auto;
-    border-right: 1px solid var(--bosler-border-color-default);
+    border-right: 1px solid var(--movetodata-border-color-default);
     &-header {
       font-weight: bold;
       margin: 1rem 0;
@@ -63,7 +63,7 @@
         margin: 5px;
         cursor: default;
         padding-left: 2px;
-        // color: var(--bosler-font-color-default);
+        // color: var(--movetodata-font-color-default);
       }
       &-subHead {
         margin-right: 0px;
@@ -74,7 +74,7 @@
           color 0.15s cubic-bezier(0.25, 0.1, 0.25, 1) 0s;
         // width: 8rem;
         &:hover {
-          background-color: var(--bosler-hover-color) !important;
+          background-color: var(--movetodata-hover-color) !important;
         }
       }
       &-subHeadSelected {
@@ -170,8 +170,8 @@
   // flex: 1 1 0px;
   // padding: 0px;
   overflow: hidden;
-  border: 1px solid var(--bosler-border-color-default);
-  box-shadow: var(--bosler-border-color-default),
+  border: 1px solid var(--movetodata-border-color-default);
+  box-shadow: var(--movetodata-border-color-default),
     rgba(72, 113, 194, 0.1) 0px 0px 0px 3px,
     rgba(11, 14, 22, 0.05) 0px 8px 16px 0px,
     rgba(11, 14, 22, 0.1) 0px 1px 4px 0px;
@@ -185,9 +185,9 @@
   background: rgb(248, 250, 251);
 
   &:hover {
-    box-shadow: var(--bosler-hover-color) 0px 0px 0px 1px,
-      var(--bosler-hover-color) 0px 3px 6px,
-      var(--bosler-hover-color) 0px 5px 10px 0px;
+    box-shadow: var(--movetodata-hover-color) 0px 0px 0px 1px,
+      var(--movetodata-hover-color) 0px 3px 6px,
+      var(--movetodata-hover-color) 0px 5px 10px 0px;
   }
 
   &-header {

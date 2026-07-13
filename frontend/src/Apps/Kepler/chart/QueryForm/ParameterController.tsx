@@ -62,7 +62,7 @@ export const ParameterController = () => {
                                   type="secondary"
                                   style={{
                                     fontSize: "10px",
-                                    color: "var(--bosler-intent-danger)",
+                                    color: "var(--movetodata-intent-danger)",
                                   }}
                                 >
                                   Column Name is required!

@@ -134,7 +134,7 @@ const PreviewBuildData = ({
             >
               <Col>
                 <BoslerTag
-                  // color={loading ? "var(--bosler-intent-danger)" : ""}
+                  // color={loading ? "var(--movetodata-intent-danger)" : ""}
                   icon={
                     <HistoricalRunsIcon
                       size={11}

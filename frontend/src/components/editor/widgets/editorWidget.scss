@@ -29,11 +29,11 @@
       background-color: var(--background-color);
 
       &:hover {
-        background-color: var(--bosler-hover-color);
+        background-color: var(--movetodata-hover-color);
       }
     }
     &--focused {
-      background-color: var(--bosler-hover-color);
+      background-color: var(--movetodata-hover-color);
     }
   }
 
@@ -54,7 +54,7 @@
 }
 
 .uuid_overlay {
-  background-color: var(--bosler-bkg-color-default);
+  background-color: var(--movetodata-bkg-color-default);
   font-family: "IBM Plex Mono", "Courier New", Courier, monospace,
     "Droid Sans Mono", "monospace", monospace;
   font-weight: 400;
@@ -106,15 +106,15 @@
   &__container {
     border-radius: 0;
     .ant-popover-inner {
-      background-color: var(--bosler-bkg-color-default) !important;
-      color: var(--bosler-font-color-default) !important;
+      background-color: var(--movetodata-bkg-color-default) !important;
+      color: var(--movetodata-font-color-default) !important;
     }
     .ant-popover-arrow {
       &::before {
-        background: var(--bosler-bkg-color-default) !important;
+        background: var(--movetodata-bkg-color-default) !important;
       }
     }
   }
-  background-color: var(--bosler-bkg-color-default) !important;
-  color: var(--bosler-font-color-default) !important;
+  background-color: var(--movetodata-bkg-color-default) !important;
+  color: var(--movetodata-font-color-default) !important;
 }

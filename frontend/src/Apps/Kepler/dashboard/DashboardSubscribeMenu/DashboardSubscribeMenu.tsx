@@ -403,7 +403,7 @@ function DashboardSubscribeMenu() {
                         <div
                           style={{
                             paddingTop: "5px",
-                            color: "var(--bosler-font-color-muted)",
+                            color: "var(--movetodata-font-color-muted)",
                             textTransform: "uppercase",
                           }}
                         >
@@ -432,7 +432,7 @@ function DashboardSubscribeMenu() {
                           {"Subject : "}
                           <div
                             style={{
-                              color: "var(--bosler-font-color-light-black)",
+                              color: "var(--movetodata-font-color-light-black)",
                             }}
                           >
                             {subscription.subject}
@@ -443,7 +443,7 @@ function DashboardSubscribeMenu() {
                           {"Schedule : "}
                           <div
                             style={{
-                              color: "var(--bosler-font-color-light-black)",
+                              color: "var(--movetodata-font-color-light-black)",
                             }}
                           >
                             {cronstrue.toString(subscription.cronExpression)}

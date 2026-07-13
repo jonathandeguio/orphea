@@ -6,7 +6,7 @@
 /* bezier is using below */
 
 body {
-  color: var(--bosler-font-color-muted) !important;
+  color: var(--movetodata-font-color-muted) !important;
   font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont,
     sans-serif;
   -webkit-font-smoothing: antialiased;

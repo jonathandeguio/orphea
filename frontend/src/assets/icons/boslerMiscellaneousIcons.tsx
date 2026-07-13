@@ -58,7 +58,7 @@ function LightBulbIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="lightbulb"
@@ -89,7 +89,7 @@ function PulseIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         data-icon="pulse"
         fill={color}
@@ -118,7 +118,7 @@ function MonitorIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="monitor"
@@ -151,7 +151,7 @@ function BankIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="bank"
@@ -182,7 +182,7 @@ function CardIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="credit-card"
@@ -214,7 +214,7 @@ function StarIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="star"
@@ -246,7 +246,7 @@ function TrashIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="trash"
@@ -277,7 +277,7 @@ function SharedWorkspaceIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="workspace"
@@ -308,7 +308,7 @@ function SidebarOutlineIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         data-icon="outline"
         fill={color}
@@ -366,7 +366,7 @@ function HelpIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="help"
@@ -397,7 +397,7 @@ function TagsIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         stroke="currentColor"
         fill="currentColor"
@@ -419,7 +419,7 @@ function TagIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="tag"
@@ -450,7 +450,7 @@ function QuickStartIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="quickstart"
@@ -481,7 +481,7 @@ function ChatIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="chat"
@@ -512,7 +512,7 @@ function CommentIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         data-icon="comment"
         color={color}
@@ -545,7 +545,7 @@ function LibraryIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="library"
@@ -574,7 +574,7 @@ function SliderIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         data-icon="slider-input-parameter-icon"
         fill={color}
@@ -607,7 +607,7 @@ function InfoIcon({
 }: TBoslerIconProps) {
   return (
     <div
-      className="bosler-icons"
+      className="movetodata-icons"
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       style={style}
@@ -650,7 +650,7 @@ function EmptyChartIcon({
 }: any) {
   return (
     <div
-      className="bosler-icons"
+      className="movetodata-icons"
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
@@ -686,7 +686,7 @@ function VersionHistoryIcon({
 }: any) {
   return (
     <div
-      className="bosler-icons"
+      className="movetodata-icons"
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
@@ -730,7 +730,7 @@ function TimeZoneIcon({
 }: any) {
   return (
     <div
-      className="bosler-icons"
+      className="movetodata-icons"
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
@@ -772,7 +772,7 @@ function BugIcon({
 }: any) {
   return (
     <div
-      className="bosler-icons"
+      className="movetodata-icons"
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >

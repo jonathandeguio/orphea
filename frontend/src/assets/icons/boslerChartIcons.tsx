@@ -7,7 +7,7 @@ function BigArea100Icon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         width="80"
         height="50"
@@ -42,7 +42,7 @@ function MapAreaIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="map-area"
@@ -73,7 +73,7 @@ function MapScatterIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="map-scatter-chart"
@@ -104,7 +104,7 @@ function SunburstIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="sunburst-chart"
@@ -139,7 +139,7 @@ function GaugeIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="sunburst-chart"
@@ -168,7 +168,7 @@ function RadarIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="sunburst-chart"
@@ -199,7 +199,7 @@ function AreaIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         width="80"
         height="50"
@@ -241,7 +241,7 @@ function SmallAreaChartIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="area-chart"
@@ -282,7 +282,7 @@ function ChartIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         data-icon="chart"
         fill={color}
@@ -312,7 +312,7 @@ function GraphIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         viewBox="64 64 896 896"
         focusable="false"
@@ -335,7 +335,7 @@ function GraphOppositeIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         viewBox="64 64 896 896"
         focusable="false"
@@ -358,7 +358,7 @@ function BigGroupedBarIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         width="80"
         height="50"
@@ -422,7 +422,7 @@ function GroupedColumnIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="grouped-column"
@@ -467,7 +467,7 @@ function TreeMapIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="treemap"
@@ -504,7 +504,7 @@ function WaterFallIcon({
   style = {},
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="waterfall"
@@ -532,7 +532,7 @@ function WordCloudIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="WordCloud"
@@ -571,7 +571,7 @@ function WordCloudIcon({
 //   style,
 // }: TBoslerIconProps) {
 //   return (
-//     <div className="bosler-icons" style={style}>
+//     <div className="movetodata-icons" style={style}>
 //       <svg
 //         color={color}
 //         data-icon="grouped-column"
@@ -601,7 +601,7 @@ function BigGroupedColumnIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         width="80"
         height="50"
@@ -722,7 +722,7 @@ function HistogramIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="histogram-chart"
@@ -753,7 +753,7 @@ function BigHistogramIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         width="80"
         height="50"
@@ -836,7 +836,7 @@ function BigLineIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         width="80"
         height="50"
@@ -868,7 +868,7 @@ function ComboChartIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       {/* <svg
         color={color}
         data-icon="line-chart"
@@ -911,7 +911,7 @@ function LineChartIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="line-chart"
@@ -942,7 +942,7 @@ function MapIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="map"
@@ -973,7 +973,7 @@ function BigPieIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         width="80"
         height="50"
@@ -1006,7 +1006,7 @@ function PieChartIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="pie-chart"
@@ -1046,7 +1046,7 @@ function PieChartIcon({
 //   style,
 // }: TBoslerIconProps) {
 //   return (
-//     <div className="bosler-icons" style={style}>
+//     <div className="movetodata-icons" style={style}>
 //       <svg
 //         color={color}
 //         data-icon="pie-chart"
@@ -1077,7 +1077,7 @@ function ScatterIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="scatter-chart"
@@ -1155,7 +1155,7 @@ function BigScatterIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         width="80"
         height="50"
@@ -1180,7 +1180,7 @@ function BigStackedBarIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         width="80"
         height="50"
@@ -1247,7 +1247,7 @@ function BigStackedBar1Icon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         width="80"
         height="50"
@@ -1314,7 +1314,7 @@ function Stacked100BarIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="stacked-100-bar"
@@ -1346,7 +1346,7 @@ function BigStackedColumnIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         width="80"
         height="50"
@@ -1467,7 +1467,7 @@ function BigStackedColumnIcon1({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         width="80"
         height="50"
@@ -1582,7 +1582,7 @@ function StackedColumnBarIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="stacked-column"
@@ -1614,7 +1614,7 @@ function Stacked100ColumnBarIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="stacked-100-column"
@@ -1646,7 +1646,7 @@ function StackedGroupedBarIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="grouped-bar"
@@ -1688,7 +1688,7 @@ function StackedSidewayBarIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="stacked-bar"
@@ -1720,7 +1720,7 @@ function HeatMapIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         color={color}
         data-icon="heat-map"

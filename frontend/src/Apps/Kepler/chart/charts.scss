@@ -52,7 +52,7 @@
   .ant-table-row-level-0 {
     .ant-table-cell {
       padding: 0 !important;
-      border: 1px solid var(--bosler-border-color-default);
+      border: 1px solid var(--movetodata-border-color-default);
     }
 
     .ant-table-cell-metric {
@@ -79,7 +79,7 @@
     }
 
     &__aggregated-cell-formatter {
-      background: var(--bosler-bkg-color-default);
+      background: var(--movetodata-bkg-color-default);
       top: 0;
       bottom: 0;
       margin-left: auto;

@@ -782,7 +782,7 @@ export const DraggableColumnHeader: FC<{
                     <Tooltip title={getLanguageLabel("filterAppliedOnColumn")}>
                       <span style={{ cursor: "help" }}>
                         <FilterLinesIcon
-                          color="var(--bosler-intent-danger)"
+                          color="var(--movetodata-intent-danger)"
                           size={12}
                         />
                       </span>
@@ -798,7 +798,7 @@ export const DraggableColumnHeader: FC<{
                     >
                       <span style={{ cursor: "help" }}>
                         <PinIcon
-                          color="var(--bosler-intent-danger)"
+                          color="var(--movetodata-intent-danger)"
                           size={12}
                         />
                       </span>

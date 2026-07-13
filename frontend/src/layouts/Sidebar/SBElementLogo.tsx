@@ -52,8 +52,8 @@ const SDElementLogo = ({
                 fontWeight: "bold",
                 lineHeight: "16px",
                 color: "var(--PRIMARY_COLOR)",
-                // background: "var(--bosler-border-color-muted)",
-                // border: 0.1px solid var(--bosler-border-color-default);
+                // background: "var(--movetodata-border-color-muted)",
+                // border: 0.1px solid var(--movetodata-border-color-default);
                 // border-left: none;
                 // border-right: none;
               }}

@@ -6,7 +6,7 @@
 }
 
 .list {
-  border: 1px solid var(--bosler-border-color-default);
+  border: 1px solid var(--movetodata-border-color-default);
 
   border-radius: 0px 0px 5px 5px;
   height: fit-content;
@@ -29,7 +29,7 @@
 
 .listItem:hover {
   transform: scale(1.003);
-  background-color: var(--bosler-hover-color);
+  background-color: var(--movetodata-hover-color);
 }
 
 .createdBy {
@@ -45,7 +45,7 @@
 }
 
 .loadingState {
-  border: 1px solid var(--bosler-border-color-default);
+  border: 1px solid var(--movetodata-border-color-default);
   border-radius: 0px 0px 5px 5px;
   justify-content: center;
   align-items: center;

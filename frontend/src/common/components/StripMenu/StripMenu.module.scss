@@ -4,7 +4,7 @@
   justify-content: center;
 }
 .container {
-  background-color: var(--bosler-bkg-color-default);
+  background-color: var(--movetodata-bkg-color-default);
   margin: 0px auto;
   overflow: hidden;
   -moz-box-align: center;
@@ -32,7 +32,7 @@
     transition: color 0.15s cubic-bezier(0.25, 0.1, 0.25, 1),
       background-color 0.15s cubic-bezier(0.25, 0.1, 0.25, 1),
       box-shadow 0.15s cubic-bezier(0.25, 0.1, 0.25, 1);
-    background-color: var(--bosler-bkg-color-muted);
+    background-color: var(--movetodata-bkg-color-muted);
   }
 }
 

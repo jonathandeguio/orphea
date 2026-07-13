@@ -347,7 +347,7 @@ export const monacoGitBlame = (
     if (style) {
       style.innerHTML = `.myInlineDecoration-${paneId}::after {
                   content: '${contentString}';
-                  color: var(--bosler-font-color-git-blame);
+                  color: var(--movetodata-font-color-git-blame);
                   margin-left: 3rem;
                 }`;
     }
@@ -598,7 +598,7 @@ export const registerMonacoThemes = (monaco: Monaco) => {
       },
     ],
     colors: {
-      // "editorCursor.foreground": "var(--bosler-font-color-default)",
+      // "editorCursor.foreground": "var(--movetodata-font-color-default)",
       // foreground: "#cccce5",
       // "editor.foreground": "#cccce5",
       // "textSeparator.foreground": "#cccce5",
@@ -805,7 +805,7 @@ export const registerMonacoThemes = (monaco: Monaco) => {
       // { background: "#081826" },
     ],
     colors: {
-      // "editorCursor.foreground": "var(--bosler-font-color-default)",
+      // "editorCursor.foreground": "var(--movetodata-font-color-default)",
       "editor.background": "#0d1117",
       "minimap.background": "#0d1117",
       // foreground: "#cccce5",

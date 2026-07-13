@@ -123,7 +123,7 @@ const KeplerChartFormPanel = ({ id, datasetId }: TProps) => {
       </Panel>
       <div
         style={{
-          borderRight: "1px solid var(--bosler-border-color-muted)",
+          borderRight: "1px solid var(--movetodata-border-color-muted)",
           width:
             resourcePermission.mode == VERSION_MODE ||
             resourcePermission.mode == DATASET_HISTORY_MODE

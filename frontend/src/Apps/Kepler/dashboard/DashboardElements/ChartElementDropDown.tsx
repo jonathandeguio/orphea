@@ -135,7 +135,7 @@ const ChartElementDropDown = ({
             label: (
               <>
                 <div className="text-and-icon-center">
-                  <TrashIcon color={"var(--bosler-intent-danger)"} />
+                  <TrashIcon color={"var(--movetodata-intent-danger)"} />
                   {CHART_HEADER_DELETE}
                 </div>
               </>

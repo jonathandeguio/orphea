@@ -39,8 +39,8 @@ export const LicenseIncapableModal = ({ type, isOpen, setIsOpen }: IProps) => {
                 fontSize: "0.7rem",
               }}
             >
-              Bosler offers an exclusive licensing feature, available only to
-              Bosler Team users. Our licensing options include three distinct
+              MoveToData offers an exclusive licensing feature, available only to
+              MoveToData Team users. Our licensing options include three distinct
               product types: data platform, data hub, and data platform.
               Additionally, users can select from four size options: ultimate,
               large, medium, or small, each with predefined values. These values

@@ -6,25 +6,25 @@
     height: 100%;
     padding: 0 1rem;
     overflow-y: auto;
-    border: 1px solid var(--bosler-border-color-default);
+    border: 1px solid var(--movetodata-border-color-default);
 
     .file__path {
       width: 100%;
       padding: 0.5rem 1rem;
-      background-color: var(--bosler-bkg-color-muted);
+      background-color: var(--movetodata-bkg-color-muted);
       display: flex;
-      border-bottom: 2px solid var(--bosler-border-color-default);
+      border-bottom: 2px solid var(--movetodata-border-color-default);
     }
     .commit {
       display: flex;
       justify-content: space-between;
-      border: 1px solid var(--bosler-border-color-default);
+      border: 1px solid var(--movetodata-border-color-default);
       padding: 0.5rem 1rem;
       margin-bottom: -1px;
       cursor: pointer;
 
       &--active {
-        background-color: var(--bosler-hover-color);
+        background-color: var(--movetodata-hover-color);
       }
 
       &:last-child {
@@ -32,7 +32,7 @@
       }
 
       &:hover {
-        background-color: var(--bosler-hover-color);
+        background-color: var(--movetodata-hover-color);
       }
 
       &__message {
@@ -59,7 +59,7 @@
       }
     }
     .time {
-      background-color: var(--bosler-bkg-color-default);
+      background-color: var(--movetodata-bkg-color-default);
       z-index: 2;
 
       display: flex;
@@ -67,8 +67,8 @@
       padding: 1rem 0.7rem;
       font-weight: 700;
 
-      .bosler-icons {
-        background-color: var(--bosler-bkg-color-default);
+      .movetodata-icons {
+        background-color: var(--movetodata-bkg-color-default);
         z-index: 2;
       }
 
@@ -83,7 +83,7 @@
           content: "";
           display: flex;
           width: 2px;
-          background-color: var(--bosler-border-color-default);
+          background-color: var(--movetodata-border-color-default);
         }
       }
     }
@@ -97,15 +97,15 @@
     .file {
       border-radius: 1px;
       margin: 1rem 1rem;
-      border: 1px solid var(--bosler-border-color-default);
+      border: 1px solid var(--movetodata-border-color-default);
 
       &__header {
         display: flex;
         justify-content: space-between;
         cursor: pointer;
         padding: 1rem 1rem;
-        background-color: var(--bosler-bkg-color-muted);
-        border-bottom: 1px solid var(--bosler-border-color-default);
+        background-color: var(--movetodata-bkg-color-muted);
+        border-bottom: 1px solid var(--movetodata-border-color-default);
 
         &--add {
           color: green;
@@ -127,7 +127,7 @@
           display: flex;
         }
         &:hover {
-          background-color: var(--bosler-hover-color);
+          background-color: var(--movetodata-hover-color);
         }
       }
 

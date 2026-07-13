@@ -43,8 +43,8 @@ function filterLogData(logData: string) {
     "Pod Finished",
     "Files  local://",
     "at org.apache.spark",
-    "at io.bosler",
-    "at io.bosler",
+    "at io.movetodata",
+    "at io.movetodata",
     "at java.base",
     "ERROR Running",
     "Requirement already",
@@ -137,7 +137,7 @@ const DetailedLog = ({ id, buildType, buildStatus, language }: IProps) => {
           ></BoslerButton>
           <div
             style={{
-              border: "1px solid var(--bosler-intent-danger)",
+              border: "1px solid var(--movetodata-intent-danger)",
               padding: "6px",
             }}
           >

@@ -49,7 +49,7 @@ export const SourceButtonPopover: React.FC<SourceButtonPopoverProps> = ({
               justify={"space-between"}
               align="middle"
               style={{
-                borderBottom: "1px solid var(--bosler-border-color-default)",
+                borderBottom: "1px solid var(--movetodata-border-color-default)",
               }}
               gutter={[16, 16]}
             >

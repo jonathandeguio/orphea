@@ -75,7 +75,7 @@ export const DatasetButtonPopover: React.FC<DatasetButtonPopoverProps> = ({
             <Row
               align={"middle"}
               style={{
-                borderBottom: "1px solid var(--bosler-border-color-default)",
+                borderBottom: "1px solid var(--movetodata-border-color-default)",
               }}
               justify="space-between"
               gutter={[16, 16]}

@@ -123,7 +123,7 @@ export const useProjectsController = () => {
     },
     {
       label: getLanguageLabel("delete"),
-      icon: <TrashIcon color="var(--bosler-intent-danger)" />,
+      icon: <TrashIcon color="var(--movetodata-intent-danger)" />,
       onClick: () => {
         setSelectedProject(
           projects?.find((project) => project.id == contextMenuId)

@@ -38,6 +38,6 @@ export const useTabMetaDataController = (app: BOSLER_APPS_TYPES) => {
       (document.title =
         isDefined(config) && isDefined(config.platformName)
           ? config.platformName
-          : "Bosler");
+          : "MoveToData");
   }, []);
 };

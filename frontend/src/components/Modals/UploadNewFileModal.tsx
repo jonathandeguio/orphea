@@ -460,7 +460,7 @@ export default ({ id, isVisible, setIsVisible }: any) => {
                 style={{
                   height: "40vh",
                   alignContent: "center",
-                  border: "1px dashed var(--bosler-border-color-default)",
+                  border: "1px dashed var(--movetodata-border-color-default)",
                   alignItems: "center",
                   display: "flex",
                   flexDirection: "column",
@@ -476,7 +476,7 @@ export default ({ id, isVisible, setIsVisible }: any) => {
                   {getLanguageLabel("or").toLowerCase()}{" "}
                   <span
                     style={{
-                      color: "var(--bosler-font-color-default)",
+                      color: "var(--movetodata-font-color-default)",
                     }}
                     className="link"
                   >
@@ -511,7 +511,7 @@ export default ({ id, isVisible, setIsVisible }: any) => {
           <Row align={"middle"} justify="center">
             {" "}
             <Text style={{ fontSize: "1rem" }}>
-              Please Contact the Platform Admin to enable the Uploads on Bosler.
+              Please Contact the Platform Admin to enable the Uploads on MoveToData.
             </Text>
           </Row>
         </>

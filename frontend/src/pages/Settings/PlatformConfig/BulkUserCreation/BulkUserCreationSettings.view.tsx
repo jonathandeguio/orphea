@@ -94,7 +94,7 @@ export const BulkUserCreationSettings = () => {
                       gutter={[16, 16]}
                       style={{
                         padding: "5px",
-                        background: "var(--bosler-bkg-color-muted)",
+                        background: "var(--movetodata-bkg-color-muted)",
                         borderRadius: "2px",
                         boxShadow:
                           "rgba(11, 14, 22, 0.02) 0px 0px 0px 1px, rgba(11, 14, 22, 0.04) 0px 4px 8px, rgba(11, 14, 22, 0.04) 0px 18px 46px 6px",
@@ -163,7 +163,7 @@ export const BulkUserCreationSettings = () => {
             <Row justify="space-between">
               <Col
                 style={{
-                  border: "1px solid var(--bosler-border-color-muted)",
+                  border: "1px solid var(--movetodata-border-color-muted)",
                   padding: "1rem",
                 }}
               >

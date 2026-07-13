@@ -7,7 +7,7 @@ function GithubIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         data-icon="github"
         fill={color}
@@ -37,7 +37,7 @@ function GitNewBranchIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         data-icon="git-new-branch"
         fill={color}
@@ -61,7 +61,7 @@ function GitCommitIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         data-icon="git-commit"
         fill={color}
@@ -85,7 +85,7 @@ function GitMergeBranchIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         data-icon="git-merge"
         fill={color}
@@ -109,7 +109,7 @@ function MarkDownIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         data-icon="markdown"
         fill={color}
@@ -129,7 +129,7 @@ function JupyterIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         data-icon="jupyter-notebook"
         fill={color}
@@ -171,7 +171,7 @@ function PostgresIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         viewBox="0 0 446 446"
         xmlns="http://www.w3.org/2000/svg"
@@ -269,7 +269,7 @@ function PythonIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         width={size}
         height={size}
@@ -317,7 +317,7 @@ function MySQLIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         width={size}
         height={size}
@@ -347,7 +347,7 @@ function MariaDBIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         viewBox="0 0 301 196"
         fill="none"
@@ -370,7 +370,7 @@ function SnowflakeIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         viewBox="0 0 60 60"
         xmlns="http://www.w3.org/2000/svg"
@@ -415,7 +415,7 @@ function MSSQLIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         width="160"
         height="40"
@@ -485,7 +485,7 @@ function OracleIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         version="1.2"
         baseProfile="tiny-ps"
@@ -511,7 +511,7 @@ function SparkSQLIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         version="1.0"
         xmlns="http://www.w3.org/2000/svg"
@@ -541,7 +541,7 @@ function PySparkIcon({
   style,
 }: TBoslerIconProps) {
   return (
-    <div className="bosler-icons" style={style}>
+    <div className="movetodata-icons" style={style}>
       <svg
         version="1.0"
         xmlns="http://www.w3.org/2000/svg"

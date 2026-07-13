@@ -98,9 +98,9 @@
 }
 
 .Selectable-Cards:hover {
-  box-shadow: var(--bosler-hover-color) 0px 0px 0px 1px,
-    var(--bosler-hover-color) 0px 3px 6px,
-    var(--bosler-hover-color) 0px 5px 10px 0px;
+  box-shadow: var(--movetodata-hover-color) 0px 0px 0px 1px,
+    var(--movetodata-hover-color) 0px 3px 6px,
+    var(--movetodata-hover-color) 0px 5px 10px 0px;
 }
 
 .Connector-Modal {
@@ -123,7 +123,7 @@
     -webkit-box-pack: justify;
     justify-content: space-between;
 
-    border-bottom: 1px solid var(--bosler-border-color-default);
+    border-bottom: 1px solid var(--movetodata-border-color-default);
     // height: 64px;
     padding: 4px 16px;
     z-index: 2;
@@ -137,7 +137,7 @@
       gap: 1em;
 
       &-star {
-        color: var(--bosler-font-color-muted);
+        color: var(--movetodata-font-color-muted);
         font-size: 18px;
       }
 
@@ -158,8 +158,8 @@
         align-items: center;
         // margin-left: 4px;
         // padding-left: 8px;
-        background-color: var(--bosler-bkg-color-muted); //rgb(247, 247, 247);
-        color: var(--bosler-font-color-muted);
+        background-color: var(--movetodata-bkg-color-muted); //rgb(247, 247, 247);
+        color: var(--movetodata-font-color-muted);
         border-radius: 4px;
         line-height: 1;
 
@@ -168,7 +168,7 @@
           -webkit-box-align: center;
           align-items: center;
           padding: 8px 12px;
-          color: var(--bosler-font-color-muted);
+          color: var(--movetodata-font-color-muted);
           font-size: 13px;
           min-width: 104px;
           border-radius: 4px;
@@ -184,13 +184,13 @@
             cursor: default;
 
             &-icon {
-              color: var(--bosler-font-color-muted);
+              color: var(--movetodata-font-color-muted);
               padding-right: 8px;
               font-size: 16px;
             }
 
             &-text {
-              color: var(--bosler-font-color-muted);
+              color: var(--movetodata-font-color-muted);
               overflow: hidden;
               text-overflow: ellipsis;
               white-space: nowrap;
@@ -230,7 +230,7 @@
       gap: 1rem;
 
       &-save {
-        // color: $bosler-300;
+        // color: $movetodata-300;
         background-color: var(--background-color);
         border-color: transparent;
         display: inline-flex;
@@ -258,7 +258,7 @@
         &:hover {
           // border-color: transparent;
           color: #ffffff;
-          // background-color: $bosler-600;
+          // background-color: $movetodata-600;
           border: 0.2px solid rgba(11, 14, 22, 0.3);
           box-shadow: 0px 0px 2px 0px rgba(11, 14, 22, 0.4);
         }
@@ -287,8 +287,8 @@
       }
 
       &-un-saved {
-        // color: $bosler-300;
-        background-color: var(--bosler-bkg-color-muted);
+        // color: $movetodata-300;
+        background-color: var(--movetodata-bkg-color-muted);
         border-color: transparent;
         display: inline-flex;
         -webkit-box-align: center;
@@ -316,7 +316,7 @@
         &:hover {
           // border-color: transparent;
           color: #ffffff;
-          // background-color: $bosler-600;
+          // background-color: $movetodata-600;
           border: 0.2px solid rgba(11, 14, 22, 0.3);
           box-shadow: 0px 0px 2px 0px rgba(11, 14, 22, 0.4);
         }
@@ -365,17 +365,17 @@
           rgba(11, 14, 22, 0.03) 0px 2px 4px;
         transition: box-shadow 0.15s cubic-bezier(0.25, 0.1, 0.25, 1) 0s;
         border-radius: 4px;
-        color: $bosler-500;
+        color: $movetodata-500;
         background-color: var(--background-color);
         margin-left: 8px;
         width: 32px;
         height: 32px;
         padding: 0px;
-        border: 0.3px solid $bosler-300;
+        border: 0.3px solid $movetodata-300;
 
         &-icon {
           // color: #ffffff;
-          // background-color: $bosler-600;
+          // background-color: $movetodata-600;
           border: 0.2px solid rgba(11, 14, 22, 0.3);
           box-shadow: 0px 0px 2px 0px rgba(11, 14, 22, 0.4);
         }

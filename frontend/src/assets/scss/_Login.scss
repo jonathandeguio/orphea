@@ -45,7 +45,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 50%;
-  // background-color: var(--bosler-bkg-color-muted);
+  // background-color: var(--movetodata-bkg-color-muted);
   // background: url("../images/lines.png"); //var(--background-color);
   // position: fixed;
   display: flex;
@@ -80,7 +80,7 @@
       }
     }
 
-    &-bosler {
+    &-movetodata {
       margin-top: 10vh;
       font-size: 3.5rem;
       color: #5dacbd;
@@ -150,7 +150,7 @@
 
 .error {
   animation: shake 0.2s ease-in-out 0s 2;
-  color: var(--bosler-intent-danger);
-  border: 2px solid var(--bosler-intent-danger);
+  color: var(--movetodata-intent-danger);
+  border: 2px solid var(--movetodata-intent-danger);
   border-radius: 5px;
 }

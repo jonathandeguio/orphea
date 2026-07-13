@@ -109,7 +109,7 @@ function QueryForm() {
                             type="secondary"
                             style={{
                               fontSize: "10px",
-                              color: "var(--bosler-intent-danger)",
+                              color: "var(--movetodata-intent-danger)",
                             }}
                           >
                             Longitude is required!
@@ -141,7 +141,7 @@ function QueryForm() {
                             type="secondary"
                             style={{
                               fontSize: "10px",
-                              color: "var(--bosler-intent-danger)",
+                              color: "var(--movetodata-intent-danger)",
                             }}
                           >
                             Latitude is required!

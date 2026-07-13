@@ -56,7 +56,7 @@ const ColumnElement = ({
         style={
           isVisible && showBtn
             ? {
-                backgroundColor: "var(--bosler-bkg-color-muted)",
+                backgroundColor: "var(--movetodata-bkg-color-muted)",
               }
             : {}
         }

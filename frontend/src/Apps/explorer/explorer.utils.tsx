@@ -430,7 +430,7 @@ const getPostgresDataTypeIcon = (dataType: string) => {
 
     // UUID type
     case "uuid":
-      return <div className="bosler-icons">ID</div>;
+      return <div className="movetodata-icons">ID</div>;
 
     // JSON types
     case "json":
@@ -524,7 +524,7 @@ const getOracleDBDataTypeIcon = (dataType: string) => {
     case "urowid":
     case "rowid":
     case "uuid":
-      return <div className="bosler-icons">ID</div>;
+      return <div className="movetodata-icons">ID</div>;
 
     default:
       return <StringIcon />;
@@ -566,7 +566,7 @@ const getSQLServerDataTypeIcon = (dataType: string) => {
       return <CalendarIcon />;
 
     case "uniqueidentifier":
-      return <div className="bosler-icons">ID</div>;
+      return <div className="movetodata-icons">ID</div>;
 
     default:
       return <StringIcon />;
@@ -619,7 +619,7 @@ const getMariaDBMySQLDataTypeIcon = (dataType: string) => {
       return <BooleanIcon />;
 
     case "uuid":
-      return <div className="bosler-icons">ID</div>;
+      return <div className="movetodata-icons">ID</div>;
 
     default:
       return <StringIcon />;
@@ -742,7 +742,7 @@ export const getNodeIcon = (
       case ResourceSubTypeEnum.POSTGRES_VARCHAR:
         return <StringIcon />;
       case ResourceSubTypeEnum.POSTGRES_UUID:
-        return <div className="bosler-icons">ID</div>;
+        return <div className="movetodata-icons">ID</div>;
       case ResourceSubTypeEnum.POSTGRES_TIMESTAMP:
         return <CalendarIcon />;
 
@@ -797,7 +797,7 @@ export const getNodeIcon = (
     case ResourceTypeEnum.LINK:
       switch (subType) {
         case ResourceSubTypeEnum.LIVELINK:
-          return <LinkIcon color={"var(--bosler-intent-danger)"} size={size} />;
+          return <LinkIcon color={"var(--movetodata-intent-danger)"} size={size} />;
         default:
           return <LinkIcon color={"var(--ACTION_COLOR)"} size={size} />;
       }
@@ -805,7 +805,7 @@ export const getNodeIcon = (
       switch (subType) {
         case ResourceSubTypeEnum.LIVEDATASET:
           return (
-            <TableIcon color={"var(--bosler-intent-danger)"} size={size} />
+            <TableIcon color={"var(--movetodata-intent-danger)"} size={size} />
           );
         default:
           return <TableIcon color={"lightgrey"} size={size} />;

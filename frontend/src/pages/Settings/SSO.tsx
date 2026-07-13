@@ -157,7 +157,7 @@ const SSO = () => {
                               className="text-and-icon-center"
                             >
                               <TrashIcon
-                                color={"var(--bosler-intent-danger)"}
+                                color={"var(--movetodata-intent-danger)"}
                               />
                               {getLanguageLabel("delete")}
                             </div>

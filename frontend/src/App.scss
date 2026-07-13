@@ -37,34 +37,34 @@
 // light
 $color: rgb(1, 1, 27);
 $background-color: #ffffff;
-$bosler-font-color-default: #01011b;
-$bosler-font-color-light-black: #000000a6;
-$bosler-font-color-muted: #717a94;
-$bosler-bkg-color-default: #ffffff;
-$bosler-bkg-color-muted: #f8fafb;
-$bosler-border-color-default: #dadde6;
-$bosler-border-color-muted: #ecedf2;
-$bosler-hover-color: rgba(207, 211, 222, 0.322);
-$bosler-intent-danger: #c84654;
+$movetodata-font-color-default: #01011b;
+$movetodata-font-color-light-black: #000000a6;
+$movetodata-font-color-muted: #717a94;
+$movetodata-bkg-color-default: #ffffff;
+$movetodata-bkg-color-muted: #f8fafb;
+$movetodata-border-color-default: #dadde6;
+$movetodata-border-color-muted: #ecedf2;
+$movetodata-hover-color: rgba(207, 211, 222, 0.322);
+$movetodata-intent-danger: #c84654;
 $top-bar-border: rgb(218, 221, 230);
-$bosler-table-selected: rgb(14, 101, 235, 0.1);
-$bosler-font-color-git-blame: #aeb0b8;
+$movetodata-table-selected: rgb(14, 101, 235, 0.1);
+$movetodata-font-color-git-blame: #aeb0b8;
 
 // Dark
 $color-dark: rgb(228, 230, 236);
-$background-color-dark: $bosler-900;
-$bosler-font-color-default-dark: #e4e6ec;
-$bosler-font-color-light-black-dark: #e4e6ec;
-$bosler-font-color-muted-dark: #9ca3b4;
-$bosler-bkg-color-default-dark: #1e1e28;
-$bosler-bkg-color-muted-dark: $bosler-900; // previous #17171f
-$bosler-border-color-default-dark: #333345;
-$bosler-border-color-muted-dark: #2d2d3c;
-$bosler-hover-color-dark: rgba(63, 66, 87, 0.35);
-$bosler-intent-danger-dark: #ed6f73;
+$background-color-dark: $movetodata-900;
+$movetodata-font-color-default-dark: #e4e6ec;
+$movetodata-font-color-light-black-dark: #e4e6ec;
+$movetodata-font-color-muted-dark: #9ca3b4;
+$movetodata-bkg-color-default-dark: #1e1e28;
+$movetodata-bkg-color-muted-dark: $movetodata-900; // previous #17171f
+$movetodata-border-color-default-dark: #333345;
+$movetodata-border-color-muted-dark: #2d2d3c;
+$movetodata-hover-color-dark: rgba(63, 66, 87, 0.35);
+$movetodata-intent-danger-dark: #ed6f73;
 $top-bar-border-dark: #424242;
-$bosler-table-selected-dark: rgb(14, 101, 235, 0.3);
-$bosler-font-color-git-blame-dark: #282837;
+$movetodata-table-selected-dark: rgb(14, 101, 235, 0.3);
+$movetodata-font-color-git-blame-dark: #282837;
 
 // Button specific css
 $INTENT_COLOR: rgba(0, 0, 0, 0.04);
@@ -83,7 +83,7 @@ $SUCCESS_COLOR: rgb(41, 160, 124);
 $SUCCESS_COLOR_BORDER: green;
 $SUCCESS_COLOR_FONT: white;
 
-$DANGEROUS_COLOR: var(--bosler-intent-danger);
+$DANGEROUS_COLOR: var(--movetodata-intent-danger);
 $DANGEROUS_COLOR_BORDER: red;
 $DANGEROUS_COLOR_FONT: white;
 
@@ -126,18 +126,18 @@ $mobile_size:768px;
   --color: #{$color};
   --icon-color-deafult: #717a94;
   --background-color: #{$background-color};
-  --bosler-font-color-default: #{$bosler-font-color-default};
-  --bosler-font-color-muted: #{$bosler-font-color-muted};
-  --bosler-font-color-light-black: #{$bosler-font-color-light-black};
-  --bosler-bkg-color-default: #{$bosler-bkg-color-default};
-  --bosler-bkg-color-muted: #{$bosler-bkg-color-muted};
-  --bosler-border-color-default: #{$bosler-border-color-default};
-  --bosler-border-color-muted: #{$bosler-border-color-muted};
-  --bosler-hover-color: #{$bosler-hover-color};
-  --bosler-intent-danger: #{$bosler-intent-danger};
+  --movetodata-font-color-default: #{$movetodata-font-color-default};
+  --movetodata-font-color-muted: #{$movetodata-font-color-muted};
+  --movetodata-font-color-light-black: #{$movetodata-font-color-light-black};
+  --movetodata-bkg-color-default: #{$movetodata-bkg-color-default};
+  --movetodata-bkg-color-muted: #{$movetodata-bkg-color-muted};
+  --movetodata-border-color-default: #{$movetodata-border-color-default};
+  --movetodata-border-color-muted: #{$movetodata-border-color-muted};
+  --movetodata-hover-color: #{$movetodata-hover-color};
+  --movetodata-intent-danger: #{$movetodata-intent-danger};
   --top-bar-border: #{$top-bar-border};
-  --bosler-table-selected: #{$bosler-table-selected};
-  --bosler-font-color-git-blame: #{$bosler-font-color-git-blame};
+  --movetodata-table-selected: #{$movetodata-table-selected};
+  --movetodata-font-color-git-blame: #{$movetodata-font-color-git-blame};
   --mobile-width:#($mobile_size);
   // Button CSS Vars
   --INTENT_COLOR: #{$INTENT_COLOR};
@@ -181,18 +181,18 @@ $mobile_size:768px;
 .dark {
   --color: #{$color-dark};
   --background-color: #{$background-color-dark};
-  --bosler-font-color-default: #{$bosler-font-color-default-dark};
-  --bosler-font-color-muted: #{$bosler-font-color-muted-dark};
-  --bosler-font-color-light-black: #{$bosler-font-color-light-black-dark};
-  --bosler-bkg-color-default: #{$bosler-bkg-color-default-dark};
-  --bosler-bkg-color-muted: #{$bosler-bkg-color-muted-dark};
-  --bosler-border-color-default: #{$bosler-border-color-default-dark};
-  --bosler-border-color-muted: #{$bosler-border-color-muted-dark};
-  --bosler-hover-color: #{$bosler-hover-color-dark};
-  --bosler-intent-danger: #{$bosler-intent-danger-dark};
+  --movetodata-font-color-default: #{$movetodata-font-color-default-dark};
+  --movetodata-font-color-muted: #{$movetodata-font-color-muted-dark};
+  --movetodata-font-color-light-black: #{$movetodata-font-color-light-black-dark};
+  --movetodata-bkg-color-default: #{$movetodata-bkg-color-default-dark};
+  --movetodata-bkg-color-muted: #{$movetodata-bkg-color-muted-dark};
+  --movetodata-border-color-default: #{$movetodata-border-color-default-dark};
+  --movetodata-border-color-muted: #{$movetodata-border-color-muted-dark};
+  --movetodata-hover-color: #{$movetodata-hover-color-dark};
+  --movetodata-intent-danger: #{$movetodata-intent-danger-dark};
   --top-bar-border: #{$top-bar-border-dark};
-  --bosler-table-selected: #{$bosler-table-selected-dark};
-  --bosler-font-color-git-blame-dark: #{$bosler-font-color-git-blame-dark};
+  --movetodata-table-selected: #{$movetodata-table-selected-dark};
+  --movetodata-font-color-git-blame-dark: #{$movetodata-font-color-git-blame-dark};
 
   // Input CSS Vars
   --INPUT_BOX_SHADOW: #{$INPUT_BOX_SHADOW_DARK};
@@ -346,7 +346,7 @@ $xl: 1.25rem; /* 20px */
   width: 100%;
   height: 2px; /* Adjust the height of the line */
   background-color: var(
-    --bosler-intent-danger
+    --movetodata-intent-danger
   ); /* Change the color of the line */
   transform: translateY(-50%) rotate(-0deg); /* Adjust rotation angle */
 }
