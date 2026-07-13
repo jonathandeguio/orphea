@@ -48,6 +48,9 @@ const LoginActivity = () => {
   const [stats, setStats] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
+  const displayName = user?.name || user?.givenName || user?.username || "—";
+  const email = user?.email || "";
+
   useEffect(() => {
     if (!user?.id) return;
     Promise.all([
@@ -64,13 +67,13 @@ const LoginActivity = () => {
 
   const columns = [
     {
-      title: "Agent",
-      dataIndex: "agent",
-      key: "agent",
-      ellipsis: true,
-      render: (text: string) => (
-        <Text ellipsis style={{ maxWidth: 220 }} title={text}>
-          {text || "—"}
+      title: "User",
+      key: "user",
+      width: 160,
+      render: () => (
+        <Text>
+          {displayName}
+          {email ? <Text type="secondary"> · {email}</Text> : null}
         </Text>
       ),
     },
@@ -116,9 +119,6 @@ const LoginActivity = () => {
   ];
 
   if (!user) return <BoslerLoader />;
-
-  const displayName = user?.name || user?.givenName || user?.username || "—";
-  const email = user?.email || "";
 
   return (
     <div className="settings-center-block">
