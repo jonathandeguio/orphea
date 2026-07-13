@@ -118,8 +118,10 @@ export const NotificationBell = ({
         ...(notifications as Notifications[]),
         ...data.content,
       ]);
-    } catch (error) {
-      openNotification("Unable to fetch Notifications", "", "error");
+    } catch (error: any) {
+      if (error?.response?.status !== 401) {
+        openNotification("Unable to fetch Notifications", "", "error");
+      }
     } finally {
       setIsLoading(false);
     }
