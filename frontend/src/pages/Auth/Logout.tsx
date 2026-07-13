@@ -85,7 +85,7 @@ const Logout = () => {
             numberOfParticles={100}
             speed={0.6}
             logoSize={5}
-            image="/logo_hexa.svg"
+            image="/logo_hexa.png"
           />
         </div>
         <div
