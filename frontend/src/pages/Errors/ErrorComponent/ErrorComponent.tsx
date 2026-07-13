@@ -75,7 +75,7 @@ export const ErrorComponent = ({
             zIndex: 10,
           }}
         >
-          {!isIpPlatform() && <img src="/logo.png" alt="MoveToData" style={{ height: 128, marginBottom: 8 }} />}
+          {!isIpPlatform() && <img src="/logoMoveToData.png" alt="MoveToData" style={{ height: 128, marginBottom: 8 }} />}
           <div className="form-containerNew">
             <BoslerModalContainer
               headingIcon={<WarningIcon color="orange" />}

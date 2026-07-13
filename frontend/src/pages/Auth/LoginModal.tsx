@@ -10,7 +10,7 @@ const LoginModal = () => {
   return (
     <div className="form-containerNew">
       <BoslerModalContainer
-        heading={<img src="/logo.png" alt="MoveToData" style={{ height: 48 }} />}
+        heading={<img src="/logoMoveToData.png" alt="MoveToData" style={{ height: 48 }} />}
         footerExtraText={getLanguageLabel("loginAgreement")}
         footerButtonArea={
           <Form.Item style={{ margin: 0 }}>

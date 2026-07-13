@@ -256,7 +256,7 @@ const MainHeader = () => {
                         src={config.logo}
                       />
                     ) : (
-                      <img src="/logo.png" alt="MoveToData" style={{ height: 32 }} />
+                      <img src="/logoMoveToData.png" alt="MoveToData" style={{ height: 32 }} />
                     )}
                   </Link>
                 </div>

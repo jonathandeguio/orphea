@@ -108,7 +108,7 @@ const LoginError = () => {
             />
           </div>
           <div className="login-icon">
-            {!isIpPlatform() && <img src="/logo.png" alt="MoveToData" style={{ height: "15vw" }} />}
+            {!isIpPlatform() && <img src="/logoMoveToData.png" alt="MoveToData" style={{ height: "15vw" }} />}
 
             {/* <div className="login-icon-movetodata">MOVETODATA</div> */}
             <h3>{getLanguageLabel("sessionExpired")}</h3>

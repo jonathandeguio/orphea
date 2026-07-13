@@ -39,7 +39,7 @@ const SDElementLogo = ({
         />
       ) : (
         <>
-          <img src="/logo.png" alt="MoveToData" style={{ height: iconSize && iconSize > 18 ? 36 : 30 }} />
+          <img src="/logoMoveToData.png" alt="MoveToData" style={{ height: iconSize && iconSize > 18 ? 36 : 30 }} />
           <br />
           {showText ? (
             <span className="logo">MOVETODATA</span>

@@ -118,7 +118,7 @@ const Login = () => {
             }}
             className="login-containerNew"
           >
-            {!isIpPlatform() && <img src="/logo.png" alt="MoveToData" style={{ height: 128, marginBottom: 8 }} />}
+            {!isIpPlatform() && <img src="/logoMoveToData.png" alt="MoveToData" style={{ height: 128, marginBottom: 8 }} />}
             <br />
             <LoginModal />
           </Form>
