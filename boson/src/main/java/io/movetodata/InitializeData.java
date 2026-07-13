@@ -436,7 +436,7 @@ public class InitializeData {
             }
 
             if (!platformConfigRepository.existsByName("platformConfig")) {
-                platformConfigRepository.save(new PlatformConfig(null, new Date(), new Date(), null, null, "MoveToData", "platformConfig", true, 250000, 0L, 500, true, 2592000L, true, "Europe/Paris", 2, 2, false, false, null, "https://pypi.python.org/simple/", "http://username:pssword@proxy.example.com", null, "[]", "master", false, false, false));
+                platformConfigRepository.save(new PlatformConfig(null, new Date(), new Date(), null, null, "MoveToData", "platformConfig", true, 250000, 0L, 500, true, 2592000L, true, "Europe/Paris", 2, 2, false, false, null, "https://pypi.python.org/simple/", "http://username:pssword@proxy.example.com", null, "[]", "master", false, false, false, 30));
             }
 
             if (!smtpConfigRepository.existsByConfig("platform")) {
