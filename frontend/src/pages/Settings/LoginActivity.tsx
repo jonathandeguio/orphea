@@ -4,7 +4,7 @@ import {
   ThunderboltOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { Card, Col, Divider, Row, Statistic, Table, Tag, Typography } from "antd";
+import { Avatar, Badge, Card, Col, Divider, Row, Statistic, Table, Tag, Typography } from "antd";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -12,6 +12,9 @@ import BoslerLoader from "../../components/boslerLoader";
 import { getLanguageLabel, openNotification } from "utils/utilities";
 
 const { Title, Text } = Typography;
+
+const getInitials = (name: string) =>
+  name ? name.split(" ").map((n) => n[0]).join("").toUpperCase().slice(0, 2) : "?";
 
 const formatDuration = (seconds: number | null | undefined): string => {
   if (seconds == null || seconds <= 0) return "—";
@@ -90,7 +93,11 @@ const LoginActivity = () => {
       key: "lastLogoutAt",
       width: 160,
       render: (ts: number) =>
-        ts ? new Date(ts).toLocaleString() : <Text type="secondary">{getLanguageLabel("noStatus")}</Text>,
+        ts ? (
+          new Date(ts).toLocaleString()
+        ) : (
+          <Badge status="processing" text={<Text type="success">Active</Text>} />
+        ),
     },
     {
       title: getLanguageLabel("sessionDuration"),
@@ -110,13 +117,29 @@ const LoginActivity = () => {
 
   if (!user) return <BoslerLoader />;
 
+  const displayName = user?.name || user?.givenName || user?.username || "—";
+  const email = user?.email || "";
+
   return (
     <div className="settings-center-block">
       <p>
-        <Row>
+        <Row align="middle" gutter={16}>
           <Col>
-            <Title level={3}>{getLanguageLabel("loginActivity")}</Title>
-            <Text type="secondary">{getLanguageLabel("loginActivity")}</Text>
+            <Avatar
+              size={48}
+              src={user?.profileImage || undefined}
+              style={{ backgroundColor: "var(--primary-color)" }}
+            >
+              {!user?.profileImage && getInitials(displayName)}
+            </Avatar>
+          </Col>
+          <Col>
+            <Title level={3} style={{ margin: 0 }}>
+              {getLanguageLabel("loginActivity")}
+            </Title>
+            <Text type="secondary">
+              {displayName} {email ? `· ${email}` : ""}
+            </Text>
           </Col>
         </Row>
         <Divider />
