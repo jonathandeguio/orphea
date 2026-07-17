@@ -34,7 +34,7 @@ const Login = () => {
 
   useEffect(() => {
     if (!tokenStatusLoading && isTokenValid) {
-      navigate(-1);
+      navigate("/portal/home");
     }
   }, [userInfo, loading, error, isTokenValid, tokenStatusLoading]);
 
