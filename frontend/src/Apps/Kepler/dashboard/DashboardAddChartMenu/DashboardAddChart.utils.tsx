@@ -1,7 +1,9 @@
 import {
   ChartIcon,
   GaugeIcon,
+  GraphIcon,
   GroupedColumnIcon,
+  HeatMapIcon,
   LineChartIcon,
   MapIcon,
   PieChartIcon,
@@ -9,6 +11,7 @@ import {
   ScatterIcon,
   SmallAreaChartIcon,
   SunburstIcon,
+  TreeMapIcon,
 } from "assets/icons/boslerChartIcons";
 import { BigNumberIcon } from "assets/icons/boslerDataIcons";
 import { TableCellIcon } from "assets/icons/boslerTableIcons";
@@ -64,6 +67,14 @@ export const getChartIcon = (
     return <RadarIcon size={defaultSize} />;
   } else if (chartType == "sunBurstChart") {
     return <SunburstIcon size={defaultSize} />;
+  } else if (chartType == "funnelChart") {
+    return <ChartIcon size={defaultSize} />;
+  } else if (chartType == "heatmapChart") {
+    return <HeatMapIcon size={defaultSize} />;
+  } else if (chartType == "sankeyChart") {
+    return <GraphIcon size={defaultSize} />;
+  } else if (chartType == "treeChart") {
+    return <TreeMapIcon size={defaultSize} />;
   } else return <GroupedColumnIcon size={defaultSize} />;
 };
 

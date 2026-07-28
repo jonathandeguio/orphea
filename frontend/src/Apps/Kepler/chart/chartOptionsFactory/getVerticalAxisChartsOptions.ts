@@ -76,6 +76,18 @@ const getVerticalAxisChartsConfig = ({
             symbol: customizeSeries?.symbol,
             symbolSize: customizeSeries?.symbolSize,
           };
+        } else if (series.type === "effectScatterChart") {
+          obj = {
+            name: props,
+            type: "effectScatter",
+            symbol: customizeSeries?.symbol,
+            symbolSize: customizeSeries?.symbolSize ?? 20,
+            rippleEffect: {
+              brushType: "stroke",
+              scale: 4,
+              period: 4,
+            },
+          };
         }
 
         obj = {

@@ -13,6 +13,10 @@ import getTreeMapChartOptions from "./getTreeMapChartOptions";
 import getVerticalAxisChartsOptions from "./getVerticalAxisChartsOptions";
 import getWaterFallChartOptions from "./getWaterFallChartOptions";
 import getWordCloudChartOptions from "./getWordCloudChartOptions";
+import getFunnelChartOptions from "./getFunnelChartOptions";
+import getHeatmapChartOptions from "./getHeatmapChartOptions";
+import getSankeyChartOptions from "./getSankeyChartOptions";
+import getTreeChartOptions from "./getTreeChartOptions";
 
 export type chartDataConfigProps = {
   chartData: KeplerChartResponse;
@@ -58,6 +62,10 @@ const generateChartOptions = ({
     treeMapChart: getTreeMapChartOptions,
     waterFallChart: getWaterFallChartOptions,
     wordCloudChart: getWordCloudChartOptions,
+    funnelChart: getFunnelChartOptions,
+    heatmapChart: getHeatmapChartOptions,
+    sankeyChart: getSankeyChartOptions,
+    treeChart: getTreeChartOptions,
     table: (props: chartDataConfigProps) => props.chartData,
   };
 
@@ -112,7 +120,8 @@ export const getColorScheme = (
       } else if (
         chartType === "pieChart" ||
         chartType === "gaugeChart" ||
-        chartType === "wordCloudChart"
+        chartType === "wordCloudChart" ||
+        chartType === "funnelChart"
       ) {
         colorScheme[chartType] = {};
         ObjectKeys(chartData?.data).forEach((prop) => {

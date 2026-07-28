@@ -1,8 +1,11 @@
 import { KeplerSeries } from "Apps/Kepler/kepler";
 import { Tooltip } from "antd";
 import {
+  ChartIcon,
   GaugeIcon,
+  GraphIcon,
   GroupedColumnIcon,
+  HeatMapIcon,
   LineChartIcon,
   MapIcon,
   PieChartIcon,
@@ -13,7 +16,7 @@ import {
   SunburstIcon,
   TreeMapIcon,
   WaterFallIcon,
-  WordCloudIcon
+  WordCloudIcon,
 } from "assets/icons/boslerChartIcons";
 import { BigNumberIcon } from "assets/icons/boslerDataIcons";
 import { MapLegendIcon } from "assets/icons/boslerInterfaceIcons";
@@ -141,6 +144,41 @@ function SliderController() {
       chartName: getLanguageLabel("parameterChart"),
       key: 10,
       chartType: "parameterChart",
+      disabled: false,
+    },
+    funnelChart: {
+      chartIcon: <ChartIcon size={24} />,
+      chartName: getLanguageLabel("funnelChart") ?? "Funnel",
+      key: 13,
+      chartType: "funnelChart",
+      disabled: false,
+    },
+    heatmapChart: {
+      chartIcon: <HeatMapIcon size={24} />,
+      chartName: getLanguageLabel("heatmapChart") ?? "Heatmap",
+      key: 14,
+      chartType: "heatmapChart",
+      disabled: false,
+    },
+    sankeyChart: {
+      chartIcon: <GraphIcon size={24} />,
+      chartName: getLanguageLabel("sankeyChart") ?? "Sankey",
+      key: 15,
+      chartType: "sankeyChart",
+      disabled: false,
+    },
+    treeChart: {
+      chartIcon: <GraphIcon size={24} />,
+      chartName: getLanguageLabel("treeChart") ?? "Tree",
+      key: 16,
+      chartType: "treeChart",
+      disabled: false,
+    },
+    VerticalAxisChart4: {
+      chartIcon: <ScatterIcon size={24} />,
+      chartName: getLanguageLabel("effectScatterChart") ?? "Effect Scatter",
+      key: 17,
+      chartType: "VerticalAxisChart_effectScatterChart",
       disabled: false,
     },
   };

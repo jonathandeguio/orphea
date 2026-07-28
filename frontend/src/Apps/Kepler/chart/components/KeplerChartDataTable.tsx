@@ -35,7 +35,11 @@ const KeplerChartDataTable = ({
 
       const querySkeleton = chartConfig[chartType];
 
-      if (chartType === "sunBurstChart" || chartType === "treeMapChart") {
+      if (
+        chartType === "sunBurstChart" ||
+        chartType === "treeMapChart" ||
+        chartType === "treeChart"
+      ) {
         ObjectKeys(chartData.data?.[0]).map((col) => {
           Columns.push({
             title: col,
@@ -45,7 +49,11 @@ const KeplerChartDataTable = ({
         });
 
         DataArr = chartData.data;
-      } else if (chartType === "pieChart" || chartType == "wordCloudChart") {
+      } else if (
+        chartType === "pieChart" ||
+        chartType === "wordCloudChart" ||
+        chartType === "funnelChart"
+      ) {
         Columns.push({
           title: getLanguageLabel("name"),
           dataIndex: "name",
@@ -110,6 +118,30 @@ const KeplerChartDataTable = ({
           });
 
         DataArr = chartData.mapChartData;
+      } else if (chartType === "heatmapChart") {
+        // heatmap: xCategories, yCategories, data: [[xIdx, yIdx, value]]
+        const xCats: string[] = chartData.data?.xCategories ?? [];
+        const yCats: string[] = chartData.data?.yCategories ?? [];
+        Columns.push({ title: "X", dataIndex: "x", key: "x" });
+        Columns.push({ title: "Y", dataIndex: "y", key: "y" });
+        Columns.push({ title: "Value", dataIndex: "value", key: "value" });
+        (chartData.data?.data ?? []).forEach((row: [number, number, number]) => {
+          DataArr.push({
+            x: xCats[row[0]] ?? row[0],
+            y: yCats[row[1]] ?? row[1],
+            value: row[2],
+          });
+        });
+      } else if (chartType === "sankeyChart") {
+        // sankey: nodes, links
+        Columns.push({ title: "Source", dataIndex: "source", key: "source" });
+        Columns.push({ title: "Target", dataIndex: "target", key: "target" });
+        Columns.push({ title: "Value", dataIndex: "value", key: "value" });
+        (chartData.data?.links ?? []).forEach(
+          (link: { source: string; target: string; value: number }) => {
+            DataArr.push({ source: link.source, target: link.target, value: link.value });
+          }
+        );
       } else if (chartType === "radarChart") {
         chartData.data.series.map((series: any) => {
           chartData.request.dimensions.map((d: string) => {

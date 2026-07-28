@@ -6,8 +6,10 @@ import { RootState } from "../../../../redux/types/store";
 import { chartConfig } from "../charts.config";
 import { BigNumberCustomizer } from "./BigNumberCustomizer";
 import "./ChartsCustomizer.scss";
+import { FunnelChartCustomizer } from "./FunnelChartCustomizer";
 import { GaugeChartCustomizer } from "./GaugeChartCustomizer";
 import { GridCustomizer } from "./GridCustomizer";
+import { HeatmapCustomizer } from "./HeatmapCustomizer";
 import { LeftYAxisCustomizer } from "./LeftYAxisCustomizer";
 import { LegendCustomizer } from "./LegendCustomizer";
 import { MapCustomizer } from "./MapCustomizer";
@@ -15,6 +17,7 @@ import { ParameterChartCustomizer } from "./ParameterChartCustomizer";
 import { PieChartCustomizer } from "./PieChartCustomizer";
 import { RadarChartCustomizer } from "./RadarChartCustomizer";
 import { RightYAxisCustomizer } from "./RightYAxisCustomizer";
+import { SankeyChartCustomizer } from "./SankeyChartCustomizer";
 import { SeriesCutomizer } from "./SeriesCutomizer";
 import { SunBurstCustomizer } from "./SunBurstCustomizer";
 import { TableCustomizer } from "./TableCustomizer";
@@ -22,6 +25,7 @@ import { ThemeSelector } from "./ThemeSelector";
 import { ThresholdCustomizer } from "./ThresholdCustomizer";
 import { TitleCustomizer } from "./TitleCustomizer";
 import { TooltipCustomizer } from "./TooltipCustomizer";
+import { TreeChartCustomizer } from "./TreeChartCustomizer";
 import { TreeMapCustomizer } from "./TreeMapCustomizer";
 import { WaterFallChartCustomizer } from "./WaterFallChartCustomizer";
 import { WordCloudChartCustomizer } from "./WordCloudChartCustomizer";
@@ -146,6 +150,18 @@ function customizeForm() {
 
         {/* Parameter Chart Options */}
         {query.chartType === "treeMapChart" && <TreeMapCustomizer />}
+
+        {/* Funnel Chart Options */}
+        {query.chartType === "funnelChart" && <FunnelChartCustomizer />}
+
+        {/* Heatmap Chart Options */}
+        {query.chartType === "heatmapChart" && <HeatmapCustomizer />}
+
+        {/* Sankey Chart Options */}
+        {query.chartType === "sankeyChart" && <SankeyChartCustomizer />}
+
+        {/* Tree Chart Options */}
+        {query.chartType === "treeChart" && <TreeChartCustomizer />}
 
         {skeleton.meta.legend && <LegendCustomizer />}
         {/* TOOLTIP OPTIONS */}
