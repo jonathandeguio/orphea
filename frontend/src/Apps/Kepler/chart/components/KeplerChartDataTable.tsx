@@ -142,6 +142,106 @@ const KeplerChartDataTable = ({
             DataArr.push({ source: link.source, target: link.target, value: link.value });
           }
         );
+      } else if (chartType === "graphChart") {
+        // graph: nodes + links
+        Columns.push({ title: "Source", dataIndex: "source", key: "source" });
+        Columns.push({ title: "Target", dataIndex: "target", key: "target" });
+        (chartData.data?.links ?? []).forEach(
+          (link: { source: string; target: string }) => {
+            DataArr.push({ source: link.source, target: link.target });
+          }
+        );
+      } else if (chartType === "boxplotChart") {
+        // boxplot: categories + [min, Q1, median, Q3, max]
+        Columns.push({ title: "Category", dataIndex: "category", key: "category" });
+        Columns.push({ title: "Min", dataIndex: "min", key: "min" });
+        Columns.push({ title: "Q1", dataIndex: "q1", key: "q1" });
+        Columns.push({ title: "Median", dataIndex: "median", key: "median" });
+        Columns.push({ title: "Q3", dataIndex: "q3", key: "q3" });
+        Columns.push({ title: "Max", dataIndex: "max", key: "max" });
+        const cats: string[] = chartData.data?.categories ?? [];
+        (chartData.data?.data ?? []).forEach((row: number[], idx: number) => {
+          DataArr.push({
+            category: cats[idx] ?? idx,
+            min: row[0],
+            q1: row[1],
+            median: row[2],
+            q3: row[3],
+            max: row[4],
+          });
+        });
+      } else if (chartType === "candlestickChart") {
+        // candlestick: dates + [open, close, low, high]
+        Columns.push({ title: "Date", dataIndex: "date", key: "date" });
+        Columns.push({ title: "Open", dataIndex: "open", key: "open" });
+        Columns.push({ title: "Close", dataIndex: "close", key: "close" });
+        Columns.push({ title: "Low", dataIndex: "low", key: "low" });
+        Columns.push({ title: "High", dataIndex: "high", key: "high" });
+        const dates: string[] = chartData.data?.dates ?? [];
+        (chartData.data?.data ?? []).forEach((row: number[], idx: number) => {
+          DataArr.push({
+            date: dates[idx] ?? idx,
+            open: row[0],
+            close: row[1],
+            low: row[2],
+            high: row[3],
+          });
+        });
+      } else if (chartType === "parallelChart") {
+        // parallel: axes + data rows
+        const axes: string[] = chartData.data?.axes ?? [];
+        axes.forEach((axisName: string) => {
+          Columns.push({ title: axisName, dataIndex: axisName, key: axisName });
+        });
+        (chartData.data?.data ?? []).forEach((row: number[]) => {
+          const rowObj: { [key: string]: number } = {};
+          axes.forEach((axisName: string, i: number) => {
+            rowObj[axisName] = row[i];
+          });
+          DataArr.push(rowObj);
+        });
+      } else if (chartType === "themeRiverChart") {
+        // themeRiver: [[date, value, category]]
+        Columns.push({ title: "Date", dataIndex: "date", key: "date" });
+        Columns.push({ title: "Value", dataIndex: "value", key: "value" });
+        Columns.push({ title: "Category", dataIndex: "category", key: "category" });
+        (chartData.data?.data ?? []).forEach(
+          (row: [string, number, string]) => {
+            DataArr.push({ date: row[0], value: row[1], category: row[2] });
+          }
+        );
+      } else if (chartType === "pictorialBarChart") {
+        // pictorialBar: same format as VerticalAxisChart
+        Columns.push({
+          title: chartData.request.xaxis,
+          dataIndex: chartData.request.xaxis,
+          key: chartData.request.xaxis,
+        });
+        chartData.data.series?.forEach((s: any) => {
+          s.seriesData &&
+            Object.keys(s.seriesData).forEach((k: string) => {
+              const col = s.groupBy?.length > 0 ? `${s.axisName} [${k}]` : k;
+              Columns.push({ title: col, dataIndex: col, key: col });
+            });
+        });
+        chartData.data.xAxisData?.forEach((x: string) => {
+          DataObj[x] = { [chartData.request.xaxis]: x };
+        });
+        chartData.data.series?.forEach((s: any) => {
+          s.seriesData &&
+            Object.keys(s.seriesData).forEach((k: string) => {
+              const col = s.groupBy?.length > 0 ? `${s.axisName} [${k}]` : k;
+              s?.seriesData[k]?.forEach((dataPoint: any) => {
+                if (dataPoint.length === 2) {
+                  DataObj[dataPoint[0]] = {
+                    ...DataObj[dataPoint[0]],
+                    [col]: dataPoint[1],
+                  };
+                }
+              });
+            });
+        });
+        DataArr = Object.keys(DataObj).map((k) => DataObj[k]);
       } else if (chartType === "radarChart") {
         chartData.data.series.map((series: any) => {
           chartData.request.dimensions.map((d: string) => {

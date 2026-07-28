@@ -75,6 +75,20 @@ export const getChartIcon = (
     return <GraphIcon size={defaultSize} />;
   } else if (chartType == "treeChart") {
     return <TreeMapIcon size={defaultSize} />;
+  } else if (chartType == "graphChart") {
+    return <GraphIcon size={defaultSize} />;
+  } else if (chartType == "boxplotChart") {
+    return <ChartIcon size={defaultSize} />;
+  } else if (chartType == "candlestickChart") {
+    return <ChartIcon size={defaultSize} />;
+  } else if (chartType == "parallelChart") {
+    return <ChartIcon size={defaultSize} />;
+  } else if (chartType == "themeRiverChart") {
+    return <SmallAreaChartIcon size={defaultSize} />;
+  } else if (chartType == "pictorialBarChart") {
+    return <GroupedColumnIcon size={defaultSize} />;
+  } else if (chartType == "chordChart") {
+    return <ChartIcon size={defaultSize} />;
   } else return <GroupedColumnIcon size={defaultSize} />;
 };
 

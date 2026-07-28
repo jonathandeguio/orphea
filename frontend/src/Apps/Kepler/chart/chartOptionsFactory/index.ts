@@ -17,6 +17,13 @@ import getFunnelChartOptions from "./getFunnelChartOptions";
 import getHeatmapChartOptions from "./getHeatmapChartOptions";
 import getSankeyChartOptions from "./getSankeyChartOptions";
 import getTreeChartOptions from "./getTreeChartOptions";
+import getGraphChartOptions from "./getGraphChartOptions";
+import getBoxplotChartOptions from "./getBoxplotChartOptions";
+import getCandlestickChartOptions from "./getCandlestickChartOptions";
+import getParallelChartOptions from "./getParallelChartOptions";
+import getThemeRiverChartOptions from "./getThemeRiverChartOptions";
+import getPictorialBarChartOptions from "./getPictorialBarChartOptions";
+import getChordChartOptions from "./getChordChartOptions";
 
 export type chartDataConfigProps = {
   chartData: KeplerChartResponse;
@@ -66,6 +73,13 @@ const generateChartOptions = ({
     heatmapChart: getHeatmapChartOptions,
     sankeyChart: getSankeyChartOptions,
     treeChart: getTreeChartOptions,
+    graphChart: getGraphChartOptions,
+    boxplotChart: getBoxplotChartOptions,
+    candlestickChart: getCandlestickChartOptions,
+    parallelChart: getParallelChartOptions,
+    themeRiverChart: getThemeRiverChartOptions,
+    pictorialBarChart: getPictorialBarChartOptions,
+    chordChart: getChordChartOptions,
     table: (props: chartDataConfigProps) => props.chartData,
   };
 

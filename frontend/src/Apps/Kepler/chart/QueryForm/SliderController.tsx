@@ -181,6 +181,56 @@ function SliderController() {
       chartType: "VerticalAxisChart_effectScatterChart",
       disabled: false,
     },
+    graphChart: {
+      chartIcon: <GraphIcon size={24} />,
+      chartName: getLanguageLabel("graphChart") ?? "Graph / Network",
+      key: 18,
+      chartType: "graphChart",
+      disabled: false,
+    },
+    boxplotChart: {
+      chartIcon: <ChartIcon size={24} />,
+      chartName: getLanguageLabel("boxplotChart") ?? "Boxplot",
+      key: 19,
+      chartType: "boxplotChart",
+      disabled: false,
+    },
+    candlestickChart: {
+      chartIcon: <ChartIcon size={24} />,
+      chartName: getLanguageLabel("candlestickChart") ?? "Candlestick",
+      key: 20,
+      chartType: "candlestickChart",
+      disabled: false,
+    },
+    parallelChart: {
+      chartIcon: <ChartIcon size={24} />,
+      chartName: getLanguageLabel("parallelChart") ?? "Parallel",
+      key: 21,
+      chartType: "parallelChart",
+      disabled: false,
+    },
+    themeRiverChart: {
+      chartIcon: <SmallAreaChartIcon size={24} />,
+      chartName: getLanguageLabel("themeRiverChart") ?? "Theme River",
+      key: 22,
+      chartType: "themeRiverChart",
+      disabled: false,
+    },
+    pictorialBarChart: {
+      chartIcon: <GroupedColumnIcon size={24} />,
+      chartName: getLanguageLabel("pictorialBarChart") ?? "Pictorial Bar",
+      key: 23,
+      chartType: "pictorialBarChart",
+      disabled: false,
+    },
+    // Chord requires ECharts >= 6.0.0. Current version: 5.4.3. Disabled until migration.
+    chordChart: {
+      chartIcon: <ChartIcon size={24} />,
+      chartName: getLanguageLabel("chordChart") ?? "Chord",
+      key: 24,
+      chartType: "chordChart",
+      disabled: true,
+    },
   };
 
   const [selectedKey, setSelectedKey] = useState<string>("pieChart");

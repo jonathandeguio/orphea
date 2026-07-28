@@ -30,6 +30,13 @@ import { TreeMapCustomizer } from "./TreeMapCustomizer";
 import { WaterFallChartCustomizer } from "./WaterFallChartCustomizer";
 import { WordCloudChartCustomizer } from "./WordCloudChartCustomizer";
 import { XAxisCustomizer } from "./XAxisCustomizer";
+import { GraphChartCustomizer } from "./GraphChartCustomizer";
+import { BoxplotChartCustomizer } from "./BoxplotChartCustomizer";
+import { CandlestickChartCustomizer } from "./CandlestickChartCustomizer";
+import { ParallelChartCustomizer } from "./ParallelChartCustomizer";
+import { ThemeRiverChartCustomizer } from "./ThemeRiverChartCustomizer";
+import { PictorialBarChartCustomizer } from "./PictorialBarChartCustomizer";
+import { ChordChartCustomizer } from "./ChordChartCustomizer";
 
 function customizeForm() {
   const dispatch = useDispatch();
@@ -162,6 +169,27 @@ function customizeForm() {
 
         {/* Tree Chart Options */}
         {query.chartType === "treeChart" && <TreeChartCustomizer />}
+
+        {/* Graph / Network Chart Options */}
+        {query.chartType === "graphChart" && <GraphChartCustomizer />}
+
+        {/* Boxplot Chart Options */}
+        {query.chartType === "boxplotChart" && <BoxplotChartCustomizer />}
+
+        {/* Candlestick Chart Options */}
+        {query.chartType === "candlestickChart" && <CandlestickChartCustomizer />}
+
+        {/* Parallel Coordinates Chart Options */}
+        {query.chartType === "parallelChart" && <ParallelChartCustomizer />}
+
+        {/* ThemeRiver Chart Options */}
+        {query.chartType === "themeRiverChart" && <ThemeRiverChartCustomizer />}
+
+        {/* PictorialBar Chart Options */}
+        {query.chartType === "pictorialBarChart" && <PictorialBarChartCustomizer />}
+
+        {/* Chord Chart Options (disabled — ECharts 6 required) */}
+        {query.chartType === "chordChart" && <ChordChartCustomizer />}
 
         {skeleton.meta.legend && <LegendCustomizer />}
         {/* TOOLTIP OPTIONS */}

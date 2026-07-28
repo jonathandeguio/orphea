@@ -79,6 +79,120 @@ function QueryForm() {
               </div>
             </div>
           )}
+
+          {/* ── Graph / Network: source + target (required), value + category (optional) ── */}
+          {querySkeleton.hasOwnProperty("graphSource") && (
+            <>
+              <div className="query_item">
+                <div className="query_item__heading">
+                  {getLanguageLabel("sourceColumn") ?? "Source Column"}
+                </div>
+                <div className="query_item__body">
+                  <ColumnSelect name={"graphSource"} />
+                </div>
+              </div>
+              <div className="query_item">
+                <div className="query_item__heading">
+                  {getLanguageLabel("targetColumn") ?? "Target Column"}
+                </div>
+                <div className="query_item__body">
+                  <ColumnSelect name={"graphTarget"} />
+                </div>
+              </div>
+              <div className="query_item">
+                <div className="query_item__heading">
+                  {getLanguageLabel("valueColumn") ?? "Value (node size, optional)"}
+                </div>
+                <div className="query_item__body">
+                  <ColumnSelect name={"graphValue"} />
+                </div>
+              </div>
+              <div className="query_item">
+                <div className="query_item__heading">
+                  {getLanguageLabel("categoryColumn") ?? "Category (optional)"}
+                </div>
+                <div className="query_item__body">
+                  <ColumnSelect name={"graphCategory"} />
+                </div>
+              </div>
+            </>
+          )}
+
+          {/* ── Candlestick: date + open + high + low + close ── */}
+          {querySkeleton.hasOwnProperty("candlestickDate") && (
+            <>
+              <div className="query_item">
+                <div className="query_item__heading">
+                  {getLanguageLabel("dateColumn") ?? "Date Column"}
+                </div>
+                <div className="query_item__body">
+                  <ColumnSelect name={"candlestickDate"} />
+                </div>
+              </div>
+              <div className="query_item">
+                <div className="query_item__heading">
+                  {getLanguageLabel("openColumn") ?? "Open"}
+                </div>
+                <div className="query_item__body">
+                  <ColumnSelect name={"candlestickOpen"} />
+                </div>
+              </div>
+              <div className="query_item">
+                <div className="query_item__heading">
+                  {getLanguageLabel("highColumn") ?? "High"}
+                </div>
+                <div className="query_item__body">
+                  <ColumnSelect name={"candlestickHigh"} />
+                </div>
+              </div>
+              <div className="query_item">
+                <div className="query_item__heading">
+                  {getLanguageLabel("lowColumn") ?? "Low"}
+                </div>
+                <div className="query_item__body">
+                  <ColumnSelect name={"candlestickLow"} />
+                </div>
+              </div>
+              <div className="query_item">
+                <div className="query_item__heading">
+                  {getLanguageLabel("closeColumn") ?? "Close"}
+                </div>
+                <div className="query_item__body">
+                  <ColumnSelect name={"candlestickClose"} />
+                </div>
+              </div>
+            </>
+          )}
+
+          {/* ── ThemeRiver: date + value + category ── */}
+          {querySkeleton.hasOwnProperty("themeRiverDate") && (
+            <>
+              <div className="query_item">
+                <div className="query_item__heading">
+                  {getLanguageLabel("dateColumn") ?? "Date Column"}
+                </div>
+                <div className="query_item__body">
+                  <ColumnSelect name={"themeRiverDate"} />
+                </div>
+              </div>
+              <div className="query_item">
+                <div className="query_item__heading">
+                  {getLanguageLabel("valueColumn") ?? "Value Column"}
+                </div>
+                <div className="query_item__body">
+                  <ColumnSelect name={"themeRiverValue"} />
+                </div>
+              </div>
+              <div className="query_item">
+                <div className="query_item__heading">
+                  {getLanguageLabel("categoryColumn") ?? "Category Column"}
+                </div>
+                <div className="query_item__body">
+                  <ColumnSelect name={"themeRiverCategory"} />
+                </div>
+              </div>
+            </>
+          )}
           {querySkeleton.hasOwnProperty("parameters") && (
             <div className="query_item">
               <div className="query_item__heading">
