@@ -134,7 +134,7 @@ function SliderController() {
       chartName: getLanguageLabel("map"),
       key: 9,
       chartType: "mapChart",
-      disabled: true,
+      disabled: false,
     },
     parameterChart: {
       chartIcon: <MapLegendIcon size={24} />,
