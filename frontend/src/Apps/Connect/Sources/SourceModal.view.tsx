@@ -88,6 +88,21 @@ const SourceModal = ({
     ...initialSourceDetails,
   });
 
+  // ODBC Bridge: local UI state for connection mode selection (not persisted as a separate field).
+  // DSN mode  → the DSN name is stored in the `server` field.
+  // CS mode   → the full connection string is stored in the `database` field.
+  const [odbcMode, setOdbcMode] = useState<"DSN" | "CS">("DSN");
+
+  const handleOdbcModeChange = (mode: "DSN" | "CS") => {
+    setOdbcMode(mode);
+    // Clear the field that is no longer relevant when the user switches modes
+    if (mode === "DSN") {
+      setNewSourceDetails({ ...newSourceDetails, database: "" });
+    } else {
+      setNewSourceDetails({ ...newSourceDetails, server: "" });
+    }
+  };
+
   const [selectedParent, setSelectedParent] = useState(
     updateDetails ? updateDetails.parent.name : null
   );
@@ -451,6 +466,7 @@ const SourceModal = ({
                   {getLanguageLabel("database").toUpperCase()}
                 </div>
 
+                {newSourceDetails.dbmsType !== SourceTypeEnum.ODBC && (
                 <Row
                   justify={"space-between"}
                   align="middle"
@@ -489,6 +505,7 @@ const SourceModal = ({
                     />
                   </Col>
                 </Row>
+                )}
                 {newSourceDetails.dbmsType == SourceTypeEnum.SNOWFLAKE && (
                   <Row
                     justify={"space-between"}
@@ -515,6 +532,7 @@ const SourceModal = ({
                   </Row>
                 )}
 
+                {newSourceDetails.dbmsType !== SourceTypeEnum.ODBC && (
                 <Row
                   justify={"space-between"}
                   align="middle"
@@ -538,6 +556,7 @@ const SourceModal = ({
                     />
                   </Col>
                 </Row>
+                )}
 
                 {newSourceDetails.dbmsType == SourceTypeEnum.SNOWFLAKE && (
                   <Row
@@ -562,6 +581,117 @@ const SourceModal = ({
                       />
                     </Col>
                   </Row>
+                )}
+
+                {/* ODBC Bridge — connection mode, DSN/connection string, and charset */}
+                {newSourceDetails.dbmsType === SourceTypeEnum.ODBC && (
+                  <>
+                    <Row
+                      justify={"space-between"}
+                      align="middle"
+                      style={{ marginTop: "10px" }}
+                      gutter={[16, 16]}
+                    >
+                      <Col span={8}>
+                        <Text>Connection Mode</Text>
+                      </Col>
+                      <Col span={16}>
+                        <Select
+                          value={odbcMode}
+                          onChange={(val: "DSN" | "CS") =>
+                            handleOdbcModeChange(val)
+                          }
+                          options={[
+                            { label: "DSN (Data Source Name)", value: "DSN" },
+                            { label: "Connection String", value: "CS" },
+                          ]}
+                          style={{ width: "100%" }}
+                        />
+                      </Col>
+                    </Row>
+
+                    {odbcMode === "DSN" && (
+                      <Row
+                        justify={"space-between"}
+                        align="middle"
+                        style={{ marginTop: "10px" }}
+                        gutter={[16, 16]}
+                      >
+                        <Col span={8}>
+                          <Text>DSN Name</Text>
+                        </Col>
+                        <Col span={16}>
+                          <BoslerInput
+                            placeholder="e.g. MyAS400DSN"
+                            onChange={(e) =>
+                              setNewSourceDetails({
+                                ...newSourceDetails,
+                                server: e.target.value,
+                              })
+                            }
+                            value={newSourceDetails.server}
+                            required
+                          />
+                        </Col>
+                      </Row>
+                    )}
+
+                    {odbcMode === "CS" && (
+                      <Row
+                        justify={"space-between"}
+                        align="middle"
+                        style={{ marginTop: "10px" }}
+                        gutter={[16, 16]}
+                      >
+                        <Col span={8}>
+                          <Text>Connection String</Text>
+                        </Col>
+                        <Col span={16}>
+                          <BoslerInput
+                            placeholder="Driver={FreeTDS};Server=myserver;Port=1433;Database=mydb;UID=user;PWD=pass"
+                            onChange={(e) =>
+                              setNewSourceDetails({
+                                ...newSourceDetails,
+                                database: e.target.value,
+                              })
+                            }
+                            value={newSourceDetails.database}
+                            required
+                          />
+                        </Col>
+                      </Row>
+                    )}
+
+                    <Row
+                      justify={"space-between"}
+                      align="middle"
+                      style={{ marginTop: "10px" }}
+                      gutter={[16, 16]}
+                    >
+                      <Col span={8}>
+                        <Text>Charset / Encoding (Optional)</Text>
+                      </Col>
+                      <Col span={16}>
+                        <Select
+                          placeholder="Default (UTF-8)"
+                          allowClear
+                          onChange={(val: string) =>
+                            setNewSourceDetails({
+                              ...newSourceDetails,
+                              schema: val ?? "",
+                            })
+                          }
+                          value={newSourceDetails.schema || undefined}
+                          options={[
+                            { label: "UTF-8", value: "UTF-8" },
+                            { label: "Latin-1 (ISO-8859-1)", value: "ISO-8859-1" },
+                            { label: "EBCDIC (IBM legacy)", value: "EBCDIC" },
+                          ]}
+                          style={{ width: "100%" }}
+                        />
+                      </Col>
+                    </Row>
+                  </>
                 )}
 
                 <div className="BoslerHeader1">

@@ -6,4 +6,5 @@ export const enum SourceTypeEnum {
   MSSQLSERVER = "MSSQLSERVER",
   MARIADB = "MARIADB",
   SNOWFLAKE = "SNOWFLAKE",
+  ODBC = "ODBC",
 }

@@ -8,10 +8,20 @@ import PreviewLink from "../Links/bottomBar/PreviewLink";
 import { AutoModeIcon } from "assets/icons/boslerActionIcons";
 import { isDefined } from "utils/utilities";
 import { SourceAuthTypeEnum } from "../Enums/SourceAuthTypeEnum";
+import { SourceTypeEnum } from "../Enums/SourceTypeEnum";
 import { ISourceConfig } from "./Source";
 
 export const isSourceConfigValid = (source: ISourceConfig) => {
   if (source.type == "jdbc") {
+    // ODBC Bridge: requires name, parent, and at minimum a DSN name (server field)
+    // or a full connection string (database field). Credentials are optional for some ODBC sources.
+    if (source.dbmsType === SourceTypeEnum.ODBC) {
+      return (
+        source.name &&
+        source.parent &&
+        (source.server || source.database)
+      );
+    }
     if (source.authType == SourceAuthTypeEnum.KEYPAIR) {
       return (
         source.name &&

@@ -8,6 +8,7 @@ public enum SourceTypeEnum {
     MSSQLSERVER("mssql server"),
     MARIADB("mariadb"),
     SNOWFLAKE("snowflake"),
+    ODBC("odbc"),
     // For internal usage only
     SPARKSQL("sparkSql"),
     NONE("NONE"),

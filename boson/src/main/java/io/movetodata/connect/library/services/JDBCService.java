@@ -78,6 +78,23 @@ public class JDBCService {
                     jdbcUrl += "&role=" + databaseSourceConfig.getUserRole();
                 }
                 break;
+            case ODBC:
+                // Two connection modes:
+                //   DSN mode        : server field holds the ODBC DSN name → jdbc:odbc:<dsnName>
+                //   Connection String mode : database field holds the full connection string
+                //                     e.g. "Driver={FreeTDS};Server=myserver;Port=1433;Database=mydb"
+                //                     → jdbc:odbc:<connectionString>
+                // TODO(Docker): the container image must include unixODBC and the relevant ODBC
+                //               drivers (FreeTDS for Sybase/MSSQL legacy, libmdbtools for MS Access, etc.).
+                //               Configure DSN sources in /etc/odbc.ini and drivers in /etc/odbcinst.ini.
+                if (databaseSourceConfig.getDatabase() != null && !databaseSourceConfig.getDatabase().isEmpty()) {
+                    // Connection String mode: pass the full connection string as the ODBC DSN portion
+                    jdbcUrl = "jdbc:odbc:" + databaseSourceConfig.getDatabase();
+                } else {
+                    // DSN mode: use the declared Data Source Name
+                    jdbcUrl = "jdbc:odbc:" + server;
+                }
+                break;
             default:
                 throw new IllegalArgumentException("Unsupported JDBC type: " + databaseSourceConfig.getDbmsType());
         }
@@ -99,6 +116,23 @@ public class JDBCService {
                 return "com.microsoft.sqlserver.jdbc.SQLServerDriver";
             case SNOWFLAKE:
                 return "net.snowflake.client.jdbc.SnowflakeDriver";
+            case ODBC:
+                // TODO(build.gradle): add a JDBC-ODBC bridge dependency, e.g.:
+                //   implementation 'com.hynnet:odbc-bridge:1.0.3'   (JNI, requires unixODBC)
+                // or the Easysoft/OpenLink commercial bridge for production Enterprise deployments.
+                // sun.jdbc.odbc.JdbcOdbcDriver was removed in Java 8 — a third-party bridge is mandatory.
+                try {
+                    Class.forName("com.hynnet.odbc.Driver");
+                    return "com.hynnet.odbc.Driver";
+                } catch (ClassNotFoundException e) {
+                    throw new IllegalStateException(
+                        "ODBC bridge driver not found on the classpath. " +
+                        "Add a JDBC-ODBC bridge jar to build.gradle (e.g. com.hynnet:odbc-bridge) " +
+                        "and ensure unixODBC with the required drivers is installed in the Docker image. " +
+                        "Refer to the ODBC Bridge architecture spec (§5).",
+                        e
+                    );
+                }
             default:
                 throw new IllegalArgumentException("Unsupported JDBC type: " + jdbcType);
         }
@@ -127,6 +161,12 @@ public class JDBCService {
                     break;
                 case MSSQLSERVER:
                     query = query.replaceFirst("SELECT | select", String.format("SELECT TOP (%d)", limit));
+                    break;
+                case ODBC:
+                    // Use ANSI SQL LIMIT as a best-effort default for ODBC sources.
+                    // Note: some legacy backends (IBM AS/400, Sybase ASE older versions) may not support LIMIT.
+                    // In those cases the query will fail gracefully and the user should add their own LIMIT clause.
+                    query = query + " LIMIT " + limit;
                     break;
                 default:
                     throw new IllegalArgumentException("Unsupported JDBC type: " + jdbcType);
