@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ant-design/icons": "5.3.7",
     "@blocknote/core": "0.11.2",
     "@blocknote/react": "0.9.6",
     "@codingame/monaco-jsonrpc": "0.3.1",
@@ -46,7 +47,6 @@
     "@types/react-csv": "1.1.9",
     "@typescript-eslint/parser": "6.21.0",
     "@uiw/react-md-editor": "4.0.0",
-    "@ant-design/icons": "5.3.7",
     "antd": "5.19.3",
     "array-bounds": "1.0.1",
     "assert": "2.1.0",
@@ -136,7 +136,9 @@
     "postinstall": "patch-package",
     "lint": "eslint './**/*.{js,jsx,ts,tsx}' --max-warnings=6",
     "lint:fix": "eslint './**/*.{js,jsx,ts,tsx}' --fix --max-warnings=6",
-    "prettier-lint:fix": "npm run prettier:fix && npm run lint:fix"
+    "prettier-lint:fix": "npm run prettier:fix && npm run lint:fix",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui"
   },
   "browserslist": {
     "production": [
@@ -151,6 +153,7 @@
     ]
   },
   "devDependencies": {
+    "@playwright/test": "^1.62.0",
     "@testing-library/jest-dom": "5.16.5",
     "@testing-library/react": "14.1.2",
     "@testing-library/user-event": "14.4.3",
