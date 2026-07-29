@@ -341,6 +341,22 @@ export const connectors = [
     ),
   },
   {
+    id: "ODBC",
+    icon: <DatabaseIcon />,
+    type: "jdbc",
+    subType: SourceTypeEnum.ODBC,
+    disabled: false,
+    label: (
+      <>
+        <br />
+        <div className="text-and-icon-align">
+          <AddIcon />
+          <DatabaseIcon /> ODBC Bridge
+        </div>
+      </>
+    ),
+  },
+  {
     id: "DB2",
     icon: <DatabaseIcon />,
     type: "jdbc",
@@ -378,7 +394,7 @@ export const connectors = [
     icon: <APIIcon />,
     type: "rest",
     subType: "REST API",
-    disabled: true,
+    disabled: false,
     label: (
       <>
         <br />
