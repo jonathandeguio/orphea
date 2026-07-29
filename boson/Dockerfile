@@ -77,6 +77,18 @@ RUN \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
+# --- ODBC/FreeTDS : configuration systeme ---
+# Copie des fichiers de configuration ODBC dans le conteneur
+COPY dependencies/odbcinst.ini /etc/odbcinst.ini
+COPY dependencies/odbc.ini     /etc/odbc.ini
+
+# Variables d'environnement pour que unixODBC trouve les fichiers de config
+ENV ODBCSYSINI=/etc
+ENV ODBCINI=/etc/odbc.ini
+
+# Verification au build : lister les drivers enregistres
+RUN odbcinst -q -d && echo "unixODBC drivers OK" || echo "WARNING: odbcinst check failed"
+
 RUN pip install -q --upgrade pip && \
   pip install -q --upgrade -r dependencies/requirements.txt
 

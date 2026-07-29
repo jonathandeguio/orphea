@@ -7,3 +7,8 @@ python3-pip
 jq
 openssl
 tini
+unixodbc
+unixodbc-dev
+freetds-bin
+freetds-dev
+tdsodbc

@@ -77,6 +77,9 @@ dependencies {
     implementation 'mysql:mysql-connector-java:8.0.33'
     implementation 'com.oracle.database.jdbc:ojdbc8:21.9.0.0'
     implementation 'net.snowflake:snowflake-jdbc:3.18.0'
+    // JDBC-ODBC bridge — necessite unixODBC installe dans l'image Docker
+    // Driver class : com.hynnet.odbc.Driver
+    implementation 'com.hynnet:odbc-bridge:1.0.3'
     implementation 'org.apache.spark:spark-core_2.13:3.4.3'
     implementation 'org.apache.spark:spark-sql_2.13:3.4.3'
     implementation 'org.apache.spark:spark-kubernetes_2.13:3.4.3'
