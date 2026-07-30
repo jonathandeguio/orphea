@@ -7,4 +7,7 @@ export const enum SourceTypeEnum {
   MARIADB = "MARIADB",
   SNOWFLAKE = "SNOWFLAKE",
   ODBC = "ODBC",
+  CLICKHOUSE = "CLICKHOUSE",
+  DATABRICKS = "DATABRICKS",
+  MONGODB = "MONGODB",
 }

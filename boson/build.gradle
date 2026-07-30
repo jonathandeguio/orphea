@@ -80,6 +80,14 @@ dependencies {
     // JDBC-ODBC bridge — necessite unixODBC installe dans l'image Docker
     // Driver class : com.hynnet.odbc.Driver
     implementation 'com.hynnet:odbc-bridge:1.0.3'
+    // ClickHouse JDBC driver — all-in-one fat jar (includes shaded HTTP client)
+    // Driver class : com.clickhouse.jdbc.ClickHouseDriver
+    implementation 'com.clickhouse:clickhouse-jdbc:0.6.0:all'
+    // Databricks JDBC driver (Simba)
+    // Driver class : com.databricks.client.jdbc.Driver
+    implementation 'com.databricks:databricks-jdbc:2.6.40'
+    // MongoDB driver (non-JDBC) — used by MongoService
+    implementation 'org.mongodb:mongodb-driver-sync:4.11.0'
     implementation 'org.apache.spark:spark-core_2.13:3.4.3'
     implementation 'org.apache.spark:spark-sql_2.13:3.4.3'
     implementation 'org.apache.spark:spark-kubernetes_2.13:3.4.3'

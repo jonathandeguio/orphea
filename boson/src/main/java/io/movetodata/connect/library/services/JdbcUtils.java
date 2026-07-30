@@ -47,9 +47,22 @@ public class JdbcUtils {
                 return isSnowflakeSpecificDQLQuery(trimmedQuery);
             case SPARKSQL:
                 return isSparkSQLSpecificDQLQuery(trimmedQuery);
+            case CLICKHOUSE:
+            case DATABRICKS:
+            case ODBC:
+                // ClickHouse, Databricks and ODBC sources all accept standard ANSI SQL SELECT queries.
+                return isGenericDQLQuery(trimmedQuery);
             default:
                 throw new DatabaseOperationException("Not a valid JDBC type");
         }
+    }
+
+    private static boolean isGenericDQLQuery(String query) {
+        return query.startsWith("SELECT ") ||
+                query.startsWith("WITH ") ||
+                query.startsWith("SHOW ") ||
+                query.startsWith("DESCRIBE ") ||
+                query.startsWith("EXPLAIN ");
     }
 
     private static boolean isSparkSQLSpecificDQLQuery(String query) {

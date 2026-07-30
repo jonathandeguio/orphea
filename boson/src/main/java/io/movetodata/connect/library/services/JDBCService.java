@@ -78,6 +78,19 @@ public class JDBCService {
                     jdbcUrl += "&role=" + databaseSourceConfig.getUserRole();
                 }
                 break;
+            case CLICKHOUSE:
+                jdbcUrl = "jdbc:clickhouse://" + server + ":" + port + "/" + databaseName;
+                break;
+            case DATABRICKS:
+                // Authentication uses UID=token + PWD=<personal-access-token> (AuthMech=3).
+                // The PAT is stored in the password field and passed via JDBC Properties.
+                // The httpPath is stored in the schema field.
+                String httpPath = databaseSourceConfig.getSchema() != null ? databaseSourceConfig.getSchema() : "";
+                jdbcUrl = "jdbc:databricks://" + server + ":443/default"
+                        + ";transportMode=http;ssl=1"
+                        + ";httpPath=" + httpPath
+                        + ";AuthMech=3";
+                break;
             case ODBC:
                 // Two connection modes:
                 //   DSN mode        : server field holds the ODBC DSN name → jdbc:odbc:<dsnName>
@@ -116,6 +129,10 @@ public class JDBCService {
                 return "com.microsoft.sqlserver.jdbc.SQLServerDriver";
             case SNOWFLAKE:
                 return "net.snowflake.client.jdbc.SnowflakeDriver";
+            case CLICKHOUSE:
+                return "com.clickhouse.jdbc.ClickHouseDriver";
+            case DATABRICKS:
+                return "com.databricks.client.jdbc.Driver";
             case ODBC:
                 // TODO(build.gradle): add a JDBC-ODBC bridge dependency, e.g.:
                 //   implementation 'com.hynnet:odbc-bridge:1.0.3'   (JNI, requires unixODBC)
@@ -153,6 +170,8 @@ public class JDBCService {
                 case MYSQL:
                 case SNOWFLAKE:
                 case MARIADB:
+                case CLICKHOUSE:
+                case DATABRICKS:
                     query = query + " LIMIT " + limit;
                     break;
                 case ORACLE21:
@@ -195,7 +214,12 @@ public class JDBCService {
 
     public Connection getJdbcConnection(DatabaseSourceConfig databaseSourceConfig) throws Exception {
         Properties properties = new Properties();
-        properties.put("user", databaseSourceConfig.getUsername());
+        // Databricks JDBC with AuthMech=3 requires the literal username "token" regardless of what the user typed.
+        if (SourceTypeEnum.DATABRICKS.equals(databaseSourceConfig.getDbmsType())) {
+            properties.put("user", "token");
+        } else {
+            properties.put("user", databaseSourceConfig.getUsername());
+        }
 
         if (databaseSourceConfig.getAuthType() != null && databaseSourceConfig.getAuthType().equals(SourceAuthTypeEnum.KEYPAIR)) {
             String privateKeyPath = databaseSourceConfig.getPrivateKey();

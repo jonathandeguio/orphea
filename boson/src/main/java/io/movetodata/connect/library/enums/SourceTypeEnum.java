@@ -9,6 +9,9 @@ public enum SourceTypeEnum {
     MARIADB("mariadb"),
     SNOWFLAKE("snowflake"),
     ODBC("odbc"),
+    CLICKHOUSE("clickhouse"),
+    DATABRICKS("databricks"),
+    MONGODB("mongodb"),
     // For internal usage only
     SPARKSQL("sparkSql"),
     NONE("NONE"),

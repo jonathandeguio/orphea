@@ -466,7 +466,8 @@ const SourceModal = ({
                   {getLanguageLabel("database").toUpperCase()}
                 </div>
 
-                {newSourceDetails.dbmsType !== SourceTypeEnum.ODBC && (
+                {newSourceDetails.dbmsType !== SourceTypeEnum.ODBC &&
+                  newSourceDetails.dbmsType !== SourceTypeEnum.DATABRICKS && (
                 <Row
                   justify={"space-between"}
                   align="middle"
@@ -506,6 +507,33 @@ const SourceModal = ({
                   </Col>
                 </Row>
                 )}
+
+                {/* Databricks: workspace host only (port is always 443, hardcoded in the JDBC URL) */}
+                {newSourceDetails.dbmsType === SourceTypeEnum.DATABRICKS && (
+                  <Row
+                    justify={"space-between"}
+                    align="middle"
+                    style={{ marginTop: "10px" }}
+                    gutter={[16, 16]}
+                  >
+                    <Col span={8}>
+                      <Text>Workspace Host</Text>
+                    </Col>
+                    <Col span={16}>
+                      <BoslerInput
+                        placeholder="e.g. adb-1234567890.12.azuredatabricks.net"
+                        onChange={(e) =>
+                          setNewSourceDetails({
+                            ...newSourceDetails,
+                            server: e.target.value,
+                          })
+                        }
+                        value={newSourceDetails.server}
+                        required
+                      />
+                    </Col>
+                  </Row>
+                )}
                 {newSourceDetails.dbmsType == SourceTypeEnum.SNOWFLAKE && (
                   <Row
                     justify={"space-between"}
@@ -532,7 +560,8 @@ const SourceModal = ({
                   </Row>
                 )}
 
-                {newSourceDetails.dbmsType !== SourceTypeEnum.ODBC && (
+                {newSourceDetails.dbmsType !== SourceTypeEnum.ODBC &&
+                  newSourceDetails.dbmsType !== SourceTypeEnum.DATABRICKS && (
                 <Row
                   justify={"space-between"}
                   align="middle"
@@ -558,6 +587,33 @@ const SourceModal = ({
                 </Row>
                 )}
 
+                {/* Databricks: HTTP Path field (stored in schema) */}
+                {newSourceDetails.dbmsType === SourceTypeEnum.DATABRICKS && (
+                  <Row
+                    justify={"space-between"}
+                    align="middle"
+                    style={{ marginTop: "10px" }}
+                    gutter={[16, 16]}
+                  >
+                    <Col span={8}>
+                      <Text>HTTP Path</Text>
+                    </Col>
+                    <Col span={16}>
+                      <BoslerInput
+                        placeholder="e.g. /sql/1.0/warehouses/abc123"
+                        onChange={(e) =>
+                          setNewSourceDetails({
+                            ...newSourceDetails,
+                            schema: e.target.value,
+                          })
+                        }
+                        value={newSourceDetails.schema}
+                        required
+                      />
+                    </Col>
+                  </Row>
+                )}
+
                 {newSourceDetails.dbmsType == SourceTypeEnum.SNOWFLAKE && (
                   <Row
                     justify={"space-between"}
@@ -571,6 +627,32 @@ const SourceModal = ({
                     <Col span={16}>
                       <BoslerInput
                         placeholder={getLanguageLabel("schema")}
+                        onChange={(e) =>
+                          setNewSourceDetails({
+                            ...newSourceDetails,
+                            schema: e.target.value,
+                          })
+                        }
+                        value={newSourceDetails.schema}
+                      />
+                    </Col>
+                  </Row>
+                )}
+
+                {/* MongoDB: authSource (optional, stored in schema) */}
+                {newSourceDetails.dbmsType === SourceTypeEnum.MONGODB && (
+                  <Row
+                    justify={"space-between"}
+                    align="middle"
+                    style={{ marginTop: "10px" }}
+                    gutter={[16, 16]}
+                  >
+                    <Col span={8}>
+                      <Text>Auth Source (Optional)</Text>
+                    </Col>
+                    <Col span={16}>
+                      <BoslerInput
+                        placeholder="admin"
                         onChange={(e) =>
                           setNewSourceDetails({
                             ...newSourceDetails,
@@ -733,7 +815,38 @@ const SourceModal = ({
                     </Row>
                   </>
                 )}
-                {newSourceDetails.authType == SourceAuthTypeEnum.KEYPAIR ? (
+
+                {/* Databricks: only a Personal Access Token is required (no username) */}
+                {newSourceDetails.dbmsType === SourceTypeEnum.DATABRICKS ? (
+                  <Row
+                    justify={"space-between"}
+                    align="middle"
+                    gutter={[16, 16]}
+                    style={{ marginTop: "10px" }}
+                  >
+                    <Col span={8}>
+                      <Text>Personal Access Token</Text>
+                    </Col>
+                    <Col span={16}>
+                      <Input.Password
+                        className="input"
+                        placeholder="dapi1234..."
+                        onChange={(e) =>
+                          setNewSourceDetails({
+                            ...newSourceDetails,
+                            password: Buffer.from(e.target.value, "ascii").toString("base64"),
+                          })
+                        }
+                        value={
+                          isDefined(newSourceDetails.password)
+                            ? Buffer.from(newSourceDetails.password, "base64").toString("ascii")
+                            : ""
+                        }
+                        required
+                      />
+                    </Col>
+                  </Row>
+                ) : newSourceDetails.authType == SourceAuthTypeEnum.KEYPAIR ? (
                   <>
                     <Row
                       justify={"space-between"}
@@ -889,6 +1002,34 @@ const SourceModal = ({
                           })
                         }
                         value={newSourceDetails.userRole}
+                      />
+                    </Col>
+                  </Row>
+                )}
+
+                {/* MongoDB: SSL/TLS toggle (stored in userRole as "true" / "false") */}
+                {newSourceDetails.dbmsType === SourceTypeEnum.MONGODB && (
+                  <Row
+                    justify={"space-between"}
+                    align="middle"
+                    style={{ marginTop: "10px" }}
+                    gutter={[16, 16]}
+                  >
+                    <Col span={8}>
+                      <Text>SSL / TLS</Text>
+                    </Col>
+                    <Col span={16}>
+                      <Switch
+                        size="small"
+                        checked={newSourceDetails.userRole === "true"}
+                        onChange={(val: boolean) =>
+                          setNewSourceDetails({
+                            ...newSourceDetails,
+                            userRole: val ? "true" : "false",
+                          })
+                        }
+                        checkedChildren="Enabled"
+                        unCheckedChildren="Disabled"
                       />
                     </Col>
                   </Row>

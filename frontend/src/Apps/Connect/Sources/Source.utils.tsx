@@ -22,6 +22,26 @@ export const isSourceConfigValid = (source: ISourceConfig) => {
         (source.server || source.database)
       );
     }
+    // Databricks: host + httpPath (stored in schema) + PAT (stored in password). No port or username required.
+    if (source.dbmsType === SourceTypeEnum.DATABRICKS) {
+      return (
+        source.name &&
+        source.parent &&
+        source.server &&
+        source.schema &&
+        source.password
+      );
+    }
+    // MongoDB: host + port + database are mandatory. Username/password are optional (some instances use no auth).
+    if (source.dbmsType === SourceTypeEnum.MONGODB) {
+      return (
+        source.name &&
+        source.parent &&
+        source.server &&
+        source.port &&
+        source.database
+      );
+    }
     if (source.authType == SourceAuthTypeEnum.KEYPAIR) {
       return (
         source.name &&

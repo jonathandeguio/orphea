@@ -34,6 +34,7 @@ public class SourceService {
     private final ConnectConfigRepository connectConfigRepository;
     private final ResourceService resourceService;
     private final JDBCService jdbcService;
+    private final MongoService mongoService;
     private final io.movetodata.connect.library.services.DatabaseSourceConfigService databaseSourceConfigService;
     private final FolderSourceConfigService folderSourceConfigService;
     private final DatabaseSourceConfigRepository databaseSourceConfigRepository;
@@ -285,6 +286,19 @@ public class SourceService {
         }
 
         HashMap<String, String> message = new HashMap<>();
+
+        // MongoDB is not JDBC — delegate to MongoService.
+        if (SourceTypeEnum.MONGODB.equals(testConnection.getDbmsType())) {
+            try {
+                mongoService.testConnection(testConnection);
+                message.put("status", "SUCCESS");
+                message.put("message", "Connection to MongoDB established successfully.");
+            } catch (Exception e) {
+                message.put("status", "FAILED");
+                message.put("message", "Error : " + e.getMessage());
+            }
+            return message;
+        }
 
         try (Connection connection = jdbcService.getJdbcConnection(testConnection)) {
             message.put("status", "SUCCESS");

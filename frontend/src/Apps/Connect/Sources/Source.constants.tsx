@@ -357,6 +357,54 @@ export const connectors = [
     ),
   },
   {
+    id: "ClickHouse",
+    icon: <DatabaseIcon />,
+    type: "jdbc",
+    subType: SourceTypeEnum.CLICKHOUSE,
+    disabled: false,
+    label: (
+      <>
+        <br />
+        <div className="text-and-icon-align">
+          <AddIcon />
+          <DatabaseIcon /> ClickHouse
+        </div>
+      </>
+    ),
+  },
+  {
+    id: "Databricks",
+    icon: <DatabaseIcon />,
+    type: "jdbc",
+    subType: SourceTypeEnum.DATABRICKS,
+    disabled: false,
+    label: (
+      <>
+        <br />
+        <div className="text-and-icon-align">
+          <AddIcon />
+          <DatabaseIcon /> Databricks
+        </div>
+      </>
+    ),
+  },
+  {
+    id: "MongoDB",
+    icon: <DatabaseIcon />,
+    type: "jdbc",
+    subType: SourceTypeEnum.MONGODB,
+    disabled: false,
+    label: (
+      <>
+        <br />
+        <div className="text-and-icon-align">
+          <AddIcon />
+          <DatabaseIcon /> MongoDB
+        </div>
+      </>
+    ),
+  },
+  {
     id: "DB2",
     icon: <DatabaseIcon />,
     type: "jdbc",
