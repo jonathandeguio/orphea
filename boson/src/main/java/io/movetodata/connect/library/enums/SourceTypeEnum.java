@@ -17,6 +17,13 @@ public enum SourceTypeEnum {
     TRINO("trino"),
     STARBURST("starburst"),
     SPARKSQL_EXTERNAL("sparksql_external"),
+    // P3 connectors
+    SQLITE("sqlite"),
+    DUCKDB("duckdb"),
+    DB2("db2"),
+    SAPHANA("sap hana"),
+    ALLOYDB("alloydb"),
+    ATHENA("athena"),
     // For internal usage only
     SPARKSQL("sparkSql"),
     NONE("NONE"),

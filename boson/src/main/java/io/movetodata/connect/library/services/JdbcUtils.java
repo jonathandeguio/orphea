@@ -54,6 +54,12 @@ public class JdbcUtils {
             case VERTICA:
             case TRINO:
             case STARBURST:
+            case SQLITE:
+            case DUCKDB:
+            case DB2:
+            case SAPHANA:
+            case ALLOYDB:
+            case ATHENA:
                 // These sources all accept standard ANSI SQL SELECT queries.
                 return isGenericDQLQuery(trimmedQuery);
             case SPARKSQL_EXTERNAL:

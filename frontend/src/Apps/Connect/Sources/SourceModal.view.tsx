@@ -467,7 +467,10 @@ const SourceModal = ({
                 </div>
 
                 {newSourceDetails.dbmsType !== SourceTypeEnum.ODBC &&
-                  newSourceDetails.dbmsType !== SourceTypeEnum.DATABRICKS && (
+                  newSourceDetails.dbmsType !== SourceTypeEnum.DATABRICKS &&
+                  newSourceDetails.dbmsType !== SourceTypeEnum.SQLITE &&
+                  newSourceDetails.dbmsType !== SourceTypeEnum.DUCKDB &&
+                  newSourceDetails.dbmsType !== SourceTypeEnum.ATHENA && (
                 <Row
                   justify={"space-between"}
                   align="middle"
@@ -506,6 +509,65 @@ const SourceModal = ({
                     />
                   </Col>
                 </Row>
+                )}
+
+                {/* SQLite / DuckDB: file-based — only a file path is required (stored in server field) */}
+                {(newSourceDetails.dbmsType === SourceTypeEnum.SQLITE ||
+                  newSourceDetails.dbmsType === SourceTypeEnum.DUCKDB) && (
+                  <Row
+                    justify={"space-between"}
+                    align="middle"
+                    style={{ marginTop: "10px" }}
+                    gutter={[16, 16]}
+                  >
+                    <Col span={8}>
+                      <Text>File Path</Text>
+                    </Col>
+                    <Col span={16}>
+                      <BoslerInput
+                        placeholder={
+                          newSourceDetails.dbmsType === SourceTypeEnum.SQLITE
+                            ? "e.g. /data/mydb.sqlite"
+                            : "e.g. /data/mydb.duckdb"
+                        }
+                        onChange={(e) =>
+                          setNewSourceDetails({
+                            ...newSourceDetails,
+                            server: e.target.value,
+                          })
+                        }
+                        value={newSourceDetails.server}
+                        required
+                      />
+                    </Col>
+                  </Row>
+                )}
+
+                {/* Athena: AWS Region field (stored in schema) — no host/port */}
+                {newSourceDetails.dbmsType === SourceTypeEnum.ATHENA && (
+                  <Row
+                    justify={"space-between"}
+                    align="middle"
+                    style={{ marginTop: "10px" }}
+                    gutter={[16, 16]}
+                  >
+                    <Col span={8}>
+                      <Text>AWS Region</Text>
+                    </Col>
+                    <Col span={16}>
+                      <BoslerInput
+                        placeholder="e.g. eu-west-1"
+                        onChange={(e) =>
+                          setNewSourceDetails({
+                            ...newSourceDetails,
+                            schema: e.target.value,
+                          })
+                        }
+                        value={newSourceDetails.schema}
+                        required
+                      />
+                    </Col>
+                  </Row>
                 )}
 
                 {/* Databricks: workspace host only (port is always 443, hardcoded in the JDBC URL) */}
@@ -561,7 +623,9 @@ const SourceModal = ({
                 )}
 
                 {newSourceDetails.dbmsType !== SourceTypeEnum.ODBC &&
-                  newSourceDetails.dbmsType !== SourceTypeEnum.DATABRICKS && (
+                  newSourceDetails.dbmsType !== SourceTypeEnum.DATABRICKS &&
+                  newSourceDetails.dbmsType !== SourceTypeEnum.SQLITE &&
+                  newSourceDetails.dbmsType !== SourceTypeEnum.DUCKDB && (
                 <Row
                   justify={"space-between"}
                   align="middle"
@@ -573,6 +637,8 @@ const SourceModal = ({
                       {newSourceDetails.dbmsType === SourceTypeEnum.TRINO ||
                       newSourceDetails.dbmsType === SourceTypeEnum.STARBURST
                         ? "Catalog"
+                        : newSourceDetails.dbmsType === SourceTypeEnum.ATHENA
+                        ? "S3 Output Bucket"
                         : getLanguageLabel("database")}
                     </Text>
                   </Col>
@@ -582,6 +648,8 @@ const SourceModal = ({
                         newSourceDetails.dbmsType === SourceTypeEnum.TRINO ||
                         newSourceDetails.dbmsType === SourceTypeEnum.STARBURST
                           ? "e.g. tpch"
+                          : newSourceDetails.dbmsType === SourceTypeEnum.ATHENA
+                          ? "e.g. my-athena-results-bucket"
                           : getLanguageLabel("database")
                       }
                       onChange={(e) =>
@@ -813,6 +881,10 @@ const SourceModal = ({
                   </>
                 )}
 
+                {/* SQLite and DuckDB are credential-free — skip the entire auth section */}
+                {newSourceDetails.dbmsType !== SourceTypeEnum.SQLITE &&
+                  newSourceDetails.dbmsType !== SourceTypeEnum.DUCKDB && (
+                <>
                 <div className="BoslerHeader1">
                   {getLanguageLabel("authentication")}
                 </div>
@@ -966,11 +1038,19 @@ const SourceModal = ({
                       style={{ marginTop: "10px" }}
                     >
                       <Col span={8}>
-                        <Text>{getLanguageLabel("userName")}</Text>
+                        <Text>
+                          {newSourceDetails.dbmsType === SourceTypeEnum.ATHENA
+                            ? "Access Key ID"
+                            : getLanguageLabel("userName")}
+                        </Text>
                       </Col>
                       <Col span={16}>
                         <BoslerInput
-                          placeholder={getLanguageLabel("userName")}
+                          placeholder={
+                            newSourceDetails.dbmsType === SourceTypeEnum.ATHENA
+                              ? "e.g. AKIAIOSFODNN7EXAMPLE"
+                              : getLanguageLabel("userName")
+                          }
                           onChange={(e) =>
                             setNewSourceDetails({
                               ...newSourceDetails,
@@ -990,7 +1070,9 @@ const SourceModal = ({
                     >
                       <Col span={8}>
                         <Text>
-                          {getLanguageLabel("password")}
+                          {newSourceDetails.dbmsType === SourceTypeEnum.ATHENA
+                            ? "Secret Access Key"
+                            : getLanguageLabel("password")}
                           {(newSourceDetails.dbmsType === SourceTypeEnum.TRINO ||
                             newSourceDetails.dbmsType === SourceTypeEnum.STARBURST) &&
                             " (Optional)"}
@@ -999,7 +1081,11 @@ const SourceModal = ({
                       <Col span={16}>
                         <Input.Password
                           className="input"
-                          placeholder={getLanguageLabel("password")}
+                          placeholder={
+                            newSourceDetails.dbmsType === SourceTypeEnum.ATHENA
+                              ? "AWS Secret Access Key"
+                              : getLanguageLabel("password")
+                          }
                           onChange={(e) =>
                             setNewSourceDetails({
                               ...newSourceDetails,
@@ -1078,6 +1164,9 @@ const SourceModal = ({
                       />
                     </Col>
                   </Row>
+                )}
+                {/* End of auth section — closes the SQLite/DuckDB exclusion */}
+                </>
                 )}
               </>
             )}

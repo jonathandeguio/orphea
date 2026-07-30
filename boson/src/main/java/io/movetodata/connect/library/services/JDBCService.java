@@ -133,6 +133,33 @@ public class JDBCService {
                     jdbcUrl = "jdbc:odbc:" + server;
                 }
                 break;
+            case SQLITE:
+                // File-based: the "server" field is used as the file path (no host/port/database).
+                jdbcUrl = "jdbc:sqlite:" + server;
+                break;
+            case DUCKDB:
+                // File-based: the "server" field is used as the file path (no host/port/database).
+                jdbcUrl = "jdbc:duckdb:" + server;
+                break;
+            case DB2:
+                // Default port: 50000
+                jdbcUrl = "jdbc:db2://" + server + ":" + (port != null ? port : 50000) + "/" + databaseName;
+                break;
+            case SAPHANA:
+                // Default port: 39015. The database name is passed as a query parameter.
+                jdbcUrl = "jdbc:sap://" + server + ":" + (port != null ? port : 39015) + "/?databaseName=" + databaseName;
+                break;
+            case ALLOYDB:
+                // AlloyDB is PostgreSQL-compatible: uses the standard PostgreSQL JDBC driver and URL.
+                jdbcUrl = "jdbc:postgresql://" + server + ":" + (port != null ? port : 5432) + "/" + databaseName;
+                break;
+            case ATHENA:
+                // AWS Region is stored in the schema field.
+                // S3 output bucket is stored in the database field.
+                // Auth: Access Key ID → user property, Secret Access Key → password property.
+                jdbcUrl = "jdbc:awsathena://AwsRegion=" + databaseSourceConfig.getSchema()
+                        + ";S3OutputLocation=s3://" + databaseName + "/";
+                break;
             default:
                 throw new IllegalArgumentException("Unsupported JDBC type: " + databaseSourceConfig.getDbmsType());
         }
@@ -185,6 +212,21 @@ public class JDBCService {
                         e
                     );
                 }
+            case SQLITE:
+                return "org.sqlite.JDBC";
+            case DUCKDB:
+                return "org.duckdb.DuckDBDriver";
+            case DB2:
+                return "com.ibm.db2.jcc.DB2Driver";
+            case SAPHANA:
+                return "com.sap.db.jdbc.Driver";
+            case ALLOYDB:
+                // AlloyDB is PostgreSQL-compatible — reuse the standard PostgreSQL JDBC driver.
+                return "org.postgresql.Driver";
+            case ATHENA:
+                // Requires the Simba Athena JDBC driver (AthenaJDBC42.jar), placed manually in libs/.
+                // See build.gradle for download instructions.
+                return "com.simba.athena.jdbc.Driver";
             default:
                 throw new IllegalArgumentException("Unsupported JDBC type: " + jdbcType);
         }
@@ -212,6 +254,12 @@ public class JDBCService {
                 case TRINO:
                 case STARBURST:
                 case SPARKSQL_EXTERNAL:
+                case SQLITE:
+                case DUCKDB:
+                case DB2:
+                case SAPHANA:
+                case ALLOYDB:
+                case ATHENA:
                     query = query + " LIMIT " + limit;
                     break;
                 case ORACLE21:
@@ -254,6 +302,14 @@ public class JDBCService {
 
     public Connection getJdbcConnection(DatabaseSourceConfig databaseSourceConfig) throws Exception {
         Properties properties = new Properties();
+
+        // SQLite and DuckDB are file-based databases with no authentication model.
+        // Skip credential properties entirely to avoid driver errors on empty user/password.
+        if (SourceTypeEnum.SQLITE.equals(databaseSourceConfig.getDbmsType()) ||
+            SourceTypeEnum.DUCKDB.equals(databaseSourceConfig.getDbmsType())) {
+            return DriverManager.getConnection(JDBCService.JDBCUrl(databaseSourceConfig), properties);
+        }
+
         // Databricks JDBC with AuthMech=3 requires the literal username "token" regardless of what the user typed.
         if (SourceTypeEnum.DATABRICKS.equals(databaseSourceConfig.getDbmsType())) {
             properties.put("user", "token");

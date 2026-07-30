@@ -72,6 +72,41 @@ export const isSourceConfigValid = (source: ISourceConfig) => {
         source.password
       );
     }
+    // SQLite / DuckDB: file-based — only the file path (server field) is required. No credentials.
+    if (
+      source.dbmsType === SourceTypeEnum.SQLITE ||
+      source.dbmsType === SourceTypeEnum.DUCKDB
+    ) {
+      return source.name && source.parent && source.server;
+    }
+    // Amazon Athena: region (schema) + S3 bucket (database) + access key (username) + secret key (password).
+    // No host or port required.
+    if (source.dbmsType === SourceTypeEnum.ATHENA) {
+      return (
+        source.name &&
+        source.parent &&
+        source.schema &&
+        source.database &&
+        source.username &&
+        source.password
+      );
+    }
+    // IBM DB2, SAP HANA, AlloyDB: standard JDBC — server, port, database, username, password required.
+    if (
+      source.dbmsType === SourceTypeEnum.DB2 ||
+      source.dbmsType === SourceTypeEnum.SAPHANA ||
+      source.dbmsType === SourceTypeEnum.ALLOYDB
+    ) {
+      return (
+        source.name &&
+        source.parent &&
+        source.server &&
+        source.port &&
+        source.database &&
+        source.username &&
+        source.password
+      );
+    }
     if (source.authType == SourceAuthTypeEnum.KEYPAIR) {
       return (
         source.name &&

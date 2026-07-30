@@ -408,8 +408,8 @@ export const connectors = [
     id: "DB2",
     icon: <DatabaseIcon />,
     type: "jdbc",
-    subType: "db2",
-    disabled: true,
+    subType: SourceTypeEnum.DB2,
+    disabled: false,
     label: (
       <>
         <br />
@@ -421,17 +421,65 @@ export const connectors = [
     ),
   },
   {
-    id: "SAP",
+    id: "SAP HANA",
     icon: <DatabaseIcon />,
     type: "jdbc",
-    subType: "sap",
-    disabled: true,
+    subType: SourceTypeEnum.SAPHANA,
+    disabled: false,
     label: (
       <>
         <br />
         <div className="text-and-icon-align">
           <AddIcon />
-          <DatabaseIcon /> SAP
+          <DatabaseIcon /> SAP HANA
+        </div>
+      </>
+    ),
+  },
+  {
+    id: "SQLite",
+    icon: <DatabaseIcon />,
+    type: "jdbc",
+    subType: SourceTypeEnum.SQLITE,
+    disabled: false,
+    label: (
+      <>
+        <br />
+        <div className="text-and-icon-align">
+          <AddIcon />
+          <DatabaseIcon /> SQLite
+        </div>
+      </>
+    ),
+  },
+  {
+    id: "DuckDB",
+    icon: <DatabaseIcon />,
+    type: "jdbc",
+    subType: SourceTypeEnum.DUCKDB,
+    disabled: false,
+    label: (
+      <>
+        <br />
+        <div className="text-and-icon-align">
+          <AddIcon />
+          <DatabaseIcon /> DuckDB
+        </div>
+      </>
+    ),
+  },
+  {
+    id: "Athena",
+    icon: <DatabaseIcon />,
+    type: "jdbc",
+    subType: SourceTypeEnum.ATHENA,
+    disabled: false,
+    label: (
+      <>
+        <br />
+        <div className="text-and-icon-align">
+          <AddIcon />
+          <DatabaseIcon /> Amazon Athena
         </div>
       </>
     ),
@@ -572,8 +620,8 @@ export const connectors = [
     id: "alloyDB",
     icon: <DatabaseIcon />,
     type: "jdbc",
-    subType: "alloyDb",
-    disabled: true,
+    subType: SourceTypeEnum.ALLOYDB,
+    disabled: false,
     label: (
       <>
         <AddIcon />

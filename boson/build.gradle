@@ -100,6 +100,30 @@ dependencies {
     // and replace this line with: implementation files('libs/vertica-jdbc-24.1.0-0.jar')
     // Download from: https://www.vertica.com/download/vertica/client-drivers/
     implementation 'com.vertica.jdbc:vertica-jdbc:24.1.0-0'
+    // SQLite JDBC driver — file-based database, no server required
+    // Driver class : org.sqlite.JDBC
+    // URL pattern  : jdbc:sqlite:<path>
+    implementation 'org.xerial:sqlite-jdbc:3.45.3.0'
+    // DuckDB JDBC driver — in-process analytical database, file-based
+    // Driver class : org.duckdb.DuckDBDriver
+    // URL pattern  : jdbc:duckdb:<path>
+    implementation 'org.duckdb:duckdb_jdbc:1.0.0'
+    // IBM DB2 JCC JDBC driver
+    // Driver class : com.ibm.db2.jcc.DB2Driver
+    // URL pattern  : jdbc:db2://<host>:<port>/<database>  (default port 50000)
+    implementation 'com.ibm.db2:jcc:11.5.9.0'
+    // SAP HANA JDBC driver (ngdbc)
+    // Driver class : com.sap.db.jdbc.Driver
+    // URL pattern  : jdbc:sap://<host>:<port>/?databaseName=<database>  (default port 39015)
+    implementation 'com.sap.cloud.db.jdbc:ngdbc:2.19.16'
+    // Amazon Athena JDBC driver (Simba) — NOT published to Maven Central.
+    // Download AthenaJDBC42.jar from:
+    //   https://docs.aws.amazon.com/athena/latest/ug/connect-with-jdbc.html
+    // Place the jar in boson/libs/ and add a flatDir repository, then uncomment:
+    // implementation files('libs/AthenaJDBC42.jar')
+    // Driver class : com.simba.athena.jdbc.Driver
+    // URL pattern  : jdbc:awsathena://AwsRegion=<region>;S3OutputLocation=s3://<bucket>/
+    // Auth         : AWS Access Key ID (user), AWS Secret Access Key (password)
     // MongoDB driver (non-JDBC) — used by MongoService
     implementation 'org.mongodb:mongodb-driver-sync:4.11.0'
     implementation 'org.apache.spark:spark-core_2.13:3.4.3'

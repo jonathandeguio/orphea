@@ -15,4 +15,11 @@ export const enum SourceTypeEnum {
   TRINO = "TRINO",
   STARBURST = "STARBURST",
   SPARKSQL_EXTERNAL = "SPARKSQL_EXTERNAL",
+  // P3 connectors
+  SQLITE = "SQLITE",
+  DUCKDB = "DUCKDB",
+  DB2 = "DB2",
+  SAPHANA = "SAPHANA",
+  ALLOYDB = "ALLOYDB",
+  ATHENA = "ATHENA",
 }
