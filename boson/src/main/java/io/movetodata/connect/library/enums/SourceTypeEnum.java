@@ -12,6 +12,11 @@ public enum SourceTypeEnum {
     CLICKHOUSE("clickhouse"),
     DATABRICKS("databricks"),
     MONGODB("mongodb"),
+    REDSHIFT("redshift"),
+    VERTICA("vertica"),
+    TRINO("trino"),
+    STARBURST("starburst"),
+    SPARKSQL_EXTERNAL("sparksql_external"),
     // For internal usage only
     SPARKSQL("sparkSql"),
     NONE("NONE"),

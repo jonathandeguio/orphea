@@ -81,6 +81,31 @@ public class JDBCService {
             case CLICKHOUSE:
                 jdbcUrl = "jdbc:clickhouse://" + server + ":" + port + "/" + databaseName;
                 break;
+            case REDSHIFT:
+                // Default port: 5439
+                jdbcUrl = "jdbc:redshift://" + server + ":" + (port != null ? port : 5439) + "/" + databaseName;
+                break;
+            case VERTICA:
+                // Default port: 5433
+                jdbcUrl = "jdbc:vertica://" + server + ":" + (port != null ? port : 5433) + "/" + databaseName;
+                break;
+            case TRINO:
+            case STARBURST: {
+                // Default port: 8080
+                // URL pattern: jdbc:trino://<host>:<port>/<catalog>[/<schema>]
+                String catalog = databaseName;
+                String trinoPort = (port != null ? String.valueOf(port) : "8080");
+                jdbcUrl = "jdbc:trino://" + server + ":" + trinoPort + "/" + catalog;
+                if (databaseSourceConfig.getSchema() != null && !databaseSourceConfig.getSchema().isEmpty()) {
+                    jdbcUrl += "/" + databaseSourceConfig.getSchema();
+                }
+                break;
+            }
+            case SPARKSQL_EXTERNAL:
+                // Hive Thrift JDBC — driver: org.apache.hive.jdbc.HiveDriver (bundled via Spark deps)
+                // Default port: 10000 (standard HiveServer2)
+                jdbcUrl = "jdbc:hive2://" + server + ":" + (port != null ? port : 10000) + "/" + databaseName;
+                break;
             case DATABRICKS:
                 // Authentication uses UID=token + PWD=<personal-access-token> (AuthMech=3).
                 // The PAT is stored in the password field and passed via JDBC Properties.
@@ -131,6 +156,16 @@ public class JDBCService {
                 return "net.snowflake.client.jdbc.SnowflakeDriver";
             case CLICKHOUSE:
                 return "com.clickhouse.jdbc.ClickHouseDriver";
+            case REDSHIFT:
+                return "com.amazon.redshift.jdbc.Driver";
+            case VERTICA:
+                return "com.vertica.jdbc.Driver";
+            case TRINO:
+            case STARBURST:
+                return "io.trino.jdbc.TrinoDriver";
+            case SPARKSQL_EXTERNAL:
+                // org.apache.hive.jdbc.HiveDriver is provided transitively via the Spark SQL dependency
+                return "org.apache.hive.jdbc.HiveDriver";
             case DATABRICKS:
                 return "com.databricks.client.jdbc.Driver";
             case ODBC:
@@ -172,6 +207,11 @@ public class JDBCService {
                 case MARIADB:
                 case CLICKHOUSE:
                 case DATABRICKS:
+                case REDSHIFT:
+                case VERTICA:
+                case TRINO:
+                case STARBURST:
+                case SPARKSQL_EXTERNAL:
                     query = query + " LIMIT " + limit;
                     break;
                 case ORACLE21:
@@ -229,7 +269,14 @@ public class JDBCService {
             properties.put("privateKey", privateKey);
         } else {
             String password = databaseSourceConfig.getPassword();
-            properties.put("password", isBase64(password) ? Utils.decodeBase64(password) : password);
+            // Trino and Starburst: password is optional — use empty string when not provided
+            if ((SourceTypeEnum.TRINO.equals(databaseSourceConfig.getDbmsType()) ||
+                 SourceTypeEnum.STARBURST.equals(databaseSourceConfig.getDbmsType())) &&
+                (password == null || password.isEmpty())) {
+                properties.put("password", "");
+            } else {
+                properties.put("password", isBase64(password) ? Utils.decodeBase64(password) : password);
+            }
         }
 
         return DriverManager.getConnection(JDBCService.JDBCUrl(databaseSourceConfig), properties);

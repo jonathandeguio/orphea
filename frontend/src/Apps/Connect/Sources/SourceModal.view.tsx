@@ -569,11 +569,21 @@ const SourceModal = ({
                   gutter={[16, 16]}
                 >
                   <Col span={8}>
-                    <Text>{getLanguageLabel("database")}</Text>
+                    <Text>
+                      {newSourceDetails.dbmsType === SourceTypeEnum.TRINO ||
+                      newSourceDetails.dbmsType === SourceTypeEnum.STARBURST
+                        ? "Catalog"
+                        : getLanguageLabel("database")}
+                    </Text>
                   </Col>
                   <Col span={16}>
                     <BoslerInput
-                      placeholder={getLanguageLabel("database")}
+                      placeholder={
+                        newSourceDetails.dbmsType === SourceTypeEnum.TRINO ||
+                        newSourceDetails.dbmsType === SourceTypeEnum.STARBURST
+                          ? "e.g. tpch"
+                          : getLanguageLabel("database")
+                      }
                       onChange={(e) =>
                         setNewSourceDetails({
                           ...newSourceDetails,
@@ -615,6 +625,33 @@ const SourceModal = ({
                 )}
 
                 {newSourceDetails.dbmsType == SourceTypeEnum.SNOWFLAKE && (
+                  <Row
+                    justify={"space-between"}
+                    align="middle"
+                    style={{ marginTop: "10px" }}
+                    gutter={[16, 16]}
+                  >
+                    <Col span={8}>
+                      <Text>{getLanguageLabel("schema")} (Optional)</Text>
+                    </Col>
+                    <Col span={16}>
+                      <BoslerInput
+                        placeholder={getLanguageLabel("schema")}
+                        onChange={(e) =>
+                          setNewSourceDetails({
+                            ...newSourceDetails,
+                            schema: e.target.value,
+                          })
+                        }
+                        value={newSourceDetails.schema}
+                      />
+                    </Col>
+                  </Row>
+                )}
+
+                {/* Trino / Starburst: schema is optional — appended to the URL after the catalog */}
+                {(newSourceDetails.dbmsType === SourceTypeEnum.TRINO ||
+                  newSourceDetails.dbmsType === SourceTypeEnum.STARBURST) && (
                   <Row
                     justify={"space-between"}
                     align="middle"
@@ -952,7 +989,12 @@ const SourceModal = ({
                       gutter={[16, 16]}
                     >
                       <Col span={8}>
-                        <Text>{getLanguageLabel("password")}</Text>
+                        <Text>
+                          {getLanguageLabel("password")}
+                          {(newSourceDetails.dbmsType === SourceTypeEnum.TRINO ||
+                            newSourceDetails.dbmsType === SourceTypeEnum.STARBURST) &&
+                            " (Optional)"}
+                        </Text>
                       </Col>
                       <Col span={16}>
                         <Input.Password
@@ -975,7 +1017,10 @@ const SourceModal = ({
                                 ).toString("ascii")
                               : ""
                           }
-                          required
+                          required={
+                            newSourceDetails.dbmsType !== SourceTypeEnum.TRINO &&
+                            newSourceDetails.dbmsType !== SourceTypeEnum.STARBURST
+                          }
                         />
                       </Col>
                     </Row>

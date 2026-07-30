@@ -86,6 +86,20 @@ dependencies {
     // Databricks JDBC driver (Simba)
     // Driver class : com.databricks.client.jdbc.Driver
     implementation 'com.databricks:databricks-jdbc:2.6.40'
+    // Amazon Redshift JDBC driver
+    // Driver class : com.amazon.redshift.jdbc.Driver
+    implementation 'com.amazon.redshift:redshift-jdbc42:2.1.0.30'
+    // Trino JDBC driver (also used for Starburst — same artifact, different label)
+    // Driver class : io.trino.jdbc.TrinoDriver
+    implementation 'io.trino:trino-jdbc:434'
+    // Vertica JDBC driver
+    // Driver class : com.vertica.jdbc.Driver
+    // NOTE: Vertica does NOT publish its JDBC driver to Maven Central.
+    // The artifact below requires a custom Maven repository or a manual flatDir installation.
+    // To use a local jar, add to repositories: flatDir { dirs 'libs' }
+    // and replace this line with: implementation files('libs/vertica-jdbc-24.1.0-0.jar')
+    // Download from: https://www.vertica.com/download/vertica/client-drivers/
+    implementation 'com.vertica.jdbc:vertica-jdbc:24.1.0-0'
     // MongoDB driver (non-JDBC) — used by MongoService
     implementation 'org.mongodb:mongodb-driver-sync:4.11.0'
     implementation 'org.apache.spark:spark-core_2.13:3.4.3'

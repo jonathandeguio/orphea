@@ -50,8 +50,15 @@ public class JdbcUtils {
             case CLICKHOUSE:
             case DATABRICKS:
             case ODBC:
-                // ClickHouse, Databricks and ODBC sources all accept standard ANSI SQL SELECT queries.
+            case REDSHIFT:
+            case VERTICA:
+            case TRINO:
+            case STARBURST:
+                // These sources all accept standard ANSI SQL SELECT queries.
                 return isGenericDQLQuery(trimmedQuery);
+            case SPARKSQL_EXTERNAL:
+                // SparkSQL via HiveServer2 supports the same extended DQL surface as internal SPARKSQL.
+                return isSparkSQLSpecificDQLQuery(trimmedQuery);
             default:
                 throw new DatabaseOperationException("Not a valid JDBC type");
         }

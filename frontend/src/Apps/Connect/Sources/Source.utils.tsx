@@ -42,6 +42,36 @@ export const isSourceConfigValid = (source: ISourceConfig) => {
         source.database
       );
     }
+    // Trino / Starburst: host + port + catalog (database) + username required. Password is optional.
+    if (
+      source.dbmsType === SourceTypeEnum.TRINO ||
+      source.dbmsType === SourceTypeEnum.STARBURST
+    ) {
+      return (
+        source.name &&
+        source.parent &&
+        source.server &&
+        source.port &&
+        source.database &&
+        source.username
+      );
+    }
+    // Redshift, Vertica, SparkSQL external: standard JDBC — all fields required.
+    if (
+      source.dbmsType === SourceTypeEnum.REDSHIFT ||
+      source.dbmsType === SourceTypeEnum.VERTICA ||
+      source.dbmsType === SourceTypeEnum.SPARKSQL_EXTERNAL
+    ) {
+      return (
+        source.name &&
+        source.parent &&
+        source.server &&
+        source.port &&
+        source.database &&
+        source.username &&
+        source.password
+      );
+    }
     if (source.authType == SourceAuthTypeEnum.KEYPAIR) {
       return (
         source.name &&

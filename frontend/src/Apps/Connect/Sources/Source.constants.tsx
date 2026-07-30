@@ -454,11 +454,75 @@ export const connectors = [
     ),
   },
   {
+    id: "Vertica",
+    icon: <DatabaseIcon />,
+    type: "jdbc",
+    subType: SourceTypeEnum.VERTICA,
+    disabled: false,
+    label: (
+      <>
+        <br />
+        <div className="text-and-icon-align">
+          <AddIcon />
+          <DatabaseIcon /> Vertica
+        </div>
+      </>
+    ),
+  },
+  {
+    id: "Trino",
+    icon: <DatabaseIcon />,
+    type: "jdbc",
+    subType: SourceTypeEnum.TRINO,
+    disabled: false,
+    label: (
+      <>
+        <br />
+        <div className="text-and-icon-align">
+          <AddIcon />
+          <DatabaseIcon /> Trino
+        </div>
+      </>
+    ),
+  },
+  {
+    id: "Starburst",
+    icon: <DatabaseIcon />,
+    type: "jdbc",
+    subType: SourceTypeEnum.STARBURST,
+    disabled: false,
+    label: (
+      <>
+        <br />
+        <div className="text-and-icon-align">
+          <AddIcon />
+          <DatabaseIcon /> Starburst
+        </div>
+      </>
+    ),
+  },
+  {
+    id: "SparkSQL",
+    icon: <DatabaseIcon />,
+    type: "jdbc",
+    subType: SourceTypeEnum.SPARKSQL_EXTERNAL,
+    disabled: false,
+    label: (
+      <>
+        <br />
+        <div className="text-and-icon-align">
+          <AddIcon />
+          <DatabaseIcon /> SparkSQL
+        </div>
+      </>
+    ),
+  },
+  {
     id: "redshift",
     icon: <DatabaseIcon />,
     type: "jdbc",
-    subType: "redshift",
-    disabled: true,
+    subType: SourceTypeEnum.REDSHIFT,
+    disabled: false,
     label: (
       <>
         <AddIcon />
